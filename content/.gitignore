@@ -1,0 +1,15 @@
+# Exclude all content files (copyrighted material)
+*.pdf
+*.PDF
+*.epub
+*.mobi
+*.mp4
+*.avi
+*.mkv
+*.mov
+
+# But keep .gitkeep files to preserve folder structure
+!.gitkeep
+
+# Keep metadata files
+!metadata/**
