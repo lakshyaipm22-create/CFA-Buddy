@@ -16,7 +16,7 @@ export function Sidebar() {
       <div className="mb-8 flex items-center gap-3 px-3">
         <div className="relative h-10 w-10 overflow-hidden rounded-lg">
           <Image
-            src="/logo.png"
+            src="/CFA Buddy_logo.png"
             alt="CFA Buddy"
             width={40}
             height={40}

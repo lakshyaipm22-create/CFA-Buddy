@@ -19,6 +19,9 @@ export async function updateProfile(formData: FormData): Promise<AuthActionResul
   }
 
   const supabase = await createServerSupabaseClient();
+  if (!supabase) {
+    return { success: false, error: 'Authentication is not configured.' };
+  }
 
   const { error } = await supabase.auth.updateUser({
     data: {

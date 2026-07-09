@@ -18,6 +18,9 @@ export async function resetPassword(formData: FormData): Promise<AuthActionResul
   }
 
   const supabase = await createServerSupabaseClient();
+  if (!supabase) {
+    return { success: false, error: 'Authentication is not configured.' };
+  }
 
   const { error } = await supabase.auth.resetPasswordForEmail(validated.data.email, {
     redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback?next=/update-password`,
