@@ -7,7 +7,6 @@ import type {
   ScanOptions,
   ScanReport,
   ScanState,
-  ResourceType,
 } from './types';
 import { discoverFiles, type DiscoveredFile } from './utils/file-discovery';
 import { computeChecksum } from './utils/checksum';
@@ -25,6 +24,13 @@ const INDEX_VERSION = '1.0.0';
  * 
  * This is a reusable library, NOT tied to the CLI.
  * Can be invoked from: CLI, Admin UI API route, tests, background jobs.
+ *
+ * Invariants:
+ * 1. content-index.json ONLY contains entries for files that currently exist on disk.
+ * 2. Deleted files are reported in the scan report but NEVER written to the index.
+ * 3. The index is a snapshot of current disk state, not a changelog or history.
+ * 4. totalResources in the written JSON always equals the number of active files on disk.
+ * 5. Running the scanner twice with no file changes produces: New=0, Modified=0, Deleted=0, Unchanged=N.
  */
 export class ContentScanner {
   private options: ScanOptions;
@@ -57,39 +63,96 @@ export class ContentScanner {
       return { report: this.buildEmptyReport(startTime), resources: [] };
     }
 
-    // Step 2: Load existing index and scan state
+    // Step 2: Load existing index (only active entries — deleted are never stored)
     await this.loadExistingState();
+    const previousIndex = new Map(
+      this.existingIndex.map((r) => [r.relativePath, r])
+    );
 
-    // Step 3: Discover all PDF files
+    // Step 3: Discover all PDF files currently on disk
     this.logger.info('Discovering files...');
     const discovered = await discoverFiles(this.options.contentDir);
     this.logger.info(`Found ${discovered.length} PDF files`);
+    const discoveredPaths = new Set(discovered.map((f) => f.relativePath));
 
-    // Step 4: Determine which files need processing
-    const { toProcess, unchanged } = this.filterFiles(discovered);
-    this.logger.info(`Files to process: ${toProcess.length}, unchanged: ${unchanged.length}`);
+    // Step 4: Classify each discovered file as new, modified, or unchanged
+    const newFiles: DiscoveredFile[] = [];
+    const modifiedFiles: DiscoveredFile[] = [];
+    const unchangedPaths: string[] = [];
 
-    // Step 5: Process files (extract metadata + compute checksums)
+    for (const file of discovered) {
+      const existing = previousIndex.get(file.relativePath);
+      if (!existing) {
+        newFiles.push(file);
+      } else if (this.options.full || existing.fileSize !== file.fileSize || existing.modifiedTime !== file.modifiedTime) {
+        modifiedFiles.push(file);
+      } else {
+        unchangedPaths.push(file.relativePath);
+      }
+    }
+
+    // Step 5: Detect deleted files (in previous index but not on disk)
+    const deletedPaths: string[] = [];
+    for (const [path] of previousIndex) {
+      if (!discoveredPaths.has(path)) {
+        deletedPaths.push(path);
+      }
+    }
+
+    this.logger.info(`New: ${newFiles.length}, Modified: ${modifiedFiles.length}, Unchanged: ${unchangedPaths.length}, Deleted: ${deletedPaths.length}`);
+
+    // Step 6: Process new and modified files (compute checksums + extract metadata)
+    const toProcess = [...newFiles, ...modifiedFiles];
     const processed = await this.processFiles(toProcess);
 
-    // Step 6: Merge with unchanged files from existing index
-    const allResources = this.mergeResults(processed, unchanged);
+    // Step 7: Build the final index (ONLY active entries — never store deleted)
+    const finalResources: ContentMetadata[] = [];
 
-    // Step 7: Detect deleted files
-    const deletedCount = this.markDeletedFiles(allResources, discovered);
+    // Add newly processed entries
+    for (const entry of processed) {
+      finalResources.push(entry);
+    }
+
+    // Add unchanged entries from previous index
+    for (const path of unchangedPaths) {
+      const existing = previousIndex.get(path);
+      if (existing) {
+        existing.lastScannedAt = new Date().toISOString();
+        finalResources.push(existing);
+      }
+    }
 
     // Step 8: Detect paired files
-    const missingPairs = detectPairs(allResources.filter(r => r.status !== 'deleted'));
+    const missingPairs = detectPairs(finalResources);
 
     // Step 9: Detect versions and mark latest
-    detectVersions(allResources.filter(r => r.status !== 'deleted'));
+    detectVersions(finalResources);
 
-    // Step 10: Write index and state
-    await this.writeIndex(allResources);
-    await this.writeScanState(allResources.length);
+    // Step 10: Write index (only active entries) and scan state
+    await this.writeIndex(finalResources);
+    await this.writeScanState(finalResources.length);
 
     // Step 11: Build report
-    const report = this.buildReport(startTime, allResources, toProcess.length, unchanged.length, deletedCount, missingPairs);
+    const report: ScanReport = {
+      startedAt: new Date(startTime).toISOString(),
+      completedAt: new Date().toISOString(),
+      durationMs: Date.now() - startTime,
+      totalFiles: finalResources.length,
+      newFiles: newFiles.length,
+      modifiedFiles: modifiedFiles.length,
+      deletedFiles: deletedPaths.length,
+      unchangedFiles: unchangedPaths.length,
+      duplicates: this.countDuplicates(finalResources),
+      errors: this.logger.getErrors().map((e) => ({
+        filePath: (e.data?.filePath as string) ?? '',
+        error: e.message,
+        timestamp: e.timestamp,
+      })),
+      missingPairs,
+      byResourceType: this.countByField(finalResources, 'resourceType'),
+      byProvider: this.countByField(finalResources, 'provider'),
+      byLevel: this.countByLevelField(finalResources),
+    };
 
     this.logger.success('Scan complete', {
       total: report.totalFiles,
@@ -99,47 +162,32 @@ export class ContentScanner {
       errors: report.errors.length,
     });
 
-    return { report, resources: allResources };
+    return { report, resources: finalResources };
   }
 
-  /**
-   * Filter files based on incremental scan logic.
-   * Full scan: process everything.
-   * Incremental: only process new/modified files (by size + mtime comparison).
-   */
-  private filterFiles(discovered: DiscoveredFile[]): {
-    toProcess: DiscoveredFile[];
-    unchanged: string[];
-  } {
-    if (this.options.full || this.existingIndex.length === 0) {
-      return { toProcess: discovered, unchanged: [] };
+  private countDuplicates(resources: ContentMetadata[]): number {
+    const checksumCounts = new Map<string, number>();
+    for (const r of resources) {
+      checksumCounts.set(r.checksum, (checksumCounts.get(r.checksum) ?? 0) + 1);
     }
+    return [...checksumCounts.values()].filter((c) => c > 1).length;
+  }
 
-    const existingMap = new Map(
-      this.existingIndex.map((r) => [r.relativePath, r])
-    );
-
-    const toProcess: DiscoveredFile[] = [];
-    const unchanged: string[] = [];
-
-    for (const file of discovered) {
-      const existing = existingMap.get(file.relativePath);
-      if (!existing) {
-        // New file
-        toProcess.push(file);
-      } else if (
-        existing.fileSize !== file.fileSize ||
-        existing.modifiedTime !== file.modifiedTime
-      ) {
-        // Modified file (size or mtime changed)
-        toProcess.push(file);
-      } else {
-        // Unchanged
-        unchanged.push(file.relativePath);
-      }
+  private countByField(resources: ContentMetadata[], field: 'resourceType' | 'provider'): Record<string, number> {
+    const counts: Record<string, number> = {};
+    for (const r of resources) {
+      const value = r[field];
+      if (value) counts[value] = (counts[value] ?? 0) + 1;
     }
+    return counts;
+  }
 
-    return { toProcess, unchanged };
+  private countByLevelField(resources: ContentMetadata[]): Record<string, number> {
+    const counts: Record<string, number> = {};
+    for (const r of resources) {
+      if (r.level) counts[`Level ${r.level}`] = (counts[`Level ${r.level}`] ?? 0) + 1;
+    }
+    return counts;
   }
 
   /**
@@ -232,53 +280,6 @@ export class ContentScanner {
   }
 
   /**
-   * Merge newly processed files with unchanged files from existing index.
-   */
-  private mergeResults(
-    processed: ContentMetadata[],
-    unchangedPaths: string[]
-  ): ContentMetadata[] {
-    const existingMap = new Map(
-      this.existingIndex.map((r) => [r.relativePath, r])
-    );
-
-    const results: ContentMetadata[] = [...processed];
-
-    // Add unchanged files from existing index
-    for (const path of unchangedPaths) {
-      const existing = existingMap.get(path);
-      if (existing) {
-        existing.lastScannedAt = new Date().toISOString();
-        results.push(existing);
-      }
-    }
-
-    return results;
-  }
-
-  /**
-   * Mark files that were in the index but no longer on disk.
-   */
-  private markDeletedFiles(
-    allResources: ContentMetadata[],
-    discovered: DiscoveredFile[]
-  ): number {
-    const currentPaths = new Set(discovered.map((f) => f.relativePath));
-    let deletedCount = 0;
-
-    for (const existing of this.existingIndex) {
-      if (!currentPaths.has(existing.relativePath)) {
-        existing.status = 'deleted';
-        existing.lastScannedAt = new Date().toISOString();
-        allResources.push(existing);
-        deletedCount++;
-      }
-    }
-
-    return deletedCount;
-  }
-
-  /**
    * Load existing index and scan state from disk.
    * Normalizes stored paths to forward slashes for cross-platform consistency.
    */
@@ -353,64 +354,6 @@ export class ContentScanner {
     await writeFile(statePath, JSON.stringify(state, null, 2), 'utf-8');
   }
 
-  /**
-   * Build the scan report.
-   */
-  private buildReport(
-    startTime: number,
-    resources: ContentMetadata[],
-    processedCount: number,
-    unchangedCount: number,
-    deletedCount: number,
-    missingPairs: string[]
-  ): ScanReport {
-    const activeResources = resources.filter((r) => r.status !== 'deleted');
-    const newFiles = resources.filter((r) => {
-      const wasExisting = this.existingIndex.some(
-        (e) => e.relativePath === r.relativePath
-      );
-      return !wasExisting && r.status !== 'deleted';
-    }).length;
-
-    const byResourceType: Record<ResourceType, number> = {} as Record<ResourceType, number>;
-    const byProvider: Record<string, number> = {};
-    const byLevel: Record<string, number> = {};
-
-    for (const r of activeResources) {
-      byResourceType[r.resourceType] = (byResourceType[r.resourceType] ?? 0) + 1;
-      if (r.provider) byProvider[r.provider] = (byProvider[r.provider] ?? 0) + 1;
-      if (r.level) byLevel[`Level ${r.level}`] = (byLevel[`Level ${r.level}`] ?? 0) + 1;
-    }
-
-    // Detect duplicates (same checksum, different paths)
-    const checksumCounts = new Map<string, number>();
-    for (const r of activeResources) {
-      checksumCounts.set(r.checksum, (checksumCounts.get(r.checksum) ?? 0) + 1);
-    }
-    const duplicates = [...checksumCounts.values()].filter((c) => c > 1).length;
-
-    return {
-      startedAt: new Date(startTime).toISOString(),
-      completedAt: new Date().toISOString(),
-      durationMs: Date.now() - startTime,
-      totalFiles: activeResources.length,
-      newFiles,
-      modifiedFiles: processedCount - newFiles,
-      deletedFiles: deletedCount,
-      unchangedFiles: unchangedCount,
-      duplicates,
-      errors: this.logger.getErrors().map((e) => ({
-        filePath: (e.data?.filePath as string) ?? '',
-        error: e.message,
-        timestamp: e.timestamp,
-      })),
-      missingPairs,
-      byResourceType,
-      byProvider,
-      byLevel,
-    };
-  }
-
   private buildEmptyReport(startTime: number): ScanReport {
     return {
       startedAt: new Date(startTime).toISOString(),
@@ -424,7 +367,7 @@ export class ContentScanner {
       duplicates: 0,
       errors: [],
       missingPairs: [],
-      byResourceType: {} as Record<ResourceType, number>,
+      byResourceType: {},
       byProvider: {},
       byLevel: {},
     };

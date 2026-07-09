@@ -103,7 +103,7 @@ export interface ScanReport {
   duplicates: number;
   errors: ScanError[];
   missingPairs: string[];
-  byResourceType: Record<ResourceType, number>;
+  byResourceType: Record<string, number>;
   byProvider: Record<string, number>;
   byLevel: Record<string, number>;
 }

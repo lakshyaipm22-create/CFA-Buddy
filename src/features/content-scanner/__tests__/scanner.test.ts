@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { mkdir, writeFile, rm } from 'fs/promises';
+import { mkdir, writeFile, readFile, rm } from 'fs/promises';
 import { join, dirname } from 'path';
 import { ContentScanner } from '../scanner';
 
@@ -140,5 +140,48 @@ describe('ContentScanner — Incremental Scan Logic', () => {
     }
 
     expect(report.newFiles + report.deletedFiles).toBeLessThanOrEqual(report.totalFiles + report.deletedFiles);
+  });
+
+  it('index file only contains active entries, never deleted ones', async () => {
+    await createTestFile('curriculum/level1/keep.pdf');
+    await createTestFile('curriculum/level1/will-delete.pdf');
+
+    // First scan indexes both files
+    const scanner1 = new ContentScanner({ contentDir: TEST_CONTENT_DIR, full: false });
+    await scanner1.scan();
+
+    // Delete one file
+    await deleteTestFile('curriculum/level1/will-delete.pdf');
+
+    // Second scan
+    const scanner2 = new ContentScanner({ contentDir: TEST_CONTENT_DIR, full: false });
+    const { report } = await scanner2.scan();
+
+    expect(report.deletedFiles).toBe(1);
+
+    // Read the written index and verify it only contains active entries
+    const indexPath = join(TEST_CONTENT_DIR, 'metadata', 'content-index.json');
+    const indexData = JSON.parse(await readFile(indexPath, 'utf-8'));
+    
+    expect(indexData.totalResources).toBe(1);
+    expect(indexData.resources.length).toBe(1);
+    expect(indexData.resources[0].relativePath).toBe('curriculum/level1/keep.pdf');
+    // No entry should have status 'deleted'
+    expect(indexData.resources.every((r: { status: string }) => r.status === 'active')).toBe(true);
+  });
+
+  it('totalResources in written index always equals files on disk', async () => {
+    await createTestFile('a.pdf');
+    await createTestFile('b.pdf');
+    await createTestFile('c.pdf');
+
+    const scanner = new ContentScanner({ contentDir: TEST_CONTENT_DIR, full: false });
+    await scanner.scan();
+
+    const indexPath = join(TEST_CONTENT_DIR, 'metadata', 'content-index.json');
+    const indexData = JSON.parse(await readFile(indexPath, 'utf-8'));
+    
+    expect(indexData.totalResources).toBe(3);
+    expect(indexData.resources.length).toBe(3);
   });
 });
