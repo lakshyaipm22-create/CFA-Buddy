@@ -4,28 +4,36 @@ import { NextResponse, type NextRequest } from 'next/server';
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Skip API routes — they handle their own auth if needed
-  if (pathname.startsWith('/api/')) {
+  // Always skip API routes and static assets
+  if (
+    pathname.startsWith('/api/') ||
+    pathname.startsWith('/_next/') ||
+    pathname.includes('.')
+  ) {
     return NextResponse.next();
   }
 
-  // Skip if Supabase credentials are not configured
-  // This allows the app to run in "local development" mode without Supabase
+  // Check if Supabase is properly configured
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  if (!supabaseUrl || !supabaseAnonKey || supabaseUrl === 'https://placeholder.supabase.co' || supabaseAnonKey === 'placeholder-key') {
-    // No valid Supabase credentials — skip auth, allow all routes
-    // This enables local development without Supabase being configured
+  // If Supabase is not configured or has placeholder values, skip all auth
+  // This allows the entire app to run without authentication in development
+  if (
+    !supabaseUrl ||
+    !supabaseAnonKey ||
+    supabaseUrl.includes('placeholder') ||
+    supabaseAnonKey.includes('placeholder') ||
+    supabaseAnonKey === 'your-anon-key'
+  ) {
     return NextResponse.next();
   }
 
+  // Supabase IS configured — perform auth check
   let supabaseResponse = NextResponse.next({ request });
 
-  const supabase = createServerClient(
-    supabaseUrl,
-    supabaseAnonKey,
-    {
+  try {
+    const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
       cookies: {
         getAll() {
           return request.cookies.getAll();
@@ -40,35 +48,39 @@ export async function middleware(request: NextRequest) {
           );
         },
       },
+    });
+
+    const { data: { user } } = await supabase.auth.getUser();
+
+    // Auth pages - redirect logged-in users to dashboard
+    const authPages = ['/sign-in', '/sign-up', '/reset-password'];
+    if (user && authPages.includes(pathname)) {
+      const url = request.nextUrl.clone();
+      url.pathname = '/dashboard';
+      return NextResponse.redirect(url);
     }
-  );
 
-  // Refresh session
-  const { data: { user } } = await supabase.auth.getUser();
+    // If user is NOT authenticated and trying to access a protected route,
+    // redirect to sign-in. But ONLY if Supabase auth is working correctly.
+    const publicPaths = ['/sign-in', '/sign-up', '/reset-password', '/auth/callback', '/'];
+    const isPublicPath = publicPaths.some(p => pathname === p || pathname.startsWith(p + '/'));
 
-  // Auth pages - redirect logged-in users to dashboard
-  const authPages = ['/sign-in', '/sign-up', '/reset-password'];
-  if (user && authPages.includes(pathname)) {
-    const url = request.nextUrl.clone();
-    url.pathname = '/dashboard';
-    return NextResponse.redirect(url);
-  }
+    if (!user && !isPublicPath) {
+      const url = request.nextUrl.clone();
+      url.pathname = '/sign-in';
+      return NextResponse.redirect(url);
+    }
 
-  // Protected pages - redirect unauthenticated users to sign-in
-  const publicPaths = ['/sign-in', '/sign-up', '/reset-password', '/auth/callback'];
-  const isPublicPath = publicPaths.some(p => pathname.startsWith(p));
-
-  if (!user && !isPublicPath && pathname !== '/') {
-    const url = request.nextUrl.clone();
-    url.pathname = '/sign-in';
-    return NextResponse.redirect(url);
-  }
-
-  // Root redirect
-  if (pathname === '/') {
-    const url = request.nextUrl.clone();
-    url.pathname = user ? '/dashboard' : '/sign-in';
-    return NextResponse.redirect(url);
+    // Root redirect
+    if (pathname === '/') {
+      const url = request.nextUrl.clone();
+      url.pathname = user ? '/dashboard' : '/sign-in';
+      return NextResponse.redirect(url);
+    }
+  } catch {
+    // If Supabase auth fails for any reason (network, invalid keys, etc.),
+    // don't block the user — just pass through without auth.
+    return NextResponse.next();
   }
 
   return supabaseResponse;

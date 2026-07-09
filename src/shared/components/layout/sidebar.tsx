@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/shared/lib/utils';
 import { navigationItems } from '@/shared/config/navigation';
@@ -13,8 +14,20 @@ export function Sidebar() {
     <aside className="flex h-screen w-64 flex-col border-r border-[#1a2332] bg-[#0d1117] px-3 py-4">
       {/* Logo */}
       <div className="mb-8 flex items-center gap-3 px-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#002B5C]">
-          <span className="text-lg font-bold text-[#C5A258]">C</span>
+        <div className="relative h-10 w-10 overflow-hidden rounded-lg">
+          <Image
+            src="/logo.png"
+            alt="CFA Buddy"
+            width={40}
+            height={40}
+            className="h-full w-full object-cover"
+            onError={(e) => {
+              // Fallback if logo.png doesn't exist
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              target.parentElement!.innerHTML = '<span class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#002B5C] text-lg font-bold text-[#C5A258]">C</span>';
+            }}
+          />
         </div>
         <div>
           <h1 className="text-base font-bold text-white">CFA Buddy</h1>
