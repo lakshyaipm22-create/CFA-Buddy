@@ -2,11 +2,29 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  // Skip API routes — they handle their own auth if needed
+  if (pathname.startsWith('/api/')) {
+    return NextResponse.next();
+  }
+
+  // Skip if Supabase credentials are not configured
+  // This allows the app to run in "local development" mode without Supabase
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey || supabaseUrl === 'https://placeholder.supabase.co' || supabaseAnonKey === 'placeholder-key') {
+    // No valid Supabase credentials — skip auth, allow all routes
+    // This enables local development without Supabase being configured
+    return NextResponse.next();
+  }
+
   let supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    supabaseUrl,
+    supabaseAnonKey,
     {
       cookies: {
         getAll() {
@@ -25,10 +43,8 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  // IMPORTANT: Do not remove this - it refreshes the session
+  // Refresh session
   const { data: { user } } = await supabase.auth.getUser();
-
-  const pathname = request.nextUrl.pathname;
 
   // Auth pages - redirect logged-in users to dashboard
   const authPages = ['/sign-in', '/sign-up', '/reset-password'];
