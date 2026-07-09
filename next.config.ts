@@ -1,7 +1,13 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Image optimization
+  images: {
+    remotePatterns: [],
+    unoptimized: process.env.NODE_ENV === 'development',
+  },
+  // Ensure server-side filesystem access works
+  serverExternalPackages: ['pdf-parse'],
 };
 
 export default nextConfig;
