@@ -1,5 +1,6 @@
 import { Sidebar } from '@/shared/components/layout/sidebar';
 import { Header } from '@/shared/components/layout/header';
+import { SearchModal } from '@/features/search/components/search-modal';
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,6 +12,7 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
           {children}
         </main>
       </div>
+      <SearchModal />
     </div>
   );
 }
