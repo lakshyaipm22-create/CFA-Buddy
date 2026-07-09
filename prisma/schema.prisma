@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -10,4 +5,449 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+// === ENUMS ===
+
+enum CfaLevel {
+  I
+  II
+  III
+}
+
+enum Difficulty {
+  Easy
+  Medium
+  Hard
+}
+
+enum Confidence {
+  Guess
+  ThinkSo
+  Certain
+}
+
+enum ErrorClassification {
+  DidntKnow
+  ForgotFormula
+  CalculationMistake
+  MisreadQuestion
+  Careless
+  TimePressure
+  Unclassified
+}
+
+enum ContentType {
+  PDF
+  VideoLink
+  FormulaSheet
+  Unknown
+}
+
+enum SessionStatus {
+  Active
+  Completed
+  Abandoned
+}
+
+enum TestMode {
+  Topic
+  Subject
+  Mixed
+  QuickTopic
+  AdaptiveRetest
+  Random
+  WeakTopic
+}
+
+// === CORE USER ===
+
+model User {
+  id          String   @id @default(uuid())
+  authUserId  String   @unique @map("auth_user_id")
+  displayName String   @map("display_name")
+  level       CfaLevel @default(I)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  notes             Note[]
+  questionAttempts  QuestionAttempt[]
+  questionSessions  QuestionSession[]
+  progress          Progress[]
+  studyStreak       StudyStreak?
+  examTarget        ExamTarget?
+  flashcards        Flashcard[]
+  mistakeLogs       MistakeLog[]
+  questionBookmarks QuestionBookmark[]
+  noteBookmarks     NoteBookmark[]
+  resourceBookmarks ResourceBookmark[]
+  pageBookmarks     PageBookmark[]
+
+  @@map("users")
+}
+
+// === CONTENT HIERARCHY ===
+
+model Level {
+  id        String   @id @default(uuid())
+  name      CfaLevel @unique
+  sortOrder Int      @map("sort_order")
+
+  subjects Subject[]
+
+  @@map("levels")
+}
+
+model Subject {
+  id           String  @id @default(uuid())
+  levelId      String  @map("level_id")
+  name         String
+  abbreviation String
+  sortOrder    Int     @map("sort_order")
+  weight       Decimal @default(0)
+
+  level    Level     @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  readings Reading[]
+
+  @@index([levelId])
+  @@map("subjects")
+}
+
+model Reading {
+  id            String @id @default(uuid())
+  subjectId     String @map("subject_id")
+  name          String
+  readingNumber Int    @map("reading_number")
+  sortOrder     Int    @map("sort_order")
+
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  topics  Topic[]
+
+  @@index([subjectId])
+  @@map("readings")
+}
+
+model Topic {
+  id        String @id @default(uuid())
+  readingId String @map("reading_id")
+  name      String
+  losCode   String @map("los_code")
+  sortOrder Int    @map("sort_order")
+
+  reading     Reading      @relation(fields: [readingId], references: [id], onDelete: Cascade)
+  concepts    Concept[]
+  notes       Note[]
+  questions   Question[]
+  progress    Progress[]
+  mistakeLogs MistakeLog[]
+
+  @@index([readingId])
+  @@map("topics")
+}
+
+model Concept {
+  id          String   @id @default(uuid())
+  topicId     String   @map("topic_id")
+  name        String
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  topic       Topic        @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  questions   Question[]
+  notes       Note[]
+  formulas    Formula[]
+  flashcards  Flashcard[]
+  mistakeLogs MistakeLog[]
+
+  @@index([topicId])
+  @@map("concepts")
+}
+
+// === CONTENT PROVIDERS & RESOURCES ===
+
+model ContentProvider {
+  id          String  @id @default(uuid())
+  name        String  @unique
+  slug        String  @unique
+  description String?
+
+  resources ContentResource[]
+  questions Question[]
+
+  @@map("content_providers")
+}
+
+model ContentResource {
+  id               String      @id @default(uuid())
+  levelId          String?     @map("level_id")
+  subjectId        String?     @map("subject_id")
+  readingId        String?     @map("reading_id")
+  providerId       String?     @map("provider_id")
+  filePath         String      @map("file_path")
+  contentType      ContentType @default(Unknown) @map("content_type")
+  fileSizeBytes    BigInt?     @map("file_size_bytes")
+  version          String?
+  active           Boolean     @default(true)
+  discoveredAt     DateTime    @default(now()) @map("discovered_at")
+  pairedResourceId String?     @map("paired_resource_id")
+
+  provider          ContentProvider?   @relation(fields: [providerId], references: [id])
+  resourceBookmarks ResourceBookmark[]
+  pageBookmarks     PageBookmark[]
+
+  @@index([levelId, subjectId, providerId])
+  @@index([filePath])
+  @@map("content_resources")
+}
+
+// === QUESTIONS ===
+
+model Question {
+  id                 String     @id @default(uuid())
+  conceptId          String?    @map("concept_id")
+  topicId            String     @map("topic_id")
+  providerId         String     @map("provider_id")
+  questionText       String     @map("question_text")
+  answerChoices      Json       @map("answer_choices")
+  difficulty         Difficulty @default(Medium)
+  questionSourceFile String?    @map("question_source_file")
+  verificationStatus String     @default("approved") @map("verification_status")
+  createdAt          DateTime   @default(now()) @map("created_at")
+
+  concept   Concept?           @relation(fields: [conceptId], references: [id], onDelete: SetNull)
+  topic     Topic              @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  provider  ContentProvider    @relation(fields: [providerId], references: [id])
+  attempts  QuestionAttempt[]
+  bookmarks QuestionBookmark[]
+  notes     Note[]
+
+  @@index([topicId, conceptId])
+  @@index([providerId])
+  @@index([difficulty])
+  @@map("questions")
+}
+
+model QuestionSession {
+  id             String        @id @default(uuid())
+  userId         String        @map("user_id")
+  mode           TestMode
+  config         Json
+  status         SessionStatus @default(Active)
+  startedAt      DateTime      @default(now()) @map("started_at")
+  completedAt    DateTime?     @map("completed_at")
+  totalQuestions Int           @map("total_questions")
+  expiresAt      DateTime      @map("expires_at")
+
+  user     User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attempts QuestionAttempt[]
+
+  @@index([userId, status])
+  @@index([expiresAt])
+  @@map("question_sessions")
+}
+
+model QuestionAttempt {
+  id                  String               @id @default(uuid())
+  sessionId           String               @map("session_id")
+  questionId          String               @map("question_id")
+  userId              String               @map("user_id")
+  selectedAnswer      String               @map("selected_answer")
+  confidence          Confidence
+  timeSpentSeconds    Int                  @map("time_spent_seconds")
+  correct             Boolean
+  errorClassification ErrorClassification? @map("error_classification")
+  createdAt           DateTime             @default(now()) @map("created_at")
+
+  session    QuestionSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question   Question        @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  user       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mistakeLog MistakeLog?
+
+  @@index([userId, createdAt])
+  @@index([questionId])
+  @@index([sessionId])
+  @@map("question_attempts")
+}
+
+// === NOTES ===
+
+model Note {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  topicId    String?  @map("topic_id")
+  conceptId  String?  @map("concept_id")
+  questionId String?  @map("question_id")
+  content    String
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic     Topic?         @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  concept   Concept?       @relation(fields: [conceptId], references: [id], onDelete: SetNull)
+  question  Question?      @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  bookmarks NoteBookmark[]
+
+  @@index([userId, topicId])
+  @@index([userId, questionId])
+  @@map("notes")
+}
+
+// === FORMULAS & FLASHCARDS ===
+
+model Formula {
+  id         String   @id @default(uuid())
+  conceptId  String   @map("concept_id")
+  providerId String?  @map("provider_id")
+  content    String
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  concept Concept @relation(fields: [conceptId], references: [id], onDelete: Cascade)
+
+  @@index([conceptId])
+  @@map("formulas")
+}
+
+model Flashcard {
+  id           String   @id @default(uuid())
+  conceptId    String   @map("concept_id")
+  userId       String   @map("user_id")
+  front        String
+  back         String
+  nextReview   DateTime @default(now()) @map("next_review")
+  intervalDays Int      @default(1) @map("interval_days")
+  easeFactor   Decimal  @default(2.5) @map("ease_factor")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  concept Concept @relation(fields: [conceptId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, nextReview])
+  @@index([conceptId])
+  @@map("flashcards")
+}
+
+// === PROGRESS TRACKING ===
+
+model Progress {
+  id                 String    @id @default(uuid())
+  userId             String    @map("user_id")
+  topicId            String    @map("topic_id")
+  masteryLevel       Int       @default(0) @map("mastery_level")
+  questionsAttempted Int       @default(0) @map("questions_attempted")
+  questionsCorrect   Int       @default(0) @map("questions_correct")
+  lastStudied        DateTime? @map("last_studied")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, topicId])
+  @@index([userId, masteryLevel])
+  @@map("progress")
+}
+
+model StudyStreak {
+  id              String    @id @default(uuid())
+  userId          String    @unique @map("user_id")
+  currentStreak   Int       @default(0) @map("current_streak")
+  longestStreak   Int       @default(0) @map("longest_streak")
+  streakStartDate DateTime? @map("streak_start_date")
+  lastStudyDate   DateTime? @map("last_study_date")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("study_streaks")
+}
+
+model ExamTarget {
+  id          String   @id @default(uuid())
+  userId      String   @unique @map("user_id")
+  targetDate  DateTime @map("target_date")
+  targetLevel CfaLevel @map("target_level")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("exam_targets")
+}
+
+// === MISTAKE TRACKING ===
+
+model MistakeLog {
+  id                  String              @id @default(uuid())
+  attemptId           String              @unique @map("attempt_id")
+  userId              String              @map("user_id")
+  conceptId           String?             @map("concept_id")
+  topicId             String              @map("topic_id")
+  errorClassification ErrorClassification @map("error_classification")
+  confidence          Confidence
+  resolved            Boolean             @default(false)
+  repeatCount         Int                 @default(0) @map("repeat_count")
+  persistentWeakness  Boolean             @default(false) @map("persistent_weakness")
+  createdAt           DateTime            @default(now()) @map("created_at")
+
+  attempt QuestionAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  user    User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  concept Concept?        @relation(fields: [conceptId], references: [id], onDelete: SetNull)
+  topic   Topic           @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@index([userId, errorClassification])
+  @@index([userId, topicId])
+  @@index([userId, resolved])
+  @@map("mistake_logs")
+}
+
+// === BOOKMARKS ===
+
+model QuestionBookmark {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  questionId String   @map("question_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+  @@map("question_bookmarks")
+}
+
+model NoteBookmark {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  noteId    String   @map("note_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  note Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, noteId])
+  @@map("note_bookmarks")
+}
+
+model ResourceBookmark {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  resourceId String   @map("resource_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user     User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resource ContentResource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, resourceId])
+  @@map("resource_bookmarks")
+}
+
+model PageBookmark {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  resourceId String   @map("resource_id")
+  pageNumber Int      @map("page_number")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  user     User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resource ContentResource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, resourceId])
+  @@map("page_bookmarks")
 }
