@@ -5,8 +5,6 @@ import {
   HelpCircle,
   AlertTriangle,
   Calendar,
-  Search,
-  Settings,
 } from 'lucide-react';
 
 export const navigationItems = [

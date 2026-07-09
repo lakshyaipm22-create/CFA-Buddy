@@ -1,6 +1,9 @@
-import { PrismaClient } from '../src/generated/prisma';
+import { PrismaClient } from '../src/generated/prisma/client';
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  adapter: null as any,
+});
 
 async function main() {
   console.log('🌱 Seeding database...');

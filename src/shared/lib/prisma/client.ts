@@ -10,6 +10,7 @@ function createPrismaClient(): PrismaClient {
   // once the database connection is fully set up.
   // For now, we use the accelerateUrl approach with DATABASE_URL.
   return new PrismaClient({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     adapter: null as any,
   });
 }

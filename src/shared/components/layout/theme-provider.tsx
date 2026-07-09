@@ -13,12 +13,11 @@ const ThemeContext = createContext<{
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
-
-  useEffect(() => {
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'dark';
     const stored = localStorage.getItem('cfa-buddy-theme') as Theme | null;
-    if (stored) setTheme(stored);
-  }, []);
+    return stored ?? 'dark';
+  });
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
