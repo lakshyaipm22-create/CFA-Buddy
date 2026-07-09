@@ -292,13 +292,16 @@ export class ContentScanner {
         const parsed = JSON.parse(data);
         const rawResources: ContentMetadata[] = parsed.resources ?? [];
         
-        // Normalize stored paths to forward slashes (fixes cross-platform
-        // mismatch when an index was written on Windows before path normalization
-        // was added to file-discovery.ts)
-        this.existingIndex = rawResources.map((r) => ({
-          ...r,
-          relativePath: r.relativePath.replace(/\\/g, '/'),
-        }));
+        // Normalize stored paths to forward slashes AND filter out any
+        // stale 'deleted' entries left by previous buggy scanner versions.
+        // The current design never persists deleted entries, but old indexes
+        // on disk may still contain them. Discard them on load to self-heal.
+        this.existingIndex = rawResources
+          .filter((r) => r.status !== 'deleted')
+          .map((r) => ({
+            ...r,
+            relativePath: r.relativePath.replace(/\\/g, '/'),
+          }));
         
         this.logger.info(`Loaded existing index: ${this.existingIndex.length} entries`);
       }

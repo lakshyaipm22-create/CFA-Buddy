@@ -184,4 +184,42 @@ describe('ContentScanner — Incremental Scan Logic', () => {
     expect(indexData.totalResources).toBe(3);
     expect(indexData.resources.length).toBe(3);
   });
+
+  it('self-heals from a corrupt index containing deleted entries', async () => {
+    await createTestFile('curriculum/level1/file1.pdf');
+    await createTestFile('curriculum/level1/file2.pdf');
+
+    // Simulate a corrupt index with deleted entries (from old buggy scanner)
+    const corruptIndex = {
+      version: '1.0.0',
+      generatedAt: new Date().toISOString(),
+      totalResources: 4,
+      resources: [
+        // Two "active" entries matching real files
+        { relativePath: 'curriculum/level1/file1.pdf', status: 'active', fileSize: 25, modifiedTime: '', checksum: 'a', id: '1', provider: null, level: null, subject: null, reading: null, readingNumber: null, topic: null, year: null, version: null, isLatest: true, filePath: '', fileName: 'file1.pdf', extension: 'pdf', resourceType: 'unknown', pairedWith: null, discoveredAt: '', lastScannedAt: '' },
+        { relativePath: 'curriculum/level1/file2.pdf', status: 'active', fileSize: 25, modifiedTime: '', checksum: 'b', id: '2', provider: null, level: null, subject: null, reading: null, readingNumber: null, topic: null, year: null, version: null, isLatest: true, filePath: '', fileName: 'file2.pdf', extension: 'pdf', resourceType: 'unknown', pairedWith: null, discoveredAt: '', lastScannedAt: '' },
+        // Two "deleted" entries from old buggy code (should be discarded)
+        { relativePath: 'old/deleted/file3.pdf', status: 'deleted', fileSize: 100, modifiedTime: '', checksum: 'c', id: '3', provider: null, level: null, subject: null, reading: null, readingNumber: null, topic: null, year: null, version: null, isLatest: true, filePath: '', fileName: 'file3.pdf', extension: 'pdf', resourceType: 'unknown', pairedWith: null, discoveredAt: '', lastScannedAt: '' },
+        { relativePath: 'old/deleted/file4.pdf', status: 'deleted', fileSize: 100, modifiedTime: '', checksum: 'd', id: '4', provider: null, level: null, subject: null, reading: null, readingNumber: null, topic: null, year: null, version: null, isLatest: true, filePath: '', fileName: 'file4.pdf', extension: 'pdf', resourceType: 'unknown', pairedWith: null, discoveredAt: '', lastScannedAt: '' },
+      ],
+    };
+
+    const indexPath = join(TEST_CONTENT_DIR, 'metadata', 'content-index.json');
+    await writeFile(indexPath, JSON.stringify(corruptIndex, null, 2));
+
+    // Run scanner — it should discard the deleted entries and NOT report them
+    const scanner = new ContentScanner({ contentDir: TEST_CONTENT_DIR, full: false });
+    const { report } = await scanner.scan();
+
+    // The two deleted entries should be silently discarded, not counted
+    expect(report.totalFiles).toBe(2);
+    expect(report.deletedFiles).toBe(0); // No REAL deletions happened
+
+    // Verify written index is clean — no 'deleted' entries survive
+    const writtenIndex = JSON.parse(await readFile(indexPath, 'utf-8'));
+    expect(writtenIndex.totalResources).toBe(2);
+    expect(writtenIndex.resources.length).toBe(2);
+    // The key invariant: no resource has status 'deleted' in the written index
+    expect(writtenIndex.resources.some((r: { status: string }) => r.status === 'deleted')).toBe(false);
+  });
 });
