@@ -18,6 +18,15 @@ const ANSWER_SUFFIXES = [
 ];
 
 /**
+ * Strip a trailing duplicate-file marker like " (2)" or " (3)" that Windows
+ * or browsers append when a file is downloaded multiple times.
+ * "Hedge Funds - Answers (2).pdf" -> "Hedge Funds - Answers.pdf"
+ */
+function stripDuplicateMarker(path: string): string {
+  return path.replace(/\s*\(\d+\)(\.[a-zA-Z0-9]+)$/, '$1');
+}
+
+/**
  * Detect paired question/answer files and link them.
  * Mutates the input array by setting `pairedWith` on matched entries.
  * Returns list of files with missing pairs.
@@ -83,11 +92,12 @@ export function detectPairs(resources: ContentMetadata[]): string[] {
  * Returns null if this is not an answer file.
  */
 function getBaseFileName(path: string): string | null {
+  const normalized = stripDuplicateMarker(path);
   for (const suffix of ANSWER_SUFFIXES) {
     const ext = '.pdf';
     const suffixWithExt = suffix + ext;
-    if (path.toLowerCase().endsWith(suffixWithExt.toLowerCase())) {
-      return path.slice(0, path.length - suffixWithExt.length) + ext;
+    if (normalized.toLowerCase().endsWith(suffixWithExt.toLowerCase())) {
+      return normalized.slice(0, normalized.length - suffixWithExt.length) + ext;
     }
   }
   return null;
@@ -104,9 +114,10 @@ function findAnswerFile(
 
   for (const suffix of ANSWER_SUFFIXES) {
     const candidate = pathWithoutExt + suffix + '.pdf';
-    // Case-insensitive search
+    // Case-insensitive search, tolerating a trailing duplicate marker
     for (const [key] of fileMap) {
-      if (key.toLowerCase() === candidate.toLowerCase()) {
+      const normalizedKey = stripDuplicateMarker(key);
+      if (normalizedKey.toLowerCase() === candidate.toLowerCase()) {
         return key;
       }
     }

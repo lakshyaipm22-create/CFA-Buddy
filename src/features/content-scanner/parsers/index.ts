@@ -14,14 +14,21 @@ import { formulaParser } from './formula-parser';
  * The first parser whose `matches()` returns true is used.
  */
 export const parserRegistry: ProviderParser[] = [
+  // Folder-structural parsers first: these check the top-level content-type
+  // folder (mocks/, question-banks/, formulas/, curriculum/, notes/.../ift/)
+  // and must win over provider-name substring parsers below, since a
+  // provider name (e.g. "Schweser") can appear inside a mocks/ or
+  // question-banks/ subfolder without that file being "schweser notes".
+  mockParser,
+  questionBankParser,
+  formulaParser,
   curriculumParser,
   iftParser,
   markMeldrumParser,
   fintreeParser,
-  schweserParser,  // After specific note providers (schweser QB is handled by questionBankParser)
-  questionBankParser,
-  mockParser,
-  formulaParser,
+  // Provider-name substring parser last: catches remaining schweser/*
+  // files that are plain subject notes, not mocks or question banks.
+  schweserParser,
 ];
 
 /**

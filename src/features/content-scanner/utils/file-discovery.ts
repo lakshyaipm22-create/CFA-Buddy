@@ -1,5 +1,5 @@
 import { readdir, stat } from 'fs/promises';
-import { join, relative, extname, basename } from 'path';
+import { join, relative, extname, basename, sep } from 'path';
 
 export interface DiscoveredFile {
   absolutePath: string;
@@ -51,7 +51,7 @@ async function walkDirectory(
           const fileStat = await stat(fullPath);
           results.push({
             absolutePath: fullPath,
-            relativePath: relative(rootDir, fullPath),
+            relativePath: relative(rootDir, fullPath).split(sep).join('/'),
             fileName: basename(entry.name),
             extension: ext.slice(1), // Remove the dot
             fileSize: fileStat.size,
