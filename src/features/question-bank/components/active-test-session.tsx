@@ -116,23 +116,12 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
     }
   }, [session, sessionId]);
 
-  // No session found — redirect
-  if (!session) {
-    if (typeof window !== 'undefined') {
-      router.push('/questions');
-    }
+  // No session found — show loading (don't redirect during render)
+  if (!session || !currentQuestion) {
     return (
-      <div className="flex h-full items-center justify-center">
+      <div className="flex h-full flex-col items-center justify-center gap-4">
         <div className="h-6 w-6 animate-spin rounded-full border-2 border-zinc-700 border-t-[#C5A258]" />
-      </div>
-    );
-  }
-
-  // Loading/no question state
-  if (!currentQuestion) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-zinc-700 border-t-[#C5A258]" />
+        <p className="text-xs text-zinc-500">Loading questions...</p>
       </div>
     );
   }
