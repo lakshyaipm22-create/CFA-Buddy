@@ -12,15 +12,23 @@ interface MistakeEntry {
 
 const emptyArray: Array<{ status: string; attempts?: Array<Record<string, unknown>> }> = [];
 
+// Module-level cache for referential stability
+let mistakeCachedRaw: string | null = null;
+let mistakeCachedParsed: typeof emptyArray = emptyArray;
+
 function getSessionsSnapshot() {
   if (typeof window === 'undefined') return emptyArray;
   const raw = localStorage.getItem('cfa-buddy-sessions');
   if (!raw) return emptyArray;
-  try {
-    return JSON.parse(raw) as typeof emptyArray;
-  } catch {
-    return emptyArray;
+  if (raw !== mistakeCachedRaw) {
+    mistakeCachedRaw = raw;
+    try {
+      mistakeCachedParsed = JSON.parse(raw) as typeof emptyArray;
+    } catch {
+      mistakeCachedParsed = emptyArray;
+    }
   }
+  return mistakeCachedParsed;
 }
 
 function getServerSnapshot() {

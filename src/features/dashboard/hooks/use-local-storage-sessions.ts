@@ -16,15 +16,24 @@ interface SessionData {
 
 const emptyArray: SessionData[] = [];
 
+// Module-level cache for referential stability
+let cachedRaw: string | null = null;
+let cachedParsed: SessionData[] = emptyArray;
+
 function getSnapshot(): SessionData[] {
   if (typeof window === 'undefined') return emptyArray;
   const raw = localStorage.getItem('cfa-buddy-sessions');
   if (!raw) return emptyArray;
-  try {
-    return JSON.parse(raw) as SessionData[];
-  } catch {
-    return emptyArray;
+  // Only re-parse if the raw string actually changed
+  if (raw !== cachedRaw) {
+    cachedRaw = raw;
+    try {
+      cachedParsed = JSON.parse(raw) as SessionData[];
+    } catch {
+      cachedParsed = emptyArray;
+    }
   }
+  return cachedParsed;
 }
 
 function getServerSnapshot(): SessionData[] {
@@ -32,7 +41,6 @@ function getServerSnapshot(): SessionData[] {
 }
 
 function subscribe(callback: () => void): () => void {
-  // Listen for storage events (cross-tab)
   window.addEventListener('storage', callback);
   return () => window.removeEventListener('storage', callback);
 }

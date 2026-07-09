@@ -2,9 +2,18 @@
 
 import { useState, useMemo, useSyncExternalStore } from 'react';
 
+// Module-level cache for referential stability
+let examDateCached: string | null = null;
+let examDateLastCheck: string | null = '___init___';
+
 function getExamDateSnapshot(): string | null {
   if (typeof window === 'undefined') return null;
-  return localStorage.getItem('cfa-buddy-exam-date');
+  const value = localStorage.getItem('cfa-buddy-exam-date');
+  if (value !== examDateLastCheck) {
+    examDateLastCheck = value;
+    examDateCached = value;
+  }
+  return examDateCached;
 }
 
 function getExamDateServerSnapshot(): string | null {
@@ -19,26 +28,21 @@ function subscribeExamDate(callback: () => void): () => void {
 export function ExamCountdown() {
   const targetDate = useSyncExternalStore(subscribeExamDate, getExamDateSnapshot, getExamDateServerSnapshot);
   const [inputDate, setInputDate] = useState('');
-  const [saveCount, setSaveCount] = useState(0);
 
   const saveDate = () => {
     if (!inputDate) return;
     localStorage.setItem('cfa-buddy-exam-date', inputDate);
-    // Trigger re-render to pick up new value
-    setSaveCount(n => n + 1);
+    // Dispatch storage event to trigger useSyncExternalStore update
+    window.dispatchEvent(new StorageEvent('storage', { key: 'cfa-buddy-exam-date' }));
+    setInputDate('');
   };
 
-  const savedDate = targetDate ?? (typeof window !== 'undefined' ? localStorage.getItem('cfa-buddy-exam-date') : null);
-
-  // Use useMemo to compute days left based on the saved date
-  // The saveCount dep forces re-computation after saving
   const daysLeft = useMemo(() => {
-    if (!savedDate) return null;
-    return Math.ceil((new Date(savedDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [savedDate, saveCount]);
+    if (!targetDate) return null;
+    return Math.ceil((new Date(targetDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
+  }, [targetDate]);
 
-  if (!savedDate) {
+  if (!targetDate) {
     return (
       <div className="rounded-lg border border-dashed border-[#1a2332] bg-[#0d1117] p-6">
         <h3 className="text-sm font-medium text-zinc-300">Exam Countdown</h3>
@@ -69,7 +73,7 @@ export function ExamCountdown() {
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-sm font-medium text-zinc-300">Exam Countdown</h3>
-          <p className="mt-1 text-xs text-zinc-500">{new Date(savedDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <p className="mt-1 text-xs text-zinc-500">{new Date(targetDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
         </div>
         <div className="text-right">
           <p className={`text-4xl font-bold ${isUrgent ? 'text-red-400' : 'text-[#C5A258]'}`}>
