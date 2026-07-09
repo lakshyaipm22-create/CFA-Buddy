@@ -1,59 +1,6 @@
 {
-  "$schema": "./content-index.schema.json",
   "version": "1.0.0",
-  "lastUpdated": "2026-07-07",
-  "levels": [
-    {
-      "id": "level1",
-      "name": "CFA Level I",
-      "providers": [
-        {
-          "id": "cfai-curriculum",
-          "name": "CFA Institute Curriculum 2026",
-          "category": "curriculum"
-        },
-        {
-          "id": "kaplan-schweser",
-          "name": "Kaplan Schweser 2026",
-          "category": "schweser"
-        },
-        {
-          "id": "ift",
-          "name": "IFT (Irfanullah Financial Training)",
-          "category": "notes"
-        },
-        {
-          "id": "mark-meldrum",
-          "name": "Mark Meldrum",
-          "category": "notes"
-        },
-        {
-          "id": "fintree",
-          "name": "Fintree",
-          "category": "notes"
-        },
-        {
-          "id": "juice",
-          "name": "Juice Notes",
-          "category": "notes"
-        }
-      ]
-    },
-    {
-      "id": "level2",
-      "name": "CFA Level II",
-      "providers": [
-        {
-          "id": "cfai-curriculum",
-          "name": "CFA Institute Curriculum 2026",
-          "category": "curriculum"
-        },
-        {
-          "id": "kaplan-schweser",
-          "name": "Kaplan Schweser 2026",
-          "category": "schweser"
-        }
-      ]
-    }
-  ]
+  "generatedAt": "2026-07-09T17:51:45.176Z",
+  "totalResources": 0,
+  "resources": []
 }
