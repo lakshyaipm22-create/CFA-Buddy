@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Question, QuestionAttempt, QuestionSession, Confidence } from '../types';
 import { getSession, saveSession } from '../utils/session-storage';
@@ -42,18 +42,31 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
   const [session, setSession] = useState<QuestionSession | null>(data?.session ?? null);
   const [questions] = useState<Question[]>(data?.questions ?? []);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
-  const [scratchpad, setScratchpad] = useState('');
+  const [scratchpad, setScratchpad] = useState(() => {
+    if (typeof window === 'undefined' || !data) return '';
+    return localStorage.getItem(`scratch-${sessionId}-${data.session.currentIndex}`) ?? '';
+  });
   const [showScratchpad, setShowScratchpad] = useState(false);
-  const [questionStartMs, setQuestionStartMs] = useState(() => Date.now());
+  const startTimeRef = useRef<number>(0);
 
-  const currentQuestion = session && questions.length > 0
+  // Redirect if session not found — safe inside useEffect (not during render)
+  useEffect(() => {
+    if (!data) {
+      router.replace('/questions');
+      return;
+    }
+    startTimeRef.current = Date.now();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Intentionally empty — runs once on mount only
+
+  const currentQuestion = (session && questions.length > 0)
     ? questions.find(q => q.id === session.questionIds[session.currentIndex]) ?? null
     : null;
 
   const submitAnswer = useCallback((confidence: Confidence) => {
     if (!session || !currentQuestion || !selectedAnswer) return;
 
-    const timeSpent = Math.round((Date.now() - questionStartMs) / 1000);
+    const timeSpent = Math.round((Date.now() - startTimeRef.current) / 1000);
     const correctChoice = currentQuestion.answerChoices.find(c => c.isCorrect);
     const isCorrect = correctChoice?.label === selectedAnswer;
 
@@ -72,7 +85,6 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
       currentIndex: session.currentIndex + 1,
     };
 
-    // Check if session is complete
     if (updatedSession.currentIndex >= updatedSession.questionIds.length) {
       updatedSession.status = 'completed';
       updatedSession.completedAt = new Date().toISOString();
@@ -81,13 +93,16 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
     saveSession(updatedSession);
     setSession(updatedSession);
     setSelectedAnswer(null);
-    setQuestionStartMs(Date.now());
+    startTimeRef.current = Date.now();
 
-    // If completed, redirect to review
+    // Load scratchpad for next question
+    const nextScratch = localStorage.getItem(`scratch-${sessionId}-${updatedSession.currentIndex}`);
+    setScratchpad(nextScratch ?? '');
+
     if (updatedSession.status === 'completed') {
       router.push(`/questions/review/${sessionId}`);
     }
-  }, [session, currentQuestion, selectedAnswer, sessionId, router, questionStartMs]);
+  }, [session, currentQuestion, selectedAnswer, sessionId, router]);
 
   const toggleFlag = useCallback(() => {
     if (!session || !currentQuestion) return;
@@ -116,7 +131,7 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
     }
   }, [session, sessionId]);
 
-  // No session found — show loading (don't redirect during render)
+  // Show loading state if no session/question data available
   if (!session || !currentQuestion) {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-4">
@@ -147,25 +162,13 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button
-            onClick={toggleBookmark}
-            className={`rounded p-1.5 transition-colors ${isBookmarked ? 'bg-yellow-900/30 text-yellow-400' : 'text-zinc-500 hover:text-white'}`}
-            title="Bookmark"
-          >
+          <button onClick={toggleBookmark} className={`rounded p-1.5 transition-colors ${isBookmarked ? 'bg-yellow-900/30 text-yellow-400' : 'text-zinc-500 hover:text-white'}`} title="Bookmark">
             <Bookmark className="h-4 w-4" fill={isBookmarked ? 'currentColor' : 'none'} />
           </button>
-          <button
-            onClick={toggleFlag}
-            className={`rounded p-1.5 transition-colors ${isFlagged ? 'bg-orange-900/30 text-orange-400' : 'text-zinc-500 hover:text-white'}`}
-            title="Flag for review"
-          >
+          <button onClick={toggleFlag} className={`rounded p-1.5 transition-colors ${isFlagged ? 'bg-orange-900/30 text-orange-400' : 'text-zinc-500 hover:text-white'}`} title="Flag for review">
             <Flag className="h-4 w-4" fill={isFlagged ? 'currentColor' : 'none'} />
           </button>
-          <button
-            onClick={() => setShowScratchpad(!showScratchpad)}
-            className={`rounded p-1.5 transition-colors ${showScratchpad ? 'bg-[#1a2332] text-white' : 'text-zinc-500 hover:text-white'}`}
-            title="Scratchpad"
-          >
+          <button onClick={() => setShowScratchpad(!showScratchpad)} className={`rounded p-1.5 transition-colors ${showScratchpad ? 'bg-[#1a2332] text-white' : 'text-zinc-500 hover:text-white'}`} title="Scratchpad">
             <StickyNote className="h-4 w-4" />
           </button>
         </div>
@@ -174,8 +177,6 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
       {/* Question */}
       <div className="mt-6 flex-1 space-y-6">
         <p className="text-base leading-relaxed text-zinc-200">{currentQuestion.questionText}</p>
-
-        {/* Answer choices */}
         <div className="space-y-2">
           {currentQuestion.answerChoices.map((choice) => (
             <button
@@ -192,7 +193,6 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
           ))}
         </div>
 
-        {/* Scratchpad */}
         {showScratchpad && (
           <div className="rounded-lg border border-[#1a2332] bg-[#0d1117] p-3">
             <p className="mb-1 text-[10px] font-medium text-zinc-500">SCRATCHPAD</p>
@@ -209,27 +209,15 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
 
       {/* Confidence submit buttons */}
       <div className="mt-6 border-t border-[#1a2332] pt-4">
-        <p className="mb-3 text-xs text-zinc-500">Select your answer above, then submit with your confidence level:</p>
+        <p className="mb-3 text-xs text-zinc-500">Select an answer, then submit with confidence:</p>
         <div className="flex gap-3">
-          <button
-            onClick={() => submitAnswer('Guess')}
-            disabled={!selectedAnswer}
-            className="flex-1 rounded-lg border border-[#1a2332] bg-[#0d1117] px-4 py-3 text-sm font-medium text-zinc-300 transition-colors hover:bg-[#1a2332] disabled:cursor-not-allowed disabled:opacity-30"
-          >
+          <button onClick={() => submitAnswer('Guess')} disabled={!selectedAnswer} className="flex-1 rounded-lg border border-[#1a2332] bg-[#0d1117] px-4 py-3 text-sm font-medium text-zinc-300 transition-colors hover:bg-[#1a2332] disabled:cursor-not-allowed disabled:opacity-30">
             Guess ▶
           </button>
-          <button
-            onClick={() => submitAnswer('ThinkSo')}
-            disabled={!selectedAnswer}
-            className="flex-1 rounded-lg border border-[#002B5C] bg-[#002B5C]/20 px-4 py-3 text-sm font-medium text-blue-300 transition-colors hover:bg-[#002B5C]/40 disabled:cursor-not-allowed disabled:opacity-30"
-          >
+          <button onClick={() => submitAnswer('ThinkSo')} disabled={!selectedAnswer} className="flex-1 rounded-lg border border-[#002B5C] bg-[#002B5C]/20 px-4 py-3 text-sm font-medium text-blue-300 transition-colors hover:bg-[#002B5C]/40 disabled:cursor-not-allowed disabled:opacity-30">
             Think So ▶
           </button>
-          <button
-            onClick={() => submitAnswer('Certain')}
-            disabled={!selectedAnswer}
-            className="flex-1 rounded-lg bg-[#002B5C] px-4 py-3 text-sm font-medium text-[#C5A258] transition-colors hover:bg-[#003d7a] disabled:cursor-not-allowed disabled:opacity-30"
-          >
+          <button onClick={() => submitAnswer('Certain')} disabled={!selectedAnswer} className="flex-1 rounded-lg bg-[#002B5C] px-4 py-3 text-sm font-medium text-[#C5A258] transition-colors hover:bg-[#003d7a] disabled:cursor-not-allowed disabled:opacity-30">
             Certain ▶
           </button>
         </div>
