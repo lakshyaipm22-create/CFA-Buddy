@@ -3,7 +3,7 @@ import { Header } from '@/shared/components/layout/header';
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden bg-[#0a0e14]">
       <Sidebar />
       <div className="flex flex-1 flex-col overflow-hidden">
         <Header />

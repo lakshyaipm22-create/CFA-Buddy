@@ -1,0 +1,8 @@
+Place your CFA Buddy mascot logo as:
+- public/logo.png (main logo, ~200x200px recommended)
+- public/logo-sm.png (sidebar icon, ~40x40px)
+- public/favicon.ico (browser tab icon, 32x32)
+
+The app references these files in:
+- src/shared/components/layout/sidebar.tsx
+- src/app/layout.tsx (metadata.icons)
