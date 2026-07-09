@@ -280,15 +280,25 @@ export class ContentScanner {
 
   /**
    * Load existing index and scan state from disk.
+   * Normalizes stored paths to forward slashes for cross-platform consistency.
    */
   private async loadExistingState(): Promise<void> {
     try {
-      const actualPath = join(dirname(this.options.contentDir), 'content', 'metadata', 'content-index.json');
+      const indexPath = join(this.options.contentDir, 'metadata', 'content-index.json');
 
-      if (existsSync(actualPath)) {
-        const data = await readFile(actualPath, 'utf-8');
+      if (existsSync(indexPath)) {
+        const data = await readFile(indexPath, 'utf-8');
         const parsed = JSON.parse(data);
-        this.existingIndex = parsed.resources ?? [];
+        const rawResources: ContentMetadata[] = parsed.resources ?? [];
+        
+        // Normalize stored paths to forward slashes (fixes cross-platform
+        // mismatch when an index was written on Windows before path normalization
+        // was added to file-discovery.ts)
+        this.existingIndex = rawResources.map((r) => ({
+          ...r,
+          relativePath: r.relativePath.replace(/\\/g, '/'),
+        }));
+        
         this.logger.info(`Loaded existing index: ${this.existingIndex.length} entries`);
       }
     } catch {
@@ -296,7 +306,7 @@ export class ContentScanner {
     }
 
     try {
-      const statePath = join(dirname(this.options.contentDir), 'content', 'metadata', 'scan-state.json');
+      const statePath = join(this.options.contentDir, 'metadata', 'scan-state.json');
       if (existsSync(statePath)) {
         const data = await readFile(statePath, 'utf-8');
         this.scanState = JSON.parse(data);
