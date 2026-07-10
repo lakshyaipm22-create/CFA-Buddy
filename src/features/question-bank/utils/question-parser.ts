@@ -89,6 +89,9 @@ function parseQuestionBlock(block: string, questionNumber: number): ParsedQuesti
  * Handles formats like:
  * "1. A is correct. Explanation..."
  * "1. Correct Answer: A"
+ * "1. A. Explanation..."
+ * "1. A Explanation..."
+ * "1. A\nExplanation..."
  */
 export function parseAnswers(text: string): Map<number, { correctAnswer: string; explanation: string }> {
   const answers = new Map<number, { correctAnswer: string; explanation: string }>();
@@ -101,16 +104,55 @@ export function parseAnswers(text: string): Map<number, { correctAnswer: string;
     const num = parseInt(match[1]);
     const content = match[2].trim();
 
-    // Try to extract correct answer letter
-    const correctMatch = content.match(/^([A-D])\s+(?:is\s+)?correct/i)
-      ?? content.match(/correct\s+(?:answer[:\s]*)?([A-D])/i)
-      ?? content.match(/^([A-D])\s*[.]/);
+    // Try to extract correct answer letter (in order of specificity)
+    let correctAnswer = '';
+    let explanation = '';
 
-    const correctAnswer = correctMatch?.[1] ?? '';
-    const explanation = content.replace(/^[A-D]\s*(?:is\s+)?correct[.!]?\s*/i, '').trim();
+    // Pattern 1: "C is correct" or "C correct" at start
+    const p1 = content.match(/^([A-D])\s+(?:is\s+)?correct/i);
+    if (p1) {
+      correctAnswer = p1[1].toUpperCase();
+      explanation = content.replace(/^[A-D]\s*(?:is\s+)?correct[.!]?\s*/i, '').trim();
+    }
+
+    // Pattern 2: "correct answer: A" or "Correct Answer A"
+    if (!correctAnswer) {
+      const p2 = content.match(/correct\s+(?:answer[:\s]*)?([A-D])/i);
+      if (p2) {
+        correctAnswer = p2[1].toUpperCase();
+        explanation = content.replace(/correct\s+(?:answer[:\s]*)?[A-D][.!]?\s*/i, '').trim();
+      }
+    }
+
+    // Pattern 3: "C. Explanation..." (letter + period + space)
+    if (!correctAnswer) {
+      const p3 = content.match(/^([A-D])\.\s+([\s\S]*)/);
+      if (p3) {
+        correctAnswer = p3[1].toUpperCase();
+        explanation = p3[2].replace(/\n/g, ' ').trim();
+      }
+    }
+
+    // Pattern 4: "C Explanation..." (letter + space + text, NOT "is correct" or "correct")
+    if (!correctAnswer) {
+      const p4 = content.match(/^([A-D])\s+(?!(?:is\s+)?correct)([\s\S]*)/i);
+      if (p4) {
+        correctAnswer = p4[1].toUpperCase();
+        explanation = p4[2].replace(/\n/g, ' ').trim();
+      }
+    }
+
+    // Pattern 5: "C" alone on first line, explanation follows on next line
+    if (!correctAnswer) {
+      const p5 = content.match(/^([A-D])\s*\n([\s\S]*)/m);
+      if (p5) {
+        correctAnswer = p5[1].toUpperCase();
+        explanation = p5[2].replace(/\n/g, ' ').trim();
+      }
+    }
 
     if (correctAnswer) {
-      answers.set(num, { correctAnswer, explanation });
+      answers.set(num, { correctAnswer: correctAnswer.toUpperCase(), explanation });
     }
   }
 

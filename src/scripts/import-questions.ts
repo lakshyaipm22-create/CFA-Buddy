@@ -140,21 +140,73 @@ function parseProblems(text: string): ParsedQ[] {
 
 /**
  * Parse SOLUTIONS section into answers.
+ * Handles multiple answer formats:
+ *   "1. C is correct. Explanation..."
+ *   "1. C. Explanation..."
+ *   "1. C Explanation..."
+ *   "1. C\nExplanation..."
  */
-function parseSolutions(text: string): ParsedSolution[] {
+export function parseSolutions(text: string): ParsedSolution[] {
   const solutions: ParsedSolution[] = [];
 
-  // Pattern: "1. C is correct. explanation..."
-  // or "1. C is correct because..."
-  const solPattern = /(?:^|\n)\s*(\d+)\.\s+([A-D])\s+is\s+correct[.]?\s*([\s\S]*?)(?=(?:\n\s*\d+\.\s+[A-D]\s+is\s+correct)|$)/gi;
+  // Phase 1: Split into numbered blocks (same approach as parseProblems)
+  const blockPattern = /(?:^|\n)\s*(\d+)\.\s+/g;
+  const starts: Array<{ num: number; idx: number }> = [];
 
-  let sm;
-  while ((sm = solPattern.exec(text)) !== null) {
-    solutions.push({
-      num: parseInt(sm[1]),
-      correctLetter: sm[2].toUpperCase(),
-      explanation: sm[3].replace(/\n/g, ' ').trim(),
-    });
+  let m;
+  while ((m = blockPattern.exec(text)) !== null) {
+    starts.push({ num: parseInt(m[1]), idx: m.index });
+  }
+
+  for (let i = 0; i < starts.length; i++) {
+    const end = i + 1 < starts.length ? starts[i + 1].idx : text.length;
+    const content = text.slice(starts[i].idx, end).replace(/^\s*\d+\.\s+/, '').trim();
+
+    // Phase 2: Try multiple patterns to extract the answer letter (in order of specificity)
+    let correctLetter = '';
+    let explanation = '';
+
+    // Pattern 1: "C is correct. Explanation..." or "C is correct because..."
+    const p1 = content.match(/^([A-D])\s+is\s+correct[.]?\s*([\s\S]*)/i);
+    if (p1) {
+      correctLetter = p1[1].toUpperCase();
+      explanation = p1[2].replace(/\n/g, ' ').trim();
+    }
+
+    // Pattern 2: "C. Explanation..." (letter + period + space)
+    if (!correctLetter) {
+      const p2 = content.match(/^([A-D])\.\s+([\s\S]*)/);
+      if (p2) {
+        correctLetter = p2[1].toUpperCase();
+        explanation = p2[2].replace(/\n/g, ' ').trim();
+      }
+    }
+
+    // Pattern 3: "C Explanation..." (letter + space + text, NOT "is correct" which is pattern 1)
+    if (!correctLetter) {
+      const p3 = content.match(/^([A-D])\s+(?!is\s+correct)([\s\S]*)/i);
+      if (p3) {
+        correctLetter = p3[1].toUpperCase();
+        explanation = p3[2].replace(/\n/g, ' ').trim();
+      }
+    }
+
+    // Pattern 4: "C" alone on first line, explanation follows on next line
+    if (!correctLetter) {
+      const p4 = content.match(/^([A-D])\s*\n([\s\S]*)/m);
+      if (p4) {
+        correctLetter = p4[1].toUpperCase();
+        explanation = p4[2].replace(/\n/g, ' ').trim();
+      }
+    }
+
+    if (correctLetter) {
+      solutions.push({
+        num: starts[i].num,
+        correctLetter,
+        explanation,
+      });
+    }
   }
 
   return solutions;
@@ -312,4 +364,11 @@ async function main() {
   }
 }
 
-main();
+// Only run CLI when executed directly (not when imported for testing)
+const isDirectExecution = typeof process !== 'undefined'
+  && process.argv[1]
+  && !process.argv[1].includes('vitest');
+
+if (isDirectExecution) {
+  main();
+}

@@ -1,0 +1,7 @@
+{
+  "task_id": "task-fix-answer-parsing",
+  "task_description": "Fix Bug #2: Answer matching failed for 3 subjects (Fixed Income, Derivatives, Alternative Investments) in the question import pipeline. The parseSolutions() regex only matches 'X is correct' format but these PDFs use other formats like 'X.' or 'X ' followed by explanation.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001"],
+  "blocked_reason": null
+}

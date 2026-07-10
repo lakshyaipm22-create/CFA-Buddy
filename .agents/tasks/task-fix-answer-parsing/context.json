@@ -1,0 +1,21 @@
+{
+  "project_type": "Next.js 16 app with CLI scripts for CFA question import",
+  "language": "TypeScript",
+  "build_system": "npm with tsx for scripts, Next.js for app build",
+  "test_framework": "vitest with globals enabled, tests in src/**/*.test.ts",
+  "build_command": "npx tsc --noEmit && npm run build",
+  "test_command": "npm run test",
+  "verification_instructions": "1. Run npx tsc --noEmit to type-check. 2. Run npm run test to confirm all tests pass. 3. Run npm run build to confirm Next.js builds.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "npm install",
+  "environment_constraints": "No PDF files in sandbox (content/ is gitignored). Validation must be through unit tests with sample text, not actual PDF parsing.",
+  "contribution_requirements": "Run before every commit: npx tsc --noEmit && npm run lint && npm run build && npm run test. No TODOs, no placeholders.",
+  "key_patterns": "Feature-based folders under src/features/{name}/. Tests in __tests__/ subdirectories. Scripts use tsx runner. The import script (src/scripts/import-questions.ts) has its own parseSolutions() function that is SEPARATE from the utility parseAnswers() in src/features/question-bank/utils/question-parser.ts. BOTH need to be fixed to handle all answer formats.",
+  "relevant_files": [
+    "src/scripts/import-questions.ts",
+    "src/features/question-bank/utils/question-parser.ts",
+    "src/features/question-bank/__tests__/",
+    "src/features/content-scanner/__tests__/scanner.test.ts"
+  ],
+  "directory_structure": "src/scripts/ - CLI tools, src/features/question-bank/ - question bank feature with utils/, types/, __tests__/, src/features/content-scanner/ - has existing test pattern"
+}
