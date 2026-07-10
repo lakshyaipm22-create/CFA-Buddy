@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 /**
- * CFA Buddy — Question Import Pipeline CLI
- * 
- * Usage:
- *   npm run import:questions -- --file="path/to/questions.pdf"
- *   npm run import:questions -- --file="questions.pdf" --answers="answers.pdf"
- *   npm run import:questions -- --file="questions.pdf" --subject="FSA" --provider="schweser"
+ * CFA Buddy — Question Import Pipeline
  */
 
-import { readFile } from 'fs/promises';
-import { writeFile, mkdir } from 'fs/promises';
+import { readFile, writeFile, mkdir, readdir } from 'fs/promises';
 import { join, basename } from 'path';
+import { existsSync } from 'fs';
+import { createRequire } from 'module';
 import { parseQuestions, parseAnswers, mergeQuestionsAndAnswers } from '../features/question-bank/utils/question-parser';
+
+// pdf-parse: CJS package, must use require() for compatibility with tsx
+const require = createRequire(import.meta.url);
+const pdfParse = require('pdf-parse') as (buffer: Buffer) => Promise<{ text: string; numpages: number }>;
 
 async function main() {
   const args = process.argv.slice(2);
@@ -37,9 +37,6 @@ async function main() {
   try {
     // Extract text from PDF
     console.log('  Extracting text from PDF...');
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const pdfParse = require('pdf-parse') as (buffer: Buffer) => Promise<{ text: string }>;
-
     const fileBuffer = await readFile(fileArg);
     const { text: questionText } = await pdfParse(fileBuffer);
     console.log(`  Extracted ${questionText.length} characters`);
