@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import type { TestMode, SessionConfig, QuestionSession } from '../types';
 import { saveSession, getResumableSession } from '../utils/session-storage';
+import { sampleQuestions } from '../data/sample-questions';
 
 const TEST_MODES: Array<{ mode: TestMode; label: string; description: string; defaultCount: number }> = [
   { mode: 'Topic', label: 'Topic Test', description: 'Questions from a specific topic', defaultCount: 20 },
@@ -13,19 +14,47 @@ const TEST_MODES: Array<{ mode: TestMode; label: string; description: string; de
   { mode: 'Random', label: 'Random', description: 'Random selection', defaultCount: 20 },
 ];
 
+const DIFFICULTIES = ['Easy', 'Medium', 'Hard'] as const;
+const PROVIDERS = [...new Set(sampleQuestions.map(q => q.provider))];
+
 export function SessionConfigurator() {
   const router = useRouter();
   const [selectedMode, setSelectedMode] = useState<TestMode>('Mixed');
   const [questionCount, setQuestionCount] = useState(20);
   const [timed, setTimed] = useState(false);
   const [timeLimit, setTimeLimit] = useState(90);
+  const [selectedDifficulties, setSelectedDifficulties] = useState<Set<string>>(new Set(DIFFICULTIES));
+  const [selectedProviders, setSelectedProviders] = useState<Set<string>>(new Set(PROVIDERS));
 
   const resumable = typeof window !== 'undefined' ? getResumableSession() : null;
 
+  const availableCount = useMemo(() => {
+    return sampleQuestions.filter(q =>
+      selectedDifficulties.has(q.difficulty) &&
+      selectedProviders.has(q.provider)
+    ).length;
+  }, [selectedDifficulties, selectedProviders]);
+
+  const toggleDifficulty = (d: string) => {
+    const next = new Set(selectedDifficulties);
+    if (next.has(d)) { if (next.size > 1) next.delete(d); }
+    else next.add(d);
+    setSelectedDifficulties(next);
+  };
+
+  const toggleProvider = (p: string) => {
+    const next = new Set(selectedProviders);
+    if (next.has(p)) { if (next.size > 1) next.delete(p); }
+    else next.add(p);
+    setSelectedProviders(next);
+  };
+
   const startSession = () => {
     const config: SessionConfig = {
-      questionCount,
+      questionCount: Math.min(questionCount, availableCount),
       timeLimit: timed ? timeLimit : null,
+      difficulty: selectedDifficulties.size < DIFFICULTIES.length ? [...selectedDifficulties].join(',') : undefined,
+      provider: selectedProviders.size < PROVIDERS.length ? [...selectedProviders].join(',') : undefined,
     };
 
     const session: QuestionSession = {
@@ -74,9 +103,7 @@ export function SessionConfigurator() {
               key={mode}
               onClick={() => { setSelectedMode(mode); setQuestionCount(defaultCount); }}
               className={`rounded-lg border p-4 text-left transition-colors ${
-                selectedMode === mode
-                  ? 'border-blue-500 bg-blue-950/30'
-                  : 'hover:opacity-80'
+                selectedMode === mode ? 'border-blue-500 bg-blue-950/30' : 'hover:opacity-80'
               }`}
               style={selectedMode === mode ? undefined : { borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}
             >
@@ -87,6 +114,49 @@ export function SessionConfigurator() {
         </div>
       </div>
 
+      {/* Filters */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {/* Difficulty Filter */}
+        <div>
+          <h3 className="mb-2 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>Difficulty</h3>
+          <div className="flex flex-wrap gap-2">
+            {DIFFICULTIES.map(d => (
+              <button
+                key={d}
+                onClick={() => toggleDifficulty(d)}
+                className="rounded-md px-3 py-1.5 text-xs font-medium transition-colors"
+                style={selectedDifficulties.has(d)
+                  ? { background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }
+                  : { background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }
+                }
+              >
+                {d}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Provider Filter */}
+        <div>
+          <h3 className="mb-2 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>Provider</h3>
+          <div className="flex flex-wrap gap-2">
+            {PROVIDERS.map(p => (
+              <button
+                key={p}
+                onClick={() => toggleProvider(p)}
+                className="rounded-md px-3 py-1.5 text-xs font-medium transition-colors capitalize"
+                style={selectedProviders.has(p)
+                  ? { background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }
+                  : { background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }
+                }
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Configuration */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div>
@@ -94,13 +164,15 @@ export function SessionConfigurator() {
           <input
             type="number"
             min={5}
-            max={180}
+            max={Math.min(180, availableCount)}
             value={questionCount}
-            onChange={(e) => setQuestionCount(Math.max(5, Math.min(180, parseInt(e.target.value) || 5)))}
+            onChange={(e) => setQuestionCount(Math.max(5, Math.min(availableCount, parseInt(e.target.value) || 5)))}
             className="mt-1 w-full rounded-lg border px-3 py-2 focus:border-blue-500 focus:outline-none"
             style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)', color: 'var(--foreground)' }}
           />
-          <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>Min 5, max 180</p>
+          <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
+            {availableCount} questions available with current filters
+          </p>
         </div>
 
         <div>
@@ -134,16 +206,12 @@ export function SessionConfigurator() {
       {/* Start button */}
       <button
         onClick={startSession}
-        className="w-full rounded-lg px-6 py-3 text-sm font-medium transition-colors hover:opacity-90 md:w-auto"
+        disabled={availableCount === 0}
+        className="w-full rounded-lg px-6 py-3 text-sm font-medium transition-colors hover:opacity-90 disabled:opacity-50 md:w-auto"
         style={{ background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}
       >
-        Start {selectedMode} Test ({questionCount} questions{timed ? `, ${timeLimit} min` : ', untimed'})
+        Start {selectedMode} Test ({Math.min(questionCount, availableCount)} questions{timed ? `, ${timeLimit} min` : ', untimed'})
       </button>
-
-      <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
-        Note: Questions will be available after running the Question Import Pipeline.
-        Currently showing configuration UI only.
-      </p>
     </div>
   );
 }
