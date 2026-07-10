@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { ContentMetadata } from '@/features/content-scanner/types';
 import type { GroupedResources } from '../queries/get-resources';
 import { truncate } from '@/shared/lib/utils';
+import { useListNavigation } from '@/shared/hooks/use-list-navigation';
 
 interface ResourceBrowserProps {
   subjects: string[];
@@ -20,6 +21,13 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
     : viewMode === 'provider'
       ? initialResources.byProvider
       : initialResources.byType;
+
+  // Flatten all visible resources for j/k navigation
+  const flatResources = Object.entries(displayGroups)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .flatMap(([, resources]) => resources);
+
+  const { focusedIndex, listRef } = useListNavigation(flatResources.length);
 
   return (
     <div className="space-y-6">
@@ -66,13 +74,26 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
         )}
       </div>
 
-      {/* Resource Groups */}
-      <div className="space-y-8">
-        {Object.entries(displayGroups)
-          .sort((a, b) => a[0].localeCompare(b[0]))
-          .map(([groupName, resources]) => (
-            <ResourceGroup key={groupName} name={groupName} resources={resources} />
-          ))}
+      {/* Resource List with j/k navigation */}
+      <div ref={listRef} className="space-y-8">
+        {(() => {
+          const sorted = Object.entries(displayGroups).sort((a, b) => a[0].localeCompare(b[0]));
+          const startIndices: number[] = [];
+          let acc = 0;
+          for (const [, resources] of sorted) {
+            startIndices.push(acc);
+            acc += resources.length;
+          }
+          return sorted.map(([groupName, resources], groupIdx) => (
+            <ResourceGroup
+              key={groupName}
+              name={groupName}
+              resources={resources}
+              focusedIndex={focusedIndex}
+              startIndex={startIndices[groupIdx]}
+            />
+          ));
+        })()}
       </div>
 
       {Object.keys(displayGroups).length === 0 && (
@@ -84,20 +105,24 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
   );
 }
 
-function ResourceGroup({ name, resources }: { name: string; resources: ContentMetadata[] }) {
+function ResourceGroup({ name, resources, focusedIndex, startIndex }: { name: string; resources: ContentMetadata[]; focusedIndex: number; startIndex: number }) {
   return (
     <div>
       <h2 className="mb-3 text-lg font-semibold text-white">{formatGroupName(name)}</h2>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-        {resources.map((resource) => (
-          <ResourceCard key={resource.id} resource={resource} />
+        {resources.map((resource, i) => (
+          <ResourceCard
+            key={resource.id}
+            resource={resource}
+            isFocused={focusedIndex === startIndex + i}
+          />
         ))}
       </div>
     </div>
   );
 }
 
-function ResourceCard({ resource }: { resource: ContentMetadata }) {
+function ResourceCard({ resource, isFocused }: { resource: ContentMetadata; isFocused: boolean }) {
   const sizeStr = resource.fileSize > 1024 * 1024
     ? `${(resource.fileSize / (1024 * 1024)).toFixed(1)} MB`
     : `${Math.round(resource.fileSize / 1024)} KB`;
@@ -105,7 +130,12 @@ function ResourceCard({ resource }: { resource: ContentMetadata }) {
   return (
     <Link
       href={`/resources/${resource.id}`}
-      className="group flex flex-col rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 transition-colors hover:border-zinc-600 hover:bg-zinc-900"
+      data-list-item
+      className={`group flex flex-col rounded-lg border p-4 transition-colors ${
+        isFocused
+          ? 'border-[#C5A258] bg-zinc-900 ring-1 ring-[#C5A258]/50'
+          : 'border-zinc-800 bg-zinc-900/50 hover:border-zinc-600 hover:bg-zinc-900'
+      }`}
     >
       <div className="flex items-start justify-between gap-2">
         <p className="text-sm font-medium text-zinc-200 group-hover:text-white">

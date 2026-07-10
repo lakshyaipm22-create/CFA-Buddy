@@ -2,6 +2,8 @@
 
 import { useState, useMemo, useSyncExternalStore } from 'react';
 import type { QuestionAttempt } from '@/features/question-bank/types';
+import { MistakeAnalytics } from './mistake-analytics';
+import { useListNavigation } from '@/shared/hooks/use-list-navigation';
 
 interface MistakeEntry {
   attempt: QuestionAttempt;
@@ -72,6 +74,8 @@ export function MistakeBook() {
     return acc;
   }, {} as Record<string, number>);
 
+  const { focusedIndex, listRef } = useListNavigation(filteredMistakes.length);
+
   return (
     <div className="space-y-6">
       {/* Stats */}
@@ -100,6 +104,9 @@ export function MistakeBook() {
         </div>
       </div>
 
+      {/* Analytics Charts */}
+      <MistakeAnalytics mistakes={mistakes} />
+
       {/* Filters */}
       <div className="flex flex-wrap gap-2">
         {['all', ...Object.keys(classificationCounts)].map(f => (
@@ -116,9 +123,17 @@ export function MistakeBook() {
       </div>
 
       {/* Mistake List */}
-      <div className="space-y-2">
+      <div ref={listRef} className="space-y-2">
         {filteredMistakes.map((mistake, idx) => (
-          <div key={idx} className="rounded-lg border border-[#1a2332] bg-[#0d1117] p-4">
+          <div
+            key={idx}
+            data-list-item
+            className={`rounded-lg border p-4 transition-colors ${
+              focusedIndex === idx
+                ? 'border-[#C5A258] bg-[#0d1117] ring-1 ring-[#C5A258]/50'
+                : 'border-[#1a2332] bg-[#0d1117]'
+            }`}
+          >
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <p className="text-sm text-zinc-300">Question: {mistake.attempt.questionId}</p>
