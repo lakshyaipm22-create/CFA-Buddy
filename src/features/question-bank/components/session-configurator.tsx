@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import type { TestMode, SessionConfig, QuestionSession } from '../types';
 import { saveSession, getResumableSession } from '../utils/session-storage';
-import { sampleQuestions } from '../data/sample-questions';
+import { loadAllQuestions } from '../utils/question-loader';
 
 const TEST_MODES: Array<{ mode: TestMode; label: string; description: string; defaultCount: number }> = [
   { mode: 'Topic', label: 'Topic Test', description: 'Questions from a specific topic', defaultCount: 20 },
@@ -15,25 +15,26 @@ const TEST_MODES: Array<{ mode: TestMode; label: string; description: string; de
 ];
 
 const DIFFICULTIES = ['Easy', 'Medium', 'Hard'] as const;
-const PROVIDERS = [...new Set(sampleQuestions.map(q => q.provider))];
 
 export function SessionConfigurator() {
+  const allQuestions = loadAllQuestions();
+  const PROVIDERS = [...new Set(allQuestions.map(q => q.provider))];
   const router = useRouter();
   const [selectedMode, setSelectedMode] = useState<TestMode>('Mixed');
   const [questionCount, setQuestionCount] = useState(20);
   const [timed, setTimed] = useState(false);
   const [timeLimit, setTimeLimit] = useState(90);
   const [selectedDifficulties, setSelectedDifficulties] = useState<Set<string>>(new Set(DIFFICULTIES));
-  const [selectedProviders, setSelectedProviders] = useState<Set<string>>(new Set(PROVIDERS));
+  const [selectedProviders, setSelectedProviders] = useState<Set<string>>(() => new Set(PROVIDERS));
 
   const resumable = typeof window !== 'undefined' ? getResumableSession() : null;
 
   const availableCount = useMemo(() => {
-    return sampleQuestions.filter(q =>
+    return allQuestions.filter(q =>
       selectedDifficulties.has(q.difficulty) &&
       selectedProviders.has(q.provider)
     ).length;
-  }, [selectedDifficulties, selectedProviders]);
+  }, [selectedDifficulties, selectedProviders, allQuestions]);
 
   const toggleDifficulty = (d: string) => {
     const next = new Set(selectedDifficulties);
