@@ -85,19 +85,20 @@ interface ChapterSection {
  * Handles both single-section PDFs (7 subjects) and multi-chapter PDFs
  * (Fixed Income, Derivatives, Alternative Investments).
  *
- * Algorithm:
- * 1. Find ALL positions of "PRACTICE PROBLEMS" headers
- * 2. Find ALL positions of "SOLUTIONS" headers
- * 3. For each PRACTICE PROBLEMS header, find the NEXT SOLUTIONS header after it
- * 4. That SOLUTIONS section runs until the next PRACTICE PROBLEMS header (or end of text)
+ * Header detection is strict: requires ALL CAPS headers on their own line
+ * (or preceded/followed by whitespace), not embedded in sentences.
  */
 function splitAllSections(text: string): ChapterSection[] {
-  // Find all header positions
+  // Find all PRACTICE PROBLEMS headers — must be uppercase and on its own line
+  // Matches: "\nPRACTICE PROBLEMS\n" or start of section with whitespace around it
   const problemPositions: number[] = [];
   const solutionPositions: number[] = [];
 
-  const problemRegex = /practice\s+problems/gi;
-  const solutionRegex = /\bsolutions\b/gi;
+  // Strict pattern: "PRACTICE PROBLEMS" in all caps, preceded by newline/start, not part of a longer word
+  const problemRegex = /(?:^|\n)\s*PRACTICE\s+PROBLEMS\s*(?:\n|$)/g;
+  // Strict pattern: "SOLUTIONS" in all caps on its own line, NOT "SOLUTIONS TO" or "SOLUTIONS FOR" 
+  // which might appear as sub-headers. Accept "SOLUTIONS" alone or followed by newline/whitespace.
+  const solutionRegex = /(?:^|\n)\s*SOLUTIONS\s*(?:\n|$)/g;
 
   let pm;
   while ((pm = problemRegex.exec(text)) !== null) {
@@ -109,18 +110,35 @@ function splitAllSections(text: string): ChapterSection[] {
     solutionPositions.push(sm.index);
   }
 
-  // If no structure found, return entire text as one problems section
+  // If no structure found, try case-insensitive as fallback (for PDFs with mixed case)
+  if (problemPositions.length === 0) {
+    const fallbackProblem = /(?:^|\n)\s*practice\s+problems\s*(?:\n|$)/gi;
+    let fp;
+    while ((fp = fallbackProblem.exec(text)) !== null) {
+      problemPositions.push(fp.index);
+    }
+  }
+  if (solutionPositions.length === 0) {
+    const fallbackSolution = /(?:^|\n)\s*solutions\s*(?:\n|$)/gi;
+    let fs;
+    while ((fs = fallbackSolution.exec(text)) !== null) {
+      solutionPositions.push(fs.index);
+    }
+  }
+
+  // If still no structure, return entire text as one section
   if (problemPositions.length === 0) {
     return [{ problems: text, solutions: '' }];
   }
 
-  // If only one of each, simple split (original behavior)
-  if (problemPositions.length === 1 && solutionPositions.length === 1) {
+  // If only one of each (simple case — most subjects), quick split
+  if (problemPositions.length === 1 && solutionPositions.length <= 1) {
     const probStart = problemPositions[0];
     const solStart = solutionPositions[0];
-    if (solStart > probStart) {
+    if (solStart !== undefined && solStart > probStart) {
       return [{ problems: text.slice(probStart, solStart), solutions: text.slice(solStart) }];
     }
+    return [{ problems: text.slice(probStart), solutions: '' }];
   }
 
   // Multi-chapter: pair each PRACTICE PROBLEMS with the next SOLUTIONS after it
@@ -128,23 +146,23 @@ function splitAllSections(text: string): ChapterSection[] {
 
   for (let i = 0; i < problemPositions.length; i++) {
     const probStart = problemPositions[i];
+
     // Find the first SOLUTIONS header that comes AFTER this PRACTICE PROBLEMS
-    const solStart = solutionPositions.find(s => s > probStart);
+    // but BEFORE the next PRACTICE PROBLEMS (to avoid cross-chapter matching)
+    const nextProbStart = i + 1 < problemPositions.length ? problemPositions[i + 1] : text.length;
+    const solStart = solutionPositions.find(s => s > probStart && s < nextProbStart);
 
     if (solStart === undefined) {
-      // No solutions found after this problems section — take problems until end or next problems
-      const probEnd = i + 1 < problemPositions.length ? problemPositions[i + 1] : text.length;
-      chapters.push({ problems: text.slice(probStart, probEnd), solutions: '' });
+      // No solutions in this chapter range — just problems
+      chapters.push({ problems: text.slice(probStart, nextProbStart), solutions: '' });
       continue;
     }
 
-    // Problems text: from PRACTICE PROBLEMS to SOLUTIONS
+    // Problems text: from PRACTICE PROBLEMS to SOLUTIONS (within this chapter)
     const problemsText = text.slice(probStart, solStart);
 
-    // Solutions text: from SOLUTIONS to the next PRACTICE PROBLEMS (or end)
-    const nextProbStart = problemPositions.find(p => p > solStart);
-    const solEnd = nextProbStart ?? text.length;
-    const solutionsText = text.slice(solStart, solEnd);
+    // Solutions text: from SOLUTIONS to next PRACTICE PROBLEMS (or end)
+    const solutionsText = text.slice(solStart, nextProbStart);
 
     chapters.push({ problems: problemsText, solutions: solutionsText });
   }
