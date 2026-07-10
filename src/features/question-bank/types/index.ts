@@ -16,7 +16,8 @@ export type TestMode =
   | 'QuickTopic'
   | 'AdaptiveRetest'
   | 'Random'
-  | 'WeakTopic';
+  | 'WeakTopic'
+  | 'Mock';
 
 export type SessionStatus = 'active' | 'completed' | 'abandoned';
 

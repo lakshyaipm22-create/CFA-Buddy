@@ -12,9 +12,13 @@ const TEST_MODES: Array<{ mode: TestMode; label: string; description: string; de
   { mode: 'Mixed', label: 'Mixed Test', description: 'Questions across all subjects', defaultCount: 90 },
   { mode: 'QuickTopic', label: 'Quick Test', description: '10 quick questions', defaultCount: 10 },
   { mode: 'Random', label: 'Random', description: 'Random selection', defaultCount: 20 },
+  { mode: 'Mock', label: 'CFA Mock Exam', description: '90 questions, 135 min, weighted by curriculum', defaultCount: 90 },
 ];
 
 const DIFFICULTIES = ['Easy', 'Medium', 'Hard'] as const;
+
+// Modes that support subject filtering
+const SUBJECT_FILTER_MODES: TestMode[] = ['Topic', 'Subject', 'Mixed', 'Random'];
 
 export function SessionConfigurator() {
   const allQuestions = loadAllQuestions();
@@ -26,15 +30,26 @@ export function SessionConfigurator() {
   const [timeLimit, setTimeLimit] = useState(90);
   const [selectedDifficulties, setSelectedDifficulties] = useState<Set<string>>(new Set(DIFFICULTIES));
   const [selectedProviders, setSelectedProviders] = useState<Set<string>>(() => new Set(PROVIDERS));
+  const [selectedSubjects, setSelectedSubjects] = useState<Set<string>>(() => new Set());
 
   const resumable = typeof window !== 'undefined' ? getResumableSession() : null;
+
+  // Compute unique subjects with counts
+  const subjectsWithCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const q of allQuestions) {
+      counts[q.subject] = (counts[q.subject] || 0) + 1;
+    }
+    return Object.entries(counts).sort(([a], [b]) => a.localeCompare(b));
+  }, [allQuestions]);
 
   const availableCount = useMemo(() => {
     return allQuestions.filter(q =>
       selectedDifficulties.has(q.difficulty) &&
-      selectedProviders.has(q.provider)
+      selectedProviders.has(q.provider) &&
+      (selectedSubjects.size === 0 || selectedSubjects.has(q.subject))
     ).length;
-  }, [selectedDifficulties, selectedProviders, allQuestions]);
+  }, [selectedDifficulties, selectedProviders, selectedSubjects, allQuestions]);
 
   const toggleDifficulty = (d: string) => {
     const next = new Set(selectedDifficulties);
@@ -50,12 +65,32 @@ export function SessionConfigurator() {
     setSelectedProviders(next);
   };
 
+  const toggleSubject = (s: string) => {
+    const next = new Set(selectedSubjects);
+    if (next.has(s)) {
+      next.delete(s);
+    } else {
+      next.add(s);
+    }
+    setSelectedSubjects(next);
+  };
+
+  const handleModeSelect = (mode: TestMode, defaultCount: number) => {
+    setSelectedMode(mode);
+    setQuestionCount(defaultCount);
+    if (mode === 'Mock') {
+      setTimed(true);
+      setTimeLimit(135);
+    }
+  };
+
   const startSession = () => {
     const config: SessionConfig = {
       questionCount: Math.min(questionCount, availableCount),
       timeLimit: timed ? timeLimit : null,
       difficulty: selectedDifficulties.size < DIFFICULTIES.length ? [...selectedDifficulties].join(',') : undefined,
       provider: selectedProviders.size < PROVIDERS.length ? [...selectedProviders].join(',') : undefined,
+      subject: selectedSubjects.size > 0 ? [...selectedSubjects].join(',') : undefined,
     };
 
     const session: QuestionSession = {
@@ -76,6 +111,8 @@ export function SessionConfigurator() {
     saveSession(session);
     router.push(`/questions/session/${session.id}`);
   };
+
+  const showSubjectFilter = SUBJECT_FILTER_MODES.includes(selectedMode);
 
   return (
     <div className="space-y-6">
@@ -102,7 +139,7 @@ export function SessionConfigurator() {
           {TEST_MODES.map(({ mode, label, description, defaultCount }) => (
             <button
               key={mode}
-              onClick={() => { setSelectedMode(mode); setQuestionCount(defaultCount); }}
+              onClick={() => handleModeSelect(mode, defaultCount)}
               className={`rounded-lg border p-4 text-left transition-colors ${
                 selectedMode === mode ? 'border-blue-500 bg-blue-950/30' : 'hover:opacity-80'
               }`}
@@ -157,6 +194,35 @@ export function SessionConfigurator() {
           </div>
         </div>
       </div>
+
+      {/* Subject Filter - shown for applicable modes */}
+      {showSubjectFilter && subjectsWithCounts.length > 0 && (
+        <div>
+          <h3 className="mb-2 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+            Subjects {selectedSubjects.size > 0 && `(${selectedSubjects.size} selected)`}
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {subjectsWithCounts.map(([subject, count]) => (
+              <button
+                key={subject}
+                onClick={() => toggleSubject(subject)}
+                className="rounded-md px-3 py-1.5 text-xs font-medium transition-colors"
+                style={selectedSubjects.has(subject)
+                  ? { background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }
+                  : { background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }
+                }
+              >
+                {subject} ({count})
+              </button>
+            ))}
+          </div>
+          {selectedSubjects.size === 0 && (
+            <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
+              No filter applied - all subjects included
+            </p>
+          )}
+        </div>
+      )}
 
       {/* Configuration */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
