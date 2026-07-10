@@ -290,24 +290,26 @@ function fallbackSplitBySubject(
 
   if (questionRestarts.length === 0) return headerSections;
 
-  // Build question section text ranges
+  // Collect all section boundary positions
+  const allBoundaries: number[] = [
+    ...questionRestarts.map(r => r.position),
+    ...answerRestarts.map(r => r.position),
+  ].sort((a, b) => a - b);
+
+  // For each question restart, find its end (next boundary after it)
   const questionRanges: Array<{ total: number; start: number; end: number }> = [];
-  for (let i = 0; i < questionRestarts.length; i++) {
-    const start = questionRestarts[i].position;
-    const end = i + 1 < questionRestarts.length
-      ? questionRestarts[i + 1].position
-      : (answerRestarts.length > 0 ? answerRestarts[0].position : text.length);
-    questionRanges.push({ total: questionRestarts[i].total, start, end });
+  for (const qr of questionRestarts) {
+    const nextBoundary = allBoundaries.find(b => b > qr.position);
+    const end = nextBoundary ?? text.length;
+    questionRanges.push({ total: qr.total, start: qr.position, end });
   }
 
-  // Build answer section text ranges
+  // Same for answer ranges
   const answerRanges: Array<{ total: number; start: number; end: number }> = [];
-  for (let i = 0; i < answerRestarts.length; i++) {
-    const start = answerRestarts[i].position;
-    const end = i + 1 < answerRestarts.length
-      ? answerRestarts[i + 1].position
-      : text.length;
-    answerRanges.push({ total: answerRestarts[i].total, start, end });
+  for (const ar of answerRestarts) {
+    const nextBoundary = allBoundaries.find(b => b > ar.position);
+    const end = nextBoundary ?? text.length;
+    answerRanges.push({ total: ar.total, start: ar.position, end });
   }
 
   // Determine which totals are already claimed by header-based sections.
