@@ -38,22 +38,44 @@ const require = createRequire(import.meta.url);
 
 // ─── Subject Header Detection ──────────────────────────────────────────────────
 
-const SUBJECT_HEADER_MAP: Record<string, string> = {
-  'fixed income': 'Fixed Income',
-  'financial statement analysis': 'Financial Statement Analysis',
-  'equity investments': 'Equity Investments',
-  'ethical and professional standards': 'Ethical and Professional Standards',
-  'ethics': 'Ethical and Professional Standards',
-  'alternative investments': 'Alternative Investments',
-  'corporate issuers': 'Corporate Issuers',
-  'derivatives': 'Derivatives',
-  'portfolio management': 'Portfolio Management',
-  'quantitative methods': 'Quantitative Methods',
-  'economics': 'Economics',
-};
+/**
+ * Keyword-based subject matching rules, ordered from most-specific to least-specific.
+ * Each entry maps a keyword (checked via includes on the lowercased text) to a canonical subject name.
+ * More specific keywords must come BEFORE less specific ones to avoid false matches.
+ * For example, "fixed income" must precede "income", and "portfolio management" must precede "management".
+ */
+const SUBJECT_KEYWORD_RULES: Array<{ keyword: string; subject: string }> = [
+  // Most specific first
+  { keyword: 'fixed income', subject: 'Fixed Income' },
+  { keyword: 'financial statement analysis', subject: 'Financial Statement Analysis' },
+  { keyword: 'equity investments', subject: 'Equity Investments' },
+  { keyword: 'ethical and professional standards', subject: 'Ethical and Professional Standards' },
+  { keyword: 'alternative investments', subject: 'Alternative Investments' },
+  { keyword: 'corporate issuers', subject: 'Corporate Issuers' },
+  { keyword: 'portfolio management', subject: 'Portfolio Management' },
+  { keyword: 'quantitative methods', subject: 'Quantitative Methods' },
+  // Partial/OCR-friendly keywords (less specific)
+  { keyword: 'income', subject: 'Fixed Income' },
+  { keyword: 'statement', subject: 'Financial Statement Analysis' },
+  { keyword: 'fsa', subject: 'Financial Statement Analysis' },
+  { keyword: 'financial', subject: 'Financial Statement Analysis' },
+  { keyword: 'equity', subject: 'Equity Investments' },
+  { keyword: 'ethic', subject: 'Ethical and Professional Standards' },
+  { keyword: 'alt invest', subject: 'Alternative Investments' },
+  { keyword: 'alternative', subject: 'Alternative Investments' },
+  { keyword: 'corporate', subject: 'Corporate Issuers' },
+  { keyword: 'issuer', subject: 'Corporate Issuers' },
+  { keyword: 'derivative', subject: 'Derivatives' },
+  { keyword: 'portfolio', subject: 'Portfolio Management' },
+  { keyword: 'management', subject: 'Portfolio Management' },
+  { keyword: 'quantitative', subject: 'Quantitative Methods' },
+  { keyword: 'quant', subject: 'Quantitative Methods' },
+  { keyword: 'econom', subject: 'Economics' },
+];
 
 /**
  * Normalize a subject header like "Fixed Income: Practice Pack" into "Fixed Income".
+ * Uses lenient partial keyword matching to handle OCR-mangled headers.
  */
 export function normalizeSubject(headerText: string): string {
   // Remove the ": Practice Pack" part (and optional "- Answers" suffix)
@@ -63,11 +85,13 @@ export function normalizeSubject(headerText: string): string {
     .trim();
 
   const lower = cleaned.toLowerCase();
-  for (const [key, value] of Object.entries(SUBJECT_HEADER_MAP)) {
-    if (lower === key || lower.includes(key)) {
-      return value;
+
+  for (const rule of SUBJECT_KEYWORD_RULES) {
+    if (lower.includes(rule.keyword)) {
+      return rule.subject;
     }
   }
+
   // Fallback: capitalize words
   return cleaned.replace(/\b\w/g, c => c.toUpperCase());
 }

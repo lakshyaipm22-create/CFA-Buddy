@@ -34,6 +34,52 @@ describe('normalizeSubject', () => {
     expect(normalizeSubject('Quantitative Methods: Practice Pack')).toBe('Quantitative Methods');
     expect(normalizeSubject('Economics: Practice Pack')).toBe('Economics');
   });
+
+  it('handles OCR-mangled partial keyword "Income" -> Fixed Income', () => {
+    expect(normalizeSubject('Income: Practice Pack')).toBe('Fixed Income');
+    expect(normalizeSubject('Income: Practice Pack- Answers')).toBe('Fixed Income');
+  });
+
+  it('handles OCR-mangled partial keyword "Management" -> Portfolio Management', () => {
+    expect(normalizeSubject('Management: Practice Pack')).toBe('Portfolio Management');
+    expect(normalizeSubject('Management: Practice Pack- Answers')).toBe('Portfolio Management');
+  });
+
+  it('handles OCR-mangled partial keyword "Quantitative" -> Quantitative Methods', () => {
+    expect(normalizeSubject('Quantitative: Practice Pack')).toBe('Quantitative Methods');
+  });
+
+  it('handles OCR partial "Financial" -> Financial Statement Analysis', () => {
+    expect(normalizeSubject('Financial: Practice Pack')).toBe('Financial Statement Analysis');
+  });
+
+  it('handles OCR partial "Statement" -> Financial Statement Analysis', () => {
+    expect(normalizeSubject('Statement Analysis: Practice Pack')).toBe('Financial Statement Analysis');
+  });
+
+  it('handles OCR partial "Portfolio" -> Portfolio Management', () => {
+    expect(normalizeSubject('Portfolio: Practice Pack')).toBe('Portfolio Management');
+  });
+
+  it('handles OCR partial "Derivative" -> Derivatives', () => {
+    expect(normalizeSubject('Derivative: Practice Pack')).toBe('Derivatives');
+  });
+
+  it('handles OCR partial "Econom" -> Economics', () => {
+    expect(normalizeSubject('Econom: Practice Pack')).toBe('Economics');
+  });
+
+  it('pairs OCR-mangled questions and answers to same normalized subject', () => {
+    // Simulates the FSA & Fixed Income PDF issue: "Income" in one header
+    // and "Fixed Income" in another should both normalize to "Fixed Income"
+    expect(normalizeSubject('Income')).toBe('Fixed Income');
+    expect(normalizeSubject('Fixed Income')).toBe('Fixed Income');
+
+    // Simulates the Portfolio & Quants PDF issue: "Management" and "Portfolio Management"
+    // should both normalize to "Portfolio Management"
+    expect(normalizeSubject('Management')).toBe('Portfolio Management');
+    expect(normalizeSubject('Portfolio Management')).toBe('Portfolio Management');
+  });
 });
 
 describe('splitBySubject', () => {
@@ -511,5 +557,81 @@ C.    Correct. Third answer is C.
     expect(matched.length).toBe(2);
     expect(matched[0].num).toBe(1);
     expect(matched[1].num).toBe(3);
+  });
+
+  it('merges OCR-mangled headers "Management" and "Portfolio Management" into same subject', () => {
+    // This simulates the Portfolio & Quants PDF bug where OCR produces
+    // "Management: Practice Pack" for questions but "Portfolio Management: Practice Pack- Answers" for answers
+    const fullText = `
+Management: Practice Pack
+Question 1 of 1
+Question
+What is the primary goal of portfolio management?
+A.    Maximizing returns only.
+B.    Balancing risk and return.
+C.    Minimizing all risk.
+
+Portfolio Management: Practice Pack- Answers
+Answer 1 of 1
+Answer
+Solution
+A.    Incorrect because risk must also be considered.
+B.    Correct. Portfolio management balances risk and return.
+C.    Incorrect because some risk is acceptable for higher returns.
+`;
+    const sections = splitBySubject(fullText);
+    // Both headers normalize to "Portfolio Management" so they merge
+    expect(sections.length).toBe(1);
+    expect(sections[0].subject).toBe('Portfolio Management');
+    expect(sections[0].questionsText).toContain('primary goal');
+    expect(sections[0].answersText).toContain('balances risk and return');
+  });
+
+  it('splits OCR-mangled multi-subject PDF with "Income" and "Financial Statement" variants', () => {
+    // Simulates the FSA & Fixed Income PDF bug
+    const fullText = `
+Income: Practice Pack
+Question 1 of 1
+Question
+What is a bond yield?
+A.    The coupon rate.
+B.    The discount rate that equates PV of cash flows to price.
+C.    The face value divided by price.
+
+Financial Statement Analysis: Practice Pack
+Question 1 of 1
+Question
+What does the income statement report?
+A.    Assets and liabilities.
+B.    Revenues and expenses over a period.
+C.    Cash flows from operations.
+
+Income: Practice Pack- Answers
+Answer 1 of 1
+Answer
+Solution
+A.    Incorrect because coupon rate is fixed.
+B.    Correct. Yield is the discount rate equating PV to price.
+C.    Incorrect because that describes current yield only.
+
+Financial Statement Analysis: Practice Pack- Answers
+Answer 1 of 1
+Answer
+Solution
+A.    Incorrect because that is the balance sheet.
+B.    Correct. The income statement reports revenues and expenses.
+C.    Incorrect because that is the cash flow statement.
+`;
+    const sections = splitBySubject(fullText);
+    expect(sections.length).toBe(2);
+
+    const fi = sections.find(s => s.subject === 'Fixed Income');
+    const fsa = sections.find(s => s.subject === 'Financial Statement Analysis');
+    expect(fi).toBeDefined();
+    expect(fsa).toBeDefined();
+    expect(fi!.questionsText).toContain('bond yield');
+    expect(fi!.answersText).toContain('discount rate equating PV');
+    expect(fsa!.questionsText).toContain('income statement report');
+    expect(fsa!.answersText).toContain('revenues and expenses');
   });
 });
