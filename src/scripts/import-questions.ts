@@ -109,18 +109,20 @@ function splitAllSections(text: string): ChapterSection[] {
     solutionCandidates.push(sm.index);
   }
 
-  // Validate candidates: a real PRACTICE PROBLEMS section has "1." followed by 
-  // answer choices within the next 2000 chars. A real SOLUTIONS section has 
-  // "1." followed by a letter and "is correct" within the next 500 chars.
+  // Validate candidates: a REAL section header has numbered content starting 
+  // with "1." VERY CLOSE after it (within ~300 chars — just the header line + whitespace).
+  // Page headers that repeat the text won't have "1." immediately after them.
   const validProblems = problemCandidates.filter(pos => {
-    const snippet = text.slice(pos, pos + 2000);
-    // Must have "1." and at least one "A." choice pattern
-    return /\n\s*1\.\s+/.test(snippet) && /\n\s*A\.\s+/.test(snippet);
+    const snippet = text.slice(pos, pos + 400);
+    // "1." must appear within first 400 chars AND must be followed by "A." choice
+    const has1 = /\n\s*1\.\s+/.test(snippet);
+    const hasChoice = /\n\s*A\.\s+/.test(text.slice(pos, pos + 2000));
+    return has1 && hasChoice;
   });
 
   const validSolutions = solutionCandidates.filter(pos => {
-    const snippet = text.slice(pos, pos + 500);
-    // Must have "1." followed by a letter pattern (answer format)
+    const snippet = text.slice(pos, pos + 300);
+    // "1." must appear within first 300 chars followed by answer letter
     return /\n\s*1\.\s+[A-D]/.test(snippet);
   });
 
