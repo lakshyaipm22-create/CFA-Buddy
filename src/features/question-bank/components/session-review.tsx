@@ -16,6 +16,7 @@ import type { QuestionSession, SessionSummary, ErrorClassification } from '../ty
 import { getSession, saveSession } from '../utils/session-storage';
 import { buildSessionSummary } from '../utils/confidence-matrix';
 import { sampleQuestions } from '../data/sample-questions';
+import { BatchFlashcardCreator } from '@/features/flashcards/components/batch-flashcard-creator';
 
 interface SessionReviewProps {
   sessionId: string;
@@ -641,6 +642,13 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
           </div>
         </div>
       )}
+
+      {/* Flashcard Creator for incorrect answers */}
+      <BatchFlashcardCreator
+        incorrectQuestions={sampleQuestions.filter(q =>
+          session.attempts.some(a => a.questionId === q.id && !a.correct)
+        )}
+      />
 
       {/* Action buttons */}
       <div className="flex flex-col gap-3 sm:flex-row">
