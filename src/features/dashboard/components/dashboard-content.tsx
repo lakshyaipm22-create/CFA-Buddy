@@ -19,6 +19,7 @@ import { ExamCountdown } from './exam-countdown';
 import { WeeklyProgress } from './weekly-progress';
 import { AccuracyTrend } from './accuracy-trend';
 import { DailyStudyPlan } from '@/features/study-plan/components/daily-study-plan';
+import { NotificationBadges } from '@/features/notifications/components/notification-badges';
 import { useLocalStorageSessions } from '../hooks/use-local-storage-sessions';
 
 interface DashboardContentProps {
@@ -143,6 +144,9 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
           accent="green"
         />
       </div>
+
+      {/* Notifications */}
+      <NotificationBadges />
 
       {/* Exam Countdown */}
       <ExamCountdown />
