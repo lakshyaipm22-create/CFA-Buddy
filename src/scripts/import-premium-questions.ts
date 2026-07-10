@@ -70,6 +70,7 @@ const SUBJECT_KEYWORD_RULES: Array<{ keyword: string; subject: string }> = [
   { keyword: 'management', subject: 'Portfolio Management' },
   { keyword: 'quantitative', subject: 'Quantitative Methods' },
   { keyword: 'quant', subject: 'Quantitative Methods' },
+  { keyword: 'onomic', subject: 'Economics' },
   { keyword: 'econom', subject: 'Economics' },
 ];
 
@@ -422,7 +423,7 @@ function buildPremiumQuestions(
 
 // ─── Main Import Logic ──────────────────────────────────────────────────────────
 
-async function importPremiumFile(filePath: string, dryRun: boolean): Promise<Question[]> {
+async function importPremiumFile(filePath: string, dryRun: boolean, debug = false): Promise<Question[]> {
   const filename = basename(filePath);
   console.log(`  Processing: ${filename}`);
 
@@ -436,6 +437,20 @@ async function importPremiumFile(filePath: string, dryRun: boolean): Promise<Que
   const result = await parser.getText();
   const text: string = result.text;
   console.log(`     Extracted ${text.length} chars`);
+
+  if (debug) {
+    console.log('\n  [DEBUG] First 3000 chars of extracted text:');
+    console.log(text.slice(0, 3000));
+    console.log('\n  [DEBUG] All headers found by splitBySubject:');
+    const debugHeaderPattern = /^(.+?):\s*Practice\s*Pack\s*(-\s*Answers?)?/gim;
+    let debugMatch;
+    while ((debugMatch = debugHeaderPattern.exec(text)) !== null) {
+      const rawSubject = debugMatch[1].trim();
+      const isAnswers = !!debugMatch[2];
+      const detectedSubject = normalizeSubject(rawSubject);
+      console.log(`    pos=${debugMatch.index} raw="${debugMatch[0]}" subject="${detectedSubject}" isAnswers=${isAnswers}`);
+    }
+  }
 
   // Split by subject headers
   const sections = splitBySubject(text);
@@ -487,19 +502,21 @@ async function main() {
   const args = process.argv.slice(2);
   const fileArg = args.find(a => a.startsWith('--file='))?.split('=')[1];
   const dryRun = args.includes('--dry-run');
+  const debug = args.includes('--debug');
 
   console.log('\n====================================================');
   console.log('  CFA Buddy - Premium Practice Pack Import Pipeline  ');
   console.log('====================================================\n');
 
   if (dryRun) console.log('  Mode: DRY RUN (no files will be written)\n');
+  if (debug) console.log('  Mode: DEBUG (verbose output enabled)\n');
 
   let allQuestions: Question[] = [];
 
   try {
     if (fileArg) {
       // Single file mode
-      allQuestions = await importPremiumFile(fileArg, dryRun);
+      allQuestions = await importPremiumFile(fileArg, dryRun, debug);
     } else {
       // Batch mode: scan for premium PDFs
       const searchDir = join(
@@ -530,7 +547,7 @@ async function main() {
 
       for (const pdf of pdfFiles.sort()) {
         try {
-          const questions = await importPremiumFile(pdf, dryRun);
+          const questions = await importPremiumFile(pdf, dryRun, debug);
           allQuestions.push(...questions);
         } catch (err) {
           const msg = err instanceof Error ? err.message : 'Unknown';
