@@ -26,7 +26,10 @@
 import { readFile, writeFile, mkdir, readdir } from 'fs/promises';
 import { join, basename } from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 import type { Question } from '../features/question-bank/types';
+
+const require = createRequire(import.meta.url);
 
 // Subject mapping by filename prefix number
 const SUBJECT_MAP: Record<string, string> = {
@@ -72,22 +75,87 @@ interface ParsedSolution {
   explanation: string;
 }
 
-/**
- * Split PDF text into PRACTICE PROBLEMS and SOLUTIONS sections.
- */
-function splitSections(text: string): { problems: string; solutions: string } {
-  // Find PRACTICE PROBLEMS header
-  const problemsIdx = text.search(/PRACTICE\s+PROBLEMS/i);
-  // Find SOLUTIONS header
-  const solutionsIdx = text.search(/\bSOLUTIONS\b/i);
 
-  if (problemsIdx === -1 || solutionsIdx === -1) {
-    return { problems: text, solutions: '' };
+/**
+ * Parse questions and solutions from PDF text using a HYBRID approach:
+ * 
+ * 1. First, try DIRECT matching (old approach): parse all questions, parse all
+ *    solutions, match by number directly. This works perfectly for single-chapter
+ *    PDFs where questions are numbered 1→N and solutions are numbered 1→N.
+ * 
+ * 2. If direct matching produces a LOW match rate (<60%), fall back to
+ *    CHAPTER-SPLIT approach: detect numbering resets to identify chapter
+ *    boundaries, then match within each chapter.
+ * 
+ * This hybrid ensures the 7 subjects that worked perfectly before still work,
+ * while the 3 multi-chapter subjects get the chapter-aware treatment.
+ */
+function smartParseQuestionsAndSolutions(text: string): { questions: ParsedQ[]; solutions: ParsedSolution[] } {
+  // Parse all questions and solutions from the full text
+  const allQuestions = parseProblems(text);
+  const allSolutions = parseSolutions(text);
+
+  // Attempt 1: DIRECT matching by number (works for single-chapter PDFs)
+  const directMatchCount = allQuestions.filter(q => 
+    allSolutions.some(s => s.num === q.num)
+  ).length;
+  const directMatchRate = allQuestions.length > 0 ? directMatchCount / allQuestions.length : 0;
+
+  // If direct matching works well (≥60% match rate), use it
+  if (directMatchRate >= 0.6) {
+    // Renumber globally (they're already globally numbered in single-chapter)
+    return { questions: allQuestions, solutions: allSolutions };
   }
 
-  const problems = text.slice(problemsIdx, solutionsIdx);
-  const solutions = text.slice(solutionsIdx);
-  return { problems, solutions };
+  // Attempt 2: CHAPTER-SPLIT approach for multi-chapter PDFs
+  // Detect chapter boundaries by numbering resets in questions
+  const questionChapters: ParsedQ[][] = [];
+  let currentChapter: ParsedQ[] = [];
+  
+  for (const q of allQuestions) {
+    if (q.num === 1 && currentChapter.length > 0) {
+      questionChapters.push(currentChapter);
+      currentChapter = [];
+    }
+    currentChapter.push(q);
+  }
+  if (currentChapter.length > 0) questionChapters.push(currentChapter);
+
+  // Detect chapter boundaries in solutions
+  const solutionChapters: ParsedSolution[][] = [];
+  let currentSolChapter: ParsedSolution[] = [];
+  
+  for (const s of allSolutions) {
+    if (s.num === 1 && currentSolChapter.length > 0) {
+      solutionChapters.push(currentSolChapter);
+      currentSolChapter = [];
+    }
+    currentSolChapter.push(s);
+  }
+  if (currentSolChapter.length > 0) solutionChapters.push(currentSolChapter);
+
+  // Renumber globally and match by chapter
+  const globalQuestions: ParsedQ[] = [];
+  const globalSolutions: ParsedSolution[] = [];
+  let globalNum = 0;
+
+  for (let chIdx = 0; chIdx < questionChapters.length; chIdx++) {
+    const chapterQs = questionChapters[chIdx];
+    const chapterSols = chIdx < solutionChapters.length ? solutionChapters[chIdx] : [];
+
+    for (const q of chapterQs) {
+      globalNum++;
+      const localNum = q.num;
+      globalQuestions.push({ ...q, num: globalNum });
+
+      const matchingSol = chapterSols.find(s => s.num === localNum);
+      if (matchingSol) {
+        globalSolutions.push({ ...matchingSol, num: globalNum });
+      }
+    }
+  }
+
+  return { questions: globalQuestions, solutions: globalSolutions };
 }
 
 /**
@@ -251,22 +319,23 @@ async function importSingleFile(filePath: string, dryRun: boolean, append: boole
 
   console.log(`  📄 ${filename} (${subject})`);
 
-  // pdf-parse: handle both ESM default export and CJS module.exports
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const pdfParseModule = await import('pdf-parse') as any;
-  const pdfParse: (buffer: Buffer) => Promise<{ text: string }> = pdfParseModule.default ?? pdfParseModule;
-
   const buffer = await readFile(filePath);
-  const { text } = await pdfParse(buffer);
+
+  // pdf-parse: use createRequire for CJS compatibility with tsx on Windows
+  const { PDFParse } = require('pdf-parse');
+  const data = new Uint8Array(buffer);
+  const parser = new PDFParse(data);
+  await parser.load();
+  const result = await parser.getText();
+  const text: string = result.text;
   console.log(`     Extracted ${text.length} chars`);
 
-  const { problems, solutions } = splitSections(text);
-  const parsedQuestions = parseProblems(problems);
-  const parsedSolutions = parseSolutions(solutions);
+  // Use hybrid approach: direct match for single-chapter, chapter-split for multi-chapter
+  const { questions: allParsedQuestions, solutions: allParsedSolutions } = smartParseQuestionsAndSolutions(text);
 
-  console.log(`     Questions: ${parsedQuestions.length}, Solutions: ${parsedSolutions.length}`);
+  console.log(`     Questions: ${allParsedQuestions.length}, Solutions: ${allParsedSolutions.length}`);
 
-  const questions = buildQuestions(parsedQuestions, parsedSolutions, subject, filename);
+  const questions = buildQuestions(allParsedQuestions, allParsedSolutions, subject, filename);
   const matched = questions.filter(q => q.answerChoices.some(c => c.isCorrect)).length;
   console.log(`     Matched: ${matched}/${questions.length}`);
 
@@ -296,15 +365,67 @@ async function importSingleFile(filePath: string, dryRun: boolean, append: boole
   return questions;
 }
 
+async function cleanImportedQuestions(): Promise<void> {
+  const outputDir = join(process.cwd(), 'content', 'metadata', 'imported-questions');
+  let totalBefore = 0;
+  let totalAfter = 0;
+
+  try {
+    const files = await readdir(outputDir);
+    const jsonFiles = files.filter(f => f.endsWith('.json'));
+
+    if (jsonFiles.length === 0) {
+      console.log('  No imported question files found. Run import first.\n');
+      return;
+    }
+
+    console.log(`  Found ${jsonFiles.length} JSON files\n`);
+
+    for (const file of jsonFiles.sort()) {
+      const filePath = join(outputDir, file);
+      const raw = await readFile(filePath, 'utf-8');
+      const questions: Question[] = JSON.parse(raw);
+      const before = questions.length;
+      const valid = questions.filter(q => q.answerChoices.some(c => c.isCorrect));
+      const removed = before - valid.length;
+
+      totalBefore += before;
+      totalAfter += valid.length;
+
+      if (removed > 0) {
+        await writeFile(filePath, JSON.stringify(valid, null, 2));
+        console.log(`  📄 ${file}: ${before} → ${valid.length} (removed ${removed})`);
+      } else {
+        console.log(`  📄 ${file}: ${before} ✓ (all valid)`);
+      }
+    }
+
+    console.log('\n  ═══════════════════════════════════════');
+    console.log(`  Cleaned: ${totalBefore - totalAfter} questions without answers removed`);
+    console.log(`  Remaining: ${totalAfter} valid questions`);
+    console.log('  ═══════════════════════════════════════\n');
+  } catch {
+    console.log('  No imported-questions directory found. Run import first.\n');
+  }
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const fileArg = args.find(a => a.startsWith('--file='))?.split('=')[1];
   const dryRun = args.includes('--dry-run');
   const append = args.includes('--append');
+  const clean = args.includes('--clean');
 
   console.log('\n╔══════════════════════════════════════════════════╗');
   console.log('║  CFA Buddy — Question Import Pipeline             ║');
   console.log('╚══════════════════════════════════════════════════╝\n');
+
+  // Clean mode: remove questions without correct answers
+  if (clean) {
+    console.log('  Mode: CLEAN (removing questions without correct answers)\n');
+    await cleanImportedQuestions();
+    return;
+  }
 
   if (dryRun) console.log('  Mode: DRY RUN (no files will be written)\n');
   if (append) console.log('  Mode: APPEND (adding to existing files)\n');

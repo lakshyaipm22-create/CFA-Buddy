@@ -1,0 +1,7 @@
+{
+  "task_id": "task-5-bunch-execution",
+  "task_description": "Execute 5 bunches of CFA Buddy features: Question Pipeline, Mock Exam + Selection, Test-Taking UX, Review Dashboard, Polish + Quality. Each bunch is committed separately.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004", "FEAT-005"],
+  "blocked_reason": null
+}

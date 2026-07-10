@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Calendar, RotateCw, TrendingUp, AlertTriangle } from 'lucide-react';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
+import { sortByCfaOrder } from '@/shared/config/subjects';
 
 // Spaced repetition intervals (days)
 const REVISION_INTERVALS = [0, 3, 7, 15, 30];
@@ -31,7 +32,7 @@ function saveRevisionSchedule(schedule: Record<string, { stage: number; lastRevi
   localStorage.setItem(STORAGE_KEY, JSON.stringify(schedule));
 }
 
-const ALL_SUBJECTS = [...new Set(sampleQuestions.map(q => q.subject))];
+const ALL_SUBJECTS = sortByCfaOrder([...new Set(sampleQuestions.map(q => q.subject))]);
 
 export function RevisionPlanner() {
   const sessions = useLocalStorageSessions();

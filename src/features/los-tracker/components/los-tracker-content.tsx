@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
+import { sortByCfaOrder } from '@/shared/config/subjects';
 
 type LOSStatus = 'not-started' | 'reading' | 'practiced' | 'revised' | 'mastered';
 
@@ -36,7 +37,7 @@ const LOS_ITEMS = (() => {
   return items.sort((a, b) => a.subject.localeCompare(b.subject) || a.topic.localeCompare(b.topic));
 })();
 
-const SUBJECTS = [...new Set(LOS_ITEMS.map(i => i.subject))];
+const SUBJECTS = sortByCfaOrder([...new Set(LOS_ITEMS.map(i => i.subject))]);
 
 function getLOSProgress(): Record<string, LOSStatus> {
   if (typeof window === 'undefined') return {};

@@ -1,0 +1,31 @@
+{
+  "project_type": "Next.js 16 App Router with React 19, TypeScript 5, Tailwind CSS 4",
+  "language": "TypeScript/TSX",
+  "build_system": "npm with Next.js CLI",
+  "test_framework": "vitest with @testing-library/react",
+  "build_command": "npx tsc --noEmit && npm run lint && npm run build",
+  "test_command": "npm run test",
+  "verification_instructions": "Run npx tsc --noEmit (ignore prisma-client errors), npm run lint, npm run build",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "npm install, npx prisma generate (optional)",
+  "environment_constraints": "Full internet access. content/metadata/imported-questions/ directory does not exist in sandbox (was on user's local machine). API route must handle missing directory gracefully. Pre-existing TypeScript errors in prisma/seed.ts and src/shared/lib/prisma/client.ts (cannot find prisma client module) - these are expected and should be ignored.",
+  "contribution_requirements": "Never use useSyncExternalStore. Never call router.push() during render. typeof window !== 'undefined' guard before localStorage. Lazy-load Recharts with dynamic import { ssr: false }. No hardcoded hex colors except in var() fallbacks. Mobile-first. Commit after each bunch.",
+  "key_patterns": "Feature-based folders in src/features/{name}/. Components are 'use client' with useState(() => ...) for localStorage reads. Session storage uses cfa-buddy-sessions localStorage key. Questions loaded via loadAllQuestions() from question-loader.ts which combines sampleQuestions + localStorage imported questions. CSS variables for theming (--accent-primary, --card-bg, --foreground, etc). lucide-react for icons.",
+  "relevant_files": [
+    "src/features/question-bank/types/index.ts",
+    "src/features/question-bank/utils/question-loader.ts",
+    "src/features/question-bank/utils/question-selector.ts",
+    "src/features/question-bank/utils/session-storage.ts",
+    "src/features/question-bank/components/session-configurator.tsx",
+    "src/features/question-bank/components/active-test-session.tsx",
+    "src/features/question-bank/components/session-review.tsx",
+    "src/features/question-bank/components/question-analytics.tsx",
+    "src/features/question-bank/components/import-dashboard.tsx",
+    "src/features/question-bank/data/sample-questions.ts",
+    "src/app/(protected)/questions/page.tsx",
+    "src/app/(protected)/admin/import/page.tsx",
+    "src/features/flashcards/components/batch-flashcard-creator.tsx",
+    ".kiro/steering/project-state.md"
+  ],
+  "directory_structure": "src/app/(protected)/ has all app routes. src/features/question-bank/ is the main feature module with components/, utils/, types/, data/, hooks/ (empty). src/app/api/ has content/, scanner/, search/ routes. content/metadata/ exists but imported-questions/ subfolder does not exist in sandbox."
+}
