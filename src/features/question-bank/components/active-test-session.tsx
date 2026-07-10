@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Question, QuestionAttempt, QuestionSession, Confidence } from '../types';
 import { getSession, saveSession } from '../utils/session-storage';
 import { loadAllQuestions } from '../utils/question-loader';
 import { selectQuestions } from '../utils/question-selector';
-import { Bookmark, Flag, StickyNote, CheckCircle2, XCircle, ArrowRight } from 'lucide-react';
+import { Bookmark, Flag, StickyNote, CheckCircle2, XCircle, ArrowRight, Clock } from 'lucide-react';
 
 interface ActiveTestSessionProps {
   sessionId: string;
@@ -31,6 +31,24 @@ function loadSessionData(sessionId: string): { session: QuestionSession; questio
   return { session: loaded, questions };
 }
 
+// Persist bookmarks globally (outside session scope)
+function persistGlobalBookmark(questionId: string) {
+  if (typeof window === 'undefined') return;
+  const key = 'cfa-buddy-question-bookmarks';
+  const existing: string[] = JSON.parse(localStorage.getItem(key) ?? '[]');
+  if (!existing.includes(questionId)) {
+    existing.push(questionId);
+    localStorage.setItem(key, JSON.stringify(existing));
+  }
+}
+
+function removeGlobalBookmark(questionId: string) {
+  if (typeof window === 'undefined') return;
+  const key = 'cfa-buddy-question-bookmarks';
+  const existing: string[] = JSON.parse(localStorage.getItem(key) ?? '[]');
+  localStorage.setItem(key, JSON.stringify(existing.filter(id => id !== questionId)));
+}
+
 export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
   const router = useRouter();
 
@@ -41,9 +59,20 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
   const [scratchpad, setScratchpad] = useState('');
   const [showScratchpad, setShowScratchpad] = useState(false);
   const [questionStartMs, setQuestionStartMs] = useState(() => Date.now());
-  // Instant feedback state (untimed mode only)
   const [showFeedback, setShowFeedback] = useState(false);
   const [lastAttempt, setLastAttempt] = useState<QuestionAttempt | null>(null);
+  // Live timer
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Timer: count up every second
+  useEffect(() => {
+    if (showFeedback) return; // Pause during feedback
+    timerRef.current = setInterval(() => {
+      setElapsedSeconds(Math.round((Date.now() - questionStartMs) / 1000));
+    }, 1000);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [questionStartMs, showFeedback]);
 
   const currentQuestion = session && questions.length > 0
     ? questions.find(q => q.id === session.questionIds[session.currentIndex]) ?? null
@@ -82,15 +111,14 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
     setLastAttempt(attempt);
 
     if (isTimed) {
-      // Timed mode: advance immediately, no feedback
       setSession(updatedSession);
       setSelectedAnswer(null);
       setQuestionStartMs(Date.now());
+      setElapsedSeconds(0);
       if (updatedSession.status === 'completed') {
         router.push(`/questions/review/${sessionId}`);
       }
     } else {
-      // Untimed mode: show instant feedback
       setShowFeedback(true);
       setSession(updatedSession);
     }
@@ -102,6 +130,7 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
     setLastAttempt(null);
     setSelectedAnswer(null);
     setQuestionStartMs(Date.now());
+    setElapsedSeconds(0);
     if (session.status === 'completed') {
       router.push(`/questions/review/${sessionId}`);
     }
@@ -119,12 +148,16 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
 
   const toggleBookmark = useCallback(() => {
     if (!session || !currentQuestion) return;
-    const bookmarked = session.bookmarkedIds.includes(currentQuestion.id)
+    const isCurrentlyBookmarked = session.bookmarkedIds.includes(currentQuestion.id);
+    const bookmarked = isCurrentlyBookmarked
       ? session.bookmarkedIds.filter(id => id !== currentQuestion.id)
       : [...session.bookmarkedIds, currentQuestion.id];
     const updated = { ...session, bookmarkedIds: bookmarked };
     saveSession(updated);
     setSession(updated);
+    // Persist globally
+    if (isCurrentlyBookmarked) removeGlobalBookmark(currentQuestion.id);
+    else persistGlobalBookmark(currentQuestion.id);
   }, [session, currentQuestion]);
 
   const updateScratchpad = useCallback((value: string) => {
@@ -143,7 +176,6 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
     );
   }
 
-  // When showing feedback, show the PREVIOUS question (currentIndex already advanced)
   const feedbackQuestion = showFeedback
     ? questions.find(q => q.id === lastAttempt?.questionId) ?? currentQuestion
     : currentQuestion;
@@ -152,24 +184,43 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
   const isBookmarked = session.bookmarkedIds.includes(feedbackQuestion.id);
   const progress = showFeedback ? session.currentIndex : session.currentIndex + 1;
   const total = session.questionIds.length;
+  const answeredCount = session.attempts.length;
+  const flaggedCount = session.flaggedIds.length;
+
+  const formatTimer = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return m > 0 ? `${m}:${String(sec).padStart(2, '0')}` : `${sec}s`;
+  };
 
   return (
     <div className="flex h-full flex-col">
-      {/* Top bar */}
-      <div className="flex items-center justify-between border-b pb-3" style={{ borderColor: 'var(--card-border)' }}>
-        <div className="flex items-center gap-4">
+      {/* Top bar — progress + timer + actions */}
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b pb-3" style={{ borderColor: 'var(--card-border)' }}>
+        <div className="flex items-center gap-3">
           <span className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>
-            Question {Math.min(progress, total)} / {total}
+            Q{Math.min(progress, total)}/{total}
           </span>
-          <div className="h-1.5 w-32 rounded-full" style={{ background: 'var(--border)' }}>
+          <div className="h-2 w-24 md:w-40 rounded-full" style={{ background: 'var(--border)' }}>
             <div className="h-full rounded-full transition-all" style={{ width: `${(progress / total) * 100}%`, background: 'var(--accent-primary)' }} />
           </div>
+          {/* Mini stats */}
+          <span className="hidden md:inline text-[10px] rounded px-1.5 py-0.5" style={{ background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }}>
+            {answeredCount} answered{flaggedCount > 0 ? ` · ${flaggedCount} flagged` : ''}
+          </span>
         </div>
         <div className="flex items-center gap-2">
-          <button onClick={toggleBookmark} className={`rounded p-1.5 transition-colors ${isBookmarked ? 'bg-yellow-900/30 text-yellow-400' : ''}`} style={isBookmarked ? undefined : { color: 'var(--foreground-secondary)' }} title="Bookmark">
+          {/* Live timer */}
+          {!showFeedback && (
+            <span className="flex items-center gap-1 rounded-md px-2 py-1 text-xs font-mono" style={{ background: 'var(--nav-hover-bg)', color: elapsedSeconds > 90 ? '#ef4444' : 'var(--foreground-secondary)' }}>
+              <Clock className="h-3 w-3" />
+              {formatTimer(elapsedSeconds)}
+            </span>
+          )}
+          <button onClick={toggleBookmark} className={`rounded p-1.5 transition-colors ${isBookmarked ? 'bg-yellow-900/30 text-yellow-400' : ''}`} style={isBookmarked ? undefined : { color: 'var(--foreground-secondary)' }} title="Bookmark (persists after session)">
             <Bookmark className="h-4 w-4" fill={isBookmarked ? 'currentColor' : 'none'} />
           </button>
-          <button onClick={toggleFlag} className={`rounded p-1.5 transition-colors ${isFlagged ? 'bg-orange-900/30 text-orange-400' : ''}`} style={isFlagged ? undefined : { color: 'var(--foreground-secondary)' }} title="Flag">
+          <button onClick={toggleFlag} className={`rounded p-1.5 transition-colors ${isFlagged ? 'bg-orange-900/30 text-orange-400' : ''}`} style={isFlagged ? undefined : { color: 'var(--foreground-secondary)' }} title="Flag for review">
             <Flag className="h-4 w-4" fill={isFlagged ? 'currentColor' : 'none'} />
           </button>
           <button onClick={() => setShowScratchpad(!showScratchpad)} className="rounded p-1.5 transition-colors" style={showScratchpad ? { background: 'var(--nav-hover-bg)', color: 'var(--foreground)' } : { color: 'var(--foreground-secondary)' }} title="Scratchpad">
@@ -178,12 +229,12 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
         </div>
       </div>
 
-      {/* Question */}
-      <div className="mt-6 flex-1 space-y-6 overflow-y-auto">
+      {/* Question body */}
+      <div className="mt-4 flex-1 space-y-5 overflow-y-auto pb-4">
         <p className="text-base leading-relaxed" style={{ color: 'var(--foreground)' }}>{feedbackQuestion.questionText}</p>
 
-        {/* Answer choices — with feedback highlighting */}
-        <div className="space-y-3">
+        {/* Answer choices */}
+        <div className="space-y-2.5">
           {feedbackQuestion.answerChoices.map((choice) => {
             const isSelected = showFeedback ? lastAttempt?.selectedAnswer === choice.label : selectedAnswer === choice.label;
             const isCorrectChoice = choice.isCorrect;
@@ -206,27 +257,20 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
                   <div className="flex items-start gap-2">
                     {showCorrectHighlight && <CheckCircle2 className="h-4 w-4 shrink-0 mt-0.5 text-green-400" />}
                     {showIncorrectHighlight && <XCircle className="h-4 w-4 shrink-0 mt-0.5 text-red-400" />}
-                    <span>
-                      <span className="font-medium">{choice.label}.</span> {choice.text}
-                    </span>
+                    <span><span className="font-medium">{choice.label}.</span> {choice.text}</span>
                   </div>
                 </button>
 
-                {/* Inline explanation feedback */}
                 {showFeedback && showCorrectHighlight && (
-                  <div className="mt-1 ml-2 rounded-lg border-l-4 border-green-500 bg-green-950/10 px-4 py-2">
+                  <div className="mt-1.5 ml-2 rounded-lg border-l-4 border-green-500 bg-green-950/10 px-4 py-2.5">
                     <p className="text-xs font-semibold text-green-400">Correct Answer Feedback:</p>
-                    <p className="mt-1 text-xs leading-relaxed" style={{ color: 'var(--foreground)' }}>
-                      {choice.explanation}
-                    </p>
+                    <p className="mt-1 text-xs leading-relaxed" style={{ color: 'var(--foreground)' }}>{choice.explanation}</p>
                   </div>
                 )}
                 {showFeedback && showIncorrectHighlight && (
-                  <div className="mt-1 ml-2 rounded-lg border-l-4 border-red-500 bg-red-950/10 px-4 py-2">
+                  <div className="mt-1.5 ml-2 rounded-lg border-l-4 border-red-500 bg-red-950/10 px-4 py-2.5">
                     <p className="text-xs font-semibold text-red-400">Incorrect Answer Feedback:</p>
-                    <p className="mt-1 text-xs leading-relaxed" style={{ color: 'var(--foreground)' }}>
-                      {choice.explanation}
-                    </p>
+                    <p className="mt-1 text-xs leading-relaxed" style={{ color: 'var(--foreground)' }}>{choice.explanation}</p>
                   </div>
                 )}
               </div>
@@ -243,9 +287,9 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
         )}
       </div>
 
-      {/* Bottom area: confidence buttons OR next button */}
+      {/* Bottom: confidence buttons OR next button */}
       {showFeedback ? (
-        <div className="mt-6 border-t pt-4" style={{ borderColor: 'var(--card-border)' }}>
+        <div className="border-t pt-4" style={{ borderColor: 'var(--card-border)' }}>
           <button
             onClick={advanceToNext}
             className="w-full flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-sm font-medium transition-colors hover:opacity-90"
@@ -256,16 +300,16 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
           </button>
         </div>
       ) : (
-        <div className="mt-6 border-t pt-4" style={{ borderColor: 'var(--card-border)' }}>
-          <p className="mb-3 text-xs" style={{ color: 'var(--foreground-secondary)' }}>Select your answer above, then submit with your confidence level:</p>
-          <div className="flex gap-3">
-            <button onClick={() => submitAnswer('Guess')} disabled={!selectedAnswer} className="flex-1 rounded-lg border px-4 py-3 text-sm font-medium transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)', color: 'var(--foreground)' }}>
+        <div className="border-t pt-4" style={{ borderColor: 'var(--card-border)' }}>
+          <p className="mb-2 text-xs" style={{ color: 'var(--foreground-secondary)' }}>Submit with confidence:</p>
+          <div className="flex gap-2">
+            <button onClick={() => submitAnswer('Guess')} disabled={!selectedAnswer} className="flex-1 rounded-lg border px-3 py-2.5 text-sm font-medium transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)', color: 'var(--foreground)' }}>
               Guess
             </button>
-            <button onClick={() => submitAnswer('ThinkSo')} disabled={!selectedAnswer} className="flex-1 rounded-lg border px-4 py-3 text-sm font-medium text-blue-300 transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30" style={{ borderColor: 'var(--accent-primary)', background: 'rgba(0, 43, 92, 0.2)' }}>
+            <button onClick={() => submitAnswer('ThinkSo')} disabled={!selectedAnswer} className="flex-1 rounded-lg border px-3 py-2.5 text-sm font-medium text-blue-300 transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30" style={{ borderColor: 'var(--accent-primary)', background: 'rgba(0, 43, 92, 0.2)' }}>
               Think So
             </button>
-            <button onClick={() => submitAnswer('Certain')} disabled={!selectedAnswer} className="flex-1 rounded-lg px-4 py-3 text-sm font-medium transition-colors hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30" style={{ background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}>
+            <button onClick={() => submitAnswer('Certain')} disabled={!selectedAnswer} className="flex-1 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30" style={{ background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}>
               Certain
             </button>
           </div>
