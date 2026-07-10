@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "BUNCH 1: Question Pipeline - Create API route, auto-loader hook, wire into Questions page, fix session-review.tsx to use loadAllQuestions()",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/app/api/imported-questions/route.ts: GET handler that reads all *.json from content/metadata/imported-questions/, merges into flat array, filters out questions where NO answerChoice has isCorrect === true, returns JSON. If content/ folder does not exist return empty array.",
     "Create src/features/question-bank/hooks/useImportedQuestions.ts: On mount check localStorage 'cfa-buddy-imported-questions'. If empty OR 'cfa-buddy-questions-loaded-at' timestamp is >24h old, fetch('/api/imported-questions'), store in localStorage, update timestamp. Export { questions, isLoading, refresh }. Use useState(() => ...) lazy initializer pattern, never useSyncExternalStore.",
@@ -24,5 +24,5 @@
     "npm run lint"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "ESLint react-hooks/set-state-in-effect rule prevents calling a setState-containing function directly from useEffect. Used .then() callback pattern with doFetch helper to avoid the lint error. Pre-existing prisma TS errors confirmed as known."
 }
