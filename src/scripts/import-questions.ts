@@ -77,26 +77,38 @@ interface ParsedSolution {
 
 
 /**
- * Split PDF text into chapter pairs using a CONTENT-BASED approach.
+ * Parse questions and solutions from PDF text using a HYBRID approach:
  * 
- * Instead of relying on section headers (which appear in page headers/footers),
- * we parse ALL questions and ALL solutions from the full text, then use the
- * numbering reset pattern to identify chapter boundaries.
+ * 1. First, try DIRECT matching (old approach): parse all questions, parse all
+ *    solutions, match by number directly. This works perfectly for single-chapter
+ *    PDFs where questions are numbered 1→N and solutions are numbered 1→N.
  * 
- * When question numbering resets to 1 (after being at a higher number),
- * that's a new chapter. We match solutions to questions within each chapter.
+ * 2. If direct matching produces a LOW match rate (<60%), fall back to
+ *    CHAPTER-SPLIT approach: detect numbering resets to identify chapter
+ *    boundaries, then match within each chapter.
+ * 
+ * This hybrid ensures the 7 subjects that worked perfectly before still work,
+ * while the 3 multi-chapter subjects get the chapter-aware treatment.
  */
-function splitAndParseChapters(text: string): { questions: ParsedQ[]; solutions: ParsedSolution[] } {
-  // Step 1: Parse ALL numbered blocks from the entire text that look like questions
-  // (have A/B/C choices) — regardless of section headers
+function smartParseQuestionsAndSolutions(text: string): { questions: ParsedQ[]; solutions: ParsedSolution[] } {
+  // Parse all questions and solutions from the full text
   const allQuestions = parseProblems(text);
-  
-  // Step 2: Parse ALL numbered blocks that look like solutions
-  // (start with a letter pattern like "C is correct" or "C. explanation")
   const allSolutions = parseSolutions(text);
 
-  // Step 3: Detect chapter boundaries by numbering resets
-  // Questions: when we see num go from high→1, that's a new chapter
+  // Attempt 1: DIRECT matching by number (works for single-chapter PDFs)
+  const directMatchCount = allQuestions.filter(q => 
+    allSolutions.some(s => s.num === q.num)
+  ).length;
+  const directMatchRate = allQuestions.length > 0 ? directMatchCount / allQuestions.length : 0;
+
+  // If direct matching works well (≥60% match rate), use it
+  if (directMatchRate >= 0.6) {
+    // Renumber globally (they're already globally numbered in single-chapter)
+    return { questions: allQuestions, solutions: allSolutions };
+  }
+
+  // Attempt 2: CHAPTER-SPLIT approach for multi-chapter PDFs
+  // Detect chapter boundaries by numbering resets in questions
   const questionChapters: ParsedQ[][] = [];
   let currentChapter: ParsedQ[] = [];
   
@@ -109,7 +121,7 @@ function splitAndParseChapters(text: string): { questions: ParsedQ[]; solutions:
   }
   if (currentChapter.length > 0) questionChapters.push(currentChapter);
 
-  // Solutions: same reset detection
+  // Detect chapter boundaries in solutions
   const solutionChapters: ParsedSolution[][] = [];
   let currentSolChapter: ParsedSolution[] = [];
   
@@ -122,7 +134,7 @@ function splitAndParseChapters(text: string): { questions: ParsedQ[]; solutions:
   }
   if (currentSolChapter.length > 0) solutionChapters.push(currentSolChapter);
 
-  // Step 4: Renumber globally and match solutions to questions by chapter
+  // Renumber globally and match by chapter
   const globalQuestions: ParsedQ[] = [];
   const globalSolutions: ParsedSolution[] = [];
   let globalNum = 0;
@@ -136,7 +148,6 @@ function splitAndParseChapters(text: string): { questions: ParsedQ[]; solutions:
       const localNum = q.num;
       globalQuestions.push({ ...q, num: globalNum });
 
-      // Find matching solution by local number within this chapter
       const matchingSol = chapterSols.find(s => s.num === localNum);
       if (matchingSol) {
         globalSolutions.push({ ...matchingSol, num: globalNum });
@@ -319,8 +330,8 @@ async function importSingleFile(filePath: string, dryRun: boolean, append: boole
   const text: string = result.text;
   console.log(`     Extracted ${text.length} chars`);
 
-  // Use content-based chapter detection (numbering reset pattern)
-  const { questions: allParsedQuestions, solutions: allParsedSolutions } = splitAndParseChapters(text);
+  // Use hybrid approach: direct match for single-chapter, chapter-split for multi-chapter
+  const { questions: allParsedQuestions, solutions: allParsedSolutions } = smartParseQuestionsAndSolutions(text);
 
   console.log(`     Questions: ${allParsedQuestions.length}, Solutions: ${allParsedSolutions.length}`);
 
