@@ -8,16 +8,82 @@
   --cfa-gold-dark: #A8893C;
   --cfa-green: #00843D;
   --cfa-green-light: #00a34d;
+}
 
-  /* App Background */
+/* Dark Theme (default) */
+.dark {
   --background: #0a0e14;
-  --background-secondary: #111827;
+  --background-secondary: #0d1117;
+  --background-tertiary: #111827;
   --foreground: #f8fafc;
+  --foreground-secondary: #a1a1aa;
+  --border: #1a2332;
+  --border-hover: #002B5C;
 
-  /* Accent (using CFA navy/gold) */
+  --card-bg: #0d1117;
+  --card-border: #1a2332;
+
   --accent-primary: #002B5C;
   --accent-secondary: #C5A258;
   --accent-success: #00843D;
+
+  --nav-text: #a1a1aa;
+  --nav-text-hover: #ffffff;
+  --nav-hover-bg: #1a2332;
+  --nav-active-bg: #002B5C;
+  --nav-active-text: #C5A258;
+
+  --header-bg: #0d1117;
+  --header-border: #1a2332;
+  --header-input-bg: #111827;
+  --header-input-border: #1a2332;
+  --header-text: #a1a1aa;
+  --header-text-hover: #d4d4d8;
+  --header-kbd-bg: #1a2332;
+  --header-kbd-text: #71717a;
+
+  --sidebar-bg: #0d1117;
+  --sidebar-border: #1a2332;
+  --sidebar-title: #ffffff;
+  --sidebar-subtitle: #C5A258;
+}
+
+/* Light Theme */
+.light {
+  --background: #f8fafc;
+  --background-secondary: #ffffff;
+  --background-tertiary: #f1f5f9;
+  --foreground: #1e293b;
+  --foreground-secondary: #64748b;
+  --border: #e2e8f0;
+  --border-hover: #002B5C;
+
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+
+  --accent-primary: #002B5C;
+  --accent-secondary: #C5A258;
+  --accent-success: #00843D;
+
+  --nav-text: #475569;
+  --nav-text-hover: #002B5C;
+  --nav-hover-bg: #f1f5f9;
+  --nav-active-bg: #002B5C;
+  --nav-active-text: #C5A258;
+
+  --header-bg: #ffffff;
+  --header-border: #e2e8f0;
+  --header-input-bg: #f1f5f9;
+  --header-input-border: #e2e8f0;
+  --header-text: #64748b;
+  --header-text-hover: #334155;
+  --header-kbd-bg: #e2e8f0;
+  --header-kbd-text: #94a3b8;
+
+  --sidebar-bg: #ffffff;
+  --sidebar-border: #e2e8f0;
+  --sidebar-title: #002B5C;
+  --sidebar-subtitle: #C5A258;
 }
 
 body {
@@ -25,7 +91,7 @@ body {
   color: var(--foreground);
 }
 
-/* Custom scrollbar for dark theme */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -41,4 +107,12 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #4b5563;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }

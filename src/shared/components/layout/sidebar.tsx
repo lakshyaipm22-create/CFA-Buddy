@@ -11,7 +11,13 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-screen w-64 flex-col border-r border-[#1a2332] bg-[#0d1117] px-3 py-4">
+    <aside
+      className="flex h-screen w-64 flex-col px-3 py-4"
+      style={{
+        background: 'var(--sidebar-bg)',
+        borderRight: '1px solid var(--sidebar-border)',
+      }}
+    >
       {/* Logo */}
       <div className="mb-8 flex items-center gap-3 px-3">
         <div className="relative h-10 w-10 overflow-hidden rounded-lg">
@@ -22,7 +28,6 @@ export function Sidebar() {
             height={40}
             className="h-full w-full object-cover"
             onError={(e) => {
-              // Fallback if logo.png doesn't exist
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
               target.parentElement!.innerHTML = '<span class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#002B5C] text-lg font-bold text-[#C5A258]">C</span>';
@@ -30,8 +35,12 @@ export function Sidebar() {
           />
         </div>
         <div>
-          <h1 className="text-base font-bold text-white">CFA Buddy</h1>
-          <p className="text-[10px] text-[#C5A258]">Your CFA Operating System</p>
+          <h1 className="text-base font-bold" style={{ color: 'var(--sidebar-title)' }}>
+            CFA Buddy
+          </h1>
+          <p className="text-[10px]" style={{ color: 'var(--sidebar-subtitle)' }}>
+            Your CFA Operating System
+          </p>
         </div>
       </div>
 
@@ -44,11 +53,24 @@ export function Sidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
-                isActive
-                  ? 'bg-[#002B5C] text-[#C5A258]'
-                  : 'text-zinc-400 hover:bg-[#1a2332] hover:text-white'
+                'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors'
               )}
+              style={{
+                background: isActive ? 'var(--nav-active-bg)' : undefined,
+                color: isActive ? 'var(--nav-active-text)' : 'var(--nav-text)',
+              }}
+              onMouseEnter={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.background = 'var(--nav-hover-bg)';
+                  e.currentTarget.style.color = 'var(--nav-text-hover)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.background = '';
+                  e.currentTarget.style.color = 'var(--nav-text)';
+                }
+              }}
             >
               <Icon className="h-4 w-4" />
               {item.name}
@@ -57,10 +79,19 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="border-t border-[#1a2332] pt-4">
+      <div style={{ borderTop: '1px solid var(--sidebar-border)' }} className="pt-4">
         <Link
           href="/profile"
-          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-zinc-400 hover:bg-[#1a2332] hover:text-white"
+          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors"
+          style={{ color: 'var(--nav-text)' }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--nav-hover-bg)';
+            e.currentTarget.style.color = 'var(--nav-text-hover)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '';
+            e.currentTarget.style.color = 'var(--nav-text)';
+          }}
         >
           <Settings className="h-4 w-4" />
           Settings

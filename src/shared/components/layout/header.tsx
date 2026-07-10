@@ -1,21 +1,54 @@
 'use client';
 
-import { Search } from 'lucide-react';
+import { Search, Sun, Moon } from 'lucide-react';
+import { useTheme } from '@/shared/components/layout/theme-provider';
 
 export function Header() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <header className="flex h-14 items-center justify-between border-b border-[#1a2332] bg-[#0d1117] px-6">
+    <header
+      className="flex h-14 items-center justify-between px-6"
+      style={{
+        background: 'var(--header-bg)',
+        borderBottom: '1px solid var(--header-border)',
+      }}
+    >
       <div />
-      <button
-        className="flex items-center gap-2 rounded-lg border border-[#1a2332] bg-[#111827] px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:border-[#002B5C] hover:text-zinc-300"
-        onClick={() => {
-          document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
-        }}
-      >
-        <Search className="h-3.5 w-3.5" />
-        <span>Search...</span>
-        <kbd className="ml-2 rounded bg-[#1a2332] px-1.5 py-0.5 text-xs text-zinc-500">⌘K</kbd>
-      </button>
+      <div className="flex items-center gap-3">
+        <button
+          className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors"
+          style={{
+            background: 'var(--header-input-bg)',
+            border: '1px solid var(--header-input-border)',
+            color: 'var(--header-text)',
+          }}
+          onClick={() => {
+            document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
+          }}
+        >
+          <Search className="h-3.5 w-3.5" />
+          <span>Search...</span>
+          <kbd
+            className="ml-2 rounded px-1.5 py-0.5 text-xs"
+            style={{ background: 'var(--header-kbd-bg)', color: 'var(--header-kbd-text)' }}
+          >
+            ⌘K
+          </kbd>
+        </button>
+        <button
+          onClick={toggleTheme}
+          className="flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
+          style={{
+            background: 'var(--header-input-bg)',
+            border: '1px solid var(--header-input-border)',
+            color: 'var(--header-text)',
+          }}
+          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+        </button>
+      </div>
       <div />
     </header>
   );

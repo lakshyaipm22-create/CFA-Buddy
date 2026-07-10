@@ -4,7 +4,7 @@ import { SearchModal } from '@/features/search/components/search-modal';
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen overflow-hidden bg-[#0a0e14]">
+    <div className="flex h-screen overflow-hidden" style={{ background: 'var(--background)' }}>
       <Sidebar />
       <div className="flex flex-1 flex-col overflow-hidden">
         <Header />
