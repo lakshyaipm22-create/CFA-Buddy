@@ -217,3 +217,227 @@ interface AnswerChoice {
 
 ## INSTRUCTION FOR NEW SESSION:
 Store this document as a `.kiro/steering/project-state.md` file in the repository so every future Kiro session automatically has access to it. Update it whenever a bug is fixed or a major change is made. This becomes the living knowledge base.
+
+---
+
+# CFA Buddy -- Advanced Follow-Up (Technical Debt + Next Steps)
+
+## TECHNICAL DEBT INVENTORY
+
+### Critical (Fix Before Production)
+
+| # | Issue | Location | Impact |
+|---|-------|----------|--------|
+| 1 | **Imported questions not in app** | `question-loader.ts` reads localStorage only | 1,038 questions invisible to users |
+| 2 | **0 Suspense boundaries** | Entire app | No streaming, poor loading UX on slow connections |
+| 3 | **Only 1 error.tsx** | `(protected)/error.tsx` exists, `(auth)/error.tsx` missing on GitHub | Unhandled errors show white screen |
+| 4 | **pdf-parse is 78MB** | `node_modules/pdf-parse` | Bloats deployment, should be devDependency only |
+| 5 | **42/82 components are client** | 51% client-side | Too much JS shipped, reduce where possible |
+
+### High Priority (Before Public Beta)
+
+| # | Issue | Fix |
+|---|-------|-----|
+| 6 | **Recharts not lazy-loaded** in dashboard | Only `insights-content.tsx` uses dynamic import. Dashboard imports directly. Wrap in `dynamic(() => import(...), { ssr: false })` |
+| 7 | **No page metadata** on 10+ pages | Missing `<title>` for SEO/tabs. Add `export const metadata = {...}` to each |
+| 8 | **Hardcoded colors in import-dashboard.tsx** | 5 instances of `bg-[#0d1117]`, `border-[#1a2332]` -- breaks light theme |
+| 9 | **Test coverage: 2 test files** out of 19 features | Only content-scanner has tests. Zero tests for flashcards, formulas, SM-2 algorithm, question-parser |
+| 10 | **No ARIA attributes** on interactive components | Keyboard-navigable lists lack `role="listbox"`, `aria-selected`, etc. |
+
+### Low Priority (Polish)
+
+| # | Issue | Notes |
+|---|-------|-------|
+| 11 | Memory leak patterns: 5 `addEventListener` without cleanup shown | Most likely fine (cleanup IS in returns) but audit needed |
+| 12 | `main` branch out of date | Only has 1 commit. All work on feature branches. |
+| 13 | No CI/CD pipeline | No GitHub Actions. Manual verification only. |
+| 14 | Framer Motion (5.7MB) imported but barely used | Only imported in package.json, not actually animating much. Either use it or remove it. |
+
+---
+
+## PERFORMANCE OPTIMIZATION ROADMAP
+
+```
+Current State:
+- First Load JS: ~250KB (estimated from recharts + react-pdf)
+- pdf-parse: should be devDependency only (78MB, CLI tool only)
+- No code-splitting beyond 6 dynamic imports in insights page
+
+Target State:
+- First Load JS: <150KB
+- pdf-parse: removed from production bundle
+- All charts lazy-loaded
+- Heavy features (PDF viewer, Recharts) behind dynamic import
+```
+
+### Actions:
+1. Move `pdf-parse` to `devDependencies` in package.json (it's only used in CLI scripts)
+2. Lazy-load `recharts` in ALL components (dashboard, analytics, mistake-book, exam-plan)
+3. Lazy-load `react-pdf` (already client-only but verify bundle splitting)
+4. Add `next/dynamic` with `{ ssr: false }` for all chart components
+5. Remove `framer-motion` if not actually animating, or implement page transitions
+
+---
+
+## QUESTION LOADING ARCHITECTURE (How to Fix Bug #1)
+
+The correct architecture for serving imported questions:
+
+```
+Option A (Recommended -- API Route):
+1. Create /api/imported-questions/route.ts
+2. It reads all *.json from content/metadata/imported-questions/
+3. Merges them into one array
+4. Returns JSON response
+5. On client: fetch once on app load -> store in localStorage
+6. Subsequent loads: read from localStorage (cached)
+
+Option B (Build-time -- for Vercel):
+1. At build time (next.config.ts), read the JSON files
+2. Bundle them into a static data file (like sample-questions.ts)
+3. Import directly -- no API needed
+4. Problem: won't update without rebuild
+
+Option C (Admin UI):
+1. Add "Load Questions" button on /admin/import page
+2. Reads the API endpoint from Option A
+3. Stores in localStorage
+4. Shows confirmation: "1,038 questions loaded"
+```
+
+**Recommended: Option A + C combined.** API route for data, admin button for manual refresh.
+
+---
+
+## ANSWER PARSER FIX STRATEGY (Bug #2)
+
+The 3 failing subjects likely use one of these alternate formats:
+
+```
+Format 1 (current -- works):
+  "1. C is correct. Explanation text..."
+
+Format 2 (likely Fixed Income):
+  "1. C Explanation text..."  (no "is correct")
+
+Format 3 (likely Derivatives):
+  "1. C. Explanation text..."  (letter followed by period)
+
+Format 4 (may exist):
+  "1. C\nExplanation text..."  (letter on separate line from explanation)
+```
+
+**Fix:** Update `parseAnswers()` regex to handle all formats:
+```typescript
+// Current (only matches "X is correct"):
+/^([A-D])\s+(?:is\s+)?correct/i
+
+// Fixed (matches X with or without "is correct"):
+/^([A-D])(?:\s+is\s+correct|\.|)\s*[.]?\s*([\s\S]*?)$/i
+```
+
+---
+
+## TESTING STRATEGY (What to Test)
+
+Priority order for adding tests:
+
+1. **SM-2 Algorithm** (`src/features/flashcards/utils/sm2.ts`) -- mathematical correctness
+   - Property: ease factor never drops below 1.3
+   - Property: interval increases on quality >= 3
+   - Property: repetitions reset on quality < 3
+   
+2. **Question Parser** (`src/features/question-bank/utils/question-parser.ts`) -- parsing correctness
+   - Test against sample PDF text from each format
+   - Verify question count matches expected
+   - Verify answer matching by number
+
+3. **Question Selector** (`src/features/question-bank/utils/question-selector.ts`) -- filter logic
+   - Property: returned questions match filter criteria
+   - Property: count never exceeds requested
+   - Property: no duplicates in result set
+
+4. **Confidence Matrix** (`src/features/question-bank/utils/confidence-matrix.ts`)
+   - Property: all 6 cells sum to total attempts
+   - Property: each cell has correct classification
+
+---
+
+## DEPLOYMENT CHECKLIST
+
+```
+[ ] Move pdf-parse to devDependencies
+[ ] Verify build passes without content/ folder (Vercel)
+[ ] Set env vars in Vercel dashboard
+[ ] Merge feat/real-questions -> main
+[ ] Push main
+[ ] Connect to Vercel
+[ ] Verify: landing page loads
+[ ] Verify: /dashboard loads (localStorage empty = onboarding state)
+[ ] Verify: /questions loads with 50 sample questions (no imported)
+[ ] Test: sign up -> sign in -> auth flow
+[ ] Performance: check First Load JS in build output
+```
+
+---
+
+## FILE STRUCTURE (Key Directories)
+
+```
+src/
+├── app/                          # 29 routes (Next.js App Router)
+│   ├── (auth)/                   # Sign in/up/reset (no sidebar)
+│   ├── (protected)/              # Main app (sidebar + header)
+│   │   ├── dashboard/
+│   │   ├── questions/session/[sessionId]/
+│   │   ├── questions/review/[sessionId]/
+│   │   ├── flashcards/
+│   │   ├── formulas/
+│   │   ├── revision/
+│   │   ├── insights/
+│   │   ├── los-tracker/
+│   │   ├── exam-plan/
+│   │   └── ...
+│   └── api/                      # 3 API routes (content, scanner, search)
+├── features/                     # 19 feature modules
+│   ├── question-bank/            # Types, components, utils, data
+│   ├── flashcards/               # SM-2 algorithm, storage, UI
+│   ├── formulas/                 # Seed data, center component
+│   ├── content-scanner/          # 8 parsers, scan logic
+│   ├── dashboard/                # Metrics, charts, hooks
+│   ├── exam-plan/
+│   ├── insights/
+│   ├── los-tracker/
+│   ├── mistake-book/
+│   ├── notifications/
+│   ├── revision/
+│   ├── search/
+│   ├── settings/
+│   ├── study-plan/
+│   └── study-timer/
+├── shared/                       # Cross-feature code
+│   ├── components/layout/        # Sidebar, Header, ThemeProvider
+│   ├── components/feedback/      # Toast, ErrorBoundary, EmptyState
+│   ├── hooks/                    # useKeyboardShortcuts, useListNavigation
+│   ├── lib/supabase/             # Client, Server, Middleware
+│   ├── lib/prisma/               # Prisma client singleton
+│   └── config/navigation.ts      # 11 nav items
+├── scripts/                      # CLI tools (scan-content, import-questions)
+└── generated/prisma/             # Prisma client output
+```
+
+---
+
+## WHAT THE NEW SESSION SHOULD DO FIRST
+
+```
+1. Save this entire document as .kiro/steering/project-state.md
+2. Read it at the start of every task
+3. After fixing any bug -> update the relevant section
+4. After adding any feature -> update the pages/features table
+5. Keep the KNOWN BUGS section current (remove fixed, add new)
+```
+
+---
+
+*End of handover. This document is the single source of truth for CFA Buddy development state.*
