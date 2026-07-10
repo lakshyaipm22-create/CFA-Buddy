@@ -18,6 +18,7 @@ import {
 import { ExamCountdown } from './exam-countdown';
 import { WeeklyProgress } from './weekly-progress';
 import { AccuracyTrend } from './accuracy-trend';
+import { DailyStudyPlan } from '@/features/study-plan/components/daily-study-plan';
 import { useLocalStorageSessions } from '../hooks/use-local-storage-sessions';
 
 interface DashboardContentProps {
@@ -145,6 +146,9 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
 
       {/* Exam Countdown */}
       <ExamCountdown />
+
+      {/* AI Study Plan */}
+      <DailyStudyPlan />
 
       {/* Accuracy Trend + Weekly Progress */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
