@@ -75,94 +75,76 @@ interface ParsedSolution {
   explanation: string;
 }
 
-interface ChapterSection {
-  problems: string;
-  solutions: string;
-}
 
 /**
- * Split PDF text into multiple chapter pairs of PRACTICE PROBLEMS + SOLUTIONS.
+ * Split PDF text into chapter pairs using a CONTENT-BASED approach.
  * 
- * Strategy: Instead of relying solely on section headers (which appear in page 
- * headers/footers creating false positives), we use a two-phase approach:
- * 1. Find candidate header positions with strict regex
- * 2. Validate each candidate by checking if it's followed by numbered content
- *    that matches the expected format (questions with A/B/C or solutions with "is correct")
- * 3. Pair validated PRACTICE PROBLEMS with the next validated SOLUTIONS
+ * Instead of relying on section headers (which appear in page headers/footers),
+ * we parse ALL questions and ALL solutions from the full text, then use the
+ * numbering reset pattern to identify chapter boundaries.
+ * 
+ * When question numbering resets to 1 (after being at a higher number),
+ * that's a new chapter. We match solutions to questions within each chapter.
  */
-function splitAllSections(text: string): ChapterSection[] {
-  // Find all candidate positions for both headers
-  const problemCandidates: number[] = [];
-  const solutionCandidates: number[] = [];
+function splitAndParseChapters(text: string): { questions: ParsedQ[]; solutions: ParsedSolution[] } {
+  // Step 1: Parse ALL numbered blocks from the entire text that look like questions
+  // (have A/B/C choices) — regardless of section headers
+  const allQuestions = parseProblems(text);
+  
+  // Step 2: Parse ALL numbered blocks that look like solutions
+  // (start with a letter pattern like "C is correct" or "C. explanation")
+  const allSolutions = parseSolutions(text);
 
-  // Match "PRACTICE PROBLEMS" or "Practice Problems" on its own line
-  const problemRegex = /(?:^|\n)\s*(PRACTICE\s+PROBLEMS|Practice\s+Problems)\s*\n/g;
-  let pm;
-  while ((pm = problemRegex.exec(text)) !== null) {
-    problemCandidates.push(pm.index);
-  }
-
-  // Match "SOLUTIONS" or "Solutions" on its own line (not followed by more words on same line)
-  const solutionRegex = /(?:^|\n)\s*(SOLUTIONS|Solutions)\s*\n/g;
-  let sm;
-  while ((sm = solutionRegex.exec(text)) !== null) {
-    solutionCandidates.push(sm.index);
-  }
-
-  // Validate candidates: a REAL section header has numbered content starting 
-  // with "1." VERY CLOSE after it (within ~300 chars — just the header line + whitespace).
-  // Page headers that repeat the text won't have "1." immediately after them.
-  const validProblems = problemCandidates.filter(pos => {
-    const snippet = text.slice(pos, pos + 400);
-    // "1." must appear within first 400 chars AND must be followed by "A." choice
-    const has1 = /\n\s*1\.\s+/.test(snippet);
-    const hasChoice = /\n\s*A\.\s+/.test(text.slice(pos, pos + 2000));
-    return has1 && hasChoice;
-  });
-
-  const validSolutions = solutionCandidates.filter(pos => {
-    const snippet = text.slice(pos, pos + 300);
-    // "1." must appear within first 300 chars followed by answer letter
-    return /\n\s*1\.\s+[A-D]/.test(snippet);
-  });
-
-  // If no valid structure found, return entire text
-  if (validProblems.length === 0) {
-    return [{ problems: text, solutions: '' }];
-  }
-
-  // Simple case: one problems + one solutions section
-  if (validProblems.length === 1 && validSolutions.length <= 1) {
-    const probStart = validProblems[0];
-    const solStart = validSolutions[0];
-    if (solStart !== undefined && solStart > probStart) {
-      return [{ problems: text.slice(probStart, solStart), solutions: text.slice(solStart) }];
+  // Step 3: Detect chapter boundaries by numbering resets
+  // Questions: when we see num go from high→1, that's a new chapter
+  const questionChapters: ParsedQ[][] = [];
+  let currentChapter: ParsedQ[] = [];
+  
+  for (const q of allQuestions) {
+    if (q.num === 1 && currentChapter.length > 0) {
+      questionChapters.push(currentChapter);
+      currentChapter = [];
     }
-    return [{ problems: text.slice(probStart), solutions: '' }];
+    currentChapter.push(q);
   }
+  if (currentChapter.length > 0) questionChapters.push(currentChapter);
 
-  // Multi-chapter: pair each validated PRACTICE PROBLEMS with its SOLUTIONS
-  const chapters: ChapterSection[] = [];
+  // Solutions: same reset detection
+  const solutionChapters: ParsedSolution[][] = [];
+  let currentSolChapter: ParsedSolution[] = [];
+  
+  for (const s of allSolutions) {
+    if (s.num === 1 && currentSolChapter.length > 0) {
+      solutionChapters.push(currentSolChapter);
+      currentSolChapter = [];
+    }
+    currentSolChapter.push(s);
+  }
+  if (currentSolChapter.length > 0) solutionChapters.push(currentSolChapter);
 
-  for (let i = 0; i < validProblems.length; i++) {
-    const probStart = validProblems[i];
-    const nextProbStart = i + 1 < validProblems.length ? validProblems[i + 1] : text.length;
+  // Step 4: Renumber globally and match solutions to questions by chapter
+  const globalQuestions: ParsedQ[] = [];
+  const globalSolutions: ParsedSolution[] = [];
+  let globalNum = 0;
 
-    // Find the SOLUTIONS header between this PRACTICE PROBLEMS and the next one
-    const solStart = validSolutions.find(s => s > probStart && s < nextProbStart);
+  for (let chIdx = 0; chIdx < questionChapters.length; chIdx++) {
+    const chapterQs = questionChapters[chIdx];
+    const chapterSols = chIdx < solutionChapters.length ? solutionChapters[chIdx] : [];
 
-    if (solStart === undefined) {
-      // No solutions for this chapter
-      chapters.push({ problems: text.slice(probStart, nextProbStart), solutions: '' });
-    } else {
-      chapters.push({
-        problems: text.slice(probStart, solStart),
-        solutions: text.slice(solStart, nextProbStart),
-      });
+    for (const q of chapterQs) {
+      globalNum++;
+      const localNum = q.num;
+      globalQuestions.push({ ...q, num: globalNum });
+
+      // Find matching solution by local number within this chapter
+      const matchingSol = chapterSols.find(s => s.num === localNum);
+      if (matchingSol) {
+        globalSolutions.push({ ...matchingSol, num: globalNum });
+      }
     }
   }
 
-  return chapters.length > 0 ? chapters : [{ problems: text, solutions: '' }];
+  return { questions: globalQuestions, solutions: globalSolutions };
 }
 
 /**
@@ -320,7 +302,7 @@ function buildQuestions(problems: ParsedQ[], solutions: ParsedSolution[], subjec
   });
 }
 
-async function importSingleFile(filePath: string, dryRun: boolean, append: boolean, debug: boolean): Promise<Question[]> {
+async function importSingleFile(filePath: string, dryRun: boolean, append: boolean): Promise<Question[]> {
   const filename = basename(filePath);
   const subject = inferSubject(filename);
 
@@ -337,50 +319,8 @@ async function importSingleFile(filePath: string, dryRun: boolean, append: boole
   const text: string = result.text;
   console.log(`     Extracted ${text.length} chars`);
 
-  // Split into chapter pairs (handles both single-section and multi-chapter PDFs)
-  const chapters = splitAllSections(text);
-  console.log(`     Chapters found: ${chapters.length}`);
-
-  // Process each chapter and renumber globally
-  let globalQuestionNum = 0;
-  const allParsedQuestions: ParsedQ[] = [];
-  const allParsedSolutions: ParsedSolution[] = [];
-
-  for (const chapter of chapters) {
-    const chapterQuestions = parseProblems(chapter.problems);
-    const chapterSolutions = parseSolutions(chapter.solutions);
-
-    // Renumber questions and solutions with global counter
-    for (let i = 0; i < chapterQuestions.length; i++) {
-      globalQuestionNum++;
-      const localNum = chapterQuestions[i].num;
-      chapterQuestions[i].num = globalQuestionNum;
-
-      // Find matching solution by original chapter-local number
-      const localSol = chapterSolutions.find(s => s.num === localNum);
-      if (localSol) {
-        allParsedSolutions.push({ ...localSol, num: globalQuestionNum });
-      }
-    }
-    allParsedQuestions.push(...chapterQuestions);
-  }
-
-  // === DEBUG MODE ===
-  if (debug) {
-    console.log('\n  ╔══════════════════════════════════════════════════╗');
-    console.log('  ║  DEBUG: Multi-chapter analysis                    ║');
-    console.log('  ╚══════════════════════════════════════════════════╝\n');
-
-    for (let i = 0; i < chapters.length; i++) {
-      const chQ = parseProblems(chapters[i].problems);
-      const chS = parseSolutions(chapters[i].solutions);
-      console.log(`  Chapter ${i + 1}: ${chQ.length} questions, ${chS.length} solutions`);
-      if (chapters[i].solutions.length > 0) {
-        console.log(`    Solutions preview: "${chapters[i].solutions.slice(0, 100).replace(/\n/g, '\\n')}"`);
-      }
-    }
-    console.log('');
-  }
+  // Use content-based chapter detection (numbering reset pattern)
+  const { questions: allParsedQuestions, solutions: allParsedSolutions } = splitAndParseChapters(text);
 
   console.log(`     Questions: ${allParsedQuestions.length}, Solutions: ${allParsedSolutions.length}`);
 
@@ -419,7 +359,6 @@ async function main() {
   const fileArg = args.find(a => a.startsWith('--file='))?.split('=')[1];
   const dryRun = args.includes('--dry-run');
   const append = args.includes('--append');
-  const debug = args.includes('--debug');
 
   console.log('\n╔══════════════════════════════════════════════════╗');
   console.log('║  CFA Buddy — Question Import Pipeline             ║');
@@ -427,14 +366,13 @@ async function main() {
 
   if (dryRun) console.log('  Mode: DRY RUN (no files will be written)\n');
   if (append) console.log('  Mode: APPEND (adding to existing files)\n');
-  if (debug) console.log('  Mode: DEBUG (showing raw solutions text)\n');
 
   let allQuestions: Question[] = [];
 
   try {
     if (fileArg) {
       // Single file mode
-      allQuestions = await importSingleFile(fileArg, dryRun, append, debug);
+      allQuestions = await importSingleFile(fileArg, dryRun, append);
     } else {
       // Batch mode: scan for PDFs in question-banks/level1/
       const searchDirs = [
@@ -462,7 +400,7 @@ async function main() {
 
       for (const pdf of pdfFiles.sort()) {
         try {
-          const questions = await importSingleFile(pdf, dryRun, append, debug);
+          const questions = await importSingleFile(pdf, dryRun, append);
           allQuestions.push(...questions);
         } catch (err) {
           const msg = err instanceof Error ? err.message : 'Unknown';
