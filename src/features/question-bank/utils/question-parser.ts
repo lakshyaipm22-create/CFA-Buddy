@@ -133,9 +133,9 @@ export function parseAnswers(text: string): Map<number, { correctAnswer: string;
       }
     }
 
-    // Pattern 4: "C Explanation..." (letter + space + text, NOT "is correct" or "correct")
+    // Pattern 4: "C Explanation..." (letter + non-newline whitespace + text, NOT "is correct" or "correct")
     if (!correctAnswer) {
-      const p4 = content.match(/^([A-D])\s+(?!(?:is\s+)?correct)([\s\S]*)/i);
+      const p4 = content.match(/^([A-D])[ \t]+(?!(?:is\s+)?correct)([\s\S]*)/i);
       if (p4) {
         correctAnswer = p4[1].toUpperCase();
         explanation = p4[2].replace(/\n/g, ' ').trim();

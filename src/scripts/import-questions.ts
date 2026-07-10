@@ -25,6 +25,7 @@
 
 import { readFile, writeFile, mkdir, readdir } from 'fs/promises';
 import { join, basename } from 'path';
+import { fileURLToPath } from 'url';
 import type { Question } from '../features/question-bank/types';
 
 // Subject mapping by filename prefix number
@@ -182,9 +183,9 @@ export function parseSolutions(text: string): ParsedSolution[] {
       }
     }
 
-    // Pattern 3: "C Explanation..." (letter + space + text, NOT "is correct" which is pattern 1)
+    // Pattern 3: "C Explanation..." (letter + non-newline whitespace + text, NOT "is correct" or "correct")
     if (!correctLetter) {
-      const p3 = content.match(/^([A-D])\s+(?!is\s+correct)([\s\S]*)/i);
+      const p3 = content.match(/^([A-D])[ \t]+(?!(?:is\s+)?correct)([\s\S]*)/i);
       if (p3) {
         correctLetter = p3[1].toUpperCase();
         explanation = p3[2].replace(/\n/g, ' ').trim();
@@ -365,10 +366,6 @@ async function main() {
 }
 
 // Only run CLI when executed directly (not when imported for testing)
-const isDirectExecution = typeof process !== 'undefined'
-  && process.argv[1]
-  && !process.argv[1].includes('vitest');
-
-if (isDirectExecution) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   main();
 }
