@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "BUNCH 4: Review Dashboard - Post-Exam Analysis with question list, subject breakdown, time traps, flashcard creation, session history comparison",
+  "status": "in_progress",
+  "steps": [
+    "In session-review.tsx, verify core metrics (score ring, confidence matrix, time chart) work with imported questions since we fixed loadAllQuestions() in Bunch 1. Ensure the loadReviewData function properly maps questions from the full pool.",
+    "Add question-by-question scrollable list section: Each row shows #, first 80 chars of question, your answer (A/B/C/D), correct answer, check/cross icon, time spent, confidence badge. Color: green bg for correct, red bg for wrong, star icon if bookmarked, flag icon if flagged. Click row to expand: full question text, all choices (highlight correct in green, wrong pick in red), full explanation text.",
+    "Add subject breakdown table section: Table with columns Subject | Questions | Correct | Accuracy | Avg Time. Sort by accuracy ascending (worst subjects on top). Color code: red < 50%, yellow 50-70%, green > 70%.",
+    "Add 'Time Traps' section: List questions where user spent > 90 seconds. Show question preview, time spent, correct/wrong. Include CFA tutor tip: 'Questions taking >90s often indicate uncertainty. Review these concepts.'",
+    "Wire the existing BatchFlashcardCreator component with a one-click button: 'Create Flashcards from Wrong Answers (X questions)'. It already exists in the file but currently uses sampleQuestions - fix it to use loadAllQuestions().",
+    "Add session history comparison at top of review: Show mini text or sparkline of last 5 session scores (e.g. '62% -> 68% -> 71% -> 78% -> 82% (this session)'). Pull from all completed sessions in localStorage. Show improvement trend.",
+    "Run npx tsc --noEmit && npm run lint to verify.",
+    "Git commit with message: feat: upgrade review dashboard with full post-exam analysis"
+  ],
+  "acceptance_criteria": [
+    "Question-by-question list shows all session questions with answers and metadata",
+    "Clicking a question row expands to show full details with choice highlighting",
+    "Subject breakdown table sorted by worst accuracy first with color coding",
+    "Time Traps section shows questions >90s with tutor tip",
+    "Flashcard creation uses loadAllQuestions() not sampleQuestions",
+    "Session history comparison shows last 5 scores trend",
+    "npx tsc --noEmit passes (ignoring prisma errors)",
+    "npm run lint passes"
+  ],
+  "verification": [
+    "npx tsc --noEmit 2>&1 | grep -v prisma",
+    "npm run lint"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
