@@ -1,4 +1,5 @@
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
+import { QuestionAnalytics } from '@/features/question-bank/components/question-analytics';
 
 export default function QuestionsPage() {
   return (
@@ -10,6 +11,7 @@ export default function QuestionsPage() {
         </p>
       </div>
       <SessionConfigurator />
+      <QuestionAnalytics />
     </div>
   );
 }
