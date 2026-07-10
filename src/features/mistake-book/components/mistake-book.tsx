@@ -80,27 +80,27 @@ export function MistakeBook() {
     <div className="space-y-6">
       {/* Stats */}
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-        <div className="rounded-lg border border-[#1a2332] bg-[#0d1117] p-4 text-center">
+        <div className="rounded-lg border p-4 text-center" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
           <p className="text-2xl font-bold text-red-400">{mistakes.length}</p>
-          <p className="text-xs text-zinc-500">Total Mistakes</p>
+          <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Total Mistakes</p>
         </div>
-        <div className="rounded-lg border border-[#1a2332] bg-[#0d1117] p-4 text-center">
+        <div className="rounded-lg border p-4 text-center" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
           <p className="text-2xl font-bold text-orange-400">
             {mistakes.filter(m => m.attempt.confidence === 'Certain').length}
           </p>
-          <p className="text-xs text-zinc-500">Misconceptions</p>
+          <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Misconceptions</p>
         </div>
-        <div className="rounded-lg border border-[#1a2332] bg-[#0d1117] p-4 text-center">
+        <div className="rounded-lg border p-4 text-center" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
           <p className="text-2xl font-bold text-yellow-400">
             {mistakes.filter(m => m.attempt.confidence === 'Guess').length}
           </p>
-          <p className="text-xs text-zinc-500">Knowledge Gaps</p>
+          <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Knowledge Gaps</p>
         </div>
-        <div className="rounded-lg border border-[#1a2332] bg-[#0d1117] p-4 text-center">
-          <p className="text-2xl font-bold text-zinc-400">
+        <div className="rounded-lg border p-4 text-center" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
+          <p className="text-2xl font-bold" style={{ color: 'var(--foreground-secondary)' }}>
             {classificationCounts['Unclassified'] ?? 0}
           </p>
-          <p className="text-xs text-zinc-500">Unclassified</p>
+          <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Unclassified</p>
         </div>
       </div>
 
@@ -113,9 +113,11 @@ export function MistakeBook() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-              filter === f ? 'bg-[#002B5C] text-[#C5A258]' : 'bg-[#1a2332] text-zinc-400 hover:text-white'
-            }`}
+            className="rounded-md px-3 py-1.5 text-xs font-medium transition-colors"
+            style={filter === f
+              ? { background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }
+              : { background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }
+            }
           >
             {f === 'all' ? 'All' : f} {f !== 'all' && `(${classificationCounts[f]})`}
           </button>
@@ -129,14 +131,16 @@ export function MistakeBook() {
             key={idx}
             data-list-item
             className={`rounded-lg border p-4 transition-colors ${
-              focusedIndex === idx
-                ? 'border-[#C5A258] bg-[#0d1117] ring-1 ring-[#C5A258]/50'
-                : 'border-[#1a2332] bg-[#0d1117]'
+              focusedIndex === idx ? 'ring-1 ring-[#C5A258]/50' : ''
             }`}
+            style={{
+              borderColor: focusedIndex === idx ? 'var(--accent-secondary)' : 'var(--card-border)',
+              background: 'var(--card-bg)',
+            }}
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <p className="text-sm text-zinc-300">Question: {mistake.attempt.questionId}</p>
+                <p className="text-sm" style={{ color: 'var(--foreground)' }}>Question: {mistake.attempt.questionId}</p>
                 <div className="mt-2 flex items-center gap-2">
                   <span className={`rounded px-2 py-0.5 text-[10px] font-medium ${
                     mistake.attempt.confidence === 'Certain' ? 'bg-red-900/30 text-red-400' :
@@ -145,15 +149,15 @@ export function MistakeBook() {
                   }`}>
                     {mistake.attempt.confidence}
                   </span>
-                  <span className="rounded bg-zinc-800 px-2 py-0.5 text-[10px] text-zinc-400">
+                  <span className="rounded px-2 py-0.5 text-[10px]" style={{ background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }}>
                     {mistake.classification}
                   </span>
-                  <span className="text-[10px] text-zinc-600">
+                  <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>
                     {mistake.attempt.timeSpentSeconds}s
                   </span>
                 </div>
               </div>
-              <span className="text-[10px] text-zinc-600">
+              <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>
                 {new Date(mistake.attempt.timestamp).toLocaleDateString()}
               </span>
             </div>
@@ -162,9 +166,9 @@ export function MistakeBook() {
       </div>
 
       {mistakes.length === 0 && (
-        <div className="rounded-lg border border-dashed border-[#1a2332] p-12 text-center">
-          <p className="text-zinc-400">No mistakes recorded yet.</p>
-          <p className="mt-1 text-xs text-zinc-600">Complete some question sessions to see your error patterns.</p>
+        <div className="rounded-lg border border-dashed p-12 text-center" style={{ borderColor: 'var(--card-border)' }}>
+          <p style={{ color: 'var(--foreground-secondary)' }}>No mistakes recorded yet.</p>
+          <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>Complete some question sessions to see your error patterns.</p>
         </div>
       )}
     </div>

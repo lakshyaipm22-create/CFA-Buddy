@@ -35,7 +35,7 @@ export function SessionConfigurator() {
       status: 'active',
       startedAt: new Date().toISOString(),
       completedAt: null,
-      questionIds: [], // Will be populated when questions are loaded
+      questionIds: [],
       attempts: [],
       currentIndex: 0,
       flaggedIds: [],
@@ -53,7 +53,7 @@ export function SessionConfigurator() {
       {resumable && (
         <div className="rounded-lg border border-yellow-900/50 bg-yellow-950/20 p-4">
           <p className="text-sm text-yellow-300">You have an incomplete session</p>
-          <p className="mt-1 text-xs text-zinc-400">
+          <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
             {resumable.attempts.length}/{resumable.questionIds.length} questions answered • Started {new Date(resumable.startedAt).toLocaleDateString()}
           </p>
           <button
@@ -67,7 +67,7 @@ export function SessionConfigurator() {
 
       {/* Mode selection */}
       <div>
-        <h2 className="mb-3 text-sm font-medium text-zinc-300">Test Mode</h2>
+        <h2 className="mb-3 text-sm font-medium" style={{ color: 'var(--foreground)' }}>Test Mode</h2>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
           {TEST_MODES.map(({ mode, label, description, defaultCount }) => (
             <button
@@ -76,11 +76,12 @@ export function SessionConfigurator() {
               className={`rounded-lg border p-4 text-left transition-colors ${
                 selectedMode === mode
                   ? 'border-blue-500 bg-blue-950/30'
-                  : 'border-zinc-800 bg-zinc-900/50 hover:border-zinc-600'
+                  : 'hover:opacity-80'
               }`}
+              style={selectedMode === mode ? undefined : { borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}
             >
-              <p className="text-sm font-medium text-white">{label}</p>
-              <p className="mt-1 text-xs text-zinc-400">{description}</p>
+              <p className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>{label}</p>
+              <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>{description}</p>
             </button>
           ))}
         </div>
@@ -89,25 +90,27 @@ export function SessionConfigurator() {
       {/* Configuration */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-zinc-300">Questions</label>
+          <label className="block text-sm font-medium" style={{ color: 'var(--foreground)' }}>Questions</label>
           <input
             type="number"
             min={5}
             max={180}
             value={questionCount}
             onChange={(e) => setQuestionCount(Math.max(5, Math.min(180, parseInt(e.target.value) || 5)))}
-            className="mt-1 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-white focus:border-blue-500 focus:outline-none"
+            className="mt-1 w-full rounded-lg border px-3 py-2 focus:border-blue-500 focus:outline-none"
+            style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)', color: 'var(--foreground)' }}
           />
-          <p className="mt-1 text-xs text-zinc-600">Min 5, max 180</p>
+          <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>Min 5, max 180</p>
         </div>
 
         <div>
-          <label className="flex items-center gap-2 text-sm font-medium text-zinc-300">
+          <label className="flex items-center gap-2 text-sm font-medium" style={{ color: 'var(--foreground)' }}>
             <input
               type="checkbox"
               checked={timed}
               onChange={(e) => setTimed(e.target.checked)}
-              className="rounded border-zinc-700"
+              className="rounded"
+              style={{ borderColor: 'var(--card-border)' }}
             />
             Timed Mode
           </label>
@@ -119,9 +122,10 @@ export function SessionConfigurator() {
                 max={270}
                 value={timeLimit}
                 onChange={(e) => setTimeLimit(Math.max(5, Math.min(270, parseInt(e.target.value) || 90)))}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-white focus:border-blue-500 focus:outline-none"
+                className="w-full rounded-lg border px-3 py-2 focus:border-blue-500 focus:outline-none"
+                style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)', color: 'var(--foreground)' }}
               />
-              <p className="mt-1 text-xs text-zinc-600">Minutes (5-270)</p>
+              <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>Minutes (5-270)</p>
             </div>
           )}
         </div>
@@ -130,12 +134,13 @@ export function SessionConfigurator() {
       {/* Start button */}
       <button
         onClick={startSession}
-        className="w-full rounded-lg bg-blue-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-500 md:w-auto"
+        className="w-full rounded-lg px-6 py-3 text-sm font-medium transition-colors hover:opacity-90 md:w-auto"
+        style={{ background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}
       >
         Start {selectedMode} Test ({questionCount} questions{timed ? `, ${timeLimit} min` : ', untimed'})
       </button>
 
-      <p className="text-xs text-zinc-600">
+      <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
         Note: Questions will be available after running the Question Import Pipeline.
         Currently showing configuration UI only.
       </p>

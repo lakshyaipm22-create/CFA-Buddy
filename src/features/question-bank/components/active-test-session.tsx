@@ -37,7 +37,6 @@ function loadSessionData(sessionId: string): { session: QuestionSession; questio
 export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
   const router = useRouter();
 
-  // Lazy initialization: runs only once on first render (client side)
   const [data] = useState(() => loadSessionData(sessionId));
   const [session, setSession] = useState<QuestionSession | null>(data?.session ?? null);
   const [questions] = useState<Question[]>(data?.questions ?? []);
@@ -72,7 +71,6 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
       currentIndex: session.currentIndex + 1,
     };
 
-    // Check if session is complete
     if (updatedSession.currentIndex >= updatedSession.questionIds.length) {
       updatedSession.status = 'completed';
       updatedSession.completedAt = new Date().toISOString();
@@ -83,7 +81,6 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
     setSelectedAnswer(null);
     setQuestionStartMs(Date.now());
 
-    // If completed, redirect to review
     if (updatedSession.status === 'completed') {
       router.push(`/questions/review/${sessionId}`);
     }
@@ -116,12 +113,11 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
     }
   }, [session, sessionId]);
 
-  // No session found — show loading (don't redirect during render)
   if (!session || !currentQuestion) {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-4">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-zinc-700 border-t-[#C5A258]" />
-        <p className="text-xs text-zinc-500">Loading questions...</p>
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-t-[#C5A258]" style={{ borderColor: 'var(--card-border)', borderTopColor: 'var(--accent-secondary)' }} />
+        <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Loading questions...</p>
       </div>
     );
   }
@@ -134,36 +130,39 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
   return (
     <div className="flex h-full flex-col">
       {/* Top bar */}
-      <div className="flex items-center justify-between border-b border-[#1a2332] pb-3">
+      <div className="flex items-center justify-between border-b pb-3" style={{ borderColor: 'var(--card-border)' }}>
         <div className="flex items-center gap-4">
-          <span className="text-sm font-medium text-zinc-300">
+          <span className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>
             Question {progress} / {total}
           </span>
-          <div className="h-1.5 w-32 rounded-full bg-[#1a2332]">
+          <div className="h-1.5 w-32 rounded-full" style={{ background: 'var(--border)' }}>
             <div
-              className="h-full rounded-full bg-[#002B5C] transition-all"
-              style={{ width: `${(progress / total) * 100}%` }}
+              className="h-full rounded-full transition-all"
+              style={{ width: `${(progress / total) * 100}%`, background: 'var(--accent-primary)' }}
             />
           </div>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={toggleBookmark}
-            className={`rounded p-1.5 transition-colors ${isBookmarked ? 'bg-yellow-900/30 text-yellow-400' : 'text-zinc-500 hover:text-white'}`}
+            className={`rounded p-1.5 transition-colors ${isBookmarked ? 'bg-yellow-900/30 text-yellow-400' : ''}`}
+            style={isBookmarked ? undefined : { color: 'var(--foreground-secondary)' }}
             title="Bookmark"
           >
             <Bookmark className="h-4 w-4" fill={isBookmarked ? 'currentColor' : 'none'} />
           </button>
           <button
             onClick={toggleFlag}
-            className={`rounded p-1.5 transition-colors ${isFlagged ? 'bg-orange-900/30 text-orange-400' : 'text-zinc-500 hover:text-white'}`}
+            className={`rounded p-1.5 transition-colors ${isFlagged ? 'bg-orange-900/30 text-orange-400' : ''}`}
+            style={isFlagged ? undefined : { color: 'var(--foreground-secondary)' }}
             title="Flag for review"
           >
             <Flag className="h-4 w-4" fill={isFlagged ? 'currentColor' : 'none'} />
           </button>
           <button
             onClick={() => setShowScratchpad(!showScratchpad)}
-            className={`rounded p-1.5 transition-colors ${showScratchpad ? 'bg-[#1a2332] text-white' : 'text-zinc-500 hover:text-white'}`}
+            className="rounded p-1.5 transition-colors"
+            style={showScratchpad ? { background: 'var(--nav-hover-bg)', color: 'var(--foreground)' } : { color: 'var(--foreground-secondary)' }}
             title="Scratchpad"
           >
             <StickyNote className="h-4 w-4" />
@@ -173,7 +172,7 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
 
       {/* Question */}
       <div className="mt-6 flex-1 space-y-6">
-        <p className="text-base leading-relaxed text-zinc-200">{currentQuestion.questionText}</p>
+        <p className="text-base leading-relaxed" style={{ color: 'var(--foreground)' }}>{currentQuestion.questionText}</p>
 
         {/* Answer choices */}
         <div className="space-y-2">
@@ -183,9 +182,13 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
               onClick={() => setSelectedAnswer(choice.label)}
               className={`w-full rounded-lg border px-4 py-3 text-left text-sm transition-colors ${
                 selectedAnswer === choice.label
-                  ? 'border-[#002B5C] bg-[#002B5C]/20 text-white'
-                  : 'border-[#1a2332] bg-[#0d1117] text-zinc-300 hover:border-zinc-600'
+                  ? 'border-blue-500 bg-blue-950/20'
+                  : 'hover:opacity-80'
               }`}
+              style={selectedAnswer === choice.label
+                ? { color: 'var(--foreground)' }
+                : { borderColor: 'var(--card-border)', background: 'var(--card-bg)', color: 'var(--foreground)' }
+              }
             >
               <span className="font-medium">{choice.label}.</span> {choice.text}
             </button>
@@ -194,12 +197,13 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
 
         {/* Scratchpad */}
         {showScratchpad && (
-          <div className="rounded-lg border border-[#1a2332] bg-[#0d1117] p-3">
-            <p className="mb-1 text-[10px] font-medium text-zinc-500">SCRATCHPAD</p>
+          <div className="rounded-lg border p-3" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
+            <p className="mb-1 text-[10px] font-medium" style={{ color: 'var(--foreground-secondary)' }}>SCRATCHPAD</p>
             <textarea
               value={scratchpad}
               onChange={(e) => updateScratchpad(e.target.value)}
-              className="w-full resize-none bg-transparent text-sm text-zinc-300 placeholder-zinc-600 focus:outline-none"
+              className="w-full resize-none bg-transparent text-sm focus:outline-none"
+              style={{ color: 'var(--foreground)' }}
               rows={3}
               placeholder="Working notes..."
             />
@@ -208,29 +212,32 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
       </div>
 
       {/* Confidence submit buttons */}
-      <div className="mt-6 border-t border-[#1a2332] pt-4">
-        <p className="mb-3 text-xs text-zinc-500">Select your answer above, then submit with your confidence level:</p>
+      <div className="mt-6 border-t pt-4" style={{ borderColor: 'var(--card-border)' }}>
+        <p className="mb-3 text-xs" style={{ color: 'var(--foreground-secondary)' }}>Select your answer above, then submit with your confidence level:</p>
         <div className="flex gap-3">
           <button
             onClick={() => submitAnswer('Guess')}
             disabled={!selectedAnswer}
-            className="flex-1 rounded-lg border border-[#1a2332] bg-[#0d1117] px-4 py-3 text-sm font-medium text-zinc-300 transition-colors hover:bg-[#1a2332] disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex-1 rounded-lg border px-4 py-3 text-sm font-medium transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30"
+            style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)', color: 'var(--foreground)' }}
           >
-            Guess ▶
+            Guess
           </button>
           <button
             onClick={() => submitAnswer('ThinkSo')}
             disabled={!selectedAnswer}
-            className="flex-1 rounded-lg border border-[#002B5C] bg-[#002B5C]/20 px-4 py-3 text-sm font-medium text-blue-300 transition-colors hover:bg-[#002B5C]/40 disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex-1 rounded-lg border px-4 py-3 text-sm font-medium text-blue-300 transition-colors hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30"
+            style={{ borderColor: 'var(--accent-primary)', background: 'rgba(0, 43, 92, 0.2)' }}
           >
-            Think So ▶
+            Think So
           </button>
           <button
             onClick={() => submitAnswer('Certain')}
             disabled={!selectedAnswer}
-            className="flex-1 rounded-lg bg-[#002B5C] px-4 py-3 text-sm font-medium text-[#C5A258] transition-colors hover:bg-[#003d7a] disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex-1 rounded-lg px-4 py-3 text-sm font-medium transition-colors hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30"
+            style={{ background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}
           >
-            Certain ▶
+            Certain
           </button>
         </div>
       </div>

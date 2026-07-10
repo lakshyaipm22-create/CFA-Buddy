@@ -40,20 +40,26 @@ export function WeeklyProgress() {
   const maxQuestions = Math.max(...weekData.map(d => d.questions), 1);
 
   return (
-    <div className="rounded-lg border border-[#1a2332] bg-[#0d1117] p-6">
-      <h3 className="mb-4 text-sm font-medium text-zinc-300">Weekly Progress</h3>
+    <div
+      className="rounded-lg border p-6"
+      style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}
+    >
+      <h3 className="mb-4 text-sm font-medium" style={{ color: 'var(--foreground)' }}>Weekly Progress</h3>
       <div className="flex items-end gap-2">
         {weekData.map((day, idx) => (
           <div key={idx} className="flex flex-1 flex-col items-center gap-1">
             <div className="relative w-full" style={{ height: '80px' }}>
               <div
-                className="absolute bottom-0 w-full rounded-t bg-[#002B5C] transition-all"
-                style={{ height: `${Math.max((day.questions / maxQuestions) * 100, day.questions > 0 ? 10 : 0)}%` }}
+                className="absolute bottom-0 w-full rounded-t transition-all"
+                style={{
+                  height: `${Math.max((day.questions / maxQuestions) * 100, day.questions > 0 ? 10 : 0)}%`,
+                  background: 'var(--accent-primary)',
+                }}
               />
             </div>
-            <span className="text-[10px] text-zinc-500">{day.day}</span>
+            <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>{day.day}</span>
             {day.questions > 0 && (
-              <span className="text-[10px] text-zinc-400">{day.questions}</span>
+              <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>{day.questions}</span>
             )}
           </div>
         ))}

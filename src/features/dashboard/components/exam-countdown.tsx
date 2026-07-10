@@ -32,7 +32,6 @@ export function ExamCountdown() {
   const saveDate = () => {
     if (!inputDate) return;
     localStorage.setItem('cfa-buddy-exam-date', inputDate);
-    // Dispatch storage event to trigger useSyncExternalStore update
     window.dispatchEvent(new StorageEvent('storage', { key: 'cfa-buddy-exam-date' }));
     setInputDate('');
   };
@@ -44,20 +43,25 @@ export function ExamCountdown() {
 
   if (!targetDate) {
     return (
-      <div className="rounded-lg border border-dashed border-[#1a2332] bg-[#0d1117] p-6">
-        <h3 className="text-sm font-medium text-zinc-300">Exam Countdown</h3>
-        <p className="mt-1 text-xs text-zinc-500">Set your exam date to see countdown and pacing.</p>
+      <div
+        className="rounded-lg border border-dashed p-6"
+        style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}
+      >
+        <h3 className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>Exam Countdown</h3>
+        <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>Set your exam date to see countdown and pacing.</p>
         <div className="mt-3 flex gap-2">
           <input
             type="date"
             value={inputDate}
             onChange={(e) => setInputDate(e.target.value)}
-            className="rounded-lg border border-[#1a2332] bg-[#111827] px-3 py-2 text-sm text-white"
+            className="rounded-lg border px-3 py-2 text-sm"
+            style={{ borderColor: 'var(--card-border)', background: 'var(--background-tertiary)', color: 'var(--foreground)' }}
           />
           <button
             onClick={saveDate}
             disabled={!inputDate}
-            className="rounded-lg bg-[#002B5C] px-4 py-2 text-sm font-medium text-[#C5A258] hover:bg-[#003d7a] disabled:opacity-50"
+            className="rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:opacity-90 disabled:opacity-50"
+            style={{ background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}
           >
             Set Date
           </button>
@@ -69,17 +73,22 @@ export function ExamCountdown() {
   const isUrgent = daysLeft !== null && daysLeft <= 30;
 
   return (
-    <div className={`rounded-lg border p-6 ${isUrgent ? 'border-red-900/50 bg-red-950/10' : 'border-[#1a2332] bg-[#0d1117]'}`}>
+    <div
+      className={`rounded-lg border p-6 ${isUrgent ? 'border-red-900/50 bg-red-950/10' : ''}`}
+      style={isUrgent ? undefined : { borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}
+    >
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-sm font-medium text-zinc-300">Exam Countdown</h3>
-          <p className="mt-1 text-xs text-zinc-500">{new Date(targetDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <h3 className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>Exam Countdown</h3>
+          <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
+            {new Date(targetDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
         </div>
         <div className="text-right">
-          <p className={`text-4xl font-bold ${isUrgent ? 'text-red-400' : 'text-[#C5A258]'}`}>
+          <p className={`text-4xl font-bold ${isUrgent ? 'text-red-400' : ''}`} style={isUrgent ? undefined : { color: 'var(--accent-secondary)' }}>
             {daysLeft}
           </p>
-          <p className="text-xs text-zinc-500">days remaining</p>
+          <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>days remaining</p>
         </div>
       </div>
     </div>
