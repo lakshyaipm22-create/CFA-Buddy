@@ -207,17 +207,181 @@ function findPracticePackHeaders(text: string): Array<{ subject: string; isAnswe
 }
 
 /**
+ * Filename-based subject keyword mapping for fallback inference.
+ * Maps a keyword found in the filename to the canonical subject name.
+ */
+const FILENAME_SUBJECT_MAP: Array<{ keyword: string; subject: string }> = [
+  { keyword: 'fsa', subject: 'Financial Statement Analysis' },
+  { keyword: 'fixed income', subject: 'Fixed Income' },
+  { keyword: 'quants', subject: 'Quantitative Methods' },
+  { keyword: 'portfolio', subject: 'Portfolio Management' },
+  { keyword: 'equity', subject: 'Equity Investments' },
+  { keyword: 'ethics', subject: 'Ethical and Professional Standards' },
+  { keyword: 'alt investments', subject: 'Alternative Investments' },
+  { keyword: 'corp', subject: 'Corporate Issuers' },
+  { keyword: 'derivatives', subject: 'Derivatives' },
+  { keyword: 'economics', subject: 'Economics' },
+];
+
+/**
+ * Infer all subject names mentioned in the filename, returned in order of their
+ * position within the filename string (leftmost keyword match first).
+ */
+function inferSubjectsFromFilename(filename: string): string[] {
+  const lower = filename.toLowerCase();
+  const found: Array<{ subject: string; position: number }> = [];
+  for (const entry of FILENAME_SUBJECT_MAP) {
+    const idx = lower.indexOf(entry.keyword);
+    if (idx >= 0) {
+      found.push({ subject: entry.subject, position: idx });
+    }
+  }
+  // Sort by position in filename so the first-mentioned subject comes first
+  found.sort((a, b) => a.position - b.position);
+  return found.map(f => f.subject);
+}
+
+/**
+ * Count the number of distinct "Question 1 of X" restarts in the text.
+ * Each "Question 1 of X" signals the beginning of a new question section.
+ * Returns the positions and totals of each restart.
+ */
+function findQuestionRestarts(text: string): Array<{ position: number; total: number }> {
+  const pattern = /Question\s+1\s+of\s+(\d+)/gi;
+  const restarts: Array<{ position: number; total: number }> = [];
+  let match;
+  while ((match = pattern.exec(text)) !== null) {
+    restarts.push({ position: match.index, total: parseInt(match[1]) });
+  }
+  return restarts;
+}
+
+/**
+ * Find all "Answer 1 of X" restarts in the text.
+ * Each signals the beginning of a new answer section.
+ */
+function findAnswerRestarts(text: string): Array<{ position: number; total: number }> {
+  const pattern = /Answer\s+1\s+of\s+(\d+)/gi;
+  const restarts: Array<{ position: number; total: number }> = [];
+  let match;
+  while ((match = pattern.exec(text)) !== null) {
+    restarts.push({ position: match.index, total: parseInt(match[1]) });
+  }
+  return restarts;
+}
+
+/**
+ * Fallback section detection using "Question 1 of X" restarts.
+ *
+ * When OCR completely mangles headers (e.g., "Practice Pack" becomes "Practiea Pad"),
+ * the header-based approach fails. This fallback uses the perfectly-preserved
+ * "Question 1 of X" and "Answer 1 of X" patterns to detect section boundaries.
+ *
+ * It pairs question sections with answer sections by matching total counts (the X value),
+ * then infers subject names using the filename and any subjects found by the header approach.
+ */
+function fallbackSplitBySubject(
+  text: string,
+  headerSections: SubjectSection[],
+  filename: string
+): SubjectSection[] {
+  const questionRestarts = findQuestionRestarts(text);
+  const answerRestarts = findAnswerRestarts(text);
+
+  if (questionRestarts.length === 0) return headerSections;
+
+  // Build question section text ranges
+  const questionRanges: Array<{ total: number; start: number; end: number }> = [];
+  for (let i = 0; i < questionRestarts.length; i++) {
+    const start = questionRestarts[i].position;
+    const end = i + 1 < questionRestarts.length
+      ? questionRestarts[i + 1].position
+      : (answerRestarts.length > 0 ? answerRestarts[0].position : text.length);
+    questionRanges.push({ total: questionRestarts[i].total, start, end });
+  }
+
+  // Build answer section text ranges
+  const answerRanges: Array<{ total: number; start: number; end: number }> = [];
+  for (let i = 0; i < answerRestarts.length; i++) {
+    const start = answerRestarts[i].position;
+    const end = i + 1 < answerRestarts.length
+      ? answerRestarts[i + 1].position
+      : text.length;
+    answerRanges.push({ total: answerRestarts[i].total, start, end });
+  }
+
+  // Determine which totals are already claimed by header-based sections.
+  // A header-based section "claims" a total if its questionsText contains "Question 1 of TOTAL"
+  const claimedTotals = new Map<number, string>(); // total -> subject name
+  for (const section of headerSections) {
+    const q1Pattern = /Question\s+1\s+of\s+(\d+)/i;
+    const q1Match = q1Pattern.exec(section.questionsText);
+    if (q1Match) {
+      claimedTotals.set(parseInt(q1Match[1]), section.subject);
+    }
+  }
+
+  // Determine subjects from the filename for unclaimed totals
+  const filenameSubjects = inferSubjectsFromFilename(filename);
+  const claimedSubjectNames = new Set(claimedTotals.values());
+
+  // Find subjects from filename that are NOT already claimed
+  const unclaimedFilenameSubjects = filenameSubjects.filter(s => !claimedSubjectNames.has(s));
+
+  // Pair question ranges with answer ranges by matching totals
+  const sections: SubjectSection[] = [];
+  let unclaimedIdx = 0;
+
+  for (const qRange of questionRanges) {
+    const questionsText = text.slice(qRange.start, qRange.end);
+
+    // Find the matching answer range by total
+    const matchingAnswerRange = answerRanges.find(ar => ar.total === qRange.total);
+    const answersText = matchingAnswerRange
+      ? text.slice(matchingAnswerRange.start, matchingAnswerRange.end)
+      : '';
+
+    // Determine subject name
+    let subject: string;
+    if (claimedTotals.has(qRange.total)) {
+      // This total was already identified by the header-based approach
+      subject = claimedTotals.get(qRange.total)!;
+    } else if (unclaimedIdx < unclaimedFilenameSubjects.length) {
+      // Assign the next unclaimed subject from the filename
+      subject = unclaimedFilenameSubjects[unclaimedIdx];
+      unclaimedIdx++;
+    } else {
+      // Last resort: use "Unknown Subject"
+      subject = 'Unknown Subject';
+    }
+
+    sections.push({ subject, questionsText, answersText });
+  }
+
+  return sections;
+}
+
+/**
  * Split the full PDF text into subject sections.
  * Each section has a questions part and an answers part.
  *
  * Uses a position-based approach to handle OCR line-broken headers like:
  *   "Fixed\nIncome:\nPractice\nPack"
  *   "Financial\nStatement\nAnalysis:\nPractice\nPack"
+ *
+ * If the header-based approach finds fewer sections than "Question 1 of X" restarts suggest,
+ * a fallback method uses those restarts to detect section boundaries and infers
+ * subject names from the filename.
  */
-export function splitBySubject(text: string): SubjectSection[] {
+export function splitBySubject(text: string, filename = ''): SubjectSection[] {
   const headers = findPracticePackHeaders(text);
 
   if (headers.length === 0) {
+    // No headers found at all - use fallback if we have question restarts
+    const questionRestarts = findQuestionRestarts(text);
+    if (questionRestarts.length > 0) {
+      return fallbackSplitBySubject(text, [], filename);
+    }
     return [];
   }
 
@@ -257,6 +421,14 @@ export function splitBySubject(text: string): SubjectSection[] {
     if (questionsText || answersText) {
       sections.push({ subject, questionsText, answersText });
     }
+  }
+
+  // Check if fallback is needed: compare number of header-detected sections
+  // vs number of "Question 1 of X" restarts in the full text
+  const questionRestarts = findQuestionRestarts(text);
+  if (questionRestarts.length > sections.length) {
+    // Header-based approach missed some sections - activate fallback
+    return fallbackSplitBySubject(text, sections, filename);
   }
 
   return sections;
@@ -513,8 +685,8 @@ async function importPremiumFile(filePath: string, dryRun: boolean, debug = fals
     }
   }
 
-  // Split by subject headers
-  const sections = splitBySubject(text);
+  // Split by subject headers (pass filename for fallback inference)
+  const sections = splitBySubject(text, filename);
   console.log(`     Found ${sections.length} subject sections`);
 
   const allQuestions: Question[] = [];

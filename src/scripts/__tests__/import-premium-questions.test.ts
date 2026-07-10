@@ -808,3 +808,363 @@ C.    Incorrect because that is the cash flow statement.
     expect(fsa!.answersText).toContain('revenues and expenses');
   });
 });
+
+describe('splitBySubject fallback: Question 1 of X restarts', () => {
+  it('detects two sections when OCR completely mangles one header (FSA & Fixed Income PDF)', () => {
+    // Simulates: Fixed Income header is found, but FSA header is completely mangled
+    // The "Question 1 of X" restarts still work perfectly
+    const fullText = `Some preamble garbage text.
+
+Fixed Income: Practice Pack
+Question 1 of 106
+Question
+What is a bond?
+A.    A debt instrument.
+B.    An equity instrument.
+C.    A derivative contract.
+
+Question 2 of 106
+Question
+What is coupon rate?
+A.    The annual interest.
+B.    The market price.
+C.    The yield to maturity.
+
+oe sncivade Practiea Pad
+Question 1 of 130
+Question
+What does the income statement report?
+A.    Assets and liabilities.
+B.    Revenues and expenses.
+C.    Cash flows from operations.
+
+Question 2 of 130
+Question
+What is depreciation?
+A.    A cash outflow.
+B.    Allocation of cost over useful life.
+C.    A revenue item.
+
+Fixed Income: Practice Pack- Answers
+Answer 1 of 106
+Answer
+Solution
+A.    Correct. A bond is a debt instrument.
+B.    Incorrect because equity is ownership.
+C.    Incorrect because derivatives derive value.
+
+Answer 2 of 106
+Answer
+Solution
+A.    Correct. Coupon rate is the annual interest payment.
+B.    Incorrect because market price fluctuates.
+C.    Incorrect because YTM is different from coupon.
+
+oe sncivade Practiea Pad- Anewrs
+Answer 1 of 130
+Answer
+Solution
+A.    Incorrect because that is the balance sheet.
+B.    Correct. The income statement reports revenues and expenses.
+C.    Incorrect because that is the cash flow statement.
+
+Answer 2 of 130
+Answer
+Solution
+A.    Incorrect because depreciation is non-cash.
+B.    Correct. Depreciation allocates cost over useful life.
+C.    Incorrect because it is an expense.
+`;
+    // Header-based approach finds only "Fixed Income" (1 section)
+    // But there are 2 "Question 1 of X" restarts -> fallback activates
+    const sections = splitBySubject(fullText, 'OCR_CFA L1 2025_FSA & Fixed Income.pdf');
+    expect(sections.length).toBe(2);
+
+    const fi = sections.find(s => s.subject === 'Fixed Income');
+    const fsa = sections.find(s => s.subject === 'Financial Statement Analysis');
+
+    expect(fi).toBeDefined();
+    expect(fsa).toBeDefined();
+
+    // Verify Fixed Income section content
+    const fiQuestions = parsePremiumQuestions(fi!.questionsText);
+    expect(fiQuestions.length).toBe(2);
+    expect(fiQuestions[0].text).toContain('bond');
+
+    const fiAnswers = parsePremiumAnswers(fi!.answersText);
+    expect(fiAnswers.length).toBe(2);
+    expect(fiAnswers[0].correctLabel).toBe('A');
+
+    // Verify FSA section content
+    const fsaQuestions = parsePremiumQuestions(fsa!.questionsText);
+    expect(fsaQuestions.length).toBe(2);
+    expect(fsaQuestions[0].text).toContain('income statement');
+
+    const fsaAnswers = parsePremiumAnswers(fsa!.answersText);
+    expect(fsaAnswers.length).toBe(2);
+    expect(fsaAnswers[0].correctLabel).toBe('B');
+  });
+
+  it('detects two sections when OCR completely mangles one header (Portfolio & Quants PDF)', () => {
+    // Simulates: Portfolio Management header is found, but Quants header is completely mangled
+    const fullText = `Preamble text.
+
+Portfolio Management: Practice Pack
+Question 1 of 100
+Question
+What is the primary goal of portfolio management?
+A.    Maximizing returns only.
+B.    Balancing risk and return.
+C.    Minimizing all risk.
+
+Quntttve Mthds Practiea Pad
+Question 1 of 90
+Question
+What is a standard deviation?
+A.    A measure of central tendency.
+B.    A measure of dispersion.
+C.    A measure of skewness.
+
+Portfolio Management: Practice Pack- Answers
+Answer 1 of 100
+Answer
+Solution
+A.    Incorrect because risk must also be considered.
+B.    Correct. Portfolio management balances risk and return.
+C.    Incorrect because some risk is acceptable.
+
+Quntttve Mthds Practiea Pad- Anewrs
+Answer 1 of 90
+Answer
+Solution
+A.    Incorrect because that is the mean.
+B.    Correct. Standard deviation measures dispersion.
+C.    Incorrect because skewness is different.
+`;
+    const sections = splitBySubject(fullText, 'OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf');
+    expect(sections.length).toBe(2);
+
+    const pm = sections.find(s => s.subject === 'Portfolio Management');
+    const qm = sections.find(s => s.subject === 'Quantitative Methods');
+
+    expect(pm).toBeDefined();
+    expect(qm).toBeDefined();
+
+    const pmQuestions = parsePremiumQuestions(pm!.questionsText);
+    expect(pmQuestions.length).toBe(1);
+    expect(pmQuestions[0].text).toContain('primary goal');
+
+    const pmAnswers = parsePremiumAnswers(pm!.answersText);
+    expect(pmAnswers.length).toBe(1);
+    expect(pmAnswers[0].correctLabel).toBe('B');
+
+    const qmQuestions = parsePremiumQuestions(qm!.questionsText);
+    expect(qmQuestions.length).toBe(1);
+    expect(qmQuestions[0].text).toContain('standard deviation');
+
+    const qmAnswers = parsePremiumAnswers(qm!.answersText);
+    expect(qmAnswers.length).toBe(1);
+    expect(qmAnswers[0].correctLabel).toBe('B');
+  });
+
+  it('does NOT activate fallback when header-based approach finds all sections', () => {
+    // Both headers are properly detected - fallback should not interfere
+    const fullText = `
+Economics: Practice Pack
+Question 1 of 50
+Question
+GDP measures what?
+A.    All goods produced.
+B.    Final goods and services.
+C.    Intermediate goods only.
+
+Alternative Investments: Practice Pack
+Question 1 of 40
+Question
+Hedge funds are structured as:
+A.    Limited partnerships.
+B.    Public corporations.
+C.    Government agencies.
+
+Economics: Practice Pack - Answers
+Answer 1 of 50
+Answer
+Solution
+A.    Incorrect because only final goods are counted.
+B.    Correct. GDP measures final goods and services.
+C.    Incorrect because intermediate goods are excluded.
+
+Alternative Investments: Practice Pack- Answers
+Answer 1 of 40
+Answer
+Solution
+A.    Correct. Hedge funds are typically limited partnerships.
+B.    Incorrect because they are private vehicles.
+C.    Incorrect because they are not government entities.
+`;
+    const sections = splitBySubject(fullText, 'OCR_CFA L1 2025_Economics & Alt Investments.pdf');
+    expect(sections.length).toBe(2);
+
+    const econ = sections.find(s => s.subject === 'Economics');
+    const alt = sections.find(s => s.subject === 'Alternative Investments');
+    expect(econ).toBeDefined();
+    expect(alt).toBeDefined();
+  });
+
+  it('handles completely mangled headers with NO headers detected (both subjects from filename)', () => {
+    // Both headers are completely mangled - neither "Practice Pack" nor ":" is preserved
+    // When no headers are found, subjects are assigned in filename keyword order
+    const fullText = `Some random preamble.
+
+oe sncivade Practiea Pad
+Question 1 of 106
+Question
+What is a bond?
+A.    A debt instrument.
+B.    An equity instrument.
+C.    A derivative.
+
+xnncl Sttemnt Anlss Practiea Pad
+Question 1 of 130
+Question
+What is depreciation?
+A.    A cash outflow.
+B.    Allocation of cost.
+C.    A revenue item.
+
+oe sncivade Practiea Pad Anewrs
+Answer 1 of 106
+Answer
+Solution
+A.    Correct. A bond is a debt instrument.
+B.    Incorrect because equity is ownership.
+C.    Incorrect because derivatives derive value.
+
+xnncl Sttemnt Anlss Practiea Pad Anewrs
+Answer 1 of 130
+Answer
+Solution
+A.    Incorrect because it is non-cash.
+B.    Correct. Depreciation allocates cost.
+C.    Incorrect because it is an expense.
+`;
+    // Filename: "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+    // "fsa" appears at position 18, "fixed income" at position 24
+    // So filename order is: [FSA, Fixed Income]
+    // First restart (106) gets FSA, second restart (130) gets Fixed Income
+    const sections = splitBySubject(fullText, 'OCR_CFA L1 2025_FSA & Fixed Income.pdf');
+    expect(sections.length).toBe(2);
+
+    // Both subjects are inferred from filename in filename-keyword-position order
+    const fsa = sections.find(s => s.subject === 'Financial Statement Analysis');
+    const fi = sections.find(s => s.subject === 'Fixed Income');
+    expect(fsa).toBeDefined();
+    expect(fi).toBeDefined();
+
+    // FSA was assigned to the first restart (106 total) - the bond question
+    const fsaQuestions = parsePremiumQuestions(fsa!.questionsText);
+    expect(fsaQuestions.length).toBe(1);
+    expect(fsaQuestions[0].text).toContain('bond');
+
+    // Fixed Income was assigned to the second restart (130 total) - the depreciation question
+    const fiQuestions = parsePremiumQuestions(fi!.questionsText);
+    expect(fiQuestions.length).toBe(1);
+    expect(fiQuestions[0].text).toContain('depreciation');
+  });
+
+  it('fallback pairs question and answer sections by matching totals', () => {
+    // Questions: 106 first, then 130. Answers: 130 first, then 106.
+    // The fallback must pair by total, not by position.
+    const fullText = `Preamble.
+
+Fixed Income: Practice Pack
+Question 1 of 106
+Question
+What is a bond?
+A.    A debt instrument.
+B.    An equity instrument.
+C.    A derivative.
+
+Mangled Header Garbage
+Question 1 of 130
+Question
+What is an income statement?
+A.    A financial report.
+B.    A tax document.
+C.    A cash register receipt.
+
+Mangled Answer Header
+Answer 1 of 130
+Answer
+Solution
+A.    Correct. An income statement is a financial report.
+B.    Incorrect because it is not a tax document.
+C.    Incorrect because it is not a receipt.
+
+Fixed Income: Practice Pack- Answers
+Answer 1 of 106
+Answer
+Solution
+A.    Correct. A bond is a debt instrument.
+B.    Incorrect because equity is ownership.
+C.    Incorrect because derivatives derive value.
+`;
+    const sections = splitBySubject(fullText, 'OCR_CFA L1 2025_FSA & Fixed Income.pdf');
+    expect(sections.length).toBe(2);
+
+    const fi = sections.find(s => s.subject === 'Fixed Income');
+    const fsa = sections.find(s => s.subject === 'Financial Statement Analysis');
+    expect(fi).toBeDefined();
+    expect(fsa).toBeDefined();
+
+    // Verify correct pairing: Fixed Income (106) questions paired with 106 answers
+    const fiAnswers = parsePremiumAnswers(fi!.answersText);
+    expect(fiAnswers.length).toBe(1);
+    expect(fiAnswers[0].correctLabel).toBe('A');
+
+    // FSA (130) questions paired with 130 answers
+    const fsaAnswers = parsePremiumAnswers(fsa!.answersText);
+    expect(fsaAnswers.length).toBe(1);
+    expect(fsaAnswers[0].correctLabel).toBe('A');
+  });
+
+  it('single-subject PDF does not trigger fallback (only one Question 1 of X)', () => {
+    const fullText = `
+Fixed Income: Practice Pack
+Question 1 of 50
+Question
+What is a bond?
+A.    A debt instrument.
+B.    An equity instrument.
+C.    A derivative.
+
+Question 2 of 50
+Question
+What is yield?
+A.    Interest rate.
+B.    Discount rate.
+C.    Coupon rate.
+
+Fixed Income: Practice Pack- Answers
+Answer 1 of 50
+Answer
+Solution
+A.    Correct. A bond is a debt instrument.
+B.    Incorrect because equity is ownership.
+C.    Incorrect because derivatives derive value.
+
+Answer 2 of 50
+Answer
+Solution
+A.    Incorrect because interest rate is not yield.
+B.    Correct. Yield is the discount rate.
+C.    Incorrect because coupon rate is different.
+`;
+    const sections = splitBySubject(fullText, 'OCR_CFA L1 2025_Fixed Income.pdf');
+    expect(sections.length).toBe(1);
+    expect(sections[0].subject).toBe('Fixed Income');
+
+    const questions = parsePremiumQuestions(sections[0].questionsText);
+    expect(questions.length).toBe(2);
+  });
+});
