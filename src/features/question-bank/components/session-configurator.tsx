@@ -98,10 +98,16 @@ export function SessionConfigurator() {
   }, [configMode, selectedDifficulties, selectedProviders, selectedSubjects, allQuestions, wrongQuestionIds, weakSubjects]);
 
   const toggleSubject = (s: string) => {
-    const next = new Set(selectedSubjects);
-    if (next.has(s)) { if (next.size > 1) next.delete(s); }
-    else next.add(s);
-    setSelectedSubjects(next);
+    if (selectedSubjects.size === SUBJECTS.length || !selectedSubjects.has(s)) {
+      // If all are selected or clicking a different one: select ONLY this subject
+      setSelectedSubjects(new Set([s]));
+    } else if (selectedSubjects.has(s) && selectedSubjects.size === 1) {
+      // If clicking the already-selected single subject: reset to ALL
+      setSelectedSubjects(new Set(SUBJECTS));
+    } else {
+      // Otherwise: select only this one
+      setSelectedSubjects(new Set([s]));
+    }
   };
 
   const toggleDifficulty = (d: string) => {
@@ -228,14 +234,24 @@ export function SessionConfigurator() {
         <>
           {/* Subject filter with counts */}
           <div>
-            <h3 className="mb-2 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>Subjects</h3>
+            <h3 className="mb-2 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>Subjects (click one to filter, click again for all)</h3>
             <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedSubjects(new Set(SUBJECTS))}
+                className="rounded-md px-2.5 py-1.5 text-[11px] font-medium transition-colors"
+                style={selectedSubjects.size === SUBJECTS.length
+                  ? { background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }
+                  : { background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }
+                }
+              >
+                All ({allQuestions.length})
+              </button>
               {SUBJECTS.map(s => (
                 <button
                   key={s}
                   onClick={() => toggleSubject(s)}
                   className="rounded-md px-2.5 py-1.5 text-[11px] font-medium transition-colors"
-                  style={selectedSubjects.has(s)
+                  style={selectedSubjects.has(s) && selectedSubjects.size < SUBJECTS.length
                     ? { background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }
                     : { background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }
                   }
