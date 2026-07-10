@@ -1,10 +1,19 @@
 'use client';
 
-import { useState, useSyncExternalStore } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import type { QuestionSession, SessionSummary } from '../types';
-import { getSession } from '../utils/session-storage';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Cell,
+} from 'recharts';
+import type { QuestionSession, SessionSummary, ErrorClassification } from '../types';
+import { getSession, saveSession } from '../utils/session-storage';
 import { buildSessionSummary } from '../utils/confidence-matrix';
 import { sampleQuestions } from '../data/sample-questions';
 
@@ -23,111 +32,583 @@ function loadReviewData(sessionId: string): { session: QuestionSession | null; s
   return { session: loaded, summary: sum };
 }
 
-function getServerSnapshot(): { session: QuestionSession | null; summary: SessionSummary | null } {
-  return { session: null, summary: null };
+// Score ring component
+function ScoreRing({ score, size = 160 }: { score: number; size?: number }) {
+  const strokeWidth = 12;
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (score / 100) * circumference;
+
+  const color = score >= 70 ? 'var(--accent-success)' : score >= 50 ? 'var(--accent-secondary)' : '#ef4444';
+
+  return (
+    <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
+      <svg width={size} height={size} className="-rotate-90">
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke="var(--border)"
+          strokeWidth={strokeWidth}
+        />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke={color}
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          style={{ transition: 'stroke-dashoffset 1s ease-in-out' }}
+        />
+      </svg>
+      <div className="absolute flex flex-col items-center">
+        <span className="text-3xl font-bold" style={{ color }}>
+          {Math.round(score)}%
+        </span>
+        <span className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Score</span>
+      </div>
+    </div>
+  );
 }
+
+// Mode badge
+function ModeBadge({ mode }: { mode: string }) {
+  return (
+    <span
+      className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium"
+      style={{
+        backgroundColor: 'var(--accent-primary)',
+        color: 'var(--accent-secondary)',
+      }}
+    >
+      {mode}
+    </span>
+  );
+}
+
+// Stat card
+function StatCard({ label, value, subtitle }: { label: string; value: string; subtitle?: string }) {
+  return (
+    <div
+      className="rounded-xl p-4 text-center"
+      style={{
+        backgroundColor: 'var(--card-bg)',
+        border: '1px solid var(--card-border)',
+      }}
+    >
+      <p className="text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>{label}</p>
+      <p className="mt-1 text-2xl font-bold" style={{ color: 'var(--foreground)' }}>{value}</p>
+      {subtitle && (
+        <p className="mt-0.5 text-xs" style={{ color: 'var(--foreground-secondary)' }}>{subtitle}</p>
+      )}
+    </div>
+  );
+}
+
+// Confidence matrix cell
+function ConfidenceCell({
+  label,
+  count,
+  total,
+  bgColor,
+  textColor,
+}: {
+  label: string;
+  count: number;
+  total: number;
+  bgColor: string;
+  textColor: string;
+}) {
+  const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+  return (
+    <div
+      className="flex flex-col items-center justify-center rounded-lg p-3"
+      style={{ backgroundColor: bgColor }}
+    >
+      <span className="text-2xl font-bold" style={{ color: textColor }}>{count}</span>
+      <span className="text-xs font-medium" style={{ color: textColor, opacity: 0.8 }}>{pct}%</span>
+      <span className="mt-1 text-xs font-medium" style={{ color: textColor, opacity: 0.7 }}>{label}</span>
+    </div>
+  );
+}
+
+// Topic bar
+function TopicBar({ topic, correct, total }: { topic: string; correct: number; total: number }) {
+  const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+  const barColor = pct >= 70 ? 'var(--accent-success)' : pct >= 50 ? 'var(--accent-secondary)' : '#ef4444';
+
+  return (
+    <div className="space-y-1">
+      <div className="flex items-center justify-between text-sm">
+        <span style={{ color: 'var(--foreground)' }}>{topic}</span>
+        <span className="font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+          {correct}/{total} ({pct}%)
+        </span>
+      </div>
+      <div className="h-2.5 w-full overflow-hidden rounded-full" style={{ backgroundColor: 'var(--border)' }}>
+        <div
+          className="h-full rounded-full transition-all duration-500"
+          style={{ width: `${pct}%`, backgroundColor: barColor }}
+        />
+      </div>
+    </div>
+  );
+}
+
+const ERROR_OPTIONS: { value: ErrorClassification; label: string }[] = [
+  { value: 'DidntKnow', label: "Didn't Know" },
+  { value: 'ForgotFormula', label: 'Forgot Formula' },
+  { value: 'CalculationMistake', label: 'Calculation Mistake' },
+  { value: 'MisreadQuestion', label: 'Misread Question' },
+  { value: 'Careless', label: 'Careless Error' },
+  { value: 'TimePressure', label: 'Time Pressure' },
+];
 
 export function SessionReview({ sessionId }: SessionReviewProps) {
   const router = useRouter();
 
-  const { session, summary } = useSyncExternalStore(
-    () => () => {},
-    () => loadReviewData(sessionId),
-    () => getServerSnapshot()
-  );
+  const [data] = useState(() => loadReviewData(sessionId));
+  const { session, summary } = data;
 
   const [reviewIndex, setReviewIndex] = useState(0);
   const [revealState, setRevealState] = useState<1 | 2 | 3>(1);
 
-  // If no completed session, redirect
-  if (!session && typeof window !== 'undefined') {
-    router.push('/questions');
-  }
+  // Redirect if no completed session
+  useEffect(() => {
+    if (!session && typeof window !== 'undefined') {
+      router.push('/questions');
+    }
+  }, [session, router]);
 
   if (!session || !summary) {
-    return <div className="flex h-full items-center justify-center"><p className="text-zinc-400">Loading...</p></div>;
+    return (
+      <div className="flex h-full min-h-[400px] items-center justify-center">
+        <p style={{ color: 'var(--foreground-secondary)' }}>Loading session...</p>
+      </div>
+    );
   }
 
   const currentAttempt = session.attempts[reviewIndex];
   const currentQuestion = sampleQuestions.find(q => q.id === currentAttempt?.questionId);
 
-  return (
-    <div className="space-y-6">
-      {/* Summary Header */}
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-        <StatCard label="Score" value={`${Math.round(summary.accuracy)}%`} />
-        <StatCard label="Correct" value={`${summary.correctAnswers}/${summary.totalQuestions}`} />
-        <StatCard label="Avg Time" value={`${Math.round(summary.averageTime)}s`} />
-        <StatCard label="Confidence" value={formatMatrix(summary.confidenceMatrix)} />
-      </div>
+  // Calculate confidence calibration score
+  const certainAttempts = session.attempts.filter(a => a.confidence === 'Certain');
+  const certainCorrect = certainAttempts.filter(a => a.correct).length;
+  const confidenceScore = certainAttempts.length > 0
+    ? Math.round((certainCorrect / certainAttempts.length) * 100)
+    : 0;
 
-      {/* Confidence Matrix */}
-      <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-        <h3 className="mb-3 text-sm font-medium text-zinc-300">Confidence Matrix</h3>
-        <div className="grid grid-cols-2 gap-2 text-xs md:grid-cols-3">
-          <MatrixCell label="Mastered" count={summary.confidenceMatrix.mastered} color="text-green-400" />
-          <MatrixCell label="Solid" count={summary.confidenceMatrix.solid} color="text-blue-400" />
-          <MatrixCell label="Lucky Guess" count={summary.confidenceMatrix.luckyGuess} color="text-yellow-400" />
-          <MatrixCell label="Misconception" count={summary.confidenceMatrix.misconception} color="text-red-400" />
-          <MatrixCell label="Weak Area" count={summary.confidenceMatrix.weakArea} color="text-orange-400" />
-          <MatrixCell label="Knowledge Gap" count={summary.confidenceMatrix.knowledgeGap} color="text-zinc-400" />
+  // Format time taken
+  const totalSeconds = session.attempts.reduce((sum, a) => sum + a.timeSpentSeconds, 0);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  const timeTaken = minutes > 0 ? `${minutes}m ${seconds}s` : `${seconds}s`;
+
+  // Time distribution chart data
+  const timeChartData = session.attempts.map((attempt, idx) => ({
+    question: `Q${idx + 1}`,
+    time: attempt.timeSpentSeconds,
+    correct: attempt.correct,
+  }));
+
+  // Handle error classification
+  const handleClassifyError = (classification: ErrorClassification) => {
+    const updatedSession = { ...session };
+    updatedSession.attempts = [...session.attempts];
+    updatedSession.attempts[reviewIndex] = {
+      ...updatedSession.attempts[reviewIndex],
+      errorClassification: classification,
+    };
+    saveSession(updatedSession);
+  };
+
+  return (
+    <div className="mx-auto max-w-4xl space-y-8 p-4 pb-12 md:p-6">
+      {/* Results Header */}
+      <div
+        className="flex flex-col items-center rounded-2xl p-6 md:flex-row md:p-8"
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          border: '1px solid var(--card-border)',
+        }}
+      >
+        <ScoreRing score={summary.accuracy} />
+        <div className="mt-4 flex flex-col items-center md:ml-8 md:mt-0 md:items-start">
+          <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>
+            Session Complete
+          </h1>
+          <div className="mt-2 flex flex-wrap items-center gap-3">
+            <ModeBadge mode={session.mode} />
+            <span className="text-sm" style={{ color: 'var(--foreground-secondary)' }}>
+              {new Date(session.completedAt ?? session.startedAt).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+              })}
+            </span>
+            <span className="text-sm" style={{ color: 'var(--foreground-secondary)' }}>
+              Time: {timeTaken}
+            </span>
+          </div>
+          <p className="mt-2 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
+            {summary.accuracy >= 70
+              ? 'Great job! You are performing well on this material.'
+              : summary.accuracy >= 50
+                ? 'Good effort. Keep reviewing the areas you missed.'
+                : 'This topic needs more study. Review your weak areas below.'}
+          </p>
         </div>
       </div>
 
-      {/* Question-by-question review */}
+      {/* Stats Grid */}
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+        <StatCard label="Score" value={`${Math.round(summary.accuracy)}%`} />
+        <StatCard
+          label="Correct"
+          value={`${summary.correctAnswers}/${summary.totalQuestions}`}
+        />
+        <StatCard
+          label="Avg Time"
+          value={`${Math.round(summary.averageTime)}s`}
+          subtitle="per question"
+        />
+        <StatCard
+          label="Calibration"
+          value={`${confidenceScore}%`}
+          subtitle="certain + correct"
+        />
+      </div>
+
+      {/* Confidence Matrix */}
+      <div
+        className="rounded-2xl p-5"
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          border: '1px solid var(--card-border)',
+        }}
+      >
+        <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
+          Confidence Matrix
+        </h2>
+        <div className="mb-2 grid grid-cols-3 gap-1 text-center text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+          <span>Certain</span>
+          <span>Think So</span>
+          <span>Guess</span>
+        </div>
+        {/* Correct Row */}
+        <div className="mb-1 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+          Correct
+        </div>
+        <div className="mb-3 grid grid-cols-3 gap-2">
+          <ConfidenceCell
+            label="Mastered"
+            count={summary.confidenceMatrix.mastered}
+            total={summary.totalQuestions}
+            bgColor="rgba(0, 132, 61, 0.15)"
+            textColor="var(--accent-success)"
+          />
+          <ConfidenceCell
+            label="Solid"
+            count={summary.confidenceMatrix.solid}
+            total={summary.totalQuestions}
+            bgColor="rgba(59, 130, 246, 0.15)"
+            textColor="#3b82f6"
+          />
+          <ConfidenceCell
+            label="Lucky Guess"
+            count={summary.confidenceMatrix.luckyGuess}
+            total={summary.totalQuestions}
+            bgColor="rgba(234, 179, 8, 0.15)"
+            textColor="#eab308"
+          />
+        </div>
+        {/* Incorrect Row */}
+        <div className="mb-1 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+          Incorrect
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          <ConfidenceCell
+            label="Misconception"
+            count={summary.confidenceMatrix.misconception}
+            total={summary.totalQuestions}
+            bgColor="rgba(239, 68, 68, 0.15)"
+            textColor="#ef4444"
+          />
+          <ConfidenceCell
+            label="Weak Area"
+            count={summary.confidenceMatrix.weakArea}
+            total={summary.totalQuestions}
+            bgColor="rgba(249, 115, 22, 0.15)"
+            textColor="#f97316"
+          />
+          <ConfidenceCell
+            label="Knowledge Gap"
+            count={summary.confidenceMatrix.knowledgeGap}
+            total={summary.totalQuestions}
+            bgColor="rgba(107, 114, 128, 0.15)"
+            textColor="#6b7280"
+          />
+        </div>
+      </div>
+
+      {/* Time Distribution Chart */}
+      <div
+        className="rounded-2xl p-5"
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          border: '1px solid var(--card-border)',
+        }}
+      >
+        <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
+          Time Distribution
+        </h2>
+        <div className="h-[200px] w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={timeChartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+              <XAxis
+                dataKey="question"
+                tick={{ fill: 'var(--foreground-secondary)', fontSize: 12 }}
+                axisLine={{ stroke: 'var(--border)' }}
+                tickLine={false}
+              />
+              <YAxis
+                tick={{ fill: 'var(--foreground-secondary)', fontSize: 12 }}
+                axisLine={{ stroke: 'var(--border)' }}
+                tickLine={false}
+                label={{
+                  value: 'Seconds',
+                  angle: -90,
+                  position: 'insideLeft',
+                  fill: 'var(--foreground-secondary)',
+                  fontSize: 12,
+                }}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: 'var(--card-bg)',
+                  border: '1px solid var(--card-border)',
+                  borderRadius: '8px',
+                  color: 'var(--foreground)',
+                }}
+                labelStyle={{ color: 'var(--foreground)' }}
+              />
+              <Bar dataKey="time" radius={[4, 4, 0, 0]}>
+                {timeChartData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={entry.correct ? 'var(--accent-success)' : '#ef4444'}
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="mt-3 flex items-center justify-center gap-4 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
+          <span className="flex items-center gap-1">
+            <span className="inline-block h-3 w-3 rounded" style={{ backgroundColor: 'var(--accent-success)' }} />
+            Correct
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="inline-block h-3 w-3 rounded" style={{ backgroundColor: '#ef4444' }} />
+            Incorrect
+          </span>
+        </div>
+      </div>
+
+      {/* Topic Breakdown */}
+      <div
+        className="rounded-2xl p-5"
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          border: '1px solid var(--card-border)',
+        }}
+      >
+        <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
+          Topic Breakdown
+        </h2>
+        <div className="space-y-4">
+          {Object.entries(summary.byTopic).map(([topic, { correct, total }]) => (
+            <TopicBar key={topic} topic={topic} correct={correct} total={total} />
+          ))}
+        </div>
+      </div>
+
+      {/* Question-by-Question Review */}
       {currentQuestion && currentAttempt && (
-        <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-6">
+        <div
+          className="rounded-2xl p-5 md:p-6"
+          style={{
+            backgroundColor: 'var(--card-bg)',
+            border: '1px solid var(--card-border)',
+          }}
+        >
           <div className="mb-4 flex items-center justify-between">
-            <span className="text-xs text-zinc-500">Review {reviewIndex + 1}/{session.attempts.length}</span>
-            <span className={`rounded px-2 py-0.5 text-xs font-medium ${currentAttempt.correct ? 'bg-green-900/30 text-green-400' : 'bg-red-900/30 text-red-400'}`}>
+            <h2 className="text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
+              Question Review
+            </h2>
+            <span
+              className="rounded-full px-3 py-1 text-xs font-medium"
+              style={{
+                backgroundColor: currentAttempt.correct ? 'rgba(0, 132, 61, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                color: currentAttempt.correct ? 'var(--accent-success)' : '#ef4444',
+              }}
+            >
               {currentAttempt.correct ? 'Correct' : 'Incorrect'}
             </span>
           </div>
 
-          {/* State 1: Your answer */}
-          <p className="mb-4 text-sm text-zinc-200">{currentQuestion.questionText}</p>
+          {/* Question number pills */}
+          <div className="mb-4 flex flex-wrap gap-1.5">
+            {session.attempts.map((attempt, idx) => {
+              const isActive = idx === reviewIndex;
+              const bgColor = isActive
+                ? 'var(--accent-primary)'
+                : attempt.correct
+                  ? 'rgba(0, 132, 61, 0.15)'
+                  : 'rgba(239, 68, 68, 0.15)';
+              const txtColor = isActive
+                ? 'var(--accent-secondary)'
+                : attempt.correct
+                  ? 'var(--accent-success)'
+                  : '#ef4444';
 
+              return (
+                <button
+                  key={idx}
+                  onClick={() => { setReviewIndex(idx); setRevealState(1); }}
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-all hover:opacity-80"
+                  style={{ backgroundColor: bgColor, color: txtColor }}
+                >
+                  {idx + 1}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Question text */}
+          <p className="mb-4 text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>
+            {currentQuestion.questionText}
+          </p>
+
+          {/* Confidence & time info */}
+          <div className="mb-4 flex items-center gap-3 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
+            <span>Confidence: <strong>{currentAttempt.confidence}</strong></span>
+            <span>Time: <strong>{currentAttempt.timeSpentSeconds}s</strong></span>
+          </div>
+
+          {/* Answer choices */}
           <div className="space-y-2">
             {currentQuestion.answerChoices.map((choice) => {
               const isSelected = choice.label === currentAttempt.selectedAnswer;
               const isCorrect = choice.isCorrect;
               const showCorrect = revealState >= 2;
 
+              let borderColor = 'var(--card-border)';
+              let bgColor = 'transparent';
+              let textColor = 'var(--foreground-secondary)';
+
+              if (isSelected && !showCorrect) {
+                borderColor = 'var(--accent-primary)';
+                bgColor = 'rgba(0, 43, 92, 0.1)';
+                textColor = 'var(--foreground)';
+              } else if (showCorrect && isCorrect) {
+                borderColor = 'var(--accent-success)';
+                bgColor = 'rgba(0, 132, 61, 0.08)';
+                textColor = 'var(--accent-success)';
+              } else if (showCorrect && isSelected && !isCorrect) {
+                borderColor = '#ef4444';
+                bgColor = 'rgba(239, 68, 68, 0.08)';
+                textColor = '#ef4444';
+              }
+
               return (
                 <div
                   key={choice.label}
-                  className={`rounded-lg border px-4 py-3 text-sm ${
-                    isSelected && !showCorrect
-                      ? 'border-blue-500 bg-blue-950/30 text-white'
-                      : showCorrect && isCorrect
-                        ? 'border-green-500 bg-green-950/20 text-green-300'
-                        : showCorrect && isSelected && !isCorrect
-                          ? 'border-red-500 bg-red-950/20 text-red-300'
-                          : 'border-zinc-700 text-zinc-400'
-                  }`}
+                  className="rounded-lg px-4 py-3 text-sm transition-all"
+                  style={{
+                    border: `1px solid ${borderColor}`,
+                    backgroundColor: bgColor,
+                    color: textColor,
+                  }}
                 >
-                  <span className="font-medium">{choice.label}.</span> {choice.text}
-                  {showCorrect && isCorrect && <span className="ml-2 text-green-400">✓</span>}
-                  {showCorrect && isSelected && !isCorrect && <span className="ml-2 text-red-400">✗</span>}
+                  <div className="flex items-start gap-2">
+                    <span className="font-semibold">{choice.label}.</span>
+                    <span>{choice.text}</span>
+                    {showCorrect && isCorrect && (
+                      <span className="ml-auto text-sm" style={{ color: 'var(--accent-success)' }}>&#10003;</span>
+                    )}
+                    {showCorrect && isSelected && !isCorrect && (
+                      <span className="ml-auto text-sm" style={{ color: '#ef4444' }}>&#10007;</span>
+                    )}
+                  </div>
                   {revealState >= 2 && (isSelected || isCorrect) && (
-                    <p className="mt-2 text-xs text-zinc-500">{choice.explanation}</p>
+                    <p className="mt-2 text-xs leading-relaxed" style={{ color: 'var(--foreground-secondary)', opacity: 0.9 }}>
+                      {choice.explanation}
+                    </p>
                   )}
                 </div>
               );
             })}
           </div>
 
+          {/* State 3: Error classification (for incorrect answers) */}
+          {revealState >= 3 && !currentAttempt.correct && (
+            <div className="mt-4 rounded-lg p-4" style={{ backgroundColor: 'var(--background-tertiary)', border: '1px solid var(--border)' }}>
+              <p className="mb-2 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+                Classify your error:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {ERROR_OPTIONS.map((opt) => {
+                  const isActive = currentAttempt.errorClassification === opt.value;
+                  return (
+                    <button
+                      key={opt.value}
+                      onClick={() => handleClassifyError(opt.value)}
+                      className="rounded-full px-3 py-1.5 text-xs font-medium transition-all"
+                      style={{
+                        backgroundColor: isActive ? 'var(--accent-primary)' : 'var(--card-bg)',
+                        color: isActive ? 'var(--accent-secondary)' : 'var(--foreground-secondary)',
+                        border: `1px solid ${isActive ? 'var(--accent-primary)' : 'var(--card-border)'}`,
+                      }}
+                    >
+                      {opt.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Review flow controls */}
-          <div className="mt-4 flex items-center justify-between">
+          <div className="mt-5 flex items-center justify-between">
             <div className="flex gap-2">
               {revealState < 2 && (
-                <button onClick={() => setRevealState(2)} className="rounded bg-zinc-800 px-3 py-1.5 text-xs text-white hover:bg-zinc-700">
+                <button
+                  onClick={() => setRevealState(2)}
+                  className="rounded-lg px-4 py-2 text-sm font-medium transition-all hover:opacity-80"
+                  style={{
+                    backgroundColor: 'var(--accent-primary)',
+                    color: 'var(--accent-secondary)',
+                  }}
+                >
                   Reveal Answer
                 </button>
               )}
-              {revealState < 3 && revealState >= 2 && (
-                <button onClick={() => setRevealState(3)} className="rounded bg-zinc-800 px-3 py-1.5 text-xs text-white hover:bg-zinc-700">
-                  Actions
+              {revealState === 2 && (
+                <button
+                  onClick={() => setRevealState(3)}
+                  className="rounded-lg px-4 py-2 text-sm font-medium transition-all hover:opacity-80"
+                  style={{
+                    backgroundColor: 'var(--background-tertiary)',
+                    color: 'var(--foreground)',
+                    border: '1px solid var(--border)',
+                  }}
+                >
+                  {currentAttempt.correct ? 'Details' : 'Classify Error'}
                 </button>
               )}
             </div>
@@ -135,50 +616,56 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
               <button
                 onClick={() => { setReviewIndex(Math.max(0, reviewIndex - 1)); setRevealState(1); }}
                 disabled={reviewIndex === 0}
-                className="rounded bg-zinc-800 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-700 disabled:opacity-30"
+                className="rounded-lg px-4 py-2 text-sm font-medium transition-all disabled:opacity-30"
+                style={{
+                  backgroundColor: 'var(--background-tertiary)',
+                  color: 'var(--foreground)',
+                  border: '1px solid var(--border)',
+                }}
               >
-                ← Prev
+                Prev
               </button>
               <button
                 onClick={() => { setReviewIndex(Math.min(session.attempts.length - 1, reviewIndex + 1)); setRevealState(1); }}
                 disabled={reviewIndex >= session.attempts.length - 1}
-                className="rounded bg-zinc-800 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-700 disabled:opacity-30"
+                className="rounded-lg px-4 py-2 text-sm font-medium transition-all disabled:opacity-30"
+                style={{
+                  backgroundColor: 'var(--background-tertiary)',
+                  color: 'var(--foreground)',
+                  border: '1px solid var(--border)',
+                }}
               >
-                Next →
+                Next
               </button>
             </div>
           </div>
         </div>
       )}
 
-      <Link href="/questions" className="inline-block text-sm text-blue-400 hover:text-blue-300">
-        ← Back to Question Bank
-      </Link>
+      {/* Action buttons */}
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <Link
+          href="/questions"
+          className="flex-1 rounded-xl px-6 py-3 text-center text-sm font-medium transition-all hover:opacity-80"
+          style={{
+            backgroundColor: 'var(--background-tertiary)',
+            color: 'var(--foreground)',
+            border: '1px solid var(--border)',
+          }}
+        >
+          Back to Question Bank
+        </Link>
+        <Link
+          href="/questions"
+          className="flex-1 rounded-xl px-6 py-3 text-center text-sm font-medium transition-all hover:opacity-80"
+          style={{
+            backgroundColor: 'var(--accent-primary)',
+            color: 'var(--accent-secondary)',
+          }}
+        >
+          Retake Test
+        </Link>
+      </div>
     </div>
   );
-}
-
-function StatCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-3 text-center">
-      <p className="text-xs text-zinc-500">{label}</p>
-      <p className="mt-1 text-lg font-bold text-white">{value}</p>
-    </div>
-  );
-}
-
-function MatrixCell({ label, count, color }: { label: string; count: number; color: string }) {
-  return (
-    <div className="flex items-center justify-between rounded bg-zinc-800/50 px-3 py-2">
-      <span className="text-zinc-400">{label}</span>
-      <span className={`font-medium ${color}`}>{count}</span>
-    </div>
-  );
-}
-
-function formatMatrix(matrix: { mastered: number; solid: number; luckyGuess: number; misconception: number; weakArea: number; knowledgeGap: number }): string {
-  const correct = matrix.mastered + matrix.solid + matrix.luckyGuess;
-  const total = correct + matrix.misconception + matrix.weakArea + matrix.knowledgeGap;
-  if (total === 0) return '—';
-  return `${matrix.mastered}M ${matrix.misconception}X`;
 }
