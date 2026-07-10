@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { ExamCountdown } from './exam-countdown';
 import { WeeklyProgress } from './weekly-progress';
+import { AccuracyTrend } from './accuracy-trend';
 import { useLocalStorageSessions } from '../hooks/use-local-storage-sessions';
 
 interface DashboardContentProps {
@@ -145,8 +146,11 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
       {/* Exam Countdown */}
       <ExamCountdown />
 
-      {/* Weekly Progress */}
-      <WeeklyProgress />
+      {/* Accuracy Trend + Weekly Progress */}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <AccuracyTrend />
+        <WeeklyProgress />
+      </div>
 
       {/* Quick Actions */}
       <div>

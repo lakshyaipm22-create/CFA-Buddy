@@ -13,7 +13,7 @@ export const navigationItems = [
   { name: 'Resources', href: '/resources', icon: FileText },
   { name: 'Questions', href: '/questions', icon: HelpCircle },
   { name: 'Mistakes', href: '/mistakes', icon: AlertTriangle },
-  { name: 'Exam Plan', href: '/dashboard', icon: Calendar },
+  { name: 'Exam Plan', href: '/exam-plan', icon: Calendar },
 ] as const;
 
 export const adminItems = [
