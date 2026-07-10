@@ -15,7 +15,7 @@ import {
 import type { QuestionSession, SessionSummary, ErrorClassification } from '../types';
 import { getSession, saveSession } from '../utils/session-storage';
 import { buildSessionSummary } from '../utils/confidence-matrix';
-import { sampleQuestions } from '../data/sample-questions';
+import { loadAllQuestions } from '../utils/question-loader';
 import { BatchFlashcardCreator } from '@/features/flashcards/components/batch-flashcard-creator';
 
 interface SessionReviewProps {
@@ -28,7 +28,7 @@ function loadReviewData(sessionId: string): { session: QuestionSession | null; s
   const loaded = getSession(sessionId);
   if (!loaded || loaded.status !== 'completed') return { session: null, summary: null };
 
-  const questions = sampleQuestions.filter(q => loaded.questionIds.includes(q.id));
+  const questions = loadAllQuestions().filter(q => loaded.questionIds.includes(q.id));
   const sum = buildSessionSummary(loaded.attempts, questions.map(q => ({ id: q.id, topic: q.topic })));
   return { session: loaded, summary: sum };
 }
@@ -194,7 +194,8 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
   }
 
   const currentAttempt = session.attempts[reviewIndex];
-  const currentQuestion = sampleQuestions.find(q => q.id === currentAttempt?.questionId);
+  const allQuestions = loadAllQuestions();
+  const currentQuestion = allQuestions.find(q => q.id === currentAttempt?.questionId);
 
   // Calculate confidence calibration score
   const certainAttempts = session.attempts.filter(a => a.confidence === 'Certain');
@@ -645,7 +646,7 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
 
       {/* Flashcard Creator for incorrect answers */}
       <BatchFlashcardCreator
-        incorrectQuestions={sampleQuestions.filter(q =>
+        incorrectQuestions={loadAllQuestions().filter(q =>
           session.attempts.some(a => a.questionId === q.id && !a.correct)
         )}
       />
