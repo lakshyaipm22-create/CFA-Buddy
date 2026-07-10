@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "fix",
   "description": "Fix answer parsing regex in both parseSolutions() (import script) and parseAnswers() (utility parser) to handle all CFA answer formats, and add comprehensive unit tests to verify all formats work correctly.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Step 1: Fix parseSolutions() in src/scripts/import-questions.ts. The current regex ONLY matches 'N. X is correct'. Replace with a two-phase approach: (a) First split the solutions section into numbered blocks (same as parseProblems does), (b) Then within each block, try multiple patterns to extract the answer letter: 'X is correct', 'X.' at start, 'X ' at start (just a letter followed by space/explanation), or just a standalone letter 'X' followed by newline. The patterns to match IN ORDER OF SPECIFICITY: (1) /^([A-D])\\s+is\\s+correct/i, (2) /^([A-D])\\.\\s/  (letter + period + space), (3) /^([A-D])\\s+(?!is)/  (letter + space, NOT followed by 'is' to avoid double-matching pattern 1), (4) /^([A-D])\\s*$/m  (letter alone on a line). Extract explanation as the remaining text after the answer letter pattern.",
     "Step 2: Fix parseAnswers() in src/features/question-bank/utils/question-parser.ts to use the same multi-pattern matching logic. Currently it already splits into numbered blocks, but the correctMatch logic within each block only tries: /^([A-D])\\s+(?:is\\s+)?correct/i, /correct\\s+(?:answer[:\\s]*)?([A-D])/i, and /^([A-D])\\s*[.]/. Add the missing pattern: /^([A-D])\\s/ (just a letter followed by whitespace with no 'correct' keyword). Also add /^([A-D])$/m for letter alone on line.",
@@ -27,5 +27,5 @@
     "npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Pre-existing build failure: prisma/seed.ts cannot find generated prisma client module - this exists on base state and is unrelated to answer parsing fix. All tests (38) pass cleanly. Lint passes. The import script had a side-effect (top-level main() call) that was guarded with a vitest check to allow clean test imports."
 }
