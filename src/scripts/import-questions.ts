@@ -26,7 +26,10 @@
 import { readFile, writeFile, mkdir, readdir } from 'fs/promises';
 import { join, basename } from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 import type { Question } from '../features/question-bank/types';
+
+const require = createRequire(import.meta.url);
 
 // Subject mapping by filename prefix number
 const SUBJECT_MAP: Record<string, string> = {
@@ -310,13 +313,15 @@ async function importSingleFile(filePath: string, dryRun: boolean, append: boole
 
   console.log(`  📄 ${filename} (${subject})`);
 
-  // pdf-parse: handle both ESM default export and CJS module.exports
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const pdfParseModule = await import('pdf-parse') as any;
-  const pdfParse: (buffer: Buffer) => Promise<{ text: string }> = pdfParseModule.default ?? pdfParseModule;
-
   const buffer = await readFile(filePath);
-  const { text } = await pdfParse(buffer);
+
+  // pdf-parse: use createRequire for CJS compatibility with tsx on Windows
+  const { PDFParse } = require('pdf-parse');
+  const data = new Uint8Array(buffer);
+  const parser = new PDFParse(data);
+  await parser.load();
+  const result = await parser.getText();
+  const text: string = result.text;
   console.log(`     Extracted ${text.length} chars`);
 
   // Split into chapter pairs (handles both single-section and multi-chapter PDFs)
