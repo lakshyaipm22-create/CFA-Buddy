@@ -2,7 +2,7 @@ import type { Question } from '../types';
 
 /**
  * Sample CFA Level I questions for development/testing.
- * 30 questions across all 10 CFA L1 subjects (3 per subject).
+ * 50 questions across all 10 CFA L1 subjects (5 per subject).
  * Covers Easy/Medium/Hard difficulty levels.
  */
 export const sampleQuestions: Question[] = [
@@ -503,6 +503,330 @@ export const sampleQuestions: Question[] = [
     reading: 'Portfolio Risk and Return: Part II',
     topic: 'Capital Asset Pricing Model',
     provider: 'schweser',
+    questionSourceFile: null,
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // ADDITIONAL QUESTIONS — Round 2 (2 per subject = 20 more)
+  // ═══════════════════════════════════════════════════════════════
+
+  // Ethics additional
+  {
+    id: 'ethics-4',
+    questionText: 'Under Standard V(A) Diligence and Reasonable Basis, an analyst who uses third-party research must most likely:',
+    answerChoices: [
+      { label: 'A', text: 'Conduct their own independent verification of all facts', isCorrect: false, explanation: 'Complete independent verification is not required, but the analyst must evaluate the quality of the research.' },
+      { label: 'B', text: 'Have a reasonable basis for believing the research is sound', isCorrect: true, explanation: 'Standard V(A) requires a reasonable basis. When using third-party research, analysts must evaluate its objectivity, independence, and thoroughness.' },
+      { label: 'C', text: 'Disclose that the recommendation is based on third-party research', isCorrect: false, explanation: 'While disclosure may be good practice, the primary requirement is having a reasonable basis for the recommendation.' },
+    ],
+    difficulty: 'Medium',
+    subject: 'Ethical and Professional Standards',
+    reading: 'Guidance for Standards I-VII',
+    topic: 'Standard V - Investment Analysis',
+    provider: 'schweser',
+    questionSourceFile: null,
+  },
+  {
+    id: 'ethics-5',
+    questionText: 'A portfolio manager allocates shares from a hot IPO to personal accounts before filling client orders. This most likely violates:',
+    answerChoices: [
+      { label: 'A', text: 'Standard III(A) Loyalty, Prudence, and Care', isCorrect: false, explanation: 'While this standard is relevant, the specific violation of priority of transactions is addressed in VI(B).' },
+      { label: 'B', text: 'Standard VI(B) Priority of Transactions', isCorrect: true, explanation: 'Standard VI(B) requires that transactions for clients and employers take priority over personal transactions. Front-running client orders is a clear violation.' },
+      { label: 'C', text: 'Standard II(B) Market Manipulation', isCorrect: false, explanation: 'Market manipulation involves actions designed to distort prices, not personal front-running of client orders.' },
+    ],
+    difficulty: 'Medium',
+    subject: 'Ethical and Professional Standards',
+    reading: 'Guidance for Standards I-VII',
+    topic: 'Standard VI - Conflicts of Interest',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+
+  // QM additional
+  {
+    id: 'qm-4',
+    questionText: 'The coefficient of variation (CV) is best described as a measure of:',
+    answerChoices: [
+      { label: 'A', text: 'Relative dispersion that allows comparison across different data sets', isCorrect: true, explanation: 'CV = standard deviation / mean. It measures relative dispersion, making it useful for comparing risk across investments with different expected returns.' },
+      { label: 'B', text: 'The absolute spread of observations around the mean', isCorrect: false, explanation: 'This describes standard deviation or variance, not CV which measures relative dispersion.' },
+      { label: 'C', text: 'The probability of returns falling below a target', isCorrect: false, explanation: 'This describes shortfall risk or Roy\'s Safety-First criterion, not the coefficient of variation.' },
+    ],
+    difficulty: 'Easy',
+    subject: 'Quantitative Methods',
+    reading: 'Statistical Measures of Asset Returns',
+    topic: 'Measures of Dispersion',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+  {
+    id: 'qm-5',
+    questionText: 'A Type I error in hypothesis testing occurs when:',
+    answerChoices: [
+      { label: 'A', text: 'The null hypothesis is rejected when it is actually true', isCorrect: true, explanation: 'A Type I error (false positive) occurs when we reject a true null hypothesis. The probability of this error equals the significance level (alpha).' },
+      { label: 'B', text: 'The null hypothesis is not rejected when it is actually false', isCorrect: false, explanation: 'This describes a Type II error (false negative), not a Type I error.' },
+      { label: 'C', text: 'The test statistic falls within the confidence interval', isCorrect: false, explanation: 'When the test statistic falls within the confidence interval (non-rejection region), we fail to reject H₀, which is not necessarily an error.' },
+    ],
+    difficulty: 'Easy',
+    subject: 'Quantitative Methods',
+    reading: 'Hypothesis Testing',
+    topic: 'Type I and Type II Errors',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+
+  // Economics additional
+  {
+    id: 'econ-4',
+    questionText: 'According to the quantity theory of money, if the velocity of money is stable and real output is at full employment, an increase in the money supply will most likely result in:',
+    answerChoices: [
+      { label: 'A', text: 'A proportional increase in the price level', isCorrect: true, explanation: 'MV = PY. With V stable and Y fixed at full employment, any increase in M must lead to a proportional increase in P (inflation).' },
+      { label: 'B', text: 'An increase in real GDP', isCorrect: false, explanation: 'At full employment, real GDP cannot increase further. The economy is on the vertical long-run AS curve.' },
+      { label: 'C', text: 'A decrease in the velocity of money', isCorrect: false, explanation: 'The premise states velocity is stable. The quantity theory assumes V is determined by institutional factors, not money supply.' },
+    ],
+    difficulty: 'Medium',
+    subject: 'Economics',
+    reading: 'Monetary and Fiscal Policy',
+    topic: 'Quantity Theory of Money',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+  {
+    id: 'econ-5',
+    questionText: 'In a flexible exchange rate system, expansionary fiscal policy is most likely to cause the domestic currency to:',
+    answerChoices: [
+      { label: 'A', text: 'Appreciate due to higher interest rates attracting capital inflows', isCorrect: true, explanation: 'Fiscal expansion raises interest rates (crowding out), attracting foreign capital inflows, increasing demand for the domestic currency, causing appreciation.' },
+      { label: 'B', text: 'Depreciate due to increased imports from higher income', isCorrect: false, explanation: 'While imports may increase, the interest rate/capital flow effect typically dominates in the short run.' },
+      { label: 'C', text: 'Remain unchanged because fiscal policy does not affect exchange rates', isCorrect: false, explanation: 'Fiscal policy affects exchange rates through interest rate differentials and capital flows.' },
+    ],
+    difficulty: 'Hard',
+    subject: 'Economics',
+    reading: 'Currency Exchange Rates',
+    topic: 'Exchange Rate Determination',
+    provider: 'schweser',
+    questionSourceFile: null,
+  },
+
+  // FSA additional
+  {
+    id: 'fsa-4',
+    questionText: 'A company reports operating cash flow of $500M but has been consistently capitalizing costs that should be expensed. Compared to correct treatment, reported operating cash flow is most likely:',
+    answerChoices: [
+      { label: 'A', text: 'Overstated because capitalized costs appear in investing activities', isCorrect: true, explanation: 'When costs are capitalized rather than expensed, they are classified as investing cash outflows instead of operating. This inflates operating cash flow and understates investing cash flow.' },
+      { label: 'B', text: 'Understated because capitalization increases depreciation', isCorrect: false, explanation: 'While depreciation increases, it is a non-cash charge added back to operating cash flow. The key impact is the initial classification of the cash outflow.' },
+      { label: 'C', text: 'Unaffected because total cash flow is the same', isCorrect: false, explanation: 'While total cash flow is unchanged, the classification between operating and investing is materially affected.' },
+    ],
+    difficulty: 'Hard',
+    subject: 'Financial Statement Analysis',
+    reading: 'Understanding Cash Flow Statements',
+    topic: 'Cash Flow Classification',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+  {
+    id: 'fsa-5',
+    questionText: 'The current ratio is defined as:',
+    answerChoices: [
+      { label: 'A', text: 'Current assets divided by current liabilities', isCorrect: true, explanation: 'The current ratio = Current Assets / Current Liabilities. It measures a company\'s ability to meet short-term obligations with short-term assets.' },
+      { label: 'B', text: 'Cash and equivalents divided by current liabilities', isCorrect: false, explanation: 'This describes the cash ratio, which is more restrictive than the current ratio.' },
+      { label: 'C', text: 'Total assets divided by total liabilities', isCorrect: false, explanation: 'This is a solvency measure, not a liquidity ratio. The current ratio focuses on short-term items only.' },
+    ],
+    difficulty: 'Easy',
+    subject: 'Financial Statement Analysis',
+    reading: 'Financial Analysis Techniques',
+    topic: 'Liquidity Ratios',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+
+  // Corporate Issuers additional
+  {
+    id: 'ci-4',
+    questionText: 'The pecking order theory of capital structure suggests that companies prefer financing in the following order:',
+    answerChoices: [
+      { label: 'A', text: 'Internal funds, then debt, then equity', isCorrect: true, explanation: 'The pecking order theory states firms prefer internal financing first (retained earnings), then debt, and finally equity as a last resort due to information asymmetry costs.' },
+      { label: 'B', text: 'Equity, then debt, then internal funds', isCorrect: false, explanation: 'This is the reverse of the pecking order. Equity is actually the least preferred due to adverse selection problems.' },
+      { label: 'C', text: 'Debt, then equity, then internal funds', isCorrect: false, explanation: 'Internal funds are preferred first because they involve no transaction costs or information disclosure.' },
+    ],
+    difficulty: 'Medium',
+    subject: 'Corporate Issuers',
+    reading: 'Capital Structure',
+    topic: 'Capital Structure Theories',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+  {
+    id: 'ci-5',
+    questionText: 'A company with a higher degree of operating leverage (DOL) will most likely experience:',
+    answerChoices: [
+      { label: 'A', text: 'Greater percentage change in operating income for a given change in revenue', isCorrect: true, explanation: 'High DOL means a larger proportion of fixed costs. When revenue changes, operating income changes by a larger percentage due to the fixed cost structure amplifying the effect.' },
+      { label: 'B', text: 'Lower business risk', isCorrect: false, explanation: 'Higher DOL increases business risk because earnings are more volatile relative to sales changes.' },
+      { label: 'C', text: 'More stable operating margins across business cycles', isCorrect: false, explanation: 'High fixed costs mean margins fluctuate more with volume changes, making them less stable.' },
+    ],
+    difficulty: 'Medium',
+    subject: 'Corporate Issuers',
+    reading: 'Measures of Leverage',
+    topic: 'Operating Leverage',
+    provider: 'schweser',
+    questionSourceFile: null,
+  },
+
+  // Equity additional
+  {
+    id: 'equity-4',
+    questionText: 'The enterprise value (EV) of a company is calculated as:',
+    answerChoices: [
+      { label: 'A', text: 'Market cap + Total debt - Cash and equivalents', isCorrect: true, explanation: 'EV = Market Capitalization + Total Debt + Preferred Stock + Minority Interest - Cash and Cash Equivalents. The simplified formula is Market Cap + Debt - Cash.' },
+      { label: 'B', text: 'Market cap + Cash - Total debt', isCorrect: false, explanation: 'This reverses the treatment of cash and debt. Cash is subtracted because a buyer acquires the cash.' },
+      { label: 'C', text: 'Total assets minus total liabilities', isCorrect: false, explanation: 'This is book value of equity, not enterprise value which uses market values.' },
+    ],
+    difficulty: 'Easy',
+    subject: 'Equity Investments',
+    reading: 'Equity Valuation: Concepts and Basic Tools',
+    topic: 'Enterprise Value',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+  {
+    id: 'equity-5',
+    questionText: 'An analyst observes that a stock\'s price consistently overreacts to earnings announcements and then reverts. This is most consistent with:',
+    answerChoices: [
+      { label: 'A', text: 'The efficient market hypothesis', isCorrect: false, explanation: 'EMH predicts that prices quickly and accurately reflect new information without consistent overreaction patterns.' },
+      { label: 'B', text: 'Behavioral finance overreaction bias', isCorrect: true, explanation: 'Consistent overreaction followed by reversal is a behavioral anomaly. Investors overweight dramatic information, pushing prices beyond intrinsic value before mean reversion occurs.' },
+      { label: 'C', text: 'The random walk theory', isCorrect: false, explanation: 'Random walk theory implies price changes are unpredictable; a consistent pattern of overreaction contradicts this.' },
+    ],
+    difficulty: 'Medium',
+    subject: 'Equity Investments',
+    reading: 'Market Efficiency',
+    topic: 'Behavioral Finance',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+
+  // Fixed Income additional
+  {
+    id: 'fi-4',
+    questionText: 'Convexity is important to bond investors because it describes how:',
+    answerChoices: [
+      { label: 'A', text: 'Duration changes as yields change, providing a better price estimate for large yield changes', isCorrect: true, explanation: 'Duration provides a linear approximation of price-yield relationship. Convexity captures the curvature, improving estimates for large yield moves. Positive convexity benefits bondholders.' },
+      { label: 'B', text: 'The coupon rate affects the bond price', isCorrect: false, explanation: 'The coupon rate\'s effect on price is captured by basic bond valuation, not the concept of convexity.' },
+      { label: 'C', text: 'Credit risk changes over the life of a bond', isCorrect: false, explanation: 'Convexity relates to interest rate risk (the price-yield relationship), not credit risk.' },
+    ],
+    difficulty: 'Medium',
+    subject: 'Fixed Income',
+    reading: 'Understanding Fixed-Income Risk and Return',
+    topic: 'Convexity',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+  {
+    id: 'fi-5',
+    questionText: 'A zero-coupon bond with 5 years to maturity has a Macaulay duration of:',
+    answerChoices: [
+      { label: 'A', text: '5 years', isCorrect: true, explanation: 'A zero-coupon bond\'s Macaulay duration always equals its time to maturity because there is only one cash flow (at maturity), so the weighted average time to receive cash flows is simply the maturity.' },
+      { label: 'B', text: 'Less than 5 years', isCorrect: false, explanation: 'Only coupon-paying bonds have Macaulay duration less than maturity. Zero-coupon bonds have duration exactly equal to maturity.' },
+      { label: 'C', text: 'Greater than 5 years', isCorrect: false, explanation: 'Macaulay duration cannot exceed maturity for any bond. For zeros, it equals maturity exactly.' },
+    ],
+    difficulty: 'Easy',
+    subject: 'Fixed Income',
+    reading: 'Understanding Fixed-Income Risk and Return',
+    topic: 'Duration',
+    provider: 'schweser',
+    questionSourceFile: null,
+  },
+
+  // Derivatives additional
+  {
+    id: 'deriv-4',
+    questionText: 'Put-call parity for European options on a non-dividend-paying stock is expressed as:',
+    answerChoices: [
+      { label: 'A', text: 'Call + PV(Strike) = Put + Stock', isCorrect: true, explanation: 'Put-call parity: C + PV(X) = P + S. A fiduciary call (call + bond) replicates a protective put (put + stock) at expiration.' },
+      { label: 'B', text: 'Call + Stock = Put + PV(Strike)', isCorrect: false, explanation: 'This rearrangement is incorrect. The correct form is C + PV(X) = P + S.' },
+      { label: 'C', text: 'Call - Put = Stock - Strike', isCorrect: false, explanation: 'This ignores the present value discounting of the strike price, which is essential to put-call parity.' },
+    ],
+    difficulty: 'Medium',
+    subject: 'Derivatives',
+    reading: 'Basics of Derivative Pricing and Valuation',
+    topic: 'Put-Call Parity',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+  {
+    id: 'deriv-5',
+    questionText: 'A swap is best described as:',
+    answerChoices: [
+      { label: 'A', text: 'A series of forward contracts with different settlement dates', isCorrect: true, explanation: 'An interest rate swap can be decomposed into a series of forward rate agreements (FRAs), each settling on a different date. This equivalence is fundamental to swap pricing.' },
+      { label: 'B', text: 'An option that gives the right to enter into a futures contract', isCorrect: false, explanation: 'This describes a futures option (option on futures), not a swap.' },
+      { label: 'C', text: 'A single forward contract with multiple deliverable assets', isCorrect: false, explanation: 'A swap involves multiple periodic exchanges, not a single forward delivery of multiple assets.' },
+    ],
+    difficulty: 'Easy',
+    subject: 'Derivatives',
+    reading: 'Derivative Markets and Instruments',
+    topic: 'Swap Contracts',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+
+  // Alternative Investments additional
+  {
+    id: 'ai-4',
+    questionText: 'The net asset value (NAV) of a real estate investment trust (REIT) is calculated by:',
+    answerChoices: [
+      { label: 'A', text: 'Estimating the market value of properties minus liabilities', isCorrect: true, explanation: 'REIT NAV = Estimated market value of all real estate assets + Other assets - Total liabilities. It represents the intrinsic per-share value based on property appraisals.' },
+      { label: 'B', text: 'Dividing total revenue by shares outstanding', isCorrect: false, explanation: 'Revenue divided by shares gives revenue per share, not NAV. NAV is asset-based.' },
+      { label: 'C', text: 'Using the book value of properties from financial statements', isCorrect: false, explanation: 'NAV uses estimated market values, not historical book values, because real estate appreciates and book values become outdated.' },
+    ],
+    difficulty: 'Medium',
+    subject: 'Alternative Investments',
+    reading: 'Introduction to Alternative Investments',
+    topic: 'Real Estate Investment Trusts',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+  {
+    id: 'ai-5',
+    questionText: 'Commodities differ from traditional financial assets primarily because they:',
+    answerChoices: [
+      { label: 'A', text: 'Generate no income and have storage costs', isCorrect: true, explanation: 'Unlike stocks (dividends) or bonds (interest), physical commodities generate no income. They also incur storage, insurance, and transportation costs (cost of carry).' },
+      { label: 'B', text: 'Always appreciate in value over time', isCorrect: false, explanation: 'Commodity prices are cyclical and can decline significantly. There is no guaranteed appreciation.' },
+      { label: 'C', text: 'Cannot be traded on exchanges', isCorrect: false, explanation: 'Many commodities trade on organized exchanges (CME, ICE) via futures and options contracts.' },
+    ],
+    difficulty: 'Easy',
+    subject: 'Alternative Investments',
+    reading: 'Introduction to Alternative Investments',
+    topic: 'Commodities',
+    provider: 'schweser',
+    questionSourceFile: null,
+  },
+
+  // Portfolio Management additional
+  {
+    id: 'pm-4',
+    questionText: 'The Sharpe ratio measures:',
+    answerChoices: [
+      { label: 'A', text: 'Excess return per unit of total risk', isCorrect: true, explanation: 'Sharpe Ratio = (Portfolio Return - Risk-Free Rate) / Portfolio Standard Deviation. It measures reward-to-total-risk, useful for evaluating well-diversified portfolios.' },
+      { label: 'B', text: 'Excess return per unit of systematic risk', isCorrect: false, explanation: 'This describes the Treynor ratio, which uses beta (systematic risk) in the denominator instead of standard deviation.' },
+      { label: 'C', text: 'The alpha generated relative to the benchmark', isCorrect: false, explanation: 'This describes Jensen\'s alpha, not the Sharpe ratio.' },
+    ],
+    difficulty: 'Easy',
+    subject: 'Portfolio Management',
+    reading: 'Portfolio Risk and Return: Part I',
+    topic: 'Risk-Adjusted Performance',
+    provider: 'curriculum',
+    questionSourceFile: null,
+  },
+  {
+    id: 'pm-5',
+    questionText: 'According to the Investment Policy Statement (IPS), the two main categories of constraints are:',
+    answerChoices: [
+      { label: 'A', text: 'Liquidity, time horizon, taxes, legal/regulatory, and unique circumstances', isCorrect: true, explanation: 'The IPS includes return objectives and risk tolerance as objectives, plus five constraints: Liquidity needs, Time horizon, Tax considerations, Legal/regulatory factors, and Unique circumstances.' },
+      { label: 'B', text: 'Market risk and credit risk', isCorrect: false, explanation: 'These are types of investment risk, not IPS constraint categories.' },
+      { label: 'C', text: 'Active management and passive management', isCorrect: false, explanation: 'These are investment approaches/strategies, not IPS constraints.' },
+    ],
+    difficulty: 'Medium',
+    subject: 'Portfolio Management',
+    reading: 'Basics of Portfolio Planning and Construction',
+    topic: 'Investment Policy Statement',
+    provider: 'curriculum',
     questionSourceFile: null,
   },
 ];
