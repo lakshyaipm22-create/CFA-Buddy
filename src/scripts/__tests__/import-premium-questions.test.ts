@@ -161,6 +161,179 @@ C.    Incorrect because options are derivatives, not bonds.
     const sections = splitBySubject(text);
     expect(sections.length).toBe(0);
   });
+
+  it('handles OCR line-broken headers where subject name spans multiple lines', () => {
+    const text = `Some preamble text here.
+
+Fixed
+Income:
+Practice
+Pack
+Question 1 of 1
+Question
+What is a bond yield?
+A.    The coupon rate.
+B.    The discount rate.
+C.    The face value.
+
+Fixed Income: Practice Pack- Answers
+Answer 1 of 1
+Answer
+Solution
+A.    Incorrect because coupon rate is fixed.
+B.    Correct. Yield is the discount rate.
+C.    Incorrect because that is current yield.
+`;
+    const sections = splitBySubject(text);
+    expect(sections.length).toBe(1);
+    expect(sections[0].subject).toBe('Fixed Income');
+    expect(sections[0].questionsText).toContain('What is a bond yield');
+    expect(sections[0].answersText).toContain('Yield is the discount rate');
+  });
+
+  it('handles OCR line-broken multi-word subject (Financial Statement Analysis)', () => {
+    const text = `Some preamble text.
+
+Financial
+Statement
+Analysis:
+Practice
+Pack
+Question 1 of 1
+Question
+What does the income statement report?
+A.    Assets and liabilities.
+B.    Revenues and expenses.
+C.    Cash flows from operations.
+
+Financial Statement Analysis: Practice Pack- Answers
+Answer 1 of 1
+Answer
+Solution
+A.    Incorrect because that is the balance sheet.
+B.    Correct. The income statement reports revenues and expenses.
+C.    Incorrect because that is the cash flow statement.
+`;
+    const sections = splitBySubject(text);
+    expect(sections.length).toBe(1);
+    expect(sections[0].subject).toBe('Financial Statement Analysis');
+    expect(sections[0].questionsText).toContain('income statement report');
+    expect(sections[0].answersText).toContain('revenues and expenses');
+  });
+
+  it('handles OCR line-broken Quantitative Methods header', () => {
+    const text = `Some preamble.
+
+Quantitative
+Methods:
+Practice
+Pack
+Question 1 of 1
+Question
+What is a standard deviation?
+A.    A measure of central tendency.
+B.    A measure of dispersion.
+C.    A measure of skewness.
+
+Quantitative Methods: Practice Pack- Answers
+Answer 1 of 1
+Answer
+Solution
+A.    Incorrect because that is the mean.
+B.    Correct. Standard deviation measures dispersion.
+C.    Incorrect because skewness is different.
+`;
+    const sections = splitBySubject(text);
+    expect(sections.length).toBe(1);
+    expect(sections[0].subject).toBe('Quantitative Methods');
+    expect(sections[0].questionsText).toContain('standard deviation');
+    expect(sections[0].answersText).toContain('measures dispersion');
+  });
+
+  it('handles mixed line-broken and normal headers in same PDF (FSA + Fixed Income)', () => {
+    const text = `Preamble text.
+
+Fixed
+Income:
+Practice
+Pack
+Question 1 of 1
+Question
+What is a bond?
+A.    A debt instrument.
+B.    An equity instrument.
+C.    A derivative.
+
+Financial
+Statement
+Analysis:
+Practice
+Pack
+Question 1 of 1
+Question
+What is depreciation?
+A.    A cash outflow.
+B.    Allocation of cost over useful life.
+C.    A revenue item.
+
+Fixed Income: Practice Pack- Answers
+Answer 1 of 1
+Answer
+Solution
+A.    Correct. A bond is a debt instrument.
+B.    Incorrect because equity is ownership.
+C.    Incorrect because derivatives derive value.
+
+Financial Statement Analysis: Practice Pack- Answers
+Answer 1 of 1
+Answer
+Solution
+A.    Incorrect because depreciation is non-cash.
+B.    Correct. Depreciation allocates cost over useful life.
+C.    Incorrect because it is an expense.
+`;
+    const sections = splitBySubject(text);
+    expect(sections.length).toBe(2);
+
+    const fi = sections.find(s => s.subject === 'Fixed Income');
+    const fsa = sections.find(s => s.subject === 'Financial Statement Analysis');
+    expect(fi).toBeDefined();
+    expect(fsa).toBeDefined();
+    expect(fi!.questionsText).toContain('What is a bond');
+    expect(fi!.answersText).toContain('debt instrument');
+    expect(fsa!.questionsText).toContain('depreciation');
+    expect(fsa!.answersText).toContain('allocates cost over useful life');
+  });
+
+  it('handles "Practice\\nPack-\\nQuestion" edge case (not answers)', () => {
+    const text = `Preamble.
+
+Portfolio
+Management:
+Practice
+Pack-
+Question
+Question 1 of 1
+Question
+What is diversification?
+A.    Concentrating in one asset.
+B.    Spreading risk across assets.
+C.    Eliminating all risk.
+
+Portfolio Management: Practice Pack- Answers
+Answer 1 of 1
+Answer
+Solution
+A.    Incorrect because concentration increases risk.
+B.    Correct. Diversification spreads risk.
+C.    Incorrect because risk cannot be fully eliminated.
+`;
+    const sections = splitBySubject(text);
+    expect(sections.length).toBe(1);
+    expect(sections[0].subject).toBe('Portfolio Management');
+    expect(sections[0].questionsText).toContain('diversification');
+    expect(sections[0].answersText).toContain('Diversification spreads risk');
+  });
 });
 
 describe('parsePremiumQuestions', () => {

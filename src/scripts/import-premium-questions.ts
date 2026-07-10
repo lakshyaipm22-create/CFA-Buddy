@@ -130,41 +130,106 @@ interface SubjectSection {
 // ─── Splitting by Subject ───────────────────────────────────────────────────────
 
 /**
+ * Find all "Practice Pack" positions in the text using a position-based approach.
+ * This handles OCR line-broken headers where subject names span multiple lines.
+ *
+ * For each occurrence of "Practice" followed by whitespace/newlines followed by "Pack":
+ * 1. Optionally followed by whitespace + "-" + whitespace/newlines + "Answers" (answers section)
+ * 2. Look backwards up to 100 chars to find the ":" separator
+ * 3. From the colon, look backwards up to 60 chars to capture the full subject name
+ * 4. Join newlines in the captured subject name into spaces
+ * 5. Normalize via normalizeSubject()
+ */
+function findPracticePackHeaders(text: string): Array<{ subject: string; isAnswers: boolean; headerStart: number; contentStart: number }> {
+  // Match "Practice" followed by whitespace (including newlines) followed by "Pack"
+  // Optionally followed by whitespace/dash/newlines + "Answer(s)" or "Question(s)"
+  const ppPattern = /Practice\s+Pack(?:\s*-\s*(?:Answers?|Questions?))?/gi;
+
+  const headers: Array<{ subject: string; isAnswers: boolean; headerStart: number; contentStart: number }> = [];
+  let match;
+
+  while ((match = ppPattern.exec(text)) !== null) {
+    const ppStart = match.index;
+    const ppMatchText = match[0];
+    const isAnswers = /answers?/i.test(ppMatchText);
+
+    // Look backwards from "Practice" to find the ":" separator (up to 100 chars back)
+    const lookbackStart = Math.max(0, ppStart - 100);
+    const beforePractice = text.slice(lookbackStart, ppStart);
+    const colonIdx = beforePractice.lastIndexOf(':');
+
+    if (colonIdx === -1) {
+      // No colon found - skip this match (not a valid subject header)
+      continue;
+    }
+
+    // Get the absolute position of the colon
+    const absoluteColonIdx = lookbackStart + colonIdx;
+
+    // Look backwards from the colon (up to 60 chars) to capture the full subject name
+    const subjectLookbackStart = Math.max(0, absoluteColonIdx - 60);
+    const beforeColon = text.slice(subjectLookbackStart, absoluteColonIdx);
+
+    // Take the subject text: split by double newlines (paragraph break) and take the last chunk,
+    // then join single newlines with spaces
+    const paragraphs = beforeColon.split(/\n\s*\n/);
+    const lastParagraph = paragraphs[paragraphs.length - 1];
+    const subjectRaw = lastParagraph
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line.length > 0)
+      .join(' ')
+      .trim();
+
+    if (!subjectRaw) continue;
+
+    const subject = normalizeSubject(subjectRaw);
+
+    // Determine the header start (the beginning of the subject text before the colon)
+    // Use the start of the last paragraph as the header start
+    const lastParagraphOffset = beforeColon.lastIndexOf(lastParagraph.trimStart().split('\n')[0].trim());
+    const headerStart = lastParagraphOffset >= 0 ? subjectLookbackStart + lastParagraphOffset : absoluteColonIdx;
+
+    // Content starts after the end of the "Practice Pack..." match line
+    const matchEnd = ppStart + ppMatchText.length;
+    const nextNewline = text.indexOf('\n', matchEnd);
+    const contentStart = nextNewline >= 0 ? nextNewline + 1 : matchEnd;
+
+    headers.push({
+      subject,
+      isAnswers,
+      headerStart,
+      contentStart,
+    });
+  }
+
+  return headers;
+}
+
+/**
  * Split the full PDF text into subject sections.
  * Each section has a questions part and an answers part.
  *
- * Looks for headers like:
- *   "Fixed Income: Practice Pack"  (questions section)
- *   "Fixed Income: Practice Pack- Answers" (answers section)
+ * Uses a position-based approach to handle OCR line-broken headers like:
+ *   "Fixed\nIncome:\nPractice\nPack"
+ *   "Financial\nStatement\nAnalysis:\nPractice\nPack"
  */
 export function splitBySubject(text: string): SubjectSection[] {
-  // Match headers like "Subject Name: Practice Pack" (possibly followed by "- Answers" or "- Answer")
-  // The regex captures the full header to determine if it's questions or answers section
-  const headerPattern = /^(.+?):\s*Practice\s*Pack\s*(-\s*Answers?)?/gim;
-
-  const headers: Array<{ subject: string; isAnswers: boolean; index: number }> = [];
-  let match;
-  while ((match = headerPattern.exec(text)) !== null) {
-    const rawSubject = match[1].trim();
-    const isAnswers = !!match[2];
-    headers.push({
-      subject: normalizeSubject(rawSubject),
-      isAnswers,
-      index: match.index,
-    });
-  }
+  const headers = findPracticePackHeaders(text);
 
   if (headers.length === 0) {
     return [];
   }
+
+  // Sort by headerStart position to determine content boundaries
+  headers.sort((a, b) => a.headerStart - b.headerStart);
 
   // Build sections by pairing questions and answers headers for same subject
   const subjectMap = new Map<string, { questionsStart: number; questionsEnd: number; answersStart: number; answersEnd: number }>();
 
   for (let i = 0; i < headers.length; i++) {
     const header = headers[i];
-    const nextStart = i + 1 < headers.length ? headers[i + 1].index : text.length;
-    const contentStart = text.indexOf('\n', header.index) + 1;
+    const nextStart = i + 1 < headers.length ? headers[i + 1].headerStart : text.length;
 
     if (!subjectMap.has(header.subject)) {
       subjectMap.set(header.subject, { questionsStart: -1, questionsEnd: -1, answersStart: -1, answersEnd: -1 });
@@ -172,10 +237,10 @@ export function splitBySubject(text: string): SubjectSection[] {
 
     const entry = subjectMap.get(header.subject)!;
     if (header.isAnswers) {
-      entry.answersStart = contentStart;
+      entry.answersStart = header.contentStart;
       entry.answersEnd = nextStart;
     } else {
-      entry.questionsStart = contentStart;
+      entry.questionsStart = header.contentStart;
       entry.questionsEnd = nextStart;
     }
   }
@@ -441,14 +506,10 @@ async function importPremiumFile(filePath: string, dryRun: boolean, debug = fals
   if (debug) {
     console.log('\n  [DEBUG] First 3000 chars of extracted text:');
     console.log(text.slice(0, 3000));
-    console.log('\n  [DEBUG] All headers found by splitBySubject:');
-    const debugHeaderPattern = /^(.+?):\s*Practice\s*Pack\s*(-\s*Answers?)?/gim;
-    let debugMatch;
-    while ((debugMatch = debugHeaderPattern.exec(text)) !== null) {
-      const rawSubject = debugMatch[1].trim();
-      const isAnswers = !!debugMatch[2];
-      const detectedSubject = normalizeSubject(rawSubject);
-      console.log(`    pos=${debugMatch.index} raw="${debugMatch[0]}" subject="${detectedSubject}" isAnswers=${isAnswers}`);
+    console.log('\n  [DEBUG] All headers found by position-based parser:');
+    const debugHeaders = findPracticePackHeaders(text);
+    for (const h of debugHeaders) {
+      console.log(`    headerStart=${h.headerStart} contentStart=${h.contentStart} subject="${h.subject}" isAnswers=${h.isAnswers}`);
     }
   }
 
