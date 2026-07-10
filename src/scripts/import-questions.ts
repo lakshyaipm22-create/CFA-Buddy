@@ -365,15 +365,67 @@ async function importSingleFile(filePath: string, dryRun: boolean, append: boole
   return questions;
 }
 
+async function cleanImportedQuestions(): Promise<void> {
+  const outputDir = join(process.cwd(), 'content', 'metadata', 'imported-questions');
+  let totalBefore = 0;
+  let totalAfter = 0;
+
+  try {
+    const files = await readdir(outputDir);
+    const jsonFiles = files.filter(f => f.endsWith('.json'));
+
+    if (jsonFiles.length === 0) {
+      console.log('  No imported question files found. Run import first.\n');
+      return;
+    }
+
+    console.log(`  Found ${jsonFiles.length} JSON files\n`);
+
+    for (const file of jsonFiles.sort()) {
+      const filePath = join(outputDir, file);
+      const raw = await readFile(filePath, 'utf-8');
+      const questions: Question[] = JSON.parse(raw);
+      const before = questions.length;
+      const valid = questions.filter(q => q.answerChoices.some(c => c.isCorrect));
+      const removed = before - valid.length;
+
+      totalBefore += before;
+      totalAfter += valid.length;
+
+      if (removed > 0) {
+        await writeFile(filePath, JSON.stringify(valid, null, 2));
+        console.log(`  📄 ${file}: ${before} → ${valid.length} (removed ${removed})`);
+      } else {
+        console.log(`  📄 ${file}: ${before} ✓ (all valid)`);
+      }
+    }
+
+    console.log('\n  ═══════════════════════════════════════');
+    console.log(`  Cleaned: ${totalBefore - totalAfter} questions without answers removed`);
+    console.log(`  Remaining: ${totalAfter} valid questions`);
+    console.log('  ═══════════════════════════════════════\n');
+  } catch {
+    console.log('  No imported-questions directory found. Run import first.\n');
+  }
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const fileArg = args.find(a => a.startsWith('--file='))?.split('=')[1];
   const dryRun = args.includes('--dry-run');
   const append = args.includes('--append');
+  const clean = args.includes('--clean');
 
   console.log('\n╔══════════════════════════════════════════════════╗');
   console.log('║  CFA Buddy — Question Import Pipeline             ║');
   console.log('╚══════════════════════════════════════════════════╝\n');
+
+  // Clean mode: remove questions without correct answers
+  if (clean) {
+    console.log('  Mode: CLEAN (removing questions without correct answers)\n');
+    await cleanImportedQuestions();
+    return;
+  }
 
   if (dryRun) console.log('  Mode: DRY RUN (no files will be written)\n');
   if (append) console.log('  Mode: APPEND (adding to existing files)\n');
