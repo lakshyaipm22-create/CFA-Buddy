@@ -72,22 +72,81 @@ interface ParsedSolution {
   explanation: string;
 }
 
-/**
- * Split PDF text into PRACTICE PROBLEMS and SOLUTIONS sections.
- */
-function splitSections(text: string): { problems: string; solutions: string } {
-  // Find PRACTICE PROBLEMS header
-  const problemsIdx = text.search(/PRACTICE\s+PROBLEMS/i);
-  // Find SOLUTIONS header
-  const solutionsIdx = text.search(/\bSOLUTIONS\b/i);
+interface ChapterSection {
+  problems: string;
+  solutions: string;
+}
 
-  if (problemsIdx === -1 || solutionsIdx === -1) {
-    return { problems: text, solutions: '' };
+/**
+ * Split PDF text into multiple chapter pairs of PRACTICE PROBLEMS + SOLUTIONS.
+ * Handles both single-section PDFs (7 subjects) and multi-chapter PDFs
+ * (Fixed Income, Derivatives, Alternative Investments).
+ *
+ * Algorithm:
+ * 1. Find ALL positions of "PRACTICE PROBLEMS" headers
+ * 2. Find ALL positions of "SOLUTIONS" headers
+ * 3. For each PRACTICE PROBLEMS header, find the NEXT SOLUTIONS header after it
+ * 4. That SOLUTIONS section runs until the next PRACTICE PROBLEMS header (or end of text)
+ */
+function splitAllSections(text: string): ChapterSection[] {
+  // Find all header positions
+  const problemPositions: number[] = [];
+  const solutionPositions: number[] = [];
+
+  const problemRegex = /practice\s+problems/gi;
+  const solutionRegex = /\bsolutions\b/gi;
+
+  let pm;
+  while ((pm = problemRegex.exec(text)) !== null) {
+    problemPositions.push(pm.index);
   }
 
-  const problems = text.slice(problemsIdx, solutionsIdx);
-  const solutions = text.slice(solutionsIdx);
-  return { problems, solutions };
+  let sm;
+  while ((sm = solutionRegex.exec(text)) !== null) {
+    solutionPositions.push(sm.index);
+  }
+
+  // If no structure found, return entire text as one problems section
+  if (problemPositions.length === 0) {
+    return [{ problems: text, solutions: '' }];
+  }
+
+  // If only one of each, simple split (original behavior)
+  if (problemPositions.length === 1 && solutionPositions.length === 1) {
+    const probStart = problemPositions[0];
+    const solStart = solutionPositions[0];
+    if (solStart > probStart) {
+      return [{ problems: text.slice(probStart, solStart), solutions: text.slice(solStart) }];
+    }
+  }
+
+  // Multi-chapter: pair each PRACTICE PROBLEMS with the next SOLUTIONS after it
+  const chapters: ChapterSection[] = [];
+
+  for (let i = 0; i < problemPositions.length; i++) {
+    const probStart = problemPositions[i];
+    // Find the first SOLUTIONS header that comes AFTER this PRACTICE PROBLEMS
+    const solStart = solutionPositions.find(s => s > probStart);
+
+    if (solStart === undefined) {
+      // No solutions found after this problems section — take problems until end or next problems
+      const probEnd = i + 1 < problemPositions.length ? problemPositions[i + 1] : text.length;
+      chapters.push({ problems: text.slice(probStart, probEnd), solutions: '' });
+      continue;
+    }
+
+    // Problems text: from PRACTICE PROBLEMS to SOLUTIONS
+    const problemsText = text.slice(probStart, solStart);
+
+    // Solutions text: from SOLUTIONS to the next PRACTICE PROBLEMS (or end)
+    const nextProbStart = problemPositions.find(p => p > solStart);
+    const solEnd = nextProbStart ?? text.length;
+    const solutionsText = text.slice(solStart, solEnd);
+
+    chapters.push({ problems: problemsText, solutions: solutionsText });
+  }
+
+  return chapters.length > 0 ? chapters : [{ problems: text, solutions: '' }];
 }
 
 /**
@@ -260,46 +319,54 @@ async function importSingleFile(filePath: string, dryRun: boolean, append: boole
   const { text } = await pdfParse(buffer);
   console.log(`     Extracted ${text.length} chars`);
 
-  const { problems, solutions } = splitSections(text);
+  // Split into chapter pairs (handles both single-section and multi-chapter PDFs)
+  const chapters = splitAllSections(text);
+  console.log(`     Chapters found: ${chapters.length}`);
+
+  // Process each chapter and renumber globally
+  let globalQuestionNum = 0;
+  const allParsedQuestions: ParsedQ[] = [];
+  const allParsedSolutions: ParsedSolution[] = [];
+
+  for (const chapter of chapters) {
+    const chapterQuestions = parseProblems(chapter.problems);
+    const chapterSolutions = parseSolutions(chapter.solutions);
+
+    // Renumber questions and solutions with global counter
+    for (let i = 0; i < chapterQuestions.length; i++) {
+      globalQuestionNum++;
+      const localNum = chapterQuestions[i].num;
+      chapterQuestions[i].num = globalQuestionNum;
+
+      // Find matching solution by original chapter-local number
+      const localSol = chapterSolutions.find(s => s.num === localNum);
+      if (localSol) {
+        allParsedSolutions.push({ ...localSol, num: globalQuestionNum });
+      }
+    }
+    allParsedQuestions.push(...chapterQuestions);
+  }
 
   // === DEBUG MODE ===
   if (debug) {
     console.log('\n  ╔══════════════════════════════════════════════════╗');
-    console.log('  ║  DEBUG: Raw SOLUTIONS section                     ║');
+    console.log('  ║  DEBUG: Multi-chapter analysis                    ║');
     console.log('  ╚══════════════════════════════════════════════════╝\n');
 
-    console.log('  --- SOLUTIONS section length:', solutions.length, 'chars ---');
-    console.log('  --- First 2000 chars: ---\n');
-    console.log(solutions.slice(0, 2000));
-    console.log('\n  --- End of first 2000 chars ---\n');
-
-    // Count numbered blocks with loose "N. " pattern
-    const loosePattern = /(?:^|\n)\s*(\d+)\.\s+/g;
-    const debugBlocks: Array<{ num: number; start: number }> = [];
-    let dm;
-    while ((dm = loosePattern.exec(solutions)) !== null) {
-      debugBlocks.push({ num: parseInt(dm[1]), start: dm.index });
-    }
-    console.log(`  Numbered blocks found (loose "N. " pattern): ${debugBlocks.length}`);
-    console.log('');
-
-    // Show first 200 chars of each of the first 10 blocks
-    const showCount = Math.min(debugBlocks.length, 10);
-    for (let i = 0; i < showCount; i++) {
-      const start = debugBlocks[i].start;
-      const end = i + 1 < debugBlocks.length ? debugBlocks[i + 1].start : Math.min(start + 200, solutions.length);
-      const snippet = solutions.slice(start, Math.min(start + 200, end)).replace(/\n/g, '\\n');
-      console.log(`  Block #${debugBlocks[i].num}: "${snippet}"`);
+    for (let i = 0; i < chapters.length; i++) {
+      const chQ = parseProblems(chapters[i].problems);
+      const chS = parseSolutions(chapters[i].solutions);
+      console.log(`  Chapter ${i + 1}: ${chQ.length} questions, ${chS.length} solutions`);
+      if (chapters[i].solutions.length > 0) {
+        console.log(`    Solutions preview: "${chapters[i].solutions.slice(0, 100).replace(/\n/g, '\\n')}"`);
+      }
     }
     console.log('');
   }
 
-  const parsedQuestions = parseProblems(problems);
-  const parsedSolutions = parseSolutions(solutions);
+  console.log(`     Questions: ${allParsedQuestions.length}, Solutions: ${allParsedSolutions.length}`);
 
-  console.log(`     Questions: ${parsedQuestions.length}, Solutions: ${parsedSolutions.length}`);
-
-  const questions = buildQuestions(parsedQuestions, parsedSolutions, subject, filename);
+  const questions = buildQuestions(allParsedQuestions, allParsedSolutions, subject, filename);
   const matched = questions.filter(q => q.answerChoices.some(c => c.isCorrect)).length;
   console.log(`     Matched: ${matched}/${questions.length}`);
 
