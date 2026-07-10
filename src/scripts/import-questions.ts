@@ -245,7 +245,7 @@ function buildQuestions(problems: ParsedQ[], solutions: ParsedSolution[], subjec
   });
 }
 
-async function importSingleFile(filePath: string, dryRun: boolean, append: boolean): Promise<Question[]> {
+async function importSingleFile(filePath: string, dryRun: boolean, append: boolean, debug: boolean): Promise<Question[]> {
   const filename = basename(filePath);
   const subject = inferSubject(filename);
 
@@ -261,6 +261,39 @@ async function importSingleFile(filePath: string, dryRun: boolean, append: boole
   console.log(`     Extracted ${text.length} chars`);
 
   const { problems, solutions } = splitSections(text);
+
+  // === DEBUG MODE ===
+  if (debug) {
+    console.log('\n  ╔══════════════════════════════════════════════════╗');
+    console.log('  ║  DEBUG: Raw SOLUTIONS section                     ║');
+    console.log('  ╚══════════════════════════════════════════════════╝\n');
+
+    console.log('  --- SOLUTIONS section length:', solutions.length, 'chars ---');
+    console.log('  --- First 2000 chars: ---\n');
+    console.log(solutions.slice(0, 2000));
+    console.log('\n  --- End of first 2000 chars ---\n');
+
+    // Count numbered blocks with loose "N. " pattern
+    const loosePattern = /(?:^|\n)\s*(\d+)\.\s+/g;
+    const debugBlocks: Array<{ num: number; start: number }> = [];
+    let dm;
+    while ((dm = loosePattern.exec(solutions)) !== null) {
+      debugBlocks.push({ num: parseInt(dm[1]), start: dm.index });
+    }
+    console.log(`  Numbered blocks found (loose "N. " pattern): ${debugBlocks.length}`);
+    console.log('');
+
+    // Show first 200 chars of each of the first 10 blocks
+    const showCount = Math.min(debugBlocks.length, 10);
+    for (let i = 0; i < showCount; i++) {
+      const start = debugBlocks[i].start;
+      const end = i + 1 < debugBlocks.length ? debugBlocks[i + 1].start : Math.min(start + 200, solutions.length);
+      const snippet = solutions.slice(start, Math.min(start + 200, end)).replace(/\n/g, '\\n');
+      console.log(`  Block #${debugBlocks[i].num}: "${snippet}"`);
+    }
+    console.log('');
+  }
+
   const parsedQuestions = parseProblems(problems);
   const parsedSolutions = parseSolutions(solutions);
 
@@ -301,6 +334,7 @@ async function main() {
   const fileArg = args.find(a => a.startsWith('--file='))?.split('=')[1];
   const dryRun = args.includes('--dry-run');
   const append = args.includes('--append');
+  const debug = args.includes('--debug');
 
   console.log('\n╔══════════════════════════════════════════════════╗');
   console.log('║  CFA Buddy — Question Import Pipeline             ║');
@@ -308,13 +342,14 @@ async function main() {
 
   if (dryRun) console.log('  Mode: DRY RUN (no files will be written)\n');
   if (append) console.log('  Mode: APPEND (adding to existing files)\n');
+  if (debug) console.log('  Mode: DEBUG (showing raw solutions text)\n');
 
   let allQuestions: Question[] = [];
 
   try {
     if (fileArg) {
       // Single file mode
-      allQuestions = await importSingleFile(fileArg, dryRun, append);
+      allQuestions = await importSingleFile(fileArg, dryRun, append, debug);
     } else {
       // Batch mode: scan for PDFs in question-banks/level1/
       const searchDirs = [
@@ -342,7 +377,7 @@ async function main() {
 
       for (const pdf of pdfFiles.sort()) {
         try {
-          const questions = await importSingleFile(pdf, dryRun, append);
+          const questions = await importSingleFile(pdf, dryRun, append, debug);
           allQuestions.push(...questions);
         } catch (err) {
           const msg = err instanceof Error ? err.message : 'Unknown';
