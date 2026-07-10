@@ -1,0 +1,7 @@
+{
+  "task_id": "task-premium-parser-and-tab",
+  "task_description": "Build a premium practice pack parser for OCR'd CFA PDFs and update the UI to show provider-based filtering (premium vs curriculum).",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001"],
+  "blocked_reason": null
+}

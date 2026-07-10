@@ -1,0 +1,37 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Create new premium practice pack parser script (src/scripts/import-premium-questions.ts) with tests, and add 'import:premium' to package.json scripts. Also update the API route and import dashboard to show premium vs curriculum stats.",
+  "status": "in_progress",
+  "steps": [
+    "Create src/scripts/import-premium-questions.ts with a completely new parser for the premium PDF format. Must NOT modify or import from import-questions.ts. Key parsing algorithm: (1) Split PDF text by subject headers matching pattern 'SUBJECT_NAME: Practice Pack' (e.g., 'Fixed Income: Practice Pack'). (2) For each subject section, split into Questions part and Answers part using 'Practice Pack- Answers' or 'Practice Pack - Answers' header. (3) Parse questions by splitting on 'Question X of Y' pattern, extract question text (skip the 'Question' sub-header line), and choices (A./B./C., handling OCR variants like 'A,' and 'Cc.'). (4) Parse answers by splitting on 'Answer X of Y' pattern, find which choice starts with 'Correct' (not 'Incorrect'). (5) Build Question objects with provider: 'premium-practice'. (6) Filter out questions with no correct answer. (7) Save to content/metadata/imported-questions/premium-{subject-slug}.json.",
+    "Support CLI arguments: --file='path.pdf' for single file, --dry-run for preview, or no args for batch mode scanning content/question-banks/level1/CFA L1 2025_Premium Practice Pack Question Pdfs/ directory.",
+    "Subject detection from headers: 'Fixed Income: Practice Pack' -> 'Fixed Income', 'Financial Statement Analysis: Practice Pack' -> 'Financial Statement Analysis', 'Equity Investments: Practice Pack' -> 'Equity Investments', 'Ethical and Professional Standards: Practice Pack' or 'Ethics: Practice Pack' -> 'Ethical and Professional Standards', 'Alternative Investments: Practice Pack' -> 'Alternative Investments', 'Corporate Issuers: Practice Pack' -> 'Corporate Issuers', 'Derivatives: Practice Pack' -> 'Derivatives', 'Portfolio Management: Practice Pack' -> 'Portfolio Management', 'Quantitative Methods: Practice Pack' -> 'Quantitative Methods', 'Economics: Practice Pack' -> 'Economics'.",
+    "Add 'import:premium': 'tsx src/scripts/import-premium-questions.ts' to package.json scripts section.",
+    "Create src/scripts/__tests__/import-premium-questions.test.ts with comprehensive unit tests for the premium parser. Export the key parsing functions (parsePremiumQuestions, parsePremiumAnswers, splitBySubject, or similar). Test with synthetic text that matches the premium PDF format described in the user instruction. Cover: basic question/answer parsing, OCR quirks (A, instead of A. / Cc. instead of C.), subject header detection, multi-subject splitting, answer detection (Correct/Incorrect keywords), questions with missing answers filtered out.",
+    "Update src/app/api/imported-questions/route.ts: It already reads ALL .json files from content/metadata/imported-questions/ including premium-*.json files. Verify this works correctly - the existing code should already handle this since it reads all .json files. No changes may be needed, but confirm the response structure works for both curriculum and premium files.",
+    "Update src/features/question-bank/components/import-dashboard.tsx: Add a section showing counts by provider - 'Curriculum Questions: X loaded' and 'Premium Practice Questions: Y loaded'. Parse the stored questions from localStorage, group by provider field, and display counts. Keep the existing single 'Reload Questions from Server' button which fetches all questions.",
+    "Update src/features/question-bank/components/session-configurator.tsx: The provider filter chips already dynamically generate from the loaded questions using [...new Set(allQuestions.map(q => q.provider))]. No changes needed there - when premium-practice questions are loaded, the chip will automatically appear. However, improve the display labels: show 'Curriculum' for provider 'curriculum', 'Premium Practice' for provider 'premium-practice', and add counts next to each chip like 'Curriculum (1000)' and 'Premium Practice (424)'."
+  ],
+  "acceptance_criteria": [
+    "src/scripts/import-premium-questions.ts exists and compiles without type errors",
+    "package.json has 'import:premium' script defined",
+    "Premium parser correctly extracts questions from text matching the described format (verified by unit tests)",
+    "OCR quirks (A, / Cc. / Cc,) are handled without crashing",
+    "Questions without a detectable correct answer are filtered out",
+    "Unit tests in src/scripts/__tests__/import-premium-questions.test.ts all pass",
+    "API route continues to serve all JSON files from the imported-questions directory (no regression)",
+    "Import dashboard shows per-provider counts",
+    "Session configurator provider chips show friendly labels with counts",
+    "npx tsc --noEmit passes with no errors",
+    "npm run lint passes with no errors",
+    "npm run test passes all tests including new ones"
+  ],
+  "verification": [
+    "npx tsc --noEmit",
+    "npm run lint",
+    "npm run test"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

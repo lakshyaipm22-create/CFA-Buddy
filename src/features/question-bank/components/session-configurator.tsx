@@ -17,6 +17,15 @@ const TEST_MODES: Array<{ mode: TestMode; label: string; description: string; de
 
 const DIFFICULTIES = ['Easy', 'Medium', 'Hard'] as const;
 
+const PROVIDER_LABELS: Record<string, string> = {
+  curriculum: 'Curriculum',
+  'premium-practice': 'Premium Practice',
+};
+
+function getProviderLabel(provider: string): string {
+  return PROVIDER_LABELS[provider] || provider.charAt(0).toUpperCase() + provider.slice(1);
+}
+
 // Modes that support subject filtering
 const SUBJECT_FILTER_MODES: TestMode[] = ['Topic', 'Subject', 'Mixed', 'Random'];
 
@@ -178,19 +187,22 @@ export function SessionConfigurator() {
         <div>
           <h3 className="mb-2 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>Provider</h3>
           <div className="flex flex-wrap gap-2">
-            {PROVIDERS.map(p => (
-              <button
-                key={p}
-                onClick={() => toggleProvider(p)}
-                className="rounded-md px-3 py-1.5 text-xs font-medium transition-colors capitalize"
-                style={selectedProviders.has(p)
-                  ? { background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }
-                  : { background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }
-                }
-              >
-                {p}
-              </button>
-            ))}
+            {PROVIDERS.map(p => {
+              const count = allQuestions.filter(q => q.provider === p).length;
+              return (
+                <button
+                  key={p}
+                  onClick={() => toggleProvider(p)}
+                  className="rounded-md px-3 py-1.5 text-xs font-medium transition-colors"
+                  style={selectedProviders.has(p)
+                    ? { background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }
+                    : { background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }
+                  }
+                >
+                  {getProviderLabel(p)} ({count})
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>

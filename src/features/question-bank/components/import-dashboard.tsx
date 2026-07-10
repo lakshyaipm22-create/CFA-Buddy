@@ -5,24 +5,44 @@ import { useState } from 'react';
 const STORAGE_KEY = 'cfa-buddy-imported-questions';
 const TIMESTAMP_KEY = 'cfa-buddy-questions-loaded-at';
 
-function getStoredCount(): number {
-  if (typeof window === 'undefined') return 0;
+const PROVIDER_LABELS: Record<string, string> = {
+  curriculum: 'Curriculum',
+  'premium-practice': 'Premium Practice',
+};
+
+function getProviderLabel(provider: string): string {
+  return PROVIDER_LABELS[provider] || provider.charAt(0).toUpperCase() + provider.slice(1);
+}
+
+interface ProviderCounts {
+  total: number;
+  byProvider: Record<string, number>;
+}
+
+function getStoredCounts(): ProviderCounts {
+  if (typeof window === 'undefined') return { total: 0, byProvider: {} };
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed)) {
-        return parsed.length;
+        const byProvider: Record<string, number> = {};
+        for (const q of parsed) {
+          if (q && typeof q === 'object' && typeof q.provider === 'string') {
+            byProvider[q.provider] = (byProvider[q.provider] || 0) + 1;
+          }
+        }
+        return { total: parsed.length, byProvider };
       }
     }
   } catch {
     // ignore parse errors
   }
-  return 0;
+  return { total: 0, byProvider: {} };
 }
 
 export function ImportDashboard() {
-  const [currentCount, setCurrentCount] = useState<number>(() => getStoredCount());
+  const [counts, setCounts] = useState<ProviderCounts>(() => getStoredCounts());
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
@@ -40,7 +60,13 @@ export function ImportDashboard() {
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       localStorage.setItem(TIMESTAMP_KEY, String(Date.now()));
-      setCurrentCount(data.length);
+      const byProvider: Record<string, number> = {};
+      for (const q of data) {
+        if (q && typeof q === 'object' && typeof q.provider === 'string') {
+          byProvider[q.provider] = (byProvider[q.provider] || 0) + 1;
+        }
+      }
+      setCounts({ total: data.length, byProvider });
       setMessage({ type: 'success', text: `${data.length} questions loaded successfully` });
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Unknown error';
@@ -63,8 +89,21 @@ export function ImportDashboard() {
               Question Bank
             </h3>
             <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
-              Currently loaded: {currentCount} questions
+              Currently loaded: {counts.total} questions
             </p>
+            {Object.keys(counts.byProvider).length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-3">
+                {Object.entries(counts.byProvider).sort(([a], [b]) => a.localeCompare(b)).map(([provider, count]) => (
+                  <span
+                    key={provider}
+                    className="inline-flex items-center rounded-md px-2 py-1 text-xs"
+                    style={{ background: 'var(--background-secondary)', color: 'var(--foreground-secondary)' }}
+                  >
+                    {getProviderLabel(provider)}: {count}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
           <button
             onClick={handleReload}

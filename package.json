@@ -9,6 +9,7 @@
     "lint": "eslint",
     "scan:content": "tsx src/scripts/scan-content.ts",
     "import:questions": "tsx src/scripts/import-questions.ts",
+    "import:premium": "tsx src/scripts/import-premium-questions.ts",
     "seed": "tsx prisma/seed.ts",
     "test": "vitest --run",
     "test:watch": "vitest",
