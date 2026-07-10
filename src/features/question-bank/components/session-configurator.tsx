@@ -43,6 +43,15 @@ export function SessionConfigurator() {
 
   const resumable = typeof window !== 'undefined' ? getResumableSession() : null;
 
+  // Compute per-provider question counts (memoized)
+  const providerCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const q of allQuestions) {
+      counts[q.provider] = (counts[q.provider] || 0) + 1;
+    }
+    return counts;
+  }, [allQuestions]);
+
   // Compute unique subjects with counts
   const subjectsWithCounts = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -188,7 +197,7 @@ export function SessionConfigurator() {
           <h3 className="mb-2 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>Provider</h3>
           <div className="flex flex-wrap gap-2">
             {PROVIDERS.map(p => {
-              const count = allQuestions.filter(q => q.provider === p).length;
+              const count = providerCounts[p] || 0;
               return (
                 <button
                   key={p}

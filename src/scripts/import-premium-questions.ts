@@ -338,6 +338,18 @@ export function parsePremiumAnswers(text: string): PremiumParsedAnswer[] {
 // ─── Build Questions ────────────────────────────────────────────────────────────
 
 /**
+ * Create a short slug from a filename (without extension) for use in question IDs.
+ * E.g., "OCR_CFA L1 2025_Part2.pdf" -> "ocr-cfa-l1-2025-part2"
+ */
+function fileSlugFromName(filename: string): string {
+  return filename
+    .replace(/\.[^.]+$/, '') // Remove extension
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+/**
  * Build final Question objects from parsed questions and answers.
  */
 function buildPremiumQuestions(
@@ -347,6 +359,7 @@ function buildPremiumQuestions(
   sourceFile: string
 ): Question[] {
   const answerMap = new Map(parsedAnswers.map(a => [a.num, a]));
+  const fileSlug = fileSlugFromName(sourceFile);
 
   const questions: Question[] = [];
 
@@ -368,7 +381,7 @@ function buildPremiumQuestions(
     if (!answerChoices.some(c => c.isCorrect)) continue;
 
     questions.push({
-      id: `premium-${slugify(subject)}-q${pq.num}`,
+      id: `premium-${slugify(subject)}-${fileSlug}-q${pq.num}`,
       questionText: pq.text,
       answerChoices,
       difficulty: 'Medium',
