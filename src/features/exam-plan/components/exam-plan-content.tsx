@@ -2,20 +2,13 @@
 
 import { useState, useMemo, useSyncExternalStore } from 'react';
 import { Calendar, TrendingUp, Target, CheckCircle2 } from 'lucide-react';
+import { CFA_SUBJECTS_ORDERED } from '@/shared/config/subjects';
 
-// CFA Level I subjects with weights
-const SUBJECTS = [
-  { name: 'Ethical and Professional Standards', weight: 15 },
-  { name: 'Quantitative Methods', weight: 10 },
-  { name: 'Economics', weight: 10 },
-  { name: 'Financial Statement Analysis', weight: 13 },
-  { name: 'Corporate Issuers', weight: 8 },
-  { name: 'Equity Investments', weight: 11 },
-  { name: 'Fixed Income', weight: 11 },
-  { name: 'Derivatives', weight: 6 },
-  { name: 'Alternative Investments', weight: 6 },
-  { name: 'Portfolio Management', weight: 10 },
-];
+// CFA Level I subjects with weights (in curriculum order)
+const SUBJECTS = CFA_SUBJECTS_ORDERED.map((name, idx) => {
+  const weights = [10, 10, 8, 13, 11, 11, 6, 6, 10, 15];
+  return { name, weight: weights[idx] };
+});
 
 // Module-level cache for exam date
 let examDateCachedRaw: string | null = '___init___';

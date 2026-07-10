@@ -3,8 +3,9 @@
 import { useState, useMemo } from 'react';
 import { Search, BookOpen, Star } from 'lucide-react';
 import { formulaSeed, type FormulaEntry } from '../data/formula-seed';
+import { sortByCfaOrder } from '@/shared/config/subjects';
 
-const SUBJECTS = [...new Set(formulaSeed.map(f => f.subject))];
+const SUBJECTS = sortByCfaOrder([...new Set(formulaSeed.map(f => f.subject))]);
 
 export function FormulaCenter() {
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);

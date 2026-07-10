@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { Trophy, RotateCw, AlertTriangle, Zap } from 'lucide-react';
+import { sortByCfaOrder } from '@/shared/config/subjects';
 import type { TestMode, SessionConfig, QuestionSession } from '../types';
 import { saveSession, getResumableSession, getAllSessions } from '../utils/session-storage';
 import { loadAllQuestions } from '../utils/question-loader';
@@ -27,7 +28,7 @@ type ConfigMode = 'custom' | 'mock' | 'retest' | 'weak';
 
 export function SessionConfigurator() {
   const allQuestions = loadAllQuestions();
-  const SUBJECTS = [...new Set(allQuestions.map(q => q.subject))].sort();
+  const SUBJECTS = sortByCfaOrder([...new Set(allQuestions.map(q => q.subject))]);
   const PROVIDERS = [...new Set(allQuestions.map(q => q.provider))];
   const router = useRouter();
 
