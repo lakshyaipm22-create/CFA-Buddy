@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { Bell, Brain, Flame } from 'lucide-react';
+import { Brain, Flame } from 'lucide-react';
 import { getFlashcards } from '@/features/flashcards/utils/storage';
 import { getCardsDueToday } from '@/features/flashcards/utils/sm2';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
