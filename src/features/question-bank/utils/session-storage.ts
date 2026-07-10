@@ -61,3 +61,9 @@ export function cleanupExpiredSessions(): void {
   );
   localStorage.setItem(SESSIONS_KEY, JSON.stringify(active));
 }
+
+
+/**
+ * Alias for getSessions (used by configurator for analysis)
+ */
+export const getAllSessions = getSessions;
