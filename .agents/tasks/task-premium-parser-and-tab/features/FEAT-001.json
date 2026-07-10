@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Create new premium practice pack parser script (src/scripts/import-premium-questions.ts) with tests, and add 'import:premium' to package.json scripts. Also update the API route and import dashboard to show premium vs curriculum stats.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/scripts/import-premium-questions.ts with a completely new parser for the premium PDF format. Must NOT modify or import from import-questions.ts. Key parsing algorithm: (1) Split PDF text by subject headers matching pattern 'SUBJECT_NAME: Practice Pack' (e.g., 'Fixed Income: Practice Pack'). (2) For each subject section, split into Questions part and Answers part using 'Practice Pack- Answers' or 'Practice Pack - Answers' header. (3) Parse questions by splitting on 'Question X of Y' pattern, extract question text (skip the 'Question' sub-header line), and choices (A./B./C., handling OCR variants like 'A,' and 'Cc.'). (4) Parse answers by splitting on 'Answer X of Y' pattern, find which choice starts with 'Correct' (not 'Incorrect'). (5) Build Question objects with provider: 'premium-practice'. (6) Filter out questions with no correct answer. (7) Save to content/metadata/imported-questions/premium-{subject-slug}.json.",
     "Support CLI arguments: --file='path.pdf' for single file, --dry-run for preview, or no args for batch mode scanning content/question-banks/level1/CFA L1 2025_Premium Practice Pack Question Pdfs/ directory.",
@@ -33,5 +33,5 @@
     "npm run test"
   ],
   "blocked_reason": null,
-  "findings": "All verification passed: tsc --noEmit, lint, build, and test (63 tests including 25 new premium parser tests). API route already reads all .json files from content/metadata/imported-questions/ so no changes were needed there. The session-configurator already dynamically generates provider chips from loaded questions, so premium-practice chips will appear automatically when those questions are loaded."
+  "findings": "All verification passed: tsc --noEmit, lint, build, and test (63 tests including 25 new premium parser tests). API route already reads all .json files from content/metadata/imported-questions/ so no changes were needed there. The session-configurator already dynamically generates provider chips from loaded questions, so premium-practice chips will appear automatically when those questions are loaded. Code review fixes applied: (1) ID collision fixed by including file slug in question ID template: premium-{subject}-{fileSlug}-q{num}. (2) Provider count computation now memoized with useMemo consistent with subjectsWithCounts pattern."
 }
