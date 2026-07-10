@@ -198,8 +198,10 @@ async function importSingleFile(filePath: string, dryRun: boolean, append: boole
 
   console.log(`  📄 ${filename} (${subject})`);
 
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const pdfParse = require('pdf-parse') as (buffer: Buffer) => Promise<{ text: string }>;
+  // pdf-parse: handle both ESM default export and CJS module.exports
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const pdfParseModule = await import('pdf-parse') as any;
+  const pdfParse: (buffer: Buffer) => Promise<{ text: string }> = pdfParseModule.default ?? pdfParseModule;
 
   const buffer = await readFile(filePath);
   const { text } = await pdfParse(buffer);
