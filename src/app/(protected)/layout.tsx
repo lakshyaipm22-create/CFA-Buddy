@@ -1,6 +1,7 @@
 import { Sidebar } from '@/shared/components/layout/sidebar';
 import { Header } from '@/shared/components/layout/header';
 import { SearchModal } from '@/features/search/components/search-modal';
+import { KeyboardShortcutsProvider } from './keyboard-shortcuts-provider';
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -13,6 +14,7 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
         </main>
       </div>
       <SearchModal />
+      <KeyboardShortcutsProvider />
     </div>
   );
 }
