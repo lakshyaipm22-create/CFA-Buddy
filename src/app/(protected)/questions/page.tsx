@@ -1,11 +1,19 @@
 'use client';
 
+import { useEffect } from 'react';
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
 import { QuestionAnalytics } from '@/features/question-bank/components/question-analytics';
 import { useImportedQuestions } from '@/features/question-bank/hooks/useImportedQuestions';
+import { cleanupOldSessions } from '@/features/question-bank/utils/session-storage';
 
 export default function QuestionsPage() {
-  const { isLoading } = useImportedQuestions();
+  const { isLoading, questions: importedQuestions } = useImportedQuestions();
+
+  useEffect(() => {
+    cleanupOldSessions();
+  }, []);
+
+  const hasImportedQuestions = importedQuestions.length > 0;
 
   return (
     <div className="space-y-6">
@@ -40,6 +48,26 @@ export default function QuestionsPage() {
             />
           </svg>
           Loading 1,000 questions...
+        </div>
+      )}
+      {!isLoading && !hasImportedQuestions && (
+        <div
+          className="rounded-lg px-4 py-3 text-sm"
+          style={{
+            backgroundColor: 'var(--card-bg)',
+            border: '1px solid var(--card-border)',
+            color: 'var(--foreground-secondary)',
+          }}
+        >
+          Want more questions? Visit{' '}
+          <a
+            href="/admin/import"
+            className="underline"
+            style={{ color: 'var(--accent-secondary)' }}
+          >
+            Admin &gt; Import
+          </a>{' '}
+          to load your question bank.
         </div>
       )}
       <SessionConfigurator />

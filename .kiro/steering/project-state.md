@@ -60,7 +60,7 @@ CONTENT_BASE_PATH=./content
 - **29 compiled routes**
 - **Data Layer:** ALL user data in localStorage (offline-first). DB schema ready but not wired to app.
 - **Content:** 617 PDFs in `./content/` folder (gitignored). Scanned by `npm run scan:content`.
-- **Questions:** 50 sample questions in code + 1,038 imported from PDFs (in JSON files on disk)
+- **Questions:** 50 sample questions in code + 1,000 questions available via /api/imported-questions (reads from content/metadata/imported-questions/*.json)
 - **Theme:** Dark/Light toggle via CSS variables in `globals.css`
 - **Colors:** Navy #002B5C, Gold #C5A258, Green #00843D, Background #0a0e14
 
@@ -88,6 +88,16 @@ CONTENT_BASE_PATH=./content
 ## KEY FEATURES IMPLEMENTED
 - Question Bank with 7 test modes, confidence tracking, per-question timer
 - Instant answer feedback (CFA Institute style): green/red highlighting immediately after answering
+- CFA Mock Exam mode (90 questions, 135 min, curriculum-weighted)
+- Subject multi-select filter in configurator
+- AdaptiveRetest mode (retests previously wrong answers)
+- WeakTopic mode (targets subjects with <60% accuracy)
+- Live per-question timer + session countdown
+- Question navigation grid with color coding
+- Keyboard shortcuts during tests
+- Enhanced review dashboard with subject breakdown, time traps, session history
+- Admin question refresh button
+- Auto session cleanup (30-day expiry, 50 max)
 - Flashcards with SM-2 algorithm (ease factor, interval, repetitions)
 - Formula Center with 30 seeded formulas
 - AI Study Recommendations (rule-based, no API needed)
@@ -101,12 +111,9 @@ CONTENT_BASE_PATH=./content
 ## KNOWN BUGS / INCOMPLETE ITEMS
 
 ### BUG 1: Imported questions not loaded into app (HIGH PRIORITY)
-- **Status:** 1,038 questions imported to `content/metadata/imported-questions/*.json`
-- **Problem:** `question-loader.ts` reads from localStorage (`cfa-buddy-imported-questions` key), but the JSON files are on disk. The browser can't read filesystem.
-- **Fix needed:** Either:
-  - (a) Create an API route that serves the JSON files, and auto-load on app startup
-  - (b) Add a build-time step that bundles imported questions into the app
-  - (c) Add a "Load Questions" button in admin that reads the JSON files via API and stores in localStorage
+- **Status:** FIXED - Imported questions now served via /api/imported-questions API route and auto-loaded into localStorage on first visit.
+- The useImportedQuestions hook fetches from the API route on first visit (or when stale after 24 hours) and caches in localStorage.
+- Admin can manually reload via the "Reload Questions from Server" button on the /admin/import page.
 
 ### BUG 2: Answer matching failed for 3 subjects
 - Fixed Income: 132 questions, 0 with correct answers

@@ -279,6 +279,11 @@ export function SessionConfigurator() {
       >
         Start {selectedMode} Test ({Math.min(questionCount, availableCount)} questions{timed ? `, ${timeLimit} min` : ', untimed'})
       </button>
+      {availableCount === 0 && (
+        <p className="text-sm" style={{ color: '#ef4444' }}>
+          No questions match your filters. Try broadening your selection.
+        </p>
+      )}
     </div>
   );
 }
