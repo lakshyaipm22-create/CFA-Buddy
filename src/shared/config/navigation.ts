@@ -5,6 +5,7 @@ import {
   HelpCircle,
   AlertTriangle,
   Calendar,
+  Brain,
 } from 'lucide-react';
 
 export const navigationItems = [
@@ -12,6 +13,7 @@ export const navigationItems = [
   { name: 'Learn', href: '/learn', icon: BookOpen },
   { name: 'Resources', href: '/resources', icon: FileText },
   { name: 'Questions', href: '/questions', icon: HelpCircle },
+  { name: 'Flashcards', href: '/flashcards', icon: Brain },
   { name: 'Mistakes', href: '/mistakes', icon: AlertTriangle },
   { name: 'Exam Plan', href: '/exam-plan', icon: Calendar },
 ] as const;
