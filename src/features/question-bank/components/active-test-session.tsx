@@ -375,8 +375,11 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
         <div className="mt-2 h-2 w-full rounded-full overflow-hidden flex" style={{ background: 'var(--border)' }}>
           {session.questionIds.map((qId, idx) => {
             const attempt = attemptMap.get(qId);
+            const isCurrentSegment = idx === session.currentIndex && !showFeedback;
             let bgColor: string;
-            if (attempt) {
+            if (isCurrentSegment) {
+              bgColor = 'var(--accent-primary)'; // blue for current question
+            } else if (attempt) {
               if (isTimed) {
                 bgColor = 'var(--accent-primary)'; // blue for answered in timed mode
               } else {
@@ -399,20 +402,17 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
         </div>
 
         {/* 3B: Stats line */}
-        <div className="mt-1.5 flex items-center gap-3 text-[11px]" style={{ color: 'var(--foreground-secondary)' }}>
-          <span>Answered: {answeredCount}</span>
-          <span>Flagged: {flaggedCount}</span>
-          <span>Bookmarked: {bookmarkedCount}</span>
+        <div className="mt-1.5 flex items-center gap-1 text-[11px]" style={{ color: 'var(--foreground-secondary)' }}>
+          <span>{answeredCount} answered</span>
+          <span>·</span>
+          <span>{flaggedCount} flagged</span>
+          <span>·</span>
+          <span>{bookmarkedCount} bookmarked</span>
         </div>
       </div>
 
       {/* Top bar */}
       <div className="flex items-center justify-between border-b pb-3" style={{ borderColor: 'var(--card-border)' }}>
-        <div className="flex items-center gap-4">
-          <div className="h-1.5 w-32 rounded-full" style={{ background: 'var(--border)' }}>
-            <div className="h-full rounded-full transition-all" style={{ width: `${(progress / total) * 100}%`, background: 'var(--accent-primary)' }} />
-          </div>
-        </div>
         <div className="flex items-center gap-2">
           <button onClick={toggleBookmark} className={`rounded p-1.5 transition-colors ${isBookmarked ? 'bg-yellow-900/30 text-yellow-400' : ''}`} style={isBookmarked ? undefined : { color: 'var(--foreground-secondary)' }} title="Bookmark (B)">
             <Bookmark className="h-4 w-4" fill={isBookmarked ? 'currentColor' : 'none'} />
@@ -551,14 +551,24 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
 
               // Color logic
               let bgStyle: string;
+              let borderStyle: string;
+              let textColor: string;
               if (isCurrent) {
-                bgStyle = 'var(--accent-primary)'; // blue
+                bgStyle = 'transparent'; // no fill for current
+                borderStyle = isQFlagged ? '2px solid #f97316' : '2px solid var(--accent-primary)'; // blue ring
+                textColor = 'var(--accent-primary)';
               } else if (isAnswered && !isTimed) {
                 bgStyle = isCorrectAnswer ? 'var(--accent-success)' : '#ef4444'; // green/red
+                borderStyle = isQFlagged ? '2px solid #f97316' : '1px solid var(--card-border)';
+                textColor = '#fff';
               } else if (isAnswered && isTimed) {
                 bgStyle = 'var(--accent-primary)'; // blue for answered in timed
+                borderStyle = isQFlagged ? '2px solid #f97316' : '1px solid var(--card-border)';
+                textColor = '#fff';
               } else {
                 bgStyle = 'var(--border)'; // gray
+                borderStyle = isQFlagged ? '2px solid #f97316' : '1px solid var(--card-border)';
+                textColor = 'var(--foreground-secondary)';
               }
 
               return (
@@ -573,8 +583,8 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
                     width: '28px',
                     height: '28px',
                     background: bgStyle,
-                    color: isCurrent || isAnswered ? '#fff' : 'var(--foreground-secondary)',
-                    border: isQFlagged ? '2px solid #f97316' : '1px solid var(--card-border)',
+                    color: textColor,
+                    border: borderStyle,
                   }}
                   title={`Question ${idx + 1}${isQFlagged ? ' (flagged)' : ''}${isQBookmarked ? ' (bookmarked)' : ''}`}
                 >

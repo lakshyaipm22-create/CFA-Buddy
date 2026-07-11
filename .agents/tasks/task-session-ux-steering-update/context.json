@@ -1,0 +1,21 @@
+{
+  "project_type": "Next.js 16.2.10 App Router with React 19, TypeScript 5, Tailwind CSS 4",
+  "language": "TypeScript/TSX",
+  "build_system": "npm with next build",
+  "test_framework": "vitest with @testing-library/react",
+  "build_command": "npx tsc --noEmit && npm run lint",
+  "test_command": "npm run test",
+  "verification_instructions": "Run npx tsc --noEmit && npm run lint to verify no type errors or lint issues",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "npm install && npx prisma generate",
+  "environment_constraints": "No docker daemon available. Build verification via tsc and lint only. GitHub power for push.",
+  "contribution_requirements": "NEVER use useSyncExternalStore. Use useState(() => ...) for localStorage. NEVER call router.push() during render. typeof window !== undefined guard before localStorage. No hardcoded hex colors - use CSS variables or Tailwind. Mobile responsive.",
+  "key_patterns": "Feature-based folders (src/features/{name}/). CSS variables for colors (var(--accent-primary), var(--accent-success), var(--foreground), etc.). lucide-react for icons. localStorage for all user data. Session types defined in src/features/question-bank/types/index.ts.",
+  "relevant_files": [
+    "src/features/question-bank/components/active-test-session.tsx",
+    "src/features/question-bank/types/index.ts",
+    "src/features/question-bank/utils/session-storage.ts",
+    ".kiro/steering/project-state.md"
+  ],
+  "directory_structure": "src/app/ (29 routes), src/features/ (19 feature modules), src/shared/ (cross-feature code), src/scripts/ (CLI tools)"
+}

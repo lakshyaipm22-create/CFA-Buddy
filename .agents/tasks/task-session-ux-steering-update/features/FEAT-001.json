@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "The active-test-session.tsx component already has a progress bar, navigation grid, per-question timer, and countdown timer implemented. However, the user's requirements specify specific improvements: (1) the progress bar should show current question with a blue highlight segment, (2) the stats line below should show 'X answered . Y flagged . Z bookmarked' format, (3) the countdown timer should be formatted correctly and show per-question timer as display, (4) the navigation grid is already present. Review the current implementation against requirements and ensure all details match the spec exactly: blue highlight on current question segment in progress bar, proper color coding (green=correct, red=wrong, gray=unanswered, blue=current), proper stats format. The component is 593 lines and already has most of the functionality - verify all spec items are met and make any adjustments needed.",
+  "status": "in_progress",
+  "steps": [
+    "Read the current active-test-session.tsx (593 lines) and compare against the user's spec point by point",
+    "Progress Bar: Ensure the progress bar shows blue highlight for current question segment (currently it shows gray for unanswered including current). Add distinct blue color for the current question's segment.",
+    "Stats line: Format should be 'X answered . Y flagged . Z bookmarked' with dot separators per the spec",
+    "Countdown Timer: Already implemented with auto-complete on 0. Verify it shows mm:ss at top-right counting down from timeLimit. Verify per-question timer display.",
+    "Navigation Grid: Already implemented with color coding. Verify all color states match spec (green=correct, red=wrong, blue ring=current, gray=unanswered, orange border=flagged, star=bookmarked). In timed mode only forward navigation (already done). In untimed mode any question clickable (already done).",
+    "Remove the duplicate progress indicator (the older thin progress bar in the 'Top bar' section that duplicates the new colored progress bar above it)",
+    "Ensure mobile responsiveness - grid should wrap properly on small screens",
+    "Run npx tsc --noEmit && npm run lint to verify"
+  ],
+  "acceptance_criteria": [
+    "Progress bar shows green/red/gray/blue segments where blue is the current question",
+    "Stats line shows answered count, flagged count, and bookmarked count",
+    "Countdown timer displays mm:ss and auto-completes session when reaching 0",
+    "Per-question timer displays elapsed time for current question",
+    "Navigation grid shows all question numbers with correct color coding",
+    "Navigation grid restricts backward navigation in timed mode",
+    "No TypeScript errors (npx tsc --noEmit passes)",
+    "No lint errors (npm run lint passes)"
+  ],
+  "verification": [
+    "npx tsc --noEmit",
+    "npm run lint"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

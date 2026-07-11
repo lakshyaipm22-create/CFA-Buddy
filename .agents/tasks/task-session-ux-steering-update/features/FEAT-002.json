@@ -1,0 +1,28 @@
+{
+  "id": "FEAT-002",
+  "type": "docs",
+  "description": "Update .kiro/steering/project-state.md to reflect the true current state of the project. Mark bugs as fixed, add new features to the KEY FEATURES section, update import results table, and update the NOT YET DONE section.",
+  "status": "pending",
+  "steps": [
+    "Read current .kiro/steering/project-state.md",
+    "In KNOWN BUGS section: Mark Bug #1 as FIXED (API route + auto-loader already noted as fixed). Mark Bug #2 as FIXED (93-100% match rate after multi-chapter parser rewrite). Mark Bug #3 as RESOLVED (both versions work).",
+    "Add to KEY FEATURES section: Premium Practice Pack parser (840 additional questions from OCR'd PDFs), CFA Mock Exam mode (90 questions, curriculum-weighted, 135 min), AdaptiveRetest and WeakTopic intelligent question selection, Progress bar + navigation grid + countdown timer in test sessions, Total question bank: 1,840 questions (1,000 curriculum + 840 premium)",
+    "Update IMPORT RESULTS table to include premium questions (840 additional) for total of 1,840",
+    "In NOT YET DONE section, keep only: main branch merge, Vercel deployment, Supabase DB connection",
+    "Run npx tsc --noEmit && npm run lint to verify (docs change should not affect build)"
+  ],
+  "acceptance_criteria": [
+    "Bug #1 marked as FIXED",
+    "Bug #2 marked as FIXED with note about 93-100% match rate",
+    "Bug #3 marked as RESOLVED",
+    "KEY FEATURES includes Premium Practice Pack parser, Mock Exam mode, AdaptiveRetest, WeakTopic, progress bar + nav grid + countdown, 1840 total questions",
+    "IMPORT RESULTS table updated with premium numbers",
+    "NOT YET DONE has only 3 items: main branch merge, Vercel deployment, Supabase DB connection"
+  ],
+  "verification": [
+    "npx tsc --noEmit",
+    "npm run lint"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

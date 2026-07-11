@@ -1,0 +1,7 @@
+{
+  "task_id": "task-session-ux-steering-update",
+  "task_description": "Refine active test session UX (progress bar blue highlight for current question, remove duplicate progress bar, verify all spec items) and update project-state.md steering file with current status",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}
