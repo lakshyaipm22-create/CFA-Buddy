@@ -60,7 +60,7 @@ CONTENT_BASE_PATH=./content
 - **29 compiled routes**
 - **Data Layer:** ALL user data in localStorage (offline-first). DB schema ready but not wired to app.
 - **Content:** 617 PDFs in `./content/` folder (gitignored). Scanned by `npm run scan:content`.
-- **Questions:** 50 sample questions in code + 1,840 questions available via /api/imported-questions (1,000 curriculum + 840 premium, reads from content/metadata/imported-questions/*.json)
+- **Questions:** 50 sample questions in code + 1,878 questions available via /api/imported-questions (1,038 curriculum + 840 premium, reads from content/metadata/imported-questions/*.json)
 - **Theme:** Dark/Light toggle via CSS variables in `globals.css`
 - **Colors:** Navy #002B5C, Gold #C5A258, Green #00843D, Background #0a0e14
 
@@ -90,7 +90,7 @@ CONTENT_BASE_PATH=./content
 - Instant answer feedback (CFA Institute style): green/red highlighting immediately after answering
 - CFA Mock Exam mode (90 questions, curriculum-weighted, 135 min)
 - Premium Practice Pack parser (840 additional questions from OCR'd PDFs)
-- Total question bank: 1,840 questions (1,000 curriculum + 840 premium)
+- Total question bank: 1,878 questions (1,038 curriculum + 840 premium)
 - AdaptiveRetest and WeakTopic intelligent question selection
 - Progress bar + navigation grid + countdown timer in test sessions
 - Subject multi-select filter in configurator
@@ -155,9 +155,9 @@ CONTENT_BASE_PATH=./content
 ### Combined Total
 | Source | Questions |
 |--------|-----------|
-| Curriculum End-of-Chapter | 1,000 |
+| Curriculum End-of-Chapter | 1,038 |
 | Premium Practice Pack | 840 |
-| **TOTAL** | **1,840** |
+| **TOTAL** | **1,878** |
 
 ## COMMANDS CHEAT SHEET (Windows PowerShell)
 ```powershell

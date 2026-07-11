@@ -377,8 +377,12 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
             const attempt = attemptMap.get(qId);
             const isCurrentSegment = idx === session.currentIndex && !showFeedback;
             let bgColor: string;
+            let extraClass = '';
             if (isCurrentSegment) {
               bgColor = 'var(--accent-primary)'; // blue for current question
+              if (isTimed) {
+                extraClass = 'animate-pulse ring-1 ring-white/50';
+              }
             } else if (attempt) {
               if (isTimed) {
                 bgColor = 'var(--accent-primary)'; // blue for answered in timed mode
@@ -391,10 +395,11 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
             return (
               <div
                 key={`prog-${idx}`}
-                className="h-full"
+                className={`h-full ${extraClass}`}
                 style={{
                   width: `${100 / total}%`,
                   background: bgColor,
+                  ...(isCurrentSegment && isTimed ? { opacity: 1, filter: 'brightness(1.4)' } : {}),
                 }}
               />
             );
