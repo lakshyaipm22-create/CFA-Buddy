@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "docs",
   "description": "Update .kiro/steering/project-state.md to reflect the true current state of the project. Mark bugs as fixed, add new features to the KEY FEATURES section, update import results table, and update the NOT YET DONE section.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Read current .kiro/steering/project-state.md",
     "In KNOWN BUGS section: Mark Bug #1 as FIXED (API route + auto-loader already noted as fixed). Mark Bug #2 as FIXED (93-100% match rate after multi-chapter parser rewrite). Mark Bug #3 as RESOLVED (both versions work).",
