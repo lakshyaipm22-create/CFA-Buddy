@@ -1,0 +1,22 @@
+{
+  "id": "FEAT-001",
+  "type": "fix",
+  "description": "Fix 'Unknown' subject inference in /api/imported-questions route, ensure auto-load works on first visit, and add subject/reading badge to test questions",
+  "status": "in_progress",
+  "steps": [
+    "1. Update src/app/api/imported-questions/route.ts to infer subject from filename when a question has subject='Unknown'. Add a SUBJECT_MAP identical to the one in src/scripts/import-questions.ts (keys '1' through '10' mapping to subject names). After reading each JSON file, for every question with subject='Unknown', extract the filename's leading number (e.g., '6. Fixed Income.json' -> key '6' -> 'Fixed Income'). Also implement a fallback that checks the filename text for keywords (same as inferSubject() in the import script).",
+    "2. Verify the useImportedQuestions hook in src/features/question-bank/hooks/useImportedQuestions.ts already auto-fetches on mount (it does - it checks needsFetch() which returns true if localStorage is empty or stale > 24h). Confirm that src/app/(protected)/questions/page.tsx already uses this hook and shows a loading indicator (it does). No changes needed here - Priority 2 is already implemented.",
+    "3. In src/features/question-bank/components/active-test-session.tsx, add a subject + reading badge above the question text. Display the current question's subject as a small pill/badge, and if reading is not null, show it as a secondary badge. Style with the existing CSS variable pattern (var(--card-bg), var(--card-border), etc.)."
+  ],
+  "acceptance_criteria": [
+    "The /api/imported-questions route returns questions with inferred subjects instead of 'Unknown' when the filename contains a number prefix",
+    "The auto-load mechanism already works via useImportedQuestions hook (verify no regression)",
+    "During active test sessions, each question shows its subject (and reading if available) as a badge above the question text"
+  ],
+  "verification": [
+    "Run: npx tsc --noEmit (zero errors)",
+    "Run: npm run lint (zero errors)"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

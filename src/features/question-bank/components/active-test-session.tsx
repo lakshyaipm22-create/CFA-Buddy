@@ -433,6 +433,16 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
 
       {/* Question */}
       <div className="mt-6 flex-1 space-y-6 overflow-y-auto">
+        <div className="flex flex-wrap gap-2 mb-3">
+          <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium" style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}>
+            {feedbackQuestion.subject}
+          </span>
+          {feedbackQuestion.reading && (
+            <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium" style={{ backgroundColor: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }}>
+              {feedbackQuestion.reading}
+            </span>
+          )}
+        </div>
         <p className="text-base leading-relaxed" style={{ color: 'var(--foreground)' }}>{feedbackQuestion.questionText}</p>
 
         {/* Answer choices with feedback highlighting */}
