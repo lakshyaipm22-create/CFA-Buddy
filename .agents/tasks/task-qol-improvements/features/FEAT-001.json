@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "fix",
   "description": "Fix 'Unknown' subject inference in /api/imported-questions route, ensure auto-load works on first visit, and add subject/reading badge to test questions",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "1. Update src/app/api/imported-questions/route.ts to infer subject from filename when a question has subject='Unknown'. Add a SUBJECT_MAP identical to the one in src/scripts/import-questions.ts (keys '1' through '10' mapping to subject names). After reading each JSON file, for every question with subject='Unknown', extract the filename's leading number (e.g., '6. Fixed Income.json' -> key '6' -> 'Fixed Income'). Also implement a fallback that checks the filename text for keywords (same as inferSubject() in the import script).",
     "2. Verify the useImportedQuestions hook in src/features/question-bank/hooks/useImportedQuestions.ts already auto-fetches on mount (it does - it checks needsFetch() which returns true if localStorage is empty or stale > 24h). Confirm that src/app/(protected)/questions/page.tsx already uses this hook and shows a loading indicator (it does). No changes needed here - Priority 2 is already implemented.",
@@ -18,5 +18,5 @@
     "Run: npm run lint (zero errors)"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Implemented all 3 parts successfully. Part 1: Added SUBJECT_MAP and inferSubject() to the API route that enriches questions with subject='Unknown' based on filename prefix or keyword matching. Part 2: Verified auto-load already works (no changes needed). Part 3: Added subject and reading pill badges above question text in active test sessions. Both tsc --noEmit and lint pass cleanly."
 }
