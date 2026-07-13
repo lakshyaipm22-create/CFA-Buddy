@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Add Recent Sessions section to Questions page and Export Results CSV button to session review",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "1. Create a new component src/features/question-bank/components/recent-sessions.tsx that shows the last 5 completed sessions. Use getSessions() from utils/session-storage.ts to get all sessions, filter to completed, sort by completedAt descending, take 5. For each session show: date (formatted like 'Jan 15, 2025'), question count (from questionIds.length), score % (correct/total * 100), mode (from session.mode), and subject filter used (from session.config.subject or 'All Subjects'). Each row should be clickable and navigate to /questions/review/{sessionId}. Use useRouter() in an onClick handler (never during render). Sort subjects in CFA curriculum order using sortByCfaOrder from src/shared/config/subjects.ts.",
     "2. Import and render RecentSessions in src/app/(protected)/questions/page.tsx between the SessionConfigurator and QuestionAnalytics components.",
@@ -20,5 +20,5 @@
     "Run: npm run lint (zero errors)"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All three parts implemented cleanly. TypeScript and lint pass with zero errors. The RecentSessions component uses useState lazy initializer for localStorage reads as required. Export CSV uses Blob+createObjectURL approach. Download icon from lucide-react added."
 }
