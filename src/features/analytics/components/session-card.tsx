@@ -31,7 +31,7 @@ export function SessionCard({ session }: SessionCardProps) {
 
   return (
     <Link
-      href={`/questions/review/${session.id}`}
+      href={`/analytics/session/${session.id}`}
       className="block rounded-xl border p-4 transition-all hover:scale-[1.01]"
       style={{
         borderColor: 'var(--card-border)',

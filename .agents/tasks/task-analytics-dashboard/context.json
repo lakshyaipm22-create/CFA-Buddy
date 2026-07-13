@@ -1,0 +1,39 @@
+{
+  "project_type": "Next.js 16.2.10 App Router with React 19, CFA Level I preparation app",
+  "language": "TypeScript 5",
+  "build_system": "npm with Next.js build. No brazil. Uses vitest for tests.",
+  "test_framework": "vitest with globals:true, environment:node, includes src/**/*.{test,property.test}.{ts,tsx}",
+  "build_command": "npx tsc --noEmit && npm run lint && npm run build",
+  "test_command": "npm run test",
+  "verification_instructions": "1. npx tsc --noEmit (0 errors), 2. npm run lint (pass), 3. npm run build (success), 4. npm run test (all pass)",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "npm install && npx prisma generate (already done in sandbox)",
+  "environment_constraints": "OPEN_INTERNET network. Full npm/docker access. Recharts must be lazy-loaded with dynamic(() => import(...), { ssr: false }). NEVER use useSyncExternalStore for one-time localStorage reads - use useState(() => ...) lazy initializer. NEVER call router.push() during render phase.",
+  "contribution_requirements": "Feature-based folders (src/features/{name}/). No cross-feature imports (extract to src/shared/). CSS variables for theming. Dark mode compatible. Mobile responsive. Run tsc + lint + build before done.",
+  "key_patterns": {
+    "page_structure": "src/app/(protected)/{route}/page.tsx imports a content component from src/features/{name}/components/",
+    "data_access": "localStorage reads use useState(() => ...) lazy initializer or module-level cached useSyncExternalStore (dashboard hook). Session data from getSessions() in session-storage.ts. Questions from loadAllQuestions() in question-loader.ts.",
+    "chart_lazy_loading": "Use dynamic(() => import('recharts').then(m => m.ComponentName), { ssr: false }) - see insights-content.tsx for pattern",
+    "theming": "CSS variables: var(--background), var(--card-bg), var(--card-border), var(--foreground), var(--foreground-secondary), var(--accent-primary=#002B5C), var(--accent-secondary=#C5A258), var(--accent-success=#00843D), var(--border)",
+    "navigation": "Add to src/shared/config/navigation.ts navigationItems array with lucide-react icon",
+    "component_style": "Client components with 'use client' directive, inline styles using CSS variables for theme compatibility, tailwind for layout",
+    "types_location": "Feature types in src/features/{name}/types/index.ts"
+  },
+  "relevant_files": [
+    "src/shared/config/navigation.ts",
+    "src/shared/config/subjects.ts",
+    "src/features/question-bank/types/index.ts",
+    "src/features/question-bank/utils/session-storage.ts",
+    "src/features/question-bank/utils/confidence-matrix.ts",
+    "src/features/question-bank/utils/question-loader.ts",
+    "src/features/question-bank/components/session-review.tsx",
+    "src/features/question-bank/components/question-analytics.tsx",
+    "src/features/insights/components/insights-content.tsx",
+    "src/features/weekly-report/components/weekly-report-content.tsx",
+    "src/features/dashboard/hooks/use-local-storage-sessions.ts",
+    "src/features/flashcards/components/batch-flashcard-creator.tsx",
+    "src/app/(protected)/layout.tsx",
+    "src/app/globals.css"
+  ],
+  "directory_structure": "src/app/(protected)/ = routes with sidebar layout. src/features/ = feature modules with components/, utils/, types/. src/shared/ = cross-feature (config/, components/layout/, hooks/, lib/). All session data in localStorage key 'cfa-buddy-sessions'. Questions in 'cfa-buddy-imported-questions'."
+}

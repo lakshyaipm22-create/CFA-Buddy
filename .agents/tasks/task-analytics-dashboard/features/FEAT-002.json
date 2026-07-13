@@ -1,0 +1,35 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Build the Individual Session Analysis page at /analytics/session/[sessionId] with full session breakdown: header with score/pass-fail, confidence matrix, time analysis chart, subject breakdown, question-by-question detail list with filters, comparison to average, and action buttons",
+  "status": "in_progress",
+  "steps": [
+    "Create src/app/(protected)/analytics/session/[sessionId]/page.tsx as a dynamic route page that imports the SessionAnalysis component",
+    "Create src/features/analytics/components/session-analysis.tsx as the main page component. Uses useState(() => ...) lazy initializer to load session via getSession(sessionId), questions via loadAllQuestions(), and compute all analysis data. Has sections A-G as described.",
+    "Section A - Session Header: Test date+time formatted nicely, mode badge, large score display (correct/total + %), pass/fail indicator (72% threshold), total time, avg time per question, comparison to personal average (compute from all sessions).",
+    "Section B - Confidence Matrix: Beautiful 2x3 grid using buildConfidenceMatrix() from existing utils. Color-coded cells (green shades for correct column, red for incorrect). Key insight text about misconceptions. Each cell clickable to filter the question list below.",
+    "Section C - Time Analysis: Lazy-loaded Recharts BarChart (time per question). Highlight bars >90s in red. Average time line overlaid. Stats: fastest, slowest, median. Insight about time traps. Use dynamic(() => import('recharts').then(m => ...), { ssr: false }).",
+    "Section D - Subject Performance Breakdown: Table with Subject, Questions count, Correct count, Accuracy %, Avg Time, Confidence distribution. Sorted by accuracy (worst first). Color-coded cells (red <60%, yellow 60-80%, green >80%). Use CFA_SUBJECTS_ORDERED for ordering known subjects.",
+    "Section E - Question Detail List: Numbered list of all questions. Each row: number + truncated text, user's answer with check/cross, correct answer if wrong, confidence badge, time spent (red if >90s), subject+topic tag, bookmark/flag indicators. Expandable to show full question + all choices. Filter buttons: Wrong Only, Flagged, Slow >90s, Misconceptions. Sort by number/time/confidence.",
+    "Section F - Comparison Section: 'This Session vs Your Average' side-by-side. Score comparison, time/question comparison, guess rate comparison, misconception rate comparison. Mini trend chart of last 10 sessions with current highlighted.",
+    "Section G - Action Items: 'Create Flashcards from N Wrong Answers' button (renders BatchFlashcardCreator from @/features/flashcards/components/batch-flashcard-creator), 'Retake This Test' button (navigates to /questions/session with same config), 'Practice Weak Topics' button, 'Export CSV' button (generates and downloads CSV), 'Share Score' button (copies text summary to clipboard).",
+    "Add loading state and error handling for invalid/missing session IDs"
+  ],
+  "acceptance_criteria": [
+    "npx tsc --noEmit passes with 0 errors",
+    "npm run build succeeds with /analytics/session/[sessionId] route in output",
+    "Session analysis page loads correctly for a given session ID",
+    "Confidence matrix displays 6 cells with correct classification counts",
+    "Time analysis chart renders with Recharts (lazy-loaded, no SSR)",
+    "Subject breakdown table shows accuracy color-coding",
+    "Question list supports filtering (wrong only, flagged, slow, misconceptions)",
+    "Action buttons are functional (CSV export, clipboard copy, navigation)",
+    "Page handles missing session gracefully with error state",
+    "Mobile responsive layout"
+  ],
+  "verification": [
+    "npx tsc --noEmit && npm run lint && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

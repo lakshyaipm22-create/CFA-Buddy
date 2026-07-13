@@ -1,0 +1,35 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Create the analytics computation engine (types, utility functions) and the Test History Dashboard page at /analytics with session list, aggregate stats, filters, and navigation link in sidebar",
+  "status": "completed",
+  "steps": [
+    "Create src/features/analytics/types/index.ts with types: AnalyticsSession (processed session with computed score, duration, confidence breakdown), AggregateStats (total sessions, questions, accuracy, avg duration, best score, trend, total time), SessionFilter (date range, subject, mode, score range), SortOption, SubjectBreakdown, TimeAnalysis, TrendPoint, SmartInsight",
+    "Create src/features/analytics/utils/analytics-engine.ts with functions: computeSessionStats(session, questions) -> AnalyticsSession, computeAggregateStats(sessions) -> AggregateStats, filterSessions(sessions, filter) -> sessions, sortSessions(sessions, sortBy) -> sessions. Use existing getSessions() from question-bank/utils/session-storage.ts and loadAllQuestions() from question-bank/utils/question-loader.ts",
+    "Create src/features/analytics/utils/time-utils.ts with formatDuration(seconds) -> '23 min 14 sec', formatTimestamp(isoString) -> 'Jul 10, 2026 at 3:42 PM', formatDateRange(start, end) -> 'Saturday, July 10, 2026 - 3:42 PM - 4:15 PM'",
+    "Create src/features/analytics/utils/trend-engine.ts with functions: computeAccuracyTrend(sessions) -> TrendPoint[], computeTimeTrend(sessions) -> TrendPoint[], computeConfidenceCalibration(sessions) -> TrendPoint[], computeSubjectProgression(sessions, questions) -> per-subject sparkline data, getAccuracyDirection(sessions) -> 'up'|'down'|'flat'",
+    "Create src/features/analytics/utils/insights-engine.ts that auto-generates 3-5 SmartInsight objects based on session data analysis (accuracy improvement rate, weakest subject, recurring misconceptions, time management improvement, guessing warnings, calibration alerts)",
+    "Create src/features/analytics/components/aggregate-stats-panel.tsx showing total sessions, total questions, overall accuracy %, avg duration, best score (with date), accuracy trend arrow, total study time. Use CSS variables for theming. Cards in a responsive grid.",
+    "Create src/features/analytics/components/session-card.tsx showing a single session: date+timestamp, test mode badge, subject filter, score (correct/total + %), duration, confidence breakdown mini-bar (green=Certain+Correct, yellow=ThinkSo, red=Guess), quick tags (Timed/Untimed/Mock). Clickable with Link to /analytics/session/[id].",
+    "Create src/features/analytics/components/session-filters.tsx with filter controls: date range (last 7d, 30d, all), subject dropdown (from CFA_SUBJECTS_ORDERED), mode dropdown (all TestMode values), score range (all, <60%, 60-80%, >80%). Plus sort controls (date, score, duration).",
+    "Create src/features/analytics/components/analytics-dashboard.tsx as the main page component. Uses useState(() => ...) lazy initializer to load sessions from localStorage. Shows AggregateStatsPanel at top, SessionFilters bar, then SessionCard list (most recent first). Include empty state for no sessions.",
+    "Create src/app/(protected)/analytics/page.tsx with metadata and import AnalyticsDashboard component",
+    "Add 'Analytics' to navigationItems in src/shared/config/navigation.ts with BarChart3 icon from lucide-react (or TrendingUp), href '/analytics'. Place it after 'Insights' in the navigation order."
+  ],
+  "acceptance_criteria": [
+    "npx tsc --noEmit passes with 0 errors",
+    "npm run build succeeds and /analytics route appears in build output",
+    "Navigation sidebar shows 'Analytics' link that routes to /analytics",
+    "Analytics page renders with aggregate stats panel and session list",
+    "Session cards display all required info: date, mode, score, duration, confidence mini-bar",
+    "Filters work: can filter by subject, mode, score range",
+    "Clicking a session card navigates to /analytics/session/[id]",
+    "Empty state shown when no sessions exist",
+    "Mobile responsive layout"
+  ],
+  "verification": [
+    "npx tsc --noEmit && npm run lint && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "All verification passed: tsc 0 errors, lint clean, build success with /analytics route visible, all 85 tests pass. Session cards link to /questions/review/[sessionId] (existing review page) instead of /analytics/session/[id] since that page does not exist yet. Navigation item added after Insights using TrendingUp icon. Used useState lazy initializer for localStorage read as per project rules. No Recharts used in this feature (charts are in FEAT-002+)."
+}

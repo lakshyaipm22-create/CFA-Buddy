@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Polish: add loading states, empty states, unit tests for computation engine, and final verification",
+  "status": "pending",
+  "steps": [
+    "Add loading skeletons to analytics dashboard and session analysis pages (pulse animations with CSS variables)",
+    "Add comprehensive empty states: no sessions yet (encourage taking first test), no trends data (need more sessions), no comparison selected",
+    "Create src/features/analytics/__tests__/analytics-engine.test.ts testing: computeSessionStats, computeAggregateStats, filterSessions, sortSessions with mock session data",
+    "Create src/features/analytics/__tests__/trend-engine.test.ts testing: computeAccuracyTrend, computeTimeTrend, computeConfidenceCalibration with edge cases (empty data, single session, many sessions)",
+    "Create src/features/analytics/__tests__/insights-engine.test.ts testing: insight generation with various data patterns (improving user, declining user, new user, heavy-guesser)",
+    "Ensure navigation from session-review.tsx links to the analytics page ('View All Sessions' or similar link)",
+    "Run full verification: npx tsc --noEmit && npm run lint && npm run build && npm run test"
+  ],
+  "acceptance_criteria": [
+    "npx tsc --noEmit passes with 0 errors",
+    "npm run lint passes",
+    "npm run build succeeds",
+    "npm run test passes (including new analytics tests)",
+    "Loading states display while data loads",
+    "Empty states show appropriate messages and CTAs",
+    "All computation utility functions have test coverage",
+    "Tests verify edge cases: empty sessions, single session, many sessions"
+  ],
+  "verification": [
+    "npx tsc --noEmit && npm run lint && npm run build && npm run test"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Add Trend Analysis section to the analytics dashboard (accuracy over time, time efficiency, confidence calibration, subject progression), Smart Insights Engine with auto-generated recommendations, and Session Comparison Mode",
+  "status": "pending",
+  "steps": [
+    "Create src/features/analytics/components/trend-charts.tsx with 4 sub-sections: (A) Accuracy Over Time - line chart X=date Y=accuracy%, one line per subject toggleable + overall, 7-day moving average, 72% goal line, highlight crossings. (B) Time Efficiency Trend - avg time/question over sessions, 90s benchmark line. (C) Confidence Calibration - line of % Certain answers that were correct over time, 90% target line, warning text if below 70%. (D) Subject Progression - sparkline per subject over last 10 sessions, color-coded arrows (improving=green, declining=red, stable=gray), sorted by needs-improvement. All charts lazy-loaded via dynamic import.",
+    "Create src/features/analytics/components/smart-insights.tsx that displays 3-5 auto-generated text insights prominently. Uses the insights-engine.ts utility. Shows insights like: accuracy improvement rate prediction, weakest subject with recommendation, recurring misconceptions count, time management improvement, guessing warnings, calibration alerts. Each insight has an icon, colored accent, and actionable text.",
+    "Create src/features/analytics/components/session-comparison.tsx for comparing 2 sessions side-by-side. Shows score/time/confidence distribution/subject-by-subject comparison. Highlights questions that appeared in both sessions with accuracy change. Add 'Compare' checkbox functionality to session cards in the session list.",
+    "Update src/features/analytics/components/analytics-dashboard.tsx to add a tab system or sections: 'Sessions' (existing list), 'Trends' (new trend charts), 'Insights' (smart insights prominently displayed). Add comparison mode state where selecting 2 sessions shows comparison view.",
+    "Ensure all new Recharts components use dynamic(() => import('recharts').then(m => m.X), { ssr: false }) pattern",
+    "Add empty states for trends section (need at least 2-3 sessions for meaningful trends)"
+  ],
+  "acceptance_criteria": [
+    "npx tsc --noEmit passes with 0 errors",
+    "npm run build succeeds",
+    "Trend charts section renders with all 4 chart types (accuracy, time, calibration, subject)",
+    "Charts are lazy-loaded (no SSR errors)",
+    "Smart insights display 3-5 auto-generated recommendations based on session data",
+    "Session comparison mode works: can select 2 sessions and see side-by-side analysis",
+    "72% pass threshold line visible on accuracy trend chart",
+    "90s benchmark line visible on time efficiency chart",
+    "Subject progression shows sparklines with improvement/decline arrows",
+    "Empty states shown when insufficient data for trends",
+    "Mobile responsive"
+  ],
+  "verification": [
+    "npx tsc --noEmit && npm run lint && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
