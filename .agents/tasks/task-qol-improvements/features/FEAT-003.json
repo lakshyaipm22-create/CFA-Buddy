@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "fix",
   "description": "Fix stale Recent Sessions on re-navigation by adding window focus listener to re-read localStorage",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "1. In src/features/question-bank/components/recent-sessions.tsx, add a useEffect that registers a 'focus' event listener on the window. On focus, re-read sessions from localStorage using getSessions(), filter/sort/slice, and call setSessions() with the updated list.",
     "2. Clean up the event listener in the useEffect cleanup function.",
@@ -20,5 +20,5 @@
     "Run: npm run lint (zero errors)"
   ],
   "blocked_reason": null,
-  "findings": null
+  "findings": "Extracted session loading logic into a reusable loadRecentSessions() helper. Added useEffect with window focus event listener that calls setSessions(loadRecentSessions()) on focus. All 85 tests pass, tsc --noEmit and lint pass with zero errors."
 }
