@@ -1022,7 +1022,7 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
       })()}
 
       {/* Action buttons */}
-      <div className="flex flex-col gap-3 sm:flex-row">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <Link
           href="/questions"
           className="flex-1 rounded-xl px-6 py-3 text-center text-sm font-medium transition-all hover:opacity-80"
@@ -1033,6 +1033,17 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
           }}
         >
           Back to Question Bank
+        </Link>
+        <Link
+          href="/analytics"
+          className="flex-1 rounded-xl px-6 py-3 text-center text-sm font-medium transition-all hover:opacity-80"
+          style={{
+            backgroundColor: 'var(--background-tertiary)',
+            color: 'var(--foreground)',
+            border: '1px solid var(--border)',
+          }}
+        >
+          View Full Analytics
         </Link>
         <button
           onClick={() => {

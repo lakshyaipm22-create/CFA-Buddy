@@ -1,4 +1,6 @@
+import { Suspense } from 'react';
 import { AnalyticsDashboard } from '@/features/analytics/components/analytics-dashboard';
+import { AnalyticsDashboardSkeleton } from '@/features/analytics/components/analytics-skeleton';
 
 export const metadata = {
   title: 'Test Analytics | CFA Buddy',
@@ -6,5 +8,9 @@ export const metadata = {
 };
 
 export default function AnalyticsPage() {
-  return <AnalyticsDashboard />;
+  return (
+    <Suspense fallback={<AnalyticsDashboardSkeleton />}>
+      <AnalyticsDashboard />
+    </Suspense>
+  );
 }

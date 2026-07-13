@@ -1,4 +1,6 @@
+import { Suspense } from 'react';
 import { SessionAnalysis } from '@/features/analytics/components/session-analysis';
+import { SessionAnalysisSkeleton } from '@/features/analytics/components/analytics-skeleton';
 
 export const metadata = {
   title: 'Session Analysis | CFA Buddy',
@@ -11,5 +13,9 @@ interface SessionAnalysisPageProps {
 
 export default async function SessionAnalysisPage({ params }: SessionAnalysisPageProps) {
   const { sessionId } = await params;
-  return <SessionAnalysis sessionId={sessionId} />;
+  return (
+    <Suspense fallback={<SessionAnalysisSkeleton />}>
+      <SessionAnalysis sessionId={sessionId} />
+    </Suspense>
+  );
 }

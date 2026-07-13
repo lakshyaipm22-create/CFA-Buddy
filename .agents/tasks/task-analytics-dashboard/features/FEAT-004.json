@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Polish: add loading states, empty states, unit tests for computation engine, and final verification",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Add loading skeletons to analytics dashboard and session analysis pages (pulse animations with CSS variables)",
     "Add comprehensive empty states: no sessions yet (encourage taking first test), no trends data (need more sessions), no comparison selected",
