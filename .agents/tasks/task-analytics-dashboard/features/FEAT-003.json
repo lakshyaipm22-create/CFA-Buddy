@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Add Trend Analysis section to the analytics dashboard (accuracy over time, time efficiency, confidence calibration, subject progression), Smart Insights Engine with auto-generated recommendations, and Session Comparison Mode",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/analytics/components/trend-charts.tsx with 4 sub-sections: (A) Accuracy Over Time - line chart X=date Y=accuracy%, one line per subject toggleable + overall, 7-day moving average, 72% goal line, highlight crossings. (B) Time Efficiency Trend - avg time/question over sessions, 90s benchmark line. (C) Confidence Calibration - line of % Certain answers that were correct over time, 90% target line, warning text if below 70%. (D) Subject Progression - sparkline per subject over last 10 sessions, color-coded arrows (improving=green, declining=red, stable=gray), sorted by needs-improvement. All charts lazy-loaded via dynamic import.",
     "Create src/features/analytics/components/smart-insights.tsx that displays 3-5 auto-generated text insights prominently. Uses the insights-engine.ts utility. Shows insights like: accuracy improvement rate prediction, weakest subject with recommendation, recurring misconceptions count, time management improvement, guessing warnings, calibration alerts. Each insight has an icon, colored accent, and actionable text.",
@@ -28,5 +28,5 @@
     "npx tsc --noEmit && npm run lint && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All Recharts Tooltip formatter functions must omit explicit type annotations on the value parameter to avoid type errors with ValueType | undefined. Sparkline component imported from weekly-report works well for subject progression. The computeSubjectProgression from trend-engine groups by session.subject field which works for subject-specific sessions; mixed sessions show under 'Mixed' key."
 }
