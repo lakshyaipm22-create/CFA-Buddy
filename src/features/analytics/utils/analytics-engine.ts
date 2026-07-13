@@ -32,6 +32,7 @@ export function computeSessionStats(session: QuestionSession): AnalyticsSession 
 
   // Confidence breakdown
   const confidenceBreakdown: ConfidenceBreakdown = {
+    certain: attempts.filter(a => a.confidence === 'Certain').length,
     certainCorrect: attempts.filter(a => a.confidence === 'Certain' && a.correct).length,
     thinkSo: attempts.filter(a => a.confidence === 'ThinkSo').length,
     guess: attempts.filter(a => a.confidence === 'Guess').length,

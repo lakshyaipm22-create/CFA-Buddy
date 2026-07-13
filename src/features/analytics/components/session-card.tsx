@@ -23,7 +23,7 @@ const MODE_LABELS: Record<string, string> = {
 export function SessionCard({ session }: SessionCardProps) {
   const { confidenceBreakdown, totalQuestions } = session;
   const certainPct =
-    totalQuestions > 0 ? (confidenceBreakdown.certainCorrect / totalQuestions) * 100 : 0;
+    totalQuestions > 0 ? (confidenceBreakdown.certain / totalQuestions) * 100 : 0;
   const thinkSoPct =
     totalQuestions > 0 ? (confidenceBreakdown.thinkSo / totalQuestions) * 100 : 0;
   const guessPct =
@@ -108,7 +108,7 @@ export function SessionCard({ session }: SessionCardProps) {
             <div
               className="h-full"
               style={{ width: `${certainPct}%`, background: 'var(--accent-success)' }}
-              title={`Certain & Correct: ${confidenceBreakdown.certainCorrect}`}
+              title={`Certain: ${confidenceBreakdown.certain}`}
             />
           )}
           {thinkSoPct > 0 && (
@@ -127,7 +127,7 @@ export function SessionCard({ session }: SessionCardProps) {
           )}
         </div>
         <div className="flex items-center gap-3 mt-1">
-          <Legend color="var(--accent-success)" label="Certain+Correct" />
+          <Legend color="var(--accent-success)" label="Certain" />
           <Legend color="var(--accent-secondary)" label="Think So" />
           <Legend color="#ef4444" label="Guess" />
         </div>

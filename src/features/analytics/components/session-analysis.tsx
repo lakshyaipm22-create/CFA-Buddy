@@ -923,7 +923,7 @@ export function SessionAnalysis({ sessionId }: SessionAnalysisProps) {
               label="Time/Question"
               current={`${analysis.avgTimePerQuestion.toFixed(1)}s`}
               average={`${analysis.avgTimePerQ.toFixed(1)}s`}
-              diff={-timeDiff}
+              diff={timeDiff}
               suffix="s"
               goodDirection="down"
             />
@@ -931,7 +931,7 @@ export function SessionAnalysis({ sessionId }: SessionAnalysisProps) {
               label="Guess Rate"
               current={`${analysis.thisGuessRate.toFixed(1)}%`}
               average={`${analysis.avgGuessRate.toFixed(1)}%`}
-              diff={-(analysis.thisGuessRate - analysis.avgGuessRate)}
+              diff={analysis.thisGuessRate - analysis.avgGuessRate}
               suffix="%"
               goodDirection="down"
             />
@@ -939,7 +939,7 @@ export function SessionAnalysis({ sessionId }: SessionAnalysisProps) {
               label="Misconceptions"
               current={`${analysis.thisMisconceptionRate.toFixed(1)}%`}
               average={`${analysis.avgMisconceptionRate.toFixed(1)}%`}
-              diff={-(analysis.thisMisconceptionRate - analysis.avgMisconceptionRate)}
+              diff={analysis.thisMisconceptionRate - analysis.avgMisconceptionRate}
               suffix="%"
               goodDirection="down"
             />
@@ -1161,6 +1161,7 @@ function ComparisonCard({
   current,
   average,
   diff,
+  suffix,
   goodDirection,
 }: {
   label: string;
@@ -1170,8 +1171,8 @@ function ComparisonCard({
   suffix: string;
   goodDirection: 'up' | 'down';
 }) {
-  const isGood = goodDirection === 'up' ? diff > 0 : diff > 0;
-  const isBad = goodDirection === 'up' ? diff < 0 : diff < 0;
+  const isGood = goodDirection === 'up' ? diff > 0 : diff < 0;
+  const isBad = goodDirection === 'up' ? diff < 0 : diff > 0;
   return (
     <div className="rounded-lg border p-3" style={{ borderColor: 'var(--border)' }}>
       <p className="text-[10px] uppercase tracking-wide mb-1" style={{ color: 'var(--foreground-secondary)' }}>
@@ -1187,7 +1188,7 @@ function ComparisonCard({
           style={{ color: isGood ? 'var(--accent-success)' : isBad ? '#ef4444' : 'var(--foreground-secondary)' }}
         >
           {isGood ? <TrendingUp className="h-3 w-3" /> : isBad ? <TrendingDown className="h-3 w-3" /> : <Minus className="h-3 w-3" />}
-          {Math.abs(diff).toFixed(1)}
+          {Math.abs(diff).toFixed(1)}{suffix}
         </p>
       )}
     </div>

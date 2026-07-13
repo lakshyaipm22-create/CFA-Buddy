@@ -1,23 +1,45 @@
 import type { Question } from '../types';
 import { sampleQuestions } from '../data/sample-questions';
 
+// Module-level cache to avoid re-parsing localStorage on every call
+let cachedQuestions: Question[] | null = null;
+let cachedImportedRaw: string | null = null;
+
+/**
+ * Invalidate the question cache. Call this after importing new questions.
+ */
+export function invalidateQuestionCache(): void {
+  cachedQuestions = null;
+  cachedImportedRaw = null;
+}
+
 /**
  * Load all available questions: sample questions + any imported questions from localStorage.
  * On the server, only sample questions are available.
  * On the client, also loads imported questions stored in localStorage.
+ * Results are cached at module level to avoid re-parsing on every page navigation.
  */
 export function loadAllQuestions(): Question[] {
   if (typeof window === 'undefined') return sampleQuestions;
+
+  // Check if localStorage content has changed since last cache
+  const currentRaw = localStorage.getItem('cfa-buddy-imported-questions');
+  if (cachedQuestions !== null && currentRaw === cachedImportedRaw) {
+    return cachedQuestions;
+  }
 
   const imported = loadImportedQuestions();
   if (imported.length > 0) {
     // Deduplicate by ID, imported takes priority
     const idSet = new Set(imported.map(q => q.id));
     const unique = [...imported, ...sampleQuestions.filter(q => !idSet.has(q.id))];
-    return unique;
+    cachedQuestions = unique;
+  } else {
+    cachedQuestions = sampleQuestions;
   }
 
-  return sampleQuestions;
+  cachedImportedRaw = currentRaw;
+  return cachedQuestions;
 }
 
 /**
@@ -38,6 +60,7 @@ export function loadImportedQuestions(): Question[] {
  */
 export function saveImportedQuestions(questions: Question[]): void {
   localStorage.setItem('cfa-buddy-imported-questions', JSON.stringify(questions));
+  invalidateQuestionCache();
 }
 
 /**

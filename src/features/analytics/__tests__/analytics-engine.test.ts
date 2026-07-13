@@ -59,7 +59,7 @@ function createMockAnalyticsSession(overrides: Partial<AnalyticsSession> = {}): 
     correctAnswers: 7,
     accuracy: 70,
     durationSeconds: 1800,
-    confidenceBreakdown: { certainCorrect: 5, thinkSo: 3, guess: 2, total: 10 },
+    confidenceBreakdown: { certain: 6, certainCorrect: 5, thinkSo: 3, guess: 2, total: 10 },
     isTimed: false,
     confidenceMatrix: {
       mastered: 5,
@@ -145,6 +145,7 @@ describe('computeSessionStats', () => {
 
     const result = computeSessionStats(session);
 
+    expect(result.confidenceBreakdown.certain).toBe(3);
     expect(result.confidenceBreakdown.certainCorrect).toBe(2);
     expect(result.confidenceBreakdown.thinkSo).toBe(1);
     expect(result.confidenceBreakdown.guess).toBe(2);

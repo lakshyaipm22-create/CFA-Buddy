@@ -20,7 +20,7 @@ function createMockAnalyticsSession(overrides: Partial<AnalyticsSession> = {}): 
     correctAnswers: 7,
     accuracy: 70,
     durationSeconds: 1800,
-    confidenceBreakdown: { certainCorrect: 5, thinkSo: 3, guess: 2, total: 10 },
+    confidenceBreakdown: { certain: 6, certainCorrect: 5, thinkSo: 3, guess: 2, total: 10 },
     isTimed: false,
     confidenceMatrix: {
       mastered: 5,

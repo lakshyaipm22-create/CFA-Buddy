@@ -6,6 +6,7 @@ import type { AnalyticsSession } from '../types';
 import { formatDuration, formatTimestamp } from '../utils/time-utils';
 import { sortByCfaOrder } from '@/shared/config/subjects';
 import { getSessions } from '@/features/question-bank/utils/session-storage';
+import { loadAllQuestions } from '@/features/question-bank/utils/question-loader';
 
 interface SessionComparisonProps {
   sessionA: AnalyticsSession;
@@ -53,30 +54,39 @@ export function SessionComparison({ sessionA, sessionB, onClose }: SessionCompar
     }
 
     // Subject-by-subject comparison
-    // Build subject stats from raw session attempts if available
+    // Build subject stats from raw session attempts by looking up per-question subjects
     const subjectStatsA: Record<string, { correct: number; total: number }> = {};
     const subjectStatsB: Record<string, { correct: number; total: number }> = {};
 
-    // Since we only have subject at the session level (not per-question in AnalyticsSession),
-    // build simplified subject comparison
-    const subjects = new Set<string>();
-    if (earlier.subject) subjects.add(earlier.subject);
-    if (later.subject) subjects.add(later.subject);
+    // Load question bank to look up subject per question
+    const allQuestions = loadAllQuestions();
+    const questionMap = new Map(allQuestions.map(q => [q.id, q]));
 
-    // If sessions have the same subject, compare directly
-    if (earlier.subject) {
-      subjectStatsA[earlier.subject] = {
-        correct: earlier.correctAnswers,
-        total: earlier.totalQuestions,
-      };
-    }
-    if (later.subject) {
-      subjectStatsB[later.subject] = {
-        correct: later.correctAnswers,
-        total: later.totalQuestions,
-      };
+    if (rawA) {
+      for (const attempt of rawA.attempts) {
+        const question = questionMap.get(attempt.questionId);
+        const subject = question?.subject ?? earlier.subject ?? 'Unknown';
+        if (!subjectStatsA[subject]) {
+          subjectStatsA[subject] = { correct: 0, total: 0 };
+        }
+        subjectStatsA[subject].total++;
+        if (attempt.correct) subjectStatsA[subject].correct++;
+      }
     }
 
+    if (rawB) {
+      for (const attempt of rawB.attempts) {
+        const question = questionMap.get(attempt.questionId);
+        const subject = question?.subject ?? later.subject ?? 'Unknown';
+        if (!subjectStatsB[subject]) {
+          subjectStatsB[subject] = { correct: 0, total: 0 };
+        }
+        subjectStatsB[subject].total++;
+        if (attempt.correct) subjectStatsB[subject].correct++;
+      }
+    }
+
+    const subjects = new Set([...Object.keys(subjectStatsA), ...Object.keys(subjectStatsB)]);
     const allSubjects = sortByCfaOrder([...subjects]);
     const subjectComparison = allSubjects.map(subject => ({
       subject,
@@ -325,7 +335,7 @@ function ComparisonMetric({
 function ConfidenceBar({ session, label }: { session: AnalyticsSession; label: string }) {
   const { confidenceBreakdown, totalQuestions } = session;
   const certainPct =
-    totalQuestions > 0 ? (confidenceBreakdown.certainCorrect / totalQuestions) * 100 : 0;
+    totalQuestions > 0 ? (confidenceBreakdown.certain / totalQuestions) * 100 : 0;
   const thinkSoPct =
     totalQuestions > 0 ? (confidenceBreakdown.thinkSo / totalQuestions) * 100 : 0;
   const guessPct =

@@ -14,7 +14,7 @@ function createMockAnalyticsSession(overrides: Partial<AnalyticsSession> = {}): 
     correctAnswers: 7,
     accuracy: 70,
     durationSeconds: 1800,
-    confidenceBreakdown: { certainCorrect: 5, thinkSo: 3, guess: 2, total: 10 },
+    confidenceBreakdown: { certain: 6, certainCorrect: 5, thinkSo: 3, guess: 2, total: 10 },
     isTimed: false,
     confidenceMatrix: {
       mastered: 5,
@@ -44,7 +44,7 @@ describe('generateSmartInsights', () => {
         isTimed: true,
         durationSeconds: 1500, // 150s per question (>120)
         subject: 'Ethics',
-        confidenceBreakdown: { certainCorrect: 2, thinkSo: 2, guess: 6, total: 10 },
+        confidenceBreakdown: { certain: 4, certainCorrect: 2, thinkSo: 2, guess: 6, total: 10 },
         confidenceMatrix: {
           mastered: 2,
           solid: 1,
@@ -98,7 +98,7 @@ describe('generateSmartInsights', () => {
       createMockAnalyticsSession({
         totalQuestions: 5,
         correctAnswers: 3,
-        confidenceBreakdown: { certainCorrect: 2, thinkSo: 2, guess: 1, total: 5 },
+        confidenceBreakdown: { certain: 3, certainCorrect: 2, thinkSo: 2, guess: 1, total: 5 },
       }),
     ];
 
@@ -113,13 +113,13 @@ describe('generateSmartInsights', () => {
       createMockAnalyticsSession({
         totalQuestions: 20,
         correctAnswers: 8,
-        confidenceBreakdown: { certainCorrect: 2, thinkSo: 2, guess: 16, total: 20 },
+        confidenceBreakdown: { certain: 4, certainCorrect: 2, thinkSo: 2, guess: 16, total: 20 },
         confidenceMatrix: { mastered: 2, solid: 2, luckyGuess: 4, misconception: 0, weakArea: 0, knowledgeGap: 10 },
       }),
       createMockAnalyticsSession({
         totalQuestions: 20,
         correctAnswers: 6,
-        confidenceBreakdown: { certainCorrect: 1, thinkSo: 3, guess: 16, total: 20 },
+        confidenceBreakdown: { certain: 2, certainCorrect: 1, thinkSo: 3, guess: 16, total: 20 },
         confidenceMatrix: { mastered: 1, solid: 2, luckyGuess: 3, misconception: 0, weakArea: 1, knowledgeGap: 13 },
       }),
     ];
@@ -136,7 +136,7 @@ describe('generateSmartInsights', () => {
       createMockAnalyticsSession({
         totalQuestions: 30,
         correctAnswers: 25,
-        confidenceBreakdown: { certainCorrect: 20, thinkSo: 8, guess: 2, total: 30 },
+        confidenceBreakdown: { certain: 21, certainCorrect: 20, thinkSo: 8, guess: 2, total: 30 },
         confidenceMatrix: { mastered: 20, solid: 4, luckyGuess: 1, misconception: 1, weakArea: 3, knowledgeGap: 1 },
       }),
     ];
@@ -153,13 +153,13 @@ describe('generateSmartInsights', () => {
         subject: 'Ethics',
         totalQuestions: 10,
         correctAnswers: 9,
-        confidenceBreakdown: { certainCorrect: 8, thinkSo: 1, guess: 1, total: 10 },
+        confidenceBreakdown: { certain: 9, certainCorrect: 8, thinkSo: 1, guess: 1, total: 10 },
       }),
       createMockAnalyticsSession({
         subject: 'Quant',
         totalQuestions: 10,
         correctAnswers: 4,
-        confidenceBreakdown: { certainCorrect: 2, thinkSo: 3, guess: 5, total: 10 },
+        confidenceBreakdown: { certain: 5, certainCorrect: 2, thinkSo: 3, guess: 5, total: 10 },
       }),
     ];
 
@@ -203,7 +203,7 @@ describe('generateSmartInsights', () => {
       createMockAnalyticsSession({
         totalQuestions: 20,
         correctAnswers: 10,
-        confidenceBreakdown: { certainCorrect: 5, thinkSo: 5, guess: 10, total: 20 },
+        confidenceBreakdown: { certain: 10, certainCorrect: 5, thinkSo: 5, guess: 10, total: 20 },
         confidenceMatrix: { mastered: 5, solid: 3, luckyGuess: 2, misconception: 5, weakArea: 3, knowledgeGap: 2 },
       }),
     ];
@@ -219,7 +219,7 @@ describe('generateSmartInsights', () => {
       createMockAnalyticsSession({
         totalQuestions: 20,
         correctAnswers: 18,
-        confidenceBreakdown: { certainCorrect: 15, thinkSo: 3, guess: 2, total: 20 },
+        confidenceBreakdown: { certain: 16, certainCorrect: 15, thinkSo: 3, guess: 2, total: 20 },
         confidenceMatrix: { mastered: 15, solid: 2, luckyGuess: 1, misconception: 1, weakArea: 1, knowledgeGap: 0 },
       }),
     ];

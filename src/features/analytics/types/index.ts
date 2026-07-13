@@ -17,6 +17,7 @@ export interface AnalyticsSession {
 }
 
 export interface ConfidenceBreakdown {
+  certain: number;
   certainCorrect: number;
   thinkSo: number;
   guess: number;
