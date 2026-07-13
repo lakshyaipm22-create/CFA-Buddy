@@ -18,6 +18,23 @@ export const CFA_SUBJECTS_ORDERED = [
 export type CfaSubject = (typeof CFA_SUBJECTS_ORDERED)[number];
 
 /**
+ * Official CFA Level I curriculum weights (approximate percentages as decimals).
+ * Single source of truth used by readiness score, weekly report, and focus suggestions.
+ */
+export const CFA_CURRICULUM_WEIGHTS: Record<string, number> = {
+  'Ethical and Professional Standards': 0.15,
+  'Quantitative Methods': 0.08,
+  'Economics': 0.08,
+  'Financial Statement Analysis': 0.13,
+  'Corporate Issuers': 0.08,
+  'Equity Investments': 0.13,
+  'Fixed Income': 0.13,
+  'Derivatives': 0.06,
+  'Alternative Investments': 0.06,
+  'Portfolio Management': 0.10,
+};
+
+/**
  * Sort an array of subject names by CFA curriculum order.
  * Unknown subjects go at the end.
  */

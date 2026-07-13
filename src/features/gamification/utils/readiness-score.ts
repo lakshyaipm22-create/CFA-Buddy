@@ -1,20 +1,5 @@
 import type { ReadinessResult } from '../types';
-
-/**
- * CFA Level 1 curriculum weights (official approximate weights).
- */
-const CFA_CURRICULUM_WEIGHTS: Record<string, number> = {
-  'Ethical and Professional Standards': 0.15,
-  'Quantitative Methods': 0.08,
-  'Economics': 0.08,
-  'Financial Statement Analysis': 0.13,
-  'Corporate Issuers': 0.08,
-  'Equity Investments': 0.13,
-  'Fixed Income': 0.13,
-  'Derivatives': 0.06,
-  'Alternative Investments': 0.06,
-  'Portfolio Management': 0.10,
-};
+import { CFA_CURRICULUM_WEIGHTS } from '@/shared/config/subjects';
 
 const TOTAL_SUBJECTS = Object.keys(CFA_CURRICULUM_WEIGHTS).length;
 
@@ -75,7 +60,9 @@ export function calculateReadinessScore(input: ReadinessInput): ReadinessResult 
   const consistencyScore = Math.round(consistencyRatio * 100);
 
   // Factor 4: Confidence calibration (15%)
-  let calibrationScore = 0;
+  // When no confidence data exists, use a neutral score (50) to avoid penalizing
+  // users who haven't used the "Certain" confidence feature yet.
+  let calibrationScore = 50;
   if (certainTotal > 0) {
     calibrationScore = Math.round((certainCorrect / certainTotal) * 100);
   }

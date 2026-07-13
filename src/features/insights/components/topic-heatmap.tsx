@@ -56,9 +56,16 @@ export function TopicHeatmap() {
     const completed = sessions.filter(s => s.status === 'completed');
     const statsMap: Record<string, TopicStats> = {};
 
+    // Build a lookup map for O(1) question resolution instead of O(n) find per attempt
+    const questionMap = new Map<string, { subject: string; reading: string | null }>();
+    for (const q of allQuestions) {
+      questionMap.set(q.id, { subject: q.subject, reading: q.reading });
+    }
+
     for (const session of completed) {
       for (const attempt of session.attempts ?? []) {
-        const q = allQuestions.find(sq => sq.id === attempt.questionId);
+        if (!attempt.questionId) continue;
+        const q = questionMap.get(attempt.questionId);
         if (!q || !q.reading) continue;
         const key = `${q.subject}|||${q.reading}`;
         if (!statsMap[key]) {

@@ -1,5 +1,6 @@
 import type { QuestionSession } from '@/features/question-bank/types';
 import type { WeeklySnapshot, WeeklyReport, WeeklyComparison } from '../types';
+import { CFA_CURRICULUM_WEIGHTS } from '@/shared/config/subjects';
 import {
   getWeeklySnapshots,
   saveWeeklySnapshot,
@@ -8,19 +9,10 @@ import {
   toDateString,
 } from './report-storage';
 
-/** CFA curriculum weights for prioritizing focus areas. */
-const CFA_WEIGHTS: Record<string, number> = {
-  'Ethical and Professional Standards': 15,
-  'Quantitative Methods': 10,
-  'Economics': 10,
-  'Financial Statement Analysis': 13,
-  'Corporate Issuers': 8,
-  'Equity Investments': 11,
-  'Fixed Income': 11,
-  'Derivatives': 6,
-  'Alternative Investments': 6,
-  'Portfolio Management': 10,
-};
+/** CFA curriculum weights converted to percentages for display in focus suggestions. */
+const CFA_WEIGHTS_PERCENT: Record<string, number> = Object.fromEntries(
+  Object.entries(CFA_CURRICULUM_WEIGHTS).map(([k, v]) => [k, Math.round(v * 100)])
+);
 
 interface TimerSession {
   startTime: string;
@@ -186,7 +178,7 @@ function generateFocusSuggestions(
 
   // Suggest weak subjects with high CFA weight
   for (const subject of weaknesses) {
-    const weight = CFA_WEIGHTS[subject];
+    const weight = CFA_WEIGHTS_PERCENT[subject];
     if (weight && weight >= 10) {
       suggestions.push(
         `Focus on ${subject} (${weight}% of exam, needs improvement)`
@@ -200,7 +192,7 @@ function generateFocusSuggestions(
   }
 
   // Suggest high-weight subjects not covered this week
-  const allSubjects = Object.entries(CFA_WEIGHTS)
+  const allSubjects = Object.entries(CFA_WEIGHTS_PERCENT)
     .sort(([, a], [, b]) => b - a);
 
   for (const [subject, weight] of allSubjects) {

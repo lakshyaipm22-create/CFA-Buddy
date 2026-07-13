@@ -108,7 +108,11 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
     };
   }, [sessions]);
 
-  // Compute and sync gamification state based on sessions
+  // Compute and sync gamification state based on sessions.
+  // NOTE: This useMemo has localStorage side effects (checkAndUpdateStreak, saveGamificationState).
+  // This is acceptable because: (1) all writes are idempotent (overwriting with same computed value),
+  // (2) the project's lint rules prohibit setState in useEffect, and (3) awardBadges only sets
+  // earnedAt on badges that don't already have it, preventing double-awards under strict mode.
   const gamificationData = useMemo(() => {
     if (typeof window === 'undefined') {
       const defaultState: GamificationState = { xp: 0, level: 0, streakDays: 0, lastActivityDate: '', weeklyQuestionsAnswered: 0, weekStartDate: '', badges: [], dailyCounts: {} };

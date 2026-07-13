@@ -11,6 +11,7 @@ import {
   incrementPracticeCount,
   getDueTomorrowCount,
 } from '../utils/practice-storage';
+import { getGamificationState } from '@/features/gamification/utils/gamification-storage';
 import { PracticeQuestionCard } from './practice-question-card';
 
 const RATING_CONFIG: { rating: PracticeRating; label: string; color: string; bg: string }[] = [
@@ -20,16 +21,31 @@ const RATING_CONFIG: { rating: PracticeRating; label: string; color: string; bg:
   { rating: 'easy', label: 'Easy', color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.15)' },
 ];
 
-function initQuestions(): { questions: Question[]; firstQuestion: Question | null } {
+function initQuestions(filterSubject?: string, filterTopic?: string): { questions: Question[]; firstQuestion: Question | null } {
   if (typeof window === 'undefined') return { questions: [], firstQuestion: null };
-  const questions = loadAllQuestions();
+  let questions = loadAllQuestions();
   setQuestionSubjectMap(questions);
+
+  // Filter questions by subject and/or topic if provided
+  if (filterSubject || filterTopic) {
+    questions = questions.filter(q => {
+      if (filterSubject && q.subject !== filterSubject) return false;
+      if (filterTopic && q.reading !== filterTopic) return false;
+      return true;
+    });
+  }
+
   const firstQuestion = selectNextQuestion(questions);
   return { questions, firstQuestion };
 }
 
-export function PracticeContent() {
-  const [initialized] = useState(() => initQuestions());
+interface PracticeContentProps {
+  filterSubject?: string;
+  filterTopic?: string;
+}
+
+export function PracticeContent({ filterSubject, filterTopic }: PracticeContentProps = {}) {
+  const [initialized] = useState(() => initQuestions(filterSubject, filterTopic));
   const questionsRef = useRef<Question[]>(initialized.questions);
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(initialized.firstQuestion);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -38,6 +54,11 @@ export function PracticeContent() {
       return { date: '', count: 0, streakDays: 0, lastPracticeDate: '' };
     }
     return getPracticeStats();
+  });
+  // Use gamification streak (requires 10+ questions/day) as the single source of truth
+  const [streakDays] = useState(() => {
+    if (typeof window === 'undefined') return 0;
+    return getGamificationState().streakDays;
   });
   const [dueTomorrow, setDueTomorrow] = useState(() => {
     if (typeof window === 'undefined') return 0;
@@ -124,7 +145,7 @@ export function PracticeContent() {
           <span className="text-sm" style={{ color: 'var(--foreground-secondary)' }}>
             Streak:{' '}
             <span className="font-semibold" style={{ color: 'var(--foreground)' }}>
-              {stats.streakDays} {stats.streakDays === 1 ? 'day' : 'days'}
+              {streakDays} {streakDays === 1 ? 'day' : 'days'}
             </span>
           </span>
         </div>
