@@ -17,6 +17,7 @@ import {
   RotateCcw,
   ListChecks,
   Clock,
+  FileBarChart,
 } from 'lucide-react';
 import { ExamCountdown } from './exam-countdown';
 import { WeeklyProgress } from './weekly-progress';
@@ -354,6 +355,12 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
             icon={<FolderOpen className="h-5 w-5" />}
             label="Browse Resources"
             description="Access study materials"
+          />
+          <QuickAction
+            href="/weekly-report"
+            icon={<FileBarChart className="h-5 w-5" />}
+            label="Weekly Report"
+            description="View your weekly progress summary"
           />
         </div>
       </div>

@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Weekly Report page with trend tracking, sparkline charts, week-over-week comparisons, and suggested focus areas. Generates a comprehensive weekly study summary accessible on-demand from Dashboard.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create src/features/weekly-report/ directory with types/, utils/, components/ subdirs",
     "Create src/features/weekly-report/types/index.ts: WeeklySnapshot { weekStart: string, weekEnd: string, questionsAnswered: number, accuracy: number, timeStudiedMinutes: number, subjectsCovered: string[], subjectAccuracy: Record<string, {correct: number, total: number}>, streakDays: number, xp: number }. WeeklyReport { current: WeeklySnapshot, previous: WeeklySnapshot | null, strengths: string[], weaknesses: string[], suggestedFocus: string[], comparison: { accuracyDelta: number, questionsDelta: number, timeDelta: number } }.",

@@ -12,6 +12,7 @@ import {
   RotateCw,
   BarChart3,
   ListChecks,
+  FileBarChart,
 } from 'lucide-react';
 
 export const navigationItems = [
@@ -25,6 +26,7 @@ export const navigationItems = [
   { name: 'Formulas', href: '/formulas', icon: Calculator },
   { name: 'Revision', href: '/revision', icon: RotateCw },
   { name: 'Insights', href: '/insights', icon: BarChart3 },
+  { name: 'Weekly Report', href: '/weekly-report', icon: FileBarChart },
   { name: 'LOS Tracker', href: '/los-tracker', icon: Grid3X3 },
   { name: 'Mistakes', href: '/mistakes', icon: AlertTriangle },
   { name: 'Exam Plan', href: '/exam-plan', icon: Calendar },
