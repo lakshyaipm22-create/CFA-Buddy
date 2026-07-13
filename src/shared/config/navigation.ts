@@ -13,6 +13,7 @@ import {
   BarChart3,
   ListChecks,
   FileBarChart,
+  TrendingUp,
 } from 'lucide-react';
 
 export const navigationItems = [
@@ -26,6 +27,7 @@ export const navigationItems = [
   { name: 'Formulas', href: '/formulas', icon: Calculator },
   { name: 'Revision', href: '/revision', icon: RotateCw },
   { name: 'Insights', href: '/insights', icon: BarChart3 },
+  { name: 'Analytics', href: '/analytics', icon: TrendingUp },
   { name: 'Weekly Report', href: '/weekly-report', icon: FileBarChart },
   { name: 'LOS Tracker', href: '/los-tracker', icon: Grid3X3 },
   { name: 'Mistakes', href: '/mistakes', icon: AlertTriangle },
