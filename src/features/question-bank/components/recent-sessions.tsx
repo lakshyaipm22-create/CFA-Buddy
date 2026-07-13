@@ -1,9 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSessions } from '../utils/session-storage';
 import type { QuestionSession } from '../types';
+
+function loadRecentSessions(): QuestionSession[] {
+  const all = getSessions();
+  return all
+    .filter(s => s.status === 'completed')
+    .sort((a, b) => {
+      const dateA = a.completedAt ? new Date(a.completedAt).getTime() : 0;
+      const dateB = b.completedAt ? new Date(b.completedAt).getTime() : 0;
+      return dateB - dateA;
+    })
+    .slice(0, 5);
+}
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('en-US', {
@@ -23,17 +35,18 @@ function getScore(session: QuestionSession): number {
 export function RecentSessions() {
   const router = useRouter();
 
-  const [sessions] = useState<QuestionSession[]>(() => {
-    const all = getSessions();
-    return all
-      .filter(s => s.status === 'completed')
-      .sort((a, b) => {
-        const dateA = a.completedAt ? new Date(a.completedAt).getTime() : 0;
-        const dateB = b.completedAt ? new Date(b.completedAt).getTime() : 0;
-        return dateB - dateA;
-      })
-      .slice(0, 5);
-  });
+  const [sessions, setSessions] = useState<QuestionSession[]>(() => loadRecentSessions());
+
+  useEffect(() => {
+    function handleFocus() {
+      setSessions(loadRecentSessions());
+    }
+
+    window.addEventListener('focus', handleFocus);
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, []);
 
   if (sessions.length === 0) {
     return (
