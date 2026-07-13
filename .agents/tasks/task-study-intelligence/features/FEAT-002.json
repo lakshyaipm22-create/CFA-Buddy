@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Study Streaks, Gamification (XP/Levels/Badges), and Enhanced Exam Readiness Score. Adds motivational elements to the dashboard: daily streak counter, XP system with levels, milestone badges with confetti animation, weekly goals with progress bar, and a multi-factor exam readiness score replacing the simple accuracy gauge.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create src/features/gamification/ directory with types/, utils/, components/ subdirs",
     "Create src/features/gamification/types/index.ts with interfaces: Badge { id: string, name: string, description: string, icon: string (lucide icon name), earnedAt: string | null }, GamificationState { xp: number, level: number, streakDays: number, lastActivityDate: string, weeklyQuestionsAnswered: number, weekStartDate: string, badges: Badge[] }, WeeklyGoal { target: number, current: number, weekStart: string }",

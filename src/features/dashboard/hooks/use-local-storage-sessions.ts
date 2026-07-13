@@ -4,6 +4,12 @@ import { useSyncExternalStore } from 'react';
 
 interface SessionData {
   status: string;
+  mode?: string;
+  completedAt?: string | null;
+  config?: {
+    subject?: string;
+    [key: string]: unknown;
+  };
   attempts?: Array<{
     correct: boolean;
     timestamp?: string;
