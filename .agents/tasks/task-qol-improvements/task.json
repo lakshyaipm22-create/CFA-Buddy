@@ -1,0 +1,14 @@
+{
+  "task_id": "task-qol-improvements",
+  "task_description": "Quality-of-life improvements and bug fixes for CFA Buddy: fix Unknown subject inference in API route, add subject/reading badges during tests, add recent sessions section, and add CSV export for session results",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "tsc --noEmit passes (0 errors), lint passes (0 errors), all 85 tests pass. No Docker in project."
+  }
+}

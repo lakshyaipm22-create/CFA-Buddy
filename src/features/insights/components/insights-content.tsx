@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { TrendingUp, TrendingDown, Target, Clock } from 'lucide-react';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
+import { TopicHeatmap } from './topic-heatmap';
 
 const PieChart = dynamic(() => import('recharts').then(m => m.PieChart), { ssr: false });
 const Pie = dynamic(() => import('recharts').then(m => m.Pie), { ssr: false });
@@ -86,12 +87,22 @@ export function InsightsContent() {
 
   if (!data) {
     return (
-      <div className="rounded-xl border border-dashed p-12 text-center" style={{ borderColor: 'var(--card-border)' }}>
-        <Target className="mx-auto h-12 w-12 opacity-30" style={{ color: 'var(--foreground-secondary)' }} />
-        <h3 className="mt-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>No Data Yet</h3>
-        <p className="mt-2 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
-          Complete some question sessions to see your progress insights.
-        </p>
+      <div className="space-y-6">
+        <div className="rounded-xl border border-dashed p-12 text-center" style={{ borderColor: 'var(--card-border)' }}>
+          <Target className="mx-auto h-12 w-12 opacity-30" style={{ color: 'var(--foreground-secondary)' }} />
+          <h3 className="mt-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>No Data Yet</h3>
+          <p className="mt-2 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
+            Complete some question sessions to see your progress insights.
+          </p>
+        </div>
+
+        {/* Topic Heatmap - shown even without session data */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--foreground)' }}>
+            Topic Performance Heatmap
+          </h3>
+          <TopicHeatmap />
+        </div>
       </div>
     );
   }
@@ -144,6 +155,14 @@ export function InsightsContent() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Topic Performance Heatmap */}
+      <div>
+        <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--foreground)' }}>
+          Topic Performance Heatmap
+        </h3>
+        <TopicHeatmap />
       </div>
     </div>
   );

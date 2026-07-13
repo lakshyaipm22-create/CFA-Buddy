@@ -24,6 +24,7 @@ import {
   ChevronDown,
   ChevronUp,
   AlertTriangle,
+  Download,
 } from 'lucide-react';
 import type { Question, QuestionSession, SessionSummary, ErrorClassification } from '../types';
 import { getSession, getSessions, saveSession } from '../utils/session-storage';
@@ -1033,6 +1034,58 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
         >
           Back to Question Bank
         </Link>
+        <button
+          onClick={() => {
+            const csvRows: string[] = [];
+            csvRows.push('Question#,QuestionText,YourAnswer,CorrectAnswer,Correct(Y/N),Confidence,TimeSpent,Subject');
+            session.attempts.forEach((attempt, idx) => {
+              const question = sessionQuestions.find(q => q.id === attempt.questionId);
+              const questionText = question
+                ? '"' + question.questionText.replace(/"/g, '""') + '"'
+                : '';
+              const correctChoice = question
+                ? question.answerChoices.find(c => c.isCorrect)?.label ?? ''
+                : '';
+              const subject = question ? '"' + question.subject.replace(/"/g, '""') + '"' : '';
+              csvRows.push(
+                [
+                  idx + 1,
+                  questionText,
+                  attempt.selectedAnswer,
+                  correctChoice,
+                  attempt.correct ? 'Y' : 'N',
+                  attempt.confidence,
+                  attempt.timeSpentSeconds + 's',
+                  subject,
+                ].join(',')
+              );
+            });
+            const csvContent = csvRows.join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const dateStr = session.completedAt
+              ? new Date(session.completedAt).toISOString().slice(0, 10)
+              : new Date(session.startedAt).toISOString().slice(0, 10);
+            const scoreVal = Math.round(summary.accuracy);
+            const filename = `CFA-Buddy-Session-${dateStr}-${scoreVal}%.csv`;
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+          }}
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3 text-center text-sm font-medium transition-all hover:opacity-80"
+          style={{
+            backgroundColor: 'var(--background-tertiary)',
+            color: 'var(--foreground)',
+            border: '1px solid var(--border)',
+          }}
+        >
+          <Download className="h-4 w-4" />
+          Export Results
+        </button>
         <Link
           href="/questions"
           className="flex-1 rounded-xl px-6 py-3 text-center text-sm font-medium transition-all hover:opacity-80"

@@ -1,10 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import { Search, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/shared/components/layout/theme-provider';
+import { XPLevelBadge } from '@/features/gamification/components/xp-level-badge';
+import { getGamificationState } from '@/features/gamification/utils/gamification-storage';
 
 export function Header() {
   const { theme, toggleTheme } = useTheme();
+  const [gamification] = useState(() => {
+    if (typeof window === 'undefined') return { xp: 0, level: 0 };
+    const state = getGamificationState();
+    return { xp: state.xp, level: state.level };
+  });
 
   return (
     <header
@@ -16,6 +24,8 @@ export function Header() {
     >
       <div />
       <div className="flex items-center gap-3">
+        {/* Level Indicator */}
+        <XPLevelBadge xp={gamification.xp} level={gamification.level} compact />
         <button
           className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors"
           style={{

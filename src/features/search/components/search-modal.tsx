@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Search, X, Clock, FileText, HelpCircle, StickyNote } from 'lucide-react';
 import type { ContentMetadata } from '@/features/content-scanner/types';
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
+import { searchNotes } from '@/features/practice/utils/annotations-storage';
 
 interface SearchResult {
   id: string;
@@ -87,6 +88,16 @@ export function SearchModal() {
         href: '/questions',
       }));
     combined.push(...matchedQuestions);
+
+    // Search question annotations/notes
+    const matchedNotes = searchNotes(q).slice(0, 5).map(n => ({
+      id: `note-${n.questionId}`,
+      type: 'note' as const,
+      title: n.note.slice(0, 80) + (n.note.length > 80 ? '...' : ''),
+      subtitle: `Note on question ${n.questionId.slice(0, 8)}...`,
+      href: '/practice',
+    }));
+    combined.push(...matchedNotes);
 
     // Search resources via API
     try {

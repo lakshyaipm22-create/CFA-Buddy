@@ -1,0 +1,38 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Weekly Report page with trend tracking, sparkline charts, week-over-week comparisons, and suggested focus areas. Generates a comprehensive weekly study summary accessible on-demand from Dashboard.",
+  "status": "completed",
+  "steps": [
+    "Create src/features/weekly-report/ directory with types/, utils/, components/ subdirs",
+    "Create src/features/weekly-report/types/index.ts: WeeklySnapshot { weekStart: string, weekEnd: string, questionsAnswered: number, accuracy: number, timeStudiedMinutes: number, subjectsCovered: string[], subjectAccuracy: Record<string, {correct: number, total: number}>, streakDays: number, xp: number }. WeeklyReport { current: WeeklySnapshot, previous: WeeklySnapshot | null, strengths: string[], weaknesses: string[], suggestedFocus: string[], comparison: { accuracyDelta: number, questionsDelta: number, timeDelta: number } }.",
+    "Create src/features/weekly-report/utils/report-storage.ts: Read/write 'cfa-buddy-weekly-reports' localStorage key (array of WeeklySnapshot). Functions: getWeeklySnapshots(), saveWeeklySnapshot(snapshot), getCurrentWeekSnapshot() that computes stats from sessions/practice data for the current week (Mon-Sun), generateComparison(current, previous).",
+    "Create src/features/weekly-report/utils/report-generator.ts: Function generateWeeklyReport() that: (1) Computes current week stats from cfa-buddy-sessions + cfa-buddy-practice-history + cfa-buddy-study-timer. (2) Finds previous week snapshot from storage. (3) Computes deltas (accuracy change, questions/day change). (4) Identifies top 3 strengths (highest accuracy subjects this week) and top 3 weaknesses (lowest accuracy). (5) Generates suggested focus: weakest subjects + subjects not studied recently + subjects with high CFA weight but low coverage. (6) Returns full WeeklyReport object.",
+    "Create src/features/weekly-report/components/weekly-report-content.tsx: Main client component. On mount, generates the report. Shows: Summary cards (questions answered, accuracy, time studied, subjects covered). Comparison section: arrows showing up/down vs previous week with delta values. Strengths/weaknesses lists with subject names and accuracy. Suggested focus for next week with rationale. 4-week trend sparklines for questions/day, accuracy, time/day, and streak (using SVG path, no Recharts needed for these small charts - just inline SVG polylines).",
+    "Create src/features/weekly-report/components/sparkline.tsx: Tiny SVG sparkline component. Props: data (number[]), width, height, color. Renders a polyline with gradient fill below. Pure SVG, no dependencies.",
+    "Create src/app/(protected)/weekly-report/page.tsx: Server component rendering WeeklyReportContent.",
+    "Add a 'Generate Report' button/card on Dashboard: In src/features/dashboard/components/dashboard-content.tsx, add a small card or link in the Quick Actions area that links to /weekly-report with text like 'View Weekly Report'.",
+    "Add navigation: In src/shared/config/navigation.ts add { name: 'Weekly Report', href: '/weekly-report', icon: FileBarChart } (import FileBarChart from lucide-react) after 'Insights'.",
+    "Ensure mobile responsive layout: stack cards vertically on small screens, sparklines scale down gracefully."
+  ],
+  "acceptance_criteria": [
+    "/weekly-report page renders with current week summary",
+    "Comparison section shows deltas vs previous week (or 'First week!' if no prior data)",
+    "Top 3 strengths and weaknesses display correctly based on subject accuracy",
+    "Suggested focus section shows actionable recommendations",
+    "Sparkline charts render as SVG for 4-week trends",
+    "Weekly snapshots persist in localStorage for trend tracking",
+    "Dashboard has link/button to weekly report",
+    "Navigation sidebar includes Weekly Report item",
+    "npx tsc --noEmit passes",
+    "npm run build succeeds",
+    "npm test passes"
+  ],
+  "verification": [
+    "npx tsc --noEmit",
+    "npm run build",
+    "npm test"
+  ],
+  "blocked_reason": null,
+  "findings": "All verification passed: 0 TS errors, lint clean, build succeeds (weekly-report route registered as static), 85 tests pass. Fixed lint error with Math.random() in sparkline by using React useId() hook instead. Feature adds 6 new files plus navigation and dashboard integration."
+}
