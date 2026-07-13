@@ -1,0 +1,28 @@
+{
+  "project_type": "Next.js 16.2.10 App Router with React 19.2.4, TypeScript 5, Tailwind CSS 4",
+  "language": "TypeScript/TSX",
+  "build_system": "npm with Next.js build system, no Docker",
+  "test_framework": "Jest/testing-library (85 tests passing), test files in __tests__/ and *.test.ts",
+  "build_command": "npx tsc --noEmit && npm run lint",
+  "test_command": "npm run test",
+  "verification_instructions": "Run: npx tsc --noEmit && npm run lint && npm run test",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "npm install && npx prisma generate",
+  "environment_constraints": "No content/metadata/imported-questions/ directory in sandbox (only on user's machine). Test code changes via tsc and lint only. GitHub power for pushing.",
+  "contribution_requirements": "Never use useSyncExternalStore for localStorage. Never call router.push() during render. Use useState(() => ...) for lazy init. Use sortByCfaOrder from shared/config/subjects.ts. Run tsc + lint before commit.",
+  "key_patterns": "Feature-based folders (src/features/{name}/). CSS variables for theming (var(--foreground), var(--card-bg), etc.). localStorage for all user data. API routes in src/app/api/. loadAllQuestions() merges sample + imported questions from localStorage. useImportedQuestions hook in src/features/question-bank/hooks/useImportedQuestions.ts auto-fetches on first visit.",
+  "relevant_files": [
+    "src/app/api/imported-questions/route.ts",
+    "src/features/question-bank/hooks/useImportedQuestions.ts",
+    "src/app/(protected)/questions/page.tsx",
+    "src/features/question-bank/components/session-configurator.tsx",
+    "src/features/question-bank/components/active-test-session.tsx",
+    "src/features/question-bank/components/session-review.tsx",
+    "src/features/question-bank/utils/session-storage.ts",
+    "src/features/question-bank/utils/question-loader.ts",
+    "src/features/question-bank/types/index.ts",
+    "src/shared/config/subjects.ts",
+    "src/scripts/import-questions.ts"
+  ],
+  "directory_structure": "src/app/ (routes), src/features/ (19 feature modules), src/shared/ (cross-feature code), src/scripts/ (CLI tools), content/ (gitignored PDFs + metadata)"
+}
