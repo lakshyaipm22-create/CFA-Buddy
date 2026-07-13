@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Spaced Practice Engine (/practice) - A dedicated spaced repetition page for daily question practice. Shows one question at a time with immediate reveal, SM-2-like algorithm for scheduling, and per-question history tracking. Also includes Question Annotations (notes on questions). This is the CORE daily study tool.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/practice/ directory with types/, utils/, components/ subdirs",
     "Create src/features/practice/types/index.ts with PracticeHistory interface: { questionId: string, lastSeen: string (ISO), timesCorrect: number, timesWrong: number, easeFactor: number, interval: number, nextDue: string (ISO) }. Also PracticeStats: { practicedToday: number, streak: number, dueTomorrow: number }",
@@ -34,5 +34,5 @@
     "npm test"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All steps implemented. Used useState lazy initializer pattern to avoid set-state-in-effect lint error when loading questions. The computeSubjectAccuracy function uses session history from localStorage rather than passing history as a parameter. The setQuestionSubjectMap export was added to allow the component to pre-populate the subject map at init time. Build passes, lint clean (0 errors, 0 warnings), all 85 tests pass."
 }
