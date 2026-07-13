@@ -1,0 +1,40 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Study Streaks, Gamification (XP/Levels/Badges), and Enhanced Exam Readiness Score. Adds motivational elements to the dashboard: daily streak counter, XP system with levels, milestone badges with confetti animation, weekly goals with progress bar, and a multi-factor exam readiness score replacing the simple accuracy gauge.",
+  "status": "pending",
+  "steps": [
+    "Create src/features/gamification/ directory with types/, utils/, components/ subdirs",
+    "Create src/features/gamification/types/index.ts with interfaces: Badge { id: string, name: string, description: string, icon: string (lucide icon name), earnedAt: string | null }, GamificationState { xp: number, level: number, streakDays: number, lastActivityDate: string, weeklyQuestionsAnswered: number, weekStartDate: string, badges: Badge[] }, WeeklyGoal { target: number, current: number, weekStart: string }",
+    "Create src/features/gamification/utils/gamification-storage.ts: Read/write 'cfa-buddy-gamification' localStorage key. Functions: getGamificationState(), saveGamificationState(), addXP(amount), checkAndUpdateStreak(), getLevel(xp) using floor(sqrt(totalXP / 100)), getXPForNextLevel(). Streak logic: consecutive days with >=10 questions answered. XP: +10 per question, +50 for completing a session, +100 for mock exam.",
+    "Create src/features/gamification/utils/badges.ts: Define all badges: 'first-100' (First 100 Questions, totalQuestions >= 100), '7-day-streak' (7-Day Streak, streakDays >= 7), 'all-subjects' (All Subjects Attempted, unique subjects >= 10), 'mock-completed' (Mock Exam Completed, has a Mock session), '80-accuracy' (80% Accuracy Club, overall accuracy >= 80), '500-questions' (500 Questions, total >= 500), '30-day-streak' (30-Day Streak, streakDays >= 30), 'level-5' (Level 5, level >= 5). Function checkNewBadges() that evaluates conditions and returns newly earned badges.",
+    "Create src/features/gamification/components/confetti.tsx: Pure CSS confetti animation component (no external library). Uses CSS keyframes for falling colored particles. Shows for 3 seconds when triggered. Accepts show: boolean prop.",
+    "Create src/features/gamification/components/xp-level-badge.tsx: Small component showing level number + XP progress bar toward next level. Used in header and dashboard. Style: gold accent color, compact.",
+    "Create src/features/gamification/components/badges-display.tsx: Grid of earned/unearned badges. Earned badges are full color with earnedAt date. Unearned are grayed out with progress hint.",
+    "Create src/features/gamification/components/weekly-goal.tsx: Shows 'Answer 100 questions this week' with progress bar and count.",
+    "Create src/features/gamification/components/streak-display.tsx: Shows flame icon + streak count + small calendar of last 7 days (filled/empty circles).",
+    "Create src/features/gamification/utils/readiness-score.ts: Multi-factor exam readiness calculation. Factor 1 (40%): Overall accuracy weighted by CFA curriculum weights (from question-selector.ts CFA_CURRICULUM_WEIGHTS pattern). Factor 2 (20%): Coverage - % of subjects with >=5 questions attempted. Factor 3 (15%): Consistency - streakDays / 30 capped at 1.0. Factor 4 (15%): Confidence calibration - % of 'Certain' answers correct. Factor 5 (10%): Recency - inverse of average days since each subject last studied. Returns total 0-100 + breakdown per factor + prediction text.",
+    "Modify src/features/dashboard/components/dashboard-content.tsx: Replace the simple ReadinessGauge with the new multi-factor readiness score. Add gamification widgets: XP/Level display, streak counter, weekly goal progress bar, and badges section. Add 'Start Review' quick action. Show confetti when a new badge is earned (check on mount).",
+    "Modify src/shared/components/layout/header.tsx: Add small XP/Level indicator next to the search button (compact format: 'Lv.3' with small XP bar or just the level badge)."
+  ],
+  "acceptance_criteria": [
+    "Dashboard shows XP, level, streak counter, and weekly goal progress",
+    "Badges grid displays on dashboard with earned/unearned state",
+    "Confetti animation triggers when a badge is newly earned (CSS only, no library)",
+    "Exam readiness shows multi-factor breakdown (Accuracy, Coverage, Consistency, Calibration, Recency)",
+    "Prediction text shows estimated exam score and target",
+    "Header shows compact level indicator",
+    "Level = floor(sqrt(totalXP / 100)) formula works correctly",
+    "Streak counts consecutive days with >=10 questions",
+    "npx tsc --noEmit passes with 0 errors",
+    "npm run build succeeds",
+    "npm test passes"
+  ],
+  "verification": [
+    "npx tsc --noEmit",
+    "npm run build",
+    "npm test"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,0 +1,38 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Spaced Practice Engine (/practice) - A dedicated spaced repetition page for daily question practice. Shows one question at a time with immediate reveal, SM-2-like algorithm for scheduling, and per-question history tracking. Also includes Question Annotations (notes on questions). This is the CORE daily study tool.",
+  "status": "in_progress",
+  "steps": [
+    "Create src/features/practice/ directory with types/, utils/, components/ subdirs",
+    "Create src/features/practice/types/index.ts with PracticeHistory interface: { questionId: string, lastSeen: string (ISO), timesCorrect: number, timesWrong: number, easeFactor: number, interval: number, nextDue: string (ISO) }. Also PracticeStats: { practicedToday: number, streak: number, dueTomorrow: number }",
+    "Create src/features/practice/utils/practice-storage.ts: functions to read/write localStorage key 'cfa-buddy-practice-history' (Record<questionId, PracticeHistory>). Also track daily practice count and streak in 'cfa-buddy-practice-stats' ({date: string, count: number, streakDays: number, lastPracticeDate: string}). Use lazy initializer pattern (if typeof window === 'undefined' return default).",
+    "Create src/features/practice/utils/practice-algorithm.ts: selectNextQuestion() function that picks from all questions (via loadAllQuestions from question-bank/utils/question-loader.ts) using spaced repetition logic: (1) 80% of picks from due questions (nextDue <= now), sorted by overdueness, weighted by subject weakness; (2) 20% new (never-seen) questions. Also include updatePracticeHistory() that takes questionId + rating ('forgot'|'hard'|'good'|'easy') and updates easeFactor/interval/nextDue using SM-2 logic (similar to flashcards/utils/sm2.ts but adapted for questions).",
+    "Create src/features/practice/utils/annotations-storage.ts: functions to read/write localStorage key 'cfa-buddy-question-notes' (Record<questionId, string>). Functions: getNotes(), getNote(questionId), saveNote(questionId, note), deleteNote(questionId), searchNotes(query) returning {questionId, note}[].",
+    "Create src/features/practice/components/practice-content.tsx: Main client component. State: currentQuestion, showAnswer, practiceHistory, stats. Loads a question via selectNextQuestion(). Shows question text + answer choices (not selectable initially). 'Reveal Answer' button shows correct answer highlighted. After reveal, shows 4 rating buttons: Forgot / Hard / Good / Easy with color coding. Updates history on rating click, then loads next question. Shows stats bar at top: 'Practiced today: X | Streak: Y days | Due tomorrow: Z'. Include inline note/annotation input (small icon that expands to textarea, max 500 chars) that saves to cfa-buddy-question-notes.",
+    "Create src/features/practice/components/practice-question-card.tsx: Reusable card showing question text, answer choices (revealed state shows green/red), explanation, and annotation note if exists.",
+    "Create src/app/(protected)/practice/page.tsx: Server component that renders PracticeContent (no auth needed, just wraps the client component).",
+    "Add 'Practice' to navigation in src/shared/config/navigation.ts: { name: 'Practice', href: '/practice', icon: Repeat } (import Repeat from lucide-react). Place it after 'Questions' in the list.",
+    "Integrate annotations into search: In src/features/search/components/search-modal.tsx, add a section that searches question notes (from cfa-buddy-question-notes localStorage key) and returns them as type 'note' results with href to /practice.",
+    "Ensure all components use CSS variables for theming (var(--card-bg), var(--card-border), var(--foreground), etc.), are mobile responsive, and use no external libraries beyond what's already in package.json."
+  ],
+  "acceptance_criteria": [
+    "/practice route renders and shows a question",
+    "Clicking 'Reveal Answer' shows the correct answer highlighted green with explanation",
+    "Rating buttons (Forgot/Hard/Good/Easy) update localStorage and load next question",
+    "Stats bar shows practiced today count, streak, and due tomorrow count",
+    "Practice navigation item appears in sidebar after Questions",
+    "Annotations can be added to questions and persist in localStorage",
+    "Annotations appear in Cmd+K search results",
+    "npx tsc --noEmit passes with 0 errors",
+    "npm run build succeeds",
+    "npm test passes all existing tests"
+  ],
+  "verification": [
+    "npx tsc --noEmit",
+    "npm run build",
+    "npm test"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

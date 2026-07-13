@@ -1,0 +1,7 @@
+{
+  "task_id": "task-study-intelligence",
+  "task_description": "Build 7 advanced study intelligence features for CFA Buddy: Spaced Practice Engine, Topic Heatmap, Study Streaks/Gamification, Smart Review Queue, Enhanced Exam Readiness Score, Question Annotations, and Weekly Report. All data in localStorage, mobile responsive, dark mode compatible.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
+  "blocked_reason": null
+}
