@@ -15,6 +15,8 @@ import {
   AlertTriangle,
   FolderOpen,
   RotateCcw,
+  ListChecks,
+  Clock,
 } from 'lucide-react';
 import { ExamCountdown } from './exam-countdown';
 import { WeeklyProgress } from './weekly-progress';
@@ -29,6 +31,7 @@ import { Confetti } from '@/features/gamification/components/confetti';
 import { checkAndUpdateStreak, saveGamificationState } from '@/features/gamification/utils/gamification-storage';
 import { getAllBadges, checkNewBadges, awardBadges } from '@/features/gamification/utils/badges';
 import { calculateReadinessScore } from '@/features/gamification/utils/readiness-score';
+import { getReviewQueueSummary } from '@/features/review-queue/utils/queue-builder';
 import type { GamificationState, ReadinessResult, Badge } from '@/features/gamification/types';
 import type { BadgeCheckContext } from '@/features/gamification/utils/badges';
 import { useLocalStorageSessions } from '../hooks/use-local-storage-sessions';
@@ -162,6 +165,8 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
 
   const allBadges: Badge[] = useMemo(() => getAllBadges(gamificationState), [gamificationState]);
 
+  const reviewSummary = useMemo(() => getReviewQueueSummary(), []);
+
   return (
     <div className="space-y-8 pb-8">
       {/* Confetti Animation */}
@@ -222,6 +227,35 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
         <StreakDisplay streakDays={gamificationState.streakDays} dailyCounts={gamificationState.dailyCounts} />
         <WeeklyGoal current={gamificationState.weeklyQuestionsAnswered} target={100} />
       </div>
+
+      {/* Smart Review Card */}
+      {reviewSummary.count > 0 && (
+        <Link
+          href="/review"
+          className="group flex items-center gap-4 rounded-xl border p-5 transition-all duration-300 hover:shadow-lg"
+          style={{ borderColor: 'var(--accent-primary)', background: 'var(--card-bg)' }}
+        >
+          <div className="rounded-full p-3" style={{ background: 'rgba(197, 162, 88, 0.1)' }}>
+            <ListChecks className="h-6 w-6" style={{ color: 'var(--accent-primary)' }} />
+          </div>
+          <div className="flex-1">
+            <p className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+              You have {reviewSummary.count} items to review today
+            </p>
+            <div className="mt-1 flex items-center gap-1.5 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
+              <Clock className="h-3 w-3" />
+              <span>~{reviewSummary.estimatedMinutes} minutes</span>
+            </div>
+          </div>
+          <div
+            className="flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-semibold transition-colors group-hover:opacity-90"
+            style={{ background: 'var(--accent-primary)', color: '#ffffff' }}
+          >
+            Start Review
+            <ArrowRight className="h-3.5 w-3.5" />
+          </div>
+        </Link>
+      )}
 
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

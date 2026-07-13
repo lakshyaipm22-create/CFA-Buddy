@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Topic-wise Performance Heatmap on /insights and Smart Review Queue on Dashboard. (1) Adds a visual heatmap to the Insights page showing per-topic accuracy across all 10 CFA subjects with color-coded cells (red/yellow/green/gray). Clicking a cell starts a filtered practice session. (2) Adds a Smart Review Queue accessible from Dashboard that combines due flashcards + due practice questions + due revision subjects into one unified queue with estimated time and a celebration screen on completion.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create src/features/insights/components/topic-heatmap.tsx: Client component showing a grid/table. 10 rows (one per CFA subject in curriculum order from sortByCfaOrder). Columns = unique readings/topics derived from questions in that subject (using loadAllQuestions from question-loader.ts). Cell color based on accuracy: red (#ef4444, 0-40%), yellow (#C5A258, 40-70%), green (#00843D, 70-100%), gray (var(--nav-hover-bg), not attempted). On hover: tooltip showing 'Subject > Topic: X% (Y/Z correct)'. On click: navigate to /practice?subject=X&topic=Y (practice mode filtered). Use CSS grid. Mobile: horizontal scroll with sticky first column.",
     "Modify src/features/insights/components/insights-content.tsx: Import and render TopicHeatmap below the existing charts. Add a section header 'Topic Performance Heatmap'.",

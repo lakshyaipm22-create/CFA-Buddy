@@ -11,6 +11,7 @@ import {
   Grid3X3,
   RotateCw,
   BarChart3,
+  ListChecks,
 } from 'lucide-react';
 
 export const navigationItems = [
@@ -19,6 +20,7 @@ export const navigationItems = [
   { name: 'Resources', href: '/resources', icon: FileText },
   { name: 'Questions', href: '/questions', icon: HelpCircle },
   { name: 'Practice', href: '/practice', icon: Repeat },
+  { name: 'Review', href: '/review', icon: ListChecks },
   { name: 'Flashcards', href: '/flashcards', icon: Brain },
   { name: 'Formulas', href: '/formulas', icon: Calculator },
   { name: 'Revision', href: '/revision', icon: RotateCw },
