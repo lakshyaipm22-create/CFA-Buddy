@@ -3,5 +3,12 @@
   "task_description": "Build 7 advanced study intelligence features for CFA Buddy: Spaced Practice Engine, Topic Heatmap, Study Streaks/Gamification, Smart Review Queue, Enhanced Exam Readiness Score, Question Annotations, and Weekly Report. All data in localStorage, mobile responsive, dark mode compatible.",
   "status": "in_progress",
   "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
-  "blocked_reason": null
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "0 TS errors, lint clean, build succeeds with all new routes (/practice, /review, /weekly-report), 85 tests pass. 40 files changed, 4019 lines added. Review fixes applied: shared CFA weights, O(1) heatmap lookup, neutral calibration for non-users, practice page reads search params, unified streak display."
+  }
 }
