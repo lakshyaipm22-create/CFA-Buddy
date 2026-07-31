@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "Create a unified 'Focus Mode' that consolidates practice flows. Add a subject-focused study hub page that brings together questions, flashcards, formulas, and progress for a single subject in one view.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/study-hub/components/subject-study-hub.tsx - a comprehensive client component that takes a subjectName prop and displays: (a) Subject progress overview (questions answered, accuracy, last studied), (b) Quick actions row: Practice Questions (links to /questions with subject pre-selected), Review Flashcards (links to /flashcards?subject=X), View Formulas (links to /formulas?subject=X), See Mistakes (links to /mistakes?subject=X), (c) Weak topics list from the existing weak-topics utility, (d) Recent session results for this subject, (e) LOS completion status for this subject.",
     "Create src/app/(protected)/learn/[subjectId]/page.tsx (if not already present, or enhance it) - this becomes the subject study hub. When a user clicks a subject from /learn, they land here and see the SubjectStudyHub with all relevant data for that subject consolidated.",
@@ -23,5 +23,5 @@
     "bun run vitest --run"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Implemented successfully. localStorage key for sessions is 'cfa-buddy-sessions' (not 'cfa-practice-sessions'). Attempts key is 'cfa-buddy-attempts'. The SubjectStudyHub is a client component imported into the server-rendered subject page. SessionConfigurator now accepts optional initialSubject prop. Used useState lazy initializer pattern for all localStorage reads. The SubjectProgressBadge uses useEffect to read localStorage after mount to avoid hydration issues. All 234 tests pass (env.test.ts failures are pre-existing zod v4 issue)."
 }
