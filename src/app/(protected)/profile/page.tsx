@@ -1,5 +1,4 @@
 import { createServerSupabaseClient } from '@/shared/lib/supabase/server';
-import { redirect } from 'next/navigation';
 import { ProfileForm } from '@/features/auth/components/profile-form';
 
 export default async function ProfilePage() {
@@ -15,10 +14,21 @@ export default async function ProfilePage() {
     );
   }
 
-  const { data: { user } } = await supabase.auth.getUser();
+  let user = null;
+  try {
+    const { data } = await supabase.auth.getUser();
+    user = data.user;
+  } catch {
+    // Auth failed — show unauthenticated profile view
+  }
 
   if (!user) {
-    redirect('/sign-in');
+    return (
+      <div className="max-w-lg space-y-6">
+        <h1 className="text-2xl font-bold text-white">Profile</h1>
+        <p className="text-sm text-zinc-400">Sign in to manage your profile settings.</p>
+      </div>
+    );
   }
 
   return (
