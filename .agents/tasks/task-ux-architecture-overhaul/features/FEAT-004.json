@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Create a command palette enhancement (extend existing search modal) with quick actions, recent pages, and smart suggestions. Add a 'Getting Started' onboarding checklist for new users.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Enhance src/features/search/components/search-modal.tsx: Add a 'Quick Actions' section when the query is empty (before recent searches). Quick actions include: Start Practice Session (-> /questions), Review Due Items (-> /review), View Flashcards (-> /flashcards), Open Mistakes (-> /mistakes), Check Progress (-> /insights). Show recently visited pages (store last 5 page visits in localStorage). Add action type indicators (icons for navigate, action, search).",
     "Create src/shared/lib/page-visit-tracker.ts - a utility that tracks page visits in localStorage. Functions: recordPageVisit(path, title), getRecentPages(): Array<{path, title, timestamp}>. Cap at 10 entries. Called from the layout or a client hook.",
@@ -25,5 +25,5 @@
     "bun run vitest --run"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All acceptance criteria met. TypeScript passes clean. 234 tests pass (only pre-existing env.test.ts zod v4 failures remain). The onboarding-checklist reads directly from localStorage keys to avoid cross-feature imports. Page tracking uses usePathname from next/navigation inside a client wrapper component (PageTracker) since the protected layout is a server component. The search modal keyboard navigation handles both empty state (quick actions + recent pages) and query results. The emptyStateItems array combines quick actions and recent pages for unified keyboard navigation indexing."
 }
