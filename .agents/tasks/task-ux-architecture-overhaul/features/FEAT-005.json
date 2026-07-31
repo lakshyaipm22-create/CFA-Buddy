@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-005",
+  "type": "feat",
+  "description": "Create a unified 'Focus Mode' that consolidates practice flows. Add a subject-focused study hub page that brings together questions, flashcards, formulas, and progress for a single subject in one view.",
+  "status": "in_progress",
+  "steps": [
+    "Create src/features/study-hub/components/subject-study-hub.tsx - a comprehensive client component that takes a subjectName prop and displays: (a) Subject progress overview (questions answered, accuracy, last studied), (b) Quick actions row: Practice Questions (links to /questions with subject pre-selected), Review Flashcards (links to /flashcards?subject=X), View Formulas (links to /formulas?subject=X), See Mistakes (links to /mistakes?subject=X), (c) Weak topics list from the existing weak-topics utility, (d) Recent session results for this subject, (e) LOS completion status for this subject.",
+    "Create src/app/(protected)/learn/[subjectId]/page.tsx (if not already present, or enhance it) - this becomes the subject study hub. When a user clicks a subject from /learn, they land here and see the SubjectStudyHub with all relevant data for that subject consolidated.",
+    "Create src/shared/lib/subject-utils.ts - utility functions: getSubjectProgress(subjectName) that aggregates data from sessions/attempts for a given subject, getSubjectWeakTopics(subjectName) wrapping the existing weak-topics utility, getSubjectFormulas(subjectName) that filters formulas data.",
+    "Update the Learn page (src/app/(protected)/learn/page.tsx) to show progress indicators on each subject card: a small progress bar or percentage showing accuracy for that subject, and a 'last studied' timestamp.",
+    "Add subject deep-link support: Update src/app/(protected)/questions/page.tsx SessionConfigurator section to accept a ?subject= query param and pre-select that subject in the configurator when coming from a subject study hub."
+  ],
+  "acceptance_criteria": [
+    "Clicking a subject on /learn takes user to a consolidated study hub for that subject",
+    "Study hub shows progress, quick actions, weak topics, recent results all in one place",
+    "Learn page shows per-subject progress indicators (accuracy %, last studied)",
+    "Navigating to /questions?subject=X pre-selects that subject in the configurator",
+    "No dead-ends - every section of the study hub links to deeper functionality",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Repeat, AlertCircle, Layers, BarChart3 } from 'lucide-react';
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
 import { QuestionAnalytics } from '@/features/question-bank/components/question-analytics';
@@ -13,6 +14,8 @@ import { RelatedActions } from '@/shared/components/ui/related-actions';
 
 export default function QuestionsPage() {
   const { isLoading, questions: importedQuestions } = useImportedQuestions();
+  const searchParams = useSearchParams();
+  const subjectParam = searchParams.get('subject') || undefined;
 
   useEffect(() => {
     cleanupOldSessions();
@@ -76,7 +79,7 @@ export default function QuestionsPage() {
         </div>
       )}
       <SmartSessionCard />
-      <SessionConfigurator />
+      <SessionConfigurator initialSubject={subjectParam} />
       <RecentAttemptsSection />
       <RecentSessions />
       <QuestionAnalytics />

@@ -29,17 +29,24 @@ function getProviderLabel(provider: string): string {
 // Modes that support subject filtering
 const SUBJECT_FILTER_MODES: TestMode[] = ['Topic', 'Subject', 'Mixed', 'Random'];
 
-export function SessionConfigurator() {
+interface SessionConfiguratorProps {
+  initialSubject?: string;
+}
+
+export function SessionConfigurator({ initialSubject }: SessionConfiguratorProps = {}) {
   const allQuestions = loadAllQuestions();
   const PROVIDERS = [...new Set(allQuestions.map(q => q.provider))];
   const router = useRouter();
-  const [selectedMode, setSelectedMode] = useState<TestMode>('Mixed');
-  const [questionCount, setQuestionCount] = useState(20);
+  const [selectedMode, setSelectedMode] = useState<TestMode>(initialSubject ? 'Subject' : 'Mixed');
+  const [questionCount, setQuestionCount] = useState(initialSubject ? 40 : 20);
   const [timed, setTimed] = useState(false);
   const [timeLimit, setTimeLimit] = useState(90);
   const [selectedDifficulties, setSelectedDifficulties] = useState<Set<string>>(new Set(DIFFICULTIES));
   const [selectedProviders, setSelectedProviders] = useState<Set<string>>(() => new Set(PROVIDERS));
-  const [selectedSubjects, setSelectedSubjects] = useState<Set<string>>(() => new Set());
+  const [selectedSubjects, setSelectedSubjects] = useState<Set<string>>(() => {
+    if (initialSubject) return new Set([initialSubject]);
+    return new Set();
+  });
 
   const resumable = typeof window !== 'undefined' ? getResumableSession() : null;
 
