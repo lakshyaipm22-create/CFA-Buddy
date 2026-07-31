@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Create the Corporate Issuers question data file and practice attempt storage system. This includes: (1) A new data file with all 158 Corporate Issuers questions across 7 modules with options, explanations, correct answers, and user's selected answers pre-filled, (2) An 'attempt' storage system that stores completed practice attempt results in localStorage separate from the existing session system, supporting multiple attempts for retake comparison.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/question-bank/data/corporate-issuers.ts containing all Corporate Issuers questions organized by module. Each question follows the existing Question interface from src/features/question-bank/types/index.ts. Use subject='Corporate Issuers' and set topic to the module name. IDs should be like 'ci-m1-q1' through 'ci-m7-q17'. Generate realistic CFA Level I Corporate Issuers questions for all 158 entries (13+14+23+18+30+43+17). Each has 3 answer choices (A/B/C) with explanations and correct answer marked. The questions should cover the actual CFA curriculum topics: Module 1 = Organizational Forms (partnerships, corporations, sole proprietorships), Module 2 = Investors and Other Stakeholders (shareholders, creditors, board duties), Module 3 = Corporate Governance (governance mechanisms, board structures, ESG), Module 4 = Working Capital and Liquidity (cash conversion cycle, receivables, inventory management), Module 5 = Capital Investments and Capital Allocation (NPV, IRR, payback period, real options), Module 6 = Capital Structure (Modigliani-Miller, WACC, leverage, pecking order theory, target capital structure), Module 7 = Business Models (types of business models, network effects, platform businesses).",
     "Create src/features/question-bank/types/attempt.ts with new interfaces: PracticeAttempt (id, subjectName, attemptNumber, completedAt, moduleResults: ModuleResult[], overallScore, overallTotal, overallPercentage, avgTimePerQuestion, bookmarkedIds, confidenceLevel), ModuleResult (moduleId, moduleName, score, total, percentage, avgTimePerQuestion, questionAttempts: AttemptQuestion[]), AttemptQuestion (questionId, selectedAnswer, correct, timeSpentSeconds, confidence). The confidenceLevel field is 'High'|'Medium'|'Low' computed from the overall percentage (>=80 High, >=60 Medium, <60 Low).",
@@ -22,5 +22,5 @@
     "Run: cd /projects/sandbox/CFA-Buddy && /root/.local/share/mise/shims/bun run tsc --noEmit 2>&1 | grep -v prisma | grep -v generated"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 23 unit tests pass. TypeScript compiles clean (only pre-existing Prisma errors). The seeded attempt uses a deterministic PRNG (seed=42) for reproducible test results. The corporate-issuers.ts file is ~2700 lines with realistic CFA content across all 7 modules."
 }
