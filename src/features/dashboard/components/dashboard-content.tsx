@@ -33,6 +33,7 @@ import { checkAndUpdateStreak, saveGamificationState } from '@/features/gamifica
 import { getAllBadges, checkNewBadges, awardBadges } from '@/features/gamification/utils/badges';
 import { calculateReadinessScore } from '@/features/gamification/utils/readiness-score';
 import { getReviewQueueSummary } from '@/features/review-queue/utils/queue-builder';
+import { SmartSessionCard } from '@/features/question-bank/components/smart-session-card';
 import type { GamificationState, ReadinessResult, Badge } from '@/features/gamification/types';
 import type { BadgeCheckContext } from '@/features/gamification/utils/badges';
 import { useLocalStorageSessions } from '../hooks/use-local-storage-sessions';
@@ -242,6 +243,9 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
         <StreakDisplay streakDays={gamificationState.streakDays} dailyCounts={gamificationState.dailyCounts} />
         <WeeklyGoal current={gamificationState.weeklyQuestionsAnswered} target={100} />
       </div>
+
+      {/* Smart Session Recommendations */}
+      <SmartSessionCard />
 
       {/* Smart Review Card */}
       {reviewSummary.count > 0 && (

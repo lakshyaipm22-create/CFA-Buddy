@@ -5,6 +5,7 @@ import { SessionConfigurator } from '@/features/question-bank/components/session
 import { QuestionAnalytics } from '@/features/question-bank/components/question-analytics';
 import { RecentAttemptsSection } from '@/features/question-bank/components/recent-attempts-section';
 import { RecentSessions } from '@/features/question-bank/components/recent-sessions';
+import { SmartSessionCard } from '@/features/question-bank/components/smart-session-card';
 import { useImportedQuestions } from '@/features/question-bank/hooks/useImportedQuestions';
 import { cleanupOldSessions } from '@/features/question-bank/utils/session-storage';
 
@@ -72,6 +73,7 @@ export default function QuestionsPage() {
           to load your question bank.
         </div>
       )}
+      <SmartSessionCard />
       <SessionConfigurator />
       <RecentAttemptsSection />
       <RecentSessions />
