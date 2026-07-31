@@ -1,15 +1,21 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { Repeat, AlertCircle, Layers, BarChart3 } from 'lucide-react';
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
 import { QuestionAnalytics } from '@/features/question-bank/components/question-analytics';
 import { RecentAttemptsSection } from '@/features/question-bank/components/recent-attempts-section';
 import { RecentSessions } from '@/features/question-bank/components/recent-sessions';
+import { SmartSessionCard } from '@/features/question-bank/components/smart-session-card';
 import { useImportedQuestions } from '@/features/question-bank/hooks/useImportedQuestions';
 import { cleanupOldSessions } from '@/features/question-bank/utils/session-storage';
+import { RelatedActions } from '@/shared/components/ui/related-actions';
 
-export default function QuestionsPage() {
+function QuestionsPageInner() {
   const { isLoading, questions: importedQuestions } = useImportedQuestions();
+  const searchParams = useSearchParams();
+  const subjectParam = searchParams.get('subject') || undefined;
 
   useEffect(() => {
     cleanupOldSessions();
@@ -72,10 +78,55 @@ export default function QuestionsPage() {
           to load your question bank.
         </div>
       )}
-      <SessionConfigurator />
+      <SmartSessionCard />
+      <SessionConfigurator initialSubject={subjectParam} />
       <RecentAttemptsSection />
       <RecentSessions />
       <QuestionAnalytics />
+
+      <RelatedActions
+        items={[
+          {
+            href: '/practice',
+            icon: Repeat,
+            label: 'Practice',
+            description: 'Spaced repetition review',
+          },
+          {
+            href: '/mistakes',
+            icon: AlertCircle,
+            label: 'Mistakes',
+            description: 'Review your errors',
+          },
+          {
+            href: '/flashcards',
+            icon: Layers,
+            label: 'Flashcards',
+            description: 'Convert weak topics',
+          },
+          {
+            href: '/insights',
+            icon: BarChart3,
+            label: 'Insights',
+            description: 'View analytics',
+          },
+        ]}
+      />
     </div>
+  );
+}
+
+export default function QuestionsPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center py-20">
+        <div
+          className="h-6 w-6 animate-spin rounded-full border-2 border-transparent"
+          style={{ borderTopColor: 'var(--accent-primary)' }}
+        />
+      </div>
+    }>
+      <QuestionsPageInner />
+    </Suspense>
   );
 }

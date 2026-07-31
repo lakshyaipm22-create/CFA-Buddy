@@ -2,7 +2,9 @@
 
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { BookOpen, Layers, ClipboardList, Calculator } from 'lucide-react';
 import { PracticeContent } from '@/features/practice/components/practice-content';
+import { RelatedActions } from '@/shared/components/ui/related-actions';
 
 function PracticePageInner() {
   const searchParams = useSearchParams();
@@ -22,6 +24,35 @@ function PracticePageInner() {
         </p>
       </div>
       <PracticeContent filterSubject={subject} filterTopic={topic} />
+
+      <RelatedActions
+        items={[
+          {
+            href: '/questions',
+            icon: BookOpen,
+            label: 'Questions',
+            description: 'Full practice sessions',
+          },
+          {
+            href: '/flashcards',
+            icon: Layers,
+            label: 'Flashcards',
+            description: 'Quick review cards',
+          },
+          {
+            href: '/review',
+            icon: ClipboardList,
+            label: 'Review',
+            description: 'Smart review queue',
+          },
+          {
+            href: '/formulas',
+            icon: Calculator,
+            label: 'Formulas',
+            description: 'Reference sheets',
+          },
+        ]}
+      />
     </div>
   );
 }

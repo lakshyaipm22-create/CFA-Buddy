@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Create a command palette enhancement (extend existing search modal) with quick actions, recent pages, and smart suggestions. Add a 'Getting Started' onboarding checklist for new users.",
+  "status": "completed",
+  "steps": [
+    "Enhance src/features/search/components/search-modal.tsx: Add a 'Quick Actions' section when the query is empty (before recent searches). Quick actions include: Start Practice Session (-> /questions), Review Due Items (-> /review), View Flashcards (-> /flashcards), Open Mistakes (-> /mistakes), Check Progress (-> /insights). Show recently visited pages (store last 5 page visits in localStorage). Add action type indicators (icons for navigate, action, search).",
+    "Create src/shared/lib/page-visit-tracker.ts - a utility that tracks page visits in localStorage. Functions: recordPageVisit(path, title), getRecentPages(): Array<{path, title, timestamp}>. Cap at 10 entries. Called from the layout or a client hook.",
+    "Create src/shared/hooks/use-page-tracking.ts - a client hook that calls recordPageVisit on route changes using usePathname(). Map known paths to human-readable titles (e.g., '/questions' -> 'Question Bank', '/dashboard' -> 'Dashboard').",
+    "Create src/shared/components/ui/onboarding-checklist.tsx - a 'Getting Started' card shown on the dashboard when user has completed fewer than 3 of the checklist items. Checklist items: (1) Set up your profile, (2) Start your first practice session, (3) Review your results, (4) Create flashcards, (5) Set your exam date. Each item checks localStorage state to determine completion. Dismissible with a 'Skip' button that hides it permanently.",
+    "Update src/features/dashboard/components/dashboard-content.tsx: Add the OnboardingChecklist component after the Hero Section, shown conditionally when the user has few completed sessions. Also integrate the page tracking hook.",
+    "Update src/app/(protected)/layout.tsx to include the usePageTracking hook via a small client wrapper component (since layout is a server component, wrap the hook in a client component that renders nothing visible)."
+  ],
+  "acceptance_criteria": [
+    "Command palette (Cmd+K) shows Quick Actions when query is empty",
+    "Recently visited pages appear in the command palette below quick actions",
+    "Page visits are tracked in localStorage as user navigates",
+    "Onboarding checklist shows for new users (< 3 items completed) on dashboard",
+    "Checklist items auto-complete based on real state (profile set, sessions done, etc.)",
+    "Checklist can be permanently dismissed",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": "All acceptance criteria met. TypeScript passes clean. 234 tests pass (only pre-existing env.test.ts zod v4 failures remain). The onboarding-checklist reads directly from localStorage keys to avoid cross-feature imports. Page tracking uses usePathname from next/navigation inside a client wrapper component (PageTracker) since the protected layout is a server component. The search modal keyboard navigation handles both empty state (quick actions + recent pages) and query results. The emptyStateItems array combines quick actions and recent pages for unified keyboard navigation indexing."
+}

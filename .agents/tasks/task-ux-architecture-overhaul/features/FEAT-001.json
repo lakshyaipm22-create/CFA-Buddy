@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-001",
+  "type": "refactor",
+  "description": "Restructure the sidebar navigation from a flat 14-item list into grouped categories with collapsible sections, add a mobile bottom navigation bar for key actions, and add breadcrumbs for nested route context",
+  "status": "completed",
+  "steps": [
+    "Refactor src/shared/config/navigation.ts to organize 14 items into logical groups: 'Study' (Learn, Resources, Formulas), 'Practice' (Questions, Practice, Flashcards), 'Progress' (Dashboard, Insights, Weekly Report, LOS Tracker), 'Planning' (Exam Plan, Revision, Review, Mistakes). Each group has a label, icon, and items array.",
+    "Rewrite src/shared/components/layout/sidebar.tsx to render grouped navigation with collapsible sections. Each group has a heading. Active group auto-expands. Store collapsed state in localStorage. Add a badge count indicator for items with pending actions (e.g., review items due, flashcards due).",
+    "Create src/shared/components/layout/breadcrumbs.tsx - a client component that reads usePathname() and generates breadcrumb trail. Map route segments to readable names (e.g., /questions/attempts/abc123 -> Questions > Attempts > Corporate Issuers). Include a back button (ArrowLeft icon) for nested routes deeper than 1 level.",
+    "Create src/shared/components/layout/mobile-bottom-nav.tsx - a fixed bottom bar (visible only on mobile <md) with 5 key actions: Dashboard, Questions, Practice, Learn, More (opens a sheet with remaining items). Use lucide icons matching the sidebar.",
+    "Update src/app/(protected)/layout.tsx to include the Breadcrumbs component between Header and main content, and add MobileBottomNav below main. Add pb-16 to main on mobile to account for bottom nav height.",
+    "Add CSS variables for new navigation elements in src/app/globals.css: --nav-group-text, --nav-badge-bg, --breadcrumb-text, --breadcrumb-separator, --bottom-nav-bg, --bottom-nav-border, --bottom-nav-active for both dark and light themes."
+  ],
+  "acceptance_criteria": [
+    "Navigation items are grouped into 4 categories with collapsible headers",
+    "Active route's group is auto-expanded on page load",
+    "Mobile bottom nav shows on screens < md breakpoint with 5 quick-access items",
+    "Breadcrumbs show on all nested routes (depth > 1) with clickable parent links",
+    "Back button appears on deeply nested pages like attempt detail and review",
+    "TypeScript compiles without errors (bun run tsc --noEmit passes)",
+    "No cross-feature imports - all new components are in src/shared/"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": "All 234 tests pass. TypeScript compiles without errors. The flat navigationItems export is preserved for backward compatibility. The only test failures are the pre-existing env.test.ts zod v4 issue (2 tests). Navigation groups auto-expand when the current route matches an item in that group. Mobile bottom nav uses 5 most commonly accessed pages. Breadcrumbs appear only on nested routes with depth > 1."
+}

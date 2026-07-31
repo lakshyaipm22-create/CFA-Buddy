@@ -46,6 +46,14 @@
   --sidebar-border: #1a2332;
   --sidebar-title: #ffffff;
   --sidebar-subtitle: #C5A258;
+
+  --nav-group-text: #71717a;
+  --nav-badge-bg: #C5A258;
+  --breadcrumb-text: #a1a1aa;
+  --breadcrumb-separator: #1a2332;
+  --bottom-nav-bg: #0d1117;
+  --bottom-nav-border: #1a2332;
+  --bottom-nav-active: #C5A258;
 }
 
 /* Light Theme */
@@ -84,6 +92,14 @@
   --sidebar-border: #e2e8f0;
   --sidebar-title: #002B5C;
   --sidebar-subtitle: #C5A258;
+
+  --nav-group-text: #94a3b8;
+  --nav-badge-bg: #C5A258;
+  --breadcrumb-text: #64748b;
+  --breadcrumb-separator: #e2e8f0;
+  --bottom-nav-bg: #ffffff;
+  --bottom-nav-border: #e2e8f0;
+  --bottom-nav-active: #002B5C;
 }
 
 body {

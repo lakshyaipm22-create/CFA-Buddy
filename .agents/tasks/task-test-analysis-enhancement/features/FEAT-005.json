@@ -1,0 +1,28 @@
+{
+  "id": "FEAT-005",
+  "type": "feat",
+  "description": "Study Session Recommendations - Smart recommendation engine that analyzes all attempt data to automatically recommend what to study next (module, difficulty, question count, estimated time) with a 'Smart Next Session' button that auto-configures the optimal practice session.",
+  "status": "completed",
+  "steps": [
+    "Step 1 - Recommendation Engine: Create src/features/question-bank/utils/session-recommender.ts. Functions: (a) computeStudyRecommendation(attempts: PracticeAttempt[], questions: Question[], repetitionQueue, targets?) -> StudyRecommendation. Algorithm: score each module by (gap-to-target * curriculum-weight * recency-decay). Factor in: weakest topics (lowest accuracy), spaced rep due count, time since last practice per module, difficulty readiness. Return: { recommendedModule, recommendedDifficulty, recommendedQuestionCount (10-30 based on available time), estimatedMinutes, reasoning: string explaining why }. (b) getQuickRecommendations(attempts, questions) -> array of 3 session options: 'Weakness Blitz' (focus hardest module, 10 Qs), 'Balanced Review' (mixed weak modules, 20 Qs), 'Challenge Mode' (ready-to-advance difficulty, 15 Qs).",
+    "Step 2 - Smart Session Component: Create src/features/question-bank/components/smart-session-card.tsx. A prominent card showing: (a) The primary recommendation with module name, difficulty badge, question count, estimated time, (b) A reasoning snippet explaining why ('You haven't practiced Corporate Issuers in 5 days and scored 62% last time'), (c) 'Start Smart Session' button that pre-configures session parameters and navigates to /questions/session/new (or /practice with params), (d) Three alternative quick-pick options as smaller cards below.",
+    "Step 3 - Session Auto-Configuration: When user clicks 'Start Smart Session', store the session config in sessionStorage (following existing session-configurator.tsx pattern) with the recommended module/difficulty/count, then navigate. Ensure the existing session-configurator or active-test-session can read these pre-configured params.",
+    "Step 4 - Integration: Add SmartSessionCard to the main questions page (src/app/(protected)/questions/page.tsx) as the top hero section. Also add it to the dashboard (src/app/(protected)/dashboard/page.tsx) as a prominent action card. Wire the recommendation engine to pull data from attempt-storage and practice-storage.",
+    "Step 5 - Unit tests: Create src/features/question-bank/__tests__/session-recommender.test.ts testing: (a) recommendation prioritizes weakest module, (b) recency decay works (longer since practice = higher priority), (c) difficulty readiness is respected, (d) quick recommendations generate 3 distinct options, (e) question count scales with available questions."
+  ],
+  "acceptance_criteria": [
+    "Running bun run tsc --noEmit passes with no new errors",
+    "Running bun run vitest --run passes all new tests",
+    "Recommendation engine produces a valid StudyRecommendation with module, difficulty, count, time, reasoning",
+    "Smart Session card renders with recommendation details and Start button",
+    "Three alternative session options are generated with distinct configurations",
+    "Start Smart Session navigates with pre-configured parameters",
+    "Recommendations factor in curriculum weights, recency, and accuracy"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": "Algorithm uses practiceBonus (15 points) to prioritize modules with actual attempt data over unpracticed ones. Default accuracy for unpracticed modules set to 50% (not 0%) to prevent them from always dominating. Scoring formula: (accuracyGap * 0.5) + (recencyFactor * 25) + (weightFactor * 15) + practiceBonus. Quick recommendations filter to practiced modules only. Pre-existing env.test.ts failure (zod v4 issue) remains, all 10 new tests pass."
+}

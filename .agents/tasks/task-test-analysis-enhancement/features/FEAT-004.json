@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Progress Timeline + Comparison with Targets - Visual timeline of all attempts with trend lines and projected scores, plus user-configurable target scores per module with gap analysis and study priority suggestions.",
+  "status": "completed",
+  "steps": [
+    "Step 1 - Progress Timeline Utilities: Create src/features/question-bank/utils/progress-timeline.ts. Functions: (a) buildProgressTimeline(attempts: PracticeAttempt[]) - returns array of { date, score, percentage, attemptId } sorted chronologically, (b) computeTrendLine(data: {date:string, percentage:number}[]) - linear regression returning slope and projected future score, (c) predictScoreAtDate(timeline, targetDate: string) - extrapolates from trend line to predict score at exam date, (d) computeImprovementVelocity(timeline) - percentage points gained per week.",
+    "Step 2 - Progress Timeline Component: Create src/features/question-bank/components/progress-timeline.tsx. Render: (a) Area/Line chart (recharts) showing all attempt scores over time with actual data points, (b) Dashed trend line showing trajectory, (c) Projected score marker at exam date (user can set exam date in localStorage 'cfa-buddy-exam-date'), (d) Improvement velocity badge showing '+X% per week' or '-X% per week', (e) Milestone markers when score crosses 60%, 70%, 80% thresholds.",
+    "Step 3 - Target Score Storage and UI: Create src/features/question-bank/utils/target-storage.ts. Functions: (a) getTargets(): Record<string, number> from localStorage key 'cfa-buddy-targets', (b) setTarget(module: string, targetPercentage: number), (c) clearTarget(module: string). Create src/features/question-bank/components/target-setter.tsx - a settings panel/modal where user can set target percentage (default 80%) for each module. Use a slider or number input per module listed from moduleResults.",
+    "Step 4 - Gap Analysis Component: Create src/features/question-bank/components/gap-analysis.tsx. Shows: (a) A table/card grid comparing current score vs target for each module, (b) Gap column showing the difference with red/green coding, (c) Priority ranking: modules sorted by (gap * CFA_CURRICULUM_WEIGHTS) to show which gaps matter most for the exam, (d) Study time estimate: 'Based on your pace, closing the Capital Structure gap needs ~X more questions'. Use CFA_CURRICULUM_WEIGHTS from shared/config/subjects.ts.",
+    "Step 5 - Integration: Add ProgressTimeline to the insights page (src/features/insights/components/insights-content.tsx) as a top section. Add GapAnalysis and TargetSetter to a new 'Targets' tab in the attempt-dashboard or as a standalone section in insights. Add a link/button in the dashboard header to set exam date.",
+    "Step 6 - Unit tests: Create src/features/question-bank/__tests__/progress-timeline.test.ts testing trend line calculation, score prediction, and improvement velocity. Create src/features/question-bank/__tests__/target-storage.test.ts testing CRUD operations and gap analysis sorting logic."
+  ],
+  "acceptance_criteria": [
+    "Running bun run tsc --noEmit passes with no new errors",
+    "Running bun run vitest --run passes all new tests",
+    "Progress timeline shows attempt scores over time with trend line",
+    "Predicted score at exam date is calculated from linear regression",
+    "Users can set target scores per module persisted in localStorage",
+    "Gap analysis correctly ranks modules by weighted gap priority",
+    "Study priority suggestions use CFA curriculum weights"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": "All 32 new tests pass. TSC passes. Pre-existing env.test.ts failure (zod v4) unchanged. computeGapAnalysis is exported from the gap-analysis component for testability. Dynamic imports used for all recharts components. ProgressTimelineChart renders null gracefully when no attempts exist. TargetSetter is collapsible via show/hide toggle button."
+}

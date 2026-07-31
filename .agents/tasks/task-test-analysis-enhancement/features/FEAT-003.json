@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Spaced Repetition for Weak Questions + Weak Topic Deep Dive - Auto-queue incorrect questions into spaced repetition schedule, plus deep-dive analysis of the 3 weakest topics with focused mini-quiz creation.",
+  "status": "completed",
+  "steps": [
+    "Step 1 - Spaced Repetition Storage: Create src/features/question-bank/utils/spaced-repetition.ts. Extend the existing practice-storage.ts pattern. Data model: SpacedRepetitionItem = { questionId, interval (1,3,7,14,30 days), nextDueDate, timesReviewed, lastReviewedAt, originAttemptId }. Functions: (a) getRepetitionQueue() - returns all items from localStorage key 'cfa-buddy-spaced-rep', (b) addToRepetitionQueue(questionId, attemptId) - adds with interval=1, (c) advanceRepetitionItem(questionId, correct: boolean) - if correct advance interval (1->3->7->14->30->done), if wrong reset to 1, (d) getDueItems() - items where nextDueDate <= now, (e) getRepetitionStats() - total in queue, due today, mastered (completed all intervals).",
+    "Step 2 - Auto-queue on attempt completion: Modify src/features/question-bank/utils/attempt-storage.ts saveAttempt() to also auto-queue any incorrect questions into spaced repetition. Import addToRepetitionQueue. When saving an attempt, iterate moduleResults -> questionAttempts, for each incorrect question call addToRepetitionQueue(questionId, attempt.id) if not already in queue.",
+    "Step 3 - Due for Review Dashboard Card: Create src/features/question-bank/components/spaced-rep-card.tsx. A card component showing: number due today, next upcoming batch, total in queue, mastered count. Include a 'Start Review' button that links to /practice?mode=spaced-rep. Style with gold accent for urgency when items are due.",
+    "Step 4 - Weak Topic Deep Dive Utilities: Create src/features/question-bank/utils/weak-topics.ts. Functions: (a) identifyWeakestTopics(attempts: PracticeAttempt[], questions: Question[], topN=3) - groups questions by topic, computes accuracy per topic, returns the N lowest, (b) getWeakTopicDetails(topic: string, attempts, questions) - returns the specific questions missed in that topic with full question data and explanations, (c) generateMiniQuiz(topic: string, questions: Question[], count=5) - selects questions from the weak topic prioritizing ones the user got wrong or hasn't seen.",
+    "Step 5 - Weak Topic Deep Dive Component: Create src/features/question-bank/components/weak-topic-panel.tsx. Renders: (a) Cards for the 3 weakest topics showing accuracy%, questions missed, (b) Expandable detail showing each missed question text and correct answer explanation, (c) 'Focus Quiz' button per topic that generates a mini-quiz configuration and links to /questions/session with those parameters stored in sessionStorage.",
+    "Step 6 - Wire into dashboard and review page: Add SpacedRepCard to attempt-dashboard.tsx hero section or as a prominent card. Add WeakTopicPanel as a section in the insights page (src/app/(protected)/insights/page.tsx) or attempt-dashboard. Also add spaced-rep items to the existing review-queue by extending queue-builder.ts to include spaced-rep due items.",
+    "Step 7 - Unit tests: Create src/features/question-bank/__tests__/spaced-repetition.test.ts testing the full lifecycle: add to queue, advance intervals, reset on wrong, due date calculation, stats. Create src/features/question-bank/__tests__/weak-topics.test.ts testing topic identification and mini-quiz generation."
+  ],
+  "acceptance_criteria": [
+    "Running bun run tsc --noEmit passes with no new errors",
+    "Running bun run vitest --run passes all new tests",
+    "Incorrect questions automatically enter spaced repetition queue on attempt save",
+    "Spaced repetition intervals advance correctly: 1->3->7->14->30 days",
+    "Due items show on a dashboard card with count and start review button",
+    "Weak topics are identified correctly from attempt data",
+    "Mini-quiz generation selects appropriate questions from weak topics"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": "All 39 new tests pass (23 spaced-repetition + 16 weak-topics). TypeScript compiles cleanly. Pre-existing env.test.ts failure (zod v4) remains unrelated. Used useState lazy initializer in insights-content.tsx to load all attempts from localStorage for WeakTopicPanel. SpacedRepCard uses useState lazy initializer for stats. The spaced-repetition system uses a separate localStorage key (cfa-buddy-spaced-rep) and mastered counter key (cfa-buddy-spaced-rep-mastered) to avoid conflicts with existing practice-storage spaced rep system. WeakTopicPanel stores focus quiz config in sessionStorage under key cfa-buddy-focus-quiz."
+}

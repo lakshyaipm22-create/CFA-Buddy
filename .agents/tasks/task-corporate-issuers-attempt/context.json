@@ -1,0 +1,30 @@
+{
+  "project_type": "Next.js 16 App Router with TypeScript, Tailwind CSS, localStorage for data",
+  "language": "TypeScript/React",
+  "build_system": "bun (available at /root/.local/share/mise/shims/bun). No npm/node available. Use --ignore-scripts for install due to Prisma Node version check.",
+  "test_framework": "vitest (bun run vitest --run). Pre-existing failures in src/env.test.ts due to zod v4 API change (z.object undefined). Content scanner tests pass.",
+  "build_command": "/root/.local/share/mise/shims/bun run tsc --noEmit (2 pre-existing Prisma type errors can be ignored)",
+  "test_command": "/root/.local/share/mise/shims/bun run vitest --run",
+  "verification_instructions": "1. Run tsc --noEmit to check types (ignore prisma errors). 2. Run vitest --run to verify tests. 3. Run bun run build may not work without full node but tsc is the primary check.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "cd /projects/sandbox/CFA-Buddy && /root/.local/share/mise/shims/bun install --ignore-scripts",
+  "environment_constraints": "INTEGRATIONS_ONLY network - no external npm installs. bun available at /root/.local/share/mise/shims/bun. No node/npm. Prisma client generation not possible. Pre-existing type errors in prisma/seed.ts and src/shared/lib/prisma/client.ts are expected.",
+  "contribution_requirements": "Feature-based folders (src/features/{name}/). No cross-feature imports (use src/shared/). localStorage for user data. No TODOs or placeholders. Use CSS variables (--foreground, --card-bg, --card-border, --accent-primary, --accent-secondary, --accent-success). NEVER use useSyncExternalStore for one-time localStorage reads - use useState(() => ...) lazy initializer. NEVER call router.push() during render phase.",
+  "key_patterns": "Questions stored as typed arrays in src/features/question-bank/data/. Sessions stored in localStorage under 'cfa-buddy-sessions' key using QuestionSession type. Session storage utilities in src/features/question-bank/utils/session-storage.ts. Dashboard reads sessions via useLocalStorageSessions hook. Review page at /questions/review/[sessionId]. Circular progress ring pattern exists in dashboard-content.tsx (ReadinessGauge) and session-review.tsx (ScoreRing). Topic breakdown with progress bars in session-review.tsx (TopicBar). recharts used for charts. lucide-react for icons. framer-motion available.",
+  "relevant_files": [
+    "src/features/question-bank/types/index.ts",
+    "src/features/question-bank/data/sample-questions.ts",
+    "src/features/question-bank/utils/session-storage.ts",
+    "src/features/question-bank/utils/confidence-matrix.ts",
+    "src/features/question-bank/components/session-review.tsx",
+    "src/features/question-bank/components/active-test-session.tsx",
+    "src/features/question-bank/components/question-analytics.tsx",
+    "src/features/dashboard/components/dashboard-content.tsx",
+    "src/features/dashboard/hooks/use-local-storage-sessions.ts",
+    "src/app/(protected)/dashboard/page.tsx",
+    "src/app/(protected)/questions/page.tsx",
+    "src/app/(protected)/questions/review/[sessionId]/page.tsx",
+    "src/app/globals.css"
+  ],
+  "directory_structure": "src/features/{feature-name}/ with subdirs: actions, components, data, hooks, queries, types, utils, __tests__. src/shared/ for cross-feature code (components/ui, hooks, lib, types). src/app/(protected)/ for authenticated routes."
+}

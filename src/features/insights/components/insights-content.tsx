@@ -1,11 +1,18 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { TrendingUp, TrendingDown, Target, Clock } from 'lucide-react';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
 import { TopicHeatmap } from './topic-heatmap';
+import {
+  WeakTopicPanel,
+  ProgressTimelineChart,
+  GapAnalysis,
+  TargetSetter,
+} from '@/shared/analytics';
+import type { PracticeAttempt, Question } from '@/shared/analytics';
 
 const PieChart = dynamic(() => import('recharts').then(m => m.PieChart), { ssr: false });
 const Pie = dynamic(() => import('recharts').then(m => m.Pie), { ssr: false });
@@ -20,6 +27,18 @@ const SUBJECT_COLORS = [
 
 export function InsightsContent() {
   const sessions = useLocalStorageSessions();
+
+  // Load all attempts from localStorage for weak topic analysis
+  const [allAttempts] = useState<PracticeAttempt[]>(() => {
+    if (typeof window === 'undefined') return [];
+    const raw = localStorage.getItem('cfa-buddy-attempts');
+    if (!raw) return [];
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return [];
+    }
+  });
 
   const data = useMemo(() => {
     const completed = sessions.filter(s => s.status === 'completed');
@@ -109,6 +128,11 @@ export function InsightsContent() {
 
   return (
     <div className="space-y-6">
+      {/* Progress Timeline */}
+      {allAttempts.length > 0 && (
+        <ProgressTimelineChart attempts={allAttempts} />
+      )}
+
       {/* Key Metrics */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <MetricBox icon={<Target className="h-5 w-5" />} label="Predicted Score" value={`${data.predictedScore}%`} color="#C5A258" />
@@ -164,6 +188,21 @@ export function InsightsContent() {
         </h3>
         <TopicHeatmap />
       </div>
+
+      {/* Weak Topic Deep Dive */}
+      {allAttempts.length > 0 && (
+        <WeakTopicPanel attempts={allAttempts} questions={sampleQuestions as Question[]} />
+      )}
+
+      {/* Gap Analysis */}
+      {allAttempts.length > 0 && (
+        <GapAnalysis attempts={allAttempts} />
+      )}
+
+      {/* Target Setter (collapsible) */}
+      {allAttempts.length > 0 && (
+        <TargetSetter attempts={allAttempts} />
+      )}
     </div>
   );
 }

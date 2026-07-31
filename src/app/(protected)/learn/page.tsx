@@ -1,5 +1,6 @@
 import { getCurriculumSubjects } from '@/features/learning-workspace/queries/get-curriculum';
 import Link from 'next/link';
+import { SubjectProgressBadge } from './subject-progress-indicators';
 
 export default async function LearnPage() {
   const subjects = await getCurriculumSubjects(1);
@@ -40,6 +41,7 @@ export default async function LearnPage() {
             {subject.readings.length > 0 && (
               <p className="mt-2 text-xs text-zinc-600">{subject.readings.length} readings</p>
             )}
+            <SubjectProgressBadge subjectName={subject.name} />
           </Link>
         ))}
       </div>

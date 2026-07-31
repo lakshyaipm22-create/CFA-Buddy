@@ -1,0 +1,28 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Time Analysis Dashboard + Difficulty Progression Tracking - Deep time analytics per question showing time vs correctness patterns, plus difficulty heatmap showing Easy/Medium/Hard performance per module with readiness recommendations.",
+  "status": "completed",
+  "steps": [
+    "Step 1 - Time Analysis Utilities: Create src/features/question-bank/utils/time-analysis.ts. Functions: (a) computeTimeVsCorrectness(attempts: AttemptQuestion[]) - returns arrays for correct/incorrect times for scatter plotting, (b) computeTimeTrends(attempts: PracticeAttempt[]) - avg time per attempt over time, (c) identifySlowestQuestions(attempts: AttemptQuestion[], questions: Question[], topN=10) - questions that took longest, (d) computePaceAnalysis(attempts: AttemptQuestion[]) - categorize pace: 'Rushing' (<30s avg), 'Optimal' (30-90s), 'Overthinking' (>90s). Include median and percentile calculations.",
+    "Step 2 - Time Analysis Dashboard Component: Create src/features/question-bank/components/time-analysis-dashboard.tsx. Render: (a) Scatter plot (recharts ScatterChart) showing time vs correctness with color coding, (b) Line chart showing average time trend over attempts, (c) Bar chart of top 10 slowest questions, (d) Pace analysis card with emoji indicator and recommendation text. All charts use dynamic imports with ssr:false following the pattern in insights-content.tsx.",
+    "Step 3 - Difficulty Progression Utilities: Create src/features/question-bank/utils/difficulty-progression.ts. Functions: (a) computeDifficultyStats(attempts: PracticeAttempt[], questions: Question[]) - returns per-module, per-difficulty (Easy/Medium/Hard) accuracy, (b) generateDifficultyHeatmapData(stats) - produces grid data for visualization, (c) computeReadinessRecommendation(stats) - for each module, determine if user is ready to advance: Easy>80% -> try Medium, Medium>75% -> try Hard. Returns recommendations array.",
+    "Step 4 - Difficulty Heatmap Component: Create src/features/question-bank/components/difficulty-heatmap.tsx. Render a grid/table: rows = modules, columns = Easy/Medium/Hard. Each cell shows accuracy percentage with color coding (red<50%, gold 50-75%, green>75%). Below the heatmap, show readiness recommendations as cards: 'Ready for Medium in Module X' or 'Master Easy in Module Y before advancing'.",
+    "Step 5 - Integrate into attempt dashboard: Add 'Time Analysis' and 'Difficulty' tabs/sections to the enhanced attempt-dashboard.tsx. These appear alongside the Error Analysis and Confidence tabs from FEAT-001.",
+    "Step 6 - Unit tests: Create src/features/question-bank/__tests__/time-analysis.test.ts testing computeTimeVsCorrectness, computePaceAnalysis, identifySlowestQuestions. Create src/features/question-bank/__tests__/difficulty-progression.test.ts testing computeDifficultyStats and readiness recommendations logic."
+  ],
+  "acceptance_criteria": [
+    "Running bun run tsc --noEmit passes with no new errors",
+    "Running bun run vitest --run passes all new tests",
+    "Time analysis shows scatter plot of time vs correctness",
+    "Pace analysis categorizes user's pace pattern with recommendations",
+    "Difficulty heatmap shows per-module per-difficulty accuracy",
+    "Readiness recommendations generate based on threshold logic (Easy>80% -> Medium, Medium>75% -> Hard)"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": "All 30 new tests pass (19 time-analysis + 11 difficulty-progression). TypeScript compiles cleanly. Pre-existing env.test.ts failure (zod v4) remains unrelated. Used dynamic imports with ssr:false for all recharts components following insights-content.tsx pattern. Tooltip formatter uses `unknown` type to satisfy recharts strict typing. The allAttempts are loaded via getAttempts(subjectName) in useState lazy initializer. Difficulty stats default to Medium when a question ID is not found in the question bank."
+}
