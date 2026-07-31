@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "BUNCH 2: CFA Mock Exam Mode + Subject Selection + AdaptiveRetest + WeakTopic implementation",
+  "status": "completed",
+  "steps": [
+    "Add 'Mock' to TestMode type in src/features/question-bank/types/index.ts.",
+    "Add Mock mode option to TEST_MODES array in src/features/question-bank/components/session-configurator.tsx: { mode: 'Mock', label: 'CFA Mock Exam', description: '90 questions, 135 min, weighted by curriculum', defaultCount: 90 }. When Mock is selected, auto-enable timed mode with 135 min.",
+    "Implement weighted selection in src/features/question-bank/utils/question-selector.ts for Mock mode: select questions weighted by CFA L1 curriculum weights (Ethics 15%, Quant 8%, Economics 8%, FSA 13%, Corporate 8%, Equity 13%, Fixed Income 13%, Derivatives 6%, Alt Investments 6%, Portfolio Mgmt 10%). If a subject has fewer questions than its weight, take all available and redistribute remainder across other subjects.",
+    "Add subject multi-select UI to session-configurator.tsx: A chip/button-select showing all 10 CFA subjects with question count (e.g. 'Fixed Income (125)'). Allow multi-select for Topic/Subject/Mixed/Random modes. Store selected subjects in config.subject as comma-separated string.",
+    "Update selectQuestions() to handle config.subject being a comma-separated string (split and filter pool to any of the listed subjects).",
+    "Implement AdaptiveRetest mode in question-selector.ts: Read all completed sessions from localStorage ('cfa-buddy-sessions'), collect all questionIds where attempt.correct === false, filter pool to ONLY those IDs. If fewer than questionCount, take all available wrong answers.",
+    "Implement WeakTopic mode in question-selector.ts: Calculate per-subject accuracy from past sessions, filter pool to subjects where accuracy < 60%. If no weak subjects yet (new user), fall back to Random mode (just use shuffled full pool).",
+    "Run npx tsc --noEmit && npm run lint to verify.",
+    "Git commit with message: feat: add CFA mock exam mode, subject selection, adaptive retest"
+  ],
+  "acceptance_criteria": [
+    "TestMode type includes 'Mock'",
+    "Session configurator shows Mock Exam option with 90 questions, 135 min",
+    "Mock mode selects questions with CFA curriculum weighting",
+    "Subject multi-select chips appear in configurator showing available subjects with counts",
+    "AdaptiveRetest filters to only previously-wrong questions",
+    "WeakTopic filters to subjects with <60% accuracy, falls back to Random if none",
+    "npx tsc --noEmit passes (ignoring prisma errors)",
+    "npm run lint passes"
+  ],
+  "verification": [
+    "npx tsc --noEmit 2>&1 | grep -v prisma",
+    "npm run lint"
+  ],
+  "blocked_reason": null,
+  "findings": "All implementations complete. TypeScript and lint pass cleanly. WeakTopic reads questions from localStorage key 'cfa-buddy-imported-questions' to map questionIds to subjects for accuracy calculation. Mock mode auto-enables timed mode at 135 minutes when selected."
+}

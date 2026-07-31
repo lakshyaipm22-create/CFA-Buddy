@@ -61,3 +61,31 @@ export function cleanupExpiredSessions(): void {
   );
   localStorage.setItem(SESSIONS_KEY, JSON.stringify(active));
 }
+
+/**
+ * Remove completed sessions older than 30 days and cap total at 50 sessions.
+ */
+export function cleanupOldSessions(): void {
+  if (typeof window === 'undefined') return;
+  const sessions = getSessions();
+  const now = Date.now();
+  const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+
+  // Remove completed sessions older than 30 days
+  let filtered = sessions.filter(s => {
+    if (s.status !== 'completed') return true;
+    const completedTime = s.completedAt
+      ? new Date(s.completedAt).getTime()
+      : new Date(s.startedAt).getTime();
+    return now - completedTime < THIRTY_DAYS;
+  });
+
+  // Cap at 50 sessions: keep the 50 most recent by startedAt
+  if (filtered.length > 50) {
+    filtered = filtered
+      .sort((a, b) => new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime())
+      .slice(0, 50);
+  }
+
+  localStorage.setItem(SESSIONS_KEY, JSON.stringify(filtered));
+}

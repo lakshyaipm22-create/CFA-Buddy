@@ -1,0 +1,24 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Add Recent Sessions section to Questions page and Export Results CSV button to session review",
+  "status": "completed",
+  "steps": [
+    "1. Create a new component src/features/question-bank/components/recent-sessions.tsx that shows the last 5 completed sessions. Use getSessions() from utils/session-storage.ts to get all sessions, filter to completed, sort by completedAt descending, take 5. For each session show: date (formatted like 'Jan 15, 2025'), question count (from questionIds.length), score % (correct/total * 100), mode (from session.mode), and subject filter used (from session.config.subject or 'All Subjects'). Each row should be clickable and navigate to /questions/review/{sessionId}. Use useRouter() in an onClick handler (never during render). Sort subjects in CFA curriculum order using sortByCfaOrder from src/shared/config/subjects.ts.",
+    "2. Import and render RecentSessions in src/app/(protected)/questions/page.tsx between the SessionConfigurator and QuestionAnalytics components.",
+    "3. In src/features/question-bank/components/session-review.tsx, add an 'Export Results' button in the action buttons section at the bottom (alongside 'Back to Question Bank' and 'Retake Test'). When clicked, generate a CSV with columns: Question#, QuestionText, YourAnswer, CorrectAnswer, Correct(Y/N), Confidence, TimeSpent, Subject. Download it as 'CFA-Buddy-Session-{YYYY-MM-DD}-{score}%.csv'. Use a simple blob download approach (no external libraries needed)."
+  ],
+  "acceptance_criteria": [
+    "Questions page shows a 'Recent Sessions' section with the last 5 completed sessions",
+    "Each recent session row shows date, question count, score %, mode, and subject filter",
+    "Clicking a recent session navigates to its review page",
+    "Session review page has an 'Export Results' button that downloads a correctly-formatted CSV",
+    "CSV filename follows the pattern CFA-Buddy-Session-{date}-{score}%.csv"
+  ],
+  "verification": [
+    "Run: npx tsc --noEmit (zero errors)",
+    "Run: npm run lint (zero errors)"
+  ],
+  "blocked_reason": null,
+  "findings": "All three parts implemented cleanly. TypeScript and lint pass with zero errors. The RecentSessions component uses useState lazy initializer for localStorage reads as required. Export CSV uses Blob+createObjectURL approach. Download icon from lucide-react added."
+}

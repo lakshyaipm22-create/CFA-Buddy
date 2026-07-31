@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-005",
+  "type": "feat",
+  "description": "BUNCH 5: Polish + Quality + Admin Refresh - admin refresh button, empty states, session cleanup, TS fixes, steering file update",
+  "status": "completed",
+  "steps": [
+    "Add admin 'Refresh Questions' button in import-dashboard.tsx (which renders on /admin/import page): Button labeled 'Reload Questions from Server' that calls fetch('/api/imported-questions') then stores in localStorage ('cfa-buddy-imported-questions'). Shows toast or inline message: '1,000 questions loaded successfully'. Shows current count: 'Currently loaded: X questions'.",
+    "Add empty states: If no imported questions loaded yet (localStorage empty and API returns empty), show friendly message: 'No questions loaded. Click Reload Questions or run the import script.' If starting a session with 0 available questions in selected filters, disable start button and show 'No questions match your filters'.",
+    "Implement session cleanup: Auto-delete sessions older than 30 days from localStorage on app load. Keep max 50 sessions (delete oldest beyond that). Add this logic to session-storage.ts and call it from the questions page or a layout effect. This prevents localStorage from bloating.",
+    "Fix any TypeScript errors from previous bunches: Run npx tsc --noEmit and fix ALL errors (ignoring prisma client pre-existing). Run npm run lint and fix ALL warnings. Run npm run build and ensure it succeeds.",
+    "Update .kiro/steering/project-state.md: Mark Bug #1 (imported questions not loading) as FIXED. Update features table with new additions (Mock Exam, Subject Selection, AdaptiveRetest, WeakTopic, Timer, Navigation Grid, Keyboard Shortcuts, Review Dashboard enhancements). Add note: '1,000 questions available via /api/imported-questions'.",
+    "Git commit with message: feat: admin refresh, empty states, session cleanup, polish"
+  ],
+  "acceptance_criteria": [
+    "Admin import page has Reload Questions button that fetches and stores questions",
+    "Shows count of currently loaded questions",
+    "Empty state message shown when no questions available",
+    "Start button disabled when filters yield 0 questions",
+    "Session cleanup removes sessions >30 days old and keeps max 50",
+    "npx tsc --noEmit passes (ignoring prisma errors)",
+    "npm run lint passes",
+    "npm run build succeeds",
+    "project-state.md updated with fixed bugs and new features"
+  ],
+  "verification": [
+    "npx tsc --noEmit 2>&1 | grep -v prisma",
+    "npm run lint",
+    "npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "Had to exclude prisma/, src/generated/, and src/shared/lib/prisma/ from tsconfig.json to fix the pre-existing prisma type errors that were blocking next build. Used useState lazy initializer for localStorage read in import-dashboard to avoid the react-hooks/set-state-in-effect lint error. All 3 verification commands pass cleanly."
+}

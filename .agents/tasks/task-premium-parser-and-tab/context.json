@@ -1,0 +1,26 @@
+{
+  "project_type": "Next.js 16 App Router with TypeScript",
+  "language": "TypeScript",
+  "build_system": "npm with tsx for scripts, next build for app",
+  "test_framework": "vitest with globals:true, node environment, tests in **/__tests__/*.test.ts",
+  "build_command": "npx tsc --noEmit && npm run lint && npm run build",
+  "test_command": "npm run test",
+  "verification_instructions": "Run: npx tsc --noEmit && npm run lint && npm run test. All must pass.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "npm install (node_modules already present)",
+  "environment_constraints": "PDFs are on user's local machine only, not in sandbox. Parser script will be written and pushed. No actual PDF parsing can be tested in sandbox. Tests must use synthetic text fixtures.",
+  "contribution_requirements": "Never use useSyncExternalStore. Never call router.push() during render. Always guard localStorage with typeof window !== 'undefined'. Run npx tsc --noEmit && npm run lint before committing. No TODOs or placeholders.",
+  "key_patterns": "Feature-based folders src/features/{name}/. Question type has provider field (string). loadAllQuestions() reads localStorage. API route at /api/imported-questions serves all JSON from content/metadata/imported-questions/. Import scripts use tsx, CLI in src/scripts/. Existing import-questions.ts exports parseSolutions for testing.",
+  "relevant_files": [
+    "src/scripts/import-questions.ts",
+    "src/features/question-bank/types/index.ts",
+    "src/features/question-bank/utils/question-loader.ts",
+    "src/features/question-bank/components/session-configurator.tsx",
+    "src/features/question-bank/components/import-dashboard.tsx",
+    "src/app/api/imported-questions/route.ts",
+    "src/features/question-bank/hooks/use-imported-questions.ts",
+    "src/scripts/__tests__/import-questions.test.ts",
+    "package.json"
+  ],
+  "directory_structure": "src/scripts/ = CLI tools, src/features/question-bank/ = all QB logic (types, components, hooks, utils), src/app/ = Next.js pages/routes, content/metadata/imported-questions/ = output dir for parsed questions (JSON)"
+}

@@ -12,24 +12,66 @@ import {
   ResponsiveContainer,
   Cell,
 } from 'recharts';
-import type { QuestionSession, SessionSummary, ErrorClassification } from '../types';
-import { getSession, saveSession } from '../utils/session-storage';
+import {
+  Check,
+  X,
+  Star,
+  Flag,
+  Clock,
+  TrendingUp,
+  TrendingDown,
+  Minus,
+  ChevronDown,
+  ChevronUp,
+  AlertTriangle,
+  Download,
+} from 'lucide-react';
+import type { Question, QuestionSession, SessionSummary, ErrorClassification } from '../types';
+import { getSession, getSessions, saveSession } from '../utils/session-storage';
 import { buildSessionSummary } from '../utils/confidence-matrix';
-import { sampleQuestions } from '../data/sample-questions';
+import { loadAllQuestions } from '../utils/question-loader';
+import { BatchFlashcardCreator } from '@/features/flashcards/components/batch-flashcard-creator';
 
 interface SessionReviewProps {
   sessionId: string;
 }
 
-function loadReviewData(sessionId: string): { session: QuestionSession | null; summary: SessionSummary | null } {
-  if (typeof window === 'undefined') return { session: null, summary: null };
+function loadReviewData(sessionId: string): { session: QuestionSession | null; summary: SessionSummary | null; questions: Question[] } {
+  if (typeof window === 'undefined') return { session: null, summary: null, questions: [] };
 
   const loaded = getSession(sessionId);
-  if (!loaded || loaded.status !== 'completed') return { session: null, summary: null };
+  if (!loaded || loaded.status !== 'completed') return { session: null, summary: null, questions: [] };
 
-  const questions = sampleQuestions.filter(q => loaded.questionIds.includes(q.id));
+  const allQ = loadAllQuestions();
+  const questions = allQ.filter(q => loaded.questionIds.includes(q.id));
   const sum = buildSessionSummary(loaded.attempts, questions.map(q => ({ id: q.id, topic: q.topic })));
-  return { session: loaded, summary: sum };
+  return { session: loaded, summary: sum, questions };
+}
+
+function loadSessionHistory(): { scores: number[]; trend: 'up' | 'down' | 'flat' } {
+  if (typeof window === 'undefined') return { scores: [], trend: 'flat' };
+
+  const sessions = getSessions().filter(s => s.status === 'completed' && s.completedAt);
+  if (sessions.length === 0) return { scores: [], trend: 'flat' };
+
+  const sorted = sessions
+    .sort((a, b) => new Date(a.completedAt!).getTime() - new Date(b.completedAt!).getTime());
+
+  const last5 = sorted.slice(-5);
+  const scores = last5.map(s => {
+    const correct = s.attempts.filter(a => a.correct).length;
+    return s.attempts.length > 0 ? Math.round((correct / s.attempts.length) * 100) : 0;
+  });
+
+  let trend: 'up' | 'down' | 'flat' = 'flat';
+  if (scores.length >= 2) {
+    const first = scores[0];
+    const last = scores[scores.length - 1];
+    if (last - first > 3) trend = 'up';
+    else if (first - last > 3) trend = 'down';
+  }
+
+  return { scores, trend };
 }
 
 // Score ring component
@@ -172,10 +214,12 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
   const router = useRouter();
 
   const [data] = useState(() => loadReviewData(sessionId));
-  const { session, summary } = data;
+  const { session, summary, questions: sessionQuestions } = data;
 
   const [reviewIndex, setReviewIndex] = useState(0);
   const [revealState, setRevealState] = useState<1 | 2 | 3>(1);
+  const [expandedQuestionIdx, setExpandedQuestionIdx] = useState<number | null>(null);
+  const [sessionHistory] = useState(() => loadSessionHistory());
 
   // Redirect if no completed session
   useEffect(() => {
@@ -193,7 +237,7 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
   }
 
   const currentAttempt = session.attempts[reviewIndex];
-  const currentQuestion = sampleQuestions.find(q => q.id === currentAttempt?.questionId);
+  const currentQuestion = sessionQuestions.find(q => q.id === currentAttempt?.questionId);
 
   // Calculate confidence calibration score
   const certainAttempts = session.attempts.filter(a => a.confidence === 'Certain');
@@ -228,6 +272,41 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
 
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-4 pb-12 md:p-6">
+      {/* Session History Comparison */}
+      <div
+        className="flex items-center gap-3 rounded-xl px-4 py-3"
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          border: '1px solid var(--card-border)',
+        }}
+      >
+        {sessionHistory.scores.length <= 1 ? (
+          <p className="text-sm font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+            First session completed!
+          </p>
+        ) : (
+          <>
+            <span className="text-sm font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+              Your recent scores:
+            </span>
+            <span className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+              {sessionHistory.scores.map((s, i) => {
+                const isLast = i === sessionHistory.scores.length - 1;
+                return isLast ? `${s}% (this session)` : `${s}%`;
+              }).join(' \u2192 ')}
+            </span>
+            {sessionHistory.trend === 'up' && (
+              <TrendingUp className="h-4 w-4" style={{ color: 'var(--accent-success)' }} />
+            )}
+            {sessionHistory.trend === 'down' && (
+              <TrendingDown className="h-4 w-4" style={{ color: '#ef4444' }} />
+            )}
+            {sessionHistory.trend === 'flat' && (
+              <Minus className="h-4 w-4" style={{ color: 'var(--accent-secondary)' }} />
+            )}
+          </>
+        )}
+      </div>
       {/* Results Header */}
       <div
         className="flex flex-col items-center rounded-2xl p-6 md:flex-row md:p-8"
@@ -437,6 +516,285 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
         </div>
       </div>
 
+      {/* Subject Performance Table */}
+      {(() => {
+        const bySubject: Record<string, { correct: number; total: number; totalTime: number }> = {};
+        session.attempts.forEach(attempt => {
+          const q = sessionQuestions.find(qq => qq.id === attempt.questionId);
+          const subj = q?.subject ?? 'Unknown';
+          if (!bySubject[subj]) bySubject[subj] = { correct: 0, total: 0, totalTime: 0 };
+          bySubject[subj].total += 1;
+          bySubject[subj].totalTime += attempt.timeSpentSeconds;
+          if (attempt.correct) bySubject[subj].correct += 1;
+        });
+        const sorted = Object.entries(bySubject).sort((a, b) => {
+          const accA = a[1].total > 0 ? (a[1].correct / a[1].total) * 100 : 0;
+          const accB = b[1].total > 0 ? (b[1].correct / b[1].total) * 100 : 0;
+          return accA - accB;
+        });
+
+        return (
+          <div
+            className="rounded-2xl p-5"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              border: '1px solid var(--card-border)',
+            }}
+          >
+            <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
+              Subject Performance
+            </h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr style={{ color: 'var(--foreground-secondary)' }}>
+                    <th className="pb-2 text-left font-medium">Subject</th>
+                    <th className="pb-2 text-center font-medium">Questions</th>
+                    <th className="pb-2 text-center font-medium">Correct</th>
+                    <th className="pb-2 text-center font-medium">Accuracy</th>
+                    <th className="pb-2 text-center font-medium">Avg Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sorted.map(([subj, stats]) => {
+                    const acc = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+                    const avgTime = stats.total > 0 ? Math.round(stats.totalTime / stats.total) : 0;
+                    const accColor = acc >= 70 ? 'var(--accent-success)' : acc >= 50 ? 'var(--accent-secondary)' : '#ef4444';
+                    return (
+                      <tr key={subj} className="border-t" style={{ borderColor: 'var(--border)' }}>
+                        <td className="py-2 text-left" style={{ color: 'var(--foreground)' }}>{subj}</td>
+                        <td className="py-2 text-center" style={{ color: 'var(--foreground-secondary)' }}>{stats.total}</td>
+                        <td className="py-2 text-center" style={{ color: 'var(--foreground-secondary)' }}>{stats.correct}</td>
+                        <td className="py-2 text-center font-semibold" style={{ color: accColor }}>{acc}%</td>
+                        <td className="py-2 text-center" style={{ color: 'var(--foreground-secondary)' }}>{avgTime}s</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* Time Traps */}
+      {(() => {
+        const timeTraps = session.attempts
+          .map((attempt, idx) => ({ attempt, idx, question: sessionQuestions.find(q => q.id === attempt.questionId) }))
+          .filter(item => item.attempt.timeSpentSeconds > 90);
+
+        return (
+          <div
+            className="rounded-2xl p-5"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              border: '1px solid var(--card-border)',
+            }}
+          >
+            <h2 className="mb-1 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
+              Time Traps
+            </h2>
+            <p className="mb-4 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
+              Questions where you spent more than 90 seconds
+            </p>
+            {timeTraps.length === 0 ? (
+              <p className="text-sm" style={{ color: 'var(--accent-success)' }}>
+                No time traps! You maintained good pacing.
+              </p>
+            ) : (
+              <>
+                <div className="space-y-2">
+                  {timeTraps.map(({ attempt, idx, question }) => (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-3 rounded-lg px-3 py-2"
+                      style={{
+                        backgroundColor: 'var(--background-tertiary)',
+                        border: '1px solid var(--border)',
+                      }}
+                    >
+                      <span className="text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+                        Q{idx + 1}
+                      </span>
+                      <span className="flex-1 truncate text-sm" style={{ color: 'var(--foreground)' }}>
+                        {question?.questionText.slice(0, 60)}{(question?.questionText.length ?? 0) > 60 ? '...' : ''}
+                      </span>
+                      <span className="flex items-center gap-1 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+                        <Clock className="h-3 w-3" />
+                        {attempt.timeSpentSeconds}s
+                      </span>
+                      <span
+                        className="rounded-full px-2 py-0.5 text-xs font-medium"
+                        style={{
+                          backgroundColor: attempt.correct ? 'rgba(0, 132, 61, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                          color: attempt.correct ? 'var(--accent-success)' : '#ef4444',
+                        }}
+                      >
+                        {attempt.correct ? 'Correct' : 'Wrong'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div
+                  className="mt-4 flex items-start gap-2 rounded-lg p-3"
+                  style={{
+                    backgroundColor: 'rgba(197, 162, 88, 0.08)',
+                    border: '1px solid var(--accent-secondary)',
+                  }}
+                >
+                  <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: 'var(--accent-secondary)' }} />
+                  <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
+                    Questions taking &gt;90s often indicate uncertainty. Review these concepts.
+                  </p>
+                </div>
+              </>
+            )}
+          </div>
+        );
+      })()}
+
+      {/* All Questions - Scrollable List */}
+      <div
+        className="rounded-2xl p-5"
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          border: '1px solid var(--card-border)',
+        }}
+      >
+        <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
+          All Questions
+        </h2>
+        <div className="max-h-[480px] space-y-1 overflow-y-auto pr-1">
+          {session.attempts.map((attempt, idx) => {
+            const question = sessionQuestions.find(q => q.id === attempt.questionId);
+            if (!question) return null;
+            const isExpanded = expandedQuestionIdx === idx;
+            const isBookmarked = session.bookmarkedIds.includes(attempt.questionId);
+            const isFlagged = session.flaggedIds.includes(attempt.questionId);
+
+            const confidenceColor = attempt.confidence === 'Certain'
+              ? 'var(--accent-success)'
+              : attempt.confidence === 'ThinkSo'
+                ? '#3b82f6'
+                : '#6b7280';
+            const confidenceBg = attempt.confidence === 'Certain'
+              ? 'rgba(0, 132, 61, 0.15)'
+              : attempt.confidence === 'ThinkSo'
+                ? 'rgba(59, 130, 246, 0.15)'
+                : 'rgba(107, 114, 128, 0.15)';
+
+            return (
+              <div key={idx}>
+                <button
+                  onClick={() => setExpandedQuestionIdx(isExpanded ? null : idx)}
+                  className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-left transition-all hover:opacity-90"
+                  style={{
+                    backgroundColor: attempt.correct
+                      ? 'rgba(0, 132, 61, 0.06)'
+                      : 'rgba(239, 68, 68, 0.06)',
+                    border: `1px solid ${attempt.correct ? 'rgba(0, 132, 61, 0.2)' : 'rgba(239, 68, 68, 0.2)'}`,
+                  }}
+                >
+                  <span className="w-7 flex-shrink-0 text-xs font-semibold" style={{ color: 'var(--foreground-secondary)' }}>
+                    #{idx + 1}
+                  </span>
+                  <span className="flex-1 truncate text-sm" style={{ color: 'var(--foreground)' }}>
+                    {question.questionText.slice(0, 80)}{question.questionText.length > 80 ? '...' : ''}
+                  </span>
+                  {isBookmarked && <Star className="h-3.5 w-3.5 flex-shrink-0" style={{ color: 'var(--accent-secondary)' }} />}
+                  {isFlagged && <Flag className="h-3.5 w-3.5 flex-shrink-0" style={{ color: '#f97316' }} />}
+                  <span className="w-6 text-center text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+                    {attempt.selectedAnswer}
+                  </span>
+                  <span className="w-6 text-center text-xs font-medium" style={{ color: 'var(--accent-success)' }}>
+                    {question.answerChoices.find(c => c.isCorrect)?.label ?? '?'}
+                  </span>
+                  {attempt.correct ? (
+                    <Check className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--accent-success)' }} />
+                  ) : (
+                    <X className="h-4 w-4 flex-shrink-0" style={{ color: '#ef4444' }} />
+                  )}
+                  <span className="w-10 text-right text-xs" style={{ color: 'var(--foreground-secondary)' }}>
+                    {attempt.timeSpentSeconds}s
+                  </span>
+                  <span
+                    className="rounded-full px-2 py-0.5 text-xs font-medium"
+                    style={{ backgroundColor: confidenceBg, color: confidenceColor }}
+                  >
+                    {attempt.confidence === 'ThinkSo' ? 'Think So' : attempt.confidence}
+                  </span>
+                  {isExpanded ? (
+                    <ChevronUp className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--foreground-secondary)' }} />
+                  ) : (
+                    <ChevronDown className="h-4 w-4 flex-shrink-0" style={{ color: 'var(--foreground-secondary)' }} />
+                  )}
+                </button>
+                {isExpanded && (
+                  <div
+                    className="ml-4 mt-1 mb-2 rounded-lg p-4"
+                    style={{
+                      backgroundColor: 'var(--background-tertiary)',
+                      border: '1px solid var(--border)',
+                    }}
+                  >
+                    <p className="mb-3 text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>
+                      {question.questionText}
+                    </p>
+                    <div className="space-y-2">
+                      {question.answerChoices.map((choice) => {
+                        const isCorrectChoice = choice.isCorrect;
+                        const isUserPick = choice.label === attempt.selectedAnswer;
+                        let choiceBg = 'transparent';
+                        let choiceBorder = 'var(--border)';
+                        let choiceColor = 'var(--foreground-secondary)';
+
+                        if (isCorrectChoice) {
+                          choiceBg = 'rgba(0, 132, 61, 0.08)';
+                          choiceBorder = 'var(--accent-success)';
+                          choiceColor = 'var(--accent-success)';
+                        } else if (isUserPick && !isCorrectChoice) {
+                          choiceBg = 'rgba(239, 68, 68, 0.08)';
+                          choiceBorder = '#ef4444';
+                          choiceColor = '#ef4444';
+                        }
+
+                        return (
+                          <div
+                            key={choice.label}
+                            className="rounded-md px-3 py-2 text-sm"
+                            style={{
+                              backgroundColor: choiceBg,
+                              border: `1px solid ${choiceBorder}`,
+                              color: choiceColor,
+                            }}
+                          >
+                            <span className="font-semibold">{choice.label}.</span> {choice.text}
+                            {isCorrectChoice && <span className="ml-2">&#10003;</span>}
+                            {isUserPick && !isCorrectChoice && <span className="ml-2">&#10007;</span>}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {/* Explanation for correct answer */}
+                    {(() => {
+                      const correctChoice = question.answerChoices.find(c => c.isCorrect);
+                      return correctChoice?.explanation ? (
+                        <div className="mt-3 rounded-md p-3" style={{ backgroundColor: 'rgba(0, 132, 61, 0.05)', border: '1px solid rgba(0, 132, 61, 0.15)' }}>
+                          <p className="text-xs font-medium" style={{ color: 'var(--accent-success)' }}>Explanation</p>
+                          <p className="mt-1 text-xs leading-relaxed" style={{ color: 'var(--foreground-secondary)' }}>
+                            {correctChoice.explanation}
+                          </p>
+                        </div>
+                      ) : null;
+                    })()}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Question-by-Question Review */}
       {currentQuestion && currentAttempt && (
         <div
@@ -642,6 +1000,27 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
         </div>
       )}
 
+      {/* Flashcard Creator for incorrect answers */}
+      {(() => {
+        const incorrectQuestions = sessionQuestions.filter(q =>
+          session.attempts.some(a => a.questionId === q.id && !a.correct)
+        );
+        return incorrectQuestions.length > 0 ? (
+          <div
+            className="rounded-2xl p-5"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              border: '1px solid var(--card-border)',
+            }}
+          >
+            <p className="mb-4 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+              Create Flashcards from Wrong Answers ({incorrectQuestions.length} questions)
+            </p>
+            <BatchFlashcardCreator incorrectQuestions={incorrectQuestions} />
+          </div>
+        ) : null;
+      })()}
+
       {/* Action buttons */}
       <div className="flex flex-col gap-3 sm:flex-row">
         <Link
@@ -655,6 +1034,58 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
         >
           Back to Question Bank
         </Link>
+        <button
+          onClick={() => {
+            const csvRows: string[] = [];
+            csvRows.push('Question#,QuestionText,YourAnswer,CorrectAnswer,Correct(Y/N),Confidence,TimeSpent,Subject');
+            session.attempts.forEach((attempt, idx) => {
+              const question = sessionQuestions.find(q => q.id === attempt.questionId);
+              const questionText = question
+                ? '"' + question.questionText.replace(/"/g, '""') + '"'
+                : '';
+              const correctChoice = question
+                ? question.answerChoices.find(c => c.isCorrect)?.label ?? ''
+                : '';
+              const subject = question ? '"' + question.subject.replace(/"/g, '""') + '"' : '';
+              csvRows.push(
+                [
+                  idx + 1,
+                  questionText,
+                  attempt.selectedAnswer,
+                  correctChoice,
+                  attempt.correct ? 'Y' : 'N',
+                  attempt.confidence,
+                  attempt.timeSpentSeconds + 's',
+                  subject,
+                ].join(',')
+              );
+            });
+            const csvContent = csvRows.join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const dateStr = session.completedAt
+              ? new Date(session.completedAt).toISOString().slice(0, 10)
+              : new Date(session.startedAt).toISOString().slice(0, 10);
+            const scoreVal = Math.round(summary.accuracy);
+            const filename = `CFA-Buddy-Session-${dateStr}-${scoreVal}%.csv`;
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+          }}
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3 text-center text-sm font-medium transition-all hover:opacity-80"
+          style={{
+            backgroundColor: 'var(--background-tertiary)',
+            color: 'var(--foreground)',
+            border: '1px solid var(--border)',
+          }}
+        >
+          <Download className="h-4 w-4" />
+          Export Results
+        </button>
         <Link
           href="/questions"
           className="flex-1 rounded-xl px-6 py-3 text-center text-sm font-medium transition-all hover:opacity-80"

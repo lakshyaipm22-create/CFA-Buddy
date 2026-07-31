@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "BUNCH 3: Test-Taking UX - Timer, Progress Bar, Bookmarks, Navigation Grid, Keyboard Shortcuts in active-test-session.tsx",
+  "status": "completed",
+  "steps": [
+    "Add live question timer in active-test-session.tsx: Show timer counting UP (mm:ss) in top-right corner, resets when advancing to next question. If session is timed (has timeLimit), also show total remaining time counting DOWN. When total time hits 0, auto-submit all remaining as unanswered and go to review. Use useEffect with setInterval for timer updates.",
+    "Add progress indicator: Top of page shows 'Question 14 of 45' with progress bar. Below it: small stats showing answered count, flagged count, bookmarked count. Progress bar segments: green (correct, if instant feedback / untimed mode), red (wrong), gray (unanswered).",
+    "Implement bookmark button (fully functional): Clear star icon button next to flag button. Toggle filled star = bookmarked, outline = not. Saves to session.bookmarkedIds (already exists). ALSO saves to global localStorage key 'cfa-buddy-question-bookmarks' (array of question IDs) so bookmarks persist beyond the session.",
+    "Add navigation panel (question grid): Small clickable grid at the bottom, squares numbered 1-N (one per question). Color coded: green = answered correct, red = answered wrong, blue = current, gray = unanswered, orange border = flagged. Click any square to jump to that question (only in untimed mode). In timed mode, only allow forward navigation (no going back).",
+    "Add keyboard shortcuts during test: 1/2/3 or A/B/C select answer choice. Enter submits with default confidence 'ThinkSo'. F toggles flag. B toggles bookmark. N goes to next question (after feedback shown). Use useEffect with keydown event listener.",
+    "Run npx tsc --noEmit && npm run lint to verify.",
+    "Git commit with message: feat: enhance test UX with timer, progress bar, navigation grid, shortcuts"
+  ],
+  "acceptance_criteria": [
+    "Per-question timer shows mm:ss counting up in top-right",
+    "Total countdown timer shows when session has timeLimit",
+    "Auto-submit when time runs out",
+    "Progress bar with color-coded segments (green/red/gray)",
+    "Bookmark persists to global localStorage key",
+    "Navigation grid with color-coded squares",
+    "Keyboard shortcuts (1/2/3, A/B/C, Enter, F, B, N) work",
+    "npx tsc --noEmit passes (ignoring prisma errors)",
+    "npm run lint passes"
+  ],
+  "verification": [
+    "npx tsc --noEmit 2>&1 | grep -v prisma",
+    "npm run lint"
+  ],
+  "blocked_reason": null,
+  "findings": "React compiler lint rules are very strict - cannot call Date.now() during render (purity rule) or setState synchronously in effect body. Used lazy initializer for timer state, interval callbacks for updates. Auto-submit on time expiry navigates directly without setting session state to avoid cascading render lint error. Pre-existing prisma TS errors still present (expected). npm run build fails only due to prisma/seed.ts type error (pre-existing, not our code)."
+}

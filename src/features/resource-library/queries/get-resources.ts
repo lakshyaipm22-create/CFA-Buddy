@@ -2,6 +2,7 @@ import { readFile } from 'fs/promises';
 import { join } from 'path';
 import { existsSync } from 'fs';
 import type { ContentMetadata } from '@/features/content-scanner/types';
+import { sortByCfaOrder } from '@/shared/config/subjects';
 
 export interface ResourceFilters {
   level?: number;
@@ -57,7 +58,7 @@ export async function getResources(filters?: ResourceFilters): Promise<ContentMe
 export async function getSubjects(level?: number): Promise<string[]> {
   const resources = await getResources(level ? { level } : undefined);
   const subjects = new Set(resources.map(r => r.subject).filter(Boolean) as string[]);
-  return [...subjects].sort();
+  return sortByCfaOrder([...subjects]);
 }
 
 /**

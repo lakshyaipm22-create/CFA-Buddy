@@ -1,0 +1,14 @@
+{
+  "task_id": "task-fix-answer-parsing",
+  "task_description": "Fix Bug #2: Answer matching failed for 3 subjects (Fixed Income, Derivatives, Alternative Investments) in the question import pipeline. The parseSolutions() regex only matches 'X is correct' format but these PDFs use other formats like 'X.' or 'X ' followed by explanation.",
+  "status": "completed",
+  "feature_order": ["FEAT-001"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "All 38 tests pass including 21 new tests for the parser fix. Lint clean. TypeScript has 2 pre-existing prisma-client errors unrelated to this change. Build fails on prisma/seed.ts only (pre-existing)."
+  }
+}

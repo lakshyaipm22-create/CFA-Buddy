@@ -1,0 +1,28 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "BUNCH 1: Question Pipeline - Create API route, auto-loader hook, wire into Questions page, fix session-review.tsx to use loadAllQuestions()",
+  "status": "completed",
+  "steps": [
+    "Create src/app/api/imported-questions/route.ts: GET handler that reads all *.json from content/metadata/imported-questions/, merges into flat array, filters out questions where NO answerChoice has isCorrect === true, returns JSON. If content/ folder does not exist return empty array.",
+    "Create src/features/question-bank/hooks/useImportedQuestions.ts: On mount check localStorage 'cfa-buddy-imported-questions'. If empty OR 'cfa-buddy-questions-loaded-at' timestamp is >24h old, fetch('/api/imported-questions'), store in localStorage, update timestamp. Export { questions, isLoading, refresh }. Use useState(() => ...) lazy initializer pattern, never useSyncExternalStore.",
+    "Convert src/app/(protected)/questions/page.tsx to use the hook: make it a client component wrapper that calls useImportedQuestions, shows 'Loading 1,000 questions...' state while fetching, then renders SessionConfigurator and QuestionAnalytics.",
+    "Fix src/features/question-bank/components/session-review.tsx: In loadReviewData function (line ~37), change 'sampleQuestions.filter(...)' to 'loadAllQuestions().filter(...)'. Also fix the currentQuestion lookup (line ~175) and the BatchFlashcardCreator prop (line ~480) to use loadAllQuestions() instead of sampleQuestions. Import loadAllQuestions from '../utils/question-loader'. Remove sampleQuestions import if no longer used.",
+    "Run npx tsc --noEmit && npm run lint to verify no errors (ignoring prisma pre-existing).",
+    "Git commit with message: feat: serve imported questions via API + auto-load into browser"
+  ],
+  "acceptance_criteria": [
+    "API route at /api/imported-questions exists and returns JSON array (empty if no files exist)",
+    "Hook useImportedQuestions fetches from API and stores in localStorage with 24h cache",
+    "Questions page shows loading state while questions load",
+    "session-review.tsx uses loadAllQuestions() instead of sampleQuestions for all question lookups",
+    "npx tsc --noEmit passes (ignoring prisma errors)",
+    "npm run lint passes"
+  ],
+  "verification": [
+    "npx tsc --noEmit 2>&1 | grep -v prisma",
+    "npm run lint"
+  ],
+  "blocked_reason": null,
+  "findings": "ESLint react-hooks/set-state-in-effect rule prevents calling a setState-containing function directly from useEffect. Used .then() callback pattern with doFetch helper to avoid the lint error. Pre-existing prisma TS errors confirmed as known."
+}
