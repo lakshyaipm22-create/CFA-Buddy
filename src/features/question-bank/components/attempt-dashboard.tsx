@@ -4,11 +4,15 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Trophy, TrendingUp, TrendingDown } from 'lucide-react';
 import { getAttemptById } from '../utils/attempt-storage';
+import { ErrorAnalysisPanel } from './error-analysis-panel';
+import { ConfidenceCalibration } from './confidence-calibration';
 import type { PracticeAttempt, ModuleResult } from '../types/attempt';
 
 interface AttemptDashboardProps {
   attemptId: string;
 }
+
+type DashboardTab = 'overview' | 'errors' | 'confidence';
 
 function ScoreRing({ score, size = 160, label }: { score: number; size?: number; label?: string }) {
   const strokeWidth = size >= 100 ? 12 : 8;
@@ -123,6 +127,7 @@ function TopicBar({ topic, correct, total }: { topic: string; correct: number; t
 
 export function AttemptDashboard({ attemptId }: AttemptDashboardProps) {
   const [attempt] = useState<PracticeAttempt | null>(() => getAttemptById(attemptId));
+  const [activeTab, setActiveTab] = useState<DashboardTab>('overview');
 
   if (!attempt) {
     return (
@@ -135,6 +140,12 @@ export function AttemptDashboard({ attemptId }: AttemptDashboardProps) {
   const sortedModules = [...attempt.moduleResults].sort((a, b) => a.percentage - b.percentage);
   const strengths = attempt.moduleResults.filter(m => m.percentage >= 80);
   const weaknesses = attempt.moduleResults.filter(m => m.percentage < 70);
+
+  const tabs: { id: DashboardTab; label: string }[] = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'errors', label: 'Error Analysis' },
+    { id: 'confidence', label: 'Confidence' },
+  ];
 
   return (
     <div className="mx-auto max-w-5xl space-y-8 p-4 pb-12 md:p-6">
@@ -199,115 +210,148 @@ export function AttemptDashboard({ attemptId }: AttemptDashboardProps) {
         </div>
       </div>
 
-      {/* Module Grid */}
-      <div>
-        <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
-          Module Performance
-        </h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {attempt.moduleResults.map(module => (
-            <ModuleCard key={module.moduleId} module={module} />
-          ))}
-        </div>
+      {/* Tab Navigation */}
+      <div className="flex gap-1 rounded-xl p-1" style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--card-border)' }}>
+        {tabs.map(tab => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className="flex-1 rounded-lg px-4 py-2 text-sm font-medium transition-all"
+              style={{
+                backgroundColor: isActive ? 'var(--accent-primary)' : 'transparent',
+                color: isActive ? 'var(--accent-secondary)' : 'var(--foreground-secondary)',
+              }}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Topic Breakdown */}
-      <div
-        className="rounded-2xl p-5"
-        style={{
-          backgroundColor: 'var(--card-bg)',
-          border: '1px solid var(--card-border)',
-        }}
-      >
-        <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
-          Topic Accuracy (Sorted by Performance)
-        </h2>
-        <div className="space-y-4">
-          {sortedModules.map(module => (
-            <TopicBar
-              key={module.moduleId}
-              topic={module.moduleName}
-              correct={module.score}
-              total={module.total}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Strengths and Weaknesses */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {/* Strengths */}
-        <div
-          className="rounded-2xl p-5"
-          style={{
-            backgroundColor: 'var(--card-bg)',
-            border: '1px solid var(--card-border)',
-          }}
-        >
-          <div className="mb-3 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5" style={{ color: 'var(--accent-success)' }} />
-            <h3 className="text-base font-semibold" style={{ color: 'var(--foreground)' }}>
-              Strengths ({'\u2265'}80%)
-            </h3>
-          </div>
-          {strengths.length === 0 ? (
-            <p className="text-sm" style={{ color: 'var(--foreground-secondary)' }}>
-              No modules above 80% yet. Keep practicing!
-            </p>
-          ) : (
-            <div className="space-y-2">
-              {strengths
-                .sort((a, b) => b.percentage - a.percentage)
-                .map(m => (
-                  <div key={m.moduleId} className="flex items-center justify-between">
-                    <span className="text-sm" style={{ color: 'var(--foreground)' }}>
-                      {m.moduleName}
-                    </span>
-                    <span className="text-sm font-medium" style={{ color: 'var(--accent-success)' }}>
-                      {m.percentage}%
-                    </span>
-                  </div>
-                ))}
+      {/* Tab Content */}
+      {activeTab === 'overview' && (
+        <div className="space-y-8">
+          {/* Module Grid */}
+          <div>
+            <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
+              Module Performance
+            </h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {attempt.moduleResults.map(module => (
+                <ModuleCard key={module.moduleId} module={module} />
+              ))}
             </div>
-          )}
-        </div>
-
-        {/* Weaknesses */}
-        <div
-          className="rounded-2xl p-5"
-          style={{
-            backgroundColor: 'var(--card-bg)',
-            border: '1px solid var(--card-border)',
-          }}
-        >
-          <div className="mb-3 flex items-center gap-2">
-            <TrendingDown className="h-5 w-5" style={{ color: '#ef4444' }} />
-            <h3 className="text-base font-semibold" style={{ color: 'var(--foreground)' }}>
-              Weaknesses (&lt;70%)
-            </h3>
           </div>
-          {weaknesses.length === 0 ? (
-            <p className="text-sm" style={{ color: 'var(--foreground-secondary)' }}>
-              No modules below 70%. Great work!
-            </p>
-          ) : (
-            <div className="space-y-2">
-              {weaknesses
-                .sort((a, b) => a.percentage - b.percentage)
-                .map(m => (
-                  <div key={m.moduleId} className="flex items-center justify-between">
-                    <span className="text-sm" style={{ color: 'var(--foreground)' }}>
-                      {m.moduleName}
-                    </span>
-                    <span className="text-sm font-medium" style={{ color: '#ef4444' }}>
-                      {m.percentage}%
-                    </span>
-                  </div>
-                ))}
+
+          {/* Topic Breakdown */}
+          <div
+            className="rounded-2xl p-5"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              border: '1px solid var(--card-border)',
+            }}
+          >
+            <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
+              Topic Accuracy (Sorted by Performance)
+            </h2>
+            <div className="space-y-4">
+              {sortedModules.map(module => (
+                <TopicBar
+                  key={module.moduleId}
+                  topic={module.moduleName}
+                  correct={module.score}
+                  total={module.total}
+                />
+              ))}
             </div>
-          )}
+          </div>
+
+          {/* Strengths and Weaknesses */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {/* Strengths */}
+            <div
+              className="rounded-2xl p-5"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                border: '1px solid var(--card-border)',
+              }}
+            >
+              <div className="mb-3 flex items-center gap-2">
+                <TrendingUp className="h-5 w-5" style={{ color: 'var(--accent-success)' }} />
+                <h3 className="text-base font-semibold" style={{ color: 'var(--foreground)' }}>
+                  Strengths ({'\u2265'}80%)
+                </h3>
+              </div>
+              {strengths.length === 0 ? (
+                <p className="text-sm" style={{ color: 'var(--foreground-secondary)' }}>
+                  No modules above 80% yet. Keep practicing!
+                </p>
+              ) : (
+                <div className="space-y-2">
+                  {strengths
+                    .sort((a, b) => b.percentage - a.percentage)
+                    .map(m => (
+                      <div key={m.moduleId} className="flex items-center justify-between">
+                        <span className="text-sm" style={{ color: 'var(--foreground)' }}>
+                          {m.moduleName}
+                        </span>
+                        <span className="text-sm font-medium" style={{ color: 'var(--accent-success)' }}>
+                          {m.percentage}%
+                        </span>
+                      </div>
+                    ))}
+                </div>
+              )}
+            </div>
+
+            {/* Weaknesses */}
+            <div
+              className="rounded-2xl p-5"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                border: '1px solid var(--card-border)',
+              }}
+            >
+              <div className="mb-3 flex items-center gap-2">
+                <TrendingDown className="h-5 w-5" style={{ color: '#ef4444' }} />
+                <h3 className="text-base font-semibold" style={{ color: 'var(--foreground)' }}>
+                  Weaknesses (&lt;70%)
+                </h3>
+              </div>
+              {weaknesses.length === 0 ? (
+                <p className="text-sm" style={{ color: 'var(--foreground-secondary)' }}>
+                  No modules below 70%. Great work!
+                </p>
+              ) : (
+                <div className="space-y-2">
+                  {weaknesses
+                    .sort((a, b) => a.percentage - b.percentage)
+                    .map(m => (
+                      <div key={m.moduleId} className="flex items-center justify-between">
+                        <span className="text-sm" style={{ color: 'var(--foreground)' }}>
+                          {m.moduleName}
+                        </span>
+                        <span className="text-sm font-medium" style={{ color: '#ef4444' }}>
+                          {m.percentage}%
+                        </span>
+                      </div>
+                    ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+
+      {activeTab === 'errors' && (
+        <ErrorAnalysisPanel attempt={attempt} />
+      )}
+
+      {activeTab === 'confidence' && (
+        <ConfidenceCalibration attempt={attempt} />
+      )}
 
       {/* Action Buttons */}
       <div className="flex flex-col gap-3 sm:flex-row">

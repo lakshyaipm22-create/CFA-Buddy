@@ -3,12 +3,15 @@
  * with module-level breakdown and per-question results.
  */
 
+import type { ErrorClassification } from './index';
+
 export interface AttemptQuestion {
   questionId: string;
   selectedAnswer: string;
   correct: boolean;
   timeSpentSeconds: number;
   confidence: 'High' | 'Medium' | 'Low';
+  errorClassification?: ErrorClassification;
 }
 
 export interface ModuleResult {

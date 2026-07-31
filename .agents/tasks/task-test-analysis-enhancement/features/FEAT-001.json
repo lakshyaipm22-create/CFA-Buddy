@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Error Analysis + Confidence Calibration + Question Notes - Three tightly coupled analysis features that classify mistakes, track confidence vs correctness, and allow annotations on questions during review.",
+  "status": "in_progress",
+  "steps": [
+    "Step 1 - Error Classification in Attempt Review: Enhance src/features/question-bank/components/attempt-review.tsx to add an error classification dropdown for incorrect answers. When viewing an incorrect answer, show a select with options: Didn't Know, Forgot Formula, Calculation Mistake, Misread Question, Careless, Time Pressure. Save the classification by updating the AttemptQuestion in the PracticeAttempt and persisting via saveAttempt(). The AttemptQuestion type in src/features/question-bank/types/attempt.ts needs an optional errorClassification field (use the ErrorClassification type from types/index.ts but map it to user-friendly labels).",
+    "Step 2 - Error Pattern Analysis Component: Create src/features/question-bank/components/error-analysis-panel.tsx. This component receives attempt data and renders: (a) a donut/pie chart (using recharts with dynamic import, ssr:false) showing distribution of error types, (b) a stacked bar chart showing error types by module, (c) a 'top pattern' callout identifying the most frequent error type with a recommendation. Follow the pattern in mistake-analytics.tsx for recharts usage. Use the ERROR_COLORS already defined there.",
+    "Step 3 - Confidence Calibration Chart: Create src/features/question-bank/components/confidence-calibration.tsx. Build a 3x2 matrix visualization: rows = Confident(Certain)/ThinkSo/Guess, columns = Correct/Incorrect. Cells show: Mastered (Certain+Correct), Dangerous Misconception (Certain+Wrong), Solid (ThinkSo+Correct), Weak Area (ThinkSo+Wrong), Lucky Guess (Guess+Correct), Knowledge Gap (Guess+Wrong). Each cell shows count and percentage. Highlight 'dangerous' cells (misconception) with red emphasis. Uses the existing ConfidenceMatrix type and buildConfidenceMatrix from confidence-matrix.ts but adapted for the AttemptQuestion confidence ('High'/'Medium'/'Low' maps to Certain/ThinkSo/Guess).",
+    "Step 4 - Question Notes/Annotations in Review: Enhance attempt-review.tsx to include a notes textarea below each question. Import getNotes/saveNote/deleteNote from src/features/practice/utils/annotations-storage.ts (already exists). Show a small notebook icon if a note exists. Add a 'Questions with Notes' filter option alongside all/incorrect/bookmarked. Also add an 'Export Notes' button that generates a text summary of all notes with question context.",
+    "Step 5 - Wire into Attempt Dashboard: Update src/features/question-bank/components/attempt-dashboard.tsx to include the ErrorAnalysisPanel and ConfidenceCalibration components as new sections below the existing module performance grid. Add tabbed navigation or scrollable sections: Overview (existing), Error Analysis (new), Confidence (new). Use framer-motion for tab transitions if desired.",
+    "Step 6 - Unit tests: Create src/features/question-bank/__tests__/error-analysis.test.ts testing: (a) error classification persistence (save/load from attempt-storage), (b) confidence matrix computation mapping High/Medium/Low to Certain/ThinkSo/Guess, (c) notes export format generation."
+  ],
+  "acceptance_criteria": [
+    "Running bun run tsc --noEmit passes with no new errors",
+    "Running bun run vitest --run passes all new tests in error-analysis.test.ts",
+    "AttemptQuestion type has optional errorClassification field",
+    "attempt-review.tsx shows classification dropdown for incorrect questions and notes textarea",
+    "attempt-dashboard.tsx displays ErrorAnalysisPanel and ConfidenceCalibration sections",
+    "Notes can be added/edited/deleted for questions and persisted via localStorage",
+    "Export notes function generates readable text output"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

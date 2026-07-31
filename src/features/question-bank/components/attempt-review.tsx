@@ -2,22 +2,77 @@
 
 import { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Star, ChevronLeft, ChevronRight, BookOpen, Download } from 'lucide-react';
 import { getAttemptById, saveAttempt } from '../utils/attempt-storage';
+import { getNotes, saveNote, deleteNote } from '@/features/practice/utils/annotations-storage';
 import { corporateIssuersQuestions } from '../data/corporate-issuers';
-import type { PracticeAttempt } from '../types/attempt';
-import type { Question } from '../types';
+import type { PracticeAttempt, AttemptQuestion } from '../types/attempt';
+import type { Question, ErrorClassification } from '../types';
 
 interface AttemptReviewProps {
   attemptId: string;
 }
 
-type FilterMode = 'all' | 'incorrect' | 'bookmarked';
+type FilterMode = 'all' | 'incorrect' | 'bookmarked' | 'noted';
+
+const ERROR_CLASSIFICATION_OPTIONS: { value: ErrorClassification; label: string }[] = [
+  { value: 'DidntKnow', label: "Didn't Know" },
+  { value: 'ForgotFormula', label: 'Forgot Formula' },
+  { value: 'CalculationMistake', label: 'Calculation Mistake' },
+  { value: 'MisreadQuestion', label: 'Misread Question' },
+  { value: 'Careless', label: 'Careless' },
+  { value: 'TimePressure', label: 'Time Pressure' },
+];
+
+/**
+ * Generate a text export of all notes with question context.
+ */
+export function generateNotesExport(
+  attempt: PracticeAttempt,
+  questions: Question[],
+  notes: Record<string, string>
+): string {
+  const lines: string[] = [];
+  lines.push(`Notes Export - ${attempt.subjectName} (Attempt #${attempt.attemptNumber})`);
+  lines.push(`Date: ${new Date(attempt.completedAt).toLocaleDateString()}`);
+  lines.push('='.repeat(60));
+  lines.push('');
+
+  let noteCount = 0;
+  for (const module of attempt.moduleResults) {
+    for (const qa of module.questionAttempts) {
+      const note = notes[qa.questionId];
+      if (!note) continue;
+
+      noteCount++;
+      const question = questions.find(q => q.id === qa.questionId);
+      lines.push(`[${noteCount}] ${question?.questionText ?? 'Question ID: ' + qa.questionId}`);
+      lines.push(`    Module: ${module.moduleName}`);
+      lines.push(`    Result: ${qa.correct ? 'Correct' : 'Incorrect'} | Confidence: ${qa.confidence}`);
+      if (qa.errorClassification) {
+        lines.push(`    Error Type: ${qa.errorClassification}`);
+      }
+      lines.push(`    Note: ${note}`);
+      lines.push('');
+    }
+  }
+
+  if (noteCount === 0) {
+    lines.push('No notes found for this attempt.');
+  } else {
+    lines.push(`Total notes: ${noteCount}`);
+  }
+
+  return lines.join('\n');
+}
 
 export function AttemptReview({ attemptId }: AttemptReviewProps) {
   const [attempt, setAttempt] = useState<PracticeAttempt | null>(() => getAttemptById(attemptId));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [filter, setFilter] = useState<FilterMode>('all');
+  const [questionNotes, setQuestionNotes] = useState<Record<string, string>>(() => getNotes());
+  const [editingNote, setEditingNote] = useState<string>('');
+  const [noteExpanded, setNoteExpanded] = useState(false);
 
   const allQuestionAttempts = useMemo(() => {
     if (!attempt) return [];
@@ -30,10 +85,12 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
         return allQuestionAttempts.filter(qa => !qa.correct);
       case 'bookmarked':
         return allQuestionAttempts.filter(qa => attempt?.bookmarkedIds.includes(qa.questionId));
+      case 'noted':
+        return allQuestionAttempts.filter(qa => !!questionNotes[qa.questionId]);
       default:
         return allQuestionAttempts;
     }
-  }, [allQuestionAttempts, filter, attempt]);
+  }, [allQuestionAttempts, filter, attempt, questionNotes]);
 
   const currentAttemptQ = filteredAttempts[currentIndex];
   const currentQuestion: Question | undefined = currentAttemptQ
@@ -43,6 +100,16 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
   const isBookmarked = currentAttemptQ
     ? attempt?.bookmarkedIds.includes(currentAttemptQ.questionId) ?? false
     : false;
+
+  const currentNote = currentAttemptQ ? (questionNotes[currentAttemptQ.questionId] ?? '') : '';
+
+  // Sync note editing state when navigating
+  const syncNoteState = useCallback((questionId: string) => {
+    const notes = getNotes();
+    setQuestionNotes(notes);
+    setEditingNote(notes[questionId] ?? '');
+    setNoteExpanded(!!notes[questionId]);
+  }, []);
 
   const toggleBookmark = useCallback(() => {
     if (!attempt || !currentAttemptQ) return;
@@ -57,16 +124,81 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
     setAttempt(updated);
   }, [attempt, currentAttemptQ]);
 
+  const handleClassificationChange = useCallback((classification: ErrorClassification | '') => {
+    if (!attempt || !currentAttemptQ) return;
+
+    const updated: PracticeAttempt = {
+      ...attempt,
+      moduleResults: attempt.moduleResults.map(m => ({
+        ...m,
+        questionAttempts: m.questionAttempts.map(qa =>
+          qa.questionId === currentAttemptQ.questionId
+            ? { ...qa, errorClassification: classification || undefined }
+            : qa
+        ),
+      })),
+    };
+
+    saveAttempt(updated);
+    setAttempt(updated);
+  }, [attempt, currentAttemptQ]);
+
+  const handleSaveNote = useCallback(() => {
+    if (!currentAttemptQ) return;
+    const trimmed = editingNote.trim();
+    if (trimmed) {
+      saveNote(currentAttemptQ.questionId, trimmed);
+    } else {
+      deleteNote(currentAttemptQ.questionId);
+    }
+    setQuestionNotes(getNotes());
+  }, [currentAttemptQ, editingNote]);
+
+  const handleDeleteNote = useCallback(() => {
+    if (!currentAttemptQ) return;
+    deleteNote(currentAttemptQ.questionId);
+    setEditingNote('');
+    setQuestionNotes(getNotes());
+    setNoteExpanded(false);
+  }, [currentAttemptQ]);
+
+  const handleExportNotes = useCallback(() => {
+    if (!attempt) return;
+    const notes = getNotes();
+    const exportText = generateNotesExport(attempt, corporateIssuersQuestions, notes);
+
+    const blob = new Blob([exportText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `notes-${attempt.subjectName.replace(/\s+/g, '-').toLowerCase()}-attempt${attempt.attemptNumber}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [attempt]);
+
   const goToQuestion = useCallback((index: number) => {
     if (index >= 0 && index < filteredAttempts.length) {
       setCurrentIndex(index);
+      const qa = filteredAttempts[index];
+      if (qa) {
+        syncNoteState(qa.questionId);
+      }
     }
-  }, [filteredAttempts.length]);
+  }, [filteredAttempts, syncNoteState]);
 
   const handleFilterChange = useCallback((newFilter: FilterMode) => {
     setFilter(newFilter);
     setCurrentIndex(0);
   }, []);
+
+  // Initialize note state for first render
+  useMemo(() => {
+    if (currentAttemptQ) {
+      setEditingNote(questionNotes[currentAttemptQ.questionId] ?? '');
+      setNoteExpanded(!!questionNotes[currentAttemptQ.questionId]);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentAttemptQ?.questionId]);
 
   if (!attempt) {
     return (
@@ -96,6 +228,8 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
     );
   }
 
+  const notedCount = allQuestionAttempts.filter(qa => !!questionNotes[qa.questionId]).length;
+
   return (
     <div className="mx-auto max-w-4xl space-y-6 p-4 pb-12 md:p-6">
       {/* Header */}
@@ -108,21 +242,44 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
           <ArrowLeft className="h-4 w-4" />
           Back to Dashboard
         </Link>
-        <span className="text-sm font-medium" style={{ color: 'var(--foreground-secondary)' }}>
-          {currentIndex + 1} of {filteredAttempts.length}
-        </span>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleExportNotes}
+            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all hover:opacity-80"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              color: 'var(--foreground-secondary)',
+              border: '1px solid var(--card-border)',
+            }}
+            title="Export all notes"
+          >
+            <Download className="h-3.5 w-3.5" />
+            Export Notes
+          </button>
+          <span className="text-sm font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+            {currentIndex + 1} of {filteredAttempts.length}
+          </span>
+        </div>
       </div>
 
       {/* Filter Buttons */}
       <div className="flex flex-wrap gap-2">
-        {(['all', 'incorrect', 'bookmarked'] as FilterMode[]).map(f => {
+        {(['all', 'incorrect', 'bookmarked', 'noted'] as FilterMode[]).map(f => {
           const isActive = filter === f;
-          const label = f === 'all' ? 'All' : f === 'incorrect' ? 'Incorrect Only' : 'Bookmarked Only';
+          const label = f === 'all'
+            ? 'All'
+            : f === 'incorrect'
+              ? 'Incorrect Only'
+              : f === 'bookmarked'
+                ? 'Bookmarked Only'
+                : 'With Notes';
           const count = f === 'all'
             ? allQuestionAttempts.length
             : f === 'incorrect'
               ? allQuestionAttempts.filter(qa => !qa.correct).length
-              : attempt.bookmarkedIds.length;
+              : f === 'bookmarked'
+                ? attempt.bookmarkedIds.length
+                : notedCount;
 
           return (
             <button
@@ -145,6 +302,7 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
       <div className="flex flex-wrap gap-1.5">
         {filteredAttempts.map((qa, idx) => {
           const isActive = idx === currentIndex;
+          const hasNote = !!questionNotes[qa.questionId];
           const bgColor = isActive
             ? 'var(--accent-primary)'
             : qa.correct
@@ -160,10 +318,16 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
             <button
               key={`${qa.questionId}-${idx}`}
               onClick={() => goToQuestion(idx)}
-              className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-all hover:opacity-80"
+              className="relative flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-all hover:opacity-80"
               style={{ backgroundColor: bgColor, color: txtColor }}
             >
               {idx + 1}
+              {hasNote && (
+                <span
+                  className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full"
+                  style={{ backgroundColor: 'var(--accent-primary)' }}
+                />
+              )}
             </button>
           );
         })}
@@ -194,6 +358,9 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
                 <span className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
                   {currentQuestion.topic}
                 </span>
+              )}
+              {currentNote && (
+                <BookOpen className="h-3.5 w-3.5" style={{ color: 'var(--accent-primary)' }} />
               )}
             </div>
             <button
@@ -267,6 +434,86 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
                 </div>
               );
             })}
+          </div>
+
+          {/* Error Classification (only for incorrect answers) */}
+          {!currentAttemptQ.correct && (
+            <div className="mt-5 rounded-lg p-4" style={{ backgroundColor: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+              <label className="mb-2 block text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+                Why did you get this wrong?
+              </label>
+              <select
+                value={currentAttemptQ.errorClassification ?? ''}
+                onChange={(e) => handleClassificationChange(e.target.value as ErrorClassification | '')}
+                className="w-full rounded-lg px-3 py-2 text-sm outline-none transition-all"
+                style={{
+                  backgroundColor: 'var(--card-bg)',
+                  color: 'var(--foreground)',
+                  border: '1px solid var(--card-border)',
+                }}
+              >
+                <option value="">Select error type...</option>
+                {ERROR_CLASSIFICATION_OPTIONS.map(opt => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {/* Notes Section */}
+          <div className="mt-5">
+            <button
+              onClick={() => setNoteExpanded(!noteExpanded)}
+              className="inline-flex items-center gap-2 text-xs font-medium transition-all hover:opacity-80"
+              style={{ color: 'var(--accent-primary)' }}
+            >
+              <BookOpen className="h-3.5 w-3.5" />
+              {noteExpanded ? 'Hide Notes' : currentNote ? 'Edit Note' : 'Add Note'}
+            </button>
+
+            {noteExpanded && (
+              <div className="mt-3 space-y-2">
+                <textarea
+                  value={editingNote}
+                  onChange={(e) => setEditingNote(e.target.value)}
+                  onBlur={handleSaveNote}
+                  placeholder="Add your notes about this question..."
+                  maxLength={500}
+                  rows={3}
+                  className="w-full resize-none rounded-lg px-3 py-2 text-sm outline-none transition-all focus:ring-1"
+                  style={{
+                    backgroundColor: 'var(--card-bg)',
+                    color: 'var(--foreground)',
+                    border: '1px solid var(--card-border)',
+                  }}
+                />
+                <div className="flex items-center justify-between">
+                  <span className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
+                    {editingNote.length}/500
+                  </span>
+                  <div className="flex gap-2">
+                    {currentNote && (
+                      <button
+                        onClick={handleDeleteNote}
+                        className="rounded px-2 py-1 text-xs font-medium transition-all hover:opacity-80"
+                        style={{ color: '#ef4444' }}
+                      >
+                        Delete
+                      </button>
+                    )}
+                    <button
+                      onClick={handleSaveNote}
+                      className="rounded px-3 py-1 text-xs font-medium transition-all hover:opacity-80"
+                      style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
