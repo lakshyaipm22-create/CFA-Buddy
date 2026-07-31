@@ -5,6 +5,7 @@ import { MobileBottomNav } from '@/shared/components/layout/mobile-bottom-nav';
 import { SearchModal } from '@/features/search/components/search-modal';
 import { StudyTimer } from '@/features/study-timer/components/study-timer';
 import { KeyboardShortcutsProvider } from './keyboard-shortcuts-provider';
+import { PageTracker } from './page-tracker';
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,6 +22,7 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
       <SearchModal />
       <StudyTimer />
       <KeyboardShortcutsProvider />
+      <PageTracker />
     </div>
   );
 }

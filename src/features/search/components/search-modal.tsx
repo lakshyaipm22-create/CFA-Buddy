@@ -2,18 +2,50 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, X, Clock, FileText, HelpCircle, StickyNote } from 'lucide-react';
+import {
+  Search,
+  X,
+  Clock,
+  FileText,
+  HelpCircle,
+  StickyNote,
+  Play,
+  RotateCcw,
+  Layers,
+  AlertTriangle,
+  TrendingUp,
+  ArrowRight,
+  History,
+} from 'lucide-react';
 import type { ContentMetadata } from '@/features/content-scanner/types';
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
 import { searchNotes } from '@/shared/annotations';
+import { getRecentPages } from '@/shared/lib/page-visit-tracker';
+import type { PageVisit } from '@/shared/lib/page-visit-tracker';
 
 interface SearchResult {
   id: string;
-  type: 'resource' | 'question' | 'note';
+  type: 'resource' | 'question' | 'note' | 'action' | 'page';
   title: string;
   subtitle: string;
   href: string;
 }
+
+interface QuickAction {
+  id: string;
+  title: string;
+  subtitle: string;
+  href: string;
+  icon: React.ReactNode;
+}
+
+const QUICK_ACTIONS: QuickAction[] = [
+  { id: 'practice', title: 'Start Practice Session', subtitle: 'Answer questions by topic', href: '/questions', icon: <Play className="h-4 w-4" /> },
+  { id: 'review', title: 'Review Due Items', subtitle: 'Spaced repetition queue', href: '/review', icon: <RotateCcw className="h-4 w-4" /> },
+  { id: 'flashcards', title: 'View Flashcards', subtitle: 'Study your card deck', href: '/flashcards', icon: <Layers className="h-4 w-4" /> },
+  { id: 'mistakes', title: 'Open Mistakes', subtitle: 'Review incorrect answers', href: '/mistakes', icon: <AlertTriangle className="h-4 w-4" /> },
+  { id: 'progress', title: 'Check Progress', subtitle: 'Analytics and insights', href: '/insights', icon: <TrendingUp className="h-4 w-4" /> },
+];
 
 function getRecentSearches(): string[] {
   if (typeof window === 'undefined') return [];
@@ -34,8 +66,13 @@ export function SearchModal() {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [recentPages, setRecentPages] = useState<PageVisit[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  // Total navigable items when query is empty (quick actions + recent pages + recent searches)
+  const emptyStateItems = [...QUICK_ACTIONS.map(a => a.href), ...recentPages.map(p => p.path)];
+  const totalEmptyItems = emptyStateItems.length;
 
   // Cmd+K / Ctrl+K to open
   useEffect(() => {
@@ -43,7 +80,10 @@ export function SearchModal() {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         setOpen(prev => {
-          if (!prev) setRecentSearches(getRecentSearches());
+          if (!prev) {
+            setRecentSearches(getRecentSearches());
+            setRecentPages(getRecentPages().slice(0, 5));
+          }
           return !prev;
         });
       }
@@ -70,7 +110,7 @@ export function SearchModal() {
     setSelectedIdx(0);
   }, []);
 
-  // Search with debounce — resources + questions + notes
+  // Search with debounce - resources + questions + notes
   const search = useCallback(async (q: string) => {
     if (q.length < 2) { setResults([]); return; }
     const combined: SearchResult[] = [];
@@ -122,17 +162,35 @@ export function SearchModal() {
     return () => clearTimeout(timer);
   }, [query, search]);
 
-  // Keyboard navigation within results
+  // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setSelectedIdx(prev => Math.min(prev + 1, results.length - 1));
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setSelectedIdx(prev => Math.max(prev - 1, 0));
-    } else if (e.key === 'Enter' && results.length > 0) {
-      e.preventDefault();
-      selectResult(results[selectedIdx]);
+    if (query.length < 2) {
+      // Navigate quick actions + recent pages when no query
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setSelectedIdx(prev => Math.min(prev + 1, totalEmptyItems - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelectedIdx(prev => Math.max(prev - 1, 0));
+      } else if (e.key === 'Enter' && totalEmptyItems > 0) {
+        e.preventDefault();
+        const href = emptyStateItems[selectedIdx];
+        if (href) {
+          handleClose();
+          router.push(href);
+        }
+      }
+    } else {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setSelectedIdx(prev => Math.min(prev + 1, results.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelectedIdx(prev => Math.max(prev - 1, 0));
+      } else if (e.key === 'Enter' && results.length > 0) {
+        e.preventDefault();
+        selectResult(results[selectedIdx]);
+      }
     }
   };
 
@@ -140,6 +198,11 @@ export function SearchModal() {
     saveRecentSearch(query);
     handleClose();
     router.push(result.href);
+  };
+
+  const navigateTo = (href: string) => {
+    handleClose();
+    router.push(href);
   };
 
   const selectRecentSearch = (s: string) => {
@@ -155,6 +218,11 @@ export function SearchModal() {
       case 'note': return <StickyNote className="h-3.5 w-3.5" />;
       default: return <FileText className="h-3.5 w-3.5" />;
     }
+  };
+
+  // Determine which section index we're in for the empty state
+  const getEmptyStateHighlight = (sectionStartIdx: number, itemIdx: number) => {
+    return selectedIdx === sectionStartIdx + itemIdx;
   };
 
   return (
@@ -173,7 +241,7 @@ export function SearchModal() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Search questions, resources, subjects..."
+            placeholder="Search or jump to..."
             className="flex-1 bg-transparent text-sm focus:outline-none"
             style={{ color: 'var(--foreground)' }}
           />
@@ -182,8 +250,8 @@ export function SearchModal() {
           </button>
         </div>
 
-        {/* Results or recent searches */}
-        <div className="max-h-80 overflow-y-auto p-2">
+        {/* Results or empty state with quick actions + recent pages */}
+        <div className="max-h-[400px] overflow-y-auto p-2">
           {results.length > 0 ? (
             <div className="space-y-0.5">
               {results.map((r, idx) => (
@@ -208,25 +276,83 @@ export function SearchModal() {
             </div>
           ) : query.length >= 2 ? (
             <p className="px-3 py-6 text-center text-sm" style={{ color: 'var(--foreground-secondary)' }}>No results found</p>
-          ) : recentSearches.length > 0 ? (
-            <div className="space-y-0.5">
-              <p className="px-3 py-1 text-[10px] font-medium uppercase tracking-wider" style={{ color: 'var(--foreground-secondary)' }}>Recent</p>
-              {recentSearches.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => selectRecentSearch(s)}
-                  className="w-full flex items-center gap-2 rounded-lg px-3 py-2 text-left transition-colors hover:opacity-80"
-                  style={{ color: 'var(--foreground-secondary)' }}
-                >
-                  <Clock className="h-3 w-3" />
-                  <span className="text-sm">{s}</span>
-                </button>
-              ))}
-            </div>
           ) : (
-            <p className="px-3 py-6 text-center text-sm" style={{ color: 'var(--foreground-secondary)' }}>
-              Type to search questions, resources, and notes
-            </p>
+            <div className="space-y-3">
+              {/* Quick Actions */}
+              <div>
+                <p className="px-3 py-1 text-[10px] font-medium uppercase tracking-wider" style={{ color: 'var(--foreground-secondary)' }}>
+                  Quick Actions
+                </p>
+                <div className="space-y-0.5">
+                  {QUICK_ACTIONS.map((action, idx) => (
+                    <button
+                      key={action.id}
+                      onClick={() => navigateTo(action.href)}
+                      className={`w-full flex items-center gap-3 rounded-lg px-3 py-2 text-left transition-colors ${
+                        getEmptyStateHighlight(0, idx) ? 'ring-1 ring-[var(--accent-secondary)]' : ''
+                      }`}
+                      style={{ background: getEmptyStateHighlight(0, idx) ? 'var(--nav-hover-bg)' : 'transparent' }}
+                    >
+                      <span style={{ color: '#C5A258' }}>{action.icon}</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>{action.title}</p>
+                        <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>{action.subtitle}</p>
+                      </div>
+                      <ArrowRight className="h-3.5 w-3.5 opacity-40" style={{ color: 'var(--foreground-secondary)' }} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Recent Pages */}
+              {recentPages.length > 0 && (
+                <div>
+                  <p className="px-3 py-1 text-[10px] font-medium uppercase tracking-wider" style={{ color: 'var(--foreground-secondary)' }}>
+                    Recently Visited
+                  </p>
+                  <div className="space-y-0.5">
+                    {recentPages.map((page, idx) => (
+                      <button
+                        key={page.path}
+                        onClick={() => navigateTo(page.path)}
+                        className={`w-full flex items-center gap-3 rounded-lg px-3 py-2 text-left transition-colors ${
+                          getEmptyStateHighlight(QUICK_ACTIONS.length, idx) ? 'ring-1 ring-[var(--accent-secondary)]' : ''
+                        }`}
+                        style={{ background: getEmptyStateHighlight(QUICK_ACTIONS.length, idx) ? 'var(--nav-hover-bg)' : 'transparent' }}
+                      >
+                        <History className="h-3.5 w-3.5" style={{ color: 'var(--foreground-secondary)' }} />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm" style={{ color: 'var(--foreground)' }}>{page.title}</p>
+                          <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>{page.path}</p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Recent Searches */}
+              {recentSearches.length > 0 && (
+                <div>
+                  <p className="px-3 py-1 text-[10px] font-medium uppercase tracking-wider" style={{ color: 'var(--foreground-secondary)' }}>
+                    Recent Searches
+                  </p>
+                  <div className="space-y-0.5">
+                    {recentSearches.map((s) => (
+                      <button
+                        key={s}
+                        onClick={() => selectRecentSearch(s)}
+                        className="w-full flex items-center gap-2 rounded-lg px-3 py-2 text-left transition-colors hover:opacity-80"
+                        style={{ color: 'var(--foreground-secondary)' }}
+                      >
+                        <Clock className="h-3 w-3" />
+                        <span className="text-sm">{s}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           )}
         </div>
 

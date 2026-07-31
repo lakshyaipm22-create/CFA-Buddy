@@ -34,6 +34,7 @@ import { getAllBadges, checkNewBadges, awardBadges } from '@/features/gamificati
 import { calculateReadinessScore } from '@/features/gamification/utils/readiness-score';
 import { getReviewQueueSummary } from '@/features/review-queue/utils/queue-builder';
 import { SmartSessionCard } from '@/features/question-bank/components/smart-session-card';
+import { OnboardingChecklist } from '@/shared/components/ui/onboarding-checklist';
 import type { GamificationState, ReadinessResult, Badge } from '@/features/gamification/types';
 import type { BadgeCheckContext } from '@/features/gamification/utils/badges';
 import { useLocalStorageSessions } from '../hooks/use-local-storage-sessions';
@@ -229,6 +230,9 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
           </div>
         </div>
       </div>
+
+      {/* Onboarding Checklist (shown for new users) */}
+      <OnboardingChecklist />
 
       {/* Readiness Breakdown */}
       {stats.questionsAnswered >= 10 && (
