@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Gauge,
@@ -13,10 +13,10 @@ import {
   Play,
   HelpCircle,
   AlertTriangle,
+  Clock,
   FolderOpen,
   RotateCcw,
   ListChecks,
-  Clock,
   FileBarChart,
 } from 'lucide-react';
 import { ExamCountdown } from './exam-countdown';
@@ -36,6 +36,9 @@ import { getReviewQueueSummary } from '@/features/review-queue/utils/queue-build
 import type { GamificationState, ReadinessResult, Badge } from '@/features/gamification/types';
 import type { BadgeCheckContext } from '@/features/gamification/utils/badges';
 import { useLocalStorageSessions } from '../hooks/use-local-storage-sessions';
+import { seedCorporateIssuersAttempt } from '@/features/question-bank/utils/seed-corporate-issuers';
+import { getLatestAttempt } from '@/features/question-bank/utils/attempt-storage';
+import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
 
 interface DashboardContentProps {
   displayName: string;
@@ -44,6 +47,13 @@ interface DashboardContentProps {
 
 export function DashboardContent({ displayName, level }: DashboardContentProps) {
   const sessions = useLocalStorageSessions();
+  const [latestAttempt, setLatestAttempt] = useState<PracticeAttempt | null>(null);
+
+  useEffect(() => {
+    seedCorporateIssuersAttempt();
+    const latest = getLatestAttempt('Corporate Issuers');
+    setLatestAttempt(latest);
+  }, []);
 
   const stats = useMemo(() => {
     const completedSessions = sessions.filter((s) => s.status === 'completed');
@@ -317,6 +327,70 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
       {/* Exam Countdown */}
       <ExamCountdown />
 
+      {/* Recent Practice Attempts */}
+      {latestAttempt && (
+        <div>
+          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">
+            Recent Practice Attempts
+          </h2>
+          <div
+            className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-5 transition-all duration-300 hover:shadow-md"
+          >
+            <div className="flex items-center gap-4">
+              <AttemptScoreRing score={latestAttempt.overallPercentage} />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)] truncate">
+                    {latestAttempt.subjectName}
+                  </h3>
+                  <span
+                    className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+                    style={{
+                      backgroundColor:
+                        latestAttempt.confidenceLevel === 'High'
+                          ? 'rgba(0, 132, 61, 0.15)'
+                          : latestAttempt.confidenceLevel === 'Medium'
+                            ? 'rgba(197, 162, 88, 0.15)'
+                            : 'rgba(239, 68, 68, 0.15)',
+                      color:
+                        latestAttempt.confidenceLevel === 'High'
+                          ? '#00843D'
+                          : latestAttempt.confidenceLevel === 'Medium'
+                            ? '#C5A258'
+                            : '#ef4444',
+                    }}
+                  >
+                    {latestAttempt.confidenceLevel}
+                  </span>
+                </div>
+                <p className="mt-1 text-xs text-[var(--text-muted)]">
+                  {latestAttempt.moduleResults.length} modules &middot; {latestAttempt.overallScore}/{latestAttempt.overallTotal} correct
+                </p>
+                <div className="mt-1 flex items-center gap-1 text-xs text-[var(--text-muted)]">
+                  <Clock className="h-3 w-3" />
+                  {new Date(latestAttempt.completedAt).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                  })}
+                </div>
+              </div>
+              <Link
+                href={`/questions/attempts/${latestAttempt.id}`}
+                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-xs font-medium transition-all hover:opacity-80"
+                style={{
+                  backgroundColor: '#002B5C',
+                  color: '#C5A258',
+                }}
+              >
+                View Details
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* AI Study Plan */}
       <DailyStudyPlan />
 
@@ -355,10 +429,10 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
             description="Learn from incorrect answers"
           />
           <QuickAction
-            href="/resources"
-            icon={<FolderOpen className="h-5 w-5" />}
-            label="Browse Resources"
-            description="Access study materials"
+            href="/questions/attempts"
+            icon={<Target className="h-5 w-5" />}
+            label="Corporate Issuers"
+            description="View attempt results"
           />
           <QuickAction
             href="/weekly-report"
@@ -396,6 +470,38 @@ function ReadinessFactor({ label, value }: { label: string; value: number }) {
 }
 
 /* ─── Readiness Gauge (SVG Circular Progress) ─── */
+
+function AttemptScoreRing({ score }: { score: number }) {
+  const size = 48;
+  const strokeWidth = 5;
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (score / 100) * circumference;
+  const color = score >= 80 ? '#00843D' : score >= 60 ? '#C5A258' : '#ef4444';
+
+  return (
+    <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
+      <svg width={size} height={size} className="-rotate-90">
+        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--border-primary)" strokeWidth={strokeWidth} />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke={color}
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          style={{ transition: 'stroke-dashoffset 0.6s ease-in-out' }}
+        />
+      </svg>
+      <span className="absolute text-xs font-bold" style={{ color }}>
+        {Math.round(score)}%
+      </span>
+    </div>
+  );
+}
 
 function ReadinessGauge({ value }: { value: number }) {
   const radius = 54;

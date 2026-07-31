@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Create the Corporate Issuers question data file and practice attempt storage system. This includes: (1) A new data file with all 158 Corporate Issuers questions across 7 modules with options, explanations, correct answers, and user's selected answers pre-filled, (2) An 'attempt' storage system that stores completed practice attempt results in localStorage separate from the existing session system, supporting multiple attempts for retake comparison.",
+  "status": "completed",
+  "steps": [
+    "Create src/features/question-bank/data/corporate-issuers.ts containing all Corporate Issuers questions organized by module. Each question follows the existing Question interface from src/features/question-bank/types/index.ts. Use subject='Corporate Issuers' and set topic to the module name. IDs should be like 'ci-m1-q1' through 'ci-m7-q17'. Generate realistic CFA Level I Corporate Issuers questions for all 158 entries (13+14+23+18+30+43+17). Each has 3 answer choices (A/B/C) with explanations and correct answer marked. The questions should cover the actual CFA curriculum topics: Module 1 = Organizational Forms (partnerships, corporations, sole proprietorships), Module 2 = Investors and Other Stakeholders (shareholders, creditors, board duties), Module 3 = Corporate Governance (governance mechanisms, board structures, ESG), Module 4 = Working Capital and Liquidity (cash conversion cycle, receivables, inventory management), Module 5 = Capital Investments and Capital Allocation (NPV, IRR, payback period, real options), Module 6 = Capital Structure (Modigliani-Miller, WACC, leverage, pecking order theory, target capital structure), Module 7 = Business Models (types of business models, network effects, platform businesses).",
+    "Create src/features/question-bank/types/attempt.ts with new interfaces: PracticeAttempt (id, subjectName, attemptNumber, completedAt, moduleResults: ModuleResult[], overallScore, overallTotal, overallPercentage, avgTimePerQuestion, bookmarkedIds, confidenceLevel), ModuleResult (moduleId, moduleName, score, total, percentage, avgTimePerQuestion, questionAttempts: AttemptQuestion[]), AttemptQuestion (questionId, selectedAnswer, correct, timeSpentSeconds, confidence). The confidenceLevel field is 'High'|'Medium'|'Low' computed from the overall percentage (>=80 High, >=60 Medium, <60 Low).",
+    "Create src/features/question-bank/utils/attempt-storage.ts with functions: getAttempts(subject: string): PracticeAttempt[], saveAttempt(attempt: PracticeAttempt): void, getLatestAttempt(subject: string): PracticeAttempt | null, getAttemptById(id: string): PracticeAttempt | null. Storage key: 'cfa-buddy-attempts'. Follow the same pattern as session-storage.ts using localStorage.",
+    "Create src/features/question-bank/utils/seed-corporate-issuers.ts that exports a function seedCorporateIssuersAttempt() which creates a PracticeAttempt representing the user's completed Corporate Issuers practice with the exact scores given: M1=13/13, M2=13/14, M3=18/23, M4=13/18, M5=19/30, M6=28/43, M7=16/17, Total=120/158=76%. This function should generate realistic AttemptQuestion entries for each module using the questions from corporate-issuers.ts, setting the correct number as correct and the rest as incorrect (randomly choosing which ones are wrong). Set avgTimePerQuestion to reasonable values (60-120 seconds). The function should check if the attempt already exists before seeding.",
+    "Add a unit test at src/features/question-bank/__tests__/attempt-storage.test.ts testing getAttempts, saveAttempt, getLatestAttempt, and the seed function. Mock localStorage using a simple in-memory map."
+  ],
+  "acceptance_criteria": [
+    "corporate-issuers.ts exports an array of exactly 158 Question objects across 7 modules matching the Question interface",
+    "attempt-storage.ts correctly stores and retrieves PracticeAttempt objects from localStorage",
+    "seedCorporateIssuersAttempt() creates an attempt with overall score 120/158 (76%) with the correct per-module breakdown",
+    "All questions have 3 answer choices (A/B/C) with explanations and exactly one marked correct",
+    "Unit tests pass with bun run vitest --run"
+  ],
+  "verification": [
+    "Run: cd /projects/sandbox/CFA-Buddy && /root/.local/share/mise/shims/bun run vitest --run src/features/question-bank/__tests__/attempt-storage.test.ts",
+    "Run: cd /projects/sandbox/CFA-Buddy && /root/.local/share/mise/shims/bun run tsc --noEmit 2>&1 | grep -v prisma | grep -v generated"
+  ],
+  "blocked_reason": null,
+  "findings": "All 23 unit tests pass. TypeScript compiles clean (only pre-existing Prisma errors). The seeded attempt uses a deterministic PRNG (seed=42) for reproducible test results. The corporate-issuers.ts file is ~2700 lines with realistic CFA content across all 7 modules."
+}

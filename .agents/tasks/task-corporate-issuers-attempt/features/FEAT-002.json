@@ -1,0 +1,34 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Build the enhanced dashboard and Corporate Issuers attempt view. This includes: (1) A new 'Current Attempt' page showing the Corporate Issuers practice results with circular progress rings per module, overall score display, topic-wise accuracy breakdown, confidence indicator, and retake comparison tracking, (2) Enhanced dashboard integration showing recent attempt summary, (3) Full review mode with bookmark functionality and explanation highlighting, (4) Retake comparison view for tracking improvement over multiple attempts.",
+  "status": "completed",
+  "steps": [
+    "Create src/features/question-bank/components/attempt-dashboard.tsx - A comprehensive dashboard for viewing a specific practice attempt. It should include: (a) Hero section with overall score as a large circular progress ring (reuse the ScoreRing pattern from session-review.tsx), subject name, attempt number, date, and confidence badge (High/Medium/Low with color coding: High=green, Medium=gold, Low=red), (b) Module grid showing 7 cards, each with a smaller circular progress ring, module name, score fraction (e.g. 13/13), percentage, and avg time. Color the ring green >=80%, gold >=60%, red <60%, (c) Topic-wise accuracy breakdown section with horizontal progress bars for each module sorted worst-to-best (following TopicBar pattern from session-review.tsx), (d) Strengths and Weaknesses section identifying modules above 80% as strengths and below 70% as weaknesses.",
+    "Create src/features/question-bank/components/attempt-review.tsx - Full question review mode for a specific attempt. Shows questions one at a time with: question text, all 3 answer choices highlighted (green border for correct, red border for user's wrong selection), full explanations visible for all options, bookmark button (star icon) that toggles the question's bookmarked state in the attempt, navigation (prev/next buttons + question number pills colored by correct/incorrect), filter buttons to show All/Incorrect Only/Bookmarked Only questions.",
+    "Create src/features/question-bank/components/retake-comparison.tsx - A comparison view showing multiple attempts side by side. Shows: attempt number, date, overall percentage with trend arrow (up/down vs previous), per-module score comparison as a grouped bar chart or table, improvement highlights (which modules improved/declined). Use recharts BarChart for the comparison visualization.",
+    "Create the route at src/app/(protected)/questions/attempts/page.tsx that lists all practice attempts for a subject. Shows each attempt as a card with date, overall score, confidence badge, and links to view details or review questions.",
+    "Create the route at src/app/(protected)/questions/attempts/[attemptId]/page.tsx that renders the attempt-dashboard component for a specific attempt ID.",
+    "Create the route at src/app/(protected)/questions/attempts/[attemptId]/review/page.tsx that renders the attempt-review component.",
+    "Update src/features/dashboard/components/dashboard-content.tsx to add a 'Recent Practice Attempts' section below the metrics grid. This section shows the latest attempt (if any) as a card with: subject name, overall score ring (small), module count, confidence badge, and a 'View Details' link to /questions/attempts/[id]. Also add a 'Corporate Issuers' quick action card. On first load, call seedCorporateIssuersAttempt() to ensure the demo data exists.",
+    "Update src/app/(protected)/questions/page.tsx to add a 'Practice Attempts' section below the session configurator that shows recent attempts with links to the attempt dashboard.",
+    "Fix src/features/dashboard/hooks/use-local-storage-sessions.ts to NOT use useSyncExternalStore (violates Critical React Rule #1). Replace with useState(() => ...) lazy initializer pattern reading from localStorage."
+  ],
+  "acceptance_criteria": [
+    "Visiting /questions/attempts shows the Corporate Issuers attempt seeded on first load",
+    "Visiting /questions/attempts/[attemptId] shows the attempt dashboard with circular progress rings for all 7 modules",
+    "The confidence indicator correctly shows 'High' for modules >=80%, 'Medium' for 60-79%, 'Low' for <60%",
+    "Review mode at /questions/attempts/[attemptId]/review shows questions with correct/incorrect highlighting and explanations",
+    "Bookmark button in review mode toggles and persists to localStorage",
+    "Topic-wise accuracy breakdown shows all 7 modules sorted by performance",
+    "Dashboard at / shows the recent attempt summary card",
+    "use-local-storage-sessions.ts no longer uses useSyncExternalStore",
+    "TypeScript compiles without new errors (bun run tsc --noEmit, ignoring pre-existing prisma errors)"
+  ],
+  "verification": [
+    "Run: cd /projects/sandbox/CFA-Buddy && /root/.local/share/mise/shims/bun run tsc --noEmit 2>&1 | grep -v prisma | grep -v generated | grep error | head -20",
+    "Verify the new routes exist: ls src/app/(protected)/questions/attempts/ && ls src/app/(protected)/questions/attempts/\\[attemptId\\]/"
+  ],
+  "blocked_reason": null,
+  "findings": "All code compiles cleanly (only pre-existing Prisma errors). All 38 vitest tests pass (only pre-existing env.test.ts failures from zod v4 API change). The useSyncExternalStore was successfully replaced with useState lazy initializer. All 9 acceptance criteria implemented. Routes verified at correct paths. Dashboard integrates seed + latest attempt display."
+}

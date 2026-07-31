@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
 import { QuestionAnalytics } from '@/features/question-bank/components/question-analytics';
+import { RecentAttemptsSection } from '@/features/question-bank/components/recent-attempts-section';
 import { RecentSessions } from '@/features/question-bank/components/recent-sessions';
 import { useImportedQuestions } from '@/features/question-bank/hooks/useImportedQuestions';
 import { cleanupOldSessions } from '@/features/question-bank/utils/session-storage';
@@ -72,6 +73,7 @@ export default function QuestionsPage() {
         </div>
       )}
       <SessionConfigurator />
+      <RecentAttemptsSection />
       <RecentSessions />
       <QuestionAnalytics />
     </div>
