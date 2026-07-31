@@ -8,6 +8,7 @@ import { ErrorAnalysisPanel } from './error-analysis-panel';
 import { ConfidenceCalibration } from './confidence-calibration';
 import { TimeAnalysisDashboard } from './time-analysis-dashboard';
 import { DifficultyHeatmap } from './difficulty-heatmap';
+import { SpacedRepCard } from './spaced-rep-card';
 import type { PracticeAttempt, ModuleResult } from '../types/attempt';
 
 interface AttemptDashboardProps {
@@ -242,6 +243,9 @@ export function AttemptDashboard({ attemptId }: AttemptDashboardProps) {
       {/* Tab Content */}
       {activeTab === 'overview' && (
         <div className="space-y-8">
+          {/* Spaced Repetition Card */}
+          <SpacedRepCard />
+
           {/* Module Grid */}
           <div>
             <h2 className="mb-4 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>

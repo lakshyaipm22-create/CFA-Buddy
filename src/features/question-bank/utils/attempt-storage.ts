@@ -1,4 +1,5 @@
 import type { PracticeAttempt } from '../types/attempt';
+import { addToRepetitionQueue } from './spaced-repetition';
 
 const ATTEMPTS_KEY = 'cfa-buddy-attempts';
 
@@ -19,6 +20,7 @@ export function getAttempts(subject: string): PracticeAttempt[] {
 
 /**
  * Save a practice attempt (create or update)
+ * Also auto-queues incorrect questions into spaced repetition.
  */
 export function saveAttempt(attempt: PracticeAttempt): void {
   if (typeof window === 'undefined') return;
@@ -38,6 +40,15 @@ export function saveAttempt(attempt: PracticeAttempt): void {
     all.push(attempt);
   }
   localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(all));
+
+  // Auto-queue incorrect questions into spaced repetition
+  for (const moduleResult of attempt.moduleResults) {
+    for (const qa of moduleResult.questionAttempts) {
+      if (!qa.correct) {
+        addToRepetitionQueue(qa.questionId, attempt.id);
+      }
+    }
+  }
 }
 
 /**

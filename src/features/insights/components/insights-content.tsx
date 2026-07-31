@@ -1,11 +1,15 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { TrendingUp, TrendingDown, Target, Clock } from 'lucide-react';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
 import { TopicHeatmap } from './topic-heatmap';
+import { WeakTopicPanel } from '@/features/question-bank/components/weak-topic-panel';
+import { getAttempts } from '@/features/question-bank/utils/attempt-storage';
+import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
+import type { Question } from '@/features/question-bank/types/index';
 
 const PieChart = dynamic(() => import('recharts').then(m => m.PieChart), { ssr: false });
 const Pie = dynamic(() => import('recharts').then(m => m.Pie), { ssr: false });
@@ -20,6 +24,18 @@ const SUBJECT_COLORS = [
 
 export function InsightsContent() {
   const sessions = useLocalStorageSessions();
+
+  // Load all attempts from localStorage for weak topic analysis
+  const [allAttempts] = useState<PracticeAttempt[]>(() => {
+    if (typeof window === 'undefined') return [];
+    const raw = localStorage.getItem('cfa-buddy-attempts');
+    if (!raw) return [];
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return [];
+    }
+  });
 
   const data = useMemo(() => {
     const completed = sessions.filter(s => s.status === 'completed');
@@ -164,6 +180,11 @@ export function InsightsContent() {
         </h3>
         <TopicHeatmap />
       </div>
+
+      {/* Weak Topic Deep Dive */}
+      {allAttempts.length > 0 && (
+        <WeakTopicPanel attempts={allAttempts} questions={sampleQuestions as Question[]} />
+      )}
     </div>
   );
 }
