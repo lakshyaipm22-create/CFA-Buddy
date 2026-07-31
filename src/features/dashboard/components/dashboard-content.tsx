@@ -39,6 +39,7 @@ import type { BadgeCheckContext } from '@/features/gamification/utils/badges';
 import { useLocalStorageSessions } from '../hooks/use-local-storage-sessions';
 import { seedCorporateIssuersAttempt } from '@/features/question-bank/utils/seed-corporate-issuers';
 import { getLatestAttempt } from '@/features/question-bank/utils/attempt-storage';
+import { getLocalProfile } from '@/shared/lib/local-profile';
 import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
 
 interface DashboardContentProps {
@@ -49,6 +50,14 @@ interface DashboardContentProps {
 export function DashboardContent({ displayName, level }: DashboardContentProps) {
   const sessions = useLocalStorageSessions();
   const [latestAttempt, setLatestAttempt] = useState<PracticeAttempt | null>(null);
+
+  // Prefer localStorage profile values over server-provided defaults
+  const [localProfile] = useState(() => {
+    if (typeof window === 'undefined') return null;
+    return getLocalProfile();
+  });
+  const effectiveDisplayName = localProfile?.displayName || displayName;
+  const effectiveLevel = localProfile?.level || level;
 
   useEffect(() => {
     seedCorporateIssuersAttempt();
@@ -195,10 +204,10 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
           {/* Text Greeting */}
           <div className="flex-1">
             <p className="text-sm font-medium tracking-wide text-[#C5A258] uppercase">
-              CFA Level {level} Candidate
+              CFA Level {effectiveLevel} Candidate
             </p>
             <h1 className="mt-2 text-3xl font-bold text-[var(--text-primary)]">
-              Welcome back, {displayName}
+              Welcome back, {effectiveDisplayName}
             </h1>
             <p className="mt-2 text-[var(--text-secondary)]">
               {stats.questionsAnswered === 0

@@ -141,7 +141,31 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div style={{ borderTop: '1px solid var(--sidebar-border)' }} className="pt-4">
+      <div style={{ borderTop: '1px solid var(--sidebar-border)' }} className="pt-4 space-y-1">
+        <button
+          onClick={() => {
+            setMobileOpen(false);
+            document.dispatchEvent(new CustomEvent('shortcut-show-help'));
+          }}
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-1.5 text-xs transition-colors"
+          style={{ color: 'var(--nav-text)' }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--nav-hover-bg)';
+            e.currentTarget.style.color = 'var(--nav-text-hover)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '';
+            e.currentTarget.style.color = 'var(--nav-text)';
+          }}
+        >
+          <kbd
+            className="inline-flex h-5 w-5 items-center justify-center rounded border text-[10px] font-bold"
+            style={{ borderColor: 'var(--sidebar-border)', color: 'var(--nav-text)' }}
+          >
+            ?
+          </kbd>
+          <span>Shortcuts</span>
+        </button>
         <Link
           href="/profile"
           onClick={() => setMobileOpen(false)}

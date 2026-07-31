@@ -1,15 +1,26 @@
 import { createServerSupabaseClient } from '@/shared/lib/supabase/server';
 import { ProfileForm } from '@/features/auth/components/profile-form';
+import { LocalProfileForm } from '@/shared/components/profile/local-profile-form';
 
 export default async function ProfilePage() {
   const supabase = await createServerSupabaseClient();
   
   if (!supabase) {
-    // No Supabase configured — show a basic profile page
+    // No Supabase configured — use local profile system
     return (
       <div className="max-w-lg space-y-6">
-        <h1 className="text-2xl font-bold text-white">Profile</h1>
-        <p className="text-sm text-zinc-400">Supabase not configured. Profile management requires authentication.</p>
+        <div>
+          <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Profile Settings</h1>
+          <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
+            Manage your study preferences and exam details. Data is saved locally on this device.
+          </p>
+        </div>
+        <div
+          className="rounded-xl border p-6"
+          style={{ background: 'var(--card-bg)', borderColor: 'var(--card-border)' }}
+        >
+          <LocalProfileForm />
+        </div>
       </div>
     );
   }
@@ -19,21 +30,31 @@ export default async function ProfilePage() {
     const { data } = await supabase.auth.getUser();
     user = data.user;
   } catch {
-    // Auth failed — show unauthenticated profile view
+    // Auth failed — show local profile instead
   }
 
   if (!user) {
     return (
       <div className="max-w-lg space-y-6">
-        <h1 className="text-2xl font-bold text-white">Profile</h1>
-        <p className="text-sm text-zinc-400">Sign in to manage your profile settings.</p>
+        <div>
+          <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Profile Settings</h1>
+          <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
+            Manage your study preferences and exam details. Sign in for cloud sync.
+          </p>
+        </div>
+        <div
+          className="rounded-xl border p-6"
+          style={{ background: 'var(--card-bg)', borderColor: 'var(--card-border)' }}
+        >
+          <LocalProfileForm />
+        </div>
       </div>
     );
   }
 
   return (
     <div className="max-w-lg space-y-6">
-      <h1 className="text-2xl font-bold text-white">Profile</h1>
+      <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Profile</h1>
       <ProfileForm
         defaultDisplayName={user.user_metadata?.display_name || ''}
         defaultLevel={user.user_metadata?.level || 'I'}

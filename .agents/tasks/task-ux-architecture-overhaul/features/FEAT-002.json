@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Enhance the header with global progress indicator, notification bell with due items count, quick-start study button, and keyboard shortcut hints in UI. Also create a local profile system that works without Supabase.",
+  "status": "in_progress",
+  "steps": [
+    "Refactor src/shared/components/layout/header.tsx: (a) Replace the empty left-side div with a compact global readiness progress bar (thin horizontal bar showing overall readiness % with tooltip). (b) Add a notification bell icon with badge count showing total due items (flashcards due + review items due). Clicking it opens a dropdown with notification items and links to their pages. (c) Add a prominent 'Start Session' CTA button (gold background, compact) that links to /questions. (d) Keep the existing search trigger and theme toggle on the right side.",
+    "Create src/shared/components/layout/notification-dropdown.tsx - a dropdown panel triggered by the bell icon. Shows up to 5 recent notification items (flashcards due, streak warning, review items). Each item is clickable linking to the relevant page. Reuse logic from src/features/notifications/components/notification-badges.tsx but in a dropdown format.",
+    "Create src/shared/lib/local-profile.ts - a localStorage-based profile system. Store and retrieve: displayName, level (I/II/III), examDate, studyHoursPerDay, targetScore. Provide getLocalProfile() and saveLocalProfile() functions. Default values: displayName='CFA Student', level='I'.",
+    "Refactor src/app/(protected)/profile/page.tsx to use the local profile system when Supabase is not configured. Render a form with fields: Display Name, CFA Level (I/II/III dropdown), Exam Date (date input), Study Hours/Day (number), Target Score (number). Save to localStorage via the local-profile utility. Remove the 'Supabase not configured' dead-end message.",
+    "Update src/features/dashboard/components/dashboard-content.tsx to read displayName and level from the local profile system (getLocalProfile()) instead of relying solely on server-side Supabase user data. The server page src/app/(protected)/dashboard/page.tsx should still pass defaults, but the client component should prefer localStorage values.",
+    "Add visible keyboard shortcut hints: In the sidebar footer area (above Settings link), add a small '? Shortcuts' link that triggers the existing KeyboardShortcutsModal. Format: small text with a kbd-styled '?' icon."
+  ],
+  "acceptance_criteria": [
+    "Header shows a compact readiness progress bar on the left side",
+    "Notification bell with badge count appears in header, dropdown shows due items",
+    "Start Session button is visible in the header and links to /questions",
+    "Profile page works fully without Supabase - form saves to localStorage",
+    "Dashboard reads displayName/level from localStorage profile",
+    "Keyboard shortcuts link visible in sidebar footer opens the shortcuts modal",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
