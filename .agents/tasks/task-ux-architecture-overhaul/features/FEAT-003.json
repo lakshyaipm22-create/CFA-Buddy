@@ -1,0 +1,31 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Add cross-page contextual linking and interconnection. Create a unified 'Related Actions' pattern that connects overlapping features (Questions/Practice/Review/Flashcards/Mistakes) with contextual CTAs and back-navigation paths.",
+  "status": "in_progress",
+  "steps": [
+    "Create src/shared/components/ui/related-actions.tsx - a reusable card component that shows 2-4 contextual action links relevant to the current page. Props: items array of {href, icon, label, description}. Styled as a horizontal row of small cards with hover effects.",
+    "Create src/shared/components/ui/page-header.tsx - a standardized page header component with: title, subtitle, optional back button (for nested pages), optional action button (top-right CTA), optional badge (e.g., item count). This replaces the ad-hoc h1/p patterns used across all pages.",
+    "Update src/app/(protected)/questions/page.tsx: Add RelatedActions at the bottom linking to: Practice (Spaced repetition), Mistakes (Review errors), Flashcards (Convert weak topics), Insights (View analytics).",
+    "Update src/app/(protected)/practice/page.tsx: Add RelatedActions linking to: Questions (Full sessions), Flashcards (Quick review), Review (Smart queue), Formulas (Reference).",
+    "Update src/app/(protected)/flashcards/page.tsx: Add RelatedActions linking to: Practice (Spaced rep), Questions (Test yourself), Formulas (Reference cards).",
+    "Update src/app/(protected)/mistakes/page.tsx: Add RelatedActions linking to: Practice (Retry weak topics), Questions (New session), Insights (Error patterns).",
+    "Update src/app/(protected)/review/page.tsx: Add RelatedActions linking to: Practice (Deep dive), Flashcards (Quick cards), Mistakes (Error patterns).",
+    "Update src/app/(protected)/insights/page.tsx: Add RelatedActions linking to: Weekly Report (Summary), Questions (Practice more), Exam Plan (Adjust targets), LOS Tracker (Coverage gaps).",
+    "Update the attempt dashboard (src/features/question-bank/components/attempt-dashboard.tsx) to use the PageHeader component with a proper back button that links to /questions/attempts, and add RelatedActions linking to: Practice (Retry weak areas), Mistakes (See all errors), Questions (New session)."
+  ],
+  "acceptance_criteria": [
+    "Every practice-related page (Questions, Practice, Review, Flashcards, Mistakes) has RelatedActions linking to other related pages",
+    "Insights page links to Weekly Report and vice versa (reducing user confusion about overlapping purposes)",
+    "Attempt dashboard has a clear back button to /questions/attempts",
+    "PageHeader component provides consistent heading pattern across pages",
+    "No circular navigation dead-ends - every page has at least 2 contextual exit paths",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

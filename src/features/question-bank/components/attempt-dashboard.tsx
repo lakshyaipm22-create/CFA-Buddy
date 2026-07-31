@@ -2,13 +2,15 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Clock, Trophy, TrendingUp, TrendingDown } from 'lucide-react';
+import { Clock, TrendingUp, TrendingDown, Repeat, AlertCircle, BookOpen } from 'lucide-react';
 import { getAttemptById, getAttempts } from '../utils/attempt-storage';
 import { ErrorAnalysisPanel } from './error-analysis-panel';
 import { ConfidenceCalibration } from './confidence-calibration';
 import { TimeAnalysisDashboard } from './time-analysis-dashboard';
 import { DifficultyHeatmap } from './difficulty-heatmap';
 import { SpacedRepCard } from './spaced-rep-card';
+import { RelatedActions } from '@/shared/components/ui/related-actions';
+import { PageHeader } from '@/shared/components/ui/page-header';
 import type { PracticeAttempt, ModuleResult } from '../types/attempt';
 
 interface AttemptDashboardProps {
@@ -159,15 +161,13 @@ export function AttemptDashboard({ attemptId }: AttemptDashboardProps) {
 
   return (
     <div className="mx-auto max-w-5xl space-y-8 p-4 pb-12 md:p-6">
-      {/* Back link */}
-      <Link
-        href="/questions/attempts"
-        className="inline-flex items-center gap-2 text-sm transition-colors hover:opacity-80"
-        style={{ color: 'var(--accent-secondary)' }}
-      >
-        <ArrowLeft className="h-4 w-4" />
-        Back to Attempts
-      </Link>
+      {/* Page Header with back navigation */}
+      <PageHeader
+        title={attempt.subjectName}
+        subtitle={`Attempt #${attempt.attemptNumber}`}
+        backHref="/questions/attempts"
+        backLabel="Back to Attempts"
+      />
 
       {/* Hero Section */}
       <div
@@ -398,6 +398,30 @@ export function AttemptDashboard({ attemptId }: AttemptDashboardProps) {
           Review All Questions
         </Link>
       </div>
+
+      {/* Related Actions */}
+      <RelatedActions
+        items={[
+          {
+            href: '/practice',
+            icon: Repeat,
+            label: 'Practice',
+            description: 'Retry weak areas',
+          },
+          {
+            href: '/mistakes',
+            icon: AlertCircle,
+            label: 'Mistakes',
+            description: 'See all errors',
+          },
+          {
+            href: '/questions',
+            icon: BookOpen,
+            label: 'Questions',
+            description: 'New session',
+          },
+        ]}
+      />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { Repeat, AlertCircle, Layers, BarChart3 } from 'lucide-react';
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
 import { QuestionAnalytics } from '@/features/question-bank/components/question-analytics';
 import { RecentAttemptsSection } from '@/features/question-bank/components/recent-attempts-section';
@@ -8,6 +9,7 @@ import { RecentSessions } from '@/features/question-bank/components/recent-sessi
 import { SmartSessionCard } from '@/features/question-bank/components/smart-session-card';
 import { useImportedQuestions } from '@/features/question-bank/hooks/useImportedQuestions';
 import { cleanupOldSessions } from '@/features/question-bank/utils/session-storage';
+import { RelatedActions } from '@/shared/components/ui/related-actions';
 
 export default function QuestionsPage() {
   const { isLoading, questions: importedQuestions } = useImportedQuestions();
@@ -78,6 +80,35 @@ export default function QuestionsPage() {
       <RecentAttemptsSection />
       <RecentSessions />
       <QuestionAnalytics />
+
+      <RelatedActions
+        items={[
+          {
+            href: '/practice',
+            icon: Repeat,
+            label: 'Practice',
+            description: 'Spaced repetition review',
+          },
+          {
+            href: '/mistakes',
+            icon: AlertCircle,
+            label: 'Mistakes',
+            description: 'Review your errors',
+          },
+          {
+            href: '/flashcards',
+            icon: Layers,
+            label: 'Flashcards',
+            description: 'Convert weak topics',
+          },
+          {
+            href: '/insights',
+            icon: BarChart3,
+            label: 'Insights',
+            description: 'View analytics',
+          },
+        ]}
+      />
     </div>
   );
 }

@@ -1,4 +1,6 @@
+import { Repeat, BookOpen, Calculator } from 'lucide-react';
 import { FlashcardDeck } from '@/features/flashcards/components/flashcard-deck';
+import { RelatedActions } from '@/shared/components/ui/related-actions';
 
 export default function FlashcardsPage() {
   return (
@@ -10,6 +12,29 @@ export default function FlashcardsPage() {
         </p>
       </div>
       <FlashcardDeck />
+
+      <RelatedActions
+        items={[
+          {
+            href: '/practice',
+            icon: Repeat,
+            label: 'Practice',
+            description: 'Spaced repetition drills',
+          },
+          {
+            href: '/questions',
+            icon: BookOpen,
+            label: 'Questions',
+            description: 'Test yourself',
+          },
+          {
+            href: '/formulas',
+            icon: Calculator,
+            label: 'Formulas',
+            description: 'Reference cards',
+          },
+        ]}
+      />
     </div>
   );
 }
