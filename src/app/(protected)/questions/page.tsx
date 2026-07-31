@@ -1,5 +1,6 @@
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
 import { QuestionAnalytics } from '@/features/question-bank/components/question-analytics';
+import { RecentAttemptsSection } from '@/features/question-bank/components/recent-attempts-section';
 
 export default function QuestionsPage() {
   return (
@@ -11,6 +12,7 @@ export default function QuestionsPage() {
         </p>
       </div>
       <SessionConfigurator />
+      <RecentAttemptsSection />
       <QuestionAnalytics />
     </div>
   );
