@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Add cross-page contextual linking and interconnection. Create a unified 'Related Actions' pattern that connects overlapping features (Questions/Practice/Review/Flashcards/Mistakes) with contextual CTAs and back-navigation paths.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/shared/components/ui/related-actions.tsx - a reusable card component that shows 2-4 contextual action links relevant to the current page. Props: items array of {href, icon, label, description}. Styled as a horizontal row of small cards with hover effects.",
     "Create src/shared/components/ui/page-header.tsx - a standardized page header component with: title, subtitle, optional back button (for nested pages), optional action button (top-right CTA), optional badge (e.g., item count). This replaces the ad-hoc h1/p patterns used across all pages.",
@@ -27,5 +27,5 @@
     "bun run vitest --run"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All pages updated successfully. RelatedActions is a client component ('use client') that works when imported into both server and client pages. PageHeader is a server-compatible component (no hooks). Pre-existing lint errors unrelated to changes (module assignment in difficulty-progression.ts, unused vars). Pre-existing env.test.ts failures from zod v4 incompatibility. The attempt-dashboard back link was replaced with PageHeader which provides the same functionality with better consistency."
 }

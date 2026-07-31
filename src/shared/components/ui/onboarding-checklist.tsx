@@ -16,8 +16,8 @@ import {
 
 const DISMISS_KEY = 'cfa-buddy-onboarding-dismissed';
 const PROFILE_KEY = 'cfa-buddy-local-profile';
-const SESSIONS_KEY = 'cfa-practice-sessions';
-const FLASHCARDS_KEY = 'cfa-flashcards';
+const SESSIONS_KEY = 'cfa-buddy-sessions';
+const FLASHCARDS_KEY = 'cfa-buddy-flashcards';
 const PAGES_KEY = 'cfa-buddy-recent-pages';
 
 interface ChecklistItem {
@@ -100,7 +100,7 @@ function getChecklistItems(): ChecklistItem[] {
       id: 'profile',
       label: 'Set up your profile',
       description: 'Add your name and study preferences',
-      href: '/settings',
+      href: '/profile',
       icon: <User className="h-4 w-4" />,
       completed: checkProfileSet(),
     },
@@ -132,7 +132,7 @@ function getChecklistItems(): ChecklistItem[] {
       id: 'examDate',
       label: 'Set your exam date',
       description: 'Enable countdown and study planning',
-      href: '/settings',
+      href: '/profile',
       icon: <Calendar className="h-4 w-4" />,
       completed: checkExamDateSet(),
     },

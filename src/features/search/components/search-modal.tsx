@@ -70,9 +70,11 @@ export function SearchModal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  // Total navigable items when query is empty (quick actions + recent pages + recent searches)
+  // Total navigable items when query is empty (quick actions + recent pages)
   const emptyStateItems = [...QUICK_ACTIONS.map(a => a.href), ...recentPages.map(p => p.path)];
   const totalEmptyItems = emptyStateItems.length;
+  const emptyStateItemsRef = useRef(emptyStateItems);
+  emptyStateItemsRef.current = emptyStateItems;
 
   // Cmd+K / Ctrl+K to open
   useEffect(() => {
@@ -166,15 +168,17 @@ export function SearchModal() {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (query.length < 2) {
       // Navigate quick actions + recent pages when no query
+      const currentItems = emptyStateItemsRef.current;
+      const currentTotal = currentItems.length;
       if (e.key === 'ArrowDown') {
         e.preventDefault();
-        setSelectedIdx(prev => Math.min(prev + 1, totalEmptyItems - 1));
+        setSelectedIdx(prev => Math.min(prev + 1, currentTotal - 1));
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
         setSelectedIdx(prev => Math.max(prev - 1, 0));
-      } else if (e.key === 'Enter' && totalEmptyItems > 0) {
+      } else if (e.key === 'Enter' && currentTotal > 0) {
         e.preventDefault();
-        const href = emptyStateItems[selectedIdx];
+        const href = currentItems[selectedIdx];
         if (href) {
           handleClose();
           router.push(href);

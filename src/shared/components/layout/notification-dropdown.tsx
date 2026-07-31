@@ -6,7 +6,7 @@ import { Bell, Brain, Flame, ListChecks } from 'lucide-react';
 import { getFlashcards } from '@/features/flashcards/utils/storage';
 import { getCardsDueToday } from '@/features/flashcards/utils/sm2';
 import { getReviewQueueSummary } from '@/features/review-queue/utils/queue-builder';
-import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
+import { useLocalStorageSessions } from '@/shared/hooks/use-local-storage-sessions';
 
 interface NotificationEntry {
   id: string;
