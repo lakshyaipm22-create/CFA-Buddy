@@ -7,6 +7,9 @@ import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-st
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
 import { TopicHeatmap } from './topic-heatmap';
 import { WeakTopicPanel } from '@/features/question-bank/components/weak-topic-panel';
+import { ProgressTimelineChart } from '@/features/question-bank/components/progress-timeline-chart';
+import { GapAnalysis } from '@/features/question-bank/components/gap-analysis';
+import { TargetSetter } from '@/features/question-bank/components/target-setter';
 import { getAttempts } from '@/features/question-bank/utils/attempt-storage';
 import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
 import type { Question } from '@/features/question-bank/types/index';
@@ -125,6 +128,11 @@ export function InsightsContent() {
 
   return (
     <div className="space-y-6">
+      {/* Progress Timeline */}
+      {allAttempts.length > 0 && (
+        <ProgressTimelineChart attempts={allAttempts} />
+      )}
+
       {/* Key Metrics */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <MetricBox icon={<Target className="h-5 w-5" />} label="Predicted Score" value={`${data.predictedScore}%`} color="#C5A258" />
@@ -184,6 +192,16 @@ export function InsightsContent() {
       {/* Weak Topic Deep Dive */}
       {allAttempts.length > 0 && (
         <WeakTopicPanel attempts={allAttempts} questions={sampleQuestions as Question[]} />
+      )}
+
+      {/* Gap Analysis */}
+      {allAttempts.length > 0 && (
+        <GapAnalysis attempts={allAttempts} />
+      )}
+
+      {/* Target Setter (collapsible) */}
+      {allAttempts.length > 0 && (
+        <TargetSetter attempts={allAttempts} />
       )}
     </div>
   );
