@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Error Analysis + Confidence Calibration + Question Notes - Three tightly coupled analysis features that classify mistakes, track confidence vs correctness, and allow annotations on questions during review.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Step 1 - Error Classification in Attempt Review: Enhance src/features/question-bank/components/attempt-review.tsx to add an error classification dropdown for incorrect answers. When viewing an incorrect answer, show a select with options: Didn't Know, Forgot Formula, Calculation Mistake, Misread Question, Careless, Time Pressure. Save the classification by updating the AttemptQuestion in the PracticeAttempt and persisting via saveAttempt(). The AttemptQuestion type in src/features/question-bank/types/attempt.ts needs an optional errorClassification field (use the ErrorClassification type from types/index.ts but map it to user-friendly labels).",
     "Step 2 - Error Pattern Analysis Component: Create src/features/question-bank/components/error-analysis-panel.tsx. This component receives attempt data and renders: (a) a donut/pie chart (using recharts with dynamic import, ssr:false) showing distribution of error types, (b) a stacked bar chart showing error types by module, (c) a 'top pattern' callout identifying the most frequent error type with a recommendation. Follow the pattern in mistake-analytics.tsx for recharts usage. Use the ERROR_COLORS already defined there.",
@@ -25,5 +25,5 @@
     "bun run vitest --run"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 17 new tests pass. TypeScript compiles cleanly. Pre-existing env.test.ts failure (zod v4) is unrelated. Used direct recharts import with dynamic() for ssr:false in error-analysis-panel.tsx. The attempt-review.tsx uses useMemo for side-effect of syncing note state on question change (not ideal but functional since useState lazy init cannot handle navigation). The generateNotesExport function is exported from attempt-review.tsx for testability."
 }
