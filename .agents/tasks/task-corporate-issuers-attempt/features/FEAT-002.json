@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Build the enhanced dashboard and Corporate Issuers attempt view. This includes: (1) A new 'Current Attempt' page showing the Corporate Issuers practice results with circular progress rings per module, overall score display, topic-wise accuracy breakdown, confidence indicator, and retake comparison tracking, (2) Enhanced dashboard integration showing recent attempt summary, (3) Full review mode with bookmark functionality and explanation highlighting, (4) Retake comparison view for tracking improvement over multiple attempts.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/question-bank/components/attempt-dashboard.tsx - A comprehensive dashboard for viewing a specific practice attempt. It should include: (a) Hero section with overall score as a large circular progress ring (reuse the ScoreRing pattern from session-review.tsx), subject name, attempt number, date, and confidence badge (High/Medium/Low with color coding: High=green, Medium=gold, Low=red), (b) Module grid showing 7 cards, each with a smaller circular progress ring, module name, score fraction (e.g. 13/13), percentage, and avg time. Color the ring green >=80%, gold >=60%, red <60%, (c) Topic-wise accuracy breakdown section with horizontal progress bars for each module sorted worst-to-best (following TopicBar pattern from session-review.tsx), (d) Strengths and Weaknesses section identifying modules above 80% as strengths and below 70% as weaknesses.",
     "Create src/features/question-bank/components/attempt-review.tsx - Full question review mode for a specific attempt. Shows questions one at a time with: question text, all 3 answer choices highlighted (green border for correct, red border for user's wrong selection), full explanations visible for all options, bookmark button (star icon) that toggles the question's bookmarked state in the attempt, navigation (prev/next buttons + question number pills colored by correct/incorrect), filter buttons to show All/Incorrect Only/Bookmarked Only questions.",
@@ -30,5 +30,5 @@
     "Verify the new routes exist: ls src/app/(protected)/questions/attempts/ && ls src/app/(protected)/questions/attempts/\\[attemptId\\]/"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All code compiles cleanly (only pre-existing Prisma errors). All 38 vitest tests pass (only pre-existing env.test.ts failures from zod v4 API change). The useSyncExternalStore was successfully replaced with useState lazy initializer. All 9 acceptance criteria implemented. Routes verified at correct paths. Dashboard integrates seed + latest attempt display."
 }
