@@ -3,16 +3,18 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Trophy, TrendingUp, TrendingDown } from 'lucide-react';
-import { getAttemptById } from '../utils/attempt-storage';
+import { getAttemptById, getAttempts } from '../utils/attempt-storage';
 import { ErrorAnalysisPanel } from './error-analysis-panel';
 import { ConfidenceCalibration } from './confidence-calibration';
+import { TimeAnalysisDashboard } from './time-analysis-dashboard';
+import { DifficultyHeatmap } from './difficulty-heatmap';
 import type { PracticeAttempt, ModuleResult } from '../types/attempt';
 
 interface AttemptDashboardProps {
   attemptId: string;
 }
 
-type DashboardTab = 'overview' | 'errors' | 'confidence';
+type DashboardTab = 'overview' | 'errors' | 'confidence' | 'time' | 'difficulty';
 
 function ScoreRing({ score, size = 160, label }: { score: number; size?: number; label?: string }) {
   const strokeWidth = size >= 100 ? 12 : 8;
@@ -127,6 +129,11 @@ function TopicBar({ topic, correct, total }: { topic: string; correct: number; t
 
 export function AttemptDashboard({ attemptId }: AttemptDashboardProps) {
   const [attempt] = useState<PracticeAttempt | null>(() => getAttemptById(attemptId));
+  const [allAttempts] = useState<PracticeAttempt[]>(() => {
+    const a = getAttemptById(attemptId);
+    if (!a) return [];
+    return getAttempts(a.subjectName);
+  });
   const [activeTab, setActiveTab] = useState<DashboardTab>('overview');
 
   if (!attempt) {
@@ -145,6 +152,8 @@ export function AttemptDashboard({ attemptId }: AttemptDashboardProps) {
     { id: 'overview', label: 'Overview' },
     { id: 'errors', label: 'Error Analysis' },
     { id: 'confidence', label: 'Confidence' },
+    { id: 'time', label: 'Time Analysis' },
+    { id: 'difficulty', label: 'Difficulty' },
   ];
 
   return (
@@ -351,6 +360,14 @@ export function AttemptDashboard({ attemptId }: AttemptDashboardProps) {
 
       {activeTab === 'confidence' && (
         <ConfidenceCalibration attempt={attempt} />
+      )}
+
+      {activeTab === 'time' && (
+        <TimeAnalysisDashboard attempt={attempt} allAttempts={allAttempts} />
+      )}
+
+      {activeTab === 'difficulty' && (
+        <DifficultyHeatmap attempt={attempt} allAttempts={allAttempts} />
       )}
 
       {/* Action Buttons */}
