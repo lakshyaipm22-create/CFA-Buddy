@@ -82,7 +82,7 @@ export function addToRepetitionQueue(questionId: string, attemptId: string): voi
   // Skip if already in queue
   if (queue.some(item => item.questionId === questionId)) return;
 
-  // Enforce max queue size: drop the oldest item (furthest due date already passed)
+  // Enforce max queue size: evict the item closest to mastery (longest interval)
   if (queue.length >= MAX_QUEUE_SIZE) {
     // Remove the item with the longest interval (most advanced, closest to mastery)
     const maxIntervalIdx = queue.reduce((maxIdx, item, idx, arr) =>

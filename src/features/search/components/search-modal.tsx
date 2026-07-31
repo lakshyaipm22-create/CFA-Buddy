@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Search, X, Clock, FileText, HelpCircle, StickyNote } from 'lucide-react';
 import type { ContentMetadata } from '@/features/content-scanner/types';
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
-import { searchNotes } from '@/features/practice/utils/annotations-storage';
+import { searchNotes } from '@/shared/annotations';
 
 interface SearchResult {
   id: string;

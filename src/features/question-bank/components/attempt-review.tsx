@@ -4,7 +4,7 @@ import { useState, useCallback, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Star, ChevronLeft, ChevronRight, BookOpen, Download } from 'lucide-react';
 import { getAttemptById, saveAttempt } from '../utils/attempt-storage';
-import { getNotes, saveNote, deleteNote } from '@/features/practice/utils/annotations-storage';
+import { getNotes, saveNote, deleteNote } from '@/shared/annotations';
 import { corporateIssuersQuestions } from '../data/corporate-issuers';
 import type { PracticeAttempt, AttemptQuestion } from '../types/attempt';
 import type { Question, ErrorClassification } from '../types';

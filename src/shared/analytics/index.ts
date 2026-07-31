@@ -12,9 +12,6 @@ export { ProgressTimelineChart } from '@/features/question-bank/components/progr
 export { GapAnalysis } from '@/features/question-bank/components/gap-analysis';
 export { TargetSetter } from '@/features/question-bank/components/target-setter';
 
-// Utilities
-export { getAttempts } from '@/features/question-bank/utils/attempt-storage';
-
 // Types
 export type { PracticeAttempt } from '@/features/question-bank/types/attempt';
 export type { Question } from '@/features/question-bank/types/index';

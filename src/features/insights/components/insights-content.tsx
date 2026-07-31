@@ -11,7 +11,6 @@ import {
   ProgressTimelineChart,
   GapAnalysis,
   TargetSetter,
-  getAttempts,
 } from '@/shared/analytics';
 import type { PracticeAttempt, Question } from '@/shared/analytics';
 
