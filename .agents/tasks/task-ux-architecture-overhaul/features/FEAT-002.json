@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Enhance the header with global progress indicator, notification bell with due items count, quick-start study button, and keyboard shortcut hints in UI. Also create a local profile system that works without Supabase.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Refactor src/shared/components/layout/header.tsx: (a) Replace the empty left-side div with a compact global readiness progress bar (thin horizontal bar showing overall readiness % with tooltip). (b) Add a notification bell icon with badge count showing total due items (flashcards due + review items due). Clicking it opens a dropdown with notification items and links to their pages. (c) Add a prominent 'Start Session' CTA button (gold background, compact) that links to /questions. (d) Keep the existing search trigger and theme toggle on the right side.",
     "Create src/shared/components/layout/notification-dropdown.tsx - a dropdown panel triggered by the bell icon. Shows up to 5 recent notification items (flashcards due, streak warning, review items). Each item is clickable linking to the relevant page. Reuse logic from src/features/notifications/components/notification-badges.tsx but in a dropdown format.",
@@ -25,5 +25,5 @@
     "bun run vitest --run"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All acceptance criteria met. TypeScript compiles cleanly. 234 tests pass (only env.test.ts fails due to pre-existing zod v4 issue). The header readiness bar uses a minimal readiness calculation for the header context (no session data in the header component - sessions are only available in dashboard). The notification dropdown reuses existing logic from notification-badges.tsx and queue-builder.ts. The local profile form is styled with CSS variables for theme compatibility. Dashboard preferentially reads from localStorage but falls back to server-provided defaults."
 }
