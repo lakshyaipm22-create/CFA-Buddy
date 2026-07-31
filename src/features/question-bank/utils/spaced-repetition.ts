@@ -6,6 +6,7 @@
 
 const STORAGE_KEY = 'cfa-buddy-spaced-rep';
 const MASTERED_KEY = 'cfa-buddy-spaced-rep-mastered';
+const MAX_QUEUE_SIZE = 200;
 
 const INTERVALS = [1, 3, 7, 14, 30] as const;
 
@@ -72,6 +73,7 @@ function incrementMastered(): void {
 /**
  * Add a question to the spaced repetition queue.
  * Skips if the question is already in the queue.
+ * Enforces a maximum queue size to prevent unbounded growth.
  */
 export function addToRepetitionQueue(questionId: string, attemptId: string): void {
   if (typeof window === 'undefined') return;
@@ -79,6 +81,14 @@ export function addToRepetitionQueue(questionId: string, attemptId: string): voi
 
   // Skip if already in queue
   if (queue.some(item => item.questionId === questionId)) return;
+
+  // Enforce max queue size: drop the oldest item (furthest due date already passed)
+  if (queue.length >= MAX_QUEUE_SIZE) {
+    // Remove the item with the longest interval (most advanced, closest to mastery)
+    const maxIntervalIdx = queue.reduce((maxIdx, item, idx, arr) =>
+      item.interval > arr[maxIdx].interval ? idx : maxIdx, 0);
+    queue.splice(maxIntervalIdx, 1);
+  }
 
   const now = new Date();
   const nextDue = new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000);

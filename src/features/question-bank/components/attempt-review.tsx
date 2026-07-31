@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Star, ChevronLeft, ChevronRight, BookOpen, Download } from 'lucide-react';
 import { getAttemptById, saveAttempt } from '../utils/attempt-storage';
@@ -191,8 +191,8 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
     setCurrentIndex(0);
   }, []);
 
-  // Initialize note state for first render
-  useMemo(() => {
+  // Initialize note state for first render and sync on question change
+  useEffect(() => {
     if (currentAttemptQ) {
       setEditingNote(questionNotes[currentAttemptQ.questionId] ?? '');
       setNoteExpanded(!!questionNotes[currentAttemptQ.questionId]);

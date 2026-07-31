@@ -6,13 +6,14 @@ import { TrendingUp, TrendingDown, Target, Clock } from 'lucide-react';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
 import { TopicHeatmap } from './topic-heatmap';
-import { WeakTopicPanel } from '@/features/question-bank/components/weak-topic-panel';
-import { ProgressTimelineChart } from '@/features/question-bank/components/progress-timeline-chart';
-import { GapAnalysis } from '@/features/question-bank/components/gap-analysis';
-import { TargetSetter } from '@/features/question-bank/components/target-setter';
-import { getAttempts } from '@/features/question-bank/utils/attempt-storage';
-import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
-import type { Question } from '@/features/question-bank/types/index';
+import {
+  WeakTopicPanel,
+  ProgressTimelineChart,
+  GapAnalysis,
+  TargetSetter,
+  getAttempts,
+} from '@/shared/analytics';
+import type { PracticeAttempt, Question } from '@/shared/analytics';
 
 const PieChart = dynamic(() => import('recharts').then(m => m.PieChart), { ssr: false });
 const Pie = dynamic(() => import('recharts').then(m => m.Pie), { ssr: false });

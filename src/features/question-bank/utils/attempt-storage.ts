@@ -42,12 +42,18 @@ export function saveAttempt(attempt: PracticeAttempt): void {
   localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(all));
 
   // Auto-queue incorrect questions into spaced repetition
-  for (const moduleResult of attempt.moduleResults) {
-    for (const qa of moduleResult.questionAttempts) {
-      if (!qa.correct) {
-        addToRepetitionQueue(qa.questionId, attempt.id);
+  // Wrapped in try/catch to prevent localStorage quota errors from breaking attempt saves
+  try {
+    for (const moduleResult of attempt.moduleResults) {
+      for (const qa of moduleResult.questionAttempts) {
+        if (!qa.correct) {
+          addToRepetitionQueue(qa.questionId, attempt.id);
+        }
       }
     }
+  } catch {
+    // Spaced repetition queueing is best-effort; attempt is already saved above
+    console.warn('Failed to queue questions for spaced repetition (localStorage may be full)');
   }
 }
 

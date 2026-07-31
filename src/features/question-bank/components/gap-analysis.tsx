@@ -40,7 +40,10 @@ export function computeGapAnalysis(attempts: PracticeAttempt[], targets: Record<
     const target = targets[moduleResult.moduleName] ?? 80;
     const currentScore = moduleResult.percentage;
     const gap = target - currentScore;
-    const weight = CFA_CURRICULUM_WEIGHTS[latest.subjectName] ?? 0.1;
+    // Look up weight by module name first, then fall back to subject name
+    const weight = CFA_CURRICULUM_WEIGHTS[moduleResult.moduleName]
+      ?? CFA_CURRICULUM_WEIGHTS[latest.subjectName]
+      ?? 0.1;
     const weightedPriority = Math.max(0, gap) * weight;
 
     // Estimate questions needed to close the gap

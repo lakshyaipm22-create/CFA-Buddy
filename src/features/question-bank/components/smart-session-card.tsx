@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { Sparkles, Clock, BookOpen, Zap, Target, TrendingUp } from 'lucide-react';
 import { loadAllQuestions } from '../utils/question-loader';
 import { computeStudyRecommendation, getQuickRecommendations } from '../utils/session-recommender';
@@ -37,6 +37,7 @@ const quickOptionIcons = [
 
 export function SmartSessionCard() {
   const router = useRouter();
+  const pathname = usePathname();
   const [attempts] = useState<PracticeAttempt[]>(() => getAllAttempts());
   const questions = useMemo(() => loadAllQuestions(), []);
 
@@ -59,7 +60,13 @@ export function SmartSessionCard() {
         questionCount: recommendation.recommendedQuestionCount,
       })
     );
-    router.push('/questions');
+    // If already on /questions, a soft navigation won't remount the page,
+    // so force a full page reload to pick up the new session config.
+    if (pathname === '/questions') {
+      window.location.reload();
+    } else {
+      router.push('/questions');
+    }
   }
 
   function handleStartQuickOption(option: QuickOption) {
@@ -71,7 +78,11 @@ export function SmartSessionCard() {
         questionCount: option.questionCount,
       })
     );
-    router.push('/questions');
+    if (pathname === '/questions') {
+      window.location.reload();
+    } else {
+      router.push('/questions');
+    }
   }
 
   const diffColor = difficultyColors[recommendation.recommendedDifficulty] ?? difficultyColors.Medium;
