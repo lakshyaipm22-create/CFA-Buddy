@@ -19,9 +19,11 @@ const PATH_TITLES: Record<string, string> = {
   '/insights': 'Analytics & Insights',
   '/mistakes': 'Mistakes & Weak Areas',
   '/weekly-report': 'Weekly Report',
-  '/settings': 'Settings',
-  '/notes': 'Notes',
-  '/study-plan': 'Study Plan',
+  '/profile': 'Profile',
+  '/los-tracker': 'LOS Tracker',
+  '/formulas': 'Formula Center',
+  '/revision': 'Revision Planner',
+  '/exam-plan': 'Exam Plan',
 };
 
 /**

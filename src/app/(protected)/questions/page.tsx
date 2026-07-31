@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Repeat, AlertCircle, Layers, BarChart3 } from 'lucide-react';
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
@@ -12,7 +12,7 @@ import { useImportedQuestions } from '@/features/question-bank/hooks/useImported
 import { cleanupOldSessions } from '@/features/question-bank/utils/session-storage';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
 
-export default function QuestionsPage() {
+function QuestionsPageInner() {
   const { isLoading, questions: importedQuestions } = useImportedQuestions();
   const searchParams = useSearchParams();
   const subjectParam = searchParams.get('subject') || undefined;
@@ -113,5 +113,20 @@ export default function QuestionsPage() {
         ]}
       />
     </div>
+  );
+}
+
+export default function QuestionsPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center py-20">
+        <div
+          className="h-6 w-6 animate-spin rounded-full border-2 border-transparent"
+          style={{ borderTopColor: 'var(--accent-primary)' }}
+        />
+      </div>
+    }>
+      <QuestionsPageInner />
+    </Suspense>
   );
 }
