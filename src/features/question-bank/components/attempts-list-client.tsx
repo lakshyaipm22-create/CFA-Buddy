@@ -6,9 +6,11 @@ import { Clock, Eye, FileText } from 'lucide-react';
 import { seedCorporateIssuersAttempt } from '../utils/seed-corporate-issuers';
 import { seedFsaAttempt } from '../utils/seed-fsa';
 import { seedPortfolioManagementAttempt } from '../utils/seed-portfolio-management';
-import { getAttempts } from '../utils/attempt-storage';
+import { getAllAttempts } from '../utils/attempt-storage';
 import { RetakeComparison } from './retake-comparison';
 import type { PracticeAttempt } from '../types/attempt';
+
+const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management'] as const;
 
 function ScoreRingSmall({ score }: { score: number }) {
   const size = 48;
@@ -73,7 +75,7 @@ export function AttemptsListClient() {
 
   useEffect(() => {
     if (seeded) {
-      const all = getAttempts('Corporate Issuers');
+      const all = getAllAttempts();
       setAttempts(all.sort(
         (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()
       ));
@@ -156,7 +158,9 @@ export function AttemptsListClient() {
       </div>
 
       {/* Retake Comparison */}
-      <RetakeComparison subjectName="Corporate Issuers" />
+      {ALL_SUBJECTS.map(subject => (
+        <RetakeComparison key={subject} subjectName={subject} />
+      ))}
     </div>
   );
 }
