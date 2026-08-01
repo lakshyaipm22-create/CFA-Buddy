@@ -3,8 +3,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Clock, Eye } from 'lucide-react';
-import { getAttempts } from '../utils/attempt-storage';
+import { getAllAttempts } from '../utils/attempt-storage';
 import { seedCorporateIssuersAttempt } from '../utils/seed-corporate-issuers';
+import { seedFsaAttempt } from '../utils/seed-fsa';
+import { seedPortfolioManagementAttempt } from '../utils/seed-portfolio-management';
+import { runSeedsIfNeeded } from '../utils/seed-guard';
 import type { PracticeAttempt } from '../types/attempt';
 
 function ScoreRingTiny({ score }: { score: number }) {
@@ -42,8 +45,8 @@ export function RecentAttemptsSection() {
   const [attempts, setAttempts] = useState<PracticeAttempt[]>([]);
 
   useEffect(() => {
-    seedCorporateIssuersAttempt();
-    const all = getAttempts('Corporate Issuers');
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt]);
+    const all = getAllAttempts();
     setAttempts(
       all.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()).slice(0, 3)
     );

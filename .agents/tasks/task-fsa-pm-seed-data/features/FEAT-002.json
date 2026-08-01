@@ -1,0 +1,24 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Create Portfolio Management (PM) question data file and seed function, following the exact Corporate Issuers pattern",
+  "status": "completed",
+  "steps": [
+    "Create src/features/question-bank/data/portfolio-management.ts with realistic CFA Level I Portfolio Management questions across 6 modules. Module question counts: Module 1 (56 questions), Module 2 (93), Module 3 (40), Module 4 (55), Module 5 (27), Module 6 (41). Total: 312 questions. Each question has id (pm-mN-qN format), questionText, 3 answerChoices with label A/B/C, difficulty (Easy/Medium/Hard distribution), subject='Portfolio Management', reading=null, topic matching the module name, provider='cfa-portal', questionSourceFile=null. Export a flat array (portfolioManagementQuestions) and a modules object (portfolioManagementModules) with keys module1-module6 each having {name, questions}.",
+    "Create src/features/question-bank/utils/seed-portfolio-management.ts following the exact pattern from seed-corporate-issuers.ts. Use SEED_ATTEMPT_ID='pm-attempt-1', subject='Portfolio Management', seed value=256. Module scores: M1: 38/56, M2: 75/93, M3: 30/40, M4: 50/55, M5: 20/27, M6: 31/41. Overall: 244/312 (78%). completedAt: '2025-01-20T16:45:00Z'.",
+    "Wire seedPortfolioManagementAttempt() into dashboard-content.tsx, attempts-list-client.tsx, and recent-attempts-section.tsx following the same useEffect pattern. Import from '@/features/question-bank/utils/seed-portfolio-management' and call in the same useEffect blocks where seedCorporateIssuersAttempt() and seedFsaAttempt() are called."
+  ],
+  "acceptance_criteria": [
+    "src/features/question-bank/data/portfolio-management.ts exports portfolioManagementQuestions (312 items) and portfolioManagementModules (6 module entries with correct question counts)",
+    "src/features/question-bank/utils/seed-portfolio-management.ts exports seedPortfolioManagementAttempt() which creates a PracticeAttempt with overall 244/312 = 78%",
+    "seedPortfolioManagementAttempt() is called in useEffect in dashboard-content.tsx, attempts-list-client.tsx, and recent-attempts-section.tsx",
+    "bun run tsc --noEmit passes with no errors",
+    "bun run vitest --run passes"
+  ],
+  "verification": [
+    "Run bun run tsc --noEmit and confirm zero errors",
+    "Run bun run vitest --run and confirm all tests pass"
+  ],
+  "blocked_reason": null,
+  "findings": "All 312 questions created with correct module counts (56+93+40+55+27+41=312). Seed function uses PRNG seed 256, creates 244/312 (78%) overall score. Pre-existing env.test.ts failures (2 tests) confirmed unrelated to changes - zod import issue in test file."
+}

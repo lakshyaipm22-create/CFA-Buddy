@@ -69,6 +69,20 @@ export function getLatestAttempt(subject: string): PracticeAttempt | null {
 }
 
 /**
+ * Get all attempts across all subjects from localStorage
+ */
+export function getAllAttempts(): PracticeAttempt[] {
+  if (typeof window === 'undefined') return [];
+  const raw = localStorage.getItem(ATTEMPTS_KEY);
+  if (!raw) return [];
+  try {
+    return JSON.parse(raw) as PracticeAttempt[];
+  } catch {
+    return [];
+  }
+}
+
+/**
  * Get a specific attempt by ID
  */
 export function getAttemptById(id: string): PracticeAttempt | null {

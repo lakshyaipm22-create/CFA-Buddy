@@ -39,9 +39,14 @@ import type { GamificationState, ReadinessResult, Badge } from '@/features/gamif
 import type { BadgeCheckContext } from '@/features/gamification/utils/badges';
 import { useLocalStorageSessions } from '../hooks/use-local-storage-sessions';
 import { seedCorporateIssuersAttempt } from '@/features/question-bank/utils/seed-corporate-issuers';
+import { seedFsaAttempt } from '@/features/question-bank/utils/seed-fsa';
+import { seedPortfolioManagementAttempt } from '@/features/question-bank/utils/seed-portfolio-management';
+import { runSeedsIfNeeded } from '@/features/question-bank/utils/seed-guard';
 import { getLatestAttempt } from '@/features/question-bank/utils/attempt-storage';
 import { getLocalProfile } from '@/shared/lib/local-profile';
 import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
+
+const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management'] as const;
 
 interface DashboardContentProps {
   displayName: string;
@@ -50,7 +55,7 @@ interface DashboardContentProps {
 
 export function DashboardContent({ displayName, level }: DashboardContentProps) {
   const sessions = useLocalStorageSessions();
-  const [latestAttempt, setLatestAttempt] = useState<PracticeAttempt | null>(null);
+  const [latestAttempts, setLatestAttempts] = useState<PracticeAttempt[]>([]);
 
   // Prefer localStorage profile values over server-provided defaults
   const [localProfile] = useState(() => {
@@ -61,9 +66,15 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
   const effectiveLevel = localProfile?.level || level;
 
   useEffect(() => {
-    seedCorporateIssuersAttempt();
-    const latest = getLatestAttempt('Corporate Issuers');
-    setLatestAttempt(latest);
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt]);
+    const results: PracticeAttempt[] = [];
+    for (const subject of ALL_SUBJECTS) {
+      const latest = getLatestAttempt(subject);
+      if (latest) results.push(latest);
+    }
+    setLatestAttempts(results.sort(
+      (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()
+    ));
   }, []);
 
   const stats = useMemo(() => {
@@ -345,65 +356,72 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
       <ExamCountdown />
 
       {/* Recent Practice Attempts */}
-      {latestAttempt && (
+      {latestAttempts.length > 0 && (
         <div>
           <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">
             Recent Practice Attempts
           </h2>
-          <div
-            className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-5 transition-all duration-300 hover:shadow-md"
-          >
-            <div className="flex items-center gap-4">
-              <AttemptScoreRing score={latestAttempt.overallPercentage} />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-semibold text-[var(--text-primary)] truncate">
-                    {latestAttempt.subjectName}
-                  </h3>
-                  <span
-                    className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {latestAttempts.map((attempt) => (
+              <div
+                key={attempt.id}
+                className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-5 transition-all duration-300 hover:shadow-md"
+              >
+                <div className="flex items-center gap-4">
+                  <AttemptScoreRing score={attempt.overallPercentage} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-sm font-semibold text-[var(--text-primary)] truncate">
+                        {attempt.subjectName}
+                      </h3>
+                      <span
+                        className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+                        style={{
+                          backgroundColor:
+                            attempt.confidenceLevel === 'High'
+                              ? 'rgba(0, 132, 61, 0.15)'
+                              : attempt.confidenceLevel === 'Medium'
+                                ? 'rgba(197, 162, 88, 0.15)'
+                                : 'rgba(239, 68, 68, 0.15)',
+                          color:
+                            attempt.confidenceLevel === 'High'
+                              ? '#00843D'
+                              : attempt.confidenceLevel === 'Medium'
+                                ? '#C5A258'
+                                : '#ef4444',
+                        }}
+                      >
+                        {attempt.confidenceLevel}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-xs text-[var(--text-muted)]">
+                      {attempt.moduleResults.length} modules &middot; {attempt.overallScore}/{attempt.overallTotal} correct
+                    </p>
+                    <div className="mt-1 flex items-center gap-1 text-xs text-[var(--text-muted)]">
+                      <Clock className="h-3 w-3" />
+                      {new Date(attempt.completedAt).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
+                      })}
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3 flex justify-end">
+                  <Link
+                    href={`/questions/attempts/${attempt.id}`}
+                    className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-xs font-medium transition-all hover:opacity-80"
                     style={{
-                      backgroundColor:
-                        latestAttempt.confidenceLevel === 'High'
-                          ? 'rgba(0, 132, 61, 0.15)'
-                          : latestAttempt.confidenceLevel === 'Medium'
-                            ? 'rgba(197, 162, 88, 0.15)'
-                            : 'rgba(239, 68, 68, 0.15)',
-                      color:
-                        latestAttempt.confidenceLevel === 'High'
-                          ? '#00843D'
-                          : latestAttempt.confidenceLevel === 'Medium'
-                            ? '#C5A258'
-                            : '#ef4444',
+                      backgroundColor: '#002B5C',
+                      color: '#C5A258',
                     }}
                   >
-                    {latestAttempt.confidenceLevel}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-[var(--text-muted)]">
-                  {latestAttempt.moduleResults.length} modules &middot; {latestAttempt.overallScore}/{latestAttempt.overallTotal} correct
-                </p>
-                <div className="mt-1 flex items-center gap-1 text-xs text-[var(--text-muted)]">
-                  <Clock className="h-3 w-3" />
-                  {new Date(latestAttempt.completedAt).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric',
-                  })}
+                    View Details
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
                 </div>
               </div>
-              <Link
-                href={`/questions/attempts/${latestAttempt.id}`}
-                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-xs font-medium transition-all hover:opacity-80"
-                style={{
-                  backgroundColor: '#002B5C',
-                  color: '#C5A258',
-                }}
-              >
-                View Details
-                <ArrowRight className="h-3 w-3" />
-              </Link>
-            </div>
+            ))}
           </div>
         </div>
       )}
@@ -448,8 +466,8 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
           <QuickAction
             href="/questions/attempts"
             icon={<Target className="h-5 w-5" />}
-            label="Corporate Issuers"
-            description="View attempt results"
+            label="All Attempts"
+            description="View attempt results across all subjects"
           />
           <QuickAction
             href="/weekly-report"

@@ -1,0 +1,25 @@
+{
+  "project_type": "Next.js 14 App Router with TypeScript",
+  "language": "TypeScript",
+  "build_system": "bun (via mise shims at /root/.local/share/mise/shims/bun)",
+  "test_framework": "vitest",
+  "build_command": "bun run tsc --noEmit",
+  "test_command": "bun run vitest --run",
+  "verification_instructions": "1. Run bun run tsc --noEmit to ensure no type errors. 2. Run bun run vitest --run to ensure tests pass. 3. Run bun run lint to ensure no lint errors.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "bun install --ignore-scripts (already done)",
+  "environment_constraints": "INTEGRATIONS_ONLY network - no external npm installs allowed. Use only pre-installed dependencies.",
+  "contribution_requirements": "Run npx tsc --noEmit && npm run lint && npm run build && npm run test before committing. No TODOs, no placeholders, no mock services. Feature-based folders.",
+  "key_patterns": "Data file exports two things: a flat array (e.g. corporateIssuersQuestions) and a modules object (e.g. corporateIssuersModules). Seed function uses seeded PRNG (LCG), checks for existing attempt before writing (idempotent), and is called in useEffect in dashboard-content.tsx, attempts-list-client.tsx, and recent-attempts-section.tsx. Question type has id, questionText, answerChoices[], difficulty, subject, reading, topic, provider, questionSourceFile. AttemptQuestion has confidence as 'High'|'Medium'|'Low'. Each question needs 3 answerChoices with label A/B/C.",
+  "relevant_files": [
+    "src/features/question-bank/data/corporate-issuers.ts",
+    "src/features/question-bank/utils/seed-corporate-issuers.ts",
+    "src/features/question-bank/types/index.ts",
+    "src/features/question-bank/types/attempt.ts",
+    "src/features/question-bank/utils/attempt-storage.ts",
+    "src/features/dashboard/components/dashboard-content.tsx",
+    "src/features/question-bank/components/attempts-list-client.tsx",
+    "src/features/question-bank/components/recent-attempts-section.tsx"
+  ],
+  "directory_structure": "src/features/question-bank/data/ for question data, src/features/question-bank/utils/ for seed functions and storage, src/features/question-bank/types/ for types, src/features/dashboard/components/ for dashboard, src/features/question-bank/components/ for attempt views"
+}

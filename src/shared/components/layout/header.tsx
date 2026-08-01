@@ -118,7 +118,7 @@ function ReadinessBar({ value }: { value: number }) {
   const label = value > 0 ? `${value}% Ready` : 'Start studying to track readiness';
 
   return (
-    <div className="flex w-full max-w-xs items-center gap-2" title={label}>
+    <div className="flex w-full max-w-xs items-center gap-2" title={label} suppressHydrationWarning>
       <span className="whitespace-nowrap text-[10px] font-medium" style={{ color: 'var(--header-text)' }}>
         Readiness
       </span>

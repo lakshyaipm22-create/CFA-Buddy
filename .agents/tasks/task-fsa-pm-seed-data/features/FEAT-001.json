@@ -1,0 +1,24 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Create Financial Statement Analysis (FSA) question data file and seed function, following the exact Corporate Issuers pattern",
+  "status": "completed",
+  "steps": [
+    "Create src/features/question-bank/data/financial-statement-analysis.ts with realistic CFA Level I FSA questions across 10 modules. Module question counts must match the totals: Module 1 (34 questions), Module 2 (52), Module 3 (21), Module 4 (40), Module 5 (15), Module 6 (63), Module 7 (53), Module 8 (27), Module 9 (18), Module 12 (28). Total: 351 questions. Each question has id (fsa-mN-qN format), questionText, 3 answerChoices with label A/B/C, difficulty (Easy/Medium/Hard distribution), subject='Financial Statement Analysis', reading=null, topic matching the module name, provider='cfa-portal', questionSourceFile=null. Export a flat array (fsaQuestions) and a modules object (fsaModules) with keys module1-module9,module12 each having {name, questions}.",
+    "Create src/features/question-bank/utils/seed-fsa.ts following the exact pattern from seed-corporate-issuers.ts. Use SEED_ATTEMPT_ID='fsa-attempt-1', subject='Financial Statement Analysis', seed value=137. Module scores: M1: 29/34, M2: 33/52, M3: 12/21, M4: 33/40, M5: 8/15, M6: 39/63, M7: 40/53, M8: 16/27, M9: 14/18, M12: 17/28. Overall: 241/351 (69%). completedAt: '2025-01-18T10:15:00Z'.",
+    "Wire seedFsaAttempt() into dashboard-content.tsx, attempts-list-client.tsx, and recent-attempts-section.tsx following the same useEffect pattern as seedCorporateIssuersAttempt(). Import from '@/features/question-bank/utils/seed-fsa' and call in the same useEffect blocks."
+  ],
+  "acceptance_criteria": [
+    "src/features/question-bank/data/financial-statement-analysis.ts exports fsaQuestions (351 items) and fsaModules (10 module entries with correct question counts)",
+    "src/features/question-bank/utils/seed-fsa.ts exports seedFsaAttempt() which creates a PracticeAttempt with overall 241/351 = 69%",
+    "seedFsaAttempt() is called in useEffect in dashboard-content.tsx, attempts-list-client.tsx, and recent-attempts-section.tsx",
+    "bun run tsc --noEmit passes with no errors",
+    "bun run vitest --run passes"
+  ],
+  "verification": [
+    "Run bun run tsc --noEmit and confirm zero errors",
+    "Run bun run vitest --run and confirm all tests pass"
+  ],
+  "blocked_reason": null,
+  "findings": "All 351 questions verified across 10 modules (M1:34, M2:52, M3:21, M4:40, M5:15, M6:63, M7:53, M8:27, M9:18, M12:28). TSC passes with 0 errors. Tests: 261 pass, 2 pre-existing failures in src/env.test.ts (zod undefined, unrelated to FSA changes). The data file was built using a compact single-line format per question to keep the file manageable."
+}
