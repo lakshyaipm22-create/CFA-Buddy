@@ -6,6 +6,7 @@ import { Clock, Eye, FileText } from 'lucide-react';
 import { seedCorporateIssuersAttempt } from '../utils/seed-corporate-issuers';
 import { seedFsaAttempt } from '../utils/seed-fsa';
 import { seedPortfolioManagementAttempt } from '../utils/seed-portfolio-management';
+import { runSeedsIfNeeded } from '../utils/seed-guard';
 import { getAllAttempts } from '../utils/attempt-storage';
 import { RetakeComparison } from './retake-comparison';
 import type { PracticeAttempt } from '../types/attempt';
@@ -67,9 +68,7 @@ export function AttemptsListClient() {
   const [seeded, setSeeded] = useState(false);
 
   useEffect(() => {
-    seedCorporateIssuersAttempt();
-    seedFsaAttempt();
-    seedPortfolioManagementAttempt();
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt]);
     setSeeded(true);
   }, []);
 

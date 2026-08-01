@@ -41,6 +41,7 @@ import { useLocalStorageSessions } from '../hooks/use-local-storage-sessions';
 import { seedCorporateIssuersAttempt } from '@/features/question-bank/utils/seed-corporate-issuers';
 import { seedFsaAttempt } from '@/features/question-bank/utils/seed-fsa';
 import { seedPortfolioManagementAttempt } from '@/features/question-bank/utils/seed-portfolio-management';
+import { runSeedsIfNeeded } from '@/features/question-bank/utils/seed-guard';
 import { getLatestAttempt } from '@/features/question-bank/utils/attempt-storage';
 import { getLocalProfile } from '@/shared/lib/local-profile';
 import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
@@ -65,9 +66,7 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
   const effectiveLevel = localProfile?.level || level;
 
   useEffect(() => {
-    seedCorporateIssuersAttempt();
-    seedFsaAttempt();
-    seedPortfolioManagementAttempt();
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt]);
     const results: PracticeAttempt[] = [];
     for (const subject of ALL_SUBJECTS) {
       const latest = getLatestAttempt(subject);
