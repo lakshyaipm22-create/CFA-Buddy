@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Clock, Eye, FileText } from 'lucide-react';
 import { seedCorporateIssuersAttempt } from '../utils/seed-corporate-issuers';
+import { seedFsaAttempt } from '../utils/seed-fsa';
 import { getAttempts } from '../utils/attempt-storage';
 import { RetakeComparison } from './retake-comparison';
 import type { PracticeAttempt } from '../types/attempt';
@@ -64,6 +65,7 @@ export function AttemptsListClient() {
 
   useEffect(() => {
     seedCorporateIssuersAttempt();
+    seedFsaAttempt();
     setSeeded(true);
   }, []);
 

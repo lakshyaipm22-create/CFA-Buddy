@@ -1,0 +1,7 @@
+{
+  "task_id": "task-fsa-pm-seed-data",
+  "task_description": "Create Financial Statement Analysis (FSA) and Portfolio Management (PM) question data files and seed attempts, following the Corporate Issuers pattern. Wire seed functions into dashboard and attempts pages.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}
