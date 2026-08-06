@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Massively expand formula-seed.ts from ~30 formulas to 120+ formulas extracted from actual CFA practice questions across all subjects. Add enhanced FormulaEntry type with topic grouping and exam frequency metadata. Update subjects.ts with proper module names, curriculum weights, key topics, and exam frequency indicators.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Extend the FormulaEntry interface in src/features/formulas/data/formula-seed.ts to add: topic (string for grouping within subject), difficulty ('core' | 'advanced'), examFrequency ('high' | 'medium' | 'low'), and optional keyTip (string).",
     "Create a new subject metadata config at src/features/formulas/data/subject-metadata.ts that exports a record keyed by subject name containing: modules (string array of module/reading names), keyTopics (string array), examWeight (from CFA_CURRICULUM_WEIGHTS), topicGroups (string array for formula grouping within subject).",
@@ -27,5 +27,5 @@
     "bun run vitest --run"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Successfully expanded to 132 formulas. All 10 subjects covered. Counts: QM=24, Econ=9, CI=16, FSA=22, Equity=10, FI=10, Deriv=8, AltInv=13, PM=16, Ethics=4. All existing IDs preserved. Type check passes. Tests pass (only pre-existing env.test.ts failure). Subject-metadata.ts created with complete module lists, keyTopics, topicGroups for all subjects."
 }
