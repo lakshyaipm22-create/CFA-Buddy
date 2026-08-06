@@ -2,7 +2,7 @@
   "id": "FEAT-010",
   "type": "feat",
   "description": "Tier 3 Polish - Part 3: Attempt-over-attempt comparison, Progress timeline, Video resource links, Scratchpad during tests, Dashboard onboarding, Vercel deployment config, CI/CD pipeline. Covers Tier 3 items #9-15.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create src/features/question-bank/components/attempt-comparison.tsx - Chart showing accuracy progression across multiple attempts on the same topic/subject. X-axis: attempt number, Y-axis: accuracy %. Use Recharts line chart. Pull data from attempt history in localStorage/DB.",
     "Create src/features/insights/components/progress-timeline.tsx - Monthly accuracy trend line chart showing 12 months of data. X-axis: months, Y-axis: accuracy %. Use Recharts with area fill. Show overall trend direction indicator (improving/declining/stable).",
