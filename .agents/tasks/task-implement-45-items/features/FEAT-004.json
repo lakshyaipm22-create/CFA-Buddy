@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Question verification admin UI, Resource Library file upload, Page bookmarks, Session persistence, and Full-text search backend. Covers Tier 1 items #9, #12, #13, #14, #15.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create src/app/(protected)/admin/questions/page.tsx - Admin UI for reviewing imported questions. Show a table of questions with verification_status='pending'. Allow approve/reject actions via Server Actions. Filter by subject/topic/provider. Show question text, choices, correct answer.",
     "Create src/features/question-bank/actions/verify.ts - Server Actions: approveQuestion, rejectQuestion, bulkApprove. Update verification_status field.",

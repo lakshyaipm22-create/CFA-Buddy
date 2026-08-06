@@ -16,19 +16,20 @@ import {
   TrendingUp,
   ArrowRight,
   History,
+  BookOpen,
 } from 'lucide-react';
-import type { ContentMetadata } from '@/features/content-scanner/types';
-import { loadAllQuestions } from '@/features/question-bank/utils/question-loader';
+import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
 import { searchNotes } from '@/shared/annotations';
 import { getRecentPages } from '@/shared/lib/page-visit-tracker';
 import type { PageVisit } from '@/shared/lib/page-visit-tracker';
 
 interface SearchResult {
   id: string;
-  type: 'resource' | 'question' | 'note' | 'action' | 'page';
+  type: 'resource' | 'question' | 'note' | 'action' | 'page' | 'topic';
   title: string;
   subtitle: string;
   href: string;
+  highlight?: string;
 }
 
 interface QuickAction {
@@ -47,6 +48,8 @@ const QUICK_ACTIONS: QuickAction[] = [
   { id: 'progress', title: 'Check Progress', subtitle: 'Analytics and insights', href: '/insights', icon: <TrendingUp className="h-4 w-4" /> },
 ];
 
+const DEBOUNCE_MS = 300;
+
 function getRecentSearches(): string[] {
   if (typeof window === 'undefined') return [];
   try {
@@ -60,6 +63,39 @@ function saveRecentSearch(query: string) {
   localStorage.setItem('cfa-buddy-recent-searches', JSON.stringify(recent.slice(0, 5)));
 }
 
+/**
+ * Client-side fallback search when API is unavailable.
+ */
+function clientSideSearch(q: string): SearchResult[] {
+  const lowerQ = q.toLowerCase();
+  const combined: SearchResult[] = [];
+
+  // Search sample questions by text
+  const matchedQuestions = sampleQuestions
+    .filter(qn => qn.questionText.toLowerCase().includes(lowerQ) || qn.subject.toLowerCase().includes(lowerQ) || (qn.topic ?? '').toLowerCase().includes(lowerQ))
+    .slice(0, 5)
+    .map(qn => ({
+      id: qn.id,
+      type: 'question' as const,
+      title: qn.questionText.slice(0, 80) + (qn.questionText.length > 80 ? '...' : ''),
+      subtitle: `${qn.subject} - ${qn.difficulty}`,
+      href: '/questions',
+    }));
+  combined.push(...matchedQuestions);
+
+  // Search annotations/notes
+  const matchedNotes = searchNotes(q).slice(0, 5).map(n => ({
+    id: `note-${n.questionId}`,
+    type: 'note' as const,
+    title: n.note.slice(0, 80) + (n.note.length > 80 ? '...' : ''),
+    subtitle: `Note on question ${n.questionId.slice(0, 8)}...`,
+    href: '/practice',
+  }));
+  combined.push(...matchedNotes);
+
+  return combined;
+}
+
 export function SearchModal() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -67,12 +103,13 @@ export function SearchModal() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [recentPages, setRecentPages] = useState<PageVisit[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
   const router = useRouter();
 
   // Total navigable items when query is empty (quick actions + recent pages)
   const emptyStateItems = [...QUICK_ACTIONS.map(a => a.href), ...recentPages.map(p => p.path)];
-  const totalEmptyItems = emptyStateItems.length;
   const emptyStateItemsRef = useRef(emptyStateItems);
   emptyStateItemsRef.current = emptyStateItems;
 
@@ -112,60 +149,68 @@ export function SearchModal() {
     setSelectedIdx(0);
   }, []);
 
-  // Memoize all questions at component level (not per keystroke)
-  const allQuestions = useMemo(() => loadAllQuestions(), []);
-
-  // Search with debounce - resources + questions + notes
+  // Search with debounce - uses API with client-side fallback
   const search = useCallback(async (q: string) => {
-    if (q.length < 2) { setResults([]); return; }
-    const combined: SearchResult[] = [];
+    if (q.length < 2) { setResults([]); setIsSearching(false); return; }
 
-    // Search all questions by text
-    const lowerQ = q.toLowerCase();
-    const matchedQuestions = allQuestions
-      .filter(qn => qn.questionText.toLowerCase().includes(lowerQ) || qn.subject.toLowerCase().includes(lowerQ) || (qn.topic ?? '').toLowerCase().includes(lowerQ))
-      .slice(0, 5)
-      .map(qn => ({
-        id: qn.id,
-        type: 'question' as const,
-        title: qn.questionText.slice(0, 80) + (qn.questionText.length > 80 ? '...' : ''),
-        subtitle: `${qn.subject} • ${qn.difficulty}`,
-        href: '/questions',
-      }));
-    combined.push(...matchedQuestions);
+    // Cancel any in-flight request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
 
-    // Search question annotations/notes
-    const matchedNotes = searchNotes(q).slice(0, 5).map(n => ({
-      id: `note-${n.questionId}`,
-      type: 'note' as const,
-      title: n.note.slice(0, 80) + (n.note.length > 80 ? '...' : ''),
-      subtitle: `Note on question ${n.questionId.slice(0, 8)}...`,
-      href: '/practice',
-    }));
-    combined.push(...matchedNotes);
+    setIsSearching(true);
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
 
-    // Search resources via API
     try {
-      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
-      const data = await res.json();
-      const resources = (data.results ?? []).slice(0, 5).map((r: ContentMetadata) => ({
-        id: r.id,
-        type: 'resource' as const,
-        title: r.fileName,
-        subtitle: `${r.provider ?? ''} • ${r.subject ?? ''}`.replace(/^ • | • $/g, ''),
-        href: `/resources/${r.id}`,
-      }));
-      combined.push(...resources);
-    } catch { /* ignore */ }
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`, {
+        signal: controller.signal,
+      });
 
-    setResults(combined);
+      if (!res.ok) throw new Error('API error');
+
+      const data = await res.json();
+
+      // Map API results to SearchResult format
+      const apiResults: SearchResult[] = (data.results ?? []).map((r: SearchResult) => ({
+        id: r.id,
+        type: r.type,
+        title: r.title,
+        subtitle: r.subtitle,
+        href: r.href,
+        highlight: r.highlight,
+      }));
+
+      if (apiResults.length > 0) {
+        setResults(apiResults);
+      } else {
+        // Fallback to client-side search if API returns empty
+        setResults(clientSideSearch(q));
+      }
+    } catch (err) {
+      if (err instanceof Error && err.name === 'AbortError') return;
+      // API unavailable - use client-side fallback
+      setResults(clientSideSearch(q));
+    } finally {
+      setIsSearching(false);
+    }
+
     setSelectedIdx(0);
   }, [allQuestions]);
 
   useEffect(() => {
-    const timer = setTimeout(() => { void search(query); }, 300);
+    const timer = setTimeout(() => { void search(query); }, DEBOUNCE_MS);
     return () => clearTimeout(timer);
   }, [query, search]);
+
+  // Cleanup abort controller on unmount
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
 
   // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -223,6 +268,7 @@ export function SearchModal() {
       case 'resource': return <FileText className="h-3.5 w-3.5" />;
       case 'question': return <HelpCircle className="h-3.5 w-3.5" />;
       case 'note': return <StickyNote className="h-3.5 w-3.5" />;
+      case 'topic': return <BookOpen className="h-3.5 w-3.5" />;
       default: return <FileText className="h-3.5 w-3.5" />;
     }
   };
@@ -252,6 +298,9 @@ export function SearchModal() {
             className="flex-1 bg-transparent text-sm focus:outline-none"
             style={{ color: 'var(--foreground)' }}
           />
+          {isSearching && (
+            <div className="h-3 w-3 animate-spin rounded-full border border-zinc-600 border-t-zinc-300" />
+          )}
           <button onClick={handleClose} style={{ color: 'var(--foreground-secondary)' }}>
             <X className="h-4 w-4" />
           </button>
@@ -274,6 +323,11 @@ export function SearchModal() {
                   <div className="flex-1 min-w-0">
                     <p className="text-sm truncate" style={{ color: 'var(--foreground)' }}>{r.title}</p>
                     <p className="text-xs truncate" style={{ color: 'var(--foreground-secondary)' }}>{r.subtitle}</p>
+                    {r.highlight && (
+                      <p className="mt-0.5 text-xs truncate" style={{ color: 'var(--foreground-secondary)', opacity: 0.7 }}>
+                        {r.highlight}
+                      </p>
+                    )}
                   </div>
                   <span className="text-[10px] rounded px-1.5 py-0.5" style={{ background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }}>
                     {r.type}
@@ -282,7 +336,9 @@ export function SearchModal() {
               ))}
             </div>
           ) : query.length >= 2 ? (
-            <p className="px-3 py-6 text-center text-sm" style={{ color: 'var(--foreground-secondary)' }}>No results found</p>
+            <p className="px-3 py-6 text-center text-sm" style={{ color: 'var(--foreground-secondary)' }}>
+              {isSearching ? 'Searching...' : 'No results found'}
+            </p>
           ) : (
             <div className="space-y-3">
               {/* Quick Actions */}
