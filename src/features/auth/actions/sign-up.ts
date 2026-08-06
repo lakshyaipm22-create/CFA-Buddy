@@ -3,6 +3,7 @@
 import { redirect } from 'next/navigation';
 import { signUpSchema, type AuthActionResult } from '../types';
 import { createServerSupabaseClient } from '@/shared/lib/supabase/server';
+import { isDatabaseAvailable } from '@/shared/lib/data-layer';
 
 export async function signUp(formData: FormData): Promise<AuthActionResult> {
   const rawData = {
@@ -45,7 +46,7 @@ export async function signUp(formData: FormData): Promise<AuthActionResult> {
   }
 
   // Create the User record in the database if signup succeeded and we have a user
-  if (data.user) {
+  if (data.user && isDatabaseAvailable()) {
     try {
       const { prisma } = await import('@/shared/lib/prisma/client');
       await prisma.user.create({

@@ -1,5 +1,6 @@
 'use server';
 
+import crypto from 'crypto';
 import { z } from 'zod';
 import type { ActionResult } from '@/shared/types/action-result';
 import { isDatabaseAvailable } from '@/shared/lib/data-layer';
@@ -154,24 +155,16 @@ export async function bulkImportQuestions(
 
 /**
  * Generate a stable, deterministic ID for a question based on its content.
+ * Uses SHA-256 truncated to 16 hex characters (64 bits) for collision resistance.
  * This enables idempotent imports - importing the same question twice does not duplicate it.
  */
 function generateStableId(
   questionText: string,
   answerChoices: Array<{ label: string; text: string }>
 ): string {
-  // Simple hash based on question text + first choice texts
-  const content = [
-    questionText.trim().toLowerCase().slice(0, 200),
-    ...answerChoices.map(c => `${c.label}:${c.text.trim().toLowerCase().slice(0, 50)}`),
-  ].join('|');
-
-  // Simple string hash (not cryptographic, just for dedup)
-  let hash = 0;
-  for (let i = 0; i < content.length; i++) {
-    const char = content.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  return `imp-${Math.abs(hash).toString(36)}`;
+  const text = questionText.trim().toLowerCase();
+  const provider = answerChoices.map(c => `${c.label}:${c.text.trim().toLowerCase()}`).join('|');
+  const topic = text.slice(0, 200);
+  const hash = crypto.createHash('sha256').update(text + provider + topic).digest('hex').slice(0, 16);
+  return `imp-${hash}`;
 }

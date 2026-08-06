@@ -120,8 +120,9 @@ export async function updateNote(
   if (isDatabaseAvailable()) {
     const { prisma } = await import('@/shared/lib/prisma/client');
     try {
+      // Use compound where to verify ownership - prevents updating another user's note
       const updated = await prisma.note.update({
-        where: { id: validated.data.noteId },
+        where: { id: validated.data.noteId, userId: userId! },
         data: { content: validated.data.content },
       });
       return {
@@ -182,8 +183,9 @@ export async function deleteNote(
   if (isDatabaseAvailable()) {
     const { prisma } = await import('@/shared/lib/prisma/client');
     try {
+      // Use compound where to verify ownership - prevents deleting another user's note
       await prisma.note.delete({
-        where: { id: validated.data.noteId },
+        where: { id: validated.data.noteId, userId: userId! },
       });
       return { success: true, data: { deleted: true } };
     } catch (err) {

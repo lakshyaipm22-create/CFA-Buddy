@@ -79,8 +79,9 @@ export async function classifyError(
   if (isDatabaseAvailable()) {
     const { prisma } = await import('@/shared/lib/prisma/client');
     try {
+      // Use compound where to verify ownership - prevents classifying another user's attempt
       await prisma.questionAttempt.update({
-        where: { id: validated.data.attemptId },
+        where: { id: validated.data.attemptId, userId: userId! },
         data: { errorClassification: validated.data.errorClassification },
       });
       return {
@@ -129,8 +130,9 @@ export async function resolveMistake(
   if (isDatabaseAvailable()) {
     const { prisma } = await import('@/shared/lib/prisma/client');
     try {
+      // Use compound where to verify ownership - prevents resolving another user's mistake
       await prisma.mistakeLog.update({
-        where: { id: validated.data.mistakeId },
+        where: { id: validated.data.mistakeId, userId: userId! },
         data: { resolved: true },
       });
       return { success: true, data: { resolved: true } };

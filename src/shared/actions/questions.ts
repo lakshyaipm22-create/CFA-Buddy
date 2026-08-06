@@ -254,8 +254,9 @@ export async function completeSession(
   if (isDatabaseAvailable()) {
     const { prisma } = await import('@/shared/lib/prisma/client');
     try {
+      // Use compound where to verify ownership - prevents completing another user's session
       await prisma.questionSession.update({
-        where: { id: validated.data.sessionId },
+        where: { id: validated.data.sessionId, userId: userId! },
         data: { status: 'Completed', completedAt: new Date(completedAt) },
       });
       return { success: true, data: { completedAt } };
