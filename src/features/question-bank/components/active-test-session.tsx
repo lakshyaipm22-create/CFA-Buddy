@@ -363,9 +363,14 @@ export function ActiveTestSession({ sessionId }: ActiveTestSessionProps) {
               Q: {formatTime(questionElapsed)}
             </span>
             {isTimed && totalRemaining !== null && (
-              <span className={`flex items-center gap-1 text-xs font-mono ${totalRemaining <= 60 ? 'text-red-400' : ''}`} style={totalRemaining > 60 ? { color: 'var(--accent-secondary)' } : undefined}>
+              <span className={`flex items-center gap-1 text-xs font-mono ${totalRemaining <= 60 ? 'text-red-400 animate-pulse' : ''}`} style={totalRemaining > 60 ? { color: 'var(--accent-secondary)' } : undefined}>
                 <Clock className="h-3 w-3" />
                 Total: {formatTime(totalRemaining)}
+                {session && totalRemaining > 0 && (
+                  <span className="ml-1 text-[10px] opacity-60">
+                    ({Math.round(totalRemaining / Math.max(1, session.questionIds.length - session.currentIndex) / 60 * 10) / 10}m/q)
+                  </span>
+                )}
               </span>
             )}
           </div>
