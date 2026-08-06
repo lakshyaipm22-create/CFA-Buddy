@@ -31,16 +31,6 @@ export function ExamCountdown() {
     }
   });
 
-  useEffect(() => {
-    const handler = (e: StorageEvent) => {
-      if (e.key === 'cfa-buddy-exam-date') {
-        setTargetDate(localStorage.getItem('cfa-buddy-exam-date'));
-      }
-    };
-    window.addEventListener('storage', handler);
-    return () => window.removeEventListener('storage', handler);
-  }, []);
-
   const saveDate = () => {
     if (!inputDate) return;
     localStorage.setItem('cfa-buddy-exam-date', inputDate);

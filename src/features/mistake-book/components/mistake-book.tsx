@@ -8,8 +8,8 @@ import { generateRetest } from '../actions/retest';
 import { useListNavigation } from '@/shared/hooks/use-list-navigation';
 import { useCursorPagination } from '@/shared/hooks/use-cursor-pagination';
 
-interface EnrichedMistake {
-  questionId: string;
+interface MistakeEntry {
+  attempt: QuestionAttempt;
   questionText: string;
   subject: string;
   topic: string;
@@ -43,9 +43,8 @@ export function MistakeBook() {
   });
   const [retestLoading, setRetestLoading] = useState(false);
 
-  // Read PracticeAttempts and Questions via lazy initializers (no useSyncExternalStore)
-  const [attempts] = useState(() => getAllAttempts());
-  const [questions] = useState(() => loadAllQuestions());
+  const mistakes = useMemo<MistakeEntry[]>(() => {
+    const allMistakes: MistakeEntry[] = [];
 
     for (const session of sessions) {
       const sessionSubject = session.config?.subject ?? 'CFA Level I';
@@ -63,8 +62,8 @@ export function MistakeBook() {
       }
     }
 
-    return result;
-  }, [attempts, questionMap]);
+    return allMistakes.reverse();
+  }, [sessions]);
 
   const filteredMistakes = useMemo(() => {
     return mistakes.filter((m) => {
@@ -93,71 +92,10 @@ export function MistakeBook() {
     return Array.from(topics).sort();
   }, [mistakes]);
 
-  const availableTopics = useMemo(() => {
-    const filtered = subjectFilter === 'All'
-      ? enrichedMistakes
-      : enrichedMistakes.filter(m => m.subject === subjectFilter);
-    const topics = new Set(filtered.map(m => m.topic).filter(Boolean) as string[]);
-    return Array.from(topics).sort();
-  }, [enrichedMistakes, subjectFilter]);
-
-  // Apply filters
-  const filteredMistakes = useMemo(() => {
-    let result = enrichedMistakes;
-
-    if (subjectFilter !== 'All') {
-      result = result.filter(m => m.subject === subjectFilter);
-    }
-
-    if (confidenceFilter !== 'All') {
-      result = result.filter(m => m.confidence === confidenceFilter);
-    }
-
-    if (topicFilter !== 'All') {
-      result = result.filter(m => m.topic === topicFilter);
-    }
-
-    // Apply sorting
-    const sorted = [...result];
-    switch (sortMode) {
-      case 'confidence':
-        sorted.sort((a, b) => {
-          const order = { High: 0, Medium: 1, Low: 2 };
-          return order[a.confidence] - order[b.confidence];
-        });
-        break;
-      case 'time':
-        sorted.sort((a, b) => b.timeSpentSeconds - a.timeSpentSeconds);
-        break;
-      case 'subject':
-        sorted.sort((a, b) => a.subject.localeCompare(b.subject));
-        break;
-    }
-
-    return sorted;
-  }, [enrichedMistakes, subjectFilter, confidenceFilter, topicFilter, sortMode]);
-
-  // Build data for MistakeAnalytics (expects { attempt: QuestionAttempt, classification: string }[])
-  const analyticsData = useMemo(() => {
-    return enrichedMistakes.map((m): { attempt: QuestionAttempt; classification: string } => ({
-      attempt: {
-        questionId: m.questionId,
-        selectedAnswer: m.selectedAnswer,
-        confidence: mapConfidenceToAnalytics(m.confidence),
-        timeSpentSeconds: m.timeSpentSeconds,
-        correct: false,
-        errorClassification: m.errorClassification as QuestionAttempt['errorClassification'],
-        timestamp: new Date().toISOString(),
-      },
-      classification: m.errorClassification,
-    }));
-  }, [enrichedMistakes]);
-
-  // Memoize unique question count for the retry button badge
-  const filteredUniqueQuestionCount = useMemo(
-    () => new Set(filteredMistakes.map(m => m.questionId)).size,
-    [filteredMistakes]
-  );
+  const classificationCounts = mistakes.reduce((acc, m) => {
+    acc[m.classification] = (acc[m.classification] ?? 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
 
   const handleGenerateRetest = useCallback(async () => {
     setRetestLoading(true);
@@ -221,80 +159,31 @@ export function MistakeBook() {
 
   const { focusedIndex, listRef } = useListNavigation(paginatedMistakes.length);
 
-  // Retry Mistakes handler - creates a session with unique incorrect question IDs
-  const handleRetryMistakes = useCallback(() => {
-    const uniqueIds = Array.from(new Set(filteredMistakes.map(m => m.questionId)));
-    if (uniqueIds.length === 0) return;
-
-    const session: QuestionSession = {
-      id: crypto.randomUUID(),
-      mode: 'AdaptiveRetest',
-      config: { questionCount: uniqueIds.length, timeLimit: null },
-      status: 'active',
-      startedAt: new Date().toISOString(),
-      completedAt: null,
-      questionIds: uniqueIds,
-      attempts: [],
-      currentIndex: 0,
-      flaggedIds: [],
-      bookmarkedIds: [],
-      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-    };
-    saveSession(session);
-    router.push(`/questions/session/${session.id}`);
-  }, [filteredMistakes, router]);
-
-  // Stats
-  const misconceptionCount = enrichedMistakes.filter(m => m.confidence === 'High').length;
-  const knowledgeGapCount = enrichedMistakes.filter(m => m.confidence === 'Low').length;
-  const uniqueQuestionCount = new Set(enrichedMistakes.map(m => m.questionId)).size;
-
-  // Reset topic filter when subject changes
-  const handleSubjectChange = useCallback((value: string) => {
-    setSubjectFilter(value);
-    setTopicFilter('All');
-  }, []);
-
   return (
     <div className="space-y-6">
-      {/* Header with Retry Button */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
-            Mistake Book
-          </h2>
-          <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
-            {enrichedMistakes.length} total errors across {uniqueQuestionCount} unique questions
-          </p>
-        </div>
-        {filteredMistakes.length > 0 && (
-          <button
-            onClick={handleRetryMistakes}
-            className="rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:opacity-90"
-            style={{ background: '#00843D', color: '#ffffff' }}
-          >
-            Retry Mistakes ({filteredUniqueQuestionCount})
-          </button>
-        )}
-      </div>
-
-      {/* Stats Grid */}
+      {/* Stats */}
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         <div className="rounded-lg border p-4 text-center" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
-          <p className="text-2xl font-bold text-red-400">{enrichedMistakes.length}</p>
+          <p className="text-2xl font-bold text-red-400">{mistakes.length}</p>
           <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Total Mistakes</p>
         </div>
         <div className="rounded-lg border p-4 text-center" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
-          <p className="text-2xl font-bold text-orange-400">{misconceptionCount}</p>
+          <p className="text-2xl font-bold text-orange-400">
+            {mistakes.filter(m => m.attempt.confidence === 'Certain').length}
+          </p>
           <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Misconceptions</p>
         </div>
         <div className="rounded-lg border p-4 text-center" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
-          <p className="text-2xl font-bold text-yellow-400">{knowledgeGapCount}</p>
+          <p className="text-2xl font-bold text-yellow-400">
+            {mistakes.filter(m => m.attempt.confidence === 'Guess').length}
+          </p>
           <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Knowledge Gaps</p>
         </div>
         <div className="rounded-lg border p-4 text-center" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
-          <p className="text-2xl font-bold" style={{ color: '#C5A258' }}>{uniqueQuestionCount}</p>
-          <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Unique Questions</p>
+          <p className="text-2xl font-bold" style={{ color: 'var(--foreground-secondary)' }}>
+            {classificationCounts['Unclassified'] ?? 0}
+          </p>
+          <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Unclassified</p>
         </div>
       </div>
 
@@ -315,17 +204,13 @@ export function MistakeBook() {
       <div ref={listRef} className="space-y-2">
         {paginatedMistakes.map((mistake, idx) => (
           <div
-            key={`${mistake.attemptId}-${mistake.questionId}-${idx}`}
+            key={idx}
             data-list-item
-            className={`rounded-lg border transition-colors ${
+            className={`rounded-lg border p-4 transition-colors ${
               focusedIndex === idx ? 'ring-1 ring-[#C5A258]/50' : ''
             }`}
             style={{
-              borderColor: mistake.confidence === 'High'
-                ? '#dc2626'
-                : focusedIndex === idx
-                  ? 'var(--accent-secondary)'
-                  : 'var(--card-border)',
+              borderColor: focusedIndex === idx ? 'var(--accent-secondary)' : 'var(--card-border)',
               background: 'var(--card-bg)',
             }}
           >
@@ -352,40 +237,11 @@ export function MistakeBook() {
                     {mistake.attempt.timeSpentSeconds}s
                   </span>
                 </div>
-                <span className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
-                  {expandedIndex === idx ? '▲' : '▼'}
-                </span>
               </div>
-            </button>
-
-            {/* Expanded Detail */}
-            {expandedIndex === idx && (
-              <div className="border-t px-4 pb-4 pt-3" style={{ borderColor: 'var(--card-border)' }}>
-                {/* What user selected */}
-                <div className="mb-3">
-                  <p className="text-[10px] font-medium uppercase tracking-wide text-red-400">Your Answer</p>
-                  <p className="mt-1 text-sm" style={{ color: 'var(--foreground)' }}>
-                    {mistake.selectedAnswer}
-                  </p>
-                </div>
-                {/* Correct answer */}
-                <div className="mb-3">
-                  <p className="text-[10px] font-medium uppercase tracking-wide text-green-400">Correct Answer</p>
-                  <p className="mt-1 text-sm" style={{ color: 'var(--foreground)' }}>
-                    <span className="font-semibold">{mistake.correctAnswer.label}.</span> {mistake.correctAnswer.text}
-                  </p>
-                </div>
-                {/* Explanation */}
-                {mistake.correctAnswer.explanation && (
-                  <div className="rounded-md p-3" style={{ background: 'rgba(0, 132, 61, 0.1)', border: '1px solid rgba(0, 132, 61, 0.2)' }}>
-                    <p className="text-[10px] font-medium uppercase tracking-wide text-green-400 mb-1">Explanation</p>
-                    <p className="text-xs leading-relaxed" style={{ color: 'var(--foreground-secondary)' }}>
-                      {mistake.correctAnswer.explanation}
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
+              <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>
+                {new Date(mistake.attempt.timestamp).toLocaleDateString()}
+              </span>
+            </div>
           </div>
         ))}
       </div>
@@ -406,23 +262,7 @@ export function MistakeBook() {
       {mistakes.length === 0 && (
         <div className="rounded-lg border border-dashed p-12 text-center" style={{ borderColor: 'var(--card-border)' }}>
           <p style={{ color: 'var(--foreground-secondary)' }}>No mistakes recorded yet.</p>
-          <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
-            Complete some practice sessions to see your error patterns and get targeted review.
-          </p>
-        </div>
-      )}
-
-      {/* Filtered empty state */}
-      {enrichedMistakes.length > 0 && filteredMistakes.length === 0 && (
-        <div className="rounded-lg border border-dashed p-8 text-center" style={{ borderColor: 'var(--card-border)' }}>
-          <p style={{ color: 'var(--foreground-secondary)' }}>No mistakes match the current filters.</p>
-          <button
-            onClick={() => { setSubjectFilter('All'); setConfidenceFilter('All'); setTopicFilter('All'); }}
-            className="mt-2 text-xs underline"
-            style={{ color: '#C5A258' }}
-          >
-            Clear all filters
-          </button>
+          <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>Complete some question sessions to see your error patterns.</p>
         </div>
       )}
     </div>

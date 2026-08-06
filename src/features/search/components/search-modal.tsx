@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Search,
@@ -197,7 +197,7 @@ export function SearchModal() {
     }
 
     setSelectedIdx(0);
-  }, [allQuestions]);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => { void search(query); }, DEBOUNCE_MS);
