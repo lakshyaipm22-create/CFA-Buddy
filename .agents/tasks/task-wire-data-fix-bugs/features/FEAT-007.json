@@ -2,7 +2,7 @@
   "id": "FEAT-007",
   "type": "feat",
   "description": "Build a comprehensive Subject Readiness Dashboard that shows a CFA-weighted readiness score with per-subject and per-module drill-down. Synthesizes ALL available data: PracticeAttempts (per-question correct/incorrect, module scores, time spent), formula quiz history, and question session history into a single exam-readiness view.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create src/features/insights/components/readiness-dashboard.tsx - a comprehensive client component showing: (1) Overall weighted readiness score (0-100) using CFA_CURRICULUM_WEIGHTS, (2) Per-subject cards showing: accuracy %, questions attempted vs available, time invested, strongest/weakest modules, (3) A radar/spider chart (using recharts) plotting all 10 subjects normalized to 0-100, (4) Module-level breakdown table for each subject showing score/total from PracticeAttempt.moduleResults, (5) 'Readiness Gap' showing distance from 70% (MPS estimate) per subject.",
     "Create src/features/insights/utils/readiness-calculator.ts that: (1) imports getAllAttempts, loadAllQuestions, getQuestionCountBySubject from existing utils, (2) computes per-subject metrics: accuracy, coverage (attempted/available), velocity (questions/day trend), (3) computes weighted overall score using CFA curriculum weights, (4) identifies per-module weak spots from ModuleResult data, (5) estimates probability of passing based on accuracy distribution across subjects.",

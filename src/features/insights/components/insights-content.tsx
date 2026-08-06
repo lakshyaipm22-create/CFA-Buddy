@@ -6,6 +6,7 @@ import { TrendingUp, TrendingDown, Target, Clock } from 'lucide-react';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
 import { loadAllQuestions } from '@/features/question-bank/utils/question-loader';
 import { TopicHeatmap } from './topic-heatmap';
+import { ReadinessDashboard } from './readiness-dashboard';
 import {
   WeakTopicPanel,
   ProgressTimelineChart,
@@ -130,6 +131,11 @@ export function InsightsContent() {
 
   return (
     <div className="space-y-6">
+      {/* Readiness Dashboard */}
+      {allAttempts.length > 0 && (
+        <ReadinessDashboard attempts={allAttempts} />
+      )}
+
       {/* Progress Timeline */}
       {allAttempts.length > 0 && (
         <ProgressTimelineChart attempts={allAttempts} />
