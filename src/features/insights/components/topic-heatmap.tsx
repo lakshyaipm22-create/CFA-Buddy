@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { CFA_SUBJECTS_ORDERED } from '@/shared/config/subjects';
 import { loadAllQuestions } from '@/features/question-bank/utils/question-loader';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
-import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
 
 interface TopicStats {
   subject: string;
@@ -39,7 +38,7 @@ export function TopicHeatmap() {
 
   const topicData = useMemo(() => {
     // Load all questions and get unique readings per subject
-    const allQuestions = typeof window !== 'undefined' ? loadAllQuestions() : sampleQuestions;
+    const allQuestions = loadAllQuestions();
 
     const readingsBySubject: Record<string, string[]> = {};
     for (const subject of CFA_SUBJECTS_ORDERED) {

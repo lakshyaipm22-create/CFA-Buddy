@@ -18,7 +18,7 @@ import {
   History,
 } from 'lucide-react';
 import type { ContentMetadata } from '@/features/content-scanner/types';
-import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
+import { loadAllQuestions } from '@/features/question-bank/utils/question-loader';
 import { searchNotes } from '@/shared/annotations';
 import { getRecentPages } from '@/shared/lib/page-visit-tracker';
 import type { PageVisit } from '@/shared/lib/page-visit-tracker';
@@ -117,9 +117,10 @@ export function SearchModal() {
     if (q.length < 2) { setResults([]); return; }
     const combined: SearchResult[] = [];
 
-    // Search sample questions by text
+    // Search all questions by text
+    const allQuestions = loadAllQuestions();
     const lowerQ = q.toLowerCase();
-    const matchedQuestions = sampleQuestions
+    const matchedQuestions = allQuestions
       .filter(qn => qn.questionText.toLowerCase().includes(lowerQ) || qn.subject.toLowerCase().includes(lowerQ) || (qn.topic ?? '').toLowerCase().includes(lowerQ))
       .slice(0, 5)
       .map(qn => ({
