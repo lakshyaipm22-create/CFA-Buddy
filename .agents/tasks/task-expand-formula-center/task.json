@@ -1,0 +1,7 @@
+{
+  "task_id": "task-expand-formula-center",
+  "task_description": "Expand the CFA Formula Center from ~30 generic formulas to 120+ formulas extracted from actual CFA practice questions, redesign the UI for better navigation (tabbed by subject, grouped by topic, Quick Reference, expandable cards), and improve subject metadata with module names, curriculum weights, key topics, and exam frequency indicators.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}

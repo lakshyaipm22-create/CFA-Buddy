@@ -1,0 +1,22 @@
+{
+  "project_type": "Next.js 16 React 19 app (CFA exam prep tool)",
+  "language": "TypeScript",
+  "build_system": "bun + next build",
+  "test_framework": "vitest with @testing-library/react",
+  "build_command": "bun run tsc --noEmit",
+  "test_command": "bun run vitest --run",
+  "verification_instructions": "1. Run bun run tsc --noEmit (must pass). 2. Run bun run vitest --run (pre-existing env.test.ts failure is acceptable). 3. Verify formula count >= 120 by checking formulaSeed.length in the data file.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "Already set up. bun is at /root/.local/share/mise/shims/bun.",
+  "environment_constraints": "INTEGRATIONS_ONLY - no external npm installs. All dependencies already installed. Cannot run next build (needs network). Use tsc --noEmit for type checking.",
+  "contribution_requirements": "Feature-based folders (src/features/{name}/). No cross-feature imports (extract to src/shared/). No TODOs, no placeholders. Use CSS variables for theming (--accent-primary, --accent-secondary, --card-bg, --card-border). Critical React rule: NEVER use useSyncExternalStore, use useState(() => ...) lazy initializer for localStorage reads.",
+  "key_patterns": "FormulaEntry type: { id, name, subject, reading, formula, variables, example }. Subjects config at src/shared/config/subjects.ts. CSS uses inline styles with CSS variables. Components use lucide-react icons. sortByCfaOrder() sorts subjects.",
+  "relevant_files": [
+    "src/features/formulas/data/formula-seed.ts",
+    "src/features/formulas/components/formula-center.tsx",
+    "src/app/(protected)/formulas/page.tsx",
+    "src/shared/config/subjects.ts",
+    "src/shared/config/navigation.ts"
+  ],
+  "directory_structure": "src/features/formulas/data/ (formula data), src/features/formulas/components/ (UI components), src/shared/config/ (subjects.ts, navigation.ts), src/app/(protected)/formulas/ (page route)"
+}

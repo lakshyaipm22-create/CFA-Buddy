@@ -1,0 +1,31 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Massively expand formula-seed.ts from ~30 formulas to 120+ formulas extracted from actual CFA practice questions across all subjects. Add enhanced FormulaEntry type with topic grouping and exam frequency metadata. Update subjects.ts with proper module names, curriculum weights, key topics, and exam frequency indicators.",
+  "status": "in_progress",
+  "steps": [
+    "Extend the FormulaEntry interface in src/features/formulas/data/formula-seed.ts to add: topic (string for grouping within subject), difficulty ('core' | 'advanced'), examFrequency ('high' | 'medium' | 'low'), and optional keyTip (string).",
+    "Create a new subject metadata config at src/features/formulas/data/subject-metadata.ts that exports a record keyed by subject name containing: modules (string array of module/reading names), keyTopics (string array), examWeight (from CFA_CURRICULUM_WEIGHTS), topicGroups (string array for formula grouping within subject).",
+    "Expand the formulaSeed array to 120+ formulas organized by subject. For Corporate Issuers: WACC, NPV, IRR, payback period, DOL, DFL, DTL, ROIC, MM Proposition I/II, D/E to D/V conversion, breakeven quantity, operating breakeven, retention rate, sustainable growth. For Financial Statement Analysis: EPS basic, EPS diluted (if-converted), EPS diluted (treasury stock method), inventory turnover, days inventory, LIFO reserve adjustment, FIFO from LIFO COGS, common-size ratios, CFO direct method, CFO indirect method, DTA/DTL, effective tax rate, cash conversion cycle, receivables turnover, payables turnover, interest coverage, fixed charge coverage, ROA, operating margin. For Portfolio Management: portfolio std dev (2-asset), portfolio std dev (3-asset), beta, CAPM, Sharpe ratio, Treynor ratio, Jensen's alpha, M-squared, Roy's safety-first ratio, information ratio, correlation from covariance, covariance formula, systematic/unsystematic risk decomposition, CML equation, SML equation, optimal risky portfolio weight. For Quantitative Methods: geometric mean, harmonic mean, HPR, TWR, MWR/IRR, continuously compounded return, annualized return, standard error, confidence interval, z-test, t-test, chi-square test, F-test, simple linear regression, R-squared, SEE, coefficient of determination, Bayes theorem, combination/permutation, expected value, variance of a random variable, binomial probability, normal distribution z-score, Chebyshev inequality, coefficient of variation. For Alternative Investments: hedge fund management fee, incentive fee with hurdle rate, incentive fee with HWM, leveraged return (margin), REIT NAV, REIT FFO, REIT AFFO, LTV ratio, cap rate, waterfall distribution, J-curve, commodity futures return decomposition, private equity TVPI/DPI/RVPI. Also fill in formulas for Economics, Equity Investments, Fixed Income, Derivatives, and Ethics subjects with at least 5-8 formulas each keeping existing ones and adding new ones.",
+    "Ensure each formula has a unique id following the pattern f-{subject-abbrev}-{name-slug}, a clear name, correct subject, reading/module reference, formula text, variable definitions, and a worked example.",
+    "Ensure all existing formulas (the ~30 that are there) are preserved with their current ids (to maintain bookmarks) but updated with the new metadata fields (topic, difficulty, examFrequency)."
+  ],
+  "acceptance_criteria": [
+    "formulaSeed array contains at least 120 entries",
+    "All 10 CFA subjects have formulas represented",
+    "Corporate Issuers has 12+ formulas including WACC, NPV, IRR, DOL, DFL, DTL, MM propositions",
+    "Financial Statement Analysis has 15+ formulas including EPS basic/diluted, inventory metrics, cash flow methods",
+    "Portfolio Management has 12+ formulas including CAPM, Sharpe, Treynor, Jensen's alpha, M-squared",
+    "Quantitative Methods has 20+ formulas including geometric/harmonic mean, HPR, TWR, hypothesis tests, regression",
+    "Alternative Investments has 10+ formulas including hedge fund fees, leveraged returns, REIT metrics",
+    "FormulaEntry type includes topic, difficulty, and examFrequency fields",
+    "Subject metadata file exists with modules, keyTopics, and topicGroups for each subject",
+    "bun run tsc --noEmit passes with zero errors"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
