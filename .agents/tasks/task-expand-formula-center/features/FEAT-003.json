@@ -1,0 +1,23 @@
+{
+  "id": "FEAT-003",
+  "type": "fix",
+  "description": "Address UX issues from semantic review: reduce Quick Reference formula count from 90 to ~45 by downgrading less essential formulas to medium frequency, fix subject tab counts to reflect current view mode filtering, and hide Expand/Collapse button when search auto-expands groups.",
+  "status": "completed",
+  "steps": [
+    "In formula-seed.ts, downgrade approximately half of the high-frequency formulas to medium, keeping truly essential/must-memorize formulas as high (WACC, CAPM, portfolio variance, EPS basic/diluted, Sharpe, bond price, put-call parity, DDM, NPV, duration, PV, FV, etc.).",
+    "In formula-center.tsx, replace static SUBJECT_COUNTS usage in subject tabs with dynamic counts computed from filteredFormulas (before subject filtering) based on viewMode.",
+    "In formula-center.tsx, hide the Expand All/Collapse All button when searchQuery.length >= 2 (since search auto-expands all groups)."
+  ],
+  "acceptance_criteria": [
+    "Quick Reference mode shows approximately 40-50 formulas (not 90)",
+    "Subject tab counts update dynamically when switching view modes",
+    "Expand All/Collapse All button is hidden during active search",
+    "bun run tsc --noEmit passes with zero errors"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": "Downgraded 48 formulas from high to medium frequency, resulting in 42 high-frequency formulas (down from 90). Kept essential formulas as high: WACC, CAPM, NPV, IRR, portfolio variance, EPS basic/diluted, Sharpe ratio, bond price, modified duration, duration price change, put-call parity, DDM, forward price, HPR, TWR, PV, FV, standard deviation, z-test, ROE DuPont, CCC, LIFO Reserve, interest coverage, covered interest rate parity, cap rate, hedge fund fees, correlation, beta, etc. Subject tabs now use viewModeFilteredFormulas memo for dynamic counts. Expand/Collapse button hidden when searchQuery.length >= 2."
+}

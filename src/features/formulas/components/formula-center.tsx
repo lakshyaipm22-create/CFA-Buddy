@@ -26,16 +26,14 @@ function getSubjectAbbr(subject: string): string {
   return map[subject] ?? subject.split(' ').slice(0, 2).join(' ');
 }
 
-/** Count formulas per subject */
-function getSubjectCounts(): Record<string, number> {
+/** Count formulas per subject from a given set */
+function countBySubject(formulas: FormulaEntry[]): Record<string, number> {
   const counts: Record<string, number> = {};
-  for (const f of formulaSeed) {
+  for (const f of formulas) {
     counts[f.subject] = (counts[f.subject] ?? 0) + 1;
   }
   return counts;
 }
-
-const SUBJECT_COUNTS = getSubjectCounts();
 
 /** Group formulas by a key (topic or subject) */
 function groupBy(formulas: FormulaEntry[], key: 'topic' | 'subject'): Record<string, FormulaEntry[]> {
@@ -89,18 +87,24 @@ export function FormulaCenter() {
     });
   }, []);
 
+  /** Formulas filtered by view mode only (before subject/search) for subject tab counts */
+  const viewModeFilteredFormulas = useMemo(() => {
+    if (viewMode === 'quick-ref') {
+      return formulaSeed.filter(f => f.examFrequency === 'high');
+    } else if (viewMode === 'bookmarked') {
+      return formulaSeed.filter(f => bookmarked.has(f.id));
+    }
+    return formulaSeed;
+  }, [viewMode, bookmarked]);
+
+  /** Dynamic subject counts based on current view mode */
+  const subjectCounts = useMemo(() => countBySubject(viewModeFilteredFormulas), [viewModeFilteredFormulas]);
+
   /** Filtered formulas based on view mode, subject, and search */
   const filteredFormulas = useMemo(() => {
-    let results = formulaSeed;
+    let results = viewModeFilteredFormulas;
 
-    // View mode filter
-    if (viewMode === 'quick-ref') {
-      results = results.filter(f => f.examFrequency === 'high');
-    } else if (viewMode === 'bookmarked') {
-      results = results.filter(f => bookmarked.has(f.id));
-    }
-
-    // Subject filter (only in 'all' mode or when subject is explicitly selected)
+    // Subject filter
     if (selectedSubject) {
       results = results.filter(f => f.subject === selectedSubject);
     }
@@ -117,7 +121,7 @@ export function FormulaCenter() {
     }
 
     return results;
-  }, [viewMode, selectedSubject, searchQuery, bookmarked]);
+  }, [viewModeFilteredFormulas, selectedSubject, searchQuery]);
 
   /** Group the filtered formulas */
   const groupedFormulas = useMemo(() => {
@@ -213,14 +217,14 @@ export function FormulaCenter() {
         }}
       >
         <SubjectTab
-          label={`All (${filteredFormulas.length})`}
+          label={`All (${viewModeFilteredFormulas.length})`}
           active={!selectedSubject}
           onClick={() => setSelectedSubject(null)}
         />
         {SUBJECTS.map(s => (
           <SubjectTab
             key={s}
-            label={`${getSubjectAbbr(s)} (${SUBJECT_COUNTS[s] ?? 0})`}
+            label={`${getSubjectAbbr(s)} (${subjectCounts[s] ?? 0})`}
             active={s === selectedSubject}
             onClick={() => setSelectedSubject(s === selectedSubject ? null : s)}
           />
@@ -235,7 +239,7 @@ export function FormulaCenter() {
           {viewMode === 'bookmarked' && ' bookmarked'}
           {selectedSubject && ` in ${getSubjectAbbr(selectedSubject)}`}
         </span>
-        {groupKeys.length > 1 && (
+        {groupKeys.length > 1 && searchQuery.length < 2 && (
           <button
             onClick={() => {
               const allExpanded = groupKeys.every(k => effectiveExpandedTopics.has(k));
