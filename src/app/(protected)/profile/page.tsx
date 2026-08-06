@@ -1,6 +1,7 @@
 import { createServerSupabaseClient } from '@/shared/lib/supabase/server';
 import { ProfileForm } from '@/features/auth/components/profile-form';
 import { LocalProfileForm } from '@/shared/components/profile/local-profile-form';
+import { EmailPreferencesForm } from '@/features/email-notifications/components/email-preferences';
 
 export default async function ProfilePage() {
   const supabase = await createServerSupabaseClient();
@@ -20,6 +21,12 @@ export default async function ProfilePage() {
           style={{ background: 'var(--card-bg)', borderColor: 'var(--card-border)' }}
         >
           <LocalProfileForm />
+        </div>
+        <div
+          className="rounded-xl border p-6"
+          style={{ background: 'var(--card-bg)', borderColor: 'var(--card-border)' }}
+        >
+          <EmailPreferencesForm />
         </div>
       </div>
     );
@@ -48,6 +55,12 @@ export default async function ProfilePage() {
         >
           <LocalProfileForm />
         </div>
+        <div
+          className="rounded-xl border p-6"
+          style={{ background: 'var(--card-bg)', borderColor: 'var(--card-border)' }}
+        >
+          <EmailPreferencesForm />
+        </div>
       </div>
     );
   }
@@ -60,6 +73,12 @@ export default async function ProfilePage() {
         defaultLevel={user.user_metadata?.level || 'I'}
         email={user.email || ''}
       />
+      <div
+        className="rounded-xl border p-6"
+        style={{ background: 'var(--card-bg)', borderColor: 'var(--card-border)' }}
+      >
+        <EmailPreferencesForm />
+      </div>
     </div>
   );
 }
