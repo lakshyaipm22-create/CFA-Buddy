@@ -12,6 +12,7 @@ import { runSeedsIfNeeded } from '../utils/seed-guard';
 import { seedFlashcardsFromAttempts } from '@/features/flashcards/utils/seed-flashcards';
 import { getAllAttempts } from '../utils/attempt-storage';
 import { RetakeComparison } from './retake-comparison';
+import { useCursorPagination } from '@/shared/hooks/use-cursor-pagination';
 import type { PracticeAttempt } from '../types/attempt';
 
 const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management', 'Quantitative Methods', 'Alternative Investments'] as const;
@@ -92,11 +93,21 @@ export function AttemptsListClient() {
     );
   }
 
+  return <AttemptsListContent attempts={attempts} />;
+}
+
+function AttemptsListContent({ attempts }: { attempts: PracticeAttempt[] }) {
+  const { visibleItems: paginatedAttempts, hasMore, loadMore } = useCursorPagination({
+    items: attempts,
+    pageSize: 20,
+    getCursor: (item) => item.id,
+  });
+
   return (
     <div className="space-y-8">
       {/* Attempts Grid */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {attempts.map(attempt => (
+        {paginatedAttempts.map(attempt => (
           <div
             key={attempt.id}
             className="rounded-xl p-5 transition-all duration-300 hover:shadow-md"
@@ -158,6 +169,19 @@ export function AttemptsListClient() {
           </div>
         ))}
       </div>
+
+      {/* Load More */}
+      {hasMore && (
+        <div className="flex justify-center">
+          <button
+            onClick={loadMore}
+            className="rounded-lg px-6 py-2.5 text-sm font-medium transition-all hover:opacity-90"
+            style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}
+          >
+            Load More ({attempts.length - paginatedAttempts.length} remaining)
+          </button>
+        </div>
+      )}
 
       {/* Retake Comparison */}
       {ALL_SUBJECTS.map(subject => (

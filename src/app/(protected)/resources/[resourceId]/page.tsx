@@ -1,7 +1,21 @@
 import { getResourceById } from '@/features/resource-library/queries/get-resources';
-import { PdfViewer } from '@/features/resource-library/components/pdf-viewer';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const PdfViewer = dynamic(
+  () => import('@/features/resource-library/components/pdf-viewer').then((m) => m.PdfViewer),
+  {
+    loading: () => (
+      <div className="flex h-[70vh] items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950">
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-700 border-t-[#C5A258]" />
+          <p className="text-sm text-zinc-500">Loading PDF viewer...</p>
+        </div>
+      </div>
+    ),
+  }
+);
 
 interface Props {
   params: Promise<{ resourceId: string }>;

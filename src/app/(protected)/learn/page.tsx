@@ -2,6 +2,8 @@ import { getCurriculumSubjects } from '@/features/learning-workspace/queries/get
 import Link from 'next/link';
 import { SubjectProgressBadge } from './subject-progress-indicators';
 
+export const revalidate = 3600;
+
 export default async function LearnPage() {
   const subjects = await getCurriculumSubjects(1);
 

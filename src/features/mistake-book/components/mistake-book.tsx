@@ -6,6 +6,7 @@ import { ErrorAnalytics } from './error-analytics';
 import { MistakeFilterBar, type MistakeFilters } from './mistake-filter-bar';
 import { generateRetest } from '../actions/retest';
 import { useListNavigation } from '@/shared/hooks/use-list-navigation';
+import { useCursorPagination } from '@/shared/hooks/use-cursor-pagination';
 
 interface EnrichedMistake {
   questionId: string;
@@ -212,7 +213,13 @@ export function MistakeBook() {
     [filteredMistakes]
   );
 
-  const { focusedIndex, listRef } = useListNavigation(filteredMistakes.length);
+  const { visibleItems: paginatedMistakes, hasMore, loadMore } = useCursorPagination({
+    items: filteredMistakes,
+    pageSize: 20,
+    getCursor: (item) => `${item.attempt.questionId}-${item.attempt.timestamp}`,
+  });
+
+  const { focusedIndex, listRef } = useListNavigation(paginatedMistakes.length);
 
   // Retry Mistakes handler - creates a session with unique incorrect question IDs
   const handleRetryMistakes = useCallback(() => {
@@ -305,8 +312,8 @@ export function MistakeBook() {
       <ErrorAnalytics mistakes={analyticsData} />
 
       {/* Mistake List */}
-      <div ref={listRef} className="space-y-3">
-        {filteredMistakes.map((mistake, idx) => (
+      <div ref={listRef} className="space-y-2">
+        {paginatedMistakes.map((mistake, idx) => (
           <div
             key={`${mistake.attemptId}-${mistake.questionId}-${idx}`}
             data-list-item
@@ -383,8 +390,20 @@ export function MistakeBook() {
         ))}
       </div>
 
-      {/* Empty State */}
-      {enrichedMistakes.length === 0 && (
+      {/* Load More */}
+      {hasMore && (
+        <div className="flex justify-center pt-2">
+          <button
+            onClick={loadMore}
+            className="rounded-lg px-6 py-2.5 text-sm font-medium transition-all hover:opacity-90"
+            style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}
+          >
+            Load More ({filteredMistakes.length - paginatedMistakes.length} remaining)
+          </button>
+        </div>
+      )}
+
+      {mistakes.length === 0 && (
         <div className="rounded-lg border border-dashed p-12 text-center" style={{ borderColor: 'var(--card-border)' }}>
           <p style={{ color: 'var(--foreground-secondary)' }}>No mistakes recorded yet.</p>
           <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>

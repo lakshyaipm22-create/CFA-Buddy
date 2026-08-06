@@ -5,6 +5,7 @@ import { RotateCw, CheckCircle2, Brain, Layers } from 'lucide-react';
 import type { Flashcard, ReviewRating, FlashcardStats } from '../types';
 import { reviewCard, getCardsDueToday, computeStats } from '../utils/sm2';
 import { getFlashcards, updateFlashcard, getReviewedToday, incrementReviewedToday } from '../utils/storage';
+import { useCursorPagination } from '@/shared/hooks/use-cursor-pagination';
 
 export function FlashcardDeck() {
   const [cards, setCards] = useState<Flashcard[]>(() => getFlashcards());
@@ -106,6 +107,9 @@ export function FlashcardDeck() {
           </p>
         </div>
       )}
+
+      {/* All Cards Browser with Pagination */}
+      <CardBrowser cards={cards} />
     </div>
   );
 }
@@ -118,6 +122,73 @@ function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string
         <span className="text-xs">{label}</span>
       </div>
       <p className="mt-2 text-2xl font-bold" style={{ color: 'var(--foreground)' }}>{value}</p>
+    </div>
+  );
+}
+
+function CardBrowser({ cards }: { cards: Flashcard[] }) {
+  const { visibleItems, hasMore, loadMore } = useCursorPagination({
+    items: cards,
+    pageSize: 20,
+    getCursor: (card) => card.id,
+  });
+
+  if (cards.length === 0) return null;
+
+  return (
+    <div className="space-y-3">
+      <h3 className="text-sm font-semibold" style={{ color: 'var(--foreground-secondary)' }}>
+        All Cards ({cards.length})
+      </h3>
+      <div className="space-y-2">
+        {visibleItems.map((card) => (
+          <div
+            key={card.id}
+            className="rounded-lg border p-3 transition-colors"
+            style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex-1 min-w-0">
+                <p className="text-sm truncate" style={{ color: 'var(--foreground)' }}>{card.front}</p>
+                <div className="mt-1 flex items-center gap-2">
+                  <span className={`rounded px-2 py-0.5 text-[10px] font-medium ${
+                    card.state === 'mastered' ? 'bg-green-900/30 text-green-400' :
+                    card.state === 'review' ? 'bg-blue-900/30 text-blue-400' :
+                    card.state === 'learning' ? 'bg-orange-900/30 text-orange-400' :
+                    'bg-zinc-800 text-zinc-400'
+                  }`}>
+                    {card.state}
+                  </span>
+                  {card.subject && (
+                    <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>
+                      {card.subject}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="text-right shrink-0">
+                <p className="text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+                  EF: {card.easeFactor.toFixed(2)}
+                </p>
+                <p className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>
+                  {card.interval}d interval
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {hasMore && (
+        <div className="flex justify-center pt-2">
+          <button
+            onClick={loadMore}
+            className="rounded-lg px-6 py-2.5 text-sm font-medium transition-all hover:opacity-90"
+            style={{ backgroundColor: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}
+          >
+            Load More ({cards.length - visibleItems.length} remaining)
+          </button>
+        </div>
+      )}
     </div>
   );
 }
