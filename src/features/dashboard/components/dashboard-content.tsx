@@ -24,6 +24,8 @@ import { AccuracyTrend } from './accuracy-trend';
 import { AdvancedAnalytics } from './advanced-analytics';
 import { DailyStudyPlan } from '@/features/study-plan/components/daily-study-plan';
 import { NotificationBadges } from '@/features/notifications/components/notification-badges';
+import { TodaysReviewsWidget } from '@/features/spaced-repetition/components/todays-reviews-widget';
+import { DailyReviewReminder } from '@/features/spaced-repetition/components/daily-review-reminder';
 import { XPLevelBadge } from '@/features/gamification/components/xp-level-badge';
 import { StreakDisplay } from '@/features/gamification/components/streak-display';
 import { WeeklyGoal } from '@/features/gamification/components/weekly-goal';
@@ -259,6 +261,9 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
       {/* Onboarding Checklist (shown for new users) */}
       <OnboardingChecklist />
 
+      {/* Daily Review Reminder */}
+      <DailyReviewReminder />
+
       {/* Readiness Breakdown */}
       {stats.questionsAnswered >= 10 && (
         <div className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-5">
@@ -284,6 +289,9 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
 
       {/* Smart Session Recommendations */}
       <SmartSessionCard />
+
+      {/* Today's Reviews Widget */}
+      <TodaysReviewsWidget />
 
       {/* Smart Review Card */}
       {reviewSummary.count > 0 && (
