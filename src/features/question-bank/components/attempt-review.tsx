@@ -6,6 +6,7 @@ import { ArrowLeft, Star, ChevronLeft, ChevronRight, BookOpen, Download } from '
 import { getAttemptById, saveAttempt } from '../utils/attempt-storage';
 import { getNotes, saveNote, deleteNote } from '@/shared/annotations';
 import { corporateIssuersQuestions } from '../data/corporate-issuers';
+import { ExplainButton } from '@/features/ai-explanations/components/explain-button';
 import type { PracticeAttempt } from '../types/attempt';
 import type { Question, ErrorClassification } from '../types';
 
@@ -438,28 +439,46 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
 
           {/* Error Classification (only for incorrect answers) */}
           {!currentAttemptQ.correct && (
-            <div className="mt-5 rounded-lg p-4" style={{ backgroundColor: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
-              <label className="mb-2 block text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
-                Why did you get this wrong?
-              </label>
-              <select
-                value={currentAttemptQ.errorClassification ?? ''}
-                onChange={(e) => handleClassificationChange(e.target.value as ErrorClassification | '')}
-                className="w-full rounded-lg px-3 py-2 text-sm outline-none transition-all"
-                style={{
-                  backgroundColor: 'var(--card-bg)',
-                  color: 'var(--foreground)',
-                  border: '1px solid var(--card-border)',
-                }}
-              >
-                <option value="">Select error type...</option>
-                {ERROR_CLASSIFICATION_OPTIONS.map(opt => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <>
+              {/* AI Explain Button */}
+              <div className="mt-5">
+                <ExplainButton
+                  questionText={currentQuestion.questionText}
+                  answerChoices={currentQuestion.answerChoices.map(c => ({
+                    label: c.label,
+                    text: c.text,
+                    isCorrect: c.isCorrect,
+                  }))}
+                  selectedAnswer={currentAttemptQ.selectedAnswer}
+                  correctAnswer={
+                    currentQuestion.answerChoices.find(c => c.isCorrect)?.label ?? ''
+                  }
+                />
+              </div>
+
+              <div className="mt-5 rounded-lg p-4" style={{ backgroundColor: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+                <label className="mb-2 block text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+                  Why did you get this wrong?
+                </label>
+                <select
+                  value={currentAttemptQ.errorClassification ?? ''}
+                  onChange={(e) => handleClassificationChange(e.target.value as ErrorClassification | '')}
+                  className="w-full rounded-lg px-3 py-2 text-sm outline-none transition-all"
+                  style={{
+                    backgroundColor: 'var(--card-bg)',
+                    color: 'var(--foreground)',
+                    border: '1px solid var(--card-border)',
+                  }}
+                >
+                  <option value="">Select error type...</option>
+                  {ERROR_CLASSIFICATION_OPTIONS.map(opt => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
           )}
 
           {/* Notes Section */}
