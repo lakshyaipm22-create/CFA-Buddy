@@ -47,11 +47,14 @@ function highlightMatch(text: string, query: string, maxLen = 120): string {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const query = searchParams.get('q')?.toLowerCase().trim();
+  const rawQuery = searchParams.get('q')?.toLowerCase().trim();
 
-  if (!query || query.length < 2) {
+  if (!rawQuery || rawQuery.length < 2) {
     return NextResponse.json({ results: [], groups: { resources: [], questions: [], notes: [], topics: [] }, totalCount: 0 });
   }
+
+  // Cap query length to prevent expensive full-table scans with overly long input
+  const query = rawQuery.slice(0, 200);
 
   const resources: SearchResultItem[] = [];
   const questions: SearchResultItem[] = [];

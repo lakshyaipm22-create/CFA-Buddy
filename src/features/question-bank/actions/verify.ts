@@ -33,11 +33,53 @@ interface BulkApproveResult {
   errors: string[];
 }
 
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+/**
+ * Verify that the current user has admin role.
+ * Checks app_metadata.role for 'admin' value.
+ * Returns the userId if admin, or an error ActionResult if not.
+ */
+async function requireAdmin(): Promise<
+  | { authorized: true; userId: string }
+  | { authorized: false; error: ActionResult<never> }
+> {
+  const supabase = await createServerSupabaseClient();
+  if (!supabase) {
+    // No Supabase configured - allow in local development mode
+    if (!isDatabaseAvailable()) {
+      return { authorized: true, userId: 'local-dev' };
+    }
+    return {
+      authorized: false,
+      error: { success: false, error: 'Authentication required.' },
+    };
+  }
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return {
+      authorized: false,
+      error: { success: false, error: 'Authentication required.' },
+    };
+  }
+
+  const role = user.app_metadata?.role;
+  if (role !== 'admin') {
+    return {
+      authorized: false,
+      error: { success: false, error: 'Admin access required.' },
+    };
+  }
+
+  return { authorized: true, userId: user.id };
+}
+
 // ─── Actions ─────────────────────────────────────────────────────────────────
 
 /**
  * Approve a single question, setting its verification status to 'approved'.
- * Requires admin access via Supabase auth and a database connection.
+ * Requires admin access via Supabase auth (app_metadata.role === 'admin').
  */
 export async function approveQuestion(
   input: z.infer<typeof approveQuestionSchema>
@@ -51,13 +93,9 @@ export async function approveQuestion(
     };
   }
 
-  const supabase = await createServerSupabaseClient();
-  const userId = supabase
-    ? (await supabase.auth.getUser()).data.user?.id
-    : null;
-
-  if (isDatabaseAvailable() && !userId) {
-    return { success: false, error: 'Authentication required.' };
+  const adminCheck = await requireAdmin();
+  if (!adminCheck.authorized) {
+    return adminCheck.error;
   }
 
   if (!isDatabaseAvailable()) {
@@ -94,6 +132,7 @@ export async function approveQuestion(
 
 /**
  * Reject a single question, setting its verification status to 'rejected'.
+ * Requires admin access via Supabase auth (app_metadata.role === 'admin').
  */
 export async function rejectQuestion(
   input: z.infer<typeof rejectQuestionSchema>
@@ -107,13 +146,9 @@ export async function rejectQuestion(
     };
   }
 
-  const supabase = await createServerSupabaseClient();
-  const userId = supabase
-    ? (await supabase.auth.getUser()).data.user?.id
-    : null;
-
-  if (isDatabaseAvailable() && !userId) {
-    return { success: false, error: 'Authentication required.' };
+  const adminCheck = await requireAdmin();
+  if (!adminCheck.authorized) {
+    return adminCheck.error;
   }
 
   if (!isDatabaseAvailable()) {
@@ -149,6 +184,7 @@ export async function rejectQuestion(
 
 /**
  * Bulk approve multiple questions at once.
+ * Requires admin access via Supabase auth (app_metadata.role === 'admin').
  */
 export async function bulkApprove(
   input: z.infer<typeof bulkApproveSchema>
@@ -162,13 +198,9 @@ export async function bulkApprove(
     };
   }
 
-  const supabase = await createServerSupabaseClient();
-  const userId = supabase
-    ? (await supabase.auth.getUser()).data.user?.id
-    : null;
-
-  if (isDatabaseAvailable() && !userId) {
-    return { success: false, error: 'Authentication required.' };
+  const adminCheck = await requireAdmin();
+  if (!adminCheck.authorized) {
+    return adminCheck.error;
   }
 
   if (!isDatabaseAvailable()) {

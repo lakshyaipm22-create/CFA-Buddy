@@ -6,6 +6,12 @@ import { CFA_SUBJECTS_ORDERED } from '@/shared/config/subjects';
 // Total topics in CFA Level I curriculum (approximate)
 const TOTAL_CFA_TOPICS = 50;
 
+// NOTE: This component uses useState lazy initializer for localStorage reads instead
+// of useSyncExternalStore. This means the component will not react to localStorage
+// changes made in other browser tabs. This is intentional per the project's React
+// rules (never use useSyncExternalStore for one-time localStorage reads). Cross-tab
+// sync is not required for exam date display - a page refresh picks up any changes.
+
 export function ExamCountdown() {
   const [targetDate] = useState<string | null>(() => {
     if (typeof window === 'undefined') return null;

@@ -21,6 +21,13 @@ let dbAvailableCache: boolean | null = null;
 /**
  * Check if the database is available (DATABASE_URL is set).
  * Cached after first check for the process lifetime.
+ *
+ * NOTE: This value is permanently cached for the lifetime of the process.
+ * If DATABASE_URL becomes available after cold start (e.g., environment variable
+ * rotation in a long-lived serverless function), the cache will not invalidate.
+ * This is acceptable for Vercel deployments where env changes trigger redeployment,
+ * but other deploy targets should be aware that a cold restart is required for
+ * newly-configured database connections to take effect.
  */
 export function isDatabaseAvailable(): boolean {
   if (dbAvailableCache !== null) return dbAvailableCache;

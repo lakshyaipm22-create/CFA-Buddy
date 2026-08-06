@@ -1,4 +1,14 @@
 -- Enable Row Level Security on all user-owned tables
+--
+-- NOTE ON PERFORMANCE: All policies below use a subquery pattern:
+--   user_id IN (SELECT id FROM users WHERE auth_user_id = auth.uid()::text)
+-- This executes a subquery per row evaluated. The users_auth_user_id_key unique
+-- index ensures the subquery is an index-only scan, but at scale this will show
+-- up in EXPLAIN ANALYZE. When table sizes grow significantly, consider replacing
+-- with a SECURITY DEFINER function that returns the internal users.id for the
+-- current auth.uid(), cached per-transaction, enabling a simple equality check:
+--   user_id = get_current_user_id()
+--
 ALTER TABLE "users" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "notes" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "question_attempts" ENABLE ROW LEVEL SECURITY;

@@ -13,6 +13,12 @@ jobs:
       NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
       NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key
       SUPABASE_SERVICE_ROLE_KEY: placeholder-service-role-key
+      # NOTE: This is a placeholder DATABASE_URL that causes isDatabaseAvailable() to
+      # return false. All DB-dependent code paths are bypassed during CI. This means
+      # schema drift between Prisma migrations and the generated client will not be
+      # caught here - it will only surface when connecting to a real database.
+      # To add migration validation, a CI service container with Postgres would be
+      # needed: services: postgres: image: postgres:16 ...
       DATABASE_URL: postgresql://placeholder:placeholder@localhost:5432/placeholder
 
     steps:

@@ -137,8 +137,9 @@ export async function reviewFlashcard(
   if (isDatabaseAvailable()) {
     const { prisma } = await import('@/shared/lib/prisma/client');
     try {
+      // Use compound where to verify ownership - prevents updating another user's card
       const card = await prisma.flashcard.update({
-        where: { id: validated.data.flashcardId },
+        where: { id: validated.data.flashcardId, userId: userId! },
         data: {
           easeFactor: validated.data.newEaseFactor,
           intervalDays: validated.data.newInterval,
@@ -202,8 +203,9 @@ export async function deleteFlashcard(
   if (isDatabaseAvailable()) {
     const { prisma } = await import('@/shared/lib/prisma/client');
     try {
+      // Use compound where to verify ownership - prevents deleting another user's card
       await prisma.flashcard.delete({
-        where: { id: validated.data.flashcardId },
+        where: { id: validated.data.flashcardId, userId: userId! },
       });
       return { success: true, data: { deleted: true } };
     } catch (err) {
