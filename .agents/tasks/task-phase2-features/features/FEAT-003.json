@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Build a proper spaced repetition scheduler with 'Today's Reviews' dashboard widget, review session interface with recall ratings, and daily review reminder notification",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/spaced-repetition/ directory: types/, utils/, components/",
     "Create src/features/spaced-repetition/types/index.ts with types: ReviewSession, ScheduledReview, ReviewHistory, DailyStats",
@@ -34,5 +34,5 @@
     "eval \"$(mise activate bash)\" && npm run test"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Feature implemented with 10 new files across types/, utils/, components/, __tests__/, and the /review/session route. The scheduler.ts is a self-contained SM-2 implementation (no cross-feature import to flashcards/utils/sm2.ts). The review-session component does import from flashcards storage and sm2 to keep both stores in sync when reviewing cards that originated from the flashcards feature. 22 new scheduler tests pass (315 total). The TodaysReviewsWidget merges cards from both the spaced-repetition scheduled cards store and the flashcards store to provide a unified due-cards view. DailyReviewReminder uses localStorage dismissal per day. Build, lint, tsc all pass cleanly."
 }
