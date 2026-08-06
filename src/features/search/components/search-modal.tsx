@@ -22,6 +22,7 @@ import { sampleQuestions } from '@/features/question-bank/data/sample-questions'
 import { searchNotes } from '@/shared/annotations';
 import { getRecentPages } from '@/shared/lib/page-visit-tracker';
 import type { PageVisit } from '@/shared/lib/page-visit-tracker';
+import { highlightText } from '@/features/search/utils/highlight';
 
 interface SearchResult {
   id: string;
@@ -309,31 +310,65 @@ export function SearchModal() {
         {/* Results or empty state with quick actions + recent pages */}
         <div className="max-h-[400px] overflow-y-auto p-2">
           {results.length > 0 ? (
-            <div className="space-y-0.5">
-              {results.map((r, idx) => (
-                <button
-                  key={`${r.type}-${r.id}`}
-                  onClick={() => selectResult(r)}
-                  className={`w-full flex items-start gap-3 rounded-lg px-3 py-2 text-left transition-colors ${
-                    idx === selectedIdx ? 'ring-1 ring-[var(--accent-secondary)]' : ''
-                  }`}
-                  style={{ background: idx === selectedIdx ? 'var(--nav-hover-bg)' : 'transparent' }}
-                >
-                  <span className="mt-0.5" style={{ color: 'var(--foreground-secondary)' }}>{typeIcon(r.type)}</span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm truncate" style={{ color: 'var(--foreground)' }}>{r.title}</p>
-                    <p className="text-xs truncate" style={{ color: 'var(--foreground-secondary)' }}>{r.subtitle}</p>
-                    {r.highlight && (
-                      <p className="mt-0.5 text-xs truncate" style={{ color: 'var(--foreground-secondary)', opacity: 0.7 }}>
-                        {r.highlight}
-                      </p>
-                    )}
+            <div className="space-y-3">
+              {/* Group results by type */}
+              {(() => {
+                const grouped: Record<string, SearchResult[]> = {};
+                for (const r of results) {
+                  const group = grouped[r.type] ?? [];
+                  group.push(r);
+                  grouped[r.type] = group;
+                }
+                const groupLabels: Record<string, string> = {
+                  resource: 'Resources',
+                  question: 'Questions',
+                  note: 'Notes',
+                  topic: 'Topics',
+                  action: 'Actions',
+                  page: 'Pages',
+                };
+                let flatIdx = 0;
+                return Object.entries(grouped).map(([type, items]) => (
+                  <div key={type}>
+                    <p className="px-3 py-1 text-[10px] font-medium uppercase tracking-wider" style={{ color: 'var(--foreground-secondary)' }}>
+                      {groupLabels[type] ?? type}
+                    </p>
+                    <div className="space-y-0.5">
+                      {items.map((r) => {
+                        const idx = flatIdx++;
+                        return (
+                          <button
+                            key={`${r.type}-${r.id}`}
+                            onClick={() => selectResult(r)}
+                            className={`w-full flex items-start gap-3 rounded-lg px-3 py-2 text-left transition-colors ${
+                              idx === selectedIdx ? 'ring-1 ring-[var(--accent-secondary)]' : ''
+                            }`}
+                            style={{ background: idx === selectedIdx ? 'var(--nav-hover-bg)' : 'transparent' }}
+                          >
+                            <span className="mt-0.5" style={{ color: 'var(--foreground-secondary)' }}>{typeIcon(r.type)}</span>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm truncate" style={{ color: 'var(--foreground)' }}>
+                                {highlightText(r.title, query)}
+                              </p>
+                              <p className="text-xs truncate" style={{ color: 'var(--foreground-secondary)' }}>
+                                {highlightText(r.subtitle, query)}
+                              </p>
+                              {r.highlight && (
+                                <p className="mt-0.5 text-xs truncate" style={{ color: 'var(--foreground-secondary)', opacity: 0.7 }}>
+                                  {highlightText(r.highlight, query)}
+                                </p>
+                              )}
+                            </div>
+                            <span className="text-[10px] rounded px-1.5 py-0.5" style={{ background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }}>
+                              {r.type}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                  <span className="text-[10px] rounded px-1.5 py-0.5" style={{ background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }}>
-                    {r.type}
-                  </span>
-                </button>
-              ))}
+                ));
+              })()}
             </div>
           ) : query.length >= 2 ? (
             <p className="px-3 py-6 text-center text-sm" style={{ color: 'var(--foreground-secondary)' }}>

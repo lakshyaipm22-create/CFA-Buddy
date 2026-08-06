@@ -1,4 +1,5 @@
 import { FlashcardDeck } from '@/features/flashcards/components/flashcard-deck';
+import { FlashcardStats } from '@/features/flashcards/components/flashcard-stats';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
 
 export default function FlashcardsPage() {
@@ -10,6 +11,7 @@ export default function FlashcardsPage() {
           Spaced repetition review — cards appear when they&apos;re due based on SM-2 algorithm.
         </p>
       </div>
+      <FlashcardStats />
       <FlashcardDeck />
 
       <RelatedActions

@@ -2,7 +2,7 @@
   "id": "FEAT-007",
   "type": "feat",
   "description": "Tier 2 Feature Completion - Part 3: Global search modal (Cmd+K), Flashcard spaced repetition from DB, Confidence Matrix visual, Question bookmarks/flags. Covers Tier 2 items #12-15.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Enhance src/features/search/components/search-modal.tsx - Full Cmd+K global search: debounced input (300ms), grouped results by type (Resources, Questions, Notes, Topics, Actions), highlight matching text in results, keyboard navigation (up/down arrows to select, Enter to navigate, Esc to close). Search across all data sources.",
     "Create src/features/search/utils/highlight.ts - Utility to highlight matching text fragments in search results using <mark> tags.",
@@ -26,5 +26,5 @@
     "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Flashcard deck (flashcard-deck.tsx) and confidence matrix (within session-review.tsx) were already implemented inline by FEAT-005/006. Created standalone reusable components: flashcard-stats.tsx, confidence-matrix.tsx, bookmark-button.tsx, flag-indicator.tsx, and highlight.ts. Enhanced search-modal.tsx with grouped results by type and text highlighting using the new highlight utility. Wired FlashcardStats into the flashcards page. All 263 tests pass, tsc clean, build succeeds. Pre-existing lint errors in study-hub and search-modal ref assignment remain unchanged."
 }
