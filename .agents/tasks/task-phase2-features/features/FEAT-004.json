@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Add a full CFA mock exam simulation mode: 180 questions, 270 minutes, realistic subject weightings, results analysis with passing threshold comparison, and history tracking",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/mock-exam/ directory: types/, utils/, components/",
     "Create src/features/mock-exam/types/index.ts with types: MockExamConfig, MockExamResult, MockExamHistory, SubjectWeighting, ExamProgress",
@@ -38,5 +38,5 @@
     "eval \"$(mise activate bash)\" && npm run test"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 336 tests pass (21 new mock-exam tests). Build and lint clean. The question bank has ~1334 questions total across 6 subject areas (not all 10 CFA subjects have dedicated question files). The question selector gracefully handles missing subjects by distributing proportionally from available pool. Used useMemo instead of useState+useEffect for derived data to satisfy React purity lint rules. Recharts Tooltip formatter/labelFormatter callbacks must not have explicit type annotations to pass strict recharts typing."
 }
