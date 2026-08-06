@@ -1,0 +1,39 @@
+{
+  "id": "FEAT-005",
+  "type": "feat",
+  "description": "Add social features: leaderboard (top performers by accuracy/streak/questions), study groups (create/join, share question sets, group progress), and activity feed (recent achievements)",
+  "status": "in_progress",
+  "steps": [
+    "Create src/features/social/ directory: types/, utils/, components/",
+    "Create src/features/social/types/index.ts with types: LeaderboardEntry, StudyGroup, GroupMember, GroupProgress, ActivityFeedItem, Achievement",
+    "Create src/features/social/utils/storage.ts for localStorage persistence of: user's groups, activity feed items, leaderboard cache (keys: 'cfa-buddy-groups', 'cfa-buddy-activity-feed', 'cfa-buddy-leaderboard')",
+    "Create src/features/social/utils/leaderboard.ts: calculateLeaderboard() computes rankings from localStorage data - sorts by accuracy, streak days, questions completed. Returns top 20 entries. Uses local profile for current user entry",
+    "Create src/features/social/utils/achievements.ts: detectNewAchievements() checks gamification state (src/features/gamification/) and generates achievement events (first 100 questions, 7-day streak, subject mastery, etc.)",
+    "Create src/features/social/components/leaderboard.tsx - shows ranked list with: rank number, avatar placeholder, display name, accuracy %, streak days, questions count. Current user highlighted. Tabs for: accuracy, streak, questions",
+    "Create src/features/social/components/study-groups.tsx - group management: create group (name, description), join group (invite code), list user's groups with member count and recent activity",
+    "Create src/features/social/components/group-detail.tsx - shows group members, shared question sets, group progress comparison chart",
+    "Create src/features/social/components/activity-feed.tsx - shows recent achievements across the community: 'User reached 500 questions', 'User achieved 7-day streak', 'User mastered Fixed Income'. Limited to last 20 items",
+    "Add route: src/app/(protected)/social/page.tsx with tabs for Leaderboard, Groups, Activity",
+    "Add 'Community' link to sidebar navigation in src/shared/components/layout/sidebar.tsx",
+    "Add unit tests in src/features/social/__tests__/leaderboard.test.ts and achievements.test.ts",
+    "Run full verification: npm run lint, npx tsc --noEmit, npm run build, npm run test"
+  ],
+  "acceptance_criteria": [
+    "/social page shows Leaderboard, Groups, and Activity tabs",
+    "Leaderboard ranks users by accuracy, streak, and questions completed",
+    "Users can create study groups with name and description",
+    "Users can join groups via invite code",
+    "Group detail shows members and progress",
+    "Activity feed shows recent achievements",
+    "Community link appears in sidebar",
+    "All tests pass, lint clean, build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run build",
+    "eval \"$(mise activate bash)\" && npm run test"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

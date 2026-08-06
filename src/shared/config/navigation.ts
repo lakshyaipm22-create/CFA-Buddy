@@ -18,6 +18,7 @@ import {
   TrendingUp,
   ClipboardList,
   ClipboardCheck,
+  Users,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -73,6 +74,13 @@ export const navigationGroups: NavigationGroup[] = [
       { name: 'Mistakes', href: '/mistakes', icon: AlertTriangle },
     ],
   },
+  {
+    label: 'Community',
+    icon: Users,
+    items: [
+      { name: 'Community', href: '/social', icon: Users },
+    ],
+  },
 ];
 
 /** Flat array of all navigation items for backward compatibility */
@@ -104,6 +112,7 @@ export const routeSegmentLabels: Record<string, string> = {
   mistakes: 'Mistakes',
   'exam-plan': 'Exam Plan',
   'mock-exam': 'Mock Exam',
+  social: 'Community',
   profile: 'Settings',
   admin: 'Admin',
   scanner: 'Scanner',
