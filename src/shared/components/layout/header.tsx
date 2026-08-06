@@ -2,11 +2,11 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Search, Sun, Moon, Play } from 'lucide-react';
-import { useTheme } from '@/shared/components/layout/theme-provider';
+import { Search, Play } from 'lucide-react';
 import { XPLevelBadge } from '@/features/gamification/components/xp-level-badge';
 import { getGamificationState } from '@/features/gamification/utils/gamification-storage';
 import { calculateReadinessScore } from '@/features/gamification/utils/readiness-score';
+import { ThemeToggle } from '@/shared/components/ui/theme-toggle';
 import { NotificationDropdown } from './notification-dropdown';
 
 function useHeaderState() {
@@ -33,7 +33,6 @@ function useHeaderState() {
 }
 
 export function Header() {
-  const { theme, toggleTheme } = useTheme();
   const { gamification, readinessScore } = useHeaderState();
 
   return (
@@ -54,7 +53,7 @@ export function Header() {
         {/* Start Session CTA */}
         <Link
           href="/questions"
-          className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors hover:opacity-90"
+          className="flex h-11 min-w-[44px] items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors hover:opacity-90 sm:h-auto sm:min-w-0"
           style={{
             background: '#C5A258',
             color: '#ffffff',
@@ -72,7 +71,7 @@ export function Header() {
 
         {/* Search */}
         <button
-          className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors"
+          className="flex h-11 min-w-[44px] items-center justify-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors sm:h-auto sm:min-w-0"
           style={{
             background: 'var(--header-input-bg)',
             border: '1px solid var(--header-input-border)',
@@ -81,6 +80,7 @@ export function Header() {
           onClick={() => {
             document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
           }}
+          aria-label="Open search"
         >
           <Search className="h-3.5 w-3.5" />
           <span className="hidden sm:inline">Search...</span>
@@ -93,18 +93,7 @@ export function Header() {
         </button>
 
         {/* Theme Toggle */}
-        <button
-          onClick={toggleTheme}
-          className="flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
-          style={{
-            background: 'var(--header-input-bg)',
-            border: '1px solid var(--header-input-border)',
-            color: 'var(--header-text)',
-          }}
-          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-        >
-          {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-        </button>
+        <ThemeToggle />
       </div>
     </header>
   );

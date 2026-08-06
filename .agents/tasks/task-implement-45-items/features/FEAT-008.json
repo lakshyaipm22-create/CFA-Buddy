@@ -2,7 +2,7 @@
   "id": "FEAT-008",
   "type": "feat",
   "description": "Tier 3 Polish - Part 1: Dark/light theme toggle, Responsive design, Keyboard shortcuts, Framer Motion animations. Covers Tier 3 items #1-4.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Update the existing theme system to add a persistent toggle: create src/shared/components/ui/theme-toggle.tsx that saves preference to localStorage (and DB when available). Verify WCAG 2.1 AA contrast ratios for both themes. The theme system already exists (dark/light) but ensure the toggle is visible in the header and the preference persists across sessions.",
     "Implement responsive design improvements across all major pages: (a) Sidebar collapses to hamburger menu on mobile (<768px), (b) Dashboard cards stack vertically on tablet (768-1023px) and mobile, (c) Question bank interface adapts to mobile with swipe navigation, (d) All interactive elements have minimum 44x44px touch targets on mobile. Update src/shared/components/layout/sidebar.tsx, header.tsx, mobile-bottom-nav.tsx.",

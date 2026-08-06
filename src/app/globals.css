@@ -147,3 +147,15 @@ body {
 .slide-in-from-right {
   animation-name: slide-in-from-right;
 }
+
+/* Disable all animations and transitions when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
