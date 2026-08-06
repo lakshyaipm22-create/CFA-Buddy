@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Add AI-powered explanations: an 'Explain this' button on wrong answers that generates explanations via OpenAI or Anthropic, with streaming response and graceful fallback when no API key is configured",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/ai-explanations/ directory structure: types/, utils/, components/, actions/",
     "Add AI provider configuration: add AI_PROVIDER and AI_API_KEY (plus OPENAI_API_KEY, ANTHROPIC_API_KEY) to env handling. Create src/features/ai-explanations/utils/ai-provider.ts that selects between OpenAI and Anthropic based on AI_PROVIDER env var",
@@ -34,5 +34,5 @@
     "eval \"$(mise activate bash)\" && npm run test"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Feature implemented with 7 new files: types, provider config, streaming utility, prompt builder, API route, ExplainButton, and ExplanationDisplay. Integrated into attempt-review.tsx for wrong answers only. 17 new tests pass (291 total). Build succeeds without API keys. The fallback path returns a JSON response with a friendly message when no API key is configured. Uses Fragment wrapper (<>) in attempt-review.tsx to group the ExplainButton and error classification within the incorrect-answer conditional."
 }
