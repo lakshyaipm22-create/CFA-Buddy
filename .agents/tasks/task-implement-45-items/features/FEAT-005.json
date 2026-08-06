@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "Tier 2 Feature Completion - Part 1: Learning Workspace hierarchy, Rich text notes with Tiptap, PDF viewer enhancements, Timed test mode, and 3-State Review Flow improvements. Covers Tier 2 items #1-5.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Update src/features/learning-workspace/ to implement full DB-backed hierarchy navigation: Level -> Subject -> Reading -> Topic. Create src/features/learning-workspace/queries/hierarchy.ts that fetches from DB when available, falls back to the seed data structure. Show breadcrumb navigation at each level.",
     "Install @tiptap/react @tiptap/starter-kit @tiptap/extension-placeholder @tiptap/extension-heading @tiptap/extension-bold @tiptap/extension-italic @tiptap/extension-code @tiptap/extension-bullet-list @tiptap/extension-ordered-list: run npm install @tiptap/react @tiptap/starter-kit @tiptap/extension-placeholder @tiptap/extension-math (or similar). NOTE: If tiptap math is not available, use katex for math rendering.",
@@ -25,5 +25,5 @@
     "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All steps completed successfully. Tiptap installed with starter-kit and placeholder extensions (no need for individual extension packages as StarterKit bundles heading, bold, italic, code, lists). PersonalNotes rewritten to fix useSyncExternalStore violation (now uses useState lazy initializer). PDF viewer uses iframe with overlay controls for zoom/navigation. Timed test already had auto-submit; added CFA default time-per-question button and remaining-time-per-question display. 3-state review flow enhanced with flashcard creation and note-taking in State 3. All 263 tests pass, TypeScript compiles, build succeeds."
 }
