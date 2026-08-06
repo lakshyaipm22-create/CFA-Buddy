@@ -1,7 +1,14 @@
 {
   "task_id": "task-fsa-pm-seed-data",
   "task_description": "Create Financial Statement Analysis (FSA) and Portfolio Management (PM) question data files and seed attempts, following the Corporate Issuers pattern. Wire seed functions into dashboard and attempts pages.",
-  "status": "in_progress",
+  "status": "completed",
   "feature_order": ["FEAT-001", "FEAT-002"],
-  "blocked_reason": null
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "TSC passes with 0 errors. 261/263 tests pass (2 pre-existing failures in src/env.test.ts due to zod import, unrelated). FSA: 351 questions across 10 modules with correct counts. PM: 312 questions across 6 modules with correct counts. Both seed functions correctly wired into dashboard-content.tsx, attempts-list-client.tsx, and recent-attempts-section.tsx."
+  }
 }

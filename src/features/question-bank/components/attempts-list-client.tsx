@@ -7,12 +7,13 @@ import { seedCorporateIssuersAttempt } from '../utils/seed-corporate-issuers';
 import { seedFsaAttempt } from '../utils/seed-fsa';
 import { seedPortfolioManagementAttempt } from '../utils/seed-portfolio-management';
 import { seedQuantitativeMethodsAttempt } from '../utils/seed-quantitative-methods';
+import { seedAlternativeInvestmentsAttempt } from '../utils/seed-alternative-investments';
 import { runSeedsIfNeeded } from '../utils/seed-guard';
 import { getAllAttempts } from '../utils/attempt-storage';
 import { RetakeComparison } from './retake-comparison';
 import type { PracticeAttempt } from '../types/attempt';
 
-const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management', 'Quantitative Methods'] as const;
+const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management', 'Quantitative Methods', 'Alternative Investments'] as const;
 
 function ScoreRingSmall({ score }: { score: number }) {
   const size = 48;
@@ -69,7 +70,7 @@ export function AttemptsListClient() {
   const [seeded, setSeeded] = useState(false);
 
   useEffect(() => {
-    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt]);
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt]);
     setSeeded(true);
   }, []);
 
