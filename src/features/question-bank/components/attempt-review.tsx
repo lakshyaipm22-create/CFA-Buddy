@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Star, ChevronLeft, ChevronRight, BookOpen, Download } from 'lucide-react';
 import { getAttemptById, saveAttempt } from '../utils/attempt-storage';
 import { getNotes, saveNote, deleteNote } from '@/shared/annotations';
 import { corporateIssuersQuestions } from '../data/corporate-issuers';
-import type { PracticeAttempt, AttemptQuestion } from '../types/attempt';
+import type { PracticeAttempt } from '../types/attempt';
 import type { Question, ErrorClassification } from '../types';
 
 interface AttemptReviewProps {
@@ -39,15 +39,15 @@ export function generateNotesExport(
   lines.push('');
 
   let noteCount = 0;
-  for (const module of attempt.moduleResults) {
-    for (const qa of module.questionAttempts) {
+  for (const mod of attempt.moduleResults) {
+    for (const qa of mod.questionAttempts) {
       const note = notes[qa.questionId];
       if (!note) continue;
 
       noteCount++;
       const question = questions.find(q => q.id === qa.questionId);
       lines.push(`[${noteCount}] ${question?.questionText ?? 'Question ID: ' + qa.questionId}`);
-      lines.push(`    Module: ${module.moduleName}`);
+      lines.push(`    Module: ${mod.moduleName}`);
       lines.push(`    Result: ${qa.correct ? 'Correct' : 'Incorrect'} | Confidence: ${qa.confidence}`);
       if (qa.errorClassification) {
         lines.push(`    Error Type: ${qa.errorClassification}`);
@@ -191,14 +191,14 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
     setCurrentIndex(0);
   }, []);
 
-  // Initialize note state for first render and sync on question change
-  useEffect(() => {
-    if (currentAttemptQ) {
-      setEditingNote(questionNotes[currentAttemptQ.questionId] ?? '');
-      setNoteExpanded(!!questionNotes[currentAttemptQ.questionId]);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentAttemptQ?.questionId]);
+  // Sync note editing state when navigating (adjust state during render when questionId changes)
+  const [prevQuestionId, setPrevQuestionId] = useState<string | undefined>(currentAttemptQ?.questionId);
+  if (currentAttemptQ && currentAttemptQ.questionId !== prevQuestionId) {
+    setPrevQuestionId(currentAttemptQ.questionId);
+    const noteForQuestion = questionNotes[currentAttemptQ.questionId] ?? '';
+    setEditingNote(noteForQuestion);
+    setNoteExpanded(!!noteForQuestion);
+  }
 
   if (!attempt) {
     return (

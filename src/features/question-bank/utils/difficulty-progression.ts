@@ -148,27 +148,27 @@ export function generateDifficultyHeatmapData(stats: DifficultyStats): HeatmapDa
 
   const cells: HeatmapCell[] = [];
 
-  for (const module of stats.modules) {
+  for (const mod of stats.modules) {
     cells.push({
-      moduleName: module.moduleName,
+      moduleName: mod.moduleName,
       difficulty: 'Easy',
-      accuracy: module.easy.accuracy,
-      total: module.easy.total,
-      correct: module.easy.correct,
+      accuracy: mod.easy.accuracy,
+      total: mod.easy.total,
+      correct: mod.easy.correct,
     });
     cells.push({
-      moduleName: module.moduleName,
+      moduleName: mod.moduleName,
       difficulty: 'Medium',
-      accuracy: module.medium.accuracy,
-      total: module.medium.total,
-      correct: module.medium.correct,
+      accuracy: mod.medium.accuracy,
+      total: mod.medium.total,
+      correct: mod.medium.correct,
     });
     cells.push({
-      moduleName: module.moduleName,
+      moduleName: mod.moduleName,
       difficulty: 'Hard',
-      accuracy: module.hard.accuracy,
-      total: module.hard.total,
-      correct: module.hard.correct,
+      accuracy: mod.hard.accuracy,
+      total: mod.hard.total,
+      correct: mod.hard.correct,
     });
   }
 
@@ -186,62 +186,62 @@ export function computeReadinessRecommendation(
 ): ReadinessRecommendation[] {
   const recommendations: ReadinessRecommendation[] = [];
 
-  for (const module of stats.modules) {
+  for (const mod of stats.modules) {
     // Check if user has mastered all levels
-    if (module.hard.total > 0 && module.hard.accuracy >= 75) {
+    if (mod.hard.total > 0 && mod.hard.accuracy >= 75) {
       recommendations.push({
-        moduleName: module.moduleName,
+        moduleName: mod.moduleName,
         level: 'mastered_all',
-        message: `Excellent! You have mastered all difficulty levels in ${module.moduleName}.`,
-        currentAccuracy: module.hard.accuracy,
+        message: `Excellent! You have mastered all difficulty levels in ${mod.moduleName}.`,
+        currentAccuracy: mod.hard.accuracy,
         targetDifficulty: null,
       });
       continue;
     }
 
     // Check Medium readiness: Medium > 75% -> try Hard
-    if (module.medium.total > 0 && module.medium.accuracy > 75) {
+    if (mod.medium.total > 0 && mod.medium.accuracy > 75) {
       recommendations.push({
-        moduleName: module.moduleName,
+        moduleName: mod.moduleName,
         level: 'ready_for_hard',
-        message: `Ready for Hard in ${module.moduleName}! Your Medium accuracy is ${module.medium.accuracy}%.`,
-        currentAccuracy: module.medium.accuracy,
+        message: `Ready for Hard in ${mod.moduleName}! Your Medium accuracy is ${mod.medium.accuracy}%.`,
+        currentAccuracy: mod.medium.accuracy,
         targetDifficulty: 'Hard',
       });
       continue;
     }
 
     // Check Easy readiness: Easy > 80% -> try Medium
-    if (module.easy.total > 0 && module.easy.accuracy > 80) {
+    if (mod.easy.total > 0 && mod.easy.accuracy > 80) {
       recommendations.push({
-        moduleName: module.moduleName,
+        moduleName: mod.moduleName,
         level: 'ready_for_medium',
-        message: `Ready for Medium in ${module.moduleName}! Your Easy accuracy is ${module.easy.accuracy}%.`,
-        currentAccuracy: module.easy.accuracy,
+        message: `Ready for Medium in ${mod.moduleName}! Your Easy accuracy is ${mod.easy.accuracy}%.`,
+        currentAccuracy: mod.easy.accuracy,
         targetDifficulty: 'Medium',
       });
       continue;
     }
 
     // Need to master Easy first
-    if (module.easy.total > 0 && module.easy.accuracy <= 80) {
+    if (mod.easy.total > 0 && mod.easy.accuracy <= 80) {
       recommendations.push({
-        moduleName: module.moduleName,
+        moduleName: mod.moduleName,
         level: 'master_easy',
-        message: `Master Easy in ${module.moduleName} before advancing. Current accuracy: ${module.easy.accuracy}%.`,
-        currentAccuracy: module.easy.accuracy,
+        message: `Master Easy in ${mod.moduleName} before advancing. Current accuracy: ${mod.easy.accuracy}%.`,
+        currentAccuracy: mod.easy.accuracy,
         targetDifficulty: 'Easy',
       });
       continue;
     }
 
     // Medium needs work
-    if (module.medium.total > 0 && module.medium.accuracy <= 75) {
+    if (mod.medium.total > 0 && mod.medium.accuracy <= 75) {
       recommendations.push({
-        moduleName: module.moduleName,
+        moduleName: mod.moduleName,
         level: 'master_medium',
-        message: `Keep practicing Medium in ${module.moduleName}. Current accuracy: ${module.medium.accuracy}%.`,
-        currentAccuracy: module.medium.accuracy,
+        message: `Keep practicing Medium in ${mod.moduleName}. Current accuracy: ${mod.medium.accuracy}%.`,
+        currentAccuracy: mod.medium.accuracy,
         targetDifficulty: 'Medium',
       });
     }
