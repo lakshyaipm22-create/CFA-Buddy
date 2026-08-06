@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Server Actions for all mutations, localStorage-to-Supabase migration layer, Content Scanner DB upsert, and Question Import Pipeline improvements. Covers Tier 1 items #6, #7, #8, #11. Creates a data access layer that abstracts localStorage vs Supabase, with Server Actions as the mutation interface.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create src/shared/lib/data-layer.ts - a unified data access module that checks if Supabase/Prisma is available. If yes, use DB. If no, fall back to localStorage. Export functions: getUser(), saveNote(), getNotes(), saveAttempt(), getAttempts(), saveFlashcard(), getFlashcards(), saveProgress(), getProgress(), saveMistakeLog(), getMistakeLogs(), saveBookmark(), getBookmarks(), saveExamTarget(), getExamTarget(), saveSession(), getSession().",
     "Create src/shared/actions/notes.ts - Server Actions: createNote, updateNote, deleteNote. Each calls data-layer, validates with Zod.",
