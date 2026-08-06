@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Server Actions for all mutations, localStorage-to-Supabase migration layer, Content Scanner DB upsert, and Question Import Pipeline improvements. Covers Tier 1 items #6, #7, #8, #11. Creates a data access layer that abstracts localStorage vs Supabase, with Server Actions as the mutation interface.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/shared/lib/data-layer.ts - a unified data access module that checks if Supabase/Prisma is available. If yes, use DB. If no, fall back to localStorage. Export functions: getUser(), saveNote(), getNotes(), saveAttempt(), getAttempts(), saveFlashcard(), getFlashcards(), saveProgress(), getProgress(), saveMistakeLog(), getMistakeLogs(), saveBookmark(), getBookmarks(), saveExamTarget(), getExamTarget(), saveSession(), getSession().",
     "Create src/shared/actions/notes.ts - Server Actions: createNote, updateNote, deleteNote. Each calls data-layer, validates with Zod.",
@@ -29,5 +29,5 @@
     "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 12 steps completed. TypeScript compiles cleanly, 263 tests pass, build succeeds. Pre-existing lint warnings exist (setState in useEffect in dashboard-content.tsx, subject-progress-indicators.tsx, attempt-review.tsx) but are unrelated to this feature. The data-layer uses isDatabaseAvailable() which checks DATABASE_URL at runtime. All Server Actions use 'use server' directive, Zod validation, and return ActionResult<T>. The import-questions.ts script now supports --paired flag for Q/A file correlation. The sync-to-db.ts action gracefully handles missing content-index.json and missing DB."
 }
