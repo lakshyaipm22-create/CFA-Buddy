@@ -2,11 +2,12 @@
   "name": "CFA Buddy",
   "short_name": "CFA Buddy",
   "description": "Your personal CFA Level I exam preparation platform",
-  "start_url": "/dashboard",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0e14",
   "theme_color": "#002B5C",
   "orientation": "portrait-primary",
+  "categories": ["education", "finance"],
   "icons": [
     {
       "src": "/icon-192.png",

@@ -1,0 +1,37 @@
+{
+  "id": "FEAT-006",
+  "type": "feat",
+  "description": "Add PWA support: service worker for offline mode, web app manifest, install prompt, and offline-first caching strategy for questions and flashcards",
+  "status": "in_progress",
+  "steps": [
+    "Create public/manifest.json web app manifest with: name 'CFA Buddy', short_name 'CFA Buddy', theme_color '#002B5C', background_color '#0a0e14', display 'standalone', start_url '/', icons referencing the existing logo at public/CFA Buddy_logo.png (create appropriately sized icon files if needed)",
+    "Create public/sw.js service worker with offline-first caching strategy: cache static assets (JS, CSS, images) on install, cache question bank data and flashcard data for offline access, serve from cache first with network fallback for cached resources, network first with cache fallback for API routes",
+    "Create src/features/pwa/ directory: types/, utils/, components/",
+    "Create src/features/pwa/utils/register-sw.ts utility that registers the service worker on app mount, handles updates, and manages the install prompt event",
+    "Create src/features/pwa/utils/offline-cache.ts utility that pre-caches question bank data from localStorage into the Cache API for offline access",
+    "Create src/features/pwa/components/install-prompt.tsx - shows an install banner/button when the beforeinstallprompt event fires. Dismissable, persists dismissal to localStorage",
+    "Create src/features/pwa/components/offline-indicator.tsx - shows a subtle indicator when the app detects it's offline (navigator.onLine)",
+    "Create src/features/pwa/components/pwa-provider.tsx - wraps the app to register service worker and manage PWA state (online/offline, installable)",
+    "Add manifest link and meta tags to src/app/layout.tsx: <link rel='manifest' href='/manifest.json'>, theme-color meta tag, apple-touch-icon",
+    "Integrate PwaProvider into the app layout (src/app/layout.tsx or src/app/(protected)/layout.tsx)",
+    "Add unit tests in src/features/pwa/__tests__/register-sw.test.ts testing: registration logic, offline detection, install prompt handling",
+    "Run full verification: npm run lint, npx tsc --noEmit, npm run build, npm run test"
+  ],
+  "acceptance_criteria": [
+    "public/manifest.json exists with correct PWA metadata",
+    "public/sw.js service worker caches static assets and question data",
+    "App shows install prompt when installable",
+    "Offline indicator shows when user loses connection",
+    "Questions and flashcards work offline via cached data",
+    "Manifest link and meta tags present in HTML head",
+    "All tests pass, lint clean, build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run build",
+    "eval \"$(mise activate bash)\" && npm run test"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
