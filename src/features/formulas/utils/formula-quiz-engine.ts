@@ -118,7 +118,7 @@ export function getFormulaWeakness(): Map<string, number> {
  */
 export function selectFormulaQuiz(config: FormulaQuizConfig): FormulaEntry[] {
   // Step 1: Filter by config criteria
-  let candidates = formulaSeed.filter(f => {
+  const candidates = formulaSeed.filter(f => {
     if (config.subjects && config.subjects.length > 0) {
       if (!config.subjects.includes(f.subject)) return false;
     }

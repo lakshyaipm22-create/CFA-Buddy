@@ -1,0 +1,34 @@
+{
+  "id": "FEAT-009",
+  "type": "fix",
+  "description": "Address security and quality issues from code review: XSS in unsubscribe, unauthenticated weekly email, rate limiting, timer manipulation, service worker 404s, duplicate SM-2 comment, import validation",
+  "status": "completed",
+  "steps": [
+    "Fix unsubscribe XSS: validate token as UUID format and use JSON.stringify for safe embedding",
+    "Fix weekly email endpoint: reject when CRON_SECRET is not configured (fail-closed)",
+    "Add in-memory rate limiter to /api/explain (per-IP, 10 requests/minute)",
+    "Fix mock exam timer: compute remaining time from startedAt + timeLimitSeconds",
+    "Fix service worker: only precache '/' and let dynamic routes cache on first navigation",
+    "Add comment to spaced-repetition/utils/scheduler.ts noting intentional duplication",
+    "Add basic type validation to data portability importer",
+    "Run full verification: lint, tsc, build, test"
+  ],
+  "acceptance_criteria": [
+    "Unsubscribe endpoint rejects non-UUID tokens and safely embeds valid ones",
+    "Weekly email endpoint returns 401 when CRON_SECRET is not set",
+    "/api/explain returns 429 after 10 requests per minute per IP",
+    "Mock exam timer is computed from startedAt + timeLimitSeconds, not stored value",
+    "Service worker only precaches '/' at install time",
+    "SM-2 scheduler has comment explaining intentional isolation",
+    "Import validates array/object types before writing to localStorage",
+    "All tests pass, lint clean, build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run build",
+    "eval \"$(mise activate bash)\" && npm run test"
+  ],
+  "blocked_reason": null,
+  "findings": "All 7 review issues addressed. XSS fix uses UUID regex + data-attribute pattern for defense-in-depth. Rate limiter uses sliding window with periodic cleanup. Timer fix moves computation to useState lazy initializer to comply with react-hooks/set-state-in-effect lint rule. All 419 tests pass, lint clean, build succeeds."
+}

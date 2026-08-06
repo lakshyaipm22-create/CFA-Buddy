@@ -22,8 +22,8 @@ export function buildAttemptConfidenceMatrix(attempt: PracticeAttempt): Confiden
     knowledgeGap: 0,
   };
 
-  for (const module of attempt.moduleResults) {
-    for (const qa of module.questionAttempts) {
+  for (const mod of attempt.moduleResults) {
+    for (const qa of mod.questionAttempts) {
       if (qa.correct) {
         switch (qa.confidence) {
           case 'High': matrix.mastered++; break;

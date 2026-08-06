@@ -1,0 +1,39 @@
+{
+  "id": "FEAT-007",
+  "type": "feat",
+  "description": "Add email notifications: weekly progress reports and streak reminder emails using Resend as provider. Graceful fallback to console logging when RESEND_API_KEY is not configured. Include unsubscribe links.",
+  "status": "completed",
+  "steps": [
+    "Install resend package: add 'resend' to dependencies in package.json and run npm install",
+    "Create src/features/email-notifications/ directory: types/, utils/, components/, actions/, templates/",
+    "Create src/features/email-notifications/types/index.ts with types: EmailConfig, WeeklyReportData, StreakReminderData, EmailPreferences, UnsubscribeToken",
+    "Create src/features/email-notifications/utils/email-client.ts: initializes Resend client if RESEND_API_KEY is set, exports sendEmail() that either sends via Resend or logs to console. Include unsubscribe link generation using a signed token",
+    "Create src/features/email-notifications/utils/preferences.ts: localStorage-based email preference storage (key: 'cfa-buddy-email-prefs'). Tracks: weekly report opt-in, streak reminder opt-in, email address, unsubscribe token",
+    "Create src/features/email-notifications/templates/weekly-report.tsx: React email template showing: questions answered this week, accuracy %, streak status, top topics, areas to improve. Use inline styles for email compatibility",
+    "Create src/features/email-notifications/templates/streak-reminder.tsx: React email template: 'Your X-day streak is at risk! Practice today to keep it going.' Shows current streak and what topics are due",
+    "Create src/features/email-notifications/actions/send-weekly-report.ts: server action that computes weekly stats from localStorage/data-layer and sends via email client",
+    "Create src/features/email-notifications/actions/send-streak-reminder.ts: server action that checks streak status and sends reminder if streak will break tomorrow",
+    "Create API route src/app/api/email/unsubscribe/route.ts: handles GET request with token param, validates token, updates preferences to unsubscribed",
+    "Create API route src/app/api/email/send-weekly/route.ts: POST endpoint (for cron jobs) that triggers weekly report generation and sending",
+    "Create src/features/email-notifications/components/email-preferences.tsx: settings UI for managing email preferences (enable/disable weekly reports, streak reminders, update email address)",
+    "Add unit tests in src/features/email-notifications/__tests__/email-client.test.ts testing: console fallback when no API key, preference storage, unsubscribe token validation",
+    "Run full verification: npm run lint, npx tsc --noEmit, npm run build, npm run test"
+  ],
+  "acceptance_criteria": [
+    "Weekly progress report email can be triggered via API route",
+    "Streak reminder email sends when streak is at risk",
+    "When RESEND_API_KEY is not set, emails log to console instead",
+    "Unsubscribe link in emails works (marks user as unsubscribed)",
+    "Email preferences UI allows enabling/disabling notifications",
+    "Email templates render correctly with weekly stats and streak data",
+    "All tests pass, lint clean, build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run build",
+    "eval \"$(mise activate bash)\" && npm run test"
+  ],
+  "blocked_reason": null,
+  "findings": "Installed resend package (5 new deps). Created full email-notifications feature module at src/features/email-notifications/ with types, utils, templates, actions, components, and tests. Added API routes at src/app/api/email/send-weekly/ and src/app/api/email/unsubscribe/. Integrated EmailPreferencesForm into the profile page (all 3 branches: no supabase, no user, authenticated user). Templates use plain HTML strings with inline styles (not React Email). Console fallback logging works when RESEND_API_KEY is not set. All 397 tests pass (18 new), lint clean, TypeScript clean, build succeeds."
+}

@@ -1,0 +1,38 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Build a proper spaced repetition scheduler with 'Today's Reviews' dashboard widget, review session interface with recall ratings, and daily review reminder notification",
+  "status": "completed",
+  "steps": [
+    "Create src/features/spaced-repetition/ directory: types/, utils/, components/",
+    "Create src/features/spaced-repetition/types/index.ts with types: ReviewSession, ScheduledReview, ReviewHistory, DailyStats",
+    "Create src/features/spaced-repetition/utils/scheduler.ts that builds on existing SM-2 in src/features/flashcards/utils/sm2.ts - adds scheduling logic: getDueCards(cards, date), getNextReviewDate(card), getDailyReviewCount(), scheduleReview(card, rating)",
+    "Create src/features/spaced-repetition/utils/storage.ts for localStorage persistence of review sessions and daily stats (key: 'cfa-buddy-review-sessions')",
+    "Create src/features/spaced-repetition/components/todays-reviews-widget.tsx - a dashboard card showing: cards due today count, cards reviewed today, retention rate, next review time. Style with Navy/Gold theme colors",
+    "Create src/features/spaced-repetition/components/review-session.tsx - full review session interface: shows card front, user flips to see back, then rates recall with 4 buttons (Again, Hard, Good, Easy). SM-2 updates interval on each rating. Shows progress bar (X of Y reviewed)",
+    "Create src/features/spaced-repetition/components/review-complete.tsx - session completion summary: cards reviewed, accuracy, next review schedule",
+    "Integrate the TodaysReviewsWidget into the dashboard page: add it to src/features/dashboard/components/dashboard-content.tsx as a new section",
+    "Add a route at src/app/(protected)/review/session/page.tsx for the review session interface",
+    "Add daily review reminder using the existing notification pattern in src/features/notifications/: create a component that checks if reviews are due and shows an in-app notification banner",
+    "Add unit tests in src/features/spaced-repetition/__tests__/scheduler.test.ts testing: getDueCards returns only due cards, scheduling logic with different ratings, daily stats tracking",
+    "Run full verification: npm run lint, npx tsc --noEmit, npm run build, npm run test"
+  ],
+  "acceptance_criteria": [
+    "Dashboard shows 'Today's Reviews' widget with due card count",
+    "Review session page at /review/session shows flashcards with Again/Hard/Good/Easy buttons",
+    "SM-2 algorithm correctly updates card intervals after each rating",
+    "Session completion shows summary stats",
+    "Daily reminder notification appears when cards are due",
+    "All data persists to localStorage",
+    "All existing tests still pass plus new scheduler tests",
+    "npm run lint and npm run build pass"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run build",
+    "eval \"$(mise activate bash)\" && npm run test"
+  ],
+  "blocked_reason": null,
+  "findings": "Feature implemented with 10 new files across types/, utils/, components/, __tests__/, and the /review/session route. The scheduler.ts is a self-contained SM-2 implementation (no cross-feature import to flashcards/utils/sm2.ts). The review-session component does import from flashcards storage and sm2 to keep both stores in sync when reviewing cards that originated from the flashcards feature. 22 new scheduler tests pass (315 total). The TodaysReviewsWidget merges cards from both the spaced-repetition scheduled cards store and the flashcards store to provide a unified due-cards view. DailyReviewReminder uses localStorage dismissal per day. Build, lint, tsc all pass cleanly."
+}

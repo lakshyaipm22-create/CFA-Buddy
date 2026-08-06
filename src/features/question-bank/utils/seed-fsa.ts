@@ -43,8 +43,8 @@ function generateModuleAttempts(
   total: number,
   rng: () => number
 ): AttemptQuestion[] {
-  const module = fsaModules[moduleKey];
-  const questions = module.questions;
+  const mod = fsaModules[moduleKey];
+  const questions = mod.questions;
   const incorrect = total - score;
 
   // Pick which question indices will be incorrect

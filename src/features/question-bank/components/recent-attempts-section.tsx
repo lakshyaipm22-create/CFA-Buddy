@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Clock, Eye } from 'lucide-react';
 import { getAllAttempts } from '../utils/attempt-storage';
@@ -45,15 +45,12 @@ function ScoreRingTiny({ score }: { score: number }) {
 }
 
 export function RecentAttemptsSection() {
-  const [attempts, setAttempts] = useState<PracticeAttempt[]>([]);
-
-  useEffect(() => {
+  const [attempts] = useState<PracticeAttempt[]>(() => {
+    if (typeof window === 'undefined') return [];
     runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFlashcardsFromAttempts]);
     const all = getAllAttempts();
-    setAttempts(
-      all.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()).slice(0, 3)
-    );
-  }, []);
+    return all.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()).slice(0, 3);
+  });
 
   if (attempts.length === 0) return null;
 

@@ -1,0 +1,38 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Add AI-powered explanations: an 'Explain this' button on wrong answers that generates explanations via OpenAI or Anthropic, with streaming response and graceful fallback when no API key is configured",
+  "status": "completed",
+  "steps": [
+    "Create src/features/ai-explanations/ directory structure: types/, utils/, components/, actions/",
+    "Add AI provider configuration: add AI_PROVIDER and AI_API_KEY (plus OPENAI_API_KEY, ANTHROPIC_API_KEY) to env handling. Create src/features/ai-explanations/utils/ai-provider.ts that selects between OpenAI and Anthropic based on AI_PROVIDER env var",
+    "Create src/features/ai-explanations/actions/explain-answer.ts server action that: validates input (question text, answer choices, selected answer, correct answer), calls the appropriate AI API with streaming, returns a ReadableStream or falls back gracefully if no API key",
+    "Create an API route at src/app/api/explain/route.ts that handles POST requests and returns streaming response using the AI provider. Use the Web Streams API for streaming. If no API key configured, return a JSON response with a fallback message",
+    "Create src/features/ai-explanations/components/explain-button.tsx - an 'Explain this' button that appears on wrong answers in the review flow. On click, calls the API route and shows a streaming explanation inline",
+    "Create src/features/ai-explanations/components/explanation-display.tsx - renders the streamed explanation with nice formatting, loading state, and error handling",
+    "Integrate the ExplainButton into the existing review flow: add it to src/features/question-bank/components/attempt-review.tsx where wrong answers are shown (within the answer review card when answer is incorrect)",
+    "Add a graceful fallback message component that shows when no AI_API_KEY is configured: 'AI explanations require an API key. Check the documentation for setup instructions.'",
+    "Add unit tests in src/features/ai-explanations/__tests__/explain.test.ts covering: provider selection logic, input validation, fallback behavior when no API key",
+    "Install no new dependencies - use native fetch for API calls to OpenAI/Anthropic REST APIs",
+    "Run full verification: npm run lint, npx tsc --noEmit, npm run build, npm run test"
+  ],
+  "acceptance_criteria": [
+    "ExplainButton component renders on wrong answers in the review flow",
+    "Clicking the button triggers an API call to /api/explain",
+    "When AI_PROVIDER=openai and OPENAI_API_KEY is set, calls OpenAI API",
+    "When AI_PROVIDER=anthropic and ANTHROPIC_API_KEY is set, calls Anthropic API",
+    "When no API key is configured, shows graceful fallback message",
+    "Explanation streams in and displays inline in the review flow",
+    "All existing tests still pass",
+    "npm run lint passes with 0 errors/warnings",
+    "npm run build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run build",
+    "eval \"$(mise activate bash)\" && npm run test"
+  ],
+  "blocked_reason": null,
+  "findings": "Feature implemented with 7 new files: types, provider config, streaming utility, prompt builder, API route, ExplainButton, and ExplanationDisplay. Integrated into attempt-review.tsx for wrong answers only. 17 new tests pass (291 total). Build succeeds without API keys. The fallback path returns a JSON response with a friendly message when no API key is configured. Uses Fragment wrapper (<>) in attempt-review.tsx to group the ExplainButton and error classification within the incorrect-answer conditional."
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   Gauge,
@@ -24,6 +24,8 @@ import { AccuracyTrend } from './accuracy-trend';
 import { AdvancedAnalytics } from './advanced-analytics';
 import { DailyStudyPlan } from '@/features/study-plan/components/daily-study-plan';
 import { NotificationBadges } from '@/features/notifications/components/notification-badges';
+import { TodaysReviewsWidget } from '@/features/spaced-repetition/components/todays-reviews-widget';
+import { DailyReviewReminder } from '@/features/spaced-repetition/components/daily-review-reminder';
 import { XPLevelBadge } from '@/features/gamification/components/xp-level-badge';
 import { StreakDisplay } from '@/features/gamification/components/streak-display';
 import { WeeklyGoal } from '@/features/gamification/components/weekly-goal';
@@ -58,7 +60,18 @@ interface DashboardContentProps {
 
 export function DashboardContent({ displayName, level }: DashboardContentProps) {
   const sessions = useLocalStorageSessions();
-  const [latestAttempts, setLatestAttempts] = useState<PracticeAttempt[]>([]);
+  const [latestAttempts] = useState<PracticeAttempt[]>(() => {
+    if (typeof window === 'undefined') return [];
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFlashcardsFromAttempts]);
+    const results: PracticeAttempt[] = [];
+    for (const subject of ALL_SUBJECTS) {
+      const latest = getLatestAttempt(subject);
+      if (latest) results.push(latest);
+    }
+    return results.sort(
+      (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()
+    );
+  });
 
   // Prefer localStorage profile values over server-provided defaults
   const [localProfile] = useState(() => {
@@ -67,18 +80,6 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
   });
   const effectiveDisplayName = localProfile?.displayName || displayName;
   const effectiveLevel = localProfile?.level || level;
-
-  useEffect(() => {
-    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFlashcardsFromAttempts]);
-    const results: PracticeAttempt[] = [];
-    for (const subject of ALL_SUBJECTS) {
-      const latest = getLatestAttempt(subject);
-      if (latest) results.push(latest);
-    }
-    setLatestAttempts(results.sort(
-      (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()
-    ));
-  }, []);
 
   const stats = useMemo(() => {
     const completedSessions = sessions.filter((s) => s.status === 'completed');
@@ -260,6 +261,9 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
       {/* Onboarding Checklist (shown for new users) */}
       <OnboardingChecklist />
 
+      {/* Daily Review Reminder */}
+      <DailyReviewReminder />
+
       {/* Readiness Breakdown */}
       {stats.questionsAnswered >= 10 && (
         <div className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-5">
@@ -285,6 +289,9 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
 
       {/* Smart Session Recommendations */}
       <SmartSessionCard />
+
+      {/* Today's Reviews Widget */}
+      <TodaysReviewsWidget />
 
       {/* Smart Review Card */}
       {reviewSummary.count > 0 && (

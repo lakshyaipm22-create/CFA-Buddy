@@ -84,17 +84,17 @@ describe('computeDifficultyStats', () => {
     const result = computeDifficultyStats(attempts, questions);
 
     expect(result.modules).toHaveLength(1);
-    const module = result.modules[0];
-    expect(module.moduleName).toBe('Capital Structure');
-    expect(module.easy.correct).toBe(2);
-    expect(module.easy.total).toBe(2);
-    expect(module.easy.accuracy).toBe(100);
-    expect(module.medium.correct).toBe(1);
-    expect(module.medium.total).toBe(1);
-    expect(module.medium.accuracy).toBe(100);
-    expect(module.hard.correct).toBe(0);
-    expect(module.hard.total).toBe(1);
-    expect(module.hard.accuracy).toBe(0);
+    const mod = result.modules[0];
+    expect(mod.moduleName).toBe('Capital Structure');
+    expect(mod.easy.correct).toBe(2);
+    expect(mod.easy.total).toBe(2);
+    expect(mod.easy.accuracy).toBe(100);
+    expect(mod.medium.correct).toBe(1);
+    expect(mod.medium.total).toBe(1);
+    expect(mod.medium.accuracy).toBe(100);
+    expect(mod.hard.correct).toBe(0);
+    expect(mod.hard.total).toBe(1);
+    expect(mod.hard.accuracy).toBe(0);
   });
 
   it('should compute overall difficulty stats', () => {

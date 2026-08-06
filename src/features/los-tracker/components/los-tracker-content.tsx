@@ -61,7 +61,7 @@ export function LOSTrackerContent() {
     const covered = Object.values(progress).filter(s => s !== 'not-started').length;
     const mastered = Object.values(progress).filter(s => s === 'mastered').length;
     return { total, covered, mastered, pct: total > 0 ? Math.round((covered / total) * 100) : 0 };
-  }, [progress]);
+  }, [progress, LOS_ITEMS.length]);
 
   const cycleStatus = (id: string) => {
     const order: LOSStatus[] = ['not-started', 'reading', 'practiced', 'revised', 'mastered'];

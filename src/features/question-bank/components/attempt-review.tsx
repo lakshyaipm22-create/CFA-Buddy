@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Star, ChevronLeft, ChevronRight, BookOpen, Download } from 'lucide-react';
 import { getAttemptById, saveAttempt } from '../utils/attempt-storage';
 import { getNotes, saveNote, deleteNote } from '@/shared/annotations';
 import { corporateIssuersQuestions } from '../data/corporate-issuers';
-import type { PracticeAttempt, AttemptQuestion } from '../types/attempt';
+import { ExplainButton } from '@/features/ai-explanations/components/explain-button';
+import type { PracticeAttempt } from '../types/attempt';
 import type { Question, ErrorClassification } from '../types';
 
 interface AttemptReviewProps {
@@ -39,15 +40,15 @@ export function generateNotesExport(
   lines.push('');
 
   let noteCount = 0;
-  for (const module of attempt.moduleResults) {
-    for (const qa of module.questionAttempts) {
+  for (const mod of attempt.moduleResults) {
+    for (const qa of mod.questionAttempts) {
       const note = notes[qa.questionId];
       if (!note) continue;
 
       noteCount++;
       const question = questions.find(q => q.id === qa.questionId);
       lines.push(`[${noteCount}] ${question?.questionText ?? 'Question ID: ' + qa.questionId}`);
-      lines.push(`    Module: ${module.moduleName}`);
+      lines.push(`    Module: ${mod.moduleName}`);
       lines.push(`    Result: ${qa.correct ? 'Correct' : 'Incorrect'} | Confidence: ${qa.confidence}`);
       if (qa.errorClassification) {
         lines.push(`    Error Type: ${qa.errorClassification}`);
@@ -191,14 +192,14 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
     setCurrentIndex(0);
   }, []);
 
-  // Initialize note state for first render and sync on question change
-  useEffect(() => {
-    if (currentAttemptQ) {
-      setEditingNote(questionNotes[currentAttemptQ.questionId] ?? '');
-      setNoteExpanded(!!questionNotes[currentAttemptQ.questionId]);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentAttemptQ?.questionId]);
+  // Sync note editing state when navigating (adjust state during render when questionId changes)
+  const [prevQuestionId, setPrevQuestionId] = useState<string | undefined>(currentAttemptQ?.questionId);
+  if (currentAttemptQ && currentAttemptQ.questionId !== prevQuestionId) {
+    setPrevQuestionId(currentAttemptQ.questionId);
+    const noteForQuestion = questionNotes[currentAttemptQ.questionId] ?? '';
+    setEditingNote(noteForQuestion);
+    setNoteExpanded(!!noteForQuestion);
+  }
 
   if (!attempt) {
     return (
@@ -438,28 +439,46 @@ export function AttemptReview({ attemptId }: AttemptReviewProps) {
 
           {/* Error Classification (only for incorrect answers) */}
           {!currentAttemptQ.correct && (
-            <div className="mt-5 rounded-lg p-4" style={{ backgroundColor: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
-              <label className="mb-2 block text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
-                Why did you get this wrong?
-              </label>
-              <select
-                value={currentAttemptQ.errorClassification ?? ''}
-                onChange={(e) => handleClassificationChange(e.target.value as ErrorClassification | '')}
-                className="w-full rounded-lg px-3 py-2 text-sm outline-none transition-all"
-                style={{
-                  backgroundColor: 'var(--card-bg)',
-                  color: 'var(--foreground)',
-                  border: '1px solid var(--card-border)',
-                }}
-              >
-                <option value="">Select error type...</option>
-                {ERROR_CLASSIFICATION_OPTIONS.map(opt => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <>
+              {/* AI Explain Button */}
+              <div className="mt-5">
+                <ExplainButton
+                  questionText={currentQuestion.questionText}
+                  answerChoices={currentQuestion.answerChoices.map(c => ({
+                    label: c.label,
+                    text: c.text,
+                    isCorrect: c.isCorrect,
+                  }))}
+                  selectedAnswer={currentAttemptQ.selectedAnswer}
+                  correctAnswer={
+                    currentQuestion.answerChoices.find(c => c.isCorrect)?.label ?? ''
+                  }
+                />
+              </div>
+
+              <div className="mt-5 rounded-lg p-4" style={{ backgroundColor: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+                <label className="mb-2 block text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
+                  Why did you get this wrong?
+                </label>
+                <select
+                  value={currentAttemptQ.errorClassification ?? ''}
+                  onChange={(e) => handleClassificationChange(e.target.value as ErrorClassification | '')}
+                  className="w-full rounded-lg px-3 py-2 text-sm outline-none transition-all"
+                  style={{
+                    backgroundColor: 'var(--card-bg)',
+                    color: 'var(--foreground)',
+                    border: '1px solid var(--card-border)',
+                  }}
+                >
+                  <option value="">Select error type...</option>
+                  {ERROR_CLASSIFICATION_OPTIONS.map(opt => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
           )}
 
           {/* Notes Section */}
