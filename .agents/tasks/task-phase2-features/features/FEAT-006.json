@@ -2,7 +2,7 @@
   "id": "FEAT-006",
   "type": "feat",
   "description": "Add PWA support: service worker for offline mode, web app manifest, install prompt, and offline-first caching strategy for questions and flashcards",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create public/manifest.json web app manifest with: name 'CFA Buddy', short_name 'CFA Buddy', theme_color '#002B5C', background_color '#0a0e14', display 'standalone', start_url '/', icons referencing the existing logo at public/CFA Buddy_logo.png (create appropriately sized icon files if needed)",
     "Create public/sw.js service worker with offline-first caching strategy: cache static assets (JS, CSS, images) on install, cache question bank data and flashcard data for offline access, serve from cache first with network fallback for cached resources, network first with cache fallback for API routes",
@@ -33,5 +33,5 @@
     "eval \"$(mise activate bash)\" && npm run test"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "manifest.json and sw.js already existed with basic structure. Enhanced sw.js with proper caching strategies (cache-first for static assets, network-first for HTML/API). Created full pwa feature module at src/features/pwa/ with types, utils, components, and tests. Integrated PwaProvider into root layout. Removed inline script SW registration in favor of the PwaProvider component. Added Viewport export for theme-color meta tag (Next.js App Router pattern). All 379 tests pass, lint clean, build succeeds."
 }
