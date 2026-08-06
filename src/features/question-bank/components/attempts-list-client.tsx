@@ -9,6 +9,7 @@ import { seedPortfolioManagementAttempt } from '../utils/seed-portfolio-manageme
 import { seedQuantitativeMethodsAttempt } from '../utils/seed-quantitative-methods';
 import { seedAlternativeInvestmentsAttempt } from '../utils/seed-alternative-investments';
 import { runSeedsIfNeeded } from '../utils/seed-guard';
+import { seedFlashcardsFromAttempts } from '@/features/flashcards/utils/seed-flashcards';
 import { getAllAttempts } from '../utils/attempt-storage';
 import { RetakeComparison } from './retake-comparison';
 import type { PracticeAttempt } from '../types/attempt';
@@ -70,7 +71,7 @@ export function AttemptsListClient() {
   const [seeded, setSeeded] = useState(false);
 
   useEffect(() => {
-    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt]);
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFlashcardsFromAttempts]);
     setSeeded(true);
   }, []);
 

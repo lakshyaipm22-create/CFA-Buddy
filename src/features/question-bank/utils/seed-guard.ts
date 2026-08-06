@@ -1,4 +1,4 @@
-const SEED_VERSION_KEY = 'cfa-buddy-seeded-v5';
+const SEED_VERSION_KEY = 'cfa-buddy-seeded-v6';
 
 /**
  * Runs all seed functions only if data hasn't been seeded yet.
