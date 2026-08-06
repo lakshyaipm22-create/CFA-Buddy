@@ -39,7 +39,7 @@ export function ProgressTimelineChart({ attempts }: ProgressTimelineChartProps) 
     return defaultDate.toISOString().split('T')[0];
   });
 
-  const { chartData, velocity, predictedScore, trend, milestones } = useMemo(() => {
+  const { chartData, velocity, predictedScore, milestones } = useMemo(() => {
     const timeline = buildProgressTimeline(attempts);
     if (timeline.length === 0) {
       return { chartData: [], velocity: 0, predictedScore: 0, trend: { slope: 0, intercept: 0, r2: 0 }, milestones: [] };

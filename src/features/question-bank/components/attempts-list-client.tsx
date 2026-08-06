@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { Clock, Eye, FileText } from 'lucide-react';
 import { seedCorporateIssuersAttempt } from '../utils/seed-corporate-issuers';
@@ -68,22 +68,14 @@ function ConfidenceBadge({ level }: { level: 'High' | 'Medium' | 'Low' }) {
 }
 
 export function AttemptsListClient() {
-  const [attempts, setAttempts] = useState<PracticeAttempt[]>([]);
-  const [seeded, setSeeded] = useState(false);
-
-  useEffect(() => {
+  const [attempts] = useState<PracticeAttempt[]>(() => {
+    if (typeof window === 'undefined') return [];
     runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFlashcardsFromAttempts]);
-    setSeeded(true);
-  }, []);
-
-  useEffect(() => {
-    if (seeded) {
-      const all = getAllAttempts();
-      setAttempts(all.sort(
-        (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()
-      ));
-    }
-  }, [seeded]);
+    const all = getAllAttempts();
+    return all.sort(
+      (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()
+    );
+  });
 
   if (attempts.length === 0) {
     return (

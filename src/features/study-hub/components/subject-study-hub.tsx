@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import {
   BookOpen,
@@ -31,17 +31,19 @@ interface SubjectStudyHubProps {
 }
 
 export function SubjectStudyHub({ subjectName }: SubjectStudyHubProps) {
-  const [progress, setProgress] = useState<SubjectProgress | null>(null);
-  const [recentSessions, setRecentSessions] = useState<SubjectSession[]>([]);
-  const [weakAreas, setWeakAreas] = useState<SubjectWeakArea[]>([]);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setProgress(getSubjectProgress(subjectName));
-    setRecentSessions(getSubjectRecentSessions(subjectName, 5));
-    setWeakAreas(getSubjectWeakAreas(subjectName, 5));
-    setMounted(true);
-  }, [subjectName]);
+  const [progress] = useState<SubjectProgress | null>(() => {
+    if (typeof window === 'undefined') return null;
+    return getSubjectProgress(subjectName);
+  });
+  const [recentSessions] = useState<SubjectSession[]>(() => {
+    if (typeof window === 'undefined') return [];
+    return getSubjectRecentSessions(subjectName, 5);
+  });
+  const [weakAreas] = useState<SubjectWeakArea[]>(() => {
+    if (typeof window === 'undefined') return [];
+    return getSubjectWeakAreas(subjectName, 5);
+  });
+  const [mounted] = useState(() => typeof window !== 'undefined');
 
   if (!mounted) {
     return (

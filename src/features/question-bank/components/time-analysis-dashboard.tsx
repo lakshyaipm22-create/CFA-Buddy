@@ -4,7 +4,6 @@ import { useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Clock, Zap, Brain, AlertTriangle } from 'lucide-react';
 import type { PracticeAttempt, AttemptQuestion } from '../types/attempt';
-import type { Question } from '../types';
 import { loadAllQuestions } from '../utils/question-loader';
 import {
   computeTimeVsCorrectness,

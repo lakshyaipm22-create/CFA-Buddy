@@ -3,7 +3,6 @@
 import { useMemo } from 'react';
 import { TrendingUp, AlertTriangle, Star, ArrowRight } from 'lucide-react';
 import type { PracticeAttempt } from '../types/attempt';
-import type { Question } from '../types';
 import { loadAllQuestions } from '../utils/question-loader';
 import {
   computeDifficultyStats,
@@ -39,7 +38,7 @@ const LEVEL_CONFIG: Record<ReadinessLevel, { icon: typeof TrendingUp; color: str
   mastered_all: { icon: Star, color: 'var(--accent-success)', bgColor: 'rgba(0, 132, 61, 0.1)' },
 };
 
-export function DifficultyHeatmap({ attempt, allAttempts }: DifficultyHeatmapProps) {
+export function DifficultyHeatmap({ allAttempts }: DifficultyHeatmapProps) {
   const questions = useMemo(() => loadAllQuestions(), []);
 
   const stats = useMemo(

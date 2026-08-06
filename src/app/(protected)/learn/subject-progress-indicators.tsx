@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   getAllSubjectsProgress,
   formatLastStudied,
@@ -16,13 +16,11 @@ interface SubjectProgressIndicatorsProps {
  * Reads from localStorage and renders overlays on the subject cards.
  */
 export function SubjectProgressIndicators({ subjectNames }: SubjectProgressIndicatorsProps) {
-  const [progressMap, setProgressMap] = useState<Map<string, SubjectProgress>>(new Map());
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setProgressMap(getAllSubjectsProgress());
-    setMounted(true);
-  }, []);
+  const [progressMap] = useState<Map<string, SubjectProgress>>(() => {
+    if (typeof window === 'undefined') return new Map();
+    return getAllSubjectsProgress();
+  });
+  const [mounted] = useState(() => typeof window !== 'undefined');
 
   if (!mounted) return null;
 
@@ -88,15 +86,12 @@ export function SubjectProgressIndicators({ subjectNames }: SubjectProgressIndic
  * Individual subject progress badge to be rendered inline inside a subject card.
  */
 export function SubjectProgressBadge({ subjectName }: { subjectName: string }) {
-  const [progress, setProgress] = useState<SubjectProgress | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
+  const [progress] = useState<SubjectProgress | null>(() => {
+    if (typeof window === 'undefined') return null;
     const allProgress = getAllSubjectsProgress();
-    const p = allProgress.get(subjectName.toLowerCase()) ?? null;
-    setProgress(p);
-    setMounted(true);
-  }, [subjectName]);
+    return allProgress.get(subjectName.toLowerCase()) ?? null;
+  });
+  const [mounted] = useState(() => typeof window !== 'undefined');
 
   if (!mounted || !progress || progress.totalQuestionsAnswered === 0) return null;
 

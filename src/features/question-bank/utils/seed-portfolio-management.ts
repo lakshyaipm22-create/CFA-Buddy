@@ -39,8 +39,8 @@ function generateModuleAttempts(
   total: number,
   rng: () => number
 ): AttemptQuestion[] {
-  const module = portfolioManagementModules[moduleKey];
-  const questions = module.questions;
+  const mod = portfolioManagementModules[moduleKey];
+  const questions = mod.questions;
   const incorrect = total - score;
 
   // Pick which question indices will be incorrect

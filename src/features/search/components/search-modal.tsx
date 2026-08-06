@@ -112,7 +112,7 @@ export function SearchModal() {
   // Total navigable items when query is empty (quick actions + recent pages)
   const emptyStateItems = [...QUICK_ACTIONS.map(a => a.href), ...recentPages.map(p => p.path)];
   const emptyStateItemsRef = useRef(emptyStateItems);
-  emptyStateItemsRef.current = emptyStateItems;
+  useEffect(() => { emptyStateItemsRef.current = emptyStateItems; });
 
   // Cmd+K / Ctrl+K to open
   useEffect(() => {

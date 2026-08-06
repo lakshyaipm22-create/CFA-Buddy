@@ -73,12 +73,10 @@ export function generateStudyPlan(targetScore: number = 70): StudyPlan {
 
   // Allocate days to subjects proportionally
   const subjectDays: { subject: string; days: number; type: 'learn' | 'review' | 'practice'; priority: number }[] = [];
-  let allocatedDays = 0;
 
   for (const p of priorities) {
     const days = Math.max(1, Math.round((p.priority / totalPriority) * activeDays));
     subjectDays.push({ subject: p.subject, days, type: p.type, priority: p.priority });
-    allocatedDays += days;
   }
 
   // Generate daily plan items by cycling through subjects

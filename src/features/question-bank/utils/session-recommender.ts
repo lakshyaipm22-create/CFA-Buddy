@@ -101,7 +101,6 @@ export function computeStudyRecommendation(
   }
 
   const moduleMetrics = getModuleMetrics(attempts);
-  const practicedModules = Object.keys(moduleMetrics);
   const moduleScores: ModuleScore[] = [];
 
   // Score each module in the curriculum
