@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "Wire the Exam Plan page to use real PracticeAttempt data instead of generic session data. Show actual per-subject scores from the seeded attempts (Corporate Issuers 76%, FSA 69%, PM 78%, QM 78%, Alt Inv 79%), calculate weighted CFA readiness score, and provide subject-specific daily targets based on weak areas.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "In src/features/exam-plan/components/exam-plan-content.tsx (after FEAT-001 has replaced useSyncExternalStore): Import getAllAttempts from '@/features/question-bank/utils/attempt-storage' and loadAllQuestions from the question-loader. Read PracticeAttempt data in a useState lazy initializer.",
     "Replace the generic 'subjectProgress' computation (which just distributes session attempts evenly across 'All Subjects') with real per-subject data from PracticeAttempts. For each of the 10 CFA subjects, show: accuracy percentage from attempt data, number of questions answered, and coverage (questions answered / total available in that subject).",
@@ -22,5 +22,5 @@
     "Run: bun run vitest --run - expect same or better pass count"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Successfully wired exam plan to real data. Replaced hardcoded 2000 question target with actual getQuestionCountBySubject(). Used getAllAttempts() for per-subject accuracy. Added weighted readiness score using CFA_CURRICULUM_WEIGHTS. Added Focus Areas section showing 3 weakest subjects with module-level breakdowns. TypeScript passes clean, all non-env tests pass (261/261)."
 }
