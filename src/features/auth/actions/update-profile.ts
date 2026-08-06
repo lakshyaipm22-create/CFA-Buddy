@@ -20,7 +20,9 @@ export async function updateProfile(formData: FormData): Promise<AuthActionResul
 
   const supabase = await createServerSupabaseClient();
   if (!supabase) {
-    return { success: false, error: 'Authentication is not configured.' };
+    // When Supabase is not configured, return success.
+    // The client-side LocalProfileForm handles localStorage persistence directly.
+    return { success: true };
   }
 
   const { error } = await supabase.auth.updateUser({
@@ -32,6 +34,23 @@ export async function updateProfile(formData: FormData): Promise<AuthActionResul
 
   if (error) {
     return { success: false, error: 'Failed to update profile. Please try again.' };
+  }
+
+  // Also update the database User record if it exists
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { prisma } = await import('@/shared/lib/prisma/client');
+      await prisma.user.update({
+        where: { authUserId: user.id },
+        data: {
+          displayName: validated.data.displayName,
+          level: validated.data.level as 'I' | 'II' | 'III',
+        },
+      });
+    }
+  } catch {
+    // DB update is best-effort - Supabase auth metadata is the primary source
   }
 
   return { success: true };

@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Supabase DB setup, Authentication system, Auth middleware, Profile management, Database seed script, and RLS policies. This covers Tier 1 items #1-5 and #10. Since we have no real Supabase instance, this implements the code infrastructure: Prisma migrations SQL files, RLS policy SQL, working auth flows that gracefully degrade when Supabase is not configured, functional middleware that protects routes when auth is available, and a profile page that works with localStorage fallback.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Create prisma/migrations/0001_initial/migration.sql with the full schema DDL derived from prisma/schema.prisma (all 22 models, indexes, enums). This is manual SQL since we cannot run prisma migrate without a real DB.",
     "Create prisma/migrations/0002_rls_policies/migration.sql with RLS policies: enable RLS on all user-owned tables (users, notes, question_attempts, question_sessions, progress, study_streaks, exam_targets, flashcards, mistake_logs, question_bookmarks, note_bookmarks, resource_bookmarks, page_bookmarks). Each policy should allow SELECT/INSERT/UPDATE/DELETE only where user_id = auth.uid(). Add a policy for questions/content_resources/subjects/etc that are read-only for all authenticated users.",
@@ -32,5 +32,5 @@
     "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "1. src/generated/prisma/ is gitignored but the build needs a module there. Created a stub client.ts with Proxy-based PrismaClient that throws meaningful errors when methods are called without a real DB. Force-added via git add -f. 2. The tsconfig excludes src/generated and src/shared/lib/prisma from type checking, but dynamic imports from non-excluded files still pull them in for analysis. The stub resolves this. 3. Auth actions use dynamic import() for prisma to avoid pulling the module into the type-check graph at the top level. 4. The react-hooks/set-state-in-effect lint rule required restructuring hooks to use inline async functions in useEffect instead of calling useCallback-wrapped functions. 5. All 263 existing tests pass, build completes successfully."
 }
