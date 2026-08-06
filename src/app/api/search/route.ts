@@ -4,6 +4,7 @@ import { join } from 'path';
 import { existsSync } from 'fs';
 import type { ContentMetadata } from '@/features/content-scanner/types';
 import { isDatabaseAvailable } from '@/shared/lib/data-layer';
+import { createServerSupabaseClient } from '@/shared/lib/supabase/server';
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -63,6 +64,14 @@ export async function GET(request: NextRequest) {
 
   // ─── DB Full-Text Search (when available) ──────────────────────────────────
 
+  // Read authenticated user for note filtering
+  let currentUserId: string | null = null;
+  const supabase = await createServerSupabaseClient();
+  if (supabase) {
+    const { data: { user } } = await supabase.auth.getUser();
+    currentUserId = user?.id ?? null;
+  }
+
   if (isDatabaseAvailable()) {
     const { prisma } = await import('@/shared/lib/prisma/client');
     try {
@@ -89,23 +98,26 @@ export async function GET(request: NextRequest) {
         });
       }
 
-      // Search notes
-      const dbNotes = await prisma.note.findMany({
-        where: {
-          content: { contains: query, mode: 'insensitive' },
-        },
-        take: 10,
-      });
-
-      for (const n of dbNotes) {
-        notes.push({
-          id: n.id,
-          type: 'note',
-          title: n.content.slice(0, 80) + (n.content.length > 80 ? '...' : ''),
-          subtitle: 'Note',
-          href: '/notes',
-          highlight: highlightMatch(n.content, query),
+      // Search notes - only for authenticated users, filtered by userId
+      if (currentUserId) {
+        const dbNotes = await prisma.note.findMany({
+          where: {
+            userId: currentUserId,
+            content: { contains: query, mode: 'insensitive' },
+          },
+          take: 10,
         });
+
+        for (const n of dbNotes) {
+          notes.push({
+            id: n.id,
+            type: 'note',
+            title: n.content.slice(0, 80) + (n.content.length > 80 ? '...' : ''),
+            subtitle: 'Note',
+            href: '/notes',
+            highlight: highlightMatch(n.content, query),
+          });
+        }
       }
 
       // Search topics

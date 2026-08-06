@@ -1,8 +1,18 @@
 'use server';
 
+import { z } from 'zod';
 import type { ActionResult } from '@/shared/types/action-result';
 import { createServerSupabaseClient } from '@/shared/lib/supabase/server';
 import { isDatabaseAvailable } from '@/shared/lib/data-layer';
+
+// ─── Schema ──────────────────────────────────────────────────────────────────
+
+const generateRetestSchema = z.object({
+  questionIds: z.array(z.string().min(1)).min(1).max(200),
+  subject: z.string().optional(),
+  topic: z.string().optional(),
+  errorType: z.string().optional(),
+});
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -19,21 +29,17 @@ export interface RetestSessionResult {
   createdAt: string;
 }
 
-interface GenerateRetestInput {
-  questionIds: string[];
-  subject?: string;
-  topic?: string;
-  errorType?: string;
-}
-
 // ─── Action ──────────────────────────────────────────────────────────────────
 
 export async function generateRetest(
-  input: GenerateRetestInput
+  input: z.infer<typeof generateRetestSchema>
 ): Promise<ActionResult<RetestSessionResult>> {
-  if (!input.questionIds || input.questionIds.length === 0) {
-    return { success: false, error: 'No questions available for retest.' };
+  const validated = generateRetestSchema.safeParse(input);
+  if (!validated.success) {
+    return { success: false, error: 'Invalid input: question IDs are required (1-200 items).' };
   }
+
+  const { questionIds, subject, topic } = validated.data;
 
   const supabase = await createServerSupabaseClient();
   const userId = supabase
@@ -51,12 +57,12 @@ export async function generateRetest(
   const retestSession: RetestSessionResult = {
     id: sessionId,
     mode: 'AdaptiveRetest',
-    questionIds: input.questionIds,
+    questionIds,
     config: {
-      questionCount: input.questionIds.length,
+      questionCount: questionIds.length,
       timeLimit: null,
-      subject: input.subject,
-      topic: input.topic,
+      subject,
+      topic,
     },
     createdAt: now,
   };
@@ -70,14 +76,14 @@ export async function generateRetest(
           userId: userId!,
           mode: 'AdaptiveRetest',
           config: {
-            questionCount: input.questionIds.length,
+            questionCount: questionIds.length,
             timeLimit: null,
-            subject: input.subject ?? null,
-            topic: input.topic ?? null,
-            questionIds: input.questionIds,
+            subject: subject ?? null,
+            topic: topic ?? null,
+            questionIds,
           },
           status: 'Active',
-          totalQuestions: input.questionIds.length,
+          totalQuestions: questionIds.length,
           startedAt: new Date(),
           expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         },
