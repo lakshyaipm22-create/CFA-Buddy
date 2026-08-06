@@ -14,7 +14,6 @@ import {
   HelpCircle,
   AlertTriangle,
   Clock,
-  FolderOpen,
   RotateCcw,
   ListChecks,
   FileBarChart,
@@ -22,6 +21,7 @@ import {
 import { ExamCountdown } from './exam-countdown';
 import { WeeklyProgress } from './weekly-progress';
 import { AccuracyTrend } from './accuracy-trend';
+import { AdvancedAnalytics } from './advanced-analytics';
 import { DailyStudyPlan } from '@/features/study-plan/components/daily-study-plan';
 import { NotificationBadges } from '@/features/notifications/components/notification-badges';
 import { XPLevelBadge } from '@/features/gamification/components/xp-level-badge';
@@ -131,6 +131,17 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
 
     const accuracy = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
 
+    // Weakest topics: subjects with lowest accuracy (min 3 questions)
+    const weakestTopics = Object.entries(subjectStats)
+      .filter(([, s]) => s.total >= 3)
+      .map(([name, s]) => ({
+        name,
+        accuracy: Math.round((s.correct / s.total) * 100),
+        total: s.total,
+      }))
+      .sort((a, b) => a.accuracy - b.accuracy)
+      .slice(0, 3);
+
     return {
       questionsAnswered: totalQuestions,
       accuracy,
@@ -140,6 +151,7 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
       hasMockCompleted,
       subjectStats,
       uniqueSubjects: uniqueSubjects.size,
+      weakestTopics,
     };
   }, [sessions]);
 
@@ -352,11 +364,40 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
       {/* Badges */}
       <BadgesDisplay badges={allBadges} />
 
+      {/* Weakest Topics */}
+      {stats.weakestTopics.length > 0 && (
+        <div className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-5">
+          <h3 className="mb-3 text-sm font-semibold text-[var(--text-primary)]">Weakest Topics</h3>
+          <div className="space-y-2">
+            {stats.weakestTopics.map((topic) => (
+              <div key={topic.name} className="flex items-center gap-3">
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-[var(--text-primary)]">{topic.name}</span>
+                    <span className="text-xs font-bold text-red-400">{topic.accuracy}%</span>
+                  </div>
+                  <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full" style={{ background: 'var(--border-primary)' }}>
+                    <div
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{ width: `${topic.accuracy}%`, background: topic.accuracy >= 60 ? '#C5A258' : '#ef4444' }}
+                    />
+                  </div>
+                </div>
+                <span className="text-[10px] text-[var(--text-muted)]">{topic.total}q</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Notifications */}
       <NotificationBadges />
 
       {/* Exam Countdown */}
       <ExamCountdown />
+
+      {/* Advanced Analytics */}
+      <AdvancedAnalytics />
 
       {/* Recent Practice Attempts */}
       {latestAttempts.length > 0 && (

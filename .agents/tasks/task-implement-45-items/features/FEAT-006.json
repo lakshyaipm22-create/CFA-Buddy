@@ -2,7 +2,7 @@
   "id": "FEAT-006",
   "type": "feat",
   "description": "Tier 2 Feature Completion - Part 2: Error Classification, Mistake Book filtering/retest, Error pattern analytics, Dashboard hero metrics, Advanced analytics, Exam countdown/pacing. Covers Tier 2 items #6-11.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Update src/features/mistake-book/ to implement full Error Classification on incorrect answers: 6 categories (DidntKnow, ForgotFormula, CalculationMistake, MisreadQuestion, Careless, TimePressure) + auto-creation of MistakeLog entries. Add a classification modal that appears after marking an answer wrong in the review flow.",
     "Create src/features/mistake-book/components/error-classify-modal.tsx - Modal with 6 category buttons, each with icon and description. Auto-creates MistakeLog entry via Server Action.",
