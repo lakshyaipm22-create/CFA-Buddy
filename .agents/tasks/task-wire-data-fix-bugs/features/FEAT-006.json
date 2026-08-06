@@ -2,7 +2,7 @@
   "id": "FEAT-006",
   "type": "feat",
   "description": "Build a Formula Quiz mode that tests users on the 132 formulas. Creates flashcard-style interactive sessions where users see a formula name and must recall the formula, variables, and application. Uses the rich metadata (topic, difficulty, examFrequency, keyTip) for intelligent selection.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Create src/features/formulas/components/formula-quiz.tsx - a client component with: (1) Quiz configuration: select subject filter, difficulty filter (core/advanced), frequency filter (high/medium/low), count (10/20/all). (2) Card-based interface showing formula name + subject + reading as the prompt. (3) User attempts to recall, then clicks 'Show Formula' to reveal formula + variables + example + keyTip. (4) Self-rating buttons: 'Forgot', 'Struggled', 'Got It', 'Easy' (mapping to SM-2 ratings). (5) Track results in localStorage under 'cfa-buddy-formula-quiz-results'.",
     "Create src/features/formulas/utils/formula-quiz-engine.ts that: (1) imports formulaSeed from the data file, (2) exports selectFormulaQuiz(config) that filters and selects formulas based on criteria, prioritizing high-examFrequency formulas and those previously rated poorly, (3) exports saveFormulaQuizResult(formulaId, rating) and getFormulaQuizHistory() for tracking per-formula mastery.",
@@ -21,5 +21,5 @@
     "Run: bun run vitest --run - expect same or better pass count"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Implementation complete. Created formula-quiz-engine.ts with selectFormulaQuiz (weighted selection prioritizing high-frequency and weak formulas), saveFormulaQuizResult, getFormulaQuizHistory, and getFormulaWeakness. Created formula-quiz.tsx client component with config/active/summary phases. Added to formulas page below FormulaCenter. Fixed a bug in the difficulty filter chip that was incorrectly calling toggleFrequency instead of toggleDifficulty. All 261 non-env tests pass. Only pre-existing env.test.ts zod v4 failures remain."
 }
