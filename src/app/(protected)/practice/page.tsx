@@ -2,7 +2,7 @@
 
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { BookOpen, Layers, ClipboardList, Calculator } from 'lucide-react';
+import { BookOpen, Layers } from 'lucide-react';
 import { PracticeContent } from '@/features/practice/components/practice-content';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
 
@@ -12,8 +12,8 @@ function PracticePageInner() {
   const topic = searchParams.get('topic') ?? undefined;
 
   return (
-    <div className="space-y-6">
-      <div>
+    <div className="max-w-5xl mx-auto space-y-8">
+      <div className="mb-8">
         <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>
           Spaced Practice
         </h1>
@@ -23,6 +23,7 @@ function PracticePageInner() {
             : 'Daily review with spaced repetition. Rate each question to optimize your study schedule.'}
         </p>
       </div>
+
       <PracticeContent filterSubject={subject} filterTopic={topic} />
 
       <RelatedActions
@@ -38,18 +39,6 @@ function PracticePageInner() {
             icon: Layers,
             label: 'Flashcards',
             description: 'Quick review cards',
-          },
-          {
-            href: '/review',
-            icon: ClipboardList,
-            label: 'Review',
-            description: 'Smart review queue',
-          },
-          {
-            href: '/formulas',
-            icon: Calculator,
-            label: 'Formulas',
-            description: 'Reference sheets',
           },
         ]}
       />

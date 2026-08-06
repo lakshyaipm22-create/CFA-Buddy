@@ -2,26 +2,14 @@
 
 import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Repeat, AlertCircle, Layers, BarChart3 } from 'lucide-react';
+import { Layers, ClipboardList } from 'lucide-react';
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
 import { RecentAttemptsSection } from '@/features/question-bank/components/recent-attempts-section';
 import { RecentSessions } from '@/features/question-bank/components/recent-sessions';
-import { SmartSessionCard } from '@/features/question-bank/components/smart-session-card';
-import { WeakTopicQuiz } from '@/features/question-bank/components/weak-topic-quiz';
 import { useImportedQuestions } from '@/features/question-bank/hooks/useImportedQuestions';
 import { cleanupOldSessions } from '@/features/question-bank/utils/session-storage';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
-import dynamic from 'next/dynamic';
-
-const QuestionAnalytics = dynamic(
-  () => import('@/features/question-bank/components/question-analytics').then((m) => m.QuestionAnalytics),
-  {
-    loading: () => (
-      <div className="h-64 animate-pulse rounded-xl border border-zinc-800 bg-zinc-900/50" />
-    ),
-    ssr: false,
-  }
-);
+import { CollapsibleSection } from '@/shared/components/ui/collapsible-section';
 
 function QuestionsPageInner() {
   const { isLoading, questions: importedQuestions } = useImportedQuestions();
@@ -35,13 +23,14 @@ function QuestionsPageInner() {
   const hasImportedQuestions = importedQuestions.length > 0;
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-white">Question Bank</h1>
-        <p className="mt-1 text-zinc-400">
+    <div className="max-w-5xl mx-auto space-y-8">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Question Bank</h1>
+        <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
           Configure and start a practice session.
         </p>
       </div>
+
       {isLoading && (
         <div
           className="flex items-center gap-2 rounded-lg px-4 py-3 text-sm"
@@ -69,6 +58,7 @@ function QuestionsPageInner() {
           Loading 1,000 questions...
         </div>
       )}
+
       {!isLoading && !hasImportedQuestions && (
         <div
           className="rounded-lg px-4 py-3 text-sm"
@@ -89,38 +79,27 @@ function QuestionsPageInner() {
           to load your question bank.
         </div>
       )}
-      <SmartSessionCard />
-      <WeakTopicQuiz />
+
       <SessionConfigurator initialSubject={subjectParam} />
-      <RecentAttemptsSection />
-      <RecentSessions />
-      <QuestionAnalytics />
+
+      <CollapsibleSection title="Recent Activity">
+        <RecentAttemptsSection />
+        <RecentSessions />
+      </CollapsibleSection>
 
       <RelatedActions
         items={[
           {
-            href: '/practice',
-            icon: Repeat,
-            label: 'Practice',
-            description: 'Spaced repetition review',
-          },
-          {
-            href: '/mistakes',
-            icon: AlertCircle,
-            label: 'Mistakes',
-            description: 'Review your errors',
-          },
-          {
             href: '/flashcards',
             icon: Layers,
             label: 'Flashcards',
-            description: 'Convert weak topics',
+            description: 'Quick review cards',
           },
           {
-            href: '/insights',
-            icon: BarChart3,
-            label: 'Insights',
-            description: 'View analytics',
+            href: '/review',
+            icon: ClipboardList,
+            label: 'Review',
+            description: 'Smart review queue',
           },
         ]}
       />
