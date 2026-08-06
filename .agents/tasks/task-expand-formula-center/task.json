@@ -1,0 +1,14 @@
+{
+  "task_id": "task-expand-formula-center",
+  "task_description": "Expand the CFA Formula Center from ~30 generic formulas to 120+ formulas extracted from actual CFA practice questions, redesign the UI for better navigation (tabbed by subject, grouped by topic, Quick Reference, expandable cards), and improve subject metadata with module names, curriculum weights, key topics, and exam frequency indicators.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "bun run tsc --noEmit passes cleanly. vitest runs 261/263 tests passing (2 pre-existing env.test.ts failures unrelated to this change). 133 formulas across all 10 subjects. Quick Reference now shows 42 high-frequency formulas (down from 90). Subject tab counts are dynamic per view mode. Expand/Collapse button hidden during active search."
+  }
+}

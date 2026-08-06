@@ -1,0 +1,35 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Redesign the Formula Center UI to be highly navigatable with tabbed subject navigation, expandable formula cards grouped by topic, a Quick Reference section for high-frequency formulas, and improved search/filter. This depends on FEAT-001 being complete (expanded formula data and metadata).",
+  "status": "completed",
+  "steps": [
+    "Refactor src/features/formulas/components/formula-center.tsx into a more navigatable layout: (1) Subject tabs as a horizontal scrollable tab bar at the top (using subject abbreviations and formula counts), (2) When a subject is selected, show formulas grouped by topic (using the new topic field), (3) Each topic group has a collapsible header showing topic name and formula count, (4) Formula cards are expandable (click to reveal variables, example, keyTip).",
+    "Add a 'Quick Reference' view mode (toggle button at top) that shows only formulas with examFrequency === 'high' across all subjects, grouped by subject. This gives users fast access to the most important formulas.",
+    "Add exam frequency badges to formula cards (small colored indicator: green for high, gold for medium, gray for low frequency).",
+    "Add a 'Bookmarked' filter tab alongside subjects that shows only bookmarked formulas.",
+    "Keep the existing search functionality but make it search across name, formula text, variables, and topic fields.",
+    "Ensure the component follows existing React patterns: useState(() => ...) for localStorage reads, no useSyncExternalStore, inline styles with CSS variables (--accent-primary: #002B5C, --accent-secondary: #C5A258, --accent-success: #00843D, --card-bg, --card-border, --foreground, --foreground-secondary).",
+    "Update src/app/(protected)/formulas/page.tsx if needed to pass any props or adjust the page header.",
+    "Create or update any necessary barrel exports."
+  ],
+  "acceptance_criteria": [
+    "Formula center displays subject tabs with formula count per subject",
+    "Selecting a subject shows formulas grouped by topic within that subject",
+    "Topic groups are collapsible/expandable",
+    "Formula cards expand on click to show variables, example, and key tip",
+    "Quick Reference toggle shows only high-frequency formulas",
+    "Bookmarked tab shows only user-bookmarked formulas",
+    "Search works across name, formula, variables, and topic",
+    "Exam frequency badges display on formula cards",
+    "No useSyncExternalStore usage anywhere",
+    "localStorage reads use useState(() => ...) lazy initializer pattern",
+    "bun run tsc --noEmit passes with zero errors"
+  ],
+  "verification": [
+    "bun run tsc --noEmit",
+    "bun run vitest --run"
+  ],
+  "blocked_reason": null,
+  "findings": "Complete UI redesign implemented as a single-file component. Features: 3 view modes (All/Quick Reference/Bookmarked), horizontal scrollable subject tabs with abbreviations and counts, topic grouping with collapsible headers, expandable formula cards with exam frequency badges (green/gold/gray dots), enhanced search across name/formula/variables/topic fields. All styling uses inline styles with CSS variables. No useSyncExternalStore - uses useState lazy initializer for localStorage. Existing bookmark localStorage key preserved. Type check passes. Only pre-existing env.test.ts failures in tests."
+}
