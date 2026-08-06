@@ -1,0 +1,42 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Add a full CFA mock exam simulation mode: 180 questions, 270 minutes, realistic subject weightings, results analysis with passing threshold comparison, and history tracking",
+  "status": "in_progress",
+  "steps": [
+    "Create src/features/mock-exam/ directory: types/, utils/, components/",
+    "Create src/features/mock-exam/types/index.ts with types: MockExamConfig, MockExamResult, MockExamHistory, SubjectWeighting, ExamProgress",
+    "Create src/features/mock-exam/utils/exam-config.ts with CFA Level I subject weightings per CFA Institute curriculum: Ethics (15-20%), Quant (6-9%), Economics (6-9%), FRA (11-14%), Corporate (6-9%), Equity (11-14%), Fixed Income (11-14%), Derivatives (5-8%), Alt Investments (5-8%), Portfolio Management (5-8%). Define PASSING_THRESHOLD = 0.65-0.70 range",
+    "Create src/features/mock-exam/utils/question-selector.ts that selects 180 questions from the existing question bank (src/features/question-bank/data/) following the subject weightings. If insufficient questions in a subject, fill proportionally from available pool",
+    "Create src/features/mock-exam/utils/storage.ts for localStorage persistence of mock exam history (key: 'cfa-buddy-mock-exams')",
+    "Create src/features/mock-exam/utils/scoring.ts for calculating results: overall score, per-subject breakdown, comparison to passing threshold, pass/fail determination",
+    "Create src/features/mock-exam/components/mock-exam-landing.tsx - landing page showing: exam rules (180 questions, 270 min, no breaks), subject weighting breakdown table, start button, previous exam history summary",
+    "Create src/features/mock-exam/components/mock-exam-session.tsx - the exam session component: question display with answer choices, question navigation (numbered grid), timer countdown (270 min), flag for review button, progress indicator",
+    "Create src/features/mock-exam/components/mock-exam-results.tsx - results page showing: overall score %, pass/fail verdict, per-subject scores with bar chart, comparison to passing threshold line, time analysis, score progression chart from history",
+    "Create src/features/mock-exam/components/mock-exam-history.tsx - shows past exam attempts: date, score, pass/fail, trend line",
+    "Add route: src/app/(protected)/mock-exam/page.tsx that renders MockExamLanding",
+    "Add route: src/app/(protected)/mock-exam/session/page.tsx that renders MockExamSession",
+    "Add route: src/app/(protected)/mock-exam/results/[examId]/page.tsx that renders MockExamResults",
+    "Add 'Mock Exam' link to sidebar navigation in src/shared/components/layout/sidebar.tsx",
+    "Add unit tests in src/features/mock-exam/__tests__/question-selector.test.ts and scoring.test.ts",
+    "Run full verification: npm run lint, npx tsc --noEmit, npm run build, npm run test"
+  ],
+  "acceptance_criteria": [
+    "/mock-exam page shows exam rules and start button",
+    "Exam session presents 180 questions with 270-minute timer",
+    "Questions are weighted by CFA Level I subject distribution",
+    "Results page shows score vs passing threshold (65-70%)",
+    "Per-subject breakdown displayed with visual chart",
+    "Exam history tracks score progression over time",
+    "Mock Exam link appears in sidebar navigation",
+    "All tests pass, lint clean, build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run build",
+    "eval \"$(mise activate bash)\" && npm run test"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

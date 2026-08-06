@@ -17,6 +17,7 @@ import {
   Target,
   TrendingUp,
   ClipboardList,
+  ClipboardCheck,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -59,6 +60,7 @@ export const navigationGroups: NavigationGroup[] = [
       { name: 'Questions', href: '/questions', icon: HelpCircle },
       { name: 'Practice', href: '/practice', icon: Repeat },
       { name: 'Flashcards', href: '/flashcards', icon: Brain },
+      { name: 'Mock Exam', href: '/mock-exam', icon: ClipboardCheck },
     ],
   },
   {
@@ -101,6 +103,7 @@ export const routeSegmentLabels: Record<string, string> = {
   'los-tracker': 'LOS Tracker',
   mistakes: 'Mistakes',
   'exam-plan': 'Exam Plan',
+  'mock-exam': 'Mock Exam',
   profile: 'Settings',
   admin: 'Admin',
   scanner: 'Scanner',
