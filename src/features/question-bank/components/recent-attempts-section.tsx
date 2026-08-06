@@ -10,6 +10,7 @@ import { seedPortfolioManagementAttempt } from '../utils/seed-portfolio-manageme
 import { seedQuantitativeMethodsAttempt } from '../utils/seed-quantitative-methods';
 import { seedAlternativeInvestmentsAttempt } from '../utils/seed-alternative-investments';
 import { runSeedsIfNeeded } from '../utils/seed-guard';
+import { seedFlashcardsFromAttempts } from '@/features/flashcards/utils/seed-flashcards';
 import type { PracticeAttempt } from '../types/attempt';
 
 function ScoreRingTiny({ score }: { score: number }) {
@@ -47,7 +48,7 @@ export function RecentAttemptsSection() {
   const [attempts, setAttempts] = useState<PracticeAttempt[]>([]);
 
   useEffect(() => {
-    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt]);
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFlashcardsFromAttempts]);
     const all = getAllAttempts();
     setAttempts(
       all.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()).slice(0, 3)

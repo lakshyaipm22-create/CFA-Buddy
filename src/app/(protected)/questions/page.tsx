@@ -8,6 +8,7 @@ import { QuestionAnalytics } from '@/features/question-bank/components/question-
 import { RecentAttemptsSection } from '@/features/question-bank/components/recent-attempts-section';
 import { RecentSessions } from '@/features/question-bank/components/recent-sessions';
 import { SmartSessionCard } from '@/features/question-bank/components/smart-session-card';
+import { WeakTopicQuiz } from '@/features/question-bank/components/weak-topic-quiz';
 import { useImportedQuestions } from '@/features/question-bank/hooks/useImportedQuestions';
 import { cleanupOldSessions } from '@/features/question-bank/utils/session-storage';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
@@ -79,6 +80,7 @@ function QuestionsPageInner() {
         </div>
       )}
       <SmartSessionCard />
+      <WeakTopicQuiz />
       <SessionConfigurator initialSubject={subjectParam} />
       <RecentAttemptsSection />
       <RecentSessions />

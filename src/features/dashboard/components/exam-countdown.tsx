@@ -1,38 +1,29 @@
 'use client';
 
-import { useState, useMemo, useSyncExternalStore } from 'react';
-
-// Module-level cache for referential stability
-let examDateCached: string | null = null;
-let examDateLastCheck: string | null = '___init___';
-
-function getExamDateSnapshot(): string | null {
-  if (typeof window === 'undefined') return null;
-  const value = localStorage.getItem('cfa-buddy-exam-date');
-  if (value !== examDateLastCheck) {
-    examDateLastCheck = value;
-    examDateCached = value;
-  }
-  return examDateCached;
-}
-
-function getExamDateServerSnapshot(): string | null {
-  return null;
-}
-
-function subscribeExamDate(callback: () => void): () => void {
-  window.addEventListener('storage', callback);
-  return () => window.removeEventListener('storage', callback);
-}
+import { useState, useMemo, useEffect } from 'react';
 
 export function ExamCountdown() {
-  const targetDate = useSyncExternalStore(subscribeExamDate, getExamDateSnapshot, getExamDateServerSnapshot);
+  const [targetDate, setTargetDate] = useState<string | null>(() => {
+    if (typeof window === 'undefined') return null;
+    return localStorage.getItem('cfa-buddy-exam-date');
+  });
+
   const [inputDate, setInputDate] = useState('');
+
+  useEffect(() => {
+    const handler = (e: StorageEvent) => {
+      if (e.key === 'cfa-buddy-exam-date') {
+        setTargetDate(localStorage.getItem('cfa-buddy-exam-date'));
+      }
+    };
+    window.addEventListener('storage', handler);
+    return () => window.removeEventListener('storage', handler);
+  }, []);
 
   const saveDate = () => {
     if (!inputDate) return;
     localStorage.setItem('cfa-buddy-exam-date', inputDate);
-    window.dispatchEvent(new StorageEvent('storage', { key: 'cfa-buddy-exam-date' }));
+    setTargetDate(inputDate);
     setInputDate('');
   };
 

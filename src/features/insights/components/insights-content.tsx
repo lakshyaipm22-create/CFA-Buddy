@@ -4,8 +4,11 @@ import { useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { TrendingUp, TrendingDown, Target, Clock } from 'lucide-react';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
-import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
+import { loadAllQuestions } from '@/features/question-bank/utils/question-loader';
+import { CFA_CURRICULUM_WEIGHTS } from '@/shared/config/subjects';
 import { TopicHeatmap } from './topic-heatmap';
+import { ReadinessDashboard } from './readiness-dashboard';
+import { ConfidenceCalibration } from './confidence-calibration';
 import {
   WeakTopicPanel,
   ProgressTimelineChart,
@@ -28,6 +31,8 @@ const SUBJECT_COLORS = [
 export function InsightsContent() {
   const sessions = useLocalStorageSessions();
 
+  const allQuestions = useMemo(() => loadAllQuestions(), []);
+
   // Load all attempts from localStorage for weak topic analysis
   const [allAttempts] = useState<PracticeAttempt[]>(() => {
     if (typeof window === 'undefined') return [];
@@ -49,7 +54,7 @@ export function InsightsContent() {
 
     for (const session of completed) {
       for (const attempt of session.attempts ?? []) {
-        const q = sampleQuestions.find(sq => sq.id === attempt.questionId);
+        const q = allQuestions.find(sq => sq.id === attempt.questionId);
         const subject = q?.subject ?? 'Unknown';
         if (!bySubject[subject]) bySubject[subject] = { correct: 0, total: 0, timeSpent: 0 };
         bySubject[subject].total++;
@@ -72,18 +77,10 @@ export function InsightsContent() {
     const bestSubject = sorted[0] ?? null;
     const worstSubject = sorted[sorted.length - 1] ?? null;
 
-    // Predicted score (weighted by CFA weights)
-    const weights: Record<string, number> = {
-      'Ethical and Professional Standards': 15,
-      'Quantitative Methods': 10, 'Economics': 10,
-      'Financial Statement Analysis': 13, 'Corporate Issuers': 8,
-      'Equity Investments': 11, 'Fixed Income': 11,
-      'Derivatives': 6, 'Alternative Investments': 6,
-      'Portfolio Management': 10,
-    };
+    // Predicted score (weighted by CFA curriculum weights - canonical source)
     let weightedScore = 0, totalWeight = 0;
     for (const entry of subjectEntries) {
-      const w = weights[entry.fullName] ?? 10;
+      const w = (CFA_CURRICULUM_WEIGHTS[entry.fullName] ?? 0.10) * 100;
       weightedScore += entry.accuracy * w;
       totalWeight += w;
     }
@@ -102,7 +99,7 @@ export function InsightsContent() {
     }));
 
     return { subjectEntries, bestSubject, worstSubject, predictedScore, daysToTarget, overallAccuracy, pieData };
-  }, [sessions]);
+  }, [sessions, allQuestions]);
 
   if (!data) {
     return (
@@ -128,9 +125,19 @@ export function InsightsContent() {
 
   return (
     <div className="space-y-6">
+      {/* Readiness Dashboard */}
+      {allAttempts.length > 0 && (
+        <ReadinessDashboard attempts={allAttempts} />
+      )}
+
       {/* Progress Timeline */}
       {allAttempts.length > 0 && (
         <ProgressTimelineChart attempts={allAttempts} />
+      )}
+
+      {/* Confidence Calibration Matrix */}
+      {allAttempts.length > 0 && (
+        <ConfidenceCalibration attempts={allAttempts} />
       )}
 
       {/* Key Metrics */}
@@ -191,7 +198,7 @@ export function InsightsContent() {
 
       {/* Weak Topic Deep Dive */}
       {allAttempts.length > 0 && (
-        <WeakTopicPanel attempts={allAttempts} questions={sampleQuestions as Question[]} />
+        <WeakTopicPanel attempts={allAttempts} questions={allQuestions as Question[]} />
       )}
 
       {/* Gap Analysis */}

@@ -44,6 +44,7 @@ import { seedPortfolioManagementAttempt } from '@/features/question-bank/utils/s
 import { seedQuantitativeMethodsAttempt } from '@/features/question-bank/utils/seed-quantitative-methods';
 import { seedAlternativeInvestmentsAttempt } from '@/features/question-bank/utils/seed-alternative-investments';
 import { runSeedsIfNeeded } from '@/features/question-bank/utils/seed-guard';
+import { seedFlashcardsFromAttempts } from '@/features/flashcards/utils/seed-flashcards';
 import { getLatestAttempt } from '@/features/question-bank/utils/attempt-storage';
 import { getLocalProfile } from '@/shared/lib/local-profile';
 import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
@@ -68,7 +69,7 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
   const effectiveLevel = localProfile?.level || level;
 
   useEffect(() => {
-    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt]);
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFlashcardsFromAttempts]);
     const results: PracticeAttempt[] = [];
     for (const subject of ALL_SUBJECTS) {
       const latest = getLatestAttempt(subject);

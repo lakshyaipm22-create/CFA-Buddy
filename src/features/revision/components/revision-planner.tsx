@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Calendar, RotateCw, TrendingUp, AlertTriangle } from 'lucide-react';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
-import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
+import { loadAllQuestions } from '@/features/question-bank/utils/question-loader';
 import { sortByCfaOrder } from '@/shared/config/subjects';
 
 // Spaced repetition intervals (days)
@@ -32,11 +32,19 @@ function saveRevisionSchedule(schedule: Record<string, { stage: number; lastRevi
   localStorage.setItem(STORAGE_KEY, JSON.stringify(schedule));
 }
 
-const ALL_SUBJECTS = sortByCfaOrder([...new Set(sampleQuestions.map(q => q.subject))]);
-
 export function RevisionPlanner() {
   const sessions = useLocalStorageSessions();
   const [schedule, setSchedule] = useState(() => getRevisionSchedule());
+
+  const allQuestions = useMemo(() => loadAllQuestions(), []);
+  const questionMap = useMemo(() => {
+    const map = new Map<string, (typeof allQuestions)[number]>();
+    for (const q of allQuestions) {
+      map.set(q.id, q);
+    }
+    return map;
+  }, [allQuestions]);
+  const ALL_SUBJECTS = useMemo(() => sortByCfaOrder([...new Set(allQuestions.map(q => q.subject))]), [allQuestions]);
 
   const subjectData = useMemo<SubjectRevision[]>(() => {
     const completed = sessions.filter(s => s.status === 'completed');
@@ -48,8 +56,9 @@ export function RevisionPlanner() {
 
       for (const session of completed) {
         for (const attempt of session.attempts ?? []) {
-          // Match subject by question ID prefix
-          const q = sampleQuestions.find(sq => sq.id === attempt.questionId);
+          // Match subject by question ID lookup
+          if (!attempt.questionId) continue;
+          const q = questionMap.get(attempt.questionId);
           if (q?.subject === subject) {
             total++;
             if (attempt.correct) correct++;
@@ -87,7 +96,7 @@ export function RevisionPlanner() {
         revisionStage: stage,
       };
     }).sort((a, b) => b.priority - a.priority);
-  }, [sessions, schedule]);
+  }, [sessions, schedule, questionMap, ALL_SUBJECTS]);
 
   const markRevised = (subject: string) => {
     const current = schedule[subject];

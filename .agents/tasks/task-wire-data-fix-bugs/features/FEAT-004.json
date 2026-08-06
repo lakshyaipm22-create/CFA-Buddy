@@ -1,0 +1,25 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Build a Weak Topic Quiz feature that auto-generates targeted practice sessions from incorrect answers. Uses the PracticeAttempt data to identify the weakest topics/modules and creates focused quiz sessions of 10-20 questions from those areas.",
+  "status": "completed",
+  "steps": [
+    "Create src/features/question-bank/utils/weak-topic-engine.ts. This module: (1) reads all PracticeAttempts via getAllAttempts(), (2) groups incorrect questions by topic and module, (3) calculates per-topic accuracy and identifies topics below 70% accuracy as 'weak', (4) exports getWeakTopics() returning an array of { topic, subject, accuracy, incorrectCount, questionIds }, (5) exports generateWeakTopicQuiz(count: number) that selects questions from weak topics weighted by how poorly they scored, returning an array of question IDs.",
+    "Create src/features/question-bank/components/weak-topic-quiz.tsx - a client component that: (1) calls getWeakTopics() to show a summary of weak areas, (2) has a 'Start Weak Topic Quiz' button that generates a quiz session using the existing QuestionSession type with mode='WeakTopic', (3) uses the existing session-storage.ts saveSession() and navigates to /questions/session/[id]. Follow the pattern in session-configurator.tsx for creating and starting sessions.",
+    "Wire the weak-topic-quiz component into the Questions page. In the page that renders SessionConfigurator (look at the (protected) routes), add the WeakTopicQuiz component above or alongside the configurator as a prominent 'Recommended' section, only showing when weak topics exist.",
+    "Run bun run tsc --noEmit to verify."
+  ],
+  "acceptance_criteria": [
+    "getWeakTopics() correctly identifies topics where user scored below 70%",
+    "generateWeakTopicQuiz() returns valid question IDs from the full question bank",
+    "WeakTopicQuiz component renders weak topic summary and provides one-click quiz generation",
+    "Quiz sessions created with mode='WeakTopic' work with the existing active-test-session.tsx flow",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "Run: bun run tsc --noEmit - expect exit 0",
+    "Run: bun run vitest --run - expect same or better pass count"
+  ],
+  "blocked_reason": null,
+  "findings": "All acceptance criteria met. TypeScript compiles cleanly. All tests pass (only pre-existing env.test.ts zod v4 failures remain). The WeakTopicQuiz component renders conditionally - only shows when weak topics exist (getWeakTopics returns non-empty). Session creation follows the exact same pattern as session-configurator.tsx. The existing selectQuestions function already handles WeakTopic mode in question-selector.ts, so sessions created here work seamlessly with the active-test-session flow."
+}

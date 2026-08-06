@@ -1,4 +1,5 @@
 import { FormulaCenter } from '@/features/formulas/components/formula-center';
+import { FormulaQuiz } from '@/features/formulas/components/formula-quiz';
 
 export default function FormulasPage() {
   return (
@@ -10,6 +11,11 @@ export default function FormulasPage() {
         </p>
       </div>
       <FormulaCenter />
+
+      {/* Formula Quiz Mode */}
+      <div style={{ borderTop: '1px solid var(--card-border)', paddingTop: '1.5rem' }}>
+        <FormulaQuiz />
+      </div>
     </div>
   );
 }

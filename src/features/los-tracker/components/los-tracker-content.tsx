@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
+import { loadAllQuestions } from '@/features/question-bank/utils/question-loader';
 import { sortByCfaOrder } from '@/shared/config/subjects';
 
 type LOSStatus = 'not-started' | 'reading' | 'practiced' | 'revised' | 'mastered';
@@ -23,21 +23,7 @@ const STATUS_LABELS: Record<LOSStatus, string> = {
   'mastered': 'Mastered',
 };
 
-// Derive LOS items from sample questions (subjects + topics)
-const LOS_ITEMS = (() => {
-  const items: Array<{ id: string; subject: string; topic: string }> = [];
-  const seen = new Set<string>();
-  for (const q of sampleQuestions) {
-    const key = `${q.subject}:${q.topic ?? 'General'}`;
-    if (!seen.has(key)) {
-      seen.add(key);
-      items.push({ id: key, subject: q.subject, topic: q.topic ?? 'General' });
-    }
-  }
-  return items.sort((a, b) => a.subject.localeCompare(b.subject) || a.topic.localeCompare(b.topic));
-})();
 
-const SUBJECTS = sortByCfaOrder([...new Set(LOS_ITEMS.map(i => i.subject))]);
 
 function getLOSProgress(): Record<string, LOSStatus> {
   if (typeof window === 'undefined') return {};
@@ -51,6 +37,22 @@ function saveLOSProgress(progress: Record<string, LOSStatus>): void {
 export function LOSTrackerContent() {
   const [progress, setProgress] = useState<Record<string, LOSStatus>>(() => getLOSProgress());
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+
+  const LOS_ITEMS = useMemo(() => {
+    const allQuestions = loadAllQuestions();
+    const items: Array<{ id: string; subject: string; topic: string }> = [];
+    const seen = new Set<string>();
+    for (const q of allQuestions) {
+      const key = `${q.subject}:${q.topic ?? 'General'}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        items.push({ id: key, subject: q.subject, topic: q.topic ?? 'General' });
+      }
+    }
+    return items.sort((a, b) => a.subject.localeCompare(b.subject) || a.topic.localeCompare(b.topic));
+  }, []);
+
+  const SUBJECTS = useMemo(() => sortByCfaOrder([...new Set(LOS_ITEMS.map(i => i.subject))]), [LOS_ITEMS]);
 
   const filteredItems = selectedSubject ? LOS_ITEMS.filter(i => i.subject === selectedSubject) : LOS_ITEMS;
 

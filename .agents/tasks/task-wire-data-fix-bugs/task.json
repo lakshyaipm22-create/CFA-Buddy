@@ -1,0 +1,14 @@
+{
+  "task_id": "task-wire-data-fix-bugs",
+  "task_description": "Fix critical React bugs (useSyncExternalStore violations), wire all 1,283 real questions into features that only use 50 sample questions, and build 8 high-value exam prep features: auto-seeded flashcards, weak topic quizzes, enhanced exam plan with real data, formula quiz mode, readiness dashboard, enhanced mistake book, personalized study planner, and confidence calibration analyzer.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004", "FEAT-005", "FEAT-006", "FEAT-007", "FEAT-008", "FEAT-009", "FEAT-010"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "bun run tsc --noEmit passes cleanly. 261/263 tests pass (2 pre-existing env.test.ts zod v4 failures documented). Zero useSyncExternalStore imports remain. All 10 features implemented and committed."
+  }
+}

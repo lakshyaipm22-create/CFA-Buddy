@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-011",
+  "type": "fix",
+  "description": "Address 5 semantic review issues: memoize search modal questions, build Map for revision planner lookups, memoize mistake book retry badge count, cap formula quiz localStorage at 1000 entries, unify insights weights with shared config.",
+  "status": "completed",
+  "steps": [
+    "In search-modal.tsx, add useMemo import and memoize loadAllQuestions() at component level instead of calling it inside the search callback.",
+    "In revision-planner.tsx, build a Map<string, Question> via useMemo from allQuestions and use it for O(1) lookups instead of allQuestions.find().",
+    "In mistake-book.tsx, memoize the unique question count for filtered mistakes into a useMemo variable and reference that in the Retry button badge.",
+    "In formula-quiz-engine.ts, add a rolling cap of 1000 entries in saveFormulaQuizResult - trim oldest entries before saving if array exceeds 1000.",
+    "In insights-content.tsx, import CFA_CURRICULUM_WEIGHTS from shared config and replace the hardcoded weights object, multiplying by 100 for the display calculation.",
+    "Run bun run tsc --noEmit and bun run vitest --run to verify."
+  ],
+  "acceptance_criteria": [
+    "search-modal.tsx calls loadAllQuestions() in a useMemo, not inside the search handler",
+    "revision-planner.tsx uses a Map for question lookups instead of .find()",
+    "mistake-book.tsx has a memoized unique question count for the retry badge",
+    "formula-quiz-engine.ts caps history at 1000 entries",
+    "insights-content.tsx imports CFA_CURRICULUM_WEIGHTS and uses it instead of hardcoded weights",
+    "bun run tsc --noEmit passes",
+    "bun run vitest --run passes (same as before)"
+  ],
+  "verification": [
+    "Run: bun run tsc --noEmit - expect exit 0",
+    "Run: bun run vitest --run - expect same pass count"
+  ],
+  "blocked_reason": null,
+  "findings": "All 5 review issues fixed. tsc --noEmit passes. 261/263 tests pass (2 pre-existing env.test.ts zod v4 failures unchanged). Committed as 2182ef6."
+}
