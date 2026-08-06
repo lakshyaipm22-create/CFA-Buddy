@@ -2,7 +2,7 @@
   "id": "FEAT-009",
   "type": "feat",
   "description": "Tier 3 Polish - Part 2: ISR for content pages, Cursor-based pagination, Dynamic imports/bundle splitting, Property tests. Covers Tier 3 items #5-8.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Add ISR (Incremental Static Regeneration) to content hierarchy pages: update src/app/(protected)/learn/page.tsx and src/app/(protected)/resources/page.tsx to export revalidate = 3600 (1 hour). These Server Components should fetch hierarchy data at build time and revalidate periodically.",
     "Implement cursor-based pagination for all list queries: create src/shared/hooks/use-cursor-pagination.ts - a reusable hook that manages cursor state, hasMore flag, and loadMore function. Apply to: questions list (src/features/question-bank/), mistakes list (src/features/mistake-book/), flashcards list (src/features/flashcards/), resources list (src/features/resource-library/). Each list should load 20 items initially with a 'Load More' button.",
@@ -21,5 +21,5 @@
     "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "ISR working (confirmed in build output: /learn 1h, /resources 1h). Dynamic imports cannot use ssr:false in Server Components in Next.js 16 - removed that option and it works fine since the components are 'use client' anyway. Installed jsdom as devDependency for React hook property tests. 274 tests pass (11 new property tests). Pre-existing lint errors remain (23 problems in other files, none from FEAT-009 changes)."
 }
