@@ -7,6 +7,7 @@ import { getAllAttempts } from '../utils/attempt-storage';
 import { seedCorporateIssuersAttempt } from '../utils/seed-corporate-issuers';
 import { seedFsaAttempt } from '../utils/seed-fsa';
 import { seedPortfolioManagementAttempt } from '../utils/seed-portfolio-management';
+import { seedQuantitativeMethodsAttempt } from '../utils/seed-quantitative-methods';
 import { runSeedsIfNeeded } from '../utils/seed-guard';
 import type { PracticeAttempt } from '../types/attempt';
 
@@ -45,7 +46,7 @@ export function RecentAttemptsSection() {
   const [attempts, setAttempts] = useState<PracticeAttempt[]>([]);
 
   useEffect(() => {
-    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt]);
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt]);
     const all = getAllAttempts();
     setAttempts(
       all.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()).slice(0, 3)
