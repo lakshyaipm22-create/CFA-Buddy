@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Auto-seed flashcards from incorrect questions in PracticeAttempt data. When the seeding runs (via runSeedsIfNeeded), also generate flashcards for every incorrectly-answered question across all 5 subjects. This gives users an immediate deck of 300+ flashcards to study from day one, using the SM-2 spaced repetition system already built.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/flashcards/utils/seed-flashcards.ts. This function: (1) reads all PracticeAttempts from localStorage via getAllAttempts(), (2) collects all questionIds where correct===false, (3) loads the full question set via loadAllQuestions(), (4) for each incorrect question, creates a Flashcard with front=questionText, back=correct answer label + text + explanation, subject, topic, state='new', easeFactor=2.5, interval=0, repetitions=0, nextReview=now, lastReview=null. (5) Deduplicates against existing flashcards by id pattern 'fc-{questionId}'. (6) Saves the merged array via saveFlashcards().",
     "Wire the seed-flashcards function into the seed guard. In both src/features/dashboard/components/dashboard-content.tsx and src/features/question-bank/components/attempts-list-client.tsx and recent-attempts-section.tsx, import seedFlashcardsFromAttempts and add it to the runSeedsIfNeeded array AFTER the attempt seed functions (so attempts exist when flashcard seeding runs).",
@@ -21,5 +21,5 @@
     "Run: bun run vitest --run - expect same or better pass count"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Implementation complete. bun run tsc --noEmit passes cleanly. All 261 tests pass (2 pre-existing env.test.ts failures are the known zod v4 issue). The seed-flashcards function is placed after attempt seeds in the array so attempts exist when flashcard seeding runs. Seed version bumped to v6."
 }
