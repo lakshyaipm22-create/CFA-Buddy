@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Wire loadAllQuestions() into LOS Tracker, Revision Planner, Insights, and Search Modal - replacing the 50-question sampleQuestions import with the full 1,283-question data set. This gives these features access to all subjects, topics, and readings from the real question bank.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "In src/features/los-tracker/components/los-tracker-content.tsx: Replace 'import { sampleQuestions } from @/features/question-bank/data/sample-questions' with 'import { loadAllQuestions } from @/features/question-bank/utils/question-loader'. Change the LOS_ITEMS IIFE to call loadAllQuestions() instead of iterating sampleQuestions. Since loadAllQuestions() requires client-side window, wrap LOS_ITEMS creation inside the component using useMemo, not at module level. The SUBJECTS derivation similarly moves inside the component.",
     "In src/features/revision/components/revision-planner.tsx: Replace sampleQuestions import with loadAllQuestions. Change ALL_SUBJECTS to be derived from loadAllQuestions() inside the component via useMemo. Change the inner loop that finds questions by ID to use the full question set.",
@@ -22,5 +22,5 @@
     "Run: bun run vitest --run - expect same or better pass count"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 4 files (los-tracker-content.tsx, revision-planner.tsx, insights-content.tsx, search-modal.tsx) plus topic-heatmap.tsx migrated from sampleQuestions to loadAllQuestions(). Module-level derivations moved inside components with useMemo. grep confirms zero imports from sample-questions outside question-loader.ts. tsc --noEmit passes. 261 tests pass (2 pre-existing env.test.ts failures unchanged)."
 }

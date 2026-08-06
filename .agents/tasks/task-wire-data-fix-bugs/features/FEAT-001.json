@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "fix",
   "description": "Fix all useSyncExternalStore violations across 4 files. Replace with useState(() => ...) lazy initializer pattern per Critical React Rule #1. Files: exam-plan-content.tsx, mistake-book.tsx, exam-countdown.tsx, personal-notes.tsx.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "In src/features/exam-plan/components/exam-plan-content.tsx: Remove useSyncExternalStore import and the subscribeStorage/getExamDateSnapshot/getExamDateServer/getSessionsSnapshot/getSessionsServer module-level machinery. Replace with useState(() => ...) lazy initializers for both examDate and sessions. The examDate state reads localStorage.getItem('cfa-buddy-exam-date'). The sessions state reads and parses localStorage.getItem('cfa-buddy-sessions'). Add a window storage event listener in a useEffect to update state when localStorage changes (for the exam date save button to work). Remove module-level cache variables.",
     "In src/features/mistake-book/components/mistake-book.tsx: Remove useSyncExternalStore and the subscribe/getSessionsSnapshot/getServerSnapshot/emptyArray/mistakeCachedRaw/mistakeCachedParsed module-level machinery. Replace with useState(() => ...) lazy initializer that reads and parses localStorage.getItem('cfa-buddy-sessions').",
@@ -22,5 +22,5 @@
     "Run: bun run vitest --run - expect same pass count as before (261 passing)"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 4 files fixed. grep confirms zero useSyncExternalStore references in src/. tsc --noEmit passes. vitest shows 261 passing (2 pre-existing env.test.ts failures unchanged)."
 }
