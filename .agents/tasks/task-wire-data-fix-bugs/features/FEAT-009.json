@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-009",
+  "type": "feat",
+  "description": "Build a Study Planner that creates a personalized day-by-day study schedule using the subject metadata (modules, keyTopics, examWeight, topicGroups) and current performance data. Allocates more time to weak subjects proportional to their exam weight and the user's gap from target score.",
+  "status": "pending",
+  "steps": [
+    "Create src/features/study-plan/utils/plan-generator.ts that: (1) imports SUBJECT_METADATA, CFA_CURRICULUM_WEIGHTS, getAllAttempts, (2) reads the exam date from localStorage 'cfa-buddy-exam-date', (3) calculates days remaining, (4) for each subject computes: gap = max(0, targetScore - currentAccuracy), priority = gap * examWeight, (5) allocates study days proportionally to priority scores, (6) generates a daily plan array with: date, subject, modules to cover, estimated questions to practice, type (learn new / review / practice), (7) exports generateStudyPlan(targetScore: number) and getDailyPlan(date: string).",
+    "Create src/features/study-plan/components/study-plan-content.tsx - a client component showing: (1) Weekly view with daily cards showing what to study, (2) Each day card shows: subject, specific modules, question count target, estimated time (2 min/question), (3) Progress tracking (check off completed days), (4) Adaptive rebalancing - if user marks a day complete, recalculate remaining days, (5) 'Start Today's Study' button that navigates to a practice session filtered to the recommended subject/topic.",
+    "Wire the study plan into the existing study-plan page. Check if src/app/(protected)/study-plan/page.tsx exists; if not, create it. The page should render StudyPlanContent.",
+    "Run bun run tsc --noEmit to verify."
+  ],
+  "acceptance_criteria": [
+    "Study plan allocates more days to subjects with lower accuracy AND higher exam weight",
+    "Plan adapts to remaining days (shorter timeframe = more focused on weakest high-weight subjects)",
+    "Daily cards show specific modules from SUBJECT_METADATA",
+    "Completed days can be checked off and plan recalculates",
+    "'Start Today's Study' creates appropriate practice session",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "Run: bun run tsc --noEmit - expect exit 0",
+    "Run: bun run vitest --run - expect same or better pass count"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useSyncExternalStore } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Calendar, TrendingUp, Target, CheckCircle2 } from 'lucide-react';
 import { CFA_SUBJECTS_ORDERED } from '@/shared/config/subjects';
 
@@ -9,29 +9,6 @@ const SUBJECTS = CFA_SUBJECTS_ORDERED.map((name, idx) => {
   const weights = [10, 10, 8, 13, 11, 11, 6, 6, 10, 15];
   return { name, weight: weights[idx] };
 });
-
-// Module-level cache for exam date
-let examDateCachedRaw: string | null = '___init___';
-let examDateCachedVal: string | null = null;
-
-function getExamDateSnapshot(): string | null {
-  if (typeof window === 'undefined') return null;
-  const raw = localStorage.getItem('cfa-buddy-exam-date');
-  if (raw !== examDateCachedRaw) {
-    examDateCachedRaw = raw;
-    examDateCachedVal = raw;
-  }
-  return examDateCachedVal;
-}
-
-function getExamDateServer(): string | null {
-  return null;
-}
-
-function subscribeStorage(cb: () => void) {
-  window.addEventListener('storage', cb);
-  return () => window.removeEventListener('storage', cb);
-}
 
 interface SessionData {
   status: string;
@@ -42,34 +19,40 @@ interface SessionData {
   }>;
 }
 
-const emptySessions: SessionData[] = [];
-let sessionsCachedRaw: string | null = null;
-let sessionsCachedVal: SessionData[] = emptySessions;
-
-function getSessionsSnapshot(): SessionData[] {
-  if (typeof window === 'undefined') return emptySessions;
-  const raw = localStorage.getItem('cfa-buddy-sessions');
-  if (!raw) return emptySessions;
-  if (raw !== sessionsCachedRaw) {
-    sessionsCachedRaw = raw;
-    try { sessionsCachedVal = JSON.parse(raw); } catch { sessionsCachedVal = emptySessions; }
-  }
-  return sessionsCachedVal;
-}
-
-function getSessionsServer(): SessionData[] {
-  return emptySessions;
-}
-
 export function ExamPlanContent() {
-  const examDate = useSyncExternalStore(subscribeStorage, getExamDateSnapshot, getExamDateServer);
-  const sessions = useSyncExternalStore(subscribeStorage, getSessionsSnapshot, getSessionsServer);
+  const [examDate, setExamDate] = useState<string | null>(() => {
+    if (typeof window === 'undefined') return null;
+    return localStorage.getItem('cfa-buddy-exam-date');
+  });
+
+  const [sessions, setSessions] = useState<SessionData[]>(() => {
+    if (typeof window === 'undefined') return [];
+    const raw = localStorage.getItem('cfa-buddy-sessions');
+    if (!raw) return [];
+    try { return JSON.parse(raw); } catch { return []; }
+  });
+
   const [inputDate, setInputDate] = useState('');
+
+  useEffect(() => {
+    const handler = (e: StorageEvent) => {
+      if (e.key === 'cfa-buddy-exam-date') {
+        setExamDate(localStorage.getItem('cfa-buddy-exam-date'));
+      }
+      if (e.key === 'cfa-buddy-sessions') {
+        const raw = localStorage.getItem('cfa-buddy-sessions');
+        if (!raw) { setSessions([]); return; }
+        try { setSessions(JSON.parse(raw)); } catch { setSessions([]); }
+      }
+    };
+    window.addEventListener('storage', handler);
+    return () => window.removeEventListener('storage', handler);
+  }, []);
 
   const saveDate = () => {
     if (!inputDate) return;
     localStorage.setItem('cfa-buddy-exam-date', inputDate);
-    window.dispatchEvent(new StorageEvent('storage', { key: 'cfa-buddy-exam-date' }));
+    setExamDate(inputDate);
     setInputDate('');
   };
 

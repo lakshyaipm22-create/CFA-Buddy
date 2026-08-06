@@ -1,0 +1,25 @@
+{
+  "id": "FEAT-006",
+  "type": "feat",
+  "description": "Build a Formula Quiz mode that tests users on the 132 formulas. Creates flashcard-style interactive sessions where users see a formula name and must recall the formula, variables, and application. Uses the rich metadata (topic, difficulty, examFrequency, keyTip) for intelligent selection.",
+  "status": "pending",
+  "steps": [
+    "Create src/features/formulas/components/formula-quiz.tsx - a client component with: (1) Quiz configuration: select subject filter, difficulty filter (core/advanced), frequency filter (high/medium/low), count (10/20/all). (2) Card-based interface showing formula name + subject + reading as the prompt. (3) User attempts to recall, then clicks 'Show Formula' to reveal formula + variables + example + keyTip. (4) Self-rating buttons: 'Forgot', 'Struggled', 'Got It', 'Easy' (mapping to SM-2 ratings). (5) Track results in localStorage under 'cfa-buddy-formula-quiz-results'.",
+    "Create src/features/formulas/utils/formula-quiz-engine.ts that: (1) imports formulaSeed from the data file, (2) exports selectFormulaQuiz(config) that filters and selects formulas based on criteria, prioritizing high-examFrequency formulas and those previously rated poorly, (3) exports saveFormulaQuizResult(formulaId, rating) and getFormulaQuizHistory() for tracking per-formula mastery.",
+    "Add a Formula Quiz tab/section to the Formula Center page. Find where the formula page is rendered (likely in app/(protected)/formulas/page.tsx or similar) and add a 'Quiz Mode' button/tab that navigates to or shows the formula-quiz component.",
+    "Run bun run tsc --noEmit to verify."
+  ],
+  "acceptance_criteria": [
+    "Formula quiz presents formulas from the 132-formula database with filtering options",
+    "High exam frequency formulas are prioritized in quiz selection",
+    "Users can self-rate recall quality with 4 levels",
+    "Quiz results are persisted in localStorage and influence future quiz selection (weak formulas appear more often)",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "Run: bun run tsc --noEmit - expect exit 0",
+    "Run: bun run vitest --run - expect same or better pass count"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-005",
+  "type": "feat",
+  "description": "Wire the Exam Plan page to use real PracticeAttempt data instead of generic session data. Show actual per-subject scores from the seeded attempts (Corporate Issuers 76%, FSA 69%, PM 78%, QM 78%, Alt Inv 79%), calculate weighted CFA readiness score, and provide subject-specific daily targets based on weak areas.",
+  "status": "pending",
+  "steps": [
+    "In src/features/exam-plan/components/exam-plan-content.tsx (after FEAT-001 has replaced useSyncExternalStore): Import getAllAttempts from '@/features/question-bank/utils/attempt-storage' and loadAllQuestions from the question-loader. Read PracticeAttempt data in a useState lazy initializer.",
+    "Replace the generic 'subjectProgress' computation (which just distributes session attempts evenly across 'All Subjects') with real per-subject data from PracticeAttempts. For each of the 10 CFA subjects, show: accuracy percentage from attempt data, number of questions answered, and coverage (questions answered / total available in that subject).",
+    "Update the metrics calculation to use CFA_CURRICULUM_WEIGHTS for a weighted readiness score. Replace the generic '2000 questions' target with the actual total available questions (1,283). Calculate questions/day based on unanswered questions remaining.",
+    "Add a 'Focus Areas' section that highlights the 3 weakest subjects (lowest accuracy) with specific module-level breakdowns showing which modules need the most work.",
+    "Run bun run tsc --noEmit to verify."
+  ],
+  "acceptance_criteria": [
+    "Subject Progress shows real accuracy percentages from PracticeAttempt data (not generic session data)",
+    "Predicted/readiness score uses CFA curriculum weights",
+    "Daily targets are calculated from actual remaining questions and days until exam",
+    "Focus Areas section shows the 3 weakest subjects with module breakdowns",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "Run: bun run tsc --noEmit - expect exit 0",
+    "Run: bun run vitest --run - expect same or better pass count"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

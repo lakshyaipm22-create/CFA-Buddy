@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-001",
+  "type": "fix",
+  "description": "Fix all useSyncExternalStore violations across 4 files. Replace with useState(() => ...) lazy initializer pattern per Critical React Rule #1. Files: exam-plan-content.tsx, mistake-book.tsx, exam-countdown.tsx, personal-notes.tsx.",
+  "status": "in_progress",
+  "steps": [
+    "In src/features/exam-plan/components/exam-plan-content.tsx: Remove useSyncExternalStore import and the subscribeStorage/getExamDateSnapshot/getExamDateServer/getSessionsSnapshot/getSessionsServer module-level machinery. Replace with useState(() => ...) lazy initializers for both examDate and sessions. The examDate state reads localStorage.getItem('cfa-buddy-exam-date'). The sessions state reads and parses localStorage.getItem('cfa-buddy-sessions'). Add a window storage event listener in a useEffect to update state when localStorage changes (for the exam date save button to work). Remove module-level cache variables.",
+    "In src/features/mistake-book/components/mistake-book.tsx: Remove useSyncExternalStore and the subscribe/getSessionsSnapshot/getServerSnapshot/emptyArray/mistakeCachedRaw/mistakeCachedParsed module-level machinery. Replace with useState(() => ...) lazy initializer that reads and parses localStorage.getItem('cfa-buddy-sessions').",
+    "In src/features/dashboard/components/exam-countdown.tsx: Remove useSyncExternalStore and the subscribeExamDate/getExamDateSnapshot/getExamDateServerSnapshot/examDateCached/examDateLastCheck module-level machinery. Replace with useState(() => ...) lazy initializer that reads localStorage.getItem('cfa-buddy-exam-date'). Add useEffect with storage event listener so the date updates when saved.",
+    "In src/features/learning-workspace/components/personal-notes.tsx: Remove useSyncExternalStore and the useCallback-based subscribe/getSnapshot/getServerSnapshot pattern. Replace with useState(() => ...) lazy initializer for notes. Since this component needs to react to its own saves (via saveNotes function), use setState directly in saveNotes instead of dispatching StorageEvents.",
+    "Run bun run tsc --noEmit to confirm no type errors."
+  ],
+  "acceptance_criteria": [
+    "grep -rn 'useSyncExternalStore' src/ returns zero results",
+    "bun run tsc --noEmit passes with exit code 0",
+    "All 4 components use useState(() => ...) lazy initializer pattern for localStorage reads",
+    "Components that need to react to localStorage changes (exam-plan, exam-countdown) use useEffect with storage event listener"
+  ],
+  "verification": [
+    "Run: grep -rn 'useSyncExternalStore' /projects/sandbox/CFA-Buddy/src/ - expect zero matches",
+    "Run: bun run tsc --noEmit - expect exit 0",
+    "Run: bun run vitest --run - expect same pass count as before (261 passing)"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

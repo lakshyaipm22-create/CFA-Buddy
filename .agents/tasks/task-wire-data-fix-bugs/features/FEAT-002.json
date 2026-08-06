@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Wire loadAllQuestions() into LOS Tracker, Revision Planner, Insights, and Search Modal - replacing the 50-question sampleQuestions import with the full 1,283-question data set. This gives these features access to all subjects, topics, and readings from the real question bank.",
+  "status": "pending",
+  "steps": [
+    "In src/features/los-tracker/components/los-tracker-content.tsx: Replace 'import { sampleQuestions } from @/features/question-bank/data/sample-questions' with 'import { loadAllQuestions } from @/features/question-bank/utils/question-loader'. Change the LOS_ITEMS IIFE to call loadAllQuestions() instead of iterating sampleQuestions. Since loadAllQuestions() requires client-side window, wrap LOS_ITEMS creation inside the component using useMemo, not at module level. The SUBJECTS derivation similarly moves inside the component.",
+    "In src/features/revision/components/revision-planner.tsx: Replace sampleQuestions import with loadAllQuestions. Change ALL_SUBJECTS to be derived from loadAllQuestions() inside the component via useMemo. Change the inner loop that finds questions by ID to use the full question set.",
+    "In src/features/insights/components/insights-content.tsx: Replace sampleQuestions import with loadAllQuestions. Wrap the question lookup (find by questionId) to use loadAllQuestions(). Pass the full question set to WeakTopicPanel.",
+    "In src/features/search/components/search-modal.tsx: Replace sampleQuestions import with loadAllQuestions. Ensure search indexes all 1,283 questions.",
+    "Run bun run tsc --noEmit to verify no type errors."
+  ],
+  "acceptance_criteria": [
+    "grep -rn 'from.*sample-questions' src/ returns zero results (no file should import sampleQuestions directly anymore except the question-loader itself)",
+    "LOS Tracker derives topics from all 1,283 questions (not just 50)",
+    "Revision Planner has all 10 CFA subjects (not just the subset from 50 sample questions)",
+    "Insights page can look up any of the 1,283 questions by ID",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "Run: bun run tsc --noEmit - expect exit 0",
+    "Run: bun run vitest --run - expect same or better pass count"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

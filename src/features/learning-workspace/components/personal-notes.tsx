@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useSyncExternalStore, useCallback } from 'react';
+import { useState } from 'react';
 
 interface PersonalNotesProps {
   subject: string;
@@ -20,31 +20,20 @@ interface Note {
 export function PersonalNotes({ subject, reading }: PersonalNotesProps) {
   const storageKey = `notes-${subject}-${reading}`;
 
-  const subscribe = useCallback((callback: () => void) => {
-    window.addEventListener('storage', callback);
-    return () => window.removeEventListener('storage', callback);
-  }, []);
-
-  const getSnapshot = useCallback(() => {
-    return localStorage.getItem(storageKey) ?? '[]';
-  }, [storageKey]);
-
-  const getServerSnapshot = useCallback(() => '[]', []);
-
-  const rawNotes = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-  const notes: Note[] = (() => {
-    try { return JSON.parse(rawNotes); } catch { return []; }
-  })();
+  const [notes, setNotes] = useState<Note[]>(() => {
+    if (typeof window === 'undefined') return [];
+    const raw = localStorage.getItem(storageKey);
+    if (!raw) return [];
+    try { return JSON.parse(raw); } catch { return []; }
+  });
 
   const [editing, setEditing] = useState<string | null>(null);
   const [newNote, setNewNote] = useState('');
   const [editContent, setEditContent] = useState('');
 
-  // Save to localStorage (triggers useSyncExternalStore via storage event)
   const saveNotes = (updated: Note[]) => {
     localStorage.setItem(storageKey, JSON.stringify(updated));
-    // Dispatch a storage event so useSyncExternalStore re-renders
-    window.dispatchEvent(new StorageEvent('storage', { key: storageKey }));
+    setNotes(updated);
   };
 
   const addNote = () => {

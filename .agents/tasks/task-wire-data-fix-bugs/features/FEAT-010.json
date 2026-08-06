@@ -1,0 +1,25 @@
+{
+  "id": "FEAT-010",
+  "type": "feat",
+  "description": "Build a Confidence Calibration Analyzer that cross-references confidence ratings with correctness to identify misconceptions (high confidence + wrong) and lucky guesses (low confidence + correct). This is critical for CFA prep because misconceptions lead to systematic errors on exam day.",
+  "status": "pending",
+  "steps": [
+    "Create src/features/insights/components/confidence-calibration.tsx - a comprehensive client component that: (1) reads all PracticeAttempts and builds a confidence matrix per subject: Mastered (correct+High), Solid (correct+Medium), Lucky Guess (correct+Low), Misconception (wrong+High), Weak Area (wrong+Medium), Knowledge Gap (wrong+Low), (2) displays a 2x3 grid/matrix visualization with counts and percentages, (3) lists the top 20 'Misconception' questions (wrong + high confidence) with full question text, what the user chose, and the correct answer - these are the HIGHEST priority items to study, (4) shows 'Lucky Guesses' as a warning - topics where user got correct but with low confidence need reinforcement.",
+    "Add a 'Fix Misconceptions' quick-start button that creates a targeted quiz session from the misconception questions only (mode='WeakTopic', filtered to high-confidence incorrect questions).",
+    "Wire the confidence calibration component into the Insights page (insights-content.tsx) as a section between the existing metrics and the topic heatmap.",
+    "Run bun run tsc --noEmit to verify."
+  ],
+  "acceptance_criteria": [
+    "Confidence matrix shows accurate counts derived from PracticeAttempt data (AttemptQuestion has confidence field)",
+    "Misconceptions (high confidence + wrong) are prominently highlighted with full question details",
+    "Lucky guesses (low confidence + correct) are shown as areas needing reinforcement",
+    "Fix Misconceptions button creates a valid quiz session targeting those specific questions",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "Run: bun run tsc --noEmit - expect exit 0",
+    "Run: bun run vitest --run - expect same or better pass count"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

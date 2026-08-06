@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-008",
+  "type": "feat",
+  "description": "Enhance the Mistake Book to use PracticeAttempt data for rich error analysis. Currently mistake-book.tsx only reads from generic sessions. Wire it to use getAllAttempts() which has per-question data with correct/incorrect, confidence levels, time spent, and error classifications across all 1,283 questions and 5 subjects.",
+  "status": "pending",
+  "steps": [
+    "Rewrite src/features/mistake-book/components/mistake-book.tsx to: (1) Import getAllAttempts from attempt-storage and loadAllQuestions from question-loader, (2) Read PracticeAttempt data via useState lazy initializer (FEAT-001 already fixed useSyncExternalStore), (3) Build mistake entries from all incorrect AttemptQuestion records across all attempts, enriching each with the full question text, subject, topic, difficulty, and explanation from the question bank, (4) Group mistakes by subject and topic, (5) Show the correct answer and explanation for each mistake.",
+    "Add filtering and sorting to the mistake book: filter by subject, topic, confidence level (mistakes made with High confidence are 'misconceptions' and highest priority), and time period. Sort options: most recent, by subject, by confidence level (misconceptions first).",
+    "Add a 'Retry Mistakes' button that creates a QuestionSession with mode='AdaptiveRetest' containing only the incorrectly-answered questions. Follow the session creation pattern in session-configurator.tsx.",
+    "Ensure the MistakeAnalytics component (already exists at src/features/mistake-book/components/mistake-analytics.tsx) receives the enriched data.",
+    "Run bun run tsc --noEmit to verify."
+  ],
+  "acceptance_criteria": [
+    "Mistake book shows all incorrect answers from PracticeAttempt data with full question text",
+    "Each mistake shows correct answer, explanation, subject, topic, and confidence level",
+    "Misconceptions (wrong answer + high confidence) are highlighted as highest priority",
+    "Subject/topic filtering works across all 5 seeded subjects",
+    "'Retry Mistakes' creates a valid session that can be played in the test runner",
+    "bun run tsc --noEmit passes"
+  ],
+  "verification": [
+    "Run: bun run tsc --noEmit - expect exit 0",
+    "Run: bun run vitest --run - expect same or better pass count"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
