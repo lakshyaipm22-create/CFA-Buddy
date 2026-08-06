@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-007",
+  "type": "feat",
+  "description": "Tier 2 Feature Completion - Part 3: Global search modal (Cmd+K), Flashcard spaced repetition from DB, Confidence Matrix visual, Question bookmarks/flags. Covers Tier 2 items #12-15.",
+  "status": "pending",
+  "steps": [
+    "Enhance src/features/search/components/search-modal.tsx - Full Cmd+K global search: debounced input (300ms), grouped results by type (Resources, Questions, Notes, Topics, Actions), highlight matching text in results, keyboard navigation (up/down arrows to select, Enter to navigate, Esc to close). Search across all data sources.",
+    "Create src/features/search/utils/highlight.ts - Utility to highlight matching text fragments in search results using <mark> tags.",
+    "Update src/features/flashcards/ to persist spaced repetition data via Server Actions. The SM-2 algorithm already exists in src/features/flashcards/utils/sm2.ts. Wire it to use the data layer: store nextReview, intervalDays, easeFactor in DB/localStorage. Create src/features/flashcards/actions/review.ts with Server Actions for reviewCard, createCard, getDueCards.",
+    "Create src/features/flashcards/components/flashcard-deck.tsx - The main flashcard study interface: show front of card, flip to reveal back, rate (Again/Hard/Good/Easy), show progress (cards remaining, cards reviewed today). Use SM-2 to schedule next review.",
+    "Create src/features/flashcards/components/flashcard-stats.tsx - Stats display: total cards, due today, mastered count, retention rate percentage.",
+    "Create src/features/question-bank/components/confidence-matrix.tsx - Visual overlay on test summary: 6-category grid (Correct+Certain, Correct+ThinkSo, Correct+Guess, Incorrect+Certain, Incorrect+ThinkSo, Incorrect+Guess). Show counts and percentages in each cell. Color-code: green for correct+certain (calibrated), red for incorrect+certain (overconfident), yellow for correct+guess (lucky).",
+    "Enhance question bookmarks and flags: update src/features/question-bank/ to persist bookmarks via Server Actions (toggle bookmark on any question). During sessions, show flag indicators in the navigation panel. Create src/features/question-bank/components/bookmark-button.tsx and src/features/question-bank/components/flag-indicator.tsx."
+  ],
+  "acceptance_criteria": [
+    "Cmd+K opens search modal with debounced input and grouped results",
+    "Search results highlight matching text and support keyboard navigation",
+    "Flashcard deck interface allows studying due cards with SM-2 scheduling",
+    "Flashcard stats show total/due/mastered/retention",
+    "Confidence matrix shows 6-cell grid with counts and percentages on test results",
+    "Question bookmarks persist across sessions",
+    "Flag indicators show in navigation panel during test sessions",
+    "All TypeScript compiles, tests pass, build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Question verification admin UI, Resource Library file upload, Page bookmarks, Session persistence, and Full-text search backend. Covers Tier 1 items #9, #12, #13, #14, #15.",
+  "status": "pending",
+  "steps": [
+    "Create src/app/(protected)/admin/questions/page.tsx - Admin UI for reviewing imported questions. Show a table of questions with verification_status='pending'. Allow approve/reject actions via Server Actions. Filter by subject/topic/provider. Show question text, choices, correct answer.",
+    "Create src/features/question-bank/actions/verify.ts - Server Actions: approveQuestion, rejectQuestion, bulkApprove. Update verification_status field.",
+    "Create src/features/question-bank/components/question-review-table.tsx - Client component with filtering, pagination, and action buttons for the admin UI.",
+    "Update src/features/resource-library/ to add file upload capability: create src/features/resource-library/actions/upload.ts with a Server Action that uploads to Supabase Storage (with 100MB max validation). When Supabase is not configured, show a disabled upload button with tooltip explaining setup needed.",
+    "Create src/features/resource-library/components/upload-dialog.tsx - A dialog component with drag-and-drop file upload, progress bar, file type validation (PDF only), and size limit display.",
+    "Implement page bookmarks: create src/features/resource-library/actions/page-bookmark.ts - Server Action to save/get last-viewed page per PDF resource. localStorage fallback stores {resourceId: pageNumber} map.",
+    "Update the PDF viewer component in src/features/resource-library/ to auto-save page position on navigation and restore it on re-open using the page bookmark system.",
+    "Implement session persistence: update src/features/question-bank/ to save incomplete quiz sessions. Create src/features/question-bank/actions/session-persistence.ts - Server Actions: saveSessionState (saves answers so far, current question index, time remaining), resumeSession (loads saved state), expireOldSessions (cleanup sessions older than 7 days). localStorage fallback with same 7-day expiry.",
+    "Create src/features/question-bank/components/resume-session-banner.tsx - A banner shown on the questions page when there are incomplete sessions available to resume.",
+    "Implement full-text search backend: create src/app/api/search/route.ts - API route that accepts a query string, searches across notes, questions, resources, and topics using the tsvector columns (when DB available) or falls back to client-side filtering of localStorage data. Return grouped results with highlighted matches.",
+    "Update src/features/search/components/search-modal.tsx to call the search API with debouncing (300ms) instead of doing all filtering client-side. Keep the existing client-side search as fallback when API is unavailable."
+  ],
+  "acceptance_criteria": [
+    "Admin question review page renders with a table of questions and approve/reject buttons",
+    "Resource upload dialog validates file type (PDF) and size (100MB max)",
+    "Page bookmarks persist across sessions (last viewed page restored on re-open)",
+    "Incomplete quiz sessions can be resumed within 7 days",
+    "Search API route accepts query param and returns grouped results",
+    "Search modal uses debounced API calls with fallback to client-side search",
+    "All TypeScript compiles, tests pass, build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

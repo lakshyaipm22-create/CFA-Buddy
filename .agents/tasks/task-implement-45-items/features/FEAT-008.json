@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-008",
+  "type": "feat",
+  "description": "Tier 3 Polish - Part 1: Dark/light theme toggle, Responsive design, Keyboard shortcuts, Framer Motion animations. Covers Tier 3 items #1-4.",
+  "status": "pending",
+  "steps": [
+    "Update the existing theme system to add a persistent toggle: create src/shared/components/ui/theme-toggle.tsx that saves preference to localStorage (and DB when available). Verify WCAG 2.1 AA contrast ratios for both themes. The theme system already exists (dark/light) but ensure the toggle is visible in the header and the preference persists across sessions.",
+    "Implement responsive design improvements across all major pages: (a) Sidebar collapses to hamburger menu on mobile (<768px), (b) Dashboard cards stack vertically on tablet (768-1023px) and mobile, (c) Question bank interface adapts to mobile with swipe navigation, (d) All interactive elements have minimum 44x44px touch targets on mobile. Update src/shared/components/layout/sidebar.tsx, header.tsx, mobile-bottom-nav.tsx.",
+    "Enhance keyboard shortcuts system: verify j/k navigation works on all list views (questions list, flashcards, resources), / focuses search, b toggles bookmark on current item, n opens note editor, ? opens help modal. The shortcut system exists in src/app/(protected)/keyboard-shortcuts-provider.tsx - ensure all shortcuts are wired to actual functionality, not just registered.",
+    "Add Framer Motion animations to key interactions: page transitions (fade in 150ms), component mount animations (slide up 200ms), card flips (for flashcards, 300ms), modal open/close (scale + fade 200ms). Add respect for prefers-reduced-motion media query (disable all animations when set). Framer Motion is already in package.json. Create src/shared/components/ui/animated-page.tsx wrapper and src/shared/components/ui/animated-card.tsx."
+  ],
+  "acceptance_criteria": [
+    "Theme toggle visible in header, persists preference, both themes meet WCAG AA contrast",
+    "Sidebar collapses to hamburger on mobile, touch targets are 44x44px minimum",
+    "Dashboard and question bank layouts adapt to tablet and mobile viewports",
+    "Keyboard shortcuts (j/k/b/n/?) trigger actual functionality on relevant pages",
+    "Page transitions animate with fade, modals animate with scale+fade",
+    "Animations disabled when prefers-reduced-motion is set",
+    "All TypeScript compiles, tests pass, build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

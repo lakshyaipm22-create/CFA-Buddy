@@ -1,4 +1,3 @@
-import { Repeat, Layers, AlertCircle } from 'lucide-react';
 import { ReviewQueueContent } from '@/features/review-queue/components/review-queue-content';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
 
@@ -19,19 +18,19 @@ export default function ReviewPage() {
         items={[
           {
             href: '/practice',
-            icon: Repeat,
+            icon: 'Repeat',
             label: 'Practice',
             description: 'Deep dive sessions',
           },
           {
             href: '/flashcards',
-            icon: Layers,
+            icon: 'Layers',
             label: 'Flashcards',
             description: 'Quick review cards',
           },
           {
             href: '/mistakes',
-            icon: AlertCircle,
+            icon: 'AlertCircle',
             label: 'Mistakes',
             description: 'Error patterns',
           },

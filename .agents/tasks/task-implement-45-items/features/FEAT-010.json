@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-010",
+  "type": "feat",
+  "description": "Tier 3 Polish - Part 3: Attempt-over-attempt comparison, Progress timeline, Video resource links, Scratchpad during tests, Dashboard onboarding, Vercel deployment config, CI/CD pipeline. Covers Tier 3 items #9-15.",
+  "status": "pending",
+  "steps": [
+    "Create src/features/question-bank/components/attempt-comparison.tsx - Chart showing accuracy progression across multiple attempts on the same topic/subject. X-axis: attempt number, Y-axis: accuracy %. Use Recharts line chart. Pull data from attempt history in localStorage/DB.",
+    "Create src/features/insights/components/progress-timeline.tsx - Monthly accuracy trend line chart showing 12 months of data. X-axis: months, Y-axis: accuracy %. Use Recharts with area fill. Show overall trend direction indicator (improving/declining/stable).",
+    "Add video resource links support: update ContentResource handling to support VideoLink content type. Create src/features/resource-library/components/video-link-card.tsx - Display external video URLs (YouTube/Vimeo) per reading with thumbnail preview and external link. Store URLs in content_resources with content_type='VideoLink'.",
+    "Create src/features/question-bank/components/scratchpad.tsx - Per-question localStorage notepad available during tests. A collapsible panel with a textarea. Data keyed by session+question ID. Cleared automatically when session ends. Add toggle button in the test toolbar.",
+    "Create src/shared/components/ui/onboarding-state.tsx - Dashboard onboarding for first-time users: detect when user has no data (no attempts, no notes, no flashcards) and show guided prompts: 'Take your first quiz', 'Add your exam date', 'Browse study resources', 'Create your first note'. Dismiss after user completes 2+ actions. NOTE: An OnboardingChecklist already exists in src/shared/components/ui/onboarding-checklist.tsx - enhance it or ensure it covers these cases.",
+    "Update vercel.json to include: env var references for Supabase, Prisma generate in build command (already done), region config (iad1 already set). Add any missing configuration for optimal Vercel Hobby plan deployment. Ensure build works without DATABASE_URL by making prisma generate conditional.",
+    "Create .github/workflows/ci.yml - GitHub Actions CI pipeline: trigger on PR to main and push to main. Steps: checkout, setup Node 22, npm install, npx tsc --noEmit, npm run lint, npm run build (with mock env vars for Supabase), npm run test. Add caching for node_modules."
+  ],
+  "acceptance_criteria": [
+    "Attempt comparison chart renders with real attempt data",
+    "Progress timeline shows monthly accuracy trend for up to 12 months",
+    "Video links display with thumbnails for YouTube/Vimeo URLs",
+    "Scratchpad is available during tests and clears on session end",
+    "Dashboard shows onboarding prompts for users with no data",
+    "vercel.json is complete for Vercel Hobby deployment",
+    "CI pipeline runs type-check, lint, build, and tests on PRs",
+    "All TypeScript compiles, tests pass, build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

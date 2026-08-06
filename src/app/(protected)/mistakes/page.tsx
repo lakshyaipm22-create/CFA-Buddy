@@ -1,4 +1,3 @@
-import { Repeat, BookOpen, BarChart3 } from 'lucide-react';
 import { MistakeBook } from '@/features/mistake-book/components/mistake-book';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
 
@@ -17,19 +16,19 @@ export default function MistakesPage() {
         items={[
           {
             href: '/practice',
-            icon: Repeat,
+            icon: 'Repeat',
             label: 'Practice',
             description: 'Retry weak topics',
           },
           {
             href: '/questions',
-            icon: BookOpen,
+            icon: 'BookOpen',
             label: 'Questions',
             description: 'Start new session',
           },
           {
             href: '/insights',
-            icon: BarChart3,
+            icon: 'BarChart3',
             label: 'Insights',
             description: 'Error patterns',
           },
