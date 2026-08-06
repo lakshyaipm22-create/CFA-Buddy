@@ -1,6 +1,22 @@
-import { Repeat, BookOpen, Calculator } from 'lucide-react';
-import { FlashcardDeck } from '@/features/flashcards/components/flashcard-deck';
+import { FlashcardStats } from '@/features/flashcards/components/flashcard-stats';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
+import dynamic from 'next/dynamic';
+
+const FlashcardDeck = dynamic(
+  () => import('@/features/flashcards/components/flashcard-deck').then((m) => m.FlashcardDeck),
+  {
+    loading: () => (
+      <div className="space-y-3">
+        <div className="h-[240px] animate-pulse rounded-2xl border border-zinc-800 bg-zinc-900/50" />
+        <div className="flex justify-center gap-3">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="h-10 w-20 animate-pulse rounded-lg bg-zinc-800" />
+          ))}
+        </div>
+      </div>
+    ),
+  }
+);
 
 export default function FlashcardsPage() {
   return (
@@ -11,25 +27,26 @@ export default function FlashcardsPage() {
           Spaced repetition review — cards appear when they&apos;re due based on SM-2 algorithm.
         </p>
       </div>
+      <FlashcardStats />
       <FlashcardDeck />
 
       <RelatedActions
         items={[
           {
             href: '/practice',
-            icon: Repeat,
+            icon: 'Repeat',
             label: 'Practice',
             description: 'Spaced repetition drills',
           },
           {
             href: '/questions',
-            icon: BookOpen,
+            icon: 'BookOpen',
             label: 'Questions',
             description: 'Test yourself',
           },
           {
             href: '/formulas',
-            icon: Calculator,
+            icon: 'Calculator',
             label: 'Formulas',
             description: 'Reference cards',
           },

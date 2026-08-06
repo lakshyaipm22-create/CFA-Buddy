@@ -4,14 +4,16 @@
  *
  * Imports questions from CFA Curriculum End of Chapter PDFs.
  * Each PDF has PRACTICE PROBLEMS + SOLUTIONS sections in one file.
+ * Also supports paired Q/A files: a question PDF matched to a separate answers PDF.
  *
  * Usage:
  *   npm run import:questions                           # Import all 10 subject PDFs
  *   npm run import:questions -- --file="path.pdf"      # Import single PDF
  *   npm run import:questions -- --dry-run              # Preview without saving
  *   npm run import:questions -- --append               # Add to existing (don't overwrite)
+ *   npm run import:questions -- --paired               # Use paired Q/A file correlation
  *
- * Expected PDF structure:
+ * Expected PDF structure (single-file mode):
  *   PRACTICE PROBLEMS
  *   1. Question text
  *      A. Option A
@@ -21,6 +23,10 @@
  *   SOLUTIONS
  *   1. C is correct. Explanation text...
  *   2. A is correct. Explanation text...
+ *
+ * Paired file correlation:
+ *   Questions: "Topic_Name.pdf" or "Topic_Name - Questions.pdf"
+ *   Answers:   "Topic_Name - Answers.pdf" or "Topic_Name - Solutions.pdf"
  */
 
 import { readFile, writeFile, mkdir, readdir } from 'fs/promises';
@@ -409,12 +415,173 @@ async function cleanImportedQuestions(): Promise<void> {
   }
 }
 
+/**
+ * Paired Q/A File Correlation
+ *
+ * Matches question PDFs with their corresponding answer PDFs by filename pattern.
+ * Supports these pairing conventions:
+ * - "Topic.pdf" pairs with "Topic - Answers.pdf" or "Topic - Solutions.pdf"
+ * - "Topic - Questions.pdf" pairs with "Topic - Answers.pdf"
+ * - Files in "questions/" subdir pair with same-named file in "answers/" subdir
+ */
+interface PairedFiles {
+  questionsFile: string;
+  answersFile: string | null;
+  subject: string;
+}
+
+function correlateQAPairs(pdfFiles: string[]): PairedFiles[] {
+  const pairs: PairedFiles[] = [];
+  const used = new Set<string>();
+
+  // Normalize path separators for consistent matching
+  const normalize = (p: string) => p.replace(/\\/g, '/');
+
+  // Sort files for deterministic processing
+  const sorted = [...pdfFiles].sort();
+
+  for (const file of sorted) {
+    if (used.has(file)) continue;
+    const norm = normalize(file);
+    const name = basename(file, '.pdf');
+    const dir = file.substring(0, file.lastIndexOf('/') >= 0 ? file.lastIndexOf('/') : file.lastIndexOf('\\'));
+
+    // Skip files that look like answer/solution files
+    const lowerName = name.toLowerCase();
+    if (
+      lowerName.includes(' - answers') ||
+      lowerName.includes(' - solutions') ||
+      lowerName.includes('_answers') ||
+      lowerName.includes('_solutions')
+    ) {
+      continue;
+    }
+
+    // Try to find a matching answer file
+    const baseName = name
+      .replace(/ - Questions$/i, '')
+      .replace(/_Questions$/i, '')
+      .replace(/ Questions$/i, '');
+
+    const possibleAnswerNames = [
+      `${baseName} - Answers.pdf`,
+      `${baseName} - Solutions.pdf`,
+      `${baseName}_Answers.pdf`,
+      `${baseName}_Solutions.pdf`,
+      `${baseName} Answers.pdf`,
+      `${baseName} Solutions.pdf`,
+    ];
+
+    let answersFile: string | null = null;
+    for (const ansName of possibleAnswerNames) {
+      const candidate = join(dir, ansName);
+      const found = sorted.find(f =>
+        normalize(f).toLowerCase() === normalize(candidate).toLowerCase()
+      );
+      if (found) {
+        answersFile = found;
+        used.add(found);
+        break;
+      }
+    }
+
+    // Also check for directory-based pairing (questions/ -> answers/)
+    if (!answersFile && norm.includes('/questions/')) {
+      const answerPath = norm.replace('/questions/', '/answers/');
+      const found = sorted.find(f => normalize(f).toLowerCase() === answerPath.toLowerCase());
+      if (found) {
+        answersFile = found;
+        used.add(found);
+      }
+    }
+
+    used.add(file);
+    pairs.push({
+      questionsFile: file,
+      answersFile,
+      subject: inferSubject(basename(file)),
+    });
+  }
+
+  return pairs;
+}
+
+/**
+ * Import from paired Q/A files: extract questions from one PDF
+ * and solutions from the other, then merge them.
+ */
+async function importPairedFiles(
+  pair: PairedFiles,
+  dryRun: boolean,
+  append: boolean
+): Promise<Question[]> {
+  const filename = basename(pair.questionsFile);
+  console.log(`  📄 ${filename} (${pair.subject})`);
+  if (pair.answersFile) {
+    console.log(`     Paired with: ${basename(pair.answersFile)}`);
+  }
+
+  const buffer = await readFile(pair.questionsFile);
+  const pdfParse = require('pdf-parse');
+  const qData = await pdfParse(buffer);
+  const questionText: string = qData.text;
+  console.log(`     Questions: extracted ${questionText.length} chars`);
+
+  let solutionText = '';
+  if (pair.answersFile) {
+    const ansBuffer = await readFile(pair.answersFile);
+    const aData = await pdfParse(ansBuffer);
+    solutionText = aData.text;
+    console.log(`     Answers: extracted ${solutionText.length} chars`);
+  }
+
+  // Parse questions from the question file
+  const allQuestions = parseProblems(questionText);
+
+  // Parse solutions from either the same file or the paired answer file
+  const allSolutions = solutionText
+    ? parseSolutions(solutionText)
+    : parseSolutions(questionText);
+
+  console.log(`     Parsed: ${allQuestions.length} questions, ${allSolutions.length} solutions`);
+
+  const questions = buildQuestions(allQuestions, allSolutions, pair.subject, filename);
+  const matched = questions.filter(q => q.answerChoices.some(c => c.isCorrect)).length;
+  console.log(`     Matched: ${matched}/${questions.length}`);
+
+  if (!dryRun) {
+    const outputDir = join(process.cwd(), 'content', 'metadata', 'imported-questions');
+    await mkdir(outputDir, { recursive: true });
+
+    const outName = filename.replace('.pdf', '.json');
+    const outputFile = join(outputDir, outName);
+
+    if (append) {
+      try {
+        const existing = JSON.parse(await readFile(outputFile, 'utf-8')) as Question[];
+        const merged = [...existing, ...questions];
+        await writeFile(outputFile, JSON.stringify(merged, null, 2));
+      } catch {
+        await writeFile(outputFile, JSON.stringify(questions, null, 2));
+      }
+    } else {
+      await writeFile(outputFile, JSON.stringify(questions, null, 2));
+    }
+    console.log(`     Saved to ${outName}`);
+  } else {
+    console.log(`     (dry-run - not saved)`);
+  }
+
+  return questions;
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const fileArg = args.find(a => a.startsWith('--file='))?.split('=')[1];
   const dryRun = args.includes('--dry-run');
   const append = args.includes('--append');
   const clean = args.includes('--clean');
+  const paired = args.includes('--paired');
 
   console.log('\n╔══════════════════════════════════════════════════╗');
   console.log('║  CFA Buddy — Question Import Pipeline             ║');
@@ -429,6 +596,7 @@ async function main() {
 
   if (dryRun) console.log('  Mode: DRY RUN (no files will be written)\n');
   if (append) console.log('  Mode: APPEND (adding to existing files)\n');
+  if (paired) console.log('  Mode: PAIRED (matching Q/A file pairs)\n');
 
   let allQuestions: Question[] = [];
 
@@ -461,13 +629,30 @@ async function main() {
 
       console.log(`  Found ${pdfFiles.length} PDF files\n`);
 
-      for (const pdf of pdfFiles.sort()) {
-        try {
-          const questions = await importSingleFile(pdf, dryRun, append);
-          allQuestions.push(...questions);
-        } catch (err) {
-          const msg = err instanceof Error ? err.message : 'Unknown';
-          console.log(`     ⚠️  Skipped (${msg})`);
+      if (paired) {
+        // Paired mode: correlate Q/A files
+        const pairs = correlateQAPairs(pdfFiles);
+        console.log(`  Correlated into ${pairs.length} question sets\n`);
+
+        for (const pair of pairs) {
+          try {
+            const questions = await importPairedFiles(pair, dryRun, append);
+            allQuestions.push(...questions);
+          } catch (err) {
+            const msg = err instanceof Error ? err.message : 'Unknown';
+            console.log(`     Skipped (${msg})`);
+          }
+        }
+      } else {
+        // Standard mode: each file contains both questions and solutions
+        for (const pdf of pdfFiles.sort()) {
+          try {
+            const questions = await importSingleFile(pdf, dryRun, append);
+            allQuestions.push(...questions);
+          } catch (err) {
+            const msg = err instanceof Error ? err.message : 'Unknown';
+            console.log(`     ⚠️  Skipped (${msg})`);
+          }
         }
       }
     }

@@ -25,12 +25,16 @@ import {
   ChevronUp,
   AlertTriangle,
   Download,
+  Plus,
+  StickyNote,
 } from 'lucide-react';
 import type { Question, QuestionSession, SessionSummary, ErrorClassification } from '../types';
 import { getSession, getSessions, saveSession } from '../utils/session-storage';
 import { buildSessionSummary } from '../utils/confidence-matrix';
 import { loadAllQuestions } from '../utils/question-loader';
 import { BatchFlashcardCreator } from '@/features/flashcards/components/batch-flashcard-creator';
+import { addFlashcard } from '@/features/flashcards/utils/storage';
+import type { Flashcard } from '@/features/flashcards/types';
 
 interface SessionReviewProps {
   sessionId: string;
@@ -209,6 +213,118 @@ const ERROR_OPTIONS: { value: ErrorClassification; label: string }[] = [
   { value: 'Careless', label: 'Careless Error' },
   { value: 'TimePressure', label: 'Time Pressure' },
 ];
+
+/**
+ * State 3 actions: Create flashcard from question, add a personal note.
+ */
+function ReviewActions({ question }: { question: Question }) {
+  const [flashcardCreated, setFlashcardCreated] = useState(false);
+  const [showNoteInput, setShowNoteInput] = useState(false);
+  const [noteText, setNoteText] = useState('');
+  const [noteSaved, setNoteSaved] = useState(false);
+
+  const createFlashcardFromQuestion = () => {
+    const correctAnswer = question.answerChoices.find(c => c.isCorrect);
+    const card: Flashcard = {
+      id: crypto.randomUUID(),
+      front: question.questionText,
+      back: correctAnswer
+        ? `${correctAnswer.label}. ${correctAnswer.text}\n\n${correctAnswer.explanation}`
+        : 'No correct answer found',
+      subject: question.subject,
+      topic: question.topic,
+      state: 'new',
+      easeFactor: 2.5,
+      interval: 0,
+      repetitions: 0,
+      nextReview: new Date().toISOString().slice(0, 10),
+      lastReview: null,
+      createdAt: new Date().toISOString(),
+    };
+    addFlashcard(card);
+    setFlashcardCreated(true);
+  };
+
+  const saveNote = () => {
+    if (!noteText.trim()) return;
+    const storageKey = `notes-${question.subject}-${question.topic ?? 'general'}`;
+    const existing = (() => {
+      try { return JSON.parse(localStorage.getItem(storageKey) ?? '[]'); } catch { return []; }
+    })();
+    existing.unshift({
+      id: crypto.randomUUID(),
+      content: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: noteText.trim() }] }] },
+      plainText: noteText.trim(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    });
+    localStorage.setItem(storageKey, JSON.stringify(existing));
+    setNoteSaved(true);
+    setNoteText('');
+  };
+
+  return (
+    <div className="mt-4 space-y-3">
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={createFlashcardFromQuestion}
+          disabled={flashcardCreated}
+          className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium transition-all disabled:opacity-50"
+          style={{
+            backgroundColor: flashcardCreated ? 'rgba(0, 132, 61, 0.15)' : 'var(--card-bg)',
+            color: flashcardCreated ? 'var(--accent-success)' : 'var(--foreground)',
+            border: `1px solid ${flashcardCreated ? 'var(--accent-success)' : 'var(--card-border)'}`,
+          }}
+        >
+          <Plus className="h-3.5 w-3.5" />
+          {flashcardCreated ? 'Flashcard Created' : 'Create Flashcard'}
+        </button>
+        <button
+          onClick={() => setShowNoteInput(!showNoteInput)}
+          className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium transition-all"
+          style={{
+            backgroundColor: noteSaved ? 'rgba(0, 132, 61, 0.15)' : 'var(--card-bg)',
+            color: noteSaved ? 'var(--accent-success)' : 'var(--foreground)',
+            border: `1px solid ${noteSaved ? 'var(--accent-success)' : 'var(--card-border)'}`,
+          }}
+        >
+          <StickyNote className="h-3.5 w-3.5" />
+          {noteSaved ? 'Note Saved' : 'Add Note'}
+        </button>
+      </div>
+
+      {showNoteInput && !noteSaved && (
+        <div className="rounded-lg p-3" style={{ backgroundColor: 'var(--background-tertiary)', border: '1px solid var(--border)' }}>
+          <textarea
+            value={noteText}
+            onChange={(e) => setNoteText(e.target.value)}
+            placeholder="Write a note about this question..."
+            className="w-full resize-none rounded border bg-transparent px-3 py-2 text-sm text-white placeholder-zinc-500 focus:border-blue-500 focus:outline-none"
+            style={{ borderColor: 'var(--card-border)' }}
+            rows={3}
+          />
+          <div className="mt-2 flex gap-2">
+            <button
+              onClick={saveNote}
+              disabled={!noteText.trim()}
+              className="rounded px-3 py-1 text-xs font-medium disabled:opacity-50"
+              style={{ background: 'var(--accent-primary)', color: 'var(--accent-secondary)' }}
+            >
+              Save Note
+            </button>
+            <button
+              onClick={() => setShowNoteInput(false)}
+              className="rounded px-3 py-1 text-xs font-medium"
+              style={{ color: 'var(--foreground-secondary)' }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function SessionReview({ sessionId }: SessionReviewProps) {
   const router = useRouter();
@@ -941,13 +1057,20 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
             </div>
           )}
 
+          {/* State 3: Actions - Create Flashcard, Add Note */}
+          {revealState >= 3 && (
+            <ReviewActions
+              question={currentQuestion}
+            />
+          )}
+
           {/* Review flow controls */}
           <div className="mt-5 flex items-center justify-between">
             <div className="flex gap-2">
               {revealState < 2 && (
                 <button
                   onClick={() => setRevealState(2)}
-                  className="rounded-lg px-4 py-2 text-sm font-medium transition-all hover:opacity-80"
+                  className="rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 hover:opacity-80"
                   style={{
                     backgroundColor: 'var(--accent-primary)',
                     color: 'var(--accent-secondary)',
@@ -959,14 +1082,14 @@ export function SessionReview({ sessionId }: SessionReviewProps) {
               {revealState === 2 && (
                 <button
                   onClick={() => setRevealState(3)}
-                  className="rounded-lg px-4 py-2 text-sm font-medium transition-all hover:opacity-80"
+                  className="rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 hover:opacity-80"
                   style={{
                     backgroundColor: 'var(--background-tertiary)',
                     color: 'var(--foreground)',
                     border: '1px solid var(--border)',
                   }}
                 >
-                  {currentAttempt.correct ? 'Details' : 'Classify Error'}
+                  {currentAttempt.correct ? 'Actions (Flashcard, Note)' : 'Classify Error + Actions'}
                 </button>
               )}
             </div>

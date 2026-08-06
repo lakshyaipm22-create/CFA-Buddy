@@ -112,7 +112,7 @@ export function Sidebar() {
                         href={item.href}
                         onClick={() => setMobileOpen(false)}
                         className={cn(
-                          'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors'
+                          'flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors'
                         )}
                         style={{
                           background: isActive ? 'var(--nav-active-bg)' : undefined,
@@ -194,8 +194,9 @@ export function Sidebar() {
       {/* Mobile hamburger button */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="fixed left-4 top-4 z-50 rounded-lg p-2 md:hidden"
-        style={{ background: 'var(--card-bg)', color: 'var(--foreground)' }}
+        className="fixed left-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-lg md:hidden"
+        style={{ background: 'var(--card-bg)', color: 'var(--foreground)', border: '1px solid var(--border)' }}
+        aria-label="Open navigation menu"
       >
         <Menu className="h-5 w-5" />
       </button>
@@ -210,10 +211,11 @@ export function Sidebar() {
           >
             <button
               onClick={() => setMobileOpen(false)}
-              className="absolute right-3 top-4 rounded p-1"
+              className="absolute right-3 top-4 flex h-11 w-11 items-center justify-center rounded"
               style={{ color: 'var(--foreground-secondary)' }}
+              aria-label="Close navigation menu"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" />
             </button>
             {sidebarContent}
           </aside>

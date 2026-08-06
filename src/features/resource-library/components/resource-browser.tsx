@@ -6,6 +6,7 @@ import type { ContentMetadata } from '@/features/content-scanner/types';
 import type { GroupedResources } from '../queries/get-resources';
 import { truncate } from '@/shared/lib/utils';
 import { useListNavigation } from '@/shared/hooks/use-list-navigation';
+import { useCursorPagination } from '@/shared/hooks/use-cursor-pagination';
 
 interface ResourceBrowserProps {
   subjects: string[];
@@ -27,7 +28,13 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
     .sort((a, b) => a[0].localeCompare(b[0]))
     .flatMap(([, resources]) => resources);
 
-  const { focusedIndex, listRef } = useListNavigation(flatResources.length);
+  const { visibleItems: paginatedResources, hasMore, loadMore } = useCursorPagination({
+    items: flatResources,
+    pageSize: 20,
+    getCursor: (item) => item.id,
+  });
+
+  const { focusedIndex, listRef } = useListNavigation(paginatedResources.length);
 
   return (
     <div className="space-y-6">
@@ -77,7 +84,19 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
       {/* Resource List with j/k navigation */}
       <div ref={listRef} className="space-y-8">
         {(() => {
-          const sorted = Object.entries(displayGroups).sort((a, b) => a[0].localeCompare(b[0]));
+          // Re-group paginated resources maintaining order
+          const groupedPaginated: Record<string, ContentMetadata[]> = {};
+          for (const resource of paginatedResources) {
+            const groupKey = viewMode === 'subject'
+              ? (resource.subject ?? 'Unknown')
+              : viewMode === 'provider'
+                ? (resource.provider ?? 'Unknown')
+                : (resource.resourceType ?? 'unknown');
+            if (!groupedPaginated[groupKey]) groupedPaginated[groupKey] = [];
+            groupedPaginated[groupKey].push(resource);
+          }
+
+          const sorted = Object.entries(groupedPaginated).sort((a, b) => a[0].localeCompare(b[0]));
           const startIndices: number[] = [];
           let acc = 0;
           for (const [, resources] of sorted) {
@@ -95,6 +114,18 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
           ));
         })()}
       </div>
+
+      {/* Load More */}
+      {hasMore && (
+        <div className="flex justify-center pt-2">
+          <button
+            onClick={loadMore}
+            className="rounded-lg bg-[#002B5C] px-6 py-2.5 text-sm font-medium text-[#C5A258] transition-all hover:opacity-90"
+          >
+            Load More ({flatResources.length - paginatedResources.length} remaining)
+          </button>
+        </div>
+      )}
 
       {Object.keys(displayGroups).length === 0 && (
         <div className="rounded-lg border border-dashed border-zinc-700 p-12 text-center">

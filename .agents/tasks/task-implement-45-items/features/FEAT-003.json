@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Server Actions for all mutations, localStorage-to-Supabase migration layer, Content Scanner DB upsert, and Question Import Pipeline improvements. Covers Tier 1 items #6, #7, #8, #11. Creates a data access layer that abstracts localStorage vs Supabase, with Server Actions as the mutation interface.",
+  "status": "completed",
+  "steps": [
+    "Create src/shared/lib/data-layer.ts - a unified data access module that checks if Supabase/Prisma is available. If yes, use DB. If no, fall back to localStorage. Export functions: getUser(), saveNote(), getNotes(), saveAttempt(), getAttempts(), saveFlashcard(), getFlashcards(), saveProgress(), getProgress(), saveMistakeLog(), getMistakeLogs(), saveBookmark(), getBookmarks(), saveExamTarget(), getExamTarget(), saveSession(), getSession().",
+    "Create src/shared/actions/notes.ts - Server Actions: createNote, updateNote, deleteNote. Each calls data-layer, validates with Zod.",
+    "Create src/shared/actions/questions.ts - Server Actions: submitAnswer, createSession, completeSession, bookmarkQuestion, flagQuestion.",
+    "Create src/shared/actions/flashcards.ts - Server Actions: createFlashcard, reviewFlashcard, deleteFlashcard.",
+    "Create src/shared/actions/progress.ts - Server Actions: updateProgress, updateStreak.",
+    "Create src/shared/actions/mistakes.ts - Server Actions: classifyError, resolveMistake, createMistakeLog.",
+    "Create src/shared/actions/bookmarks.ts - Server Actions: toggleQuestionBookmark, toggleResourceBookmark, toggleNoteBookmark, savePageBookmark.",
+    "Create src/shared/actions/exam-target.ts - Server Actions: setExamTarget, getExamTarget.",
+    "Update src/features/content-scanner to add a DB upsert step: after scanning, if Prisma is available, upsert ContentResource records. Add a new file src/features/content-scanner/actions/sync-to-db.ts that reads content-index.json and upserts to content_resources table.",
+    "Update src/scripts/import-questions.ts to improve the pipeline: better PDF text extraction with pdf-parse, improved question parsing regex patterns, paired Q/A file correlation (match question PDFs with answer PDFs by filename pattern). Output parsed questions as JSON that can be bulk-inserted.",
+    "Create src/features/question-bank/actions/import.ts - Server Action to bulk import parsed questions into the questions table with proper topic/provider foreign keys.",
+    "Ensure all Server Actions validate inputs with Zod schemas and return typed ActionResult<T> responses."
+  ],
+  "acceptance_criteria": [
+    "All Server Actions compile without TypeScript errors",
+    "Data layer correctly falls back to localStorage when DB is unavailable",
+    "Content Scanner sync action can read content-index.json and produce valid upsert operations",
+    "Question import pipeline handles PDF parsing and outputs structured question data",
+    "All existing tests continue to pass",
+    "npm run build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "All 12 steps completed. TypeScript compiles cleanly, 263 tests pass, build succeeds. Pre-existing lint warnings exist (setState in useEffect in dashboard-content.tsx, subject-progress-indicators.tsx, attempt-review.tsx) but are unrelated to this feature. The data-layer uses isDatabaseAvailable() which checks DATABASE_URL at runtime. All Server Actions use 'use server' directive, Zod validation, and return ActionResult<T>. The import-questions.ts script now supports --paired flag for Q/A file correlation. The sync-to-db.ts action gracefully handles missing content-index.json and missing DB."
+}

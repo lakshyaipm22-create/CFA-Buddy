@@ -1,4 +1,5 @@
 import { getReadingResources } from '@/features/learning-workspace/queries/get-curriculum';
+import { getTopicsForReading } from '@/features/learning-workspace/queries/hierarchy';
 import { ReadingWorkspace } from '@/features/learning-workspace/components/reading-workspace';
 import Link from 'next/link';
 
@@ -11,18 +12,19 @@ export default async function ReadingPage({ params }: Props) {
   const subject = decodeURIComponent(subjectId);
   const reading = decodeURIComponent(readingId);
   const resources = await getReadingResources(subject, reading, 1);
+  const topics = getTopicsForReading(subject, reading, 1);
 
   return (
     <div className="space-y-6">
       <div>
         <Link href={`/learn/${encodeURIComponent(subject)}`} className="text-xs text-zinc-500 hover:text-zinc-300">
-          ← Back to {subject}
+          {'\u2190'} Back to {subject}
         </Link>
         <h1 className="mt-1 text-xl font-bold text-white">{reading}</h1>
-        <p className="mt-1 text-sm text-zinc-400">{subject} • {resources.length} resources</p>
+        <p className="mt-1 text-sm text-zinc-400">{subject} {'\u2022'} {resources.length} resources {'\u2022'} {topics.length} topics</p>
       </div>
 
-      <ReadingWorkspace subject={subject} reading={reading} resources={resources} />
+      <ReadingWorkspace subject={subject} reading={reading} resources={resources} topics={topics} />
     </div>
   );
 }

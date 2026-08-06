@@ -1,0 +1,31 @@
+{
+  "id": "FEAT-006",
+  "type": "feat",
+  "description": "Tier 2 Feature Completion - Part 2: Error Classification, Mistake Book filtering/retest, Error pattern analytics, Dashboard hero metrics, Advanced analytics, Exam countdown/pacing. Covers Tier 2 items #6-11.",
+  "status": "completed",
+  "steps": [
+    "Update src/features/mistake-book/ to implement full Error Classification on incorrect answers: 6 categories (DidntKnow, ForgotFormula, CalculationMistake, MisreadQuestion, Careless, TimePressure) + auto-creation of MistakeLog entries. Add a classification modal that appears after marking an answer wrong in the review flow.",
+    "Create src/features/mistake-book/components/error-classify-modal.tsx - Modal with 6 category buttons, each with icon and description. Auto-creates MistakeLog entry via Server Action.",
+    "Enhance src/features/mistake-book/components/ to add filtering: filter by error type, subject, topic, date range. Create a filter bar component. Add a 'Generate Retest' button that creates a new question session from filtered mistakes.",
+    "Create src/features/mistake-book/actions/retest.ts - Server Action to generate a targeted retest session from filtered mistake entries (pull original questions that were answered incorrectly).",
+    "Create src/features/mistake-book/components/error-analytics.tsx - Error pattern analytics with: (a) donut chart showing distribution by classification type, (b) weekly stacked bar chart showing error trends over time, (c) misconception ratio display (repeat errors / total errors). Use Recharts for charts.",
+    "Update src/features/dashboard/components/dashboard-content.tsx to pull hero metrics from the data layer (DB when available, localStorage fallback): readiness score, overall accuracy %, current streak days, review items due count, weakest topics list, weekly activity chart (questions answered per day).",
+    "Create src/features/dashboard/components/advanced-analytics.tsx - Advanced analytics section: estimated exam score (weighted by CFA subject weights from seed data), average time per question, strongest topics (top 5 by accuracy), total questions attempted, total study hours.",
+    "Update src/features/exam-countdown/ to implement full pacing: calculate days remaining to exam target date, compute topics/day target needed to cover all topics, show ahead/on-track/behind indicator based on actual progress vs target pace. Use the ExamTarget from data layer."
+  ],
+  "acceptance_criteria": [
+    "Error classification modal appears after incorrect answer with 6 categories",
+    "Mistake book filters work for error type, subject, topic, date range",
+    "Generate Retest creates a new session from filtered mistakes",
+    "Error analytics shows donut chart, weekly stacked bar, misconception ratio",
+    "Dashboard hero metrics display real data from localStorage/DB",
+    "Advanced analytics shows weighted exam score estimate and time metrics",
+    "Exam countdown shows days remaining, topics/day target, and pace indicator",
+    "All TypeScript compiles, tests pass, build succeeds"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "All 8 steps implemented: (1) ErrorClassifyModal with 6 categories, icons, descriptions, and auto MistakeLog creation via Server Action + localStorage update; (2) MistakeFilterBar with error type/subject/topic/date range filters + Generate Retest button; (3) MistakeBook refactored to use useState lazy initializer instead of useSyncExternalStore, integrated filter bar and error analytics; (4) retest.ts Server Action generates AdaptiveRetest sessions from filtered mistakes; (5) ErrorAnalytics component with donut chart, weekly stacked bar, and misconception ratio using Recharts; (6) Dashboard hero metrics enhanced with weakest topics display from localStorage sessions; (7) AdvancedAnalytics component with estimated exam score (CFA-weighted), avg time/question, strongest topics, total questions, study hours; (8) ExamCountdown fully rewritten with pacing: days remaining, topics/day target, ahead/on-track/behind indicator, progress bar. Build passes, all 263 tests pass, tsc clean."
+}

@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import type { JSONContent } from '@tiptap/react';
+import { RichTextEditor } from './rich-text-editor';
 
 interface PersonalNotesProps {
   subject: string;
@@ -9,74 +11,97 @@ interface PersonalNotesProps {
 
 interface Note {
   id: string;
-  content: string;
+  content: JSONContent | null;
+  plainText?: string;
   createdAt: string;
   updatedAt: string;
 }
 
-/**
- * Personal notes for a reading. Stored in localStorage until database is connected.
- */
-export function PersonalNotes({ subject, reading }: PersonalNotesProps) {
-  const storageKey = `notes-${subject}-${reading}`;
+function getStorageKey(subject: string, reading: string): string {
+  return `notes-${subject}-${reading}`;
+}
 
-  const [notes, setNotes] = useState<Note[]>(() => {
-    if (typeof window === 'undefined') return [];
+function loadNotes(storageKey: string): Note[] {
+  if (typeof window === 'undefined') return [];
+  try {
     const raw = localStorage.getItem(storageKey);
     if (!raw) return [];
-    try { return JSON.parse(raw); } catch { return []; }
-  });
+    return JSON.parse(raw);
+  } catch {
+    return [];
+  }
+}
 
+function persistNotes(storageKey: string, notes: Note[]): void {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem(storageKey, JSON.stringify(notes));
+}
+
+/**
+ * Personal notes for a reading using Tiptap rich text editor.
+ * Stored in localStorage as Tiptap JSON until database is connected.
+ */
+export function PersonalNotes({ subject, reading }: PersonalNotesProps) {
+  const storageKey = getStorageKey(subject, reading);
+
+  // Use useState lazy initializer (NEVER useSyncExternalStore for one-time reads)
+  const [notes, setNotes] = useState<Note[]>(() => loadNotes(storageKey));
   const [editing, setEditing] = useState<string | null>(null);
-  const [newNote, setNewNote] = useState('');
-  const [editContent, setEditContent] = useState('');
+  const [newNoteContent, setNewNoteContent] = useState<JSONContent | null>(null);
+  const [editContent, setEditContent] = useState<JSONContent | null>(null);
 
-  const saveNotes = (updated: Note[]) => {
-    localStorage.setItem(storageKey, JSON.stringify(updated));
+  const saveNotes = useCallback((updated: Note[]) => {
     setNotes(updated);
-  };
+    persistNotes(storageKey, updated);
+  }, [storageKey]);
 
-  const addNote = () => {
-    if (!newNote.trim()) return;
+  const addNote = useCallback(() => {
+    if (!newNoteContent) return;
+    // Check if content is empty (only has an empty paragraph)
+    const hasContent = newNoteContent.content?.some(node => {
+      if (node.type === 'paragraph' && (!node.content || node.content.length === 0)) return false;
+      return true;
+    });
+    if (!hasContent) return;
+
     const note: Note = {
       id: crypto.randomUUID(),
-      content: newNote.trim(),
+      content: newNoteContent,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
     saveNotes([note, ...notes]);
-    setNewNote('');
-  };
+    setNewNoteContent(null);
+  }, [newNoteContent, notes, saveNotes]);
 
-  const updateNote = (id: string) => {
-    if (!editContent.trim()) return;
+  const updateNote = useCallback((id: string) => {
+    if (!editContent) return;
     const updated = notes.map(n =>
-      n.id === id ? { ...n, content: editContent.trim(), updatedAt: new Date().toISOString() } : n
+      n.id === id ? { ...n, content: editContent, updatedAt: new Date().toISOString() } : n
     );
     saveNotes(updated);
     setEditing(null);
-    setEditContent('');
-  };
+    setEditContent(null);
+  }, [editContent, notes, saveNotes]);
 
-  const deleteNote = (id: string) => {
+  const deleteNote = useCallback((id: string) => {
     saveNotes(notes.filter(n => n.id !== id));
-  };
+  }, [notes, saveNotes]);
 
   return (
     <div className="space-y-4">
       {/* New note input */}
       <div className="space-y-2">
-        <textarea
-          value={newNote}
-          onChange={(e) => setNewNote(e.target.value)}
+        <RichTextEditor
+          key="new-note"
+          content={newNoteContent}
+          onChange={setNewNoteContent}
           placeholder="Write a personal note for this reading..."
-          className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-blue-500 focus:outline-none"
-          rows={3}
         />
         <button
           onClick={addNote}
-          disabled={!newNote.trim()}
-          className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+          disabled={!newNoteContent}
+          className="rounded-lg bg-[#002B5C] px-4 py-2 text-sm font-medium text-[#C5A258] transition-colors hover:bg-[#003875] disabled:cursor-not-allowed disabled:opacity-50"
         >
           Add Note
         </button>
@@ -88,20 +113,32 @@ export function PersonalNotes({ subject, reading }: PersonalNotesProps) {
           <div key={note.id} className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
             {editing === note.id ? (
               <div className="space-y-2">
-                <textarea
-                  value={editContent}
-                  onChange={(e) => setEditContent(e.target.value)}
-                  className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-white focus:border-blue-500 focus:outline-none"
-                  rows={3}
+                <RichTextEditor
+                  content={editContent}
+                  onChange={setEditContent}
                 />
                 <div className="flex gap-2">
-                  <button onClick={() => updateNote(note.id)} className="rounded bg-blue-600 px-3 py-1 text-xs text-white hover:bg-blue-500">Save</button>
-                  <button onClick={() => setEditing(null)} className="rounded bg-zinc-700 px-3 py-1 text-xs text-zinc-300 hover:bg-zinc-600">Cancel</button>
+                  <button
+                    onClick={() => updateNote(note.id)}
+                    className="rounded bg-[#002B5C] px-3 py-1 text-xs text-[#C5A258] hover:bg-[#003875]"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setEditing(null)}
+                    className="rounded bg-zinc-700 px-3 py-1 text-xs text-zinc-300 hover:bg-zinc-600"
+                  >
+                    Cancel
+                  </button>
                 </div>
               </div>
             ) : (
               <>
-                <p className="whitespace-pre-wrap text-sm text-zinc-300">{note.content}</p>
+                <RichTextEditor
+                  content={note.content}
+                  onChange={() => {}}
+                  editable={false}
+                />
                 <div className="mt-3 flex items-center justify-between">
                   <span className="text-[10px] text-zinc-600">
                     {new Date(note.updatedAt).toLocaleDateString()}

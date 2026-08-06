@@ -46,3 +46,6 @@ node_modules/
 .next/
 .env.local
 .env
+
+# mise version manager
+mise.toml

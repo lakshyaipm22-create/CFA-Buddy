@@ -282,7 +282,7 @@ export function SessionConfigurator({ initialSubject }: SessionConfiguratorProps
             Timed Mode
           </label>
           {timed && (
-            <div className="mt-2">
+            <div className="mt-2 space-y-2">
               <input
                 type="number"
                 min={5}
@@ -293,6 +293,14 @@ export function SessionConfigurator({ initialSubject }: SessionConfiguratorProps
                 style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)', color: 'var(--foreground)' }}
               />
               <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)' }}>Minutes (5-270)</p>
+              <button
+                type="button"
+                onClick={() => setTimeLimit(Math.round(questionCount * 1.5))}
+                className="rounded px-3 py-1 text-xs font-medium transition-colors hover:opacity-80"
+                style={{ background: 'var(--nav-hover-bg)', color: 'var(--accent-secondary)' }}
+              >
+                Use CFA default (1.5 min/question = {Math.round(questionCount * 1.5)} min)
+              </button>
             </div>
           )}
         </div>

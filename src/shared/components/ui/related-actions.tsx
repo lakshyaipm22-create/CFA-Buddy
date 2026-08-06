@@ -1,11 +1,36 @@
 'use client';
 
 import Link from 'next/link';
+import {
+  Repeat,
+  Layers,
+  AlertCircle,
+  BookOpen,
+  Calculator,
+  FileText,
+  Target,
+  CheckSquare,
+  BarChart3,
+  ClipboardList,
+} from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+
+const iconMap: Record<string, LucideIcon> = {
+  Repeat,
+  Layers,
+  AlertCircle,
+  BookOpen,
+  Calculator,
+  FileText,
+  Target,
+  CheckSquare,
+  BarChart3,
+  ClipboardList,
+};
 
 export interface RelatedActionItem {
   href: string;
-  icon: LucideIcon;
+  icon: LucideIcon | string;
   label: string;
   description: string;
 }
@@ -13,6 +38,13 @@ export interface RelatedActionItem {
 interface RelatedActionsProps {
   items: RelatedActionItem[];
   title?: string;
+}
+
+function resolveIcon(icon: LucideIcon | string): LucideIcon | null {
+  if (typeof icon === 'string') {
+    return iconMap[icon] ?? null;
+  }
+  return icon;
 }
 
 export function RelatedActions({ items, title = 'Related Actions' }: RelatedActionsProps) {
@@ -26,7 +58,8 @@ export function RelatedActions({ items, title = 'Related Actions' }: RelatedActi
       </h3>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item) => {
-          const Icon = item.icon;
+          const Icon = resolveIcon(item.icon);
+          if (!Icon) return null;
           return (
             <Link
               key={item.href}

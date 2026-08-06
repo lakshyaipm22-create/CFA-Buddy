@@ -4,7 +4,6 @@ import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Repeat, AlertCircle, Layers, BarChart3 } from 'lucide-react';
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
-import { QuestionAnalytics } from '@/features/question-bank/components/question-analytics';
 import { RecentAttemptsSection } from '@/features/question-bank/components/recent-attempts-section';
 import { RecentSessions } from '@/features/question-bank/components/recent-sessions';
 import { SmartSessionCard } from '@/features/question-bank/components/smart-session-card';
@@ -12,6 +11,17 @@ import { WeakTopicQuiz } from '@/features/question-bank/components/weak-topic-qu
 import { useImportedQuestions } from '@/features/question-bank/hooks/useImportedQuestions';
 import { cleanupOldSessions } from '@/features/question-bank/utils/session-storage';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
+import dynamic from 'next/dynamic';
+
+const QuestionAnalytics = dynamic(
+  () => import('@/features/question-bank/components/question-analytics').then((m) => m.QuestionAnalytics),
+  {
+    loading: () => (
+      <div className="h-64 animate-pulse rounded-xl border border-zinc-800 bg-zinc-900/50" />
+    ),
+    ssr: false,
+  }
+);
 
 function QuestionsPageInner() {
   const { isLoading, questions: importedQuestions } = useImportedQuestions();

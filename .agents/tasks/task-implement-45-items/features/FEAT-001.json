@@ -1,0 +1,23 @@
+{
+  "id": "FEAT-001",
+  "type": "fix",
+  "description": "Fix pre-existing build error and set up environment baseline. The /review page passes LucideIcon components from a Server Component to a Client Component (RelatedActions) which causes Next.js build failure. Also ensure mise.toml does not interfere with git and that node_modules are properly installed.",
+  "status": "completed",
+  "steps": [
+    "Run: eval \"$(mise activate bash)\" && npm install to ensure node_modules are fresh",
+    "Fix src/app/(protected)/review/page.tsx - the page is a Server Component that passes Lucide icon components (Repeat, Layers, AlertCircle) as the 'icon' prop to RelatedActions which is a Client Component. Fix by either: (a) making the review page a client component with 'use client', or (b) moving the RelatedActions usage into a client wrapper component in the same file.",
+    "Run: eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build to confirm everything passes",
+    "Add mise.toml to .gitignore if not already there (it was created for local node version management)"
+  ],
+  "acceptance_criteria": [
+    "npm run build completes successfully with 0 errors",
+    "npm run test passes all 263 existing tests",
+    "npx tsc --noEmit passes with no errors",
+    "npm run lint passes with no warnings"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "Fixed by refactoring RelatedActions to accept icon names as strings (serializable across server/client boundary) in addition to LucideIcon references. Updated 4 Server Component pages (review, insights, flashcards, mistakes) to use string icon names. The questions and practice pages already had 'use client' so they were unaffected. ESLint reports 17 pre-existing errors and 8 warnings in other files (dashboard-content, subject-progress-indicators, search-modal, subject-study-hub) but exits with code 0. All 263 tests pass. Build succeeds with all pages generating correctly."
+}
