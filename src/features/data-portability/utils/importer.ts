@@ -112,6 +112,34 @@ export function generateImportPreview(data: ValidatedExportData): ImportPreview 
 }
 
 /**
+ * Expected structural types for each data section.
+ * Used during import validation to reject data that could corrupt localStorage.
+ * 'array' means the value must be an array; 'object' means a non-null object (not array).
+ */
+const EXPECTED_TYPES: Record<string, 'array' | 'object'> = {
+  notes: 'array',
+  attempts: 'array',
+  sessions: 'array',
+  flashcards: 'array',
+  progress: 'object',
+  mistakes: 'array',
+  bookmarks: 'array',
+  examTarget: 'object',
+  streak: 'object',
+  gamification: 'object',
+  mockExams: 'object',
+  emailPrefs: 'object',
+  groups: 'array',
+  activityFeed: 'array',
+  leaderboard: 'array',
+  reviewSessions: 'array',
+  reviewHistory: 'array',
+  dailyStats: 'object',
+  scheduledCards: 'array',
+  localProfile: 'object',
+};
+
+/**
  * Imports validated data into localStorage.
  * Returns an ImportResult with success status, item count, and any warnings.
  */
@@ -140,6 +168,23 @@ export function importData(data: ValidatedExportData): ImportResult {
     const value = (data as Record<string, unknown>)[field];
     if (value === null || value === undefined) {
       continue; // Skip null/missing sections
+    }
+
+    // Type validation: ensure arrays are arrays and objects are objects
+    const expectedType = EXPECTED_TYPES[field];
+    if (expectedType === 'array' && !Array.isArray(value)) {
+      errors.push({
+        field,
+        message: `Invalid type for ${field}: expected an array but received ${typeof value}.`,
+      });
+      continue;
+    }
+    if (expectedType === 'object' && (typeof value !== 'object' || Array.isArray(value))) {
+      errors.push({
+        field,
+        message: `Invalid type for ${field}: expected an object but received ${Array.isArray(value) ? 'array' : typeof value}.`,
+      });
+      continue;
     }
 
     try {

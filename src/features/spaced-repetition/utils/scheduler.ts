@@ -5,6 +5,12 @@ import type { ScheduledCard, ReviewRating } from '../types';
  * Self-contained implementation for the spaced-repetition feature.
  * Based on SuperMemo 2 by Piotr Wozniak.
  *
+ * NOTE: This is intentionally separate from src/features/flashcards/utils/sm2.ts.
+ * The flashcards feature owns its own SM-2 logic for card-level reviews, while this
+ * scheduler manages the broader spaced-repetition review session flow with different
+ * state shapes (ScheduledCard vs FlashcardSM2Data). Keeping them isolated avoids
+ * cross-feature coupling and allows each feature to evolve independently.
+ *
  * Rating quality mapping:
  *   again=0, hard=2, good=4, easy=5
  */

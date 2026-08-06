@@ -4,16 +4,12 @@ const STATIC_CACHE = 'cfa-buddy-static-' + CACHE_VERSION;
 const DYNAMIC_CACHE = 'cfa-buddy-dynamic-' + CACHE_VERSION;
 const DATA_CACHE = 'cfa-buddy-data-' + CACHE_VERSION;
 
-// App shell resources to pre-cache on install
+// App shell resources to pre-cache on install.
+// Only precache the root page. Dynamic routes (dashboard, questions, etc.) are
+// server-rendered and may return redirects or errors if cached at install time.
+// They will be cached on first successful navigation via the network-first strategy.
 const APP_SHELL = [
   '/',
-  '/dashboard',
-  '/questions',
-  '/flashcards',
-  '/formulas',
-  '/learn',
-  '/mistakes',
-  '/exam-plan',
 ];
 
 // Static asset patterns to cache

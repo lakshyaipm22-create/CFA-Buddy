@@ -20,16 +20,22 @@ const sendWeeklySchema = z.object({
  */
 export async function POST(request: NextRequest) {
   try {
-    // Verify authorization via a simple secret header (optional)
+    // Fail-closed: reject all requests when CRON_SECRET is not configured.
+    // This prevents unauthenticated access in environments that forget to set the secret.
     const cronSecret = process.env.CRON_SECRET;
-    if (cronSecret) {
-      const authHeader = request.headers.get('authorization');
-      if (authHeader !== `Bearer ${cronSecret}`) {
-        return NextResponse.json(
-          { error: 'Unauthorized' },
-          { status: 401 }
-        );
-      }
+    if (!cronSecret) {
+      return NextResponse.json(
+        { error: 'CRON_SECRET is not configured. Endpoint disabled.' },
+        { status: 403 }
+      );
+    }
+
+    const authHeader = request.headers.get('authorization');
+    if (authHeader !== `Bearer ${cronSecret}`) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
     }
 
     const body = await request.json();

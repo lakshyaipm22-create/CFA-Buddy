@@ -16,13 +16,36 @@ function formatCountdown(seconds: number): string {
   return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 }
 
+/**
+ * Compute the remaining exam time from the absolute startedAt timestamp and total time limit.
+ * This makes the timer tamper-resistant - editing timeRemainingSeconds in localStorage
+ * has no effect because remaining is always derived from startedAt + timeLimitSeconds - now.
+ */
+function computeRemainingFromStart(startedAt: string, timeLimitSeconds: number): number {
+  const startedAtMs = new Date(startedAt).getTime();
+  const elapsedSeconds = (Date.now() - startedAtMs) / 1000;
+  return Math.max(0, Math.floor(timeLimitSeconds - elapsedSeconds));
+}
+
 export function MockExamSession() {
   const router = useRouter();
-  const [progress, setProgress] = useState<ExamProgress | null>(() => getExamProgress());
+  const [progress, setProgress] = useState<ExamProgress | null>(() => {
+    const saved = getExamProgress();
+    if (!saved) return null;
+    // On initial load, compute the correct remaining time from the absolute start time.
+    // This overrides any localStorage-stored timeRemainingSeconds value, preventing tampering.
+    const timeLimitSeconds = saved.timeRemainingSeconds + saved.answers.reduce(
+      (sum, a) => sum + a.timeSpentSeconds, 0
+    );
+    const remaining = computeRemainingFromStart(saved.startedAt, timeLimitSeconds);
+    return { ...saved, timeRemainingSeconds: remaining };
+  });
   const [showNav, setShowNav] = useState(false);
   const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const questionStartRef = useRef<number>(0);
+  // Store computed time limit so the interval can reference it
+  const timeLimitRef = useRef<number>(0);
 
   // Initialize the question start time via effect (not in render)
   useEffect(() => {
@@ -67,14 +90,23 @@ export function MockExamSession() {
     router.push(`/mock-exam/results/${progress.examId}`);
   }, [progress, questions, router]);
 
-  // Timer countdown
+  // Timer countdown - compute remaining from startedAt + timeLimitSeconds
+  // This prevents manipulation via localStorage edits since the source of truth
+  // is the absolute startedAt timestamp, not a mutable timeRemainingSeconds field.
   useEffect(() => {
     if (!progress) return;
+
+    // Compute and store the total time limit from the initial state
+    const timeLimitSeconds = progress.timeRemainingSeconds + progress.answers.reduce(
+      (sum, a) => sum + a.timeSpentSeconds, 0
+    );
+    timeLimitRef.current = timeLimitSeconds;
+    const startedAt = progress.startedAt;
 
     timerRef.current = setInterval(() => {
       setProgress((prev) => {
         if (!prev) return prev;
-        const remaining = prev.timeRemainingSeconds - 1;
+        const remaining = computeRemainingFromStart(startedAt, timeLimitRef.current);
         if (remaining <= 0) {
           if (timerRef.current) clearInterval(timerRef.current);
           return { ...prev, timeRemainingSeconds: 0 };
