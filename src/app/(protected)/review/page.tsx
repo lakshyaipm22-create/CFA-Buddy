@@ -8,10 +8,15 @@ export const metadata = {
 
 export default function ReviewPage() {
   return (
-    <div className="mx-auto max-w-4xl space-y-6 p-6">
-      <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>
-        Smart Review
-      </h1>
+    <div className="mx-auto max-w-5xl space-y-8">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>
+          Smart Review
+        </h1>
+        <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
+          Review all due flashcards, practice questions, and revision subjects in one unified queue.
+        </p>
+      </div>
       <ReviewQueueContent />
 
       <RelatedActions
@@ -27,12 +32,6 @@ export default function ReviewPage() {
             icon: 'Layers',
             label: 'Flashcards',
             description: 'Quick review cards',
-          },
-          {
-            href: '/mistakes',
-            icon: 'AlertCircle',
-            label: 'Mistakes',
-            description: 'Error patterns',
           },
         ]}
       />
