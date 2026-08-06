@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "Add social features: leaderboard (top performers by accuracy/streak/questions), study groups (create/join, share question sets, group progress), and activity feed (recent achievements)",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/social/ directory: types/, utils/, components/",
     "Create src/features/social/types/index.ts with types: LeaderboardEntry, StudyGroup, GroupMember, GroupProgress, ActivityFeedItem, Achievement",
@@ -35,5 +35,5 @@
     "eval \"$(mise activate bash)\" && npm run test"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 360 tests pass (24 new social tests). Had to avoid setState in useEffect for activity-feed component (React custom lint rule). Used useState lazy initializer pattern instead. Navigation config uses Users icon from lucide-react for the Community group. Simulated leaderboard has 19 demo entries. Activity feed seeds with 10 simulated community items when empty."
 }
