@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "Wire the Exam Plan page to use real PracticeAttempt data instead of generic session data. Show actual per-subject scores from the seeded attempts (Corporate Issuers 76%, FSA 69%, PM 78%, QM 78%, Alt Inv 79%), calculate weighted CFA readiness score, and provide subject-specific daily targets based on weak areas.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "In src/features/exam-plan/components/exam-plan-content.tsx (after FEAT-001 has replaced useSyncExternalStore): Import getAllAttempts from '@/features/question-bank/utils/attempt-storage' and loadAllQuestions from the question-loader. Read PracticeAttempt data in a useState lazy initializer.",
     "Replace the generic 'subjectProgress' computation (which just distributes session attempts evenly across 'All Subjects') with real per-subject data from PracticeAttempts. For each of the 10 CFA subjects, show: accuracy percentage from attempt data, number of questions answered, and coverage (questions answered / total available in that subject).",
