@@ -42,12 +42,13 @@ import { seedCorporateIssuersAttempt } from '@/features/question-bank/utils/seed
 import { seedFsaAttempt } from '@/features/question-bank/utils/seed-fsa';
 import { seedPortfolioManagementAttempt } from '@/features/question-bank/utils/seed-portfolio-management';
 import { seedQuantitativeMethodsAttempt } from '@/features/question-bank/utils/seed-quantitative-methods';
+import { seedAlternativeInvestmentsAttempt } from '@/features/question-bank/utils/seed-alternative-investments';
 import { runSeedsIfNeeded } from '@/features/question-bank/utils/seed-guard';
 import { getLatestAttempt } from '@/features/question-bank/utils/attempt-storage';
 import { getLocalProfile } from '@/shared/lib/local-profile';
 import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
 
-const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management', 'Quantitative Methods'] as const;
+const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management', 'Quantitative Methods', 'Alternative Investments'] as const;
 
 interface DashboardContentProps {
   displayName: string;
@@ -67,7 +68,7 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
   const effectiveLevel = localProfile?.level || level;
 
   useEffect(() => {
-    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt]);
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt]);
     const results: PracticeAttempt[] = [];
     for (const subject of ALL_SUBJECTS) {
       const latest = getLatestAttempt(subject);
