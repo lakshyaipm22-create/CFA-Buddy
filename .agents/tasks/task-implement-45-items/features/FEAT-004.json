@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Question verification admin UI, Resource Library file upload, Page bookmarks, Session persistence, and Full-text search backend. Covers Tier 1 items #9, #12, #13, #14, #15.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/app/(protected)/admin/questions/page.tsx - Admin UI for reviewing imported questions. Show a table of questions with verification_status='pending'. Allow approve/reject actions via Server Actions. Filter by subject/topic/provider. Show question text, choices, correct answer.",
     "Create src/features/question-bank/actions/verify.ts - Server Actions: approveQuestion, rejectQuestion, bulkApprove. Update verification_status field.",
@@ -29,5 +29,5 @@
     "eval \"$(mise activate bash)\" && npx tsc --noEmit && npm run lint && npm run test && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 11 steps implemented. Key deviations: (1) Prisma Question model lacks verifiedBy/verifiedAt/rejectionReason fields so verify actions only update verificationStatus string field. (2) No PersistedSession Prisma model exists, so session persistence uses Server Actions for validation but delegates storage to client-side localStorage with 7-day expiry. (3) Topic model lacks description field, so search only matches on topic name. (4) Admin page uses sample questions as fallback when no DB; DB path includes reading->subject relation for subject names. (5) The lint rule react-hooks/set-state-in-effect required using useState lazy initializer instead of useEffect+setState in resume-session-banner. (6) Date.now() treated as impure by linter so used a mountTime state instead. All 263 tests pass, tsc clean, build succeeds."
 }
