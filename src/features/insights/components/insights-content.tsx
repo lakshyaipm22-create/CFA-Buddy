@@ -7,6 +7,7 @@ import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-st
 import { loadAllQuestions } from '@/features/question-bank/utils/question-loader';
 import { TopicHeatmap } from './topic-heatmap';
 import { ReadinessDashboard } from './readiness-dashboard';
+import { ConfidenceCalibration } from './confidence-calibration';
 import {
   WeakTopicPanel,
   ProgressTimelineChart,
@@ -139,6 +140,11 @@ export function InsightsContent() {
       {/* Progress Timeline */}
       {allAttempts.length > 0 && (
         <ProgressTimelineChart attempts={allAttempts} />
+      )}
+
+      {/* Confidence Calibration Matrix */}
+      {allAttempts.length > 0 && (
+        <ConfidenceCalibration attempts={allAttempts} />
       )}
 
       {/* Key Metrics */}
