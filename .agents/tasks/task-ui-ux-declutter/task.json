@@ -1,0 +1,14 @@
+{
+  "task_id": "task-ui-ux-declutter",
+  "task_description": "Comprehensive UI/UX overhaul to declutter the CFA Buddy website. Consolidate sidebar navigation, redesign dashboard for minimal above-the-fold content, use progressive disclosure, clean up all pages with proper whitespace and visual hierarchy.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "TypeScript compiles cleanly (0 errors). Build succeeds with all 31 routes. All 274 tests pass. Lint has only pre-existing errors (18) in unrelated files. Semantic review: APPROVED with 3 non-blocking suggestions (animation timing, URL state for tabs, orphaned nav link)."
+  }
+}
