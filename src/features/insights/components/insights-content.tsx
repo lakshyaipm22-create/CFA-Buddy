@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { TrendingUp, TrendingDown, Target, Clock } from 'lucide-react';
 import { useLocalStorageSessions } from '@/features/dashboard/hooks/use-local-storage-sessions';
 import { loadAllQuestions } from '@/features/question-bank/utils/question-loader';
+import { CFA_CURRICULUM_WEIGHTS } from '@/shared/config/subjects';
 import { TopicHeatmap } from './topic-heatmap';
 import { ReadinessDashboard } from './readiness-dashboard';
 import { ConfidenceCalibration } from './confidence-calibration';
@@ -76,18 +77,10 @@ export function InsightsContent() {
     const bestSubject = sorted[0] ?? null;
     const worstSubject = sorted[sorted.length - 1] ?? null;
 
-    // Predicted score (weighted by CFA weights)
-    const weights: Record<string, number> = {
-      'Ethical and Professional Standards': 15,
-      'Quantitative Methods': 10, 'Economics': 10,
-      'Financial Statement Analysis': 13, 'Corporate Issuers': 8,
-      'Equity Investments': 11, 'Fixed Income': 11,
-      'Derivatives': 6, 'Alternative Investments': 6,
-      'Portfolio Management': 10,
-    };
+    // Predicted score (weighted by CFA curriculum weights - canonical source)
     let weightedScore = 0, totalWeight = 0;
     for (const entry of subjectEntries) {
-      const w = weights[entry.fullName] ?? 10;
+      const w = (CFA_CURRICULUM_WEIGHTS[entry.fullName] ?? 0.10) * 100;
       weightedScore += entry.accuracy * w;
       totalWeight += w;
     }

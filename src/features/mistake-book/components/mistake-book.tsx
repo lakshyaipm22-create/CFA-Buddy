@@ -165,6 +165,12 @@ export function MistakeBook() {
     }));
   }, [enrichedMistakes]);
 
+  // Memoize unique question count for the retry button badge
+  const filteredUniqueQuestionCount = useMemo(
+    () => new Set(filteredMistakes.map(m => m.questionId)).size,
+    [filteredMistakes]
+  );
+
   const { focusedIndex, listRef } = useListNavigation(filteredMistakes.length);
 
   // Retry Mistakes handler - creates a session with unique incorrect question IDs
@@ -219,7 +225,7 @@ export function MistakeBook() {
             className="rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:opacity-90"
             style={{ background: '#00843D', color: '#ffffff' }}
           >
-            Retry Mistakes ({new Set(filteredMistakes.map(m => m.questionId)).size})
+            Retry Mistakes ({filteredUniqueQuestionCount})
           </button>
         )}
       </div>

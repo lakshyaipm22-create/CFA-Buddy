@@ -37,6 +37,13 @@ export function RevisionPlanner() {
   const [schedule, setSchedule] = useState(() => getRevisionSchedule());
 
   const allQuestions = useMemo(() => loadAllQuestions(), []);
+  const questionMap = useMemo(() => {
+    const map = new Map<string, (typeof allQuestions)[number]>();
+    for (const q of allQuestions) {
+      map.set(q.id, q);
+    }
+    return map;
+  }, [allQuestions]);
   const ALL_SUBJECTS = useMemo(() => sortByCfaOrder([...new Set(allQuestions.map(q => q.subject))]), [allQuestions]);
 
   const subjectData = useMemo<SubjectRevision[]>(() => {
@@ -49,8 +56,9 @@ export function RevisionPlanner() {
 
       for (const session of completed) {
         for (const attempt of session.attempts ?? []) {
-          // Match subject by question ID prefix
-          const q = allQuestions.find(sq => sq.id === attempt.questionId);
+          // Match subject by question ID lookup
+          if (!attempt.questionId) continue;
+          const q = questionMap.get(attempt.questionId);
           if (q?.subject === subject) {
             total++;
             if (attempt.correct) correct++;
@@ -88,7 +96,7 @@ export function RevisionPlanner() {
         revisionStage: stage,
       };
     }).sort((a, b) => b.priority - a.priority);
-  }, [sessions, schedule, allQuestions, ALL_SUBJECTS]);
+  }, [sessions, schedule, questionMap, ALL_SUBJECTS]);
 
   const markRevised = (subject: string) => {
     const current = schedule[subject];

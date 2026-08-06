@@ -33,6 +33,7 @@ export function getFormulaQuizHistory(): FormulaQuizResult[] {
 
 /**
  * Save a single quiz result to localStorage history.
+ * Maintains a rolling cap of 1000 most recent entries to prevent unbounded growth.
  */
 export function saveFormulaQuizResult(formulaId: string, rating: FormulaRating): void {
   if (typeof window === 'undefined') return;
@@ -43,7 +44,12 @@ export function saveFormulaQuizResult(formulaId: string, rating: FormulaRating):
     timestamp: new Date().toISOString(),
   };
   history.push(entry);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  // Rolling cap: keep only the 1000 most recent entries
+  const MAX_HISTORY_ENTRIES = 1000;
+  const trimmed = history.length > MAX_HISTORY_ENTRIES
+    ? history.slice(history.length - MAX_HISTORY_ENTRIES)
+    : history;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed));
 }
 
 /**
