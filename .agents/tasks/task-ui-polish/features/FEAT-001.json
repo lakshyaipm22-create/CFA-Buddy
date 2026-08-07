@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "refactor",
   "description": "Fix page-level layout inconsistencies across all secondary pages. Ensure every page uses the standard wrapper (mx-auto max-w-5xl space-y-8) and the standard page header pattern (h1 text-2xl font-bold + p mt-1 text-sm with CSS variables). Fix hardcoded colors in resources page.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Fix src/app/(protected)/resources/page.tsx: change 'text-white' to style={{ color: 'var(--foreground)' }} and 'text-zinc-400' to style={{ color: 'var(--foreground-secondary)' }}. Add mx-auto max-w-5xl to wrapper div.",
     "Fix src/app/(protected)/exam-plan/page.tsx: change wrapper from 'space-y-6' to 'mx-auto max-w-5xl space-y-8'.",
@@ -27,5 +27,5 @@
     "eval \"$(mise activate bash)\" && cd /projects/sandbox/CFA-Buddy && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 10 pages updated successfully. tsc --noEmit and npm run build both pass. Remaining hardcoded colors exist in learn/, resources/[resourceId]/, and admin/ pages which are out of scope for this feature."
 }
