@@ -8,13 +8,13 @@ const MistakeBook = dynamic(
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-20 animate-pulse rounded-lg border border-zinc-800 bg-zinc-900/50" />
+            <div key={i} className="h-20 animate-pulse rounded-lg border" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }} />
           ))}
         </div>
-        <div className="h-12 animate-pulse rounded-lg bg-zinc-900/50" />
+        <div className="h-12 animate-pulse rounded-lg" style={{ background: 'var(--card-bg)' }} />
         <div className="space-y-2">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-16 animate-pulse rounded-lg border border-zinc-800 bg-zinc-900/50" />
+            <div key={i} className="h-16 animate-pulse rounded-lg border" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }} />
           ))}
         </div>
       </div>

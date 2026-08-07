@@ -13,16 +13,19 @@ export function CollapsibleSection({ title, defaultOpen = false, children }: Col
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)]">
+    <div
+      className="rounded-xl border"
+      style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}
+    >
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-[var(--border-primary)]/10"
+        className="flex w-full items-center justify-between px-5 py-4 text-left transition-opacity hover:opacity-80"
       >
-        <span className="text-sm font-semibold text-[var(--text-primary)]">{title}</span>
+        <span className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>{title}</span>
         <ChevronDown
-          className="h-4 w-4 text-[var(--text-muted)] transition-transform duration-300"
-          style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+          className="h-4 w-4 transition-transform duration-300"
+          style={{ color: 'var(--foreground-secondary)', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
         />
       </button>
       <div

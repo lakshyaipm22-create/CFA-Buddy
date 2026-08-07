@@ -18,7 +18,7 @@ export default function SocialPage() {
   const [activeTab, setActiveTab] = useState<Tab>('leaderboard');
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 p-4 sm:p-6">
+    <div className="mx-auto max-w-5xl space-y-8">
       {/* Page Header */}
       <div>
         <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>

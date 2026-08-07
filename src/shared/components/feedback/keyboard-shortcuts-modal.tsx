@@ -49,9 +49,9 @@ function Kbd({ children }: { children: string }) {
     <kbd
       className="inline-flex items-center justify-center min-w-[28px] h-7 px-2 rounded-md text-xs font-semibold"
       style={{
-        background: 'var(--background-secondary, #f3f4f6)',
-        border: '1px solid var(--border-primary, #e5e7eb)',
-        color: 'var(--text-primary, #1f2937)',
+        background: 'var(--card-bg)',
+        border: '1px solid var(--card-border)',
+        color: 'var(--foreground)',
         boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
       }}
     >
@@ -104,8 +104,8 @@ export function KeyboardShortcutsModal() {
       <div
         className="w-full max-w-lg rounded-xl shadow-2xl overflow-hidden"
         style={{
-          background: 'var(--background, #ffffff)',
-          border: '1px solid var(--border-primary, #e5e7eb)',
+          background: 'var(--background)',
+          border: '1px solid var(--card-border)',
           transform: isOpen ? 'scale(1)' : 'scale(0.95)',
           transition: 'transform 200ms ease-in-out',
         }}
@@ -149,7 +149,7 @@ export function KeyboardShortcutsModal() {
                     >
                       <span
                         className="text-sm"
-                        style={{ color: 'var(--text-secondary, #4b5563)' }}
+                        style={{ color: 'var(--foreground)' }}
                       >
                         {shortcut.description}
                       </span>
@@ -159,7 +159,7 @@ export function KeyboardShortcutsModal() {
                             {i > 0 && (
                               <span
                                 className="text-xs mx-0.5"
-                                style={{ color: 'var(--text-muted, #9ca3af)' }}
+                                style={{ color: 'var(--foreground-secondary)' }}
                               >
                                 {shortcut.keys.length === 2 && category.title === 'Navigation' && shortcut.keys[0] === 'g'
                                   ? 'then'
@@ -182,13 +182,13 @@ export function KeyboardShortcutsModal() {
         <div
           className="px-6 py-3 text-center"
           style={{
-            borderTop: '1px solid var(--border-primary, #e5e7eb)',
-            background: 'var(--background-secondary, #f9fafb)',
+            borderTop: '1px solid var(--card-border)',
+            background: 'var(--card-bg)',
           }}
         >
           <span
             className="text-xs"
-            style={{ color: 'var(--text-muted, #9ca3af)' }}
+            style={{ color: 'var(--foreground-secondary)' }}
           >
             Press <Kbd>?</Kbd> to toggle this menu
           </span>

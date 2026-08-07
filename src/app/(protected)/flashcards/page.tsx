@@ -1,4 +1,3 @@
-import { FlashcardStats } from '@/features/flashcards/components/flashcard-stats';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
 import dynamic from 'next/dynamic';
 
@@ -7,10 +6,10 @@ const FlashcardDeck = dynamic(
   {
     loading: () => (
       <div className="space-y-3">
-        <div className="h-[240px] animate-pulse rounded-2xl border border-zinc-800 bg-zinc-900/50" />
+        <div className="h-[240px] animate-pulse rounded-2xl border" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }} />
         <div className="flex justify-center gap-3">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-10 w-20 animate-pulse rounded-lg bg-zinc-800" />
+            <div key={i} className="h-10 w-20 animate-pulse rounded-lg" style={{ background: 'var(--nav-hover-bg)' }} />
           ))}
         </div>
       </div>
@@ -28,7 +27,6 @@ export default function FlashcardsPage() {
         </p>
       </div>
 
-      <FlashcardStats />
       <FlashcardDeck />
 
       <RelatedActions

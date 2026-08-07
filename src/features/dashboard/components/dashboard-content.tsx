@@ -210,20 +210,20 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
   }, [examDate]);
 
   return (
-    <div className="mx-auto max-w-4xl space-y-8 pb-8">
+    <div className="mx-auto max-w-5xl space-y-8 pb-8">
       {/* Confetti Animation */}
       <Confetti show={showConfetti} />
 
       {/* Compact Welcome Bar */}
       <div className="flex items-center gap-3">
-        <p className="text-[var(--text-primary)] text-lg font-semibold">
+        <p className="text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
           Welcome back, {effectiveDisplayName}
         </p>
         <span className="inline-flex items-center rounded-full bg-[#C5A258]/15 px-2.5 py-0.5 text-xs font-semibold text-[#C5A258]">
           Level {effectiveLevel} &middot; {gamificationState.xp} XP
         </span>
         {daysToExam !== null && (
-          <span className="ml-auto inline-flex items-center gap-1.5 text-xs font-medium text-[var(--text-muted)]">
+          <span className="ml-auto inline-flex items-center gap-1.5 text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
             <CalendarDays className="h-3.5 w-3.5" />
             {daysToExam} days to exam
           </span>
@@ -261,7 +261,8 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
       {/* Primary CTA */}
       <Link
         href="/questions"
-        className="group flex items-center justify-center gap-3 rounded-xl border border-[#C5A258]/30 bg-[var(--background-secondary)] p-5 transition-all duration-300 hover:border-[#C5A258]/60 hover:shadow-lg"
+        className="group flex items-center justify-center gap-3 rounded-xl border border-[#C5A258]/30 p-5 transition-all duration-300 hover:border-[#C5A258]/60 hover:shadow-lg"
+        style={{ background: 'var(--card-bg)' }}
       >
         <Play className="h-5 w-5 text-[#C5A258]" />
         <span className="text-base font-semibold text-[#C5A258]">Start Practice Session</span>
@@ -273,7 +274,7 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
         {/* Readiness Breakdown */}
         {stats.questionsAnswered >= 10 && (
           <div>
-            <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
+            <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--foreground-secondary)' }}>
               Readiness Breakdown
             </h4>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
@@ -283,7 +284,7 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
               <ReadinessFactor label="Calibration" value={readiness.breakdown.calibration} />
               <ReadinessFactor label="Recency" value={readiness.breakdown.recency} />
             </div>
-            <p className="mt-3 text-xs text-[var(--text-muted)]">
+            <p className="mt-3 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
               {readiness.predictionText}
             </p>
           </div>
@@ -292,7 +293,7 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
         {/* Weakest Topics */}
         {stats.weakestTopics.length > 0 && (
           <div>
-            <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
+            <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--foreground-secondary)' }}>
               Weakest Topics
             </h4>
             <div className="space-y-2">
@@ -300,17 +301,17 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
                 <div key={topic.name} className="flex items-center gap-3">
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-medium text-[var(--text-primary)]">{topic.name}</span>
+                      <span className="text-xs font-medium" style={{ color: 'var(--foreground)' }}>{topic.name}</span>
                       <span className="text-xs font-bold text-red-400">{topic.accuracy}%</span>
                     </div>
-                    <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full" style={{ background: 'var(--border-primary)' }}>
+                    <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full" style={{ background: 'var(--card-border)' }}>
                       <div
                         className="h-full rounded-full transition-all duration-500"
                         style={{ width: `${topic.accuracy}%`, background: topic.accuracy >= 60 ? '#C5A258' : '#ef4444' }}
                       />
                     </div>
                   </div>
-                  <span className="text-[10px] text-[var(--text-muted)]">{topic.total}q</span>
+                  <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>{topic.total}q</span>
                 </div>
               ))}
             </div>
@@ -320,21 +321,22 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
         {/* Recent Practice Attempts (max 3) */}
         {latestAttempts.length > 0 && (
           <div>
-            <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
+            <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--foreground-secondary)' }}>
               Recent Practice Attempts
             </h4>
             <div className="space-y-3">
               {latestAttempts.slice(0, 3).map((attempt) => (
                 <div
                   key={attempt.id}
-                  className="flex items-center gap-4 rounded-lg border border-[var(--border-primary)] p-3"
+                  className="flex items-center gap-4 rounded-lg border p-3"
+                  style={{ borderColor: 'var(--card-border)' }}
                 >
                   <AttemptScoreRing score={attempt.overallPercentage} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-[var(--text-primary)] truncate">
+                    <p className="text-sm font-medium truncate" style={{ color: 'var(--foreground)' }}>
                       {attempt.subjectName}
                     </p>
-                    <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
+                    <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
                       <span>{attempt.overallScore}/{attempt.overallTotal} correct</span>
                       <span>&middot;</span>
                       <Clock className="h-3 w-3" />
@@ -382,13 +384,16 @@ function StatCard({
   subtitle: string;
 }) {
   return (
-    <div className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-4 transition-all duration-300 hover:shadow-md">
-      <div className="flex items-center gap-2 text-[var(--text-muted)]">
+    <div
+      className="rounded-xl border p-4 transition-all duration-300 hover:shadow-md"
+      style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}
+    >
+      <div className="flex items-center gap-2" style={{ color: 'var(--foreground-secondary)' }}>
         {icon}
         <span className="text-xs font-medium">{label}</span>
       </div>
-      <p className="mt-2 text-2xl font-bold text-[var(--text-primary)]">{value}</p>
-      <p className="mt-0.5 text-[10px] text-[var(--text-muted)]">{subtitle}</p>
+      <p className="mt-2 text-2xl font-bold" style={{ color: 'var(--foreground)' }}>{value}</p>
+      <p className="mt-0.5 text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>{subtitle}</p>
     </div>
   );
 }
@@ -397,12 +402,15 @@ function StatCard({
 
 function ReadinessFactor({ label, value }: { label: string; value: number }) {
   return (
-    <div className="flex flex-col items-center gap-1 rounded-lg border border-[var(--border-primary)] p-2">
-      <span className="text-lg font-bold text-[var(--text-primary)]">{value}</span>
-      <span className="text-[10px] text-[var(--text-muted)]">{label}</span>
+    <div
+      className="flex flex-col items-center gap-1 rounded-lg border p-2"
+      style={{ borderColor: 'var(--card-border)' }}
+    >
+      <span className="text-lg font-bold" style={{ color: 'var(--foreground)' }}>{value}</span>
+      <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>{label}</span>
       <div
         className="h-1 w-full overflow-hidden rounded-full"
-        style={{ background: 'var(--border-primary)' }}
+        style={{ background: 'var(--card-border)' }}
       >
         <div
           className="h-full rounded-full transition-all duration-500"
@@ -429,7 +437,7 @@ function AttemptScoreRing({ score }: { score: number }) {
   return (
     <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
       <svg width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--border-primary)" strokeWidth={strokeWidth} />
+        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--card-border)" strokeWidth={strokeWidth} />
         <circle
           cx={size / 2}
           cy={size / 2}

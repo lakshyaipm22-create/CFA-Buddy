@@ -55,17 +55,17 @@ export function MockExamLanding() {
     : null;
 
   return (
-    <div className="mx-auto max-w-4xl space-y-8">
+    <div className="mx-auto max-w-5xl space-y-8">
       {/* Header */}
-      <div className="text-center">
+      <div>
         <h1
-          className="text-3xl font-bold"
+          className="text-2xl font-bold"
           style={{ color: 'var(--foreground)' }}
         >
           Mock Exam
         </h1>
         <p
-          className="mt-2 text-lg"
+          className="mt-1 text-sm"
           style={{ color: 'var(--foreground-secondary)' }}
         >
           Full CFA Level I exam simulation
@@ -277,8 +277,8 @@ export function MockExamLanding() {
         <button
           onClick={startExam}
           disabled={isStarting || availableCount === 0}
-          className="inline-flex items-center gap-2 rounded-xl px-8 py-4 text-lg font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
-          style={{ background: '#002B5C' }}
+          className="inline-flex items-center gap-2 rounded-lg px-8 py-4 text-lg font-bold text-white transition-all hover:opacity-90 disabled:opacity-50"
+          style={{ background: '#C5A258' }}
         >
           <Play className="h-5 w-5" />
           {isStarting ? 'Preparing Exam...' : 'Start Mock Exam'}

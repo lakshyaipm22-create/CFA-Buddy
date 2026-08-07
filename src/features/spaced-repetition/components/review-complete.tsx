@@ -24,34 +24,34 @@ export function ReviewComplete({ cardsReviewed, ratings, onRestart }: ReviewComp
         <Trophy className="h-10 w-10 text-[#00843D]" />
       </div>
 
-      <h2 className="text-2xl font-bold text-[var(--text-primary)]">
+      <h2 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>
         Review Complete!
       </h2>
-      <p className="mt-2 text-sm text-[var(--text-secondary)]">
+      <p className="mt-2 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
         You reviewed {cardsReviewed} card{cardsReviewed !== 1 ? 's' : ''} in this session.
       </p>
 
       {/* Stats Grid */}
       <div className="mt-6 grid w-full max-w-sm grid-cols-2 gap-3">
-        <div className="rounded-lg border border-[var(--border-primary)] bg-[var(--background-secondary)] p-4">
+        <div className="rounded-lg border p-4" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
           <div className="flex items-center justify-center gap-1.5 mb-1">
             <CheckCircle2 className="h-4 w-4 text-[#00843D]" />
-            <span className="text-xs text-[var(--text-muted)]">Accuracy</span>
+            <span className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Accuracy</span>
           </div>
           <p className="text-2xl font-bold text-[#00843D]">{accuracy}%</p>
         </div>
-        <div className="rounded-lg border border-[var(--border-primary)] bg-[var(--background-secondary)] p-4">
+        <div className="rounded-lg border p-4" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
           <div className="flex items-center justify-center gap-1.5 mb-1">
             <BarChart3 className="h-4 w-4 text-[#C5A258]" />
-            <span className="text-xs text-[var(--text-muted)]">Cards</span>
+            <span className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>Cards</span>
           </div>
           <p className="text-2xl font-bold text-[#C5A258]">{cardsReviewed}</p>
         </div>
       </div>
 
       {/* Rating Breakdown */}
-      <div className="mt-4 w-full max-w-sm rounded-lg border border-[var(--border-primary)] bg-[var(--background-secondary)] p-4">
-        <h4 className="mb-2 text-xs font-semibold text-[var(--text-secondary)]">Rating Breakdown</h4>
+      <div className="mt-4 w-full max-w-sm rounded-lg border p-4" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
+        <h4 className="mb-2 text-xs font-semibold" style={{ color: 'var(--foreground)' }}>Rating Breakdown</h4>
         <div className="grid grid-cols-4 gap-2">
           <RatingCount label="Again" count={ratings.again} color="#ef4444" />
           <RatingCount label="Hard" count={ratings.hard} color="#f59e0b" />
@@ -73,7 +73,8 @@ export function ReviewComplete({ cardsReviewed, ratings, onRestart }: ReviewComp
         </button>
         <Link
           href="/dashboard"
-          className="flex items-center justify-center gap-2 rounded-lg border border-[var(--border-primary)] px-4 py-3 text-sm font-medium text-[var(--text-secondary)] transition-all hover:bg-[var(--background-secondary)]"
+          className="flex items-center justify-center gap-2 rounded-lg border px-4 py-3 text-sm font-medium transition-all"
+          style={{ borderColor: 'var(--card-border)', color: 'var(--foreground)' }}
         >
           Back to Dashboard
         </Link>
@@ -86,7 +87,7 @@ function RatingCount({ label, count, color }: { label: string; count: number; co
   return (
     <div className="flex flex-col items-center gap-0.5">
       <span className="text-lg font-bold" style={{ color }}>{count}</span>
-      <span className="text-[10px] text-[var(--text-muted)]">{label}</span>
+      <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>{label}</span>
     </div>
   );
 }

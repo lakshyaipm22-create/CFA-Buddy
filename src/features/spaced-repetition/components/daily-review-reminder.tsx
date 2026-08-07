@@ -71,10 +71,10 @@ export function DailyReviewReminder() {
       </div>
 
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-[var(--text-primary)]">
+        <p className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>
           Daily Review Reminder
         </p>
-        <p className="text-xs text-[var(--text-muted)]">
+        <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
           You have {dueCount} card{dueCount !== 1 ? 's' : ''} due for review today.
           Consistent reviews boost long-term retention!
         </p>
@@ -91,7 +91,8 @@ export function DailyReviewReminder() {
 
       <button
         onClick={handleDismiss}
-        className="shrink-0 rounded-full p-1 text-[var(--text-muted)] transition-colors hover:text-[var(--text-secondary)]"
+        className="shrink-0 rounded-full p-1 transition-colors hover:opacity-70"
+        style={{ color: 'var(--foreground-secondary)' }}
         aria-label="Dismiss reminder"
       >
         <X className="h-4 w-4" />

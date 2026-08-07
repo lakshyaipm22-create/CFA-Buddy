@@ -3,7 +3,7 @@ import { FormulaQuiz } from '@/features/formulas/components/formula-quiz';
 
 export default function FormulasPage() {
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-5xl space-y-8">
       <div>
         <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Formula Center</h1>
         <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
