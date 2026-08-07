@@ -40,16 +40,19 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
     <div className="space-y-6">
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-3">
-        <div className="flex gap-1 rounded-lg border border-zinc-800 bg-zinc-900 p-1">
+        <div
+          className="flex gap-1 rounded-lg border p-1"
+          style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}
+        >
           {(['subject', 'provider', 'type'] as const).map((mode) => (
             <button
               key={mode}
               onClick={() => setViewMode(mode)}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                viewMode === mode
-                  ? 'bg-zinc-700 text-white'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
+              className="rounded-md px-3 py-1.5 text-xs font-medium transition-colors"
+              style={{
+                background: viewMode === mode ? 'var(--border)' : 'transparent',
+                color: viewMode === mode ? 'var(--foreground)' : 'var(--foreground-secondary)',
+              }}
             >
               By {mode.charAt(0).toUpperCase() + mode.slice(1)}
             </button>
@@ -60,9 +63,11 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setSelectedSubject(null)}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                !selectedSubject ? 'bg-blue-600 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-white'
-              }`}
+              className="rounded-md px-3 py-1.5 text-xs font-medium transition-colors"
+              style={{
+                background: !selectedSubject ? 'var(--accent-primary)' : 'var(--nav-hover-bg)',
+                color: !selectedSubject ? '#ffffff' : 'var(--foreground-secondary)',
+              }}
             >
               All
             </button>
@@ -70,9 +75,11 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
               <button
                 key={subject}
                 onClick={() => setSelectedSubject(subject)}
-                className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                  selectedSubject === subject ? 'bg-blue-600 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-white'
-                }`}
+                className="rounded-md px-3 py-1.5 text-xs font-medium transition-colors"
+                style={{
+                  background: selectedSubject === subject ? 'var(--accent-primary)' : 'var(--nav-hover-bg)',
+                  color: selectedSubject === subject ? '#ffffff' : 'var(--foreground-secondary)',
+                }}
               >
                 {subject}
               </button>
@@ -128,8 +135,11 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
       )}
 
       {Object.keys(displayGroups).length === 0 && (
-        <div className="rounded-lg border border-dashed border-zinc-700 p-12 text-center">
-          <p className="text-zinc-400">No resources found. Run the content scanner first.</p>
+        <div
+          className="rounded-lg border border-dashed p-12 text-center"
+          style={{ borderColor: 'var(--border)' }}
+        >
+          <p style={{ color: 'var(--foreground-secondary)' }}>No resources found. Run the content scanner first.</p>
         </div>
       )}
     </div>
@@ -139,7 +149,7 @@ export function ResourceBrowser({ subjects, initialResources }: ResourceBrowserP
 function ResourceGroup({ name, resources, focusedIndex, startIndex }: { name: string; resources: ContentMetadata[]; focusedIndex: number; startIndex: number }) {
   return (
     <div>
-      <h2 className="mb-3 text-lg font-semibold text-white">{formatGroupName(name)}</h2>
+      <h2 className="mb-3 text-lg font-semibold" style={{ color: 'var(--foreground)' }}>{formatGroupName(name)}</h2>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         {resources.map((resource, i) => (
           <ResourceCard
@@ -163,26 +173,31 @@ function ResourceCard({ resource, isFocused }: { resource: ContentMetadata; isFo
       href={`/resources/${resource.id}`}
       data-list-item
       className={`group flex flex-col rounded-lg border p-4 transition-colors ${
-        isFocused
-          ? 'border-[#C5A258] bg-zinc-900 ring-1 ring-[#C5A258]/50'
-          : 'border-zinc-800 bg-zinc-900/50 hover:border-zinc-600 hover:bg-zinc-900'
+        isFocused ? 'ring-1 ring-[#C5A258]/50' : ''
       }`}
+      style={{
+        borderColor: isFocused ? '#C5A258' : 'var(--card-border)',
+        background: 'var(--card-bg)',
+      }}
     >
       <div className="flex items-start justify-between gap-2">
-        <p className="text-sm font-medium text-zinc-200 group-hover:text-white">
+        <p className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>
           {truncate(resource.fileName, 60)}
         </p>
-        <span className="shrink-0 rounded bg-zinc-800 px-2 py-0.5 text-[10px] font-medium text-zinc-400">
+        <span
+          className="shrink-0 rounded px-2 py-0.5 text-[10px] font-medium"
+          style={{ background: 'var(--nav-hover-bg)', color: 'var(--foreground-secondary)' }}
+        >
           {formatResourceType(resource.resourceType)}
         </span>
       </div>
-      <div className="mt-2 flex items-center gap-3 text-xs text-zinc-500">
+      <div className="mt-2 flex items-center gap-3 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
         {resource.provider && <span>{resource.provider}</span>}
         {resource.subject && <span>• {resource.subject}</span>}
         <span>• {sizeStr}</span>
       </div>
       {resource.reading && (
-        <p className="mt-1 text-xs text-zinc-600">{truncate(resource.reading, 50)}</p>
+        <p className="mt-1 text-xs" style={{ color: 'var(--foreground-secondary)', opacity: 0.7 }}>{truncate(resource.reading, 50)}</p>
       )}
     </Link>
   );

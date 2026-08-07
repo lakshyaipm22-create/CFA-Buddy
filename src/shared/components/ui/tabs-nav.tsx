@@ -19,16 +19,15 @@ export function TabsNav({ tabs, defaultTab, children }: TabsNavProps) {
   return (
     <div>
       {/* Tab bar */}
-      <div className="flex gap-1 border-b border-[var(--border-primary)] mb-6">
+      <div className="flex gap-1 border-b mb-6" style={{ borderColor: 'var(--card-border)' }}>
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2.5 text-sm font-medium transition-colors relative ${
-              activeTab === tab.id
-                ? 'text-[#C5A258]'
-                : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
-            }`}
+            className="px-4 py-2.5 text-sm font-medium transition-colors relative"
+            style={{
+              color: activeTab === tab.id ? '#C5A258' : 'var(--foreground-secondary)',
+            }}
           >
             {tab.label}
             {activeTab === tab.id && (
