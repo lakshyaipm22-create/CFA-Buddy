@@ -35,6 +35,12 @@ export default function InsightsPage() {
       <RelatedActions
         items={[
           {
+            href: '/insights/prediction',
+            icon: 'Target',
+            label: 'Pass Prediction',
+            description: 'AI-powered pass probability',
+          },
+          {
             href: '/questions',
             icon: 'BookOpen',
             label: 'Questions',
