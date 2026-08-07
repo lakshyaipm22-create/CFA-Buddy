@@ -1,4 +1,3 @@
-import { FlashcardStats } from '@/features/flashcards/components/flashcard-stats';
 import { RelatedActions } from '@/shared/components/ui/related-actions';
 import dynamic from 'next/dynamic';
 
@@ -28,7 +27,6 @@ export default function FlashcardsPage() {
         </p>
       </div>
 
-      <FlashcardStats />
       <FlashcardDeck />
 
       <RelatedActions

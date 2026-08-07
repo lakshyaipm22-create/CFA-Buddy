@@ -277,8 +277,8 @@ export function MockExamLanding() {
         <button
           onClick={startExam}
           disabled={isStarting || availableCount === 0}
-          className="inline-flex items-center gap-2 rounded-xl px-8 py-4 text-lg font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
-          style={{ background: '#002B5C' }}
+          className="inline-flex items-center gap-2 rounded-lg px-8 py-4 text-lg font-bold text-white transition-all hover:opacity-90 disabled:opacity-50"
+          style={{ background: '#C5A258' }}
         >
           <Play className="h-5 w-5" />
           {isStarting ? 'Preparing Exam...' : 'Start Mock Exam'}

@@ -31,11 +31,16 @@ export function FlashcardDeck() {
   return (
     <div className="space-y-6">
       {/* Stats Row */}
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-        <StatCard icon={<Layers className="h-4 w-4" />} label="Total Cards" value={stats.total} />
-        <StatCard icon={<RotateCw className="h-4 w-4" />} label="Due Today" value={stats.dueToday} />
-        <StatCard icon={<CheckCircle2 className="h-4 w-4" />} label="Mastered" value={stats.mastered} />
-        <StatCard icon={<Brain className="h-4 w-4" />} label="Studied Today" value={stats.studiedToday} />
+      <div className="rounded-xl border p-5 transition-all duration-200" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
+        <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--foreground-secondary)' }}>
+          Flashcard Overview
+        </h3>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <StatCard icon={<Layers className="h-4 w-4" />} label="Total Cards" value={stats.total} />
+          <StatCard icon={<RotateCw className="h-4 w-4" />} label="Due Today" value={stats.dueToday} />
+          <StatCard icon={<CheckCircle2 className="h-4 w-4" />} label="Mastered" value={stats.mastered} />
+          <StatCard icon={<Brain className="h-4 w-4" />} label="Studied Today" value={stats.studiedToday} />
+        </div>
       </div>
 
       {/* Card Display */}
@@ -116,12 +121,12 @@ export function FlashcardDeck() {
 
 function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: number }) {
   return (
-    <div className="rounded-lg border p-4 text-center" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
-      <div className="flex items-center justify-center gap-2" style={{ color: 'var(--foreground-secondary)' }}>
+    <div className="flex flex-col items-center gap-1 text-center">
+      <div className="flex items-center gap-1.5" style={{ color: 'var(--foreground-secondary)' }}>
         {icon}
         <span className="text-xs">{label}</span>
       </div>
-      <p className="mt-2 text-2xl font-bold" style={{ color: 'var(--foreground)' }}>{value}</p>
+      <p className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>{value}</p>
     </div>
   );
 }
