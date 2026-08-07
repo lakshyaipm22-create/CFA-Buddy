@@ -9,7 +9,7 @@ export default async function ProfilePage() {
   if (!supabase) {
     // No Supabase configured — use local profile system
     return (
-      <div className="max-w-lg space-y-6">
+      <div className="max-w-5xl space-y-8">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Profile Settings</h1>
           <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
@@ -42,7 +42,7 @@ export default async function ProfilePage() {
 
   if (!user) {
     return (
-      <div className="max-w-lg space-y-6">
+      <div className="max-w-5xl space-y-8">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Profile Settings</h1>
           <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
@@ -66,7 +66,7 @@ export default async function ProfilePage() {
   }
 
   return (
-    <div className="max-w-lg space-y-6">
+    <div className="max-w-5xl space-y-8">
       <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Profile</h1>
       <ProfileForm
         defaultDisplayName={user.user_metadata?.display_name || ''}

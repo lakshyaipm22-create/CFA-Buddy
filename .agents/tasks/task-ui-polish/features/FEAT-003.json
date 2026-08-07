@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Improve flashcards page UX by removing duplicate stats display and improving the mock-exam landing page CTA. Also add consistent card hover effects and polish the empty states across pages that are missing them.",
+  "status": "pending",
+  "steps": [
+    "In src/app/(protected)/flashcards/page.tsx: Remove the <FlashcardStats /> component import and usage since flashcard-deck.tsx already renders the same stats inline. This removes visual duplication.",
+    "In src/features/flashcards/components/flashcard-deck.tsx: Style the inline Stats Row to match the FlashcardStats card style (rounded-xl border p-5 with CSS variable borders/bg). Keep the current 4-card grid but wrap it in the standard card container.",
+    "In src/features/mock-exam/components/mock-exam-landing.tsx: Change the 'Start Mock Exam' button to use Gold (#C5A258) background instead of Navy (#002B5C) to match the Primary CTA pattern. Add hover:opacity-90 transition. Ensure it matches the pattern: rounded-lg px-4 py-2.5 text-sm font-semibold.",
+    "In src/features/exam-plan/components/exam-plan-content.tsx: Ensure the 'Set Exam Date' state (when no exam date is set) has a proper empty state with icon, heading, description, and CTA button following the empty state pattern.",
+    "In src/features/formulas/components/formula-center.tsx: If there is an empty state, ensure it follows the standard empty state pattern (flex flex-col items-center justify-center py-16 text-center with icon, heading, description)."
+  ],
+  "acceptance_criteria": [
+    "Flashcards page shows stats only once (in the deck section), not duplicated",
+    "Mock exam start button uses Gold (#C5A258) background with white text",
+    "All empty states follow the centered pattern with icon + heading + description",
+    "npx tsc --noEmit passes",
+    "npm run build passes"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && cd /projects/sandbox/CFA-Buddy && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && cd /projects/sandbox/CFA-Buddy && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

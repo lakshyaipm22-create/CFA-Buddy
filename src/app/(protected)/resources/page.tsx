@@ -8,10 +8,10 @@ export default async function ResourcesPage() {
   const grouped = await getResourcesGrouped({ level: 1 });
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-5xl space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-white">Resource Library</h1>
-        <p className="mt-1 text-zinc-400">
+        <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Resource Library</h1>
+        <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
           Browse your CFA study materials by subject and provider.
         </p>
       </div>

@@ -55,17 +55,17 @@ export function MockExamLanding() {
     : null;
 
   return (
-    <div className="mx-auto max-w-4xl space-y-8">
+    <div className="mx-auto max-w-5xl space-y-8">
       {/* Header */}
-      <div className="text-center">
+      <div>
         <h1
-          className="text-3xl font-bold"
+          className="text-2xl font-bold"
           style={{ color: 'var(--foreground)' }}
         >
           Mock Exam
         </h1>
         <p
-          className="mt-2 text-lg"
+          className="mt-1 text-sm"
           style={{ color: 'var(--foreground-secondary)' }}
         >
           Full CFA Level I exam simulation

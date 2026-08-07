@@ -1,0 +1,31 @@
+{
+  "id": "FEAT-001",
+  "type": "refactor",
+  "description": "Fix page-level layout inconsistencies across all secondary pages. Ensure every page uses the standard wrapper (mx-auto max-w-5xl space-y-8) and the standard page header pattern (h1 text-2xl font-bold + p mt-1 text-sm with CSS variables). Fix hardcoded colors in resources page.",
+  "status": "in_progress",
+  "steps": [
+    "Fix src/app/(protected)/resources/page.tsx: change 'text-white' to style={{ color: 'var(--foreground)' }} and 'text-zinc-400' to style={{ color: 'var(--foreground-secondary)' }}. Add mx-auto max-w-5xl to wrapper div.",
+    "Fix src/app/(protected)/exam-plan/page.tsx: change wrapper from 'space-y-6' to 'mx-auto max-w-5xl space-y-8'.",
+    "Fix src/app/(protected)/formulas/page.tsx: change wrapper from 'space-y-6' to 'mx-auto max-w-5xl space-y-8'.",
+    "Fix src/app/(protected)/revision/page.tsx: change wrapper from 'space-y-6' to 'mx-auto max-w-5xl space-y-8'.",
+    "Fix src/app/(protected)/study-plan/page.tsx: change wrapper from 'space-y-6' to 'mx-auto max-w-5xl space-y-8'.",
+    "Fix src/app/(protected)/settings/page.tsx: change max-w-2xl to max-w-5xl and space-y-6 to space-y-8.",
+    "Fix src/app/(protected)/social/page.tsx: change max-w-4xl to max-w-5xl, remove 'p-4 sm:p-6' padding, change space-y-6 to space-y-8.",
+    "Fix src/app/(protected)/profile/page.tsx: change all 'max-w-lg' to 'max-w-5xl' and space-y-6 to space-y-8.",
+    "Fix src/app/(protected)/practice/adaptive/page.tsx: change max-w-4xl to max-w-5xl.",
+    "Fix src/app/(protected)/mock-exam/page.tsx wrapper inside mock-exam-landing.tsx: change max-w-4xl to max-w-5xl and left-align the header (remove text-center) following the standard page header pattern."
+  ],
+  "acceptance_criteria": [
+    "All page wrappers use 'mx-auto max-w-5xl space-y-8'",
+    "All page headers use h1 text-2xl font-bold with color var(--foreground) and p mt-1 text-sm with color var(--foreground-secondary)",
+    "No hardcoded text-white or text-zinc-* in page.tsx files",
+    "npx tsc --noEmit passes",
+    "npm run build passes"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && cd /projects/sandbox/CFA-Buddy && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && cd /projects/sandbox/CFA-Buddy && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
