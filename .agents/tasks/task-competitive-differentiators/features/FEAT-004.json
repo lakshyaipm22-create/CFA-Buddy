@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Mistake Pattern AI - Deep analysis engine that identifies specific patterns in wrong answers beyond simple topic-level accuracy. Detects patterns like 'misses LIFO/FIFO questions when framed as ratio impacts', 'calculation errors under time pressure', 'confuses similar concepts'. Generates actionable insights per pattern.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create src/features/mistake-patterns/ directory with types/, utils/, components/, and __tests__/ subdirectories",
     "Create src/features/mistake-patterns/types/index.ts with interfaces: MistakePattern (id, patternType: 'conceptConfusion' | 'framingTrap' | 'calculationError' | 'timePressure' | 'misreadQuestion', description, affectedTopics, occurrenceCount, examples: QuestionExample[], severity: 'high' | 'medium' | 'low', recommendation), PatternAnalysis (patterns, overallInsight, studyPlan), QuestionExample (questionId, questionText, selectedAnswer, correctAnswer, topic)",

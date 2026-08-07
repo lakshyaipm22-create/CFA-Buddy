@@ -36,6 +36,12 @@ export default function MistakesPage() {
       <RelatedActions
         items={[
           {
+            href: '/mistakes/patterns',
+            icon: 'Activity',
+            label: 'Pattern Analysis',
+            description: 'Deep AI-powered insights',
+          },
+          {
             href: '/practice',
             icon: 'Repeat',
             label: 'Practice',
