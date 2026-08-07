@@ -2,6 +2,6 @@
   "task_id": "task-ui-polish",
   "task_description": "Make all pages user-friendly and professional UI/UX by enforcing a consistent design system: standard page wrappers (max-w-5xl space-y-8), standard headers, CSS variables instead of hardcoded colors, consistent card styles, proper empty states, and prominent CTAs.",
   "status": "in_progress",
-  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
   "blocked_reason": null
 }

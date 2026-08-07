@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "fix",
   "description": "Address review feedback: fix dashboard max-width, replace non-existent CSS variables in gamification/spaced-repetition/shared components, and add hover state for inactive tabs.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Fix dashboard-content.tsx to use max-w-5xl instead of max-w-4xl",
     "Fix gamification components (badges-display, streak-display, weekly-goal, xp-level-badge) to use correct CSS variables",
@@ -23,5 +23,5 @@
     "eval \"$(mise activate bash)\" && cd /projects/sandbox/CFA-Buddy && npm run build"
   ],
   "blocked_reason": null,
-  "findings": null
+  "findings": "All 14 files updated. Replaced all non-existent CSS variables (--text-primary, --text-muted, --text-secondary, --border-primary) with defined equivalents (--foreground, --foreground-secondary, --card-border, --card-bg). Dashboard max-width aligned to max-w-5xl. Tabs hover state added via onMouseEnter/onMouseLeave with color transition from foreground-secondary to foreground. tsc, lint, build, and all 597 tests pass."
 }
