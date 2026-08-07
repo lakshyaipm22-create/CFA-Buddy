@@ -71,16 +71,16 @@ export function TodaysReviewsWidget() {
 
   if (cards.length === 0) {
     return (
-      <div className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-5">
+      <div className="rounded-xl border p-5" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
         <div className="flex items-center gap-3 mb-3">
           <div className="rounded-full p-2" style={{ background: 'rgba(0, 43, 92, 0.1)' }}>
             <Brain className="h-5 w-5 text-[#002B5C]" />
           </div>
-          <h3 className="text-sm font-semibold text-[var(--text-primary)]">
+          <h3 className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
             Today&apos;s Reviews
           </h3>
         </div>
-        <p className="text-xs text-[var(--text-muted)]">
+        <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
           Create flashcards to start your spaced repetition schedule.
         </p>
       </div>
@@ -88,13 +88,13 @@ export function TodaysReviewsWidget() {
   }
 
   return (
-    <div className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-5">
+    <div className="rounded-xl border p-5" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="rounded-full p-2" style={{ background: 'rgba(0, 43, 92, 0.1)' }}>
             <Brain className="h-5 w-5 text-[#002B5C]" />
           </div>
-          <h3 className="text-sm font-semibold text-[var(--text-primary)]">
+          <h3 className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
             Today&apos;s Reviews
           </h3>
         </div>
@@ -135,7 +135,7 @@ export function TodaysReviewsWidget() {
       </div>
 
       {dueCards.length > 0 && (
-        <div className="mt-3 flex items-center gap-2 text-xs text-[var(--text-muted)]">
+        <div className="mt-3 flex items-center gap-2 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
           <Clock className="h-3 w-3" />
           <span>~{Math.max(1, Math.ceil(dueCards.length * 0.5))} min estimated</span>
         </div>
@@ -163,13 +163,14 @@ function StatBox({
   small?: boolean;
 }) {
   return (
-    <div className="flex flex-col items-center gap-0.5 rounded-lg border border-[var(--border-primary)] p-2">
+    <div className="flex flex-col items-center gap-0.5 rounded-lg border p-2" style={{ borderColor: 'var(--card-border)' }}>
       <span
-        className={`font-bold ${small ? 'text-xs' : 'text-lg'} ${highlight ? 'text-[#C5A258]' : 'text-[var(--text-primary)]'}`}
+        className={`font-bold ${small ? 'text-xs' : 'text-lg'}`}
+        style={{ color: highlight ? '#C5A258' : 'var(--foreground)' }}
       >
         {value}
       </span>
-      <span className="text-[10px] text-[var(--text-muted)]">{label}</span>
+      <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>{label}</span>
     </div>
   );
 }

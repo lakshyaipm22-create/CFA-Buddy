@@ -210,7 +210,7 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
   }, [examDate]);
 
   return (
-    <div className="mx-auto max-w-4xl space-y-8 pb-8">
+    <div className="mx-auto max-w-5xl space-y-8 pb-8">
       {/* Confetti Animation */}
       <Confetti show={showConfetti} />
 

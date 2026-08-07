@@ -154,10 +154,10 @@ export function ReviewSessionContent() {
         >
           <RotateCcw className="h-8 w-8 text-[#00843D]" />
         </div>
-        <h2 className="text-xl font-bold text-[var(--text-primary)]">
+        <h2 className="text-xl font-bold" style={{ color: 'var(--foreground)' }}>
           No Cards Due
         </h2>
-        <p className="mt-2 text-sm text-[var(--text-secondary)]">
+        <p className="mt-2 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
           All your cards are up to date. Check back later!
         </p>
         <button
@@ -188,14 +188,14 @@ export function ReviewSessionContent() {
       {/* Progress Bar */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-medium text-[var(--text-secondary)]">
+          <span className="text-xs font-medium" style={{ color: 'var(--foreground)' }}>
             Card {currentIndex + 1} of {totalCards}
           </span>
           <span className="text-xs font-medium text-[#C5A258]">
             {progress}% complete
           </span>
         </div>
-        <div className="h-2 w-full overflow-hidden rounded-full" style={{ background: 'var(--border-primary)' }}>
+        <div className="h-2 w-full overflow-hidden rounded-full" style={{ background: 'var(--card-border)' }}>
           <div
             className="h-full rounded-full transition-all duration-300"
             style={{
@@ -216,7 +216,7 @@ export function ReviewSessionContent() {
             {currentCard.subject}
           </span>
           {currentCard.topic && (
-            <span className="text-xs text-[var(--text-muted)]">
+            <span className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
               {currentCard.topic}
             </span>
           )}
@@ -226,23 +226,24 @@ export function ReviewSessionContent() {
       {/* Card */}
       {currentCard && (
         <div
-          className="relative min-h-[280px] cursor-pointer rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-6 transition-all duration-300 hover:shadow-lg"
+          className="relative min-h-[280px] cursor-pointer rounded-xl border p-6 transition-all duration-300 hover:shadow-lg"
+          style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}
           onClick={!flipped ? handleFlip : undefined}
         >
           {!flipped ? (
             <div className="flex h-full min-h-[240px] flex-col items-center justify-center text-center">
               <p className="text-xs uppercase tracking-wide text-[#C5A258] mb-4">Question</p>
-              <p className="text-lg font-medium text-[var(--text-primary)]">
+              <p className="text-lg font-medium" style={{ color: 'var(--foreground)' }}>
                 {currentCard.front}
               </p>
-              <p className="mt-6 text-xs text-[var(--text-muted)]">
+              <p className="mt-6 text-xs" style={{ color: 'var(--foreground-secondary)' }}>
                 Tap to reveal answer
               </p>
             </div>
           ) : (
             <div className="flex h-full min-h-[240px] flex-col items-center justify-center text-center">
               <p className="text-xs uppercase tracking-wide text-[#00843D] mb-4">Answer</p>
-              <p className="text-lg font-medium text-[var(--text-primary)]">
+              <p className="text-lg font-medium" style={{ color: 'var(--foreground)' }}>
                 {currentCard.back}
               </p>
             </div>
@@ -253,7 +254,7 @@ export function ReviewSessionContent() {
       {/* Rating Buttons */}
       {flipped && (
         <div className="mt-6">
-          <p className="mb-3 text-center text-xs font-medium text-[var(--text-secondary)]">
+          <p className="mb-3 text-center text-xs font-medium" style={{ color: 'var(--foreground)' }}>
             How well did you recall this?
           </p>
           <div className="grid grid-cols-4 gap-2">
@@ -316,13 +317,13 @@ function RatingButton({
   return (
     <button
       onClick={onClick}
-      className="flex flex-col items-center gap-0.5 rounded-lg border border-[var(--border-primary)] p-3 transition-all hover:shadow-md"
+      className="flex flex-col items-center gap-0.5 rounded-lg border p-3 transition-all hover:shadow-md"
       style={{ borderColor: `${color}30` }}
     >
       <span className="text-sm font-semibold" style={{ color }}>
         {label}
       </span>
-      <span className="text-[10px] text-[var(--text-muted)]">{sublabel}</span>
+      <span className="text-[10px]" style={{ color: 'var(--foreground-secondary)' }}>{sublabel}</span>
     </button>
   );
 }

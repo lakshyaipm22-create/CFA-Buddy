@@ -212,7 +212,7 @@ export function AdvancedAnalytics() {
                   </div>
                   <div
                     className="mt-1 h-1.5 w-full overflow-hidden rounded-full"
-                    style={{ background: 'var(--border-primary, #2a2f3e)' }}
+                    style={{ background: 'var(--card-border)' }}
                   >
                     <div
                       className="h-full rounded-full transition-all duration-500"

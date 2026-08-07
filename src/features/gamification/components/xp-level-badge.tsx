@@ -52,14 +52,14 @@ export function XPLevelBadge({ xp, level, compact = false }: XPLevelBadgeProps) 
       </div>
       <div className="flex-1">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-[var(--text-primary)]">Level {level}</span>
-          <span className="text-xs text-[var(--text-muted)]">
+          <span className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>Level {level}</span>
+          <span className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
             {current} / {needed} XP
           </span>
         </div>
         <div
           className="mt-1 h-2 w-full overflow-hidden rounded-full"
-          style={{ background: 'var(--border-primary)' }}
+          style={{ background: 'var(--card-border)' }}
         >
           <div
             className="h-full rounded-full transition-all duration-700 ease-out"

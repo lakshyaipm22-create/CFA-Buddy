@@ -156,7 +156,7 @@ export function OnboardingChecklist() {
   const progressPercent = Math.round((completedCount / items.length) * 100);
 
   return (
-    <div className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-6 transition-all duration-300">
+    <div className="rounded-xl border p-6 transition-all duration-300" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
@@ -167,15 +167,16 @@ export function OnboardingChecklist() {
             <Sparkles className="h-5 w-5 text-[#C5A258]" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-[var(--text-primary)]">Getting Started</h3>
-            <p className="text-xs text-[var(--text-muted)]">
+            <h3 className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>Getting Started</h3>
+            <p className="text-xs" style={{ color: 'var(--foreground-secondary)' }}>
               Complete these steps to set up your study workflow
             </p>
           </div>
         </div>
         <button
           onClick={handleDismiss}
-          className="rounded-md p-1 text-[var(--text-muted)] transition-colors hover:text-[var(--text-secondary)]"
+          className="rounded-md p-1 transition-colors hover:opacity-70"
+          style={{ color: 'var(--foreground-secondary)' }}
           aria-label="Dismiss checklist"
         >
           <X className="h-4 w-4" />
@@ -184,13 +185,13 @@ export function OnboardingChecklist() {
 
       {/* Progress bar */}
       <div className="mt-4 flex items-center gap-3">
-        <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: 'var(--border-primary)' }}>
+        <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: 'var(--card-border)' }}>
           <div
             className="h-full rounded-full transition-all duration-500"
             style={{ width: `${progressPercent}%`, background: '#C5A258' }}
           />
         </div>
-        <span className="text-xs font-medium text-[var(--text-muted)]">
+        <span className="text-xs font-medium" style={{ color: 'var(--foreground-secondary)' }}>
           {completedCount}/{items.length}
         </span>
       </div>
@@ -210,21 +211,18 @@ export function OnboardingChecklist() {
             {item.completed ? (
               <CheckCircle2 className="h-4.5 w-4.5 shrink-0 text-[#00843D]" />
             ) : (
-              <Circle className="h-4.5 w-4.5 shrink-0 text-[var(--text-muted)]" />
+              <Circle className="h-4.5 w-4.5 shrink-0" style={{ color: 'var(--foreground-secondary)' }} />
             )}
             <div className="flex-1 min-w-0">
               <p
-                className={`text-sm font-medium ${
-                  item.completed
-                    ? 'line-through text-[var(--text-muted)]'
-                    : 'text-[var(--text-primary)]'
-                }`}
+                className={`text-sm font-medium ${item.completed ? 'line-through' : ''}`}
+                style={{ color: item.completed ? 'var(--foreground-secondary)' : 'var(--foreground)' }}
               >
                 {item.label}
               </p>
-              <p className="text-xs text-[var(--text-muted)] truncate">{item.description}</p>
+              <p className="text-xs truncate" style={{ color: 'var(--foreground-secondary)' }}>{item.description}</p>
             </div>
-            <span className="shrink-0 text-[var(--text-muted)]">{item.icon}</span>
+            <span className="shrink-0" style={{ color: 'var(--foreground-secondary)' }}>{item.icon}</span>
           </Link>
         ))}
       </div>

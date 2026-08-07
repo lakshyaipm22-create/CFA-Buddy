@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-004",
+  "type": "fix",
+  "description": "Address review feedback: fix dashboard max-width, replace non-existent CSS variables in gamification/spaced-repetition/shared components, and add hover state for inactive tabs.",
+  "status": "in_progress",
+  "steps": [
+    "Fix dashboard-content.tsx to use max-w-5xl instead of max-w-4xl",
+    "Fix gamification components (badges-display, streak-display, weekly-goal, xp-level-badge) to use correct CSS variables",
+    "Fix spaced-repetition components (review-complete, review-session, daily-review-reminder, todays-reviews-widget) to use correct CSS variables",
+    "Fix shared components (onboarding-checklist, keyboard-shortcuts-modal) to use correct CSS variables",
+    "Fix advanced-analytics and exam-countdown to use correct CSS variables",
+    "Add hover feedback for inactive tabs in tabs-nav.tsx"
+  ],
+  "acceptance_criteria": [
+    "Dashboard uses max-w-5xl matching all other pages",
+    "No references to var(--text-primary), var(--text-muted), var(--text-secondary), var(--border-primary) remain in codebase (except with proper fallbacks in keyboard-shortcuts-modal)",
+    "Inactive tabs have hover feedback",
+    "npx tsc --noEmit passes",
+    "npm run build passes"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && cd /projects/sandbox/CFA-Buddy && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && cd /projects/sandbox/CFA-Buddy && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": null
+}

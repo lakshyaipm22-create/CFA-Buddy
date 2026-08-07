@@ -12,18 +12,18 @@ export function WeeklyGoal({ current, target }: WeeklyGoalProps) {
   const percentage = Math.round(progress * 100);
 
   return (
-    <div className="rounded-xl border border-[var(--border-primary)] bg-[var(--background-secondary)] p-5">
+    <div className="rounded-xl border p-5" style={{ borderColor: 'var(--card-border)', background: 'var(--card-bg)' }}>
       <div className="flex items-center gap-2">
         <Target className="h-4 w-4 text-[#00843D]" />
-        <h3 className="text-sm font-semibold text-[var(--text-primary)]">Weekly Goal</h3>
+        <h3 className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>Weekly Goal</h3>
       </div>
-      <p className="mt-2 text-xs text-[var(--text-secondary)]">
+      <p className="mt-2 text-xs" style={{ color: 'var(--foreground)' }}>
         Answer {target} questions this week
       </p>
       <div className="mt-3 flex items-center gap-3">
         <div
           className="h-2.5 flex-1 overflow-hidden rounded-full"
-          style={{ background: 'var(--border-primary)' }}
+          style={{ background: 'var(--card-border)' }}
         >
           <div
             className="h-full rounded-full transition-all duration-700 ease-out"
@@ -36,7 +36,7 @@ export function WeeklyGoal({ current, target }: WeeklyGoalProps) {
             }}
           />
         </div>
-        <span className="text-xs font-medium text-[var(--text-secondary)] whitespace-nowrap">
+        <span className="text-xs font-medium whitespace-nowrap" style={{ color: 'var(--foreground)' }}>
           {current}/{target}
         </span>
       </div>
