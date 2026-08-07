@@ -13,25 +13,27 @@ import { SourceCitation } from './source-citation';
 import { SuggestedQuestions } from './suggested-questions';
 
 export function ChatInterface() {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [input, setInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [sessionId, setSessionId] = useState<string | null>(null);
-  const [aiUnavailable, setAiUnavailable] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-
-  // Initialize session from localStorage
-  useEffect(() => {
+  const [messages, setMessages] = useState<ChatMessage[]>(() => {
     const sessions = loadSessions();
     if (sessions.length > 0) {
       const active = getActiveSession();
-      if (active) {
-        setSessionId(active.id);
-        setMessages(active.messages);
-      }
+      if (active) return active.messages;
     }
-  }, []);
+    return [];
+  });
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(() => {
+    const sessions = loadSessions();
+    if (sessions.length > 0) {
+      const active = getActiveSession();
+      if (active) return active.id;
+    }
+    return null;
+  });
+  const [aiUnavailable, setAiUnavailable] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   // Scroll to bottom when messages change
   useEffect(() => {

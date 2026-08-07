@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import type { PracticeAttempt, AttemptQuestion } from '@/features/question-bank/types/attempt';
-import type { Question } from '@/features/question-bank/types';
 import type { MistakePattern } from '../types';
 import { generateOverallInsight, generatePatternInsight } from '../utils/insight-generator';
 

@@ -8,7 +8,7 @@
  *   - Confidence Calibration (10%): How well self-reported confidence matches outcomes
  */
 
-import type { PracticeAttempt, AttemptQuestion } from '@/features/question-bank/types/attempt';
+import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
 import { CFA_SUBJECTS_ORDERED, CFA_CURRICULUM_WEIGHTS } from '@/shared/config/subjects';
 import type {
   PredictionResult,
@@ -458,10 +458,6 @@ function estimateDaysToReady(
   );
 
   if (sorted.length < 2) return null; // Cannot estimate
-
-  const firstDate = new Date(sorted[0].completedAt).getTime();
-  const lastDate = new Date(sorted[sorted.length - 1].completedAt).getTime();
-  const daySpan = Math.max(1, (lastDate - firstDate) / (24 * 60 * 60 * 1000));
 
   // Daily improvement rate based on trend
   let dailyImprovement: number;

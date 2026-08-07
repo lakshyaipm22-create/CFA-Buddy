@@ -5,7 +5,7 @@
 
 import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
 import type { NodeMasteryStatus } from '../types';
-import { CONCEPT_NODES, NODE_MAP } from '../data/concept-map';
+import { CONCEPT_NODES } from '../data/concept-map';
 import { computeNodeMastery } from './graph-analyzer';
 
 interface QuestionResult {

@@ -9,9 +9,8 @@ import type {
   PrerequisiteChainEntry,
   WeakPrerequisite,
   StudyPathRecommendation,
-  MasteryLevel,
 } from '../types';
-import { getMasteryLevel, MASTERY_THRESHOLDS } from '../types';
+import { getMasteryLevel } from '../types';
 import { CONCEPT_NODES, NODE_MAP, getPrerequisiteEdges } from '../data/concept-map';
 import { CFA_CURRICULUM_WEIGHTS } from '@/shared/config/subjects';
 

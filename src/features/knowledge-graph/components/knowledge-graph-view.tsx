@@ -7,7 +7,7 @@
  */
 
 import { useState, useMemo, useCallback } from 'react';
-import type { ConceptNode, NodeMasteryStatus, MasteryLevel } from '../types';
+import type { ConceptNode, MasteryLevel } from '../types';
 import { getMasteryLevel } from '../types';
 import { CONCEPT_NODES, NODE_MAP } from '../data/concept-map';
 import { CFA_SUBJECTS_ORDERED } from '@/shared/config/subjects';
@@ -63,7 +63,7 @@ function computeLayout(nodes: ConceptNode[], subjectFilter: string | null): Node
     // Sort by prerequisite depth (nodes with no prereqs first)
     const sorted = sortByPrerequisiteDepth(subjectNodes);
 
-    let currentX = startX;
+    const currentX = startX;
     const rowHeight = 100;
     let maxRowWidth = 0;
     let col = 0;

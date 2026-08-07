@@ -28,8 +28,8 @@ export function detectAllPatterns(
   // Flatten all question attempts with context
   const allAttempts: QuestionAttemptWithContext[] = [];
   for (const practice of attempts) {
-    for (const module of practice.moduleResults) {
-      for (const qa of module.questionAttempts) {
+    for (const mod of practice.moduleResults) {
+      for (const qa of mod.questionAttempts) {
         const question = questionMap.get(qa.questionId);
         if (question) {
           allAttempts.push({ attempt: qa, question });
