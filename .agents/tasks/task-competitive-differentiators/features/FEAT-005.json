@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "AI Tutor Chat - Conversational learning interface using RAG over the formula database and question bank. Users can ask questions like 'Explain modified duration like I'm 5' or 'What's the difference between NPV and IRR?' and get contextual answers grounded in the CFA curriculum. Integrates with existing AI provider infrastructure.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/ai-tutor/ directory with types/, utils/, components/, and __tests__/ subdirectories",
     "Create src/features/ai-tutor/types/index.ts with interfaces: ChatMessage (id, role: 'user' | 'assistant' | 'system', content, timestamp, sources?: SourceReference[]), ChatSession (id, messages, topic?, createdAt, updatedAt), SourceReference (type: 'formula' | 'question' | 'concept', id, title, relevanceScore), TutorConfig (maxHistoryLength, contextWindowSize, systemPromptOverride?)",
@@ -34,5 +34,5 @@
     "eval \"$(mise activate bash)\" && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 597 tests pass (37 new tests for ai-tutor). Build succeeds. TypeScript clean. Navigation link added under Main group between Concept Map and Flashcards. Route at /learn/tutor renders correctly. API route returns 503 gracefully when no AI key is configured."
 }
