@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "refactor",
   "description": "Fix hardcoded color values in feature components. The dashboard-content.tsx uses non-existent CSS variables (--text-primary, --text-muted, --border-primary, --background-secondary) that should be replaced with the actual defined variables (--foreground, --foreground-secondary, --card-border, --card-bg). The resource-browser.tsx uses hardcoded Tailwind dark classes. The flashcard-deck loading skeleton and mistakes loading skeleton use hardcoded zinc colors. The collapsible-section.tsx and tabs-nav.tsx use non-existent variable names.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Fix src/features/dashboard/components/dashboard-content.tsx: Replace all var(--text-primary) with var(--foreground), all var(--text-muted) with var(--foreground-secondary), all var(--border-primary) with var(--card-border), all var(--background-secondary) with var(--card-bg). Also replace text-[var(--text-primary)] class pattern with style={{ color: 'var(--foreground)' }} pattern. Replace text-[var(--text-muted)] with style={{ color: 'var(--foreground-secondary)' }}. Replace bg-[var(--background-secondary)] with style={{ background: 'var(--card-bg)' }}. Replace border-[var(--border-primary)] with style={{ borderColor: 'var(--card-border)' }}. For the Welcome bar 'text-[var(--text-primary)]' and 'text-[var(--text-muted)]' class patterns, convert to inline styles using the correct variables.",
     "Fix src/features/resource-library/components/resource-browser.tsx: Replace all hardcoded Tailwind dark classes (bg-zinc-900, bg-zinc-800, bg-zinc-700, text-zinc-400, text-white, border-zinc-800, bg-blue-600) with CSS variable equivalents using inline styles. The filter buttons should use var(--card-bg)/var(--card-border) for inactive state and var(--accent-primary)/white for active state.",
@@ -24,5 +24,5 @@
     "eval \"$(mise activate bash)\" && cd /projects/sandbox/CFA-Buddy && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 6 files successfully updated. The non-existent CSS variables (--text-primary, --text-muted, --text-secondary, --border-primary) and hardcoded zinc/blue Tailwind classes have been replaced with properly defined CSS variables (--foreground, --foreground-secondary, --card-border, --card-bg, --nav-hover-bg, --border, --accent-primary). Note: gamification components (badges-display, streak-display, weekly-goal) and spaced-repetition components (review-complete, review-session) also use the non-existent variables but were not in scope for this feature."
 }
