@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Improve flashcards page UX by removing duplicate stats display and improving the mock-exam landing page CTA. Also add consistent card hover effects and polish the empty states across pages that are missing them.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "In src/app/(protected)/flashcards/page.tsx: Remove the <FlashcardStats /> component import and usage since flashcard-deck.tsx already renders the same stats inline. This removes visual duplication.",
     "In src/features/flashcards/components/flashcard-deck.tsx: Style the inline Stats Row to match the FlashcardStats card style (rounded-xl border p-5 with CSS variable borders/bg). Keep the current 4-card grid but wrap it in the standard card container.",
@@ -22,5 +22,5 @@
     "eval \"$(mise activate bash)\" && cd /projects/sandbox/CFA-Buddy && npm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All changes compiled and built successfully. 597 tests pass. Removed FlashcardStats import cleanly since it was the only usage on that page. The mock-exam button was rounded-xl instead of rounded-lg as noted in the briefing pattern - changed to rounded-lg to match the primary CTA pattern."
 }
