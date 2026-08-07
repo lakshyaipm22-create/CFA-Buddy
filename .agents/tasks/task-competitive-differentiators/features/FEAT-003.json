@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Concept Maps / Knowledge Graph - Visual prerequisite map showing topic dependencies across the CFA curriculum. Highlights which topics are prerequisites for others, shows mastery status, and explains why a student struggles with a topic based on unmastered prerequisites (e.g. 'You struggle with Duration because you haven't mastered TVM').",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create src/features/knowledge-graph/ directory with types/, utils/, components/, data/, and __tests__/ subdirectories",
     "Create src/features/knowledge-graph/types/index.ts with interfaces: ConceptNode (id, name, subject, topic, prerequisites: string[], description), ConceptEdge (from, to, relationship: 'prerequisite' | 'related'), KnowledgeGraphData (nodes, edges), NodeMasteryStatus (nodeId, mastery: 0-100, questionsAnswered, accuracy)",
