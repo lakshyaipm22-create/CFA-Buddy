@@ -24,10 +24,10 @@ const MistakeBook = dynamic(
 
 export default function MistakesPage() {
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-white">Mistake Book</h1>
-        <p className="mt-1 text-zinc-400">
+    <div className="mx-auto max-w-5xl space-y-8">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Mistake Book</h1>
+        <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
           Track and learn from your errors. Identify patterns to eliminate mistakes.
         </p>
       </div>
@@ -46,12 +46,6 @@ export default function MistakesPage() {
             icon: 'BookOpen',
             label: 'Questions',
             description: 'Start new session',
-          },
-          {
-            href: '/insights',
-            icon: 'BarChart3',
-            label: 'Insights',
-            description: 'Error patterns',
           },
         ]}
       />

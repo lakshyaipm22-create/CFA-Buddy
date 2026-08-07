@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-002",
+  "type": "refactor",
+  "description": "Completely overhaul the dashboard to show only 3-5 key metrics above the fold. Use progressive disclosure (collapsible sections) for everything else. Remove visual clutter, add whitespace, and create a calm professional layout.",
+  "status": "completed",
+  "steps": [
+    "Rewrite src/features/dashboard/components/dashboard-content.tsx. The new layout should be: (1) A compact welcome header with name + exam readiness score (no large hero with gradient). (2) A row of 3-4 compact stat cards: Questions Answered, Accuracy, Streak, Days to Exam. (3) A single primary CTA card: 'Continue Studying' or 'Start Session' depending on state. (4) Below the fold: a collapsible 'Details' section that reveals (when expanded): readiness breakdown, weekly progress chart, accuracy trend chart, weakest topics, and recent attempts. Default state: collapsed.",
+    "Remove or hide from the default view: Onboarding checklist (move to a dismissable toast or first-time modal only), gamification row (streak already shown as stat card), smart session recommendations (duplicate of CTA), smart review card (already in Review page), full metrics grid (redundant with stat cards), badges display (move to profile/achievements page), notifications section (already in header dropdown), exam countdown (days shown in stat card), advanced analytics (belongs on Insights page), AI study plan (move to its own section in Learn), accuracy trend + weekly progress (behind collapsible). Quick actions section (redundant with sidebar nav).",
+    "Create a new collapsible section component at src/shared/components/ui/collapsible-section.tsx that has a title, chevron toggle, and animated expand/collapse. Use this for progressive disclosure on the dashboard.",
+    "Ensure all imports and data flows still work - keep the useMemo computations that feed the stat cards, just remove the components that are no longer rendered by default.",
+    "Add generous spacing between sections (space-y-6 minimum), use max-w-4xl for content width to avoid stretching across ultra-wide screens."
+  ],
+  "acceptance_criteria": [
+    "Dashboard shows max 4 stat cards + 1 CTA above the fold on a standard viewport (1080p)",
+    "Additional details are hidden behind a 'Show More' / collapsible section",
+    "No badges, no notifications widget, no AI study plan, no quick actions grid on the dashboard",
+    "All functionality is preserved - just reorganized (nothing deleted from codebase, only hidden from default view)",
+    "TypeScript compiles, lint passes, build succeeds"
+  ],
+  "verification": [
+    "rm -rf .next && eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "Pre-existing lint warning: setLatestAttempts in useEffect (react-hooks/set-state-in-effect). Same pattern existed before refactor. Build, tsc, and all 274 tests pass. The collapsible section uses max-height transition for animation. Exam date read from localStorage key 'cfa-exam-date'."
+}

@@ -20,35 +20,30 @@ const FlashcardDeck = dynamic(
 
 export default function FlashcardsPage() {
   return (
-    <div className="space-y-6">
-      <div>
+    <div className="max-w-5xl mx-auto space-y-8">
+      <div className="mb-8">
         <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>Flashcards</h1>
         <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
           Spaced repetition review — cards appear when they&apos;re due based on SM-2 algorithm.
         </p>
       </div>
+
       <FlashcardStats />
       <FlashcardDeck />
 
       <RelatedActions
         items={[
           {
-            href: '/practice',
-            icon: 'Repeat',
-            label: 'Practice',
-            description: 'Spaced repetition drills',
-          },
-          {
             href: '/questions',
             icon: 'BookOpen',
             label: 'Questions',
-            description: 'Test yourself',
+            description: 'Full practice sessions',
           },
           {
-            href: '/formulas',
-            icon: 'Calculator',
-            label: 'Formulas',
-            description: 'Reference cards',
+            href: '/review',
+            icon: 'ClipboardList',
+            label: 'Review',
+            description: 'Smart review queue',
           },
         ]}
       />

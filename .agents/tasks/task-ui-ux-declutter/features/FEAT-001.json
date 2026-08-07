@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-001",
+  "type": "refactor",
+  "description": "Consolidate sidebar navigation from 15 items across 4 groups down to 7-8 items across 2-3 groups. Merge overlapping pages: combine Review/Revision/Mistakes into single 'Review' nav item, combine Insights/Weekly Report/LOS Tracker into single 'Analytics' nav item, keep Questions and Practice separate but remove redundant 'Practice' since Questions page already has practice features. Keep Learn, Flashcards, and Dashboard.",
+  "status": "completed",
+  "steps": [
+    "Modify src/shared/config/navigation.ts to consolidate navigation groups. New structure: (1) 'Core' group: Dashboard, Questions, Flashcards, Learn; (2) 'Review' group: Review (smart review queue), Mistakes; (3) 'Analytics' group: Insights (merge weekly report + LOS tracker here via tabs). Total: 7 items max. Remove separate Practice entry (fold into Questions), remove separate Revision (merge into Review), remove Exam Plan (fold into profile/settings), remove Resources (fold into Learn), remove Formulas (fold into Learn).",
+    "Update mobileNavItems in navigation.ts to reflect new structure: Dashboard, Questions, Flashcards, Learn, Review (5 items).",
+    "Update routeSegmentLabels to match new navigation if routes change.",
+    "Simplify src/shared/components/layout/sidebar.tsx - remove collapsible group headers since we have fewer items now. Make it a flat list with simple section dividers. Add more whitespace between items. Make the sidebar feel cleaner and more minimal.",
+    "Ensure all existing routes still work (don't delete any route files), just remove from nav. Pages that are no longer in nav are still accessible via links within other pages."
+  ],
+  "acceptance_criteria": [
+    "Sidebar shows max 7-8 navigation items total",
+    "Sidebar has at most 2-3 logical groups with simple dividers (not collapsible accordions)",
+    "Mobile bottom nav has 5 items",
+    "All existing page routes still render (no broken imports)",
+    "TypeScript compiles without errors (npx tsc --noEmit)"
+  ],
+  "verification": [
+    "rm -rf .next && eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "Removed NavigationGroup.icon field from interface since flat list no longer needs group-level icons. Pre-existing lint errors in study-hub and study-plan modules are unrelated (react-hooks/refs, set-state-in-effect, unused-vars). All 274 tests pass. Build succeeds with all 30+ routes intact."
+}

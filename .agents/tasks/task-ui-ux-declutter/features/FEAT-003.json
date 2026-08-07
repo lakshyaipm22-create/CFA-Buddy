@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-003",
+  "type": "refactor",
+  "description": "Declutter the Questions page and Practice page. The Questions page currently has 7 sections stacked vertically. Reduce to 2-3 focused sections. Practice page is similarly overloaded. Clean up with proper hierarchy and whitespace.",
+  "status": "completed",
+  "steps": [
+    "Refactor src/app/(protected)/questions/page.tsx: Keep only (1) page title/description, (2) SessionConfigurator (the main action), (3) a collapsible 'Recent Activity' section that contains RecentAttemptsSection and RecentSessions behind a toggle. Remove SmartSessionCard (redundant - smart suggestions already in configurator), WeakTopicQuiz (move to its own feature accessible from analytics), QuestionAnalytics (belongs on Insights page). Keep the RelatedActions but reduce to 2-3 items max.",
+    "Refactor src/app/(protected)/practice/page.tsx: This page is already relatively clean. Keep it as-is but reduce RelatedActions to 2 items max. Ensure consistent spacing with the redesigned Questions page.",
+    "Refactor src/app/(protected)/flashcards/page.tsx: Already relatively clean. Just ensure consistent spacing and reduce RelatedActions to 2 items max.",
+    "For all pages: ensure consistent page header pattern - h1 title + short description + generous margin before content (mb-8 minimum between header and content).",
+    "Add a max-w-5xl mx-auto wrapper to the Questions page content for better readability on wide screens."
+  ],
+  "acceptance_criteria": [
+    "Questions page shows max 3 visible sections by default (title, configurator, collapsible recent activity)",
+    "All practice/questions functionality still works (no broken imports or missing components)",
+    "Pages have consistent header pattern with proper spacing",
+    "RelatedActions reduced to 2-3 items per page",
+    "TypeScript compiles, lint passes, build succeeds"
+  ],
+  "verification": [
+    "rm -rf .next && eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "Pre-existing lint errors in other files (18 errors, 8 warnings) unrelated to this change. All 3 modified files pass lint cleanly. Build and all 274 tests pass."
+}
