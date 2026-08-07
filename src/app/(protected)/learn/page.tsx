@@ -1,5 +1,6 @@
 import { getCurriculumSubjects } from '@/features/learning-workspace/queries/get-curriculum';
 import Link from 'next/link';
+import { GitBranch, MessageCircle } from 'lucide-react';
 import { SubjectProgressBadge } from './subject-progress-indicators';
 
 export const revalidate = 3600;
@@ -14,6 +15,56 @@ export default async function LearnPage() {
         <p className="mt-1 text-sm" style={{ color: 'var(--foreground-secondary)' }}>
           CFA Level I — Select a subject to begin studying.
         </p>
+      </div>
+
+      {/* Learning Tools */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <Link
+          href="/learn/concepts"
+          className="group flex items-start gap-4 rounded-xl border p-5 transition-all duration-200 hover:scale-[1.02]"
+          style={{
+            borderColor: 'var(--card-border)',
+            background: 'var(--card-bg)',
+          }}
+        >
+          <div
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+            style={{ backgroundColor: 'rgba(197, 162, 88, 0.1)' }}
+          >
+            <GitBranch className="h-5 w-5" style={{ color: '#C5A258' }} />
+          </div>
+          <div>
+            <p className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+              Concept Map
+            </p>
+            <p className="mt-1 text-xs leading-relaxed" style={{ color: 'var(--foreground-secondary)' }}>
+              Visualize how CFA topics connect and identify knowledge gaps.
+            </p>
+          </div>
+        </Link>
+        <Link
+          href="/learn/tutor"
+          className="group flex items-start gap-4 rounded-xl border p-5 transition-all duration-200 hover:scale-[1.02]"
+          style={{
+            borderColor: 'var(--card-border)',
+            background: 'var(--card-bg)',
+          }}
+        >
+          <div
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+            style={{ backgroundColor: 'rgba(0, 132, 61, 0.1)' }}
+          >
+            <MessageCircle className="h-5 w-5" style={{ color: '#00843D' }} />
+          </div>
+          <div>
+            <p className="text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+              AI Tutor
+            </p>
+            <p className="mt-1 text-xs leading-relaxed" style={{ color: 'var(--foreground-secondary)' }}>
+              Ask questions and get explanations powered by your study materials.
+            </p>
+          </div>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

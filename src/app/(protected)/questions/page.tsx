@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Layers, ClipboardList } from 'lucide-react';
+import { Layers, ClipboardList, Sparkles } from 'lucide-react';
 import { SessionConfigurator } from '@/features/question-bank/components/session-configurator';
 import { RecentAttemptsSection } from '@/features/question-bank/components/recent-attempts-section';
 import { RecentSessions } from '@/features/question-bank/components/recent-sessions';
@@ -89,6 +89,12 @@ function QuestionsPageInner() {
 
       <RelatedActions
         items={[
+          {
+            href: '/practice/adaptive',
+            icon: Sparkles,
+            label: 'Adaptive Practice',
+            description: 'AI-powered difficulty adjustment',
+          },
           {
             href: '/flashcards',
             icon: Layers,
