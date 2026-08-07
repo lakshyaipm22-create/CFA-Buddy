@@ -1,0 +1,7 @@
+{
+  "task_id": "task-competitive-differentiators",
+  "task_description": "Implement Tier 1 competitive differentiator features for CFA Buddy: Adaptive Learning Engine, Performance Prediction Model, Concept Maps/Knowledge Graph, Mistake Pattern AI, and AI Tutor Chat. These transform the app from a question bank into an intelligent learning system.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004", "FEAT-005"],
+  "blocked_reason": null
+}

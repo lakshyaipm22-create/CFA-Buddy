@@ -1,0 +1,34 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Mistake Pattern AI - Deep analysis engine that identifies specific patterns in wrong answers beyond simple topic-level accuracy. Detects patterns like 'misses LIFO/FIFO questions when framed as ratio impacts', 'calculation errors under time pressure', 'confuses similar concepts'. Generates actionable insights per pattern.",
+  "status": "pending",
+  "steps": [
+    "Create src/features/mistake-patterns/ directory with types/, utils/, components/, and __tests__/ subdirectories",
+    "Create src/features/mistake-patterns/types/index.ts with interfaces: MistakePattern (id, patternType: 'conceptConfusion' | 'framingTrap' | 'calculationError' | 'timePressure' | 'misreadQuestion', description, affectedTopics, occurrenceCount, examples: QuestionExample[], severity: 'high' | 'medium' | 'low', recommendation), PatternAnalysis (patterns, overallInsight, studyPlan), QuestionExample (questionId, questionText, selectedAnswer, correctAnswer, topic)",
+    "Create src/features/mistake-patterns/utils/pattern-detector.ts implementing: (1) detectConceptConfusion() - finds pairs of related topics where student gets one right and the other wrong consistently, (2) detectFramingTraps() - identifies when same concept is missed only under certain question phrasing, (3) detectTimePressureErrors() - correlates wrong answers with short time spent (< 30s per question), (4) detectCalculationErrors() - finds wrong answers where correct answer was adjacent option (indicating math mistakes), (5) detectConfidenceCalibration() - finds patterns where high confidence + wrong answer (misconceptions)",
+    "Create src/features/mistake-patterns/utils/pattern-storage.ts to cache pattern analysis results in localStorage with a 'last analyzed' timestamp, re-analyzing only when new attempts are added (key: 'cfa-buddy-mistake-patterns')",
+    "Create src/features/mistake-patterns/utils/insight-generator.ts that takes detected patterns and generates human-readable insight strings: specific, actionable statements like 'You miss 73% of LIFO/FIFO questions when they ask about ratio impacts rather than direct inventory values'",
+    "Create src/features/mistake-patterns/components/pattern-dashboard.tsx - client component displaying: (1) top patterns sorted by severity, (2) each pattern with its description, affected topics, occurrence frequency, and specific question examples, (3) overall insight summary, (4) 'drill this pattern' CTA buttons",
+    "Create src/features/mistake-patterns/components/pattern-card.tsx - reusable card component for displaying a single mistake pattern with an icon, severity badge, description, and example",
+    "Create src/features/mistake-patterns/__tests__/pattern-detector.test.ts testing: (1) detects concept confusion when student misses related topics, (2) detects time pressure when fast wrong answers, (3) detects calculation errors from adjacent-answer selections, (4) returns empty patterns for new users, (5) correctly counts pattern occurrences, (6) assigns appropriate severity levels",
+    "Create src/features/mistake-patterns/__tests__/insight-generator.test.ts testing: (1) generates specific human-readable insights, (2) includes actual numbers (percentages, counts), (3) handles edge cases (single occurrence patterns, no patterns)",
+    "Add route page at src/app/(protected)/mistakes/patterns/page.tsx rendering the pattern dashboard",
+    "Link from the existing Mistakes page to the pattern analysis page"
+  ],
+  "acceptance_criteria": [
+    "Running npm run test passes all new tests",
+    "npx tsc --noEmit passes with zero errors",
+    "npm run build succeeds",
+    "Pattern detector identifies at least 5 distinct pattern types from practice attempt data",
+    "Insights are specific and actionable (include percentages, topic names, specific observations)",
+    "Pattern dashboard renders with severity-sorted patterns and examples"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run test",
+    "eval \"$(mise activate bash)\" && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

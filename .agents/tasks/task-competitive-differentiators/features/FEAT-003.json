@@ -1,0 +1,36 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Concept Maps / Knowledge Graph - Visual prerequisite map showing topic dependencies across the CFA curriculum. Highlights which topics are prerequisites for others, shows mastery status, and explains why a student struggles with a topic based on unmastered prerequisites (e.g. 'You struggle with Duration because you haven't mastered TVM').",
+  "status": "pending",
+  "steps": [
+    "Create src/features/knowledge-graph/ directory with types/, utils/, components/, data/, and __tests__/ subdirectories",
+    "Create src/features/knowledge-graph/types/index.ts with interfaces: ConceptNode (id, name, subject, topic, prerequisites: string[], description), ConceptEdge (from, to, relationship: 'prerequisite' | 'related'), KnowledgeGraphData (nodes, edges), NodeMasteryStatus (nodeId, mastery: 0-100, questionsAnswered, accuracy)",
+    "Create src/features/knowledge-graph/data/concept-map.ts defining the CFA Level I concept dependency graph. Include at least 40-50 key concept nodes across all 10 subjects with prerequisite edges. Examples: TVM -> Bond Pricing -> Duration -> Convexity, Basic Stats -> Regression -> Hypothesis Testing, Income Statement -> Ratio Analysis -> DuPont, Demand/Supply -> Elasticity -> Market Structures, WACC -> NPV -> Capital Budgeting",
+    "Create src/features/knowledge-graph/utils/graph-analyzer.ts implementing: (1) getPrerequisiteChain(nodeId) - returns ordered list of prerequisites, (2) findWeakPrerequisites(nodeId, masteryData) - identifies unmastered prerequisites explaining struggles, (3) getRecommendedPath(masteryData) - suggests next concepts to study based on prerequisite satisfaction, (4) computeNodeMastery(nodeId, attempts) - maps practice data to concept mastery",
+    "Create src/features/knowledge-graph/utils/mastery-mapper.ts that bridges PracticeAttempt data to concept nodes by mapping question topics to graph nodes, computing per-node mastery scores",
+    "Create src/features/knowledge-graph/components/knowledge-graph-view.tsx - interactive visualization rendered as a tree/force-directed layout using SVG. Nodes colored by mastery (red=weak, yellow=partial, green=mastered using theme colors). Clicking a node shows its prerequisites and recommended study path. Responsive layout.",
+    "Create src/features/knowledge-graph/components/prerequisite-alert.tsx - a component that given a weak topic, explains WHY via unmastered prerequisites (e.g., 'You struggle with Duration because you haven't mastered Time Value of Money')",
+    "Create src/features/knowledge-graph/components/study-path.tsx - renders the recommended learning path as a vertical timeline showing next concepts to tackle in order",
+    "Create src/features/knowledge-graph/__tests__/graph-analyzer.test.ts testing: (1) getPrerequisiteChain returns correct ordered chain, (2) findWeakPrerequisites identifies unmastered prereqs, (3) getRecommendedPath recommends foundational concepts first, (4) handles circular dependency gracefully, (5) nodes with no prereqs return empty chain",
+    "Create src/features/knowledge-graph/__tests__/mastery-mapper.test.ts testing: (1) maps practice attempts to node mastery correctly, (2) handles topics with no matching node gracefully, (3) aggregates across multiple attempts",
+    "Add route page at src/app/(protected)/learn/concepts/page.tsx rendering the knowledge graph view",
+    "Add 'Concept Map' navigation link in the Learn section or as a sub-route accessible from the Learn page"
+  ],
+  "acceptance_criteria": [
+    "Running npm run test passes all new tests",
+    "npx tsc --noEmit passes with zero errors",
+    "npm run build succeeds",
+    "Concept graph contains at least 40 nodes with meaningful prerequisite relationships across all 10 CFA subjects",
+    "Graph analyzer correctly identifies prerequisite chains",
+    "Prerequisite alerts explain weak performance via unmastered prerequisites",
+    "Knowledge graph visualization renders all nodes with mastery coloring"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run test",
+    "eval \"$(mise activate bash)\" && npm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
