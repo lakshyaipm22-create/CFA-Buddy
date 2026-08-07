@@ -6,6 +6,9 @@ import {
   Brain,
   BarChart3,
   ListChecks,
+  Sparkles,
+  GitBranch,
+  MessageCircle,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -27,7 +30,15 @@ export const navigationGroups: NavigationGroup[] = [
       { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
       { name: 'Questions', href: '/questions', icon: HelpCircle },
       { name: 'Learn', href: '/learn', icon: BookOpen },
+      { name: 'Concept Map', href: '/learn/concepts', icon: GitBranch },
+      { name: 'AI Tutor', href: '/learn/tutor', icon: MessageCircle },
       { name: 'Flashcards', href: '/flashcards', icon: Brain },
+    ],
+  },
+  {
+    label: 'Practice',
+    items: [
+      { name: 'Adaptive', href: '/practice/adaptive', icon: Sparkles },
     ],
   },
   {
@@ -61,9 +72,12 @@ export const mobileNavItems: NavigationItem[] = [
 export const routeSegmentLabels: Record<string, string> = {
   dashboard: 'Dashboard',
   learn: 'Learn',
+  concepts: 'Concept Map',
+  tutor: 'AI Tutor',
   resources: 'Resources',
   questions: 'Questions',
   practice: 'Practice',
+  adaptive: 'Adaptive Learning',
   review: 'Review',
   flashcards: 'Flashcards',
   formulas: 'Formulas',

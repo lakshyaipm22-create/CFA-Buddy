@@ -17,7 +17,8 @@ export type TestMode =
   | 'AdaptiveRetest'
   | 'Random'
   | 'WeakTopic'
-  | 'Mock';
+  | 'Mock'
+  | 'Adaptive';
 
 export type SessionStatus = 'active' | 'completed' | 'abandoned';
 
