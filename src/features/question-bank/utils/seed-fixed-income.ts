@@ -30,6 +30,7 @@ const moduleScores: ModuleScoreConfig[] = [
   { moduleKey: 'module14', moduleId: 'fi-m14', score: 10, total: 13, wrongIndices: [0, 1, 3] },
   { moduleKey: 'module15', moduleId: 'fi-m15', score: 7, total: 7, wrongIndices: [] },
   { moduleKey: 'module16', moduleId: 'fi-m16', score: 16, total: 20, wrongIndices: [0, 3, 15, 19] },
+  { moduleKey: 'module17', moduleId: 'fi-m17', score: 8, total: 13, wrongIndices: [4, 6, 7, 11, 12] },
   { moduleKey: 'module18', moduleId: 'fi-m18', score: 9, total: 17, wrongIndices: [0, 5, 9, 10, 11, 12, 13, 14] },
   { moduleKey: 'module19', moduleId: 'fi-m19', score: 21, total: 23, wrongIndices: [3, 16] },
 ];
