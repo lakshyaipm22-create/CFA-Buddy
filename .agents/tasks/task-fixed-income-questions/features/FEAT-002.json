@@ -1,26 +1,35 @@
 {
   "id": "FEAT-002",
   "type": "feat",
-  "description": "Add modules M10-M16 to the Fixed Income question data file (186 questions total for M10-M19, this covers M10-M16 = 145 questions)",
-  "status": "pending",
+  "description": "Append modules M6-M19 (268 questions) to fixed-income.ts and add the combined exports (fixedIncomeQuestions + fixedIncomeModules)",
+  "status": "in_progress",
   "steps": [
-    "Append to src/features/question-bank/data/fixed-income.ts after the existing module9Questions",
-    "Module 10: Interest Rate Risk and Return (25 Qs) - Interest rate risk/return, investment horizon, duration gap, reinvestment risk",
-    "Module 11: Yield-Based Bond Duration Measures (26 Qs) - Macaulay duration, modified duration, effective duration, key rate duration",
-    "Module 12: Yield-Based Bond Convexity and Portfolio (28 Qs) - Convexity, duration+convexity approximation, portfolio duration, portfolio convexity",
-    "Module 13: Curve-Based and Empirical Risk Measures (33 Qs) - Key rate duration, empirical duration, spread duration, DV01",
-    "Module 14: Credit Risk (13 Qs) - Credit risk components (POD, LGD, expected loss), credit rating, migration",
-    "Module 15: Credit Analysis for Government Issuers (7 Qs) - Sovereign credit analysis, fiscal/monetary policy, institutional framework",
-    "Module 16: Credit Analysis for Corporate Issuers (20 Qs) - Corporate credit analysis (4 Cs), ratios, structural/reduced-form models"
+    "Append module6Questions through module19Questions (skipping M17) to the end of src/features/question-bank/data/fixed-income.ts after the existing module5Questions array",
+    "Module 6: Fixed-Income Bond Valuation: Prices and Yields (24 Qs) - Bond pricing with PV, price/YTM relationship, premium/discount/par, pull-to-par, matrix pricing, flat vs full price, accrued interest",
+    "Module 7: Yield and Yield Spread Measures for Fixed-Rate Bonds (15 Qs) - Current yield, YTM, YTC, yield-to-worst, G-spread, I-spread, Z-spread, OAS, BEY",
+    "Module 8: Yield and Yield Spread Measures for Floating-Rate Instruments (14 Qs) - FRN coupon (ref rate + spread), quoted vs required margin, discount margin, FRN pricing, interest rate risk, reset risk, cap/floor",
+    "Module 9: The Term Structure of Interest Rates (23 Qs) - Spot rates, par curve, forward rates, spot-forward relationship, yield curve shapes, expectations theory, liquidity preference, segmented markets, preferred habitat",
+    "Module 10: Interest Rate Risk and Return (25 Qs) - Bond price vs yield inverse relationship, reinvestment risk, price risk, investment horizon, duration gap, Macaulay duration and investment horizon matching",
+    "Module 11: Yield-Based Bond Duration Measures (26 Qs) - Modified duration calculation, approximate modified duration, effective duration for callable bonds, key rate duration, duration of portfolio, duration of zero-coupon bond",
+    "Module 12: Yield-Based Bond Convexity and Portfolio (28 Qs) - Approximate convexity, convexity adjustment, money convexity, portfolio convexity, callable bond negative convexity, MBS negative convexity",
+    "Module 13: Curve-Based and Empirical Risk Measures (33 Qs) - Effective duration, effective convexity, key rate duration, spread duration, empirical duration, hedging with duration, portfolio DV01",
+    "Module 14: Credit Risk (13 Qs) - Expected loss, POD, LGD, recovery rate, credit spread, credit migration, default risk, credit VaR",
+    "Module 15: Credit Analysis for Government Issuers (7 Qs) - Sovereign credit analysis, fiscal/monetary flexibility, institutional strength, external vulnerability",
+    "Module 16: Credit Analysis for Corporate Issuers (20 Qs) - Coverage ratios, leverage ratios, capacity to pay, collateral, character, conditions, covenants analysis",
+    "Module 18: ABS Instrument and Market Features (17 Qs) - ABS structure, SPV, tranching, credit enhancement (internal/external), auto loan ABS, credit card receivable ABS, waterfall structures",
+    "Module 19: MBS Instrument and Market Features (23 Qs) - MBS types (pass-through, CMO, RMBS, CMBS), prepayment risk, PSA model, CPR, SMM, WAC, WAM, contraction/extension risk",
+    "After all module arrays, add the combined export: export const fixedIncomeQuestions: Question[] = [...module1Questions, ...module2Questions, ..., ...module19Questions] (all 18 module arrays, skipping M17)",
+    "Add the modules object export: export const fixedIncomeModules = { module1: { name: '...', questions: module1Questions }, ... module19: { name: '...', questions: module19Questions } } (all 18 modules, no module17)"
   ],
   "acceptance_criteria": [
-    "Module arrays added: module10Questions(25), module11Questions(26), module12Questions(28), module13Questions(33), module14Questions(13), module15Questions(7), module16Questions(20)",
-    "All questions are substantive CFA content with proper explanations",
-    "IDs follow pattern fi-m{module}-q{number}"
+    "Module arrays exist: module6(24), module7(15), module8(14), module9(23), module10(25), module11(26), module12(28), module13(33), module14(13), module15(7), module16(20), module18(17), module19(23)",
+    "All questions use substantive CFA Fixed Income content with realistic explanations",
+    "IDs follow fi-m{module}-q{number} pattern exactly",
+    "fixedIncomeQuestions exported with all 316 questions combined",
+    "fixedIncomeModules exported with 18 module entries (no module17)",
+    "npx tsc --noEmit passes with zero errors"
   ],
-  "verification": [
-    "eval \"$(mise activate bash)\" && npx tsc --noEmit"
-  ],
+  "verification": ["eval \"$(mise activate bash)\" && npx tsc --noEmit"],
   "blocked_reason": null,
   "findings": ""
 }
