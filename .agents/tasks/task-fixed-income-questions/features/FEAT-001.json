@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Create the Fixed Income question data file with modules M1-M5 (48 questions total)",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/features/question-bank/data/fixed-income.ts with modules 1-5",
     "M1: Fixed-Income Instrument Features (11 Qs) - bond features, par value, coupon, maturity, indenture, covenants, embedded options",
@@ -18,5 +18,5 @@
   ],
   "verification": ["eval \"$(mise activate bash)\" && npx tsc --noEmit"],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "File created with 48 questions. Difficulty distribution: Easy=16 (33%), Medium=21 (44%), Hard=11 (23%). TypeScript passes cleanly. No exports added per instructions - file will be extended in later features."
 }
