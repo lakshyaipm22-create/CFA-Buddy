@@ -8,6 +8,7 @@ import { seedFsaAttempt } from '../utils/seed-fsa';
 import { seedPortfolioManagementAttempt } from '../utils/seed-portfolio-management';
 import { seedQuantitativeMethodsAttempt } from '../utils/seed-quantitative-methods';
 import { seedAlternativeInvestmentsAttempt } from '../utils/seed-alternative-investments';
+import { seedFixedIncomeAttempt } from '../utils/seed-fixed-income';
 import { runSeedsIfNeeded } from '../utils/seed-guard';
 import { seedFlashcardsFromAttempts } from '@/features/flashcards/utils/seed-flashcards';
 import { getAllAttempts } from '../utils/attempt-storage';
@@ -15,7 +16,7 @@ import { RetakeComparison } from './retake-comparison';
 import { useCursorPagination } from '@/shared/hooks/use-cursor-pagination';
 import type { PracticeAttempt } from '../types/attempt';
 
-const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management', 'Quantitative Methods', 'Alternative Investments'] as const;
+const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management', 'Quantitative Methods', 'Alternative Investments', 'Fixed Income'] as const;
 
 function ScoreRingSmall({ score }: { score: number }) {
   const size = 48;
@@ -70,7 +71,7 @@ function ConfidenceBadge({ level }: { level: 'High' | 'Medium' | 'Low' }) {
 export function AttemptsListClient() {
   const [attempts] = useState<PracticeAttempt[]>(() => {
     if (typeof window === 'undefined') return [];
-    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFlashcardsFromAttempts]);
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFixedIncomeAttempt, seedFlashcardsFromAttempts]);
     const all = getAllAttempts();
     return all.sort(
       (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()

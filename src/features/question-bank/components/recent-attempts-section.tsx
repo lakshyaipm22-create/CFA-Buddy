@@ -9,6 +9,7 @@ import { seedFsaAttempt } from '../utils/seed-fsa';
 import { seedPortfolioManagementAttempt } from '../utils/seed-portfolio-management';
 import { seedQuantitativeMethodsAttempt } from '../utils/seed-quantitative-methods';
 import { seedAlternativeInvestmentsAttempt } from '../utils/seed-alternative-investments';
+import { seedFixedIncomeAttempt } from '../utils/seed-fixed-income';
 import { runSeedsIfNeeded } from '../utils/seed-guard';
 import { seedFlashcardsFromAttempts } from '@/features/flashcards/utils/seed-flashcards';
 import type { PracticeAttempt } from '../types/attempt';
@@ -47,7 +48,7 @@ function ScoreRingTiny({ score }: { score: number }) {
 export function RecentAttemptsSection() {
   const [attempts] = useState<PracticeAttempt[]>(() => {
     if (typeof window === 'undefined') return [];
-    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFlashcardsFromAttempts]);
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFixedIncomeAttempt, seedFlashcardsFromAttempts]);
     const all = getAllAttempts();
     return all.sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()).slice(0, 3);
   });

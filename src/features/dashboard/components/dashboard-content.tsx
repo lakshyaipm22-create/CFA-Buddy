@@ -26,13 +26,14 @@ import { seedFsaAttempt } from '@/features/question-bank/utils/seed-fsa';
 import { seedPortfolioManagementAttempt } from '@/features/question-bank/utils/seed-portfolio-management';
 import { seedQuantitativeMethodsAttempt } from '@/features/question-bank/utils/seed-quantitative-methods';
 import { seedAlternativeInvestmentsAttempt } from '@/features/question-bank/utils/seed-alternative-investments';
+import { seedFixedIncomeAttempt } from '@/features/question-bank/utils/seed-fixed-income';
 import { runSeedsIfNeeded } from '@/features/question-bank/utils/seed-guard';
 import { seedFlashcardsFromAttempts } from '@/features/flashcards/utils/seed-flashcards';
 import { getLatestAttempt } from '@/features/question-bank/utils/attempt-storage';
 import { getLocalProfile } from '@/shared/lib/local-profile';
 import type { PracticeAttempt } from '@/features/question-bank/types/attempt';
 
-const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management', 'Quantitative Methods', 'Alternative Investments'] as const;
+const ALL_SUBJECTS = ['Corporate Issuers', 'Financial Statement Analysis', 'Portfolio Management', 'Quantitative Methods', 'Alternative Investments', 'Fixed Income'] as const;
 
 interface DashboardContentProps {
   displayName: string;
@@ -43,7 +44,7 @@ export function DashboardContent({ displayName, level }: DashboardContentProps) 
   const sessions = useLocalStorageSessions();
   const [latestAttempts] = useState<PracticeAttempt[]>(() => {
     if (typeof window === 'undefined') return [];
-    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFlashcardsFromAttempts]);
+    runSeedsIfNeeded([seedCorporateIssuersAttempt, seedFsaAttempt, seedPortfolioManagementAttempt, seedQuantitativeMethodsAttempt, seedAlternativeInvestmentsAttempt, seedFixedIncomeAttempt, seedFlashcardsFromAttempts]);
     const results: PracticeAttempt[] = [];
     for (const subject of ALL_SUBJECTS) {
       const latest = getLatestAttempt(subject);
