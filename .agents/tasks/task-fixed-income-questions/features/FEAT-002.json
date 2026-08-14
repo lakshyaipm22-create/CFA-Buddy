@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Add modules M10-M16 to the Fixed Income question data file (186 questions total for M10-M19, this covers M10-M16 = 145 questions)",
+  "status": "pending",
+  "steps": [
+    "Append to src/features/question-bank/data/fixed-income.ts after the existing module9Questions",
+    "Module 10: Interest Rate Risk and Return (25 Qs) - Interest rate risk/return, investment horizon, duration gap, reinvestment risk",
+    "Module 11: Yield-Based Bond Duration Measures (26 Qs) - Macaulay duration, modified duration, effective duration, key rate duration",
+    "Module 12: Yield-Based Bond Convexity and Portfolio (28 Qs) - Convexity, duration+convexity approximation, portfolio duration, portfolio convexity",
+    "Module 13: Curve-Based and Empirical Risk Measures (33 Qs) - Key rate duration, empirical duration, spread duration, DV01",
+    "Module 14: Credit Risk (13 Qs) - Credit risk components (POD, LGD, expected loss), credit rating, migration",
+    "Module 15: Credit Analysis for Government Issuers (7 Qs) - Sovereign credit analysis, fiscal/monetary policy, institutional framework",
+    "Module 16: Credit Analysis for Corporate Issuers (20 Qs) - Corporate credit analysis (4 Cs), ratios, structural/reduced-form models"
+  ],
+  "acceptance_criteria": [
+    "Module arrays added: module10Questions(25), module11Questions(26), module12Questions(28), module13Questions(33), module14Questions(13), module15Questions(7), module16Questions(20)",
+    "All questions are substantive CFA content with proper explanations",
+    "IDs follow pattern fi-m{module}-q{number}"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

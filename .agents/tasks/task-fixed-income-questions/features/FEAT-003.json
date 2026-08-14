@@ -1,0 +1,25 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Add modules M18-M19 to Fixed Income data file, add exports, and finalize the file",
+  "status": "pending",
+  "steps": [
+    "Append to src/features/question-bank/data/fixed-income.ts after module16Questions",
+    "Module 18: ABS Instrument and Market Features (17 Qs) - ABS structure, tranching, credit enhancement, auto loans, credit cards",
+    "Module 19: MBS Instrument and Market Features (23 Qs) - MBS types (pass-through, CMO, RMBS), prepayment risk, PSA, WAC, WAM",
+    "NOTE: There is no M17 in the spec - skip from M16 directly to M18",
+    "After all module arrays, add the combined export: export const fixedIncomeQuestions: Question[] = [...module1Questions, ...module2Questions, ..., ...module16Questions, ...module18Questions, ...module19Questions];",
+    "Add the modules object export: export const fixedIncomeModules = { module1: { name: 'Fixed-Income Instrument Features', questions: module1Questions }, module2: { name: 'Fixed-Income Cash Flows and Types', questions: module2Questions }, module3: { name: 'Fixed-Income Issuance and Trading', questions: module3Questions }, module4: { name: 'Fixed-Income Markets for Corporate Issuers', questions: module4Questions }, module5: { name: 'Fixed-Income Markets for Government Issuers', questions: module5Questions }, module6: { name: 'Fixed-Income Bond Valuation: Prices and Yields', questions: module6Questions }, module7: { name: 'Yield and Yield Spread Measures for Fixed-Rate Bonds', questions: module7Questions }, module8: { name: 'Yield and Yield Spread Measures for Floating-Rate Instruments', questions: module8Questions }, module9: { name: 'The Term Structure of Interest Rates', questions: module9Questions }, module10: { name: 'Interest Rate Risk and Return', questions: module10Questions }, module11: { name: 'Yield-Based Bond Duration Measures', questions: module11Questions }, module12: { name: 'Yield-Based Bond Convexity and Portfolio', questions: module12Questions }, module13: { name: 'Curve-Based and Empirical Risk Measures', questions: module13Questions }, module14: { name: 'Credit Risk', questions: module14Questions }, module15: { name: 'Credit Analysis for Government Issuers', questions: module15Questions }, module16: { name: 'Credit Analysis for Corporate Issuers', questions: module16Questions }, module18: { name: 'ABS Instrument and Market Features', questions: module18Questions }, module19: { name: 'MBS Instrument and Market Features', questions: module19Questions } };"
+  ],
+  "acceptance_criteria": [
+    "Module arrays added: module18Questions(17), module19Questions(23)",
+    "fixedIncomeQuestions exported with all 316 questions combined",
+    "fixedIncomeModules exported with 18 module entries (no module17)",
+    "npx tsc --noEmit passes"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

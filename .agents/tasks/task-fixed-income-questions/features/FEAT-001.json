@@ -1,0 +1,22 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Create the Fixed Income question data file with modules M1-M5 (48 questions total)",
+  "status": "in_progress",
+  "steps": [
+    "Create src/features/question-bank/data/fixed-income.ts with modules 1-5",
+    "M1: Fixed-Income Instrument Features (11 Qs) - bond features, par value, coupon, maturity, indenture, covenants, embedded options",
+    "M2: Fixed-Income Cash Flows and Types (16 Qs) - bullet, amortizing, sinking fund, FRN, step-up, PIK, deferred, index-linked",
+    "M3: Fixed-Income Issuance and Trading (6 Qs) - primary/secondary markets, private placement, shelf registration, settlement",
+    "M4: Fixed-Income Markets for Corporate Issuers (7 Qs) - secured/unsecured bonds, MTN, commercial paper, green bonds",
+    "M5: Fixed-Income Markets for Government Issuers (8 Qs) - T-bills, T-notes, T-bonds, TIPS, sovereign, agency, muni"
+  ],
+  "acceptance_criteria": [
+    "File exists with M1=11, M2=16, M3=6, M4=7, M5=8 questions",
+    "All questions use real CFA Fixed Income content",
+    "npx tsc --noEmit passes"
+  ],
+  "verification": ["eval \"$(mise activate bash)\" && npx tsc --noEmit"],
+  "blocked_reason": null,
+  "findings": ""
+}
