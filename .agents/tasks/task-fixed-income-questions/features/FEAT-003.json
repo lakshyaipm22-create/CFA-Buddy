@@ -1,0 +1,34 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Add ~25 Fixed Income formulas, create seed-fixed-income.ts with specific wrong questions, wire Fixed Income into question-loader, mock-exam selector, seed-guard, and all three seed call sites",
+  "status": "completed",
+  "steps": [
+    "Add 25 new Fixed Income formulas to src/features/formulas/data/formula-seed.ts in the existing Fixed Income section (after f-fi-pvbp, before Derivatives section). New formulas with IDs: f-fi-accrued (Accrued Interest), f-fi-approxmod (Approximate Modified Duration), f-fi-effdur (Effective Duration), f-fi-gspread (G-spread), f-fi-ispread (I-spread), f-fi-zspread (Z-spread), f-fi-frn (FRN Pricing with Discount Margin), f-fi-exploss (Expected Loss = POD x LGD), f-fi-intcov-credit (Interest Coverage Ratio), f-fi-debteb (Debt/EBITDA), f-fi-ltv (LTV Ratio), f-fi-dti (DTI Ratio), f-fi-wac (Weighted Average Coupon), f-fi-wam (Weighted Average Maturity), f-fi-horizon (Horizon Yield), f-fi-durgap (Duration Gap), f-fi-fullprice (Full/Dirty Price), f-fi-cleanprice (Clean Price), f-fi-approxconv (Approximate Convexity), f-fi-keyrate (Key Rate Duration), f-fi-spreaddur (Spread Duration), f-fi-cva (Credit Valuation Adjustment), f-fi-recovery (Loss Severity/Recovery Rate), f-fi-cpr (Conditional Prepayment Rate), f-fi-smm (Single Monthly Mortality). All must have subject='Fixed Income' and follow FormulaEntry interface exactly.",
+    "Create src/features/question-bank/utils/seed-fixed-income.ts following the pattern of seed-corporate-issuers.ts BUT with SPECIFIC wrong questions instead of random selection. Import fixedIncomeModules from '../data/fixed-income'. Use attempt ID 'fi-attempt-1', subject 'Fixed Income', completedAt '2025-01-20T16:45:00Z'. The wrong questions per module (1-indexed Q numbers): M1: Q6,Q7 | M2: Q11,Q14 | M3: Q6 | M4: Q2,Q3,Q5 | M5: Q1,Q3,Q8 | M6: Q1,Q3,Q7,Q18 | M7: Q1,Q2,Q3,Q5,Q7,Q8,Q14 | M8: Q10,Q14 | M9: Q1,Q5,Q9,Q10 | M10: Q1,Q2,Q5,Q7,Q10,Q18,Q19 | M11: Q6,Q10,Q11,Q12,Q13,Q14,Q15,Q20 | M12: Q1,Q4,Q6,Q7,Q9,Q11,Q16,Q20,Q21,Q28 | M13: Q3,Q8,Q12,Q17,Q24,Q25,Q27 | M14: Q1,Q2,Q4 | M15: none (all correct) | M16: Q1,Q4,Q16,Q20 | M18: Q1,Q6,Q10,Q11,Q12,Q13,Q14,Q15 | M19: Q4,Q17. Use seeded RNG only for selecting wrong answer choice and timing/confidence. Export function seedFixedIncomeAttempt().",
+    "Update src/features/question-bank/utils/question-loader.ts: import { fixedIncomeQuestions } from '../data/fixed-income' at top. In loadAllQuestions(), add fixedIncomeQuestions to the base return. Both the server-side return and the client-side logic should include fixedIncomeQuestions. For the dedup logic, combine: [...imported, ...sampleQuestions.filter(...), ...fixedIncomeQuestions.filter(q => !idSet.has(q.id))] and for the simple return: [...sampleQuestions, ...fixedIncomeQuestions].",
+    "Update src/features/mock-exam/utils/question-selector.ts: import { fixedIncomeQuestions } from '@/features/question-bank/data/fixed-income' and add ...fixedIncomeQuestions to the getAllAvailableQuestions() return array.",
+    "Update src/features/question-bank/utils/seed-guard.ts: change SEED_VERSION_KEY from 'cfa-buddy-seeded-v6' to 'cfa-buddy-seeded-v7'.",
+    "Update src/features/dashboard/components/dashboard-content.tsx: import { seedFixedIncomeAttempt } from '@/features/question-bank/utils/seed-fixed-income', add seedFixedIncomeAttempt to the runSeedsIfNeeded array (before seedFlashcardsFromAttempts), and add 'Fixed Income' to ALL_SUBJECTS.",
+    "Update src/features/question-bank/components/attempts-list-client.tsx: import { seedFixedIncomeAttempt } from '../utils/seed-fixed-income', add seedFixedIncomeAttempt to the runSeedsIfNeeded array (before seedFlashcardsFromAttempts), and add 'Fixed Income' to ALL_SUBJECTS.",
+    "Update src/features/question-bank/components/recent-attempts-section.tsx: import { seedFixedIncomeAttempt } from '../utils/seed-fixed-income' and add seedFixedIncomeAttempt to the runSeedsIfNeeded array (before seedFlashcardsFromAttempts)."
+  ],
+  "acceptance_criteria": [
+    "formula-seed.ts contains 25 new Fixed Income formulas with correct IDs and FormulaEntry shape",
+    "seed-fixed-income.ts exports seedFixedIncomeAttempt() that marks the exact specified questions wrong",
+    "question-loader.ts returns Fixed Income questions as part of loadAllQuestions()",
+    "mock-exam selector includes fixedIncomeQuestions in getAllAvailableQuestions()",
+    "seed-guard version bumped to v7",
+    "All three seed call sites (dashboard-content, attempts-list-client, recent-attempts-section) include seedFixedIncomeAttempt",
+    "ALL_SUBJECTS includes 'Fixed Income' in dashboard-content.tsx and attempts-list-client.tsx",
+    "npx tsc --noEmit passes with zero errors",
+    "npm run lint passes"
+  ],
+  "verification": [
+    "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+    "eval \"$(mise activate bash)\" && npm run lint",
+    "eval \"$(mise activate bash)\" && npm run test"
+  ],
+  "blocked_reason": null,
+  "findings": "All 25 formulas added, seed file uses specific wrong indices (0-indexed from the 1-indexed Q numbers in the spec). TypeScript, lint, and all 597 tests pass. Seed version bumped to v7."
+}

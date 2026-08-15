@@ -7,6 +7,7 @@ import { corporateIssuersQuestions } from '@/features/question-bank/data/corpora
 import { fsaQuestions } from '@/features/question-bank/data/financial-statement-analysis';
 import { portfolioManagementQuestions } from '@/features/question-bank/data/portfolio-management';
 import { quantitativeMethodsQuestions } from '@/features/question-bank/data/quantitative-methods';
+import { fixedIncomeQuestions } from '@/features/question-bank/data/fixed-income';
 
 /**
  * Returns all available questions from the question bank.
@@ -19,6 +20,7 @@ export function getAllAvailableQuestions(): Question[] {
     ...fsaQuestions,
     ...portfolioManagementQuestions,
     ...quantitativeMethodsQuestions,
+    ...fixedIncomeQuestions,
   ];
 }
 

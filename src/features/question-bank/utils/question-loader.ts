@@ -1,23 +1,24 @@
 import type { Question } from '../types';
 import { sampleQuestions } from '../data/sample-questions';
+import { fixedIncomeQuestions } from '../data/fixed-income';
 
 /**
- * Load all available questions: sample questions + any imported questions from localStorage.
- * On the server, only sample questions are available.
+ * Load all available questions: sample questions + fixed income + any imported questions from localStorage.
+ * On the server, only sample questions and fixed income are available.
  * On the client, also loads imported questions stored in localStorage.
  */
 export function loadAllQuestions(): Question[] {
-  if (typeof window === 'undefined') return sampleQuestions;
+  if (typeof window === 'undefined') return [...sampleQuestions, ...fixedIncomeQuestions];
 
   const imported = loadImportedQuestions();
   if (imported.length > 0) {
     // Deduplicate by ID, imported takes priority
     const idSet = new Set(imported.map(q => q.id));
-    const unique = [...imported, ...sampleQuestions.filter(q => !idSet.has(q.id))];
+    const unique = [...imported, ...sampleQuestions.filter(q => !idSet.has(q.id)), ...fixedIncomeQuestions.filter(q => !idSet.has(q.id))];
     return unique;
   }
 
-  return sampleQuestions;
+  return [...sampleQuestions, ...fixedIncomeQuestions];
 }
 
 /**

@@ -1,0 +1,7 @@
+{
+  "task_id": "task-fixed-income-questions",
+  "task_description": "Import all 316 Fixed Income questions across 18 modules, create seed practice attempt with specific wrong answers, add ~25 Fixed Income formulas, and wire everything into the app (loader, mock-exam selector, seed-guard, all UI call sites).",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
+  "blocked_reason": null
+}

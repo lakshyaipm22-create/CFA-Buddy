@@ -1,0 +1,29 @@
+{
+  "project_type": "Next.js 14+ app with localStorage-based data, feature-based architecture",
+  "language": "TypeScript",
+  "build_system": "npm with mise for Node.js version management. Run `mise trust && eval \"$(mise activate bash)\"` before npm commands. Node was installed with MISE_NODE_VERIFY=0.",
+  "test_framework": "Vitest with tests in __tests__/ directories",
+  "build_command": "eval \"$(mise activate bash)\" && npx tsc --noEmit",
+  "test_command": "eval \"$(mise activate bash)\" && npm run test",
+  "verification_instructions": "1. Run `eval \"$(mise activate bash)\" && npx tsc --noEmit` to confirm no type errors. 2. Run `eval \"$(mise activate bash)\" && npm run lint` to confirm no lint errors. 3. Run `eval \"$(mise activate bash)\" && npm run test` to confirm tests pass.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "cd /projects/sandbox/CFA-Buddy && mise trust && MISE_NODE_VERIFY=0 mise install && eval \"$(mise activate bash)\"",
+  "environment_constraints": "Node.js 22 managed via mise. Must run `mise trust` and `eval \"$(mise activate bash)\"` before any npm/npx commands.",
+  "contribution_requirements": "Never use useSyncExternalStore. No TODOs, no placeholders. Feature-based folders (src/features/{name}/). No cross-feature imports except via @/ aliases.",
+  "key_patterns": "Question data: each subject file exports a flat array (e.g. corporateIssuersQuestions: Question[]) and a modules object (e.g. corporateIssuersModules). Module arrays are named moduleNQuestions. Seed files: import modules object, define ModuleScoreConfig[], use seeded RNG to pick wrong questions, create PracticeAttempt and call saveAttempt(). The seed-guard.ts uses version key 'cfa-buddy-seeded-v6'. Three call sites wire seeds: dashboard-content.tsx, attempts-list-client.tsx, recent-attempts-section.tsx. Question loader only uses sampleQuestions from '../data/sample-questions'. Mock exam selector (src/features/mock-exam/utils/question-selector.ts) imports all subject arrays directly. Formula seed: array of FormulaEntry objects with id, name, subject, reading, formula, variables, example, topic, difficulty, examFrequency, optional keyTip.",
+  "relevant_files": [
+    "src/features/question-bank/data/corporate-issuers.ts",
+    "src/features/question-bank/data/sample-questions.ts",
+    "src/features/question-bank/utils/seed-corporate-issuers.ts",
+    "src/features/question-bank/utils/seed-alternative-investments.ts",
+    "src/features/question-bank/utils/seed-guard.ts",
+    "src/features/question-bank/utils/question-loader.ts",
+    "src/features/question-bank/types/index.ts",
+    "src/features/question-bank/components/attempts-list-client.tsx",
+    "src/features/question-bank/components/recent-attempts-section.tsx",
+    "src/features/dashboard/components/dashboard-content.tsx",
+    "src/features/mock-exam/utils/question-selector.ts",
+    "src/features/formulas/data/formula-seed.ts"
+  ],
+  "directory_structure": "src/features/question-bank/data/ = question data files per subject; src/features/question-bank/utils/ = seed files, loaders, storage; src/features/question-bank/types/ = type defs; src/features/formulas/data/ = formula seed; src/features/dashboard/components/ = dashboard that calls seeds; src/features/mock-exam/utils/ = mock exam question selector"
+}
