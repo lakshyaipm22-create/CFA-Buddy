@@ -6,11 +6,11 @@
 |-------|-------|
 | Subject | Ethics & Professional Standards |
 | Level | CFA Level I |
-| Questions Attempted | 200 |
-| Accuracy | 64% (128/200) |
+| Questions Attempted | 250 |
+| Accuracy | 64% (160/250) |
 | Date Updated | 2025-08-15 |
 | Source | Practice question analysis |
-| Trend | 46% (Q1-37) → 65% (Q38-100) → 68% (Q101-150) → 66% (Q151-200) |
+| Trend | 46% (Q1-37) → 65% (Q38-100) → 68% (Q101-150) → 66% (Q151-200) → 64% (Q201-250) |
 
 ---
 
@@ -31,6 +31,7 @@
 - **Colleague's unethical activity (not their supervisor)**: Report to firm's supervisor or compliance department (internal channels first). "Not my supervisor" or "doesn't affect me" = NOT an excuse for inaction.
 - **Action hierarchy**: (1) Report internally → (2) Dissociate if continues → (3) Report to regulators (not compelled unless by law).
 - **Direct responsibility** for creating non-compliant policies = violation (e.g., audit committee chair). Auditor using proper methodology who fails to detect = not necessarily a personal violation.
+- **PCP cooperation vs. applicable law:** If applicable law requires confidentiality, disclosing client info to PCP = violation of I(A). The "stricter law" rule applies -- law > PCP cooperation allowance.
 
 ### I(B) - Independence and Objectivity
 
@@ -72,6 +73,7 @@
 - **CFA trademarks**: Cannot be abbreviated — must use full proper form regardless of platform constraints.
 - **Claiming expertise**: In genuine area of specialty = permitted (not misrepresentation if accurate).
 - **Using same broker's research as "own"**: Claiming "I do my own research" when relying on broker's list = misrepresentation.
+- **Using employer's marketing material** that you KNOW inflates performance = I(C) violation. "Following firm policy" is NOT a defense for knowingly presenting misrepresented data.
 
 ### I(D) - Misconduct
 
@@ -82,6 +84,8 @@
 - **Does NOT require violation of another Standard**: I(D) is independent.
 - **Selectively complying with firm policies** to hide activity = dishonesty/deceit = violation.
 - **Loan defaults and personal bankruptcy**: NOT misconduct if not involving fraud/deceit. Poor financial choices or unfortunate circumstances ≠ professional misconduct.
+- **Concealing being fired** from a new employer = lack of integrity = misconduct.
+- **Recommended compliance:** Develop/adopt code of ethics for every employee. Check references of potential EMPLOYEES (not clients, not all current employees annually).
 
 ### I(E) - Competence
 
@@ -136,6 +140,9 @@
 - **Legitimate corporate announcements** (merger search, earnings reaffirmation) that move prices = NOT manipulation. Intent = disclosure/transparency.
 - **Personal buy orders** significantly exceeding normal volume to inflate price = manipulation.
 - **Don't have to INITIATE manipulation** to violate — participating in, adding to, or exploiting known manipulation = also violation.
+- **Buy and sell orders at same price** to increase volume = wash trading = violation.
+- **Outcome is irrelevant:** Manipulation exists based on INTENT, not results. Losses for member or gains for clients don't excuse manipulative intent.
+- **Dominant position for proxy vote** = legitimate strategy (NOT manipulation).
 
 ---
 
@@ -215,7 +222,7 @@
 - **Fellow employees**: Can share if improves service to client.
 - **Only exception (when law requires)**: Client permission. NOT: death, illegal activities.
 - **Applies to**: Current, former, prospective, deceased clients.
-- **PCP exception**: Cooperating with CFA Institute PCP = permitted.
+- **PCP exception**: Cooperating with CFA Institute PCP = permitted ONLY "when permissible under applicable law." If applicable law requires confidentiality → CANNOT disclose even to PCP. Law trumps.
 - **Procedures**: Reflect firm's own size/operations (not large firm models).
 - **Direction of info flow**: Sharing info WITH clients = fine. Sharing client info WITH others = violation.
 - **Benefit to client**: Does NOT justify unauthorized disclosure. Time pressure not an excuse.
@@ -252,6 +259,7 @@
 - **Constructing NEW models after departure** using general expertise = permitted. Only specific files/models from firm = firm property.
 - **Work created BEFORE employment**: = member's property, even if firm adopted/used it. Can take when leaving.
 - **Ownership test**: WHO created it and WHEN? During employment = firm's. Before = member's.
+- **Claiming unearned designations** = violates IV(A) (can harm employer reputation) + I(D) misconduct.
 
 ### IV(B) - Additional Compensation Arrangements
 
@@ -262,6 +270,8 @@
 - Same-type investment work = conflict = consent required.
 - "Compensation" includes indirect benefits (free facilities, in-kind).
 - **Performance-based compensation from client**: Permitted with employer's written permission.
+- **High-value gifts from clients** (sold-out event tickets) = "benefits" requiring employer consent. Not "token" items. Consent for one benefit doesn't cover others.
+- Must obtain consent from BOTH employer AND third party/client offering.
 
 ### IV(C) - Responsibilities of Supervisors
 
@@ -278,6 +288,15 @@
 - **Code & Standards alone ≠ complete compliance system**. Need specific written policies and procedures.
 - **Offered new supervisory position with inadequate procedures**: DECLINE first. Do not "accept and fix." Must correct problems BEFORE accepting.
 - **Proper sequence**: Identify problems → recommend corrective action → accept only AFTER adequate. Interim consultant option available.
+- **Provide code of ethics TO CLIENTS** = recommended (conveys ethical commitment).
+- **"Recommend" not "require"** adoption -- members cannot mandate code of ethics.
+- **Audience summary:** Law summaries → employees. Reporting procedures → employees. Code of ethics → CLIENTS.
+- **⚠️ Code of ethics and compliance procedures = ALWAYS SEPARATE. NEVER integrated. Tested 4+ times.**
+- **Code of ethics absent ≠ must decline supervisory role.** Only COMPLIANCE SYSTEM absent = must decline.
+- **Delegating:** No requirement that delegates have prior compliance experience.
+- **Head of compliance = supervisor** with duty to have policies PREVENTING violations.
+- **"Firm has no policy" = NOT a defense** for employee violations. CFA Standards apply regardless.
+- **Offered new position with inadequate procedures:** DECLINE first, don't "accept and fix."
 
 ---
 
@@ -295,6 +314,8 @@
 - **Computer models**: MINIMUM (not maximum) levels of scenario testing.
 - **Overheard analyst opinion**: NOT adequate basis to change recommendation without own research.
 - V(A) applies only to those **analyzing investments, making recommendations, or taking investment actions** for clients. Non-investment roles performing personal trades = not V(A).
+- **"Quick and simple" analysis ≠ automatically inadequate.** If conclusion is clear-cut, brief analysis CAN provide reasonable basis.
+- **Delegating due diligence:** Must perform due diligence ON the third party hired. CFA charter alone ≠ qualification for any specific task.
 
 ### V(B) - Communication with Clients and Prospective Clients
 
@@ -306,12 +327,14 @@
 - **External managers**: Must disclose regardless of process similarity.
 - **Significant risks**: Leverage, sector/industry risk, security-specific risk.
 - **Legislative/political predictions**: = conjecture. Can incorporate but present as opinion, not fact.
+- **Communication format is FLEXIBLE:** Not confined to written reports. Phone, in-person, email -- all valid. Requirement = clients ARE informed, not specific medium.
+- **Material strategy changes** must be communicated PROMPTLY -- not just in annual reports.
 
 ### V(C) - Record Retention
 
 - **Work product belongs to the FIRM** — not client, not member.
 - Cannot take copies without express consent.
-- **Re-creating from PUBLIC sources**: Permitted at new firm.
+- **Re-creating from PUBLIC sources**: Permitted at new firm. **"From memory" = specifically prohibited** -- even with permission to use the report itself. Supporting records must come from public sources or directly from covered company. NOT from memory.
 - **Reviews with NO change**: Must still be retained.
 - **Default retention**: At least **seven years**.
 - **Electronic records**: Acceptable.
@@ -339,6 +362,7 @@
 - **Tangential relationships** (customer of covered company, distant relative as supplier) = NOT conflicts requiring disclosure. Apply materiality/directness test.
 - **Firm holding substantial position** in recommended company = conflict requiring disclosure.
 - **Disclosure obligation runs directly to CLIENT** — not through employer as intermediary. Employer guidance to NOT disclose doesn't override.
+- **Well-known dual roles:** When both parties aware of member's interests, formal disclosure may not be separately required.
 - Lack of employer training = NOT a defense for employee's failure to disclose.
 - **Disclosure required in ALL communications** where objectivity could be impaired — not just research reports. Includes press releases, marketing materials, public statements.
 - **Dual-role conflicts**: If providing both PR and research on same company = disclose in BOTH.
@@ -357,6 +381,7 @@
 - Employers should **compare** employee trades with client trades regularly.
 - **Personal trades contrary to firm recommendation**: Permitted if firm informed and clients not disadvantaged. No matching requirement.
 - Personal financial needs = legitimate reason for trading.
+- **"Firm has no personal trading policy" = NOT a defense.** CFA Standards apply regardless.
 - **Blanket ban on all equity trading** = excessively restrictive, NOT recommended. Manage through procedures, not outright bans.
 
 ### VI(C) - Referral Fees
@@ -391,6 +416,7 @@
 - Using third-party study materials = permitted.
 - **Accidental exposure** to prohibited info during exam: if USED, compromises exam regardless of intent.
 - **Reporting**: Must report own violation. Reporting others' = encouraged but NOT obligated.
+- **Using CFA Institute association** (exam writing/grading) to further professional goals = violation. Cannot imply special investment insights from program involvement.
 
 ### VII(B) - Reference to CFA Institute, the CFA Designation, and the CFA Program
 
@@ -409,7 +435,7 @@
 
 ---
 
-## Exam Traps & Common Pitfalls (50 Traps)
+## Exam Traps & Common Pitfalls (55 Traps)
 
 | # | Trap | Rule |
 |---|------|------|
@@ -463,12 +489,17 @@
 | 48 | Soft dollars for education | CFA fees ≠ research |
 | 49 | "Avoid dissemination" of MNPI | WRONG — should ACHIEVE dissemination |
 | 50 | Best practice = avoid conflict | Avoidance > disclosure when asked for "best" |
+| 51 | PCP exception has a limit | If applicable law requires confidentiality, cannot disclose even to PCP |
+| 52 | "From memory" record re-creation | Specifically prohibited -- use public sources only |
+| 53 | Phone/verbal communication | V(B) doesn't require written form -- verbal is valid |
+| 54 | Code of ethics → provide to CLIENTS | Different audience than law summaries (employees) |
+| 55 | Code of ethics ≠ compliance system | 4x tested -- ALWAYS separate, NEVER integrated |
 
 ---
 
 ## Mistakes Summary
 
-Based on 200 questions at 64% accuracy:
+Based on 250 questions at 64% accuracy:
 
 | Standard | Key Errors | Takeaway |
 |----------|-----------|----------|
@@ -533,5 +564,5 @@ When facing an Ethics question:
 
 ---
 
-*Last updated: 2025-08-15 | 200 questions completed | Accuracy trend: 46% → 64%*
-*Next milestone: 250 questions | Target: 70%+ sustained accuracy*
+*Last updated: 2025-08-15 | 250 questions completed (FINAL MILESTONE) | Accuracy trend: 46% → 64%*
+*Total unique exam traps identified: 55 | Learning areas: 22*
