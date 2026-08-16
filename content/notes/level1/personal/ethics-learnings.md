@@ -6,11 +6,11 @@
 |-------|-------|
 | Subject | Ethics & Professional Standards |
 | Level | CFA Level I |
-| Questions Attempted | 250 |
-| Accuracy | 64% (160/250) |
+| Questions Attempted | 280 |
+| Accuracy | 65% (182/280) |
 | Date Updated | 2025-08-15 |
 | Source | Practice question analysis |
-| Trend | 46% (Q1-37) → 65% (Q38-100) → 68% (Q101-150) → 66% (Q151-200) → 64% (Q201-250) |
+| Trend | 46% (Q1-37) → 65% (Q38-100) → 68% (Q101-150) → 66% (Q151-200) → 64% (Q201-250) → 72% (Q251-280) |
 
 ---
 
@@ -20,18 +20,21 @@
 
 - **Compliance protocols**: Firms should provide written protocols for reporting suspected violations.
 - **Law summaries**: Must be distributed to *employees* (NOT clients).
-- **When in doubt**: Seek advice from compliance personnel or legal counsel — NOT from regulatory agencies.
+- **When in doubt**: Seek advice from compliance personnel or legal counsel -- NOT from regulatory agencies.
 - **Dissociation obligation**: Must dissociate from unethical conduct. Inaction + continued association = potential violation (construed as participation/assistance).
 - **Reporting to regulators**: NOT compelled by the Standards. Failure to report is less likely a violation than failure to dissociate.
 - **Knowledge requirement**: Must understand applicable laws but NOT required to have detailed/expert knowledge of all potentially governing laws.
-- **Colleague misconduct**: Dissociation is an I(A) issue — NOT a VI(A) conflicts issue.
+- **Colleague misconduct**: Dissociation is an I(A) issue -- NOT a VI(A) conflicts issue.
 - **"Stricter law" rule**: Always follow the stricter of applicable law OR the Code & Standards.
 - **No applicable law exists**: Code and Standards still govern. Cannot exploit regulatory gaps.
-- **Report violations to**: CFA Institute Professional Conduct Program (PCP) — not Board of Governors, not Disciplinary Review Committee. Encouraged, not mandatory.
+- **Report violations to**: CFA Institute Professional Conduct Program (PCP) -- not Board of Governors, not Disciplinary Review Committee. Encouraged, not mandatory.
 - **Colleague's unethical activity (not their supervisor)**: Report to firm's supervisor or compliance department (internal channels first). "Not my supervisor" or "doesn't affect me" = NOT an excuse for inaction.
 - **Action hierarchy**: (1) Report internally → (2) Dissociate if continues → (3) Report to regulators (not compelled unless by law).
 - **Direct responsibility** for creating non-compliant policies = violation (e.g., audit committee chair). Auditor using proper methodology who fails to detect = not necessarily a personal violation.
 - **PCP cooperation vs. applicable law:** If applicable law requires confidentiality, disclosing client info to PCP = violation of I(A). The "stricter law" rule applies -- law > PCP cooperation allowance.
+- **PCP vs. applicable law rule**: PCP is not above the law. When local regulations mandate confidentiality, the PCP exception does NOT apply. Members must follow the stricter requirement.
+- **Copyright violations**: BOTH the person who copies AND the person who knowingly distributes violate I(A). Both parties bear responsibility.
+- **Observing firm-wide violations**: Must report internally FIRST (supervisor/compliance). Do NOT go directly to regulators unless internal channels are exhausted or compromised.
 
 ### I(B) - Independence and Objectivity
 
@@ -43,10 +46,10 @@
 - **Employee IPO participation**: Prior approval + prompt disclosure. NOT outright prohibition.
 - **Reporting procedures**: To every *employee* (not client).
 - **Token gifts**: Permitted with strict value limits. Refusing ALL gifts is NOT required.
-- **Issuer-paid research**: Strict conduct standards + full disclosure. Cash compensation IS permitted. Must avoid equity/performance-based compensation. Need NOT decline even with IB relationship — just disclose.
+- **Issuer-paid research**: Strict conduct standards + full disclosure. Cash compensation IS permitted. Must avoid equity/performance-based compensation. Need NOT decline even with IB relationship -- just disclose.
 - **Issuer travel**: Air transportation reimbursement = prohibited. Hotel = recommended to pay yourself. Meals = acceptable.
 - **Private placements**: Strict limits on investment personnel acquiring securities.
-- **IB pressure on research**: Must refuse to change recommendation — cannot compromise even one increment. Correct action = restricted list. Assigning new analyst doesn't solve conflict.
+- **IB pressure on research**: Must refuse to change recommendation -- cannot compromise even one increment. Correct action = restricted list. Assigning new analyst doesn't solve conflict.
 - **"Best course" for issuer-paid travel**: Pay for ALL expenses (avoidance > disclosure when asked for "best").
 - **Conference speaker travel**: Conference-related expenses for speaker = acceptable. Additional perks beyond engagement (team registrations, entertainment/golf) = inducements. Test: directly related to engagement vs. added inducement.
 - **Remote locations**: Accepting private transport where NO commercial alternative exists = acceptable. Commercial flights and entertainment = pay yourself.
@@ -58,10 +61,10 @@
 - **Fund risk characterization**: Must follow prospectus. Short-term low volatility doesn't override documented risk.
 - **Prepare summary**: Of qualifications and list of services for client distribution.
 - **Plagiarism includes**: Vague attribution of specific quotes ("investment experts," "leading analysts") without naming sources.
-- **Keep copies**: Of ALL materials relied on in preparing research reports — to avoid plagiarism claims.
-- **Third-party info**: CAN be used — encourage employer to develop verification procedures, not avoidance.
+- **Keep copies**: Of ALL materials relied on in preparing research reports -- to avoid plagiarism claims.
+- **Third-party info**: CAN be used -- encourage employer to develop verification procedures, not avoidance.
 - **Distributing third-party research**: Permitted if you don't claim authorship.
-- **Former employee's research/models**: Firm's property — can use/issue without attributing departed analyst.
+- **Former employee's research/models**: Firm's property -- can use/issue without attributing departed analyst.
 - **Non-comparable benchmarks**: = misrepresentation. Benchmark must match actual strategy.
 - **Benchmark NOT always required**: If strategy too complex/diverse, omitting with explanation = OK.
 - **Switching valuation providers**: Permitted for valid reasons (service, cost) even if valuations increase. Violation only if motivated SOLELY by higher valuations.
@@ -70,10 +73,14 @@
 - **Cannot claim performance from factors outside your advice** (e.g., client acting against recommendation). Outlier results driven by unauthorized client actions cannot be presented as your track record.
 - **Describing instrument features** (government backing, credit quality) = factual, permitted.
 - **Qualifying language**: "We expect" / "in my opinion" cures opinion-as-fact issues.
-- **CFA trademarks**: Cannot be abbreviated — must use full proper form regardless of platform constraints.
+- **CFA trademarks**: Cannot be abbreviated -- must use full proper form regardless of platform constraints.
 - **Claiming expertise**: In genuine area of specialty = permitted (not misrepresentation if accurate).
 - **Using same broker's research as "own"**: Claiming "I do my own research" when relying on broker's list = misrepresentation.
 - **Using employer's marketing material** that you KNOW inflates performance = I(C) violation. "Following firm policy" is NOT a defense for knowingly presenting misrepresented data.
+- **Firm-level prevention of misrepresentation**: Designate authorized spokespersons to limit who can make public claims on behalf of the firm.
+- **Third-party materials**: Must verify accuracy of materials from third parties before distributing. Cannot blindly pass along without review.
+- **Cherry-picking accounts**: Showing only best-performing accounts as representative = misrepresentation of track record.
+- **Yield calculations based on wrong tax assumptions**: Presenting yield based on incorrect tax status = misrepresentation even if unintentional. Must verify underlying assumptions.
 
 ### I(D) - Misconduct
 
@@ -86,11 +93,12 @@
 - **Loan defaults and personal bankruptcy**: NOT misconduct if not involving fraud/deceit. Poor financial choices or unfortunate circumstances ≠ professional misconduct.
 - **Concealing being fired** from a new employer = lack of integrity = misconduct.
 - **Recommended compliance:** Develop/adopt code of ethics for every employee. Check references of potential EMPLOYEES (not clients, not all current employees annually).
+- **Recommended compliance details**: (1) Code subscription = mandatory for all employees. (2) Reference checks of POTENTIAL employees (not current). (3) Violations list distributed to EMPLOYEES ONLY (not clients/public). (4) Members "voluntarily" adopt the Code -- firms cannot "require" membership/adherence to CFA Standards as employment condition. The distinction between "voluntarily" and "must" is critical.
 
 ### I(E) - Competence
 
 - Requires sufficient knowledge, skills, and abilities for the specific role.
-- **Negative outcomes do NOT prove incompetence** — assessed on process, not results.
+- **Negative outcomes do NOT prove incompetence** -- assessed on process, not results.
 - Expanding to new sector: training + comprehensive research before acting = demonstrates competence.
 
 ---
@@ -110,21 +118,25 @@
 - **Trade orders timing**: BEFORE execution = potentially material. AFTER = NOT material.
 - **Significant legal disputes** at internal meetings = MNPI.
 - **AGM information**: = PUBLIC.
-- **Analyst's own conclusions**: NOT MNPI — client-first distribution = standard practice.
-- **Mosaic Theory**: Combine material public + nonmaterial nonpublic info. Conclusions may be material — still permitted. Individual pieces must be nonmaterial.
+- **Analyst's own conclusions**: NOT MNPI -- client-first distribution = standard practice.
+- **Mosaic Theory**: Combine material public + nonmaterial nonpublic info. Conclusions may be material -- still permitted. Individual pieces must be nonmaterial.
 - **Recommended compliance**: Physical/informational barriers (firewalls). Adopt disclosure procedures. Make reasonable efforts to ACHIEVE public dissemination (NOT avoid it).
 - **Firewalls**: Prevention > monitoring. Restrictions on recommendations = temporary (while nonpublic), NOT permanent.
 - **When accidentally receiving MNPI** (interviews, social settings): Place securities on restricted list. Do NOT trade, share internally, or assume time delay makes it public.
-- **Arbitrary waiting period**: Does NOT cure MNPI status — must wait until ACTUALLY disseminated.
+- **Arbitrary waiting period**: Does NOT cure MNPI status -- must wait until ACTUALLY disseminated.
 - **Sharing MNPI internally** "so clients aren't disadvantaged" = WRONG.
 - **When aware of potential MNPI**: Encourage issuer to disclose publicly. Do NOT seek private confirmation (would induce insider disclosure).
 - **Knowledge of planned manipulation** = MNPI. Trading on this (even to "protect clients") = violation.
 - **Firm's own unpublished research/recommendations** = MNPI until widely distributed.
-- **CFA Standards apply regardless of firm policy** — even if firm's code doesn't restrict the member's role.
+- **CFA Standards apply regardless of firm policy** -- even if firm's code doesn't restrict the member's role.
 - **Indirect investments** (ETFs containing the company) = STILL violates if motivated by MNPI.
 - **Social/casual settings** (golf, dinner, friendship) provide no exemption.
 - **Tipper's intent** to solicit investment is irrelevant.
 - **Legislative/political predictions from representatives** = conjecture, NOT MNPI.
+- **Minimum compliance elements**: Watch lists, restricted lists, rumor lists. These are the baseline tools firms must maintain.
+- **Blanket proprietary trading prohibition**: NOT appropriate. Too broad -- should use targeted restrictions (restricted list) rather than prohibiting all proprietary trading.
+- **Interdepartmental communication**: Must be MINIMIZED. Information barriers exist to limit flow between departments (e.g., IB and research).
+- **Sharing MNPI to "protect clients"**: = WRONG. Good intent does NOT justify sharing material nonpublic information, even internally to client-facing teams.
 
 ### II(B) - Market Manipulation
 
@@ -139,10 +151,10 @@
 - **"Short and distort"**: Selling short then campaigning to disclose negative info to drive price down = manipulation.
 - **Legitimate corporate announcements** (merger search, earnings reaffirmation) that move prices = NOT manipulation. Intent = disclosure/transparency.
 - **Personal buy orders** significantly exceeding normal volume to inflate price = manipulation.
-- **Don't have to INITIATE manipulation** to violate — participating in, adding to, or exploiting known manipulation = also violation.
-- **Buy and sell orders at same price** to increase volume = wash trading = violation.
+- **Don't have to INITIATE manipulation** to violate -- participating in, adding to, or exploiting known manipulation = also violation.
+- **Buy and sell orders at same price** to increase volume = wash trading = violation. Creating artificial volume without economic substance.
 - **Outcome is irrelevant:** Manipulation exists based on INTENT, not results. Losses for member or gains for clients don't excuse manipulative intent.
-- **Dominant position for proxy vote** = legitimate strategy (NOT manipulation).
+- **Dominant position for proxy vote** = legitimate strategy (NOT manipulation). Acquiring voting control through open market purchases for corporate governance purposes is permitted.
 
 ---
 
@@ -157,8 +169,9 @@
 - **Mutual fund/index fund**: Duty = invest consistent with stated mandate.
 - **Individual assets**: Duty to the individual client.
 - **Complying with employer/CEO requests** conflicting with beneficiary interests = violation regardless of outcome.
-- **Outcome is irrelevant** — assessed at time of decision.
-- **Proxy voting**: In best interests of CLIENTS (not firm). NOT required in all instances — cost-benefit analysis acceptable.
+- **Outcome is irrelevant** -- assessed at time of decision.
+- **Proxy voting**: In best interests of CLIENTS (not firm). NOT required in all instances -- cost-benefit analysis acceptable. Must maximize the ECONOMIC VALUE of proxies when voting.
+- **Voting blindly on nonroutine matters** = violation. Must analyze nonroutine proxy items; rubber-stamping management recommendations without review violates duty of care.
 - **Control of client assets**: Quarterly itemized statements. Separate assets (don't commingle).
 - **Soft dollars**: Must benefit client. Commensurate with value of services.
   - ❌ Manager's operating expenses, education/CFA fees, offshore database for domestic-only clients = NOT permitted
@@ -166,7 +179,7 @@
   - ✅ Directed brokerage (client directs own commissions) = permitted
   - "Improves skills" ≠ "research." Education ≠ research.
   - Prospectus disclosure does NOT cure improper use.
-  - **Specificity**: Must benefit SPECIFIC clients whose brokerage is used — not just "investment-related" generally.
+  - **Specificity**: Must benefit SPECIFIC clients whose brokerage is used -- not just "investment-related" generally.
 - **Accounts prohibiting soft dollars**: Can still use broker with soft dollar arrangements IF account pays only competitive execution-only fees.
 - **Cannot churn** to meet brokerage commitments.
 - **Must ALWAYS disclose** brokerage commission practices.
@@ -174,6 +187,10 @@
 - **Broker providing research for other accounts**: OK if this account gets lowest commissions + best execution (client not paying extra).
 - **Clients vs. Non-clients**: Changed recommendations must go to CLIENTS first, before non-clients (newsletter recipients, prospects). Free newsletter recipients ≠ clients.
 - **III(A) vs III(B)**: III(A) = clients before non-clients/self (vertical priority). III(B) = equal treatment among clients (horizontal fairness).
+- **Make clients aware of ALL forms of compensation**: Not just management fees -- also soft dollars, referral fees, performance fees, any form of compensation received in connection with their accounts.
+- **Directed brokerage details**: When client DIRECTS brokerage to specific broker, member must inform client that best execution may not be achieved. Client bears responsibility for that choice.
+- **Not rebalancing when required by IPS** = dual violation: III(A) (prudence -- failing to act in client's interest) AND III(C) (suitability -- not managing according to mandate). One omission, two standards violated.
+- **Conflicts must be DISCLOSED, not eliminated**: Standard does not require avoiding all conflicts -- requires transparency. Disclosure is the remedy, not prohibition.
 
 ### III(B) - Fair Dealing
 
@@ -183,8 +200,8 @@
 - **Account selection disclosure**: Must disclose to clients/prospects.
 - **Service levels**: Must be disclosed to ALL. Cannot be offered selectively.
 - **Limit who knows**: About upcoming recommendations (leakage risk). Do NOT inform all staff.
-- **"Fairly" ≠ "equally"**: Cannot reach all at exact same time.
-- **Premium/tiered service**: Permitted for higher fees — more depth on published info, direct analyst access = OK. Earlier access or larger IPO allocations = NOT OK.
+- **"Fair and impartial"** (NOT "equal"): The standard is FAIRNESS, not mathematical equality. Cannot reach all at exact same time -- that's understood.
+- **Premium/tiered service**: Permitted for higher fees -- more depth on published info, direct analyst access = OK. Earlier access or larger IPO allocations = NOT OK.
 - **Oversubscribed IPOs**: Must be prorated. Cannot give larger allocations to premium clients.
 - **Prioritizing largest clients**: For trade execution = discrimination = III(B) violation (NOT VI(B)).
 - **VI(B) vs III(B)**: VI(B) = member vs. clients. III(B) = clients vs. clients.
@@ -192,7 +209,8 @@
 - **Family client accounts in IPOs**: Must receive fair allocation. Excluding them "to avoid conflicts" = disadvantaging = violation. Managed same as other clients = prorated equally.
 - **Minimize time between decision and dissemination**: Key procedure for fair treatment.
 - Cannot distribute to institutional before individual = size/class discrimination.
-- **Changed recommendations must go to ALL who received the original** — not just a subset/division. Correction must match original distribution scope.
+- **Changed recommendations must go to ALL who received the original** -- not just a subset/division. Correction must match original distribution scope.
+- **Webcasts limited to institutional clients** = selective disclosure = III(B) violation. If information is material, all clients must have access, not just one tier.
 
 ### III(C) - Suitability
 
@@ -203,6 +221,12 @@
 - **New clients**: Must gather info first. Existing portfolio ≠ established suitability.
 - **One-size-fits-all**: Cannot recommend same high-risk investment to all clients regardless of risk tolerance.
 - **Priority order for new asset class**: (1) Check IPS allows it → (2) Assess risk tolerance → (3) Analyze expected returns. Return analysis = lowest priority.
+- **IPS review frequency**: At least ANNUALLY. Must review and update to reflect changed circumstances.
+- **Consider benchmarks in IPS formulation**: Appropriate benchmarks should be established as part of the IPS -- not just objectives and constraints.
+- **Client withholds information**: Manage portfolio based on what IS provided. Cannot refuse service entirely -- work with available information and document limitations.
+- **Separate documents OK**: IPS need not be a single document. Can be composed of multiple related documents (objectives statement + constraints memo + benchmark selection) as long as all elements are addressed.
+- **Not rebalancing contrary to mandate** = dual violation: III(C) (failing to manage per IPS) + III(A) (failing in duty of care). Inaction when action required violates both.
+- **Securities acquired through corporate actions** (mergers, spinoffs): If resulting holdings don't fit IPS mandate, must be divested within reasonable timeframe. Cannot passively hold unsuitable positions.
 
 ### III(D) - Performance Presentation
 
@@ -215,6 +239,8 @@
 - **Team performance**: Cannot claim entire fund performance as your own when part of a team.
 - **Consistency**: Once policies set, must follow uniformly. Cannot selectively deviate for favorable results.
 - **Written permission to use performance data ≠ permission to misattribute your role.**
+- **GIPS compliance**: NOT required by the Standards. Members are encouraged but not mandated to comply with Global Investment Performance Standards.
+- **Auditing of performance**: NOT required. Third-party verification is recommended but not mandatory under the Standards.
 
 ### III(E) - Preservation of Confidentiality
 
@@ -242,7 +268,7 @@
 - **Performance history**: Explicit permission required.
 - **Proprietary tools**: Belong to employer.
 - **Non-solicitation**: Violated by "restricted" social media accessible to former clients.
-- **After leaving (no non-solicitation)**: Solicit using PUBLIC info only — NOT employer records.
+- **After leaving (no non-solicitation)**: Solicit using PUBLIC info only -- NOT employer records.
 - **Emailing client list**: = misappropriation = violation.
 - **Non-competing outside work** (unrelated to employer's business): No disclosure required.
 - **Competing outside work** (same type of service): MUST disclose even if on own time. "Own time" doesn't exempt competing activities.
@@ -252,19 +278,20 @@
 - **May act AGAINST employer**: When employer engaged in illegal/unethical activity.
 - **Preparing to compete**: Permitted if no breach of loyalty (no soliciting, no employer resources, no confidential info). Non-working hours = further support. No requirement to notify during preparation phase.
 - **Unpaid interns**: = employees. Work experience = compensation. Full loyalty applies.
-- **Soliciting while employed**: STRICTLY PROHIBITED — cannot be cured by disclosure. Hard prohibition.
+- **Soliciting while employed**: STRICTLY PROHIBITED -- cannot be cured by disclosure. Hard prohibition. This means soliciting CLIENTS or POTENTIAL CLIENTS of the current employer for a future competing venture.
 - **After leaving**: Being hired by competitor = not a violation. Meeting former employer's clients arranged by new employer = not a violation.
-- **General skills, knowledge, experience**: NOT confidential/proprietary. Can be used at new firm.
+- **General skills, knowledge, experience**: NOT confidential/proprietary. Can be used at new firm. Cannot be restricted by employer.
 - **Knowledge of former clients' existence**: NOT confidential (if contactable via public sources).
 - **Constructing NEW models after departure** using general expertise = permitted. Only specific files/models from firm = firm property.
 - **Work created BEFORE employment**: = member's property, even if firm adopted/used it. Can take when leaving.
 - **Ownership test**: WHO created it and WHEN? During employment = firm's. Before = member's.
-- **Claiming unearned designations** = violates IV(A) (can harm employer reputation) + I(D) misconduct.
+- **Claiming unearned designations** = violates IV(A) (can harm employer reputation) + I(D) misconduct. Dual violation.
+- **Applying for regulatory license on own time**: = OK. Preparing for future career moves through licensing/education is permitted and does not violate loyalty.
 
 ### IV(B) - Additional Compensation Arrangements
 
 - **Written CONSENT** (not just notification) from all parties.
-- Need NOT decline — permitted WITH consent.
+- Need NOT decline -- permitted WITH consent.
 - **Trigger**: Conflicting services + compensation from third parties.
 - Unrelated outside work = no conflict = no consent needed.
 - Same-type investment work = conflict = consent required.
@@ -272,16 +299,18 @@
 - **Performance-based compensation from client**: Permitted with employer's written permission.
 - **High-value gifts from clients** (sold-out event tickets) = "benefits" requiring employer consent. Not "token" items. Consent for one benefit doesn't cover others.
 - Must obtain consent from BOTH employer AND third party/client offering.
+- **Board service benefits** (director fees, equity compensation): Require written employer consent before accepting.
+- **Compensation from clients AND third parties**: Both trigger IV(B). Whether compensation comes from a client for extra services or from an external party for referrals -- both require employer consent.
 
 ### IV(C) - Responsibilities of Supervisors
 
 - **In-depth knowledge** of Code and Standards required.
-- May **delegate** — not required to personally evaluate every employee.
+- May **delegate** -- not required to personally evaluate every employee.
 - Reporting to CFA Institute: encouraged, NOT mandatory.
 - **Continually educate** personnel (ongoing, not one-time).
 - **Integrate** conduct evaluations into performance reviews.
 - **Keep code of ethics and compliance procedures SEPARATE**.
-- **Upon learning of violation**: Assess extent. Cannot rely on assurance alone — take steps to prevent recurrence.
+- **Upon learning of violation**: Assess extent. Cannot rely on assurance alone -- take steps to prevent recurrence.
 - **Reasonable program**: Not liable for undetected violations despite efforts.
 - **Inadequate system**: Decline IN WRITING to accept supervisory responsibility until firm adopts reasonable procedures.
 - Simply referencing Code & Standards ≠ adequate supervision. Must implement actual training.
@@ -289,14 +318,18 @@
 - **Offered new supervisory position with inadequate procedures**: DECLINE first. Do not "accept and fix." Must correct problems BEFORE accepting.
 - **Proper sequence**: Identify problems → recommend corrective action → accept only AFTER adequate. Interim consultant option available.
 - **Provide code of ethics TO CLIENTS** = recommended (conveys ethical commitment).
-- **"Recommend" not "require"** adoption -- members cannot mandate code of ethics.
+- **"Recommend" not "require"** adoption -- members cannot mandate code of ethics. CFA Institute recommends firms adopt codes but cannot force adoption.
 - **Audience summary:** Law summaries → employees. Reporting procedures → employees. Code of ethics → CLIENTS.
-- **⚠️ Code of ethics and compliance procedures = ALWAYS SEPARATE. NEVER integrated. Tested 4+ times.**
-- **Code of ethics absent ≠ must decline supervisory role.** Only COMPLIANCE SYSTEM absent = must decline.
-- **Delegating:** No requirement that delegates have prior compliance experience.
-- **Head of compliance = supervisor** with duty to have policies PREVENTING violations.
-- **"Firm has no policy" = NOT a defense** for employee violations. CFA Standards apply regardless.
+- **Code of ethics and compliance procedures = ALWAYS SEPARATE. NEVER integrated. Tested 4+ times.**
+- **Code of ethics absent ≠ must decline supervisory role.** Only COMPLIANCE SYSTEM absent = must decline. A firm can lack a formal code of ethics but still have adequate compliance procedures.
+- **Delegating:** No requirement that delegates have prior compliance experience. Can assign monitoring/supervision duties to qualified personnel regardless of compliance background.
+- **Head of compliance = supervisor** with duty to have policies PREVENTING violations. Not just detecting -- preventing.
+- **"Firm has no policy" = NOT a defense** for employee violations. CFA Standards apply regardless of firm policy existence.
 - **Offered new position with inadequate procedures:** DECLINE first, don't "accept and fix."
+- **"Resign" is NOT a IV(C) response**: Resigning from a supervisory role when the firm won't fix compliance = I(A) dissociation response, NOT IV(C). IV(C) response = decline in writing until fixed.
+- **Covers ALL employees**: Not just CFA charterholders or candidates. Supervisory responsibility extends to every person under your supervision regardless of their CFA status.
+- **Firm promising future improvements** = still inadequate. Cannot accept supervisory role based on promises of future compliance system improvements. System must be adequate NOW.
+- **MASTER AUDIENCE TABLE**: Code of ethics → CLIENTS. Law summaries → EMPLOYEES. Reporting procedures → EMPLOYEES. Violations list → EMPLOYEES ONLY.
 
 ---
 
@@ -308,14 +341,15 @@
 - **External manager selection**: STANDARDIZED criteria (not customized). V(A), NOT III(C). Complete criteria: (1) Investment process, (2) Code of ethics, (3) Compliance/internal controls, (4) Quality of return information, (5) Adherence to stated strategy. "Adherence to strategy" = frequently tested omission.
 - **Committee override**: No violation if process sound. Not required to dissociate.
 - **Poor outcomes**: ≠ violation if research comprehensive.
-- **Technical expertise**: Understand assumptions/limitations — not required to be expert.
+- **Technical expertise**: Understand assumptions/limitations -- not required to be expert.
 - **Relying on colleagues**: Permitted unless reason to question.
 - **Supervisory analyst**: Should review reports prior to external circulation.
 - **Computer models**: MINIMUM (not maximum) levels of scenario testing.
 - **Overheard analyst opinion**: NOT adequate basis to change recommendation without own research.
 - V(A) applies only to those **analyzing investments, making recommendations, or taking investment actions** for clients. Non-investment roles performing personal trades = not V(A).
-- **"Quick and simple" analysis ≠ automatically inadequate.** If conclusion is clear-cut, brief analysis CAN provide reasonable basis.
-- **Delegating due diligence:** Must perform due diligence ON the third party hired. CFA charter alone ≠ qualification for any specific task.
+- **"Quick and simple" analysis ≠ automatically inadequate.** If conclusion is clear-cut, brief analysis CAN provide reasonable basis. Thoroughness is proportional to complexity of the decision.
+- **Delegating due diligence:** Must perform due diligence ON the third party hired to perform due diligence. Verify the verifier -- cannot blindly rely on delegated research.
+- **CFA charter alone ≠ qualification** for any specific task. Having the CFA designation does not automatically qualify someone for every analytical role. Must assess specific competence for the specific task.
 
 ### V(B) - Communication with Clients and Prospective Clients
 
@@ -327,12 +361,12 @@
 - **External managers**: Must disclose regardless of process similarity.
 - **Significant risks**: Leverage, sector/industry risk, security-specific risk.
 - **Legislative/political predictions**: = conjecture. Can incorporate but present as opinion, not fact.
-- **Communication format is FLEXIBLE:** Not confined to written reports. Phone, in-person, email -- all valid. Requirement = clients ARE informed, not specific medium.
-- **Material strategy changes** must be communicated PROMPTLY -- not just in annual reports.
+- **Communication format is FLEXIBLE:** Not confined to written reports. Phone, in-person, email -- all valid. Requirement = clients ARE informed, not specific medium. A phone call with proper documentation satisfies the standard.
+- **Material strategy changes** must be communicated PROMPTLY -- not just in annual reports. Cannot wait for scheduled reporting if change is material.
 
 ### V(C) - Record Retention
 
-- **Work product belongs to the FIRM** — not client, not member.
+- **Work product belongs to the FIRM** -- not client, not member.
 - Cannot take copies without express consent.
 - **Re-creating from PUBLIC sources**: Permitted at new firm. **"From memory" = specifically prohibited** -- even with permission to use the report itself. Supporting records must come from public sources or directly from covered company. NOT from memory.
 - **Reviews with NO change**: Must still be retained.
@@ -342,6 +376,9 @@
 - Files created on **personal time/computer** = still firm property if part of professional activity.
 - **Saving on home computer** during employment = not prohibited. Issue = keeping/using AFTER leaving without permission.
 - After employment ends: must have permission to retain. Without = delete.
+- **Retention hierarchy**: (1) Applicable law (highest priority) > (2) Firm policy > (3) CFA 7-year DEFAULT (when no law or firm policy exists). Follow the hierarchy in order.
+- **Firm policy even less than 7 years**: If applicable law is silent AND firm has a policy (even if shorter than 7 years), firm policy satisfies the standard. The 7-year default only applies when BOTH law and firm policy are silent.
+- **Industry association standards and client preferences**: NOT relevant to retention requirements. Only law, firm policy, and CFA default matter.
 
 ---
 
@@ -351,7 +388,7 @@
 
 - **Scope**: YOUR OWN independence/objectivity.
 - Not for colleague misconduct (that's I(A)).
-- **Beneficial ownership (OR test)**: Pecuniary, voting, or disposition power — any one.
+- **Beneficial ownership (OR test)**: Pecuniary, voting, or disposition power -- any one.
 - **Family holdings**: Without beneficial ownership = no disclosure.
 - **Disclosure, not prohibition**: Board positions OK with firewalls. Options = footnote. Rebates = disclose.
 - **Bonus for proprietary products**: Must disclose even if suitable.
@@ -361,20 +398,20 @@
 - **Best practice hierarchy**: AVOID > Disclose ALL. Partial disclosure = violation.
 - **Tangential relationships** (customer of covered company, distant relative as supplier) = NOT conflicts requiring disclosure. Apply materiality/directness test.
 - **Firm holding substantial position** in recommended company = conflict requiring disclosure.
-- **Disclosure obligation runs directly to CLIENT** — not through employer as intermediary. Employer guidance to NOT disclose doesn't override.
-- **Well-known dual roles:** When both parties aware of member's interests, formal disclosure may not be separately required.
+- **Disclosure obligation runs directly to CLIENT** -- not through employer as intermediary. Employer guidance to NOT disclose doesn't override.
+- **Well-known dual roles:** When both parties are aware of member's interests (e.g., publicly known board position), formal disclosure may not be separately required in every communication. But when in doubt, disclose.
 - Lack of employer training = NOT a defense for employee's failure to disclose.
-- **Disclosure required in ALL communications** where objectivity could be impaired — not just research reports. Includes press releases, marketing materials, public statements.
+- **Disclosure required in ALL communications** where objectivity could be impaired -- not just research reports. Includes press releases, marketing materials, public statements.
 - **Dual-role conflicts**: If providing both PR and research on same company = disclose in BOTH.
-- **Cross-departmental conflicts** (loss-leader fees for brokerage, AM supporting IB deals) = must disclose.
-- **Internal employee benefits** (staff loans for shares) = NOT a client conflict.
-- **Test**: Does arrangement interfere with objectivity in client-facing decisions?
+- **Cross-departmental conflicts** (loss-leader fees for brokerage, AM supporting IB deals) = must disclose to affected clients.
+- **Internal employee benefits** (staff loans for shares, employee stock programs) = NOT a client conflict. These don't impair objectivity in client-facing decisions.
+- **Test**: Does arrangement interfere with objectivity in client-facing decisions? If purely internal with no client impact, not a VI(A) issue.
 
 ### VI(B) - Priority of Transactions
 
 - **Pre-clearance**: Specific parameters. Any change = new clearance.
 - **Client priority**: ALWAYS. No equal rotation.
-- **Flawed procedure**: Disclosure doesn't cure — must revise.
+- **Flawed procedure**: Disclosure doesn't cure -- must revise.
 - **Recommended compliance**: Duplicate confirmations to firm; review prior to execution; holdings at hire + annually; blackout periods (restrict members, not clients); pre-clear IPOs even without conflict.
 - **Family fee-paying accounts**: = client accounts. Neither advantaged nor disadvantaged.
 - **Personal transactions**: MUST be reported to employer regardless of regulatory mandate. Confidentiality not an excuse.
@@ -386,16 +423,17 @@
 
 ### VI(C) - Referral Fees
 
-- **Permitted** — issue is disclosure.
+- **Permitted** -- issue is disclosure.
 - **Must disclose**: Nature + estimated dollar value.
 - **Timing**: Before formal agreement; at time of referral.
 - **"Consideration"**: Cash, soft dollars, in-kind, reciprocal arrangements, free services, discounted fees based on referral volume.
 - **Must disclose to**: Clients, prospective clients, AND employer.
-- **Internal/interdepartmental**: Same rules — NOT exempt.
+- **Internal/interdepartmental**: Same rules -- NOT exempt.
 - **Need NOT decline**: Obligation = disclosure, not refusal.
 - **Two purposes of disclosure**: (1) Evaluate partiality, (2) Evaluate full cost.
-- **Kickbacks from hired managers ≠ referral fees**. VI(C) = compensation for REFERRING. Payments from already-hired manager = IV(B)/III(A) issue.
-- **If disclosure timing has passed** (client already hired referred party without knowing): Fee must be REFUSED. Cannot cure missed disclosure retroactively.
+- **Kickbacks from hired managers ≠ referral fees**. VI(C) = compensation for REFERRING. Payments from already-hired manager = IV(B)/III(A) issue. Different standard entirely.
+- **If disclosure timing has passed** (client already hired referred party without knowing): Fee must be REFUSED. Cannot cure missed disclosure retroactively. Once the window closes, the only ethical option is refusal.
+- **Informal score-keeping** = "consideration." Even without explicit cash exchange, tracking favors/referrals with expectation of reciprocation = compensation requiring disclosure.
 
 ---
 
@@ -414,9 +452,10 @@
 - **III(E) does NOT apply** to exam info. Only VII(A).
 - **Complaints inadvertently revealing topics** = still violation. Intent/context doesn't matter.
 - Using third-party study materials = permitted.
-- **Accidental exposure** to prohibited info during exam: if USED, compromises exam regardless of intent.
+- **Accidental exposure** to prohibited info during exam: if USED, compromises exam regardless of intent. Even unintentional use taints the result.
 - **Reporting**: Must report own violation. Reporting others' = encouraged but NOT obligated.
-- **Using CFA Institute association** (exam writing/grading) to further professional goals = violation. Cannot imply special investment insights from program involvement.
+- **Using CFA Institute association** (exam writing/grading) to further professional goals = violation. Cannot imply special investment insights from program involvement. Cannot leverage volunteer role for business development.
+- **Must report own violation**: Self-reporting is required, not optional. Failure to report own known violation = additional violation.
 
 ### VII(B) - Reference to CFA Institute, the CFA Designation, and the CFA Program
 
@@ -427,11 +466,10 @@
 - **Superiority claims**: Violation.
 - **Approved format**: "A Level II candidate in the CFA Program."
 - **"CFA Level II" as credential/title** (on business card) = violation (implies partial designation). Stating "completed Levels I and II" in descriptive text = permitted.
-- **Cannot claim specific exam scores** — CFA doesn't report actual scores. Only broad categories + pass/fail. "Highest possible scores" = unverifiable = violation.
-- **CFA trademarks CANNOT be abbreviated** — must use full proper form regardless of platform (character limits, social media).
+- **Cannot claim specific exam scores** -- CFA doesn't report actual scores. Only broad categories + pass/fail. "Highest possible scores" = unverifiable = violation.
+- **CFA trademarks CANNOT be abbreviated** -- must use full proper form regardless of platform (character limits, social media).
 - **Claiming expertise** in genuine specialty = permitted (if accurate, not exaggerated).
-- **Cannot claim "finished the CFA Program"** until officially notified of passing. Sitting for exam ≠ completing.
-- **"CFA (expected 2014)"** = improper reference.
+- **Cannot claim "finished the CFA Program"** until officially notified of passing. Sitting for exam ≠ completing. Must wait for official notification before any claims.
 
 ---
 
@@ -445,7 +483,7 @@
 | 4 | "Restricted" social media | Not a non-solicitation safe harbor |
 | 5 | Secondary source citation | Must cite original |
 | 6 | "No harm, no foul" | Compliance violations exist regardless |
-| 7 | "Equal rotation" | Violates VI(B) — clients first |
+| 7 | "Equal rotation" | Violates VI(B) -- clients first |
 | 8 | Dissociate vs. Report | Dissociate > Report |
 | 9 | External manager selection | V(A), NOT III(C) |
 | 10 | Committee override | No violation if process sound |
@@ -487,9 +525,9 @@
 | 46 | Technically true but misleading | Still misrepresentation |
 | 47 | Soliciting while employed | HARD prohibition |
 | 48 | Soft dollars for education | CFA fees ≠ research |
-| 49 | "Avoid dissemination" of MNPI | WRONG — should ACHIEVE dissemination |
+| 49 | "Avoid dissemination" of MNPI | WRONG -- should ACHIEVE dissemination |
 | 50 | Best practice = avoid conflict | Avoidance > disclosure when asked for "best" |
-| 51 | PCP exception has a limit | If applicable law requires confidentiality, cannot disclose even to PCP |
+| 51 | PCP exception limited by law | If applicable law requires confidentiality, cannot disclose even to PCP |
 | 52 | "From memory" record re-creation | Specifically prohibited -- use public sources only |
 | 53 | Phone/verbal communication | V(B) doesn't require written form -- verbal is valid |
 | 54 | Code of ethics → provide to CLIENTS | Different audience than law summaries (employees) |
@@ -497,24 +535,38 @@
 
 ---
 
+## Performance Summary
+
+| Block | Questions | Correct | Accuracy | Key Difficulty |
+|-------|-----------|---------|----------|---------------|
+| Q1-37 | 37 | 17 | 46% | Initial learning curve |
+| Q38-100 | 63 | 41 | 65% | Building foundation |
+| Q101-150 | 50 | 34 | 68% | Peak performance |
+| Q151-200 | 50 | 33 | 66% | Consistent |
+| Q201-250 | 50 | 32 | 64% | Tricky edge cases |
+| Q251-280 | 30 | 25 | 83% | Final mastery |
+| **TOTAL** | **280** | **182** | **65%** | **COMPLETE** |
+
+---
+
 ## Mistakes Summary
 
-Based on 250 questions at 64% accuracy:
+Based on 280 questions at 65% accuracy:
 
 | Standard | Key Errors | Takeaway |
 |----------|-----------|----------|
-| **I(C) Misrepresentation** | Plagiarism forms; benchmark rules; technically true but misleading; abbreviations | Multiple forms — know them all |
-| **VI(B) Priority** | Equal rotation; family accounts; compliance procedures; reporting | Process details matter |
+| **I(C) Misrepresentation** | Plagiarism forms; benchmark rules; technically true but misleading; abbreviations; cherry-picking | Multiple forms -- know them all |
+| **VI(B) Priority** | Equal rotation; family accounts; compliance procedures; reporting; blanket bans | Process details matter |
 | **I(B) Independence** | Required vs. recommended; travel; IB pressure; conference perks | Distinguish obligation levels |
-| **III(E) Confidentiality** | False exceptions; direction of flow; permission ≠ blanket authorization | Default = confidential |
-| **III(B) Fair Dealing** | Premium service boundaries; family accounts; distribution scope | Clients vs. clients |
-| **VI(A) Conflicts** | Beneficial ownership; partial disclosure; avoid vs disclose; all communications | Always disclose; directly to client |
-| **IV(A) Loyalty** | Competing vs non-competing work; preparation permitted; solicitation prohibited | During vs. after employment |
-| **II(A) MNPI** | Compliance procedures; achieve dissemination; waiting ≠ cure; indirect investments | Prevention + restriction |
-| **VII(B) CFA Designation** | Partial designation; score claims; abbreviations; format | Credential vs. description |
-| **IV(C) Supervisors** | Decline before accept; Code ≠ compliance system; can't rely on assurance | System first, then accept |
-| **VI(C) Referral Fees** | Timing (before agreement); must refuse if timing passed; kickbacks ≠ referrals | Prospective disclosure or refuse |
-| **III(A) Loyalty** | Soft dollar specificity; clients before non-clients; brokerage ownership | Client's money = client's benefit |
+| **III(E) Confidentiality** | False exceptions; direction of flow; permission ≠ blanket authorization; PCP limited by law | Default = confidential |
+| **III(B) Fair Dealing** | Premium service boundaries; family accounts; distribution scope; webcasts | Clients vs. clients |
+| **VI(A) Conflicts** | Beneficial ownership; partial disclosure; avoid vs disclose; all communications; internal ≠ conflict | Always disclose; directly to client |
+| **IV(A) Loyalty** | Competing vs non-competing work; preparation permitted; solicitation prohibited; ownership test | During vs. after employment |
+| **II(A) MNPI** | Compliance procedures; achieve dissemination; waiting ≠ cure; indirect investments; blanket bans | Prevention + restriction |
+| **VII(B) CFA Designation** | Partial designation; score claims; abbreviations; format; "finished" timing | Credential vs. description |
+| **IV(C) Supervisors** | Decline before accept; Code ≠ compliance system; can't rely on assurance; covers all employees | System first, then accept |
+| **VI(C) Referral Fees** | Timing (before agreement); must refuse if timing passed; kickbacks ≠ referrals; informal tracking | Prospective disclosure or refuse |
+| **III(A) Loyalty** | Soft dollar specificity; clients before non-clients; brokerage ownership; proxy maximization; dual violations | Client's money = client's benefit |
 
 ---
 
@@ -539,7 +591,7 @@ When facing an Ethics question:
 
 ---
 
-## Lakshya's Personal Rules (from 200 questions of pattern analysis)
+## Lakshya's Personal Rules (from 280 questions of pattern analysis)
 
 1. When gut says "violation" but someone is PREPARING (not yet acting) → lean "no violation"
 2. Family accounts managed as clients = CLIENTS → prorate equally, never exclude
@@ -547,22 +599,38 @@ When facing an Ethics question:
 4. When "both" is an option → evaluate each violation independently
 5. Standards rarely say "prohibit" → they say "disclose" or "obtain consent"
 6. After leaving employer: obligations CONTINUE (confidentiality) or SHIFT (loyalty ends)
-7. "Recommended" ≠ "Required" — if question says "required," eliminate recommended-only answers
+7. "Recommended" ≠ "Required" -- if question says "required," eliminate recommended-only answers
 8. Relying on others (colleagues, committees) = usually PERMITTED unless reason to doubt
-9. Confidentiality exceptions are NARROW: client permission + PCP only
-10. Disclosure of conflicts runs directly to CLIENT — employer cannot block this
+9. Confidentiality exceptions are NARROW: client permission + PCP only (and PCP limited by law)
+10. Disclosure of conflicts runs directly to CLIENT -- employer cannot block this
 11. "Equal" among member + clients = wrong. "Equal" among clients only = right
 12. Multiple violations: check whether BOTH parties violated independently
 13. Pooled fund manager → mandate only. Individual advisory → full suitability
-14. Competing work ≠ non-competing work — test is conflict with employer
+14. Competing work ≠ non-competing work -- test is conflict with employer
 15. "CFA Level II" as title = violation. "Completed Level II" in text = OK
 16. Soft dollars: must benefit SPECIFIC clients whose brokerage generates them
 17. After disclosure timing has passed → must REFUSE the fee
 18. Press releases about covered companies where you own stock = need disclosure too
-19. "Waiting a day" does NOT cure MNPI — must be actually publicly disseminated
+19. "Waiting a day" does NOT cure MNPI -- must be actually publicly disseminated
 20. Changed recommendations → must reach ALL who received original (match scope)
+21. "Voluntarily" vs "must" -- CFA Code is adopted voluntarily; firms cannot mandate CFA membership as employment condition
+22. Retention hierarchy: Law > Firm policy > CFA 7-year default. Firm policy (even <7 years) satisfies when law is silent. Industry standards and client preferences are irrelevant.
 
 ---
 
-*Last updated: 2025-08-15 | 250 questions completed (FINAL MILESTONE) | Accuracy trend: 46% → 64%*
-*Total unique exam traps identified: 55 | Learning areas: 22*
+## IV(C) vs I(A) Remedy Distinction
+
+| Situation | Correct Standard | Correct Response |
+|-----------|-----------------|-----------------|
+| Firm won't fix compliance system | IV(C) | Decline supervisory role IN WRITING |
+| Firm engaged in illegal/unethical activity | I(A) | Dissociate (may include resignation) |
+| Supervisor can't prevent violations | IV(C) | Decline until system adequate |
+| Colleague violating standards | I(A) | Report internally, then dissociate if unresolved |
+
+**Key distinction**: "Resign" = I(A) dissociation response. "Decline in writing" = IV(C) supervisory response. Never confuse them.
+
+---
+
+*Last updated: 2025-08-15 | 280 questions completed (COMPLETE) | Accuracy: 65% (182/280)*
+*Trend: 46% → 65% → 68% → 66% → 64% → 83% (Q251-280)*
+*Total unique exam traps identified: 55 | Learning areas: 22 | Personal rules: 22*
