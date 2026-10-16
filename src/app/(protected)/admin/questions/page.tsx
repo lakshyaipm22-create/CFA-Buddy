@@ -2,6 +2,9 @@ import { QuestionReviewTable } from '@/features/question-bank/components/questio
 import { sampleQuestions } from '@/features/question-bank/data/sample-questions';
 import { isDatabaseAvailable } from '@/shared/lib/data-layer';
 
+// Force dynamic rendering — this page queries the DB at runtime
+export const dynamic = 'force-dynamic';
+
 /**
  * Admin page for reviewing imported questions.
  * Shows pending questions from the database, or sample questions for development.
