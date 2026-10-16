@@ -40,7 +40,7 @@ export default async function AdminQuestionsPage() {
         topic: q.topic?.name ?? null,
         provider: q.provider?.name ?? 'Unknown',
         questionSourceFile: q.questionSourceFile,
-        verificationStatus: q.verificationStatus,
+        verificationStatus: 'pending' as const,
       }));
     } catch {
       // Fall back to sample questions if DB query fails
