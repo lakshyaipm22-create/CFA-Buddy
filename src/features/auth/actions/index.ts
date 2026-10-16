@@ -1,5 +1,2 @@
-export { signUp } from './sign-up';
-export { signIn } from './sign-in';
-export { signOut } from './sign-out';
-export { resetPassword } from './reset-password';
-export { updateProfile } from './update-profile';
+// Auth actions removed — CFA Buddy is now a public, credential-free application.
+// User data is persisted via localStorage (local-profile) and optional Supabase data layer.

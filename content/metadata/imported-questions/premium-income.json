@@ -1,0 +1,2750 @@
+[
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q1",
+    "questionText": "If an issuer is required to retire a specified portion of the bond’s principal each year, the bond most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "is callable.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a bond that is currently callable may be retired by the issuer, but the issuer is not required to do so."
+      },
+      {
+        "label": "B",
+        "text": "is a step-up note.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a step-up note has a coupon rate that increases over time according toa predetermined schedule."
+      },
+      {
+        "label": "C",
+        "text": "has a sinking fund provision.",
+        "isCorrect": true,
+        "explanation": "Correct. A sinking fund provision requires retirement of a portion of the bond’s principal every year, rather than retirement of the entire issue at maturity"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q2",
+    "questionText": "A five-year semiannual bond has an annual percentage rate (APR) of 8%. Converted to a quarterly periodicity, the APR is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "1.98%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because aggressive accounting is a biased choice. Biased accounting choices are higher in quality than earnings management on the spectrum of GAAP conforming financial reports."
+      },
+      {
+        "label": "B",
+        "text": "3.92%.",
+        "isCorrect": true,
+        "explanation": "Correct. Earnings management represents deliberate actions to influence reported earnings and their interpretation. The distinction between earnings management and biased choices is subtle and, primarily, a matter of intent."
+      },
+      {
+        "label": "C",
+        "text": "7.92%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because conservative accounting is a biased choice. Biased accounting choices are higher in quality than earnings management on the spectrum of GAAP conforming financial reports."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q3",
+    "questionText": "The key rate duration best measures a bond's sensitivity to a change in the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "level of the yield-to-maturity.",
+        "isCorrect": true,
+        "explanation": "Correct. The exclusion of recurring items from non-GAAP financial measures is strictly prohibited by the SEC and should raise concerns that additional analysis is needed."
+      },
+      {
+        "label": "B",
+        "text": "slope of the yield-to-worst curve.",
+        "isCorrect": false,
+        "explanation": "Incorrect. If a company uses non-GAAP measures in its SEC filings, it must display the comparable GAAP measure with equal prominence and provide a reconciliation between the two."
+      },
+      {
+        "label": "C",
+        "text": "shape of the benchmark yield curve.",
+        "isCorrect": false,
+        "explanation": "Incorrect. LIFO reporting provides sufficient information in the Notes to convert from LIFO to FIFO so a formal change should not alter an analyst's opinion about the company."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q4",
+    "questionText": "Abond priced at 99.4 has a modified duration of 6.9 and an annual convexity statistic of - 212. If the market yield increases by 75 basis points, the price of this bond is closest to:A. 93.7.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "94.3.",
+        "isCorrect": false,
+        "explanation": "Incorrect. IFRS allows classification of dividends paid as either an operating ora financing cash flow. However, when dividends paid is shown as an operating cash flow, reported operating cash flows are lower. 88 -- 91 of 137 --"
+      },
+      {
+        "label": "C",
+        "text": "94.9.",
+        "isCorrect": true,
+        "explanation": "Correct. IFRS allows the classification of interest expense as either an operating ora financing cash flow. When interest expense is shown as a financing cash flow, reported operating cash flows are higher."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q5",
+    "questionText": "If interest rates rise over the holding period, the total return of a coupon bond held until maturity is most likely to be:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less than the yield to maturity at purchase.",
+        "isCorrect": true,
+        "explanation": "Correct because both a low availability of substitutes and low bargaining power of buyers would improve a company's pricing power."
+      },
+      {
+        "label": "B",
+        "text": "equal to the yield to maturity at purchase.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a high degree of rivalry would offset the positive affect of alow threat of substitutes."
+      },
+      {
+        "label": "C",
+        "text": "greater than the yield to maturity at purchase.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a high availability of substitutes would act to offset the positive affect of low bargaining power of buyers."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q6",
+    "questionText": "A bond that allows the issuer to pay interest in the form of additional amounts of the existing bond issue rather than a cash payment best describes a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "step-up coupon bond.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Rationalization takes place after the low-quality reporting act has taken place and isa psychological process used by individuals to justify their actions. Poor internal controls are nota psychological process."
+      },
+      {
+        "label": "B",
+        "text": "deferred coupon bond.",
+        "isCorrect": true,
+        "explanation": "Correct. Poor internal controls provide opportunities for errors or fraud to be incorporated in financial reporting without being detected."
+      },
+      {
+        "label": "C",
+        "text": "payment-in-kind coupon bond.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Motivation results from personal pressures or corporate pressures to report on a low-quality basis. Poor internal controls provide the vehicle through which low-quality reporting can be concealed, not the motivation for it."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q7",
+    "questionText": "-- 4 of 137 -- Question In the event of default, investors in covered bonds most likely have recourse against:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "the issuer only.",
+        "isCorrect": true,
+        "explanation": "Correct because conservatism bias is a bias in which people maintain their prior views or forecasts by inadequately incorporating new information."
+      },
+      {
+        "label": "B",
+        "text": "a segregated pool of assets only.",
+        "isCorrect": false,
+        "explanation": "Incorrect because overconfidence bias occurs when people demonstrate unwarranted faith in their own abilities."
+      },
+      {
+        "label": "C",
+        "text": "both the issuer and a segregated pool of assets. -- 5 of 137 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because representative bias refers to the tendency to classify information based on past experiences and known classifications."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q8",
+    "questionText": "In the securitization process, the trustee most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "sells the underlying collateral.",
+        "isCorrect": false,
+        "explanation": "Incorrect because normalized earnings remove the impact of temporary factors and unusual events such as acquisitions."
+      },
+      {
+        "label": "B",
+        "text": "owns the underlying collateral. e holds the underlying collateral.",
+        "isCorrect": true,
+        "explanation": "Correct because normalized earnings are the expected level of mid-cycle earnings for a company in the absence of any unusual or temporary factors that affect profitability."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q9",
+    "questionText": "9 of 106 Question The coupon ofa residential mortgage-backed security is the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "pass-through rate.",
+        "isCorrect": false,
+        "explanation": "Incorrect because Porter’s five forces framework and similar analytical tools can help analysts assess the relative profit potential of a company by helping analysts estimate whether profit margins are likely to be relatively high or low (relative to historical profit margins and relative to competing companies)."
+      },
+      {
+        "label": "B",
+        "text": "weighted average coupon rate.",
+        "isCorrect": false,
+        "explanation": "Incorrect because Porter's five forces framework and similar analytical tools can help analysts assess the relative profit potential of a company by helping analysts estimate whether profit margins are likely to be relatively high or low (relative to historical profit margins and relative to comp eting companies)."
+      },
+      {
+        "label": "C",
+        "text": "rate on the underlying pool of mortgages.",
+        "isCorrect": true,
+        "explanation": "Correct because Porter's five forces framework and similar analytical tools can help analysts assess the relative profit potential of a company by helpin g them understand the company’s industry and its position within that industry. Understanding the industry and competitive contexts of a company helps analysts estimate whether, for example, sales growth is likely to be relatively high or low (relative to history, relative to the overall growth in the economy or a sector, and/or relative to competing companies) and whetherprofit margins are likely to be relatively high or low (relative to historical profit margins and relative to competing companies)."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q10",
+    "questionText": "The stated annual yield to maturity on a semiannual bond basis is 3.66%. The effective annual yield is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "3.63%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it computes the gross profit margin as cost of sales / sales. Current gross profit margin is 25% (300 / 1,200) and the forecasted gross profitmargin is 24.1% (312 / 1,296) a decrease of approximately 1%,"
+      },
+      {
+        "label": "B",
+        "text": "3.69%.",
+        "isCorrect": true,
+        "explanation": "Correct because the gross profit for the current year is 900 (=1,200 - 300), therefore the current gross profit margin is 75%. If sales increase by 8% (to 1,296) and cost of sales increase by 4% (to 312), the forecasted gross profit is 984 (= 1,296 - 312), and the forecasted gross profit margin is 75.9%. This is an increase of approximately 1% (= 75.9% - 75%). (or Incorrect because it assumes the Starting values have the same base and takes the difference in the growth rates; 4% = sales growth - cost of sales growth = 8% — 4%,"
+      },
+      {
+        "label": "C",
+        "text": "TAS.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q11",
+    "questionText": "11 of 106 Question Ina securitization, the purchase agreement between the seller of the collateral and the special purpose entity most likely provides:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "a description of the transaction structure.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is part of the prospectus. Another important legal document is the prospectus, which describes the structure of the securitization."
+      },
+      {
+        "label": "B",
+        "text": "representations about the quality of the assets.",
+        "isCorrect": true,
+        "explanation": "Correct because an important legal document is the purchase agreement between the seller of the collateral and the SPE, which sets forth the representations and watranties that the seller makes about the assets sold. These representations and warranties assure investors about the quality of the assets."
+      },
+      {
+        "label": "C",
+        "text": "documentation of enhancements used to reduce credit risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is part of the prospectus. Securitizations often use several forms of credit enhancements, which are documented in the prospectus."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q13",
+    "questionText": "A break-even reinvestment rate is most likely equivalent to a(n):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "par rate.",
+        "isCorrect": true,
+        "explanation": "Correct as U.S. GAAP prohibit the reversal of write-downs."
+      },
+      {
+        "label": "B",
+        "text": "spot rate.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the reversal under IFRS. Inventories shall be measured (and carried on the balance sheet) at the lower of cost and net realizable value. Reversal (limited to the amount of the original write-down) is required for a subsequent increase in value of inventory previously written down. The reversal of any write-down of inventories is recognized as a reduction in cost of sales (reduction in the amount of inventories recognized as an expense). The write-down in Year 1 is equal to €5 million (€65 cost — €60 net realizable value). The subsequent reversal is limited to the original €5 million write- down. Under U.S. GAAP, reversal of a write-down is prohibited."
+      },
+      {
+        "label": "C",
+        "text": "implied forward rate. -- 6 of 137 --",
+        "isCorrect": false,
+        "explanation": "Incorrect and is the amount of the reversal allowed if the candidate incorrectly calculated the initial write-down as €7 million (€65 cost - €58 current replacement cost) under IFRS. This is also the correct initial write-down under U.S. GAAP, assuming inventories are measured using LIFO or retail inventory methods. Also, it is the amount by which the net realizable value exceeds carrying value at 31 December Year 2. However, under U.S. GAAP, reversal of a write-down is prohibited."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q14",
+    "questionText": "A bond trading at its no-arbitrage value is priced ata premium. The sum of the present value of the bond's cash flows discounted at spot rates is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less than the sum of the present values of the bond's cash flows discounted at its yield to maturity.",
+        "isCorrect": true,
+        "explanation": "Correct because £3,000,000 net income would need to be adjusted for accrued income/expense derived from the change in accounts receivable and accounts payable. The increase in accounts receivable is subtracted from net income and the decrease in accounts payable is also subtracted from net income. Change in cash = Net Income — increase in Accounts Receivable — decrease in Accounts Payable: Change in cash = £3,000,000 — £2,000,000 — £3,000,000 = -£2,000,000. Ending cash balance = 2011 ending cash balance + change in cash = £10,000,000 — £2,000,000 = £8,000,000."
+      },
+      {
+        "label": "B",
+        "text": "equal to the sum of the present values of the bond's cash flows discounted at its yield to maturity,",
+        "isCorrect": false,
+        "explanation": "Incorrect because, although net income is adjusted for accrued income/expense derived from changes in accounts receivable and accounts payable, it reverses the adjustment to accounts receivable. As such, an increase in accounts receivable is incorrectly added to net income: Change in cash = Net Income - decrease in/+ increase in Accounts Receivable - decrease in/+ increase in Accounts Payable: 91 -- 94 of 137 -- Change in cash = £3,000,000 + £2,000,000 - £3,000,000 = £2,000,000. Ending cash balance = 2011 ending cash balance + change in cash = £10,000,000 + £2,000,000 = £12,000,000."
+      },
+      {
+        "label": "C",
+        "text": "greater than the sum of the present values of the bond's cash flows discounted at its yield to maturity.",
+        "isCorrect": false,
+        "explanation": "Incorrect because, although net income is adjusted for accrued income/expense derived from changes in accounts receivable and accounts payable, it reverses the adjustment to accounts receivable and accounts payable. As such, an increase in accounts receivable is incorrectly added to net income and a decrease to accounts payable is incorrectly added to net income: Change in cash = Net Income - decrease in/+ increase in Accounts Receivable +decrease in/- increase in Accounts Payable: Change in cash = £3,000,000 + £2,000,000 + £3,000,000 = £8,000,000. Ending cash balance = 2011 ending cash balance + change in cash = £10,000,000+ £8,000,000 = £18,000,000."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q15",
+    "questionText": "An analyst gathers the following information about a company that only has senior unsecured debt: Type Total Amount OutstandingTime to Maturity Floating-rate note (FRN) $50 million 12 years Fixed-rate bond $10 million 2 years In a bankruptcy scenario, if the priority of claims is enforced, itis most likely that:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "fixed-rate bond is repaid first because it matures earlier,",
+        "isCorrect": true,
+        "explanation": "Correct because €600 million represents the costs incurred during the development phase which should be capitalized. Costs incurred in the development stage can be capitalized as intangible assets if certain criteria are met, including technological feasibility, the ability to use or sell the resulting asset, and the ability to complete the project."
+      },
+      {
+        "label": "B",
+        "text": "both bondholders are repaid proportionally to the amount owed.",
+        "isCorrect": false,
+        "explanation": "Incorrect because €900 million represents the costs incurred during the research phase. IFRS require that expenditures on research (or during the research phase of an internal project) be expensed rather than capitalized as an intangible asset."
+      },
+      {
+        "label": "C",
+        "text": "FRN is repaid first because it has the highest amount outstanding.",
+        "isCorrect": false,
+        "explanation": "Incorrect because €1,500 million is the total costs incurred in the research and the development phases. It includes the €900 million costs incurred in the research phase which should be expensed. Only the €600 million incurred during the development phase should be capitalized."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q16",
+    "questionText": "All else being equal, reinvestment risk is greatest for:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "putable bonds,",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      },
+      {
+        "label": "B",
+        "text": "callable bonds.",
+        "isCorrect": true,
+        "explanation": "Correct because a relatively high receivables turnover ratio (and commensurately low DSO) might indicate highly efficient credit and collection."
+      },
+      {
+        "label": "C",
+        "text": "non-callable convertible bonds.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a low DOH may suggest a firm is efficient at selling its inventory, but it does not measure how long it takes it to collect from its sales. The number of DSO represents the elapsed time between a sale and cash collection, reflecting how fast the company collects cash from customers to whom it offers credit. A relatively high receivables turnover ratio (and commensurately low DSO) might indicate highly efficient credit and collection. 92 -- 95 of 137 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q17",
+    "questionText": "An analyst is concerned that a bond might be downgraded one category by Standard & Poor's and become non-investment grade. The current rating of this bond is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "A-.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      },
+      {
+        "label": "B",
+        "text": "BB-.",
+        "isCorrect": false,
+        "explanation": "Incorrect because an increase in deferred tax liability would be an addition to net income under the indirect method of reporting cash flow from operations."
+      },
+      {
+        "label": "C",
+        "text": "BBB-.",
+        "isCorrect": true,
+        "explanation": "Correct because a decrease in deferred tax liability would be subtracted from net income under the indirect method of reporting cash flow from operations."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q18",
+    "questionText": "A corporation with a holding company structure has debt at both its parent holding company and operating subsidiaries. Debt at the operating level must be serviced before funds can be upstreamed to pay debt at the holding company. Thisarrangement best describes:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "structural subordination.",
+        "isCorrect": true,
+        "explanation": "Correct because activity ratios measure how efficiently a company performs day- to-day tasks, such as the collection of receivables and management of inventory."
+      },
+      {
+        "label": "B",
+        "text": "a cross-default provision.",
+        "isCorrect": false,
+        "explanation": "Incorrect because solvency ratios measure a company’s ability to meet long-term obligations. Subsets of these ratios are also known as “leverage” and “long-term debt” ratios."
+      },
+      {
+        "label": "C",
+        "text": "the corporate family rating.",
+        "isCorrect": false,
+        "explanation": "Incorrect because profitability ratios measure the company’s ability to generate profits from its resources (assets)."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q19",
+    "questionText": "For an option-free fixed-rate bond trading at a premium, as the coupon payment date approaches, Macaulay duration most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "decreases.",
+        "isCorrect": true,
+        "explanation": "Correct because a disclaimer of opinion occurs when auditors are unable to issue an opinion."
+      },
+      {
+        "label": "B",
+        "text": "remains constant.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a qualified opinion (rather than a disclaimer of opinion) would be appropriate in the case of some scope limitation or an exception to accounting standards. G. Incorrect because an adverse opinion (rather than a disclaimer of opinion) would be appropriate if the auditor determines that financial statements materially depart from accounting standards and are not fairly presented."
+      },
+      {
+        "label": "C",
+        "text": "increases. -- 7 of 137 --",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q20",
+    "questionText": "20 of 106 Question Using the rating scale from Standard & Poor's or Fitch, the lowest rating for an investment- grade bond is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "BBB-.",
+        "isCorrect": true,
+        "explanation": "Correct because a relatively high receivables turnover ratio (and commensurately low DSO) might indicate highly efficient credit and collection."
+      },
+      {
+        "label": "B",
+        "text": "BBB.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a relatively high receivables turnover ratio (and commensurately low DSO) might indicate highly efficient credit and collection. GC, Incorrect because the number of days of payables reflects the average number of days the company takes to pay its suppliers and is not related to account receivables or the efficiency of the company's credit or collections policies. 93 -- 96 of 137 --"
+      },
+      {
+        "label": "C",
+        "text": "BBB+.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q21",
+    "questionText": "21 of 106 Question The EBITDA/interest expense ratio is best classified as a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "leverage ratio.",
+        "isCorrect": true,
+        "explanation": "Correct because a vertical common-size income statement divides each income statement item by revenue. Gross profit is the amount of revenue available after subtracting the costs of delivering goods or services, Accordingly, based only on this information, under vertical common-size analysis, selling, general, and administrative expenses can be expressed as = Selling, general, and administrative expenses / Revenue = Selling, general, and administrative expenses / (Gross profit + Cost of sales) = 30 / (100 + 150); or =30 / 250= 12%,"
+      },
+      {
+        "label": "B",
+        "text": "coverage ratio.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it expresses selling, general, and administrative expenses asa percentage of Cost of sales. Consequently, Selling, general, and administrative expenses / Cost of sales = 30 / 150 = 20%,"
+      },
+      {
+        "label": "C",
+        "text": "profitability ratio.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it expresses selling, general, and administrative expenses asa percentage of Gross profit, Consequently, Selling, general, and administrative expenses / Gross profit = 30 / 100 = 30%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q22",
+    "questionText": "22 of 106 Question Which of the following statements is most accurate? US commercial paper typically:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "requires the issuer to pledge collateral.",
+        "isCorrect": false,
+        "explanation": "Incorrect because gain on sale of assets is a non-operating item that is included in net income calculation. Therefore, gain on sale of assets must be subtracted from (not added back to) net income when preparing a cash flow statement under the indirect method."
+      },
+      {
+        "label": "B",
+        "text": "requires the issuer to havea backup line of credit.",
+        "isCorrect": true,
+        "explanation": "Correct because amortization of a discount (premium) is a non-cash item and thus, apart from its effect on taxable income, has no effect on cash flow. In the section of the statement of cash flows that reconciles net income to operating cash flow, amortization of a discount (premium) is added back to (subtracted from) net income."
+      },
+      {
+        "label": "C",
+        "text": "has a maturity ranging froma few days up to two years.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a decrease in deferred tax liability occurs when accounting tax expense is lower than the amount of cash paid for income taxes. Therefore, the amount of decrease must be subtracted from net income when preparing the cash flow statement under the indirect method."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q23",
+    "questionText": "of 106 Question The current yield for a 4.5% coupon, 10-year bond, with a maturity par value of $100 and currently priced at $85.70 is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "4.50%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because an increase in inventory increases purchases from suppliers compared to cost of goods sold. To determine purchases from suppliers, cost of goods sold is adjusted for the change in inventory. If inventory increased during the year, then purchases during the year exceeded cost of goods sold, and vice versa."
+      },
+      {
+        "label": "B",
+        "text": "5.25%.",
+        "isCorrect": true,
+        "explanation": "Correct because an increase in accounts payable means that less was paid than was purchased from suppliers. If accounts payable increased during the year, then purchases on an accrual basis would be higher than they would be on a cash basis, and vice versa."
+      },
+      {
+        "label": "C",
+        "text": "5.93%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because an increase in accounts receivable means that less was collected than was sold. To determine the approximate cash receipts from its customers, it is necessary to adjust this revenue amount by the net change in accounts receivable for the year. If accounts receivable increase during the year, revenue on an accrual basis is higher than cash receipts from customers, and vice versa, 94 -- 97 of 137 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q24",
+    "questionText": "24 of 106 Question Which of the following types of collateralized debt obligations (CDOs) are most likely backed by asset-backed securities?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Structured finance CDOs",
+        "isCorrect": false,
+        "explanation": "Incorrect because acquiring an intangible asset is an investing activity whereas internally developing an intangible asset can bea combination of operating and investing activity. Costs of acquiring intangible assets are classified as investing cash outflows. IFRS require that expenditures on research (or during the research phase of an internal project) be expensed rather than capitalised as an intangible asset. IFRS allow companies to recognise an intangible asset arising from development (or the development phase of an internal project) if certain criteria are met, including a demonstration of the technical feasibility of completing the intangible asset and the intent to use or sell the asset. Consequently, acquiring an intangible asset would result in lower operating cash outflows than internally developing the intan gible asset (as the latter would result in increased operating cash outflows during the research phase)."
+      },
+      {
+        "label": "B",
+        "text": "Collateralized loan obligations",
+        "isCorrect": false,
+        "explanation": "Incorrect because acquiring an intangible asset is an investing activity whereas internally developing an intan gible asset can be a combination of operating and investing activites. On the statement of cash flows, costs of internally developing intangible assets are classified as operating cash outflows whereas costs of acquiring intangible assets are classified as investing cash outflows."
+      },
+      {
+        "label": "C",
+        "text": "Collateralized bond obligations",
+        "isCorrect": true,
+        "explanation": "Correct because acquiring an intangible asset is an investing activity whereas internally developing an intangible asset can be a combination of operating and investing activities. On the statement of cash flows, costs of internally developing intangible assets are classified as operating cash outflows whereas costs of acquiring intangible assets are classified as investing cash outflows. Costs of acquiring intangible assets are classified as investing cash outflows. IFRS require that expenditures on research (or during the research phase of an internal project) be expensed rather than capitalised as an intangible asset. IFRS allow companies to recognise an intangible asset arising from development (or the development phase of an internal project) if certain criteria are met, including a demonstration of the technical feasibility of completing the intangible asset and the intent to use or sell the asset."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q25",
+    "questionText": "of 106 Question An analyst gathers the following information about a 6% coupon bond currently trading at par: Benchmark RatePrice per 100 of Par Value 5.9% 100.75 6.0% 100.00 6.1% 99.26 The bond's effective duration is closest to:A. 3.75.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "7.45.",
+        "isCorrect": false,
+        "explanation": "Incorrect because an audit is based on sampling, not an exhaustive review of all transactions. Although audit opinions provide discipline for financial reporting quality, inherent limitations exist. An audit is based on sampling, and the sample might not reveal misstatements."
+      },
+      {
+        "label": "C",
+        "text": "7.50. -- 8 of 137 --",
+        "isCorrect": true,
+        "explanation": "Correct because although audit opinions provide discipline for financial reporting quality, inherent limitations exist. An “expectations gap” may exist between the auditor’s role and the public’s expectation of auditors. An audit is not typically intended to detect fraud; it is intended to provide assurance that the financial reports are fairly presented."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q26",
+    "questionText": "An analyst gathers the following information about a pension plan's liabilities: I E , ionP Val {Liabilities (in $ Milli } 198 0.5% 1.0% 186 1.5% 174 If interest rates are currently 1.0%, the effective duration of the liabilities is closest to:A. 6.5.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "12.9.",
+        "isCorrect": true,
+        "explanation": "Correct because Basic EPS = (Net income-Preferred dividends) / (Weighted average number of shares outstanding) = (€80,000 - €10,000) / 150,000 = €0.47."
+      },
+      {
+        "label": "C",
+        "text": "25.8.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it uses the common shares outstanding at year end as the denominator. Basic EPS # (Net income-Preferred dividends) / (Common shares outstanding at year end) = (€80,000 - €10,000) / 130,000 = €0.54."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q27",
+    "questionText": "Which of the following is a curve duration measure?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Modified duration",
+        "isCorrect": true,
+        "explanation": "Correct because an adverse audit opinion is issued when an auditor determines that the financial statements materially depart from accounting standards and are not fairly presented,"
+      },
+      {
+        "label": "B",
+        "text": "Effective duration",
+        "isCorrect": false,
+        "explanation": "Incorrect because a qualified audit opinion is one in which there is some scope limitation or exception to accounting standards. Exceptions are described in the audit report with additional explanatory paragraphs so that the analyst can determine the importance of the exception."
+      },
+      {
+        "label": "C",
+        "text": "Macaulay duration",
+        "isCorrect": false,
+        "explanation": "Incorrect because a disclaimer of opinion occurs when, for some reason, such as a scope limitation, the auditors are unable to issue an opinion."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q28",
+    "questionText": "Bonds issued in the Eurobond market are most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "denominated only in euros,",
+        "isCorrect": false,
+        "explanation": "Incorrect because DSO was subtracted to derive CCC. Accordingly, CCC = DOH — DSO ~ Number of days of payables = 180 - 36 - 45 = 99 days."
+      },
+      {
+        "label": "B",
+        "text": "in the form of registered bonds. co issued within the jurisdiction of the issuer's home country.",
+        "isCorrect": true,
+        "explanation": "Correct because Cash conversion cycle (CCC) = DOH + DSO - Number of days of payables, DOH = Number of days in period/ Inventory turnover = 360/2 =180 days. DSO = Number of days in period/ Receivables turnover = 360/10 = 36 days. Number of days of payables = Number of days in period/Payables turnover = 360/8 = 45 days. Thus CCC = 180 + 36-45 =171 days."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q29",
+    "questionText": "29 of 106 Question For a coupon bond with a negative yield, compounding more frequently within the yearresults in a yield-to-maturity that is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "more negative.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it reverses all Signage and calculates Cash flow from operating activities = Net income — Decrease in working capital + Gain on retirement on debt = 10,000 — 2,000 + 500 = 8,500."
+      },
+      {
+        "label": "B",
+        "text": "the same.",
+        "isCorrect": true,
+        "explanation": "Correct because Cash flow from operating activities = Net income + Decrease in working capital - Gain on retirement on debt = 10,000 + 2,000 - 500 = 11,500."
+      },
+      {
+        "label": "C",
+        "text": "less negative.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it reverses the sign on gain on retirement on debt and calculates Cash flow from operating activities = Net income + Decrease in working capital + Gain on retirement on debt = 10,000 + 2,000 + 500 = 12,500. 96 -- 99 of 137 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q30",
+    "questionText": "30 of 106 Question All else being equal, expected loss for a debt instrument:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "is independent of the recovery rate.",
+        "isCorrect": false,
+        "explanation": "Incorrect because correction of an error fora prior period is handled by restating the financial statements (including the balance sheet, statement of owners’ equity, and cash flow statement) for the prior periods presented in the current financial statements. Thus, it uses the “full retrospective method,” which requires companies to restate prior periods’ results."
+      },
+      {
+        "label": "B",
+        "text": "decreases as the recovery rate increases.",
+        "isCorrect": false,
+        "explanation": "Incorrect because changes in accounting estimates are handled prospectively, with the change affecting the financial statements for the period of change and future periods."
+      },
+      {
+        "label": "C",
+        "text": "changes proportionally to the recovery rate.",
+        "isCorrect": true,
+        "explanation": "Correct because at times, standard setters issue new standards that require companies to change accounting policies. Depending on the standard, companies may be permitted to adopt the standards prospectively (in the future) or retrospectively (restate financial statements as though the standard existed in the past) while the new revenue recognition standard also offered companies the option of using a “modified retrospective” method of adoption. Under the modified retrospective approach, companies were not required to revise previously rep orted financial statements. Instead, they adjusted opening balances of retained earnings (and other applicable accounts) for the cumulative impact of the new standard."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q31",
+    "questionText": "31 of 106 Question Matrix pricing is most likely used to estimate the price of a bond that:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "is highly liquid.",
+        "isCorrect": true,
+        "explanation": "Correct because an upward revaluation is treated the same as the amount in excess of the reversal amount. In other words, ifa revaluation initially increases the carrying amount of the asset class, the increase in the carrying amount of the asset class bypasses the income statement and goes directly to equity under the heading of revaluation surplus. The financial leverage ratio is the average total assets divided by average total equity. Increasing both the numerator (assets) and denominator (equity) by the same amount leads to a decline in the ratio. (Mathematically, when a ratio is greater than one, as in this case, an increase in both the numerator and the denominator by the same amount leads to a decline in the ratio)."
+      },
+      {
+        "label": "B",
+        "text": "is not yet issued.",
+        "isCorrect": false,
+        "explanation": "Incorrect because leverage is the average total assets divided by average shareholders' equity, increasing both the numerator (assets) and denominator (equity) by the same amount leads to a decline in the ratio. (Mathematically, when a ratio is greater than one, as in this case, an increase in both the numerator and the denominator by the same amount leads to a decline in the ratio). This is a distractor because one may think that increasing both the asset and equity by the same amount would result in the leverage ratio staying the same."
+      },
+      {
+        "label": "C",
+        "text": "has unknown credit quality. -- 9 of 137 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because leverage is the average total assets divided by average shareholders’ equity, increasing both the numerator (assets) and denominator (equity) by the same amount leads to a decline in the ratio. (Mathematically, when a ratio is greater than one, as in this case, an increase in both the numerator and the denominator by the same amount leads to a decline in the ratio). Therefore, the leverage ratio would not increase."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q32",
+    "questionText": "All else being equal, the risk of a strategic default for a non-recourse mortgage is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "lower than for a recourse mortgage.",
+        "isCorrect": false,
+        "explanation": "Incorrect because decrease in accounts receivable was deducted rather than added. Consequently, cash flow from operating activities = Net income — gain on sale of equipment _ decrease in accounts receivable = 143 - 20 - 38=85."
+      },
+      {
+        "label": "B",
+        "text": "the same as for a recourse mortgage.",
+        "isCorrect": true,
+        "explanation": "Correct because changes in working capital accounts include increases and decreases in the current operating asset and liability accounts. To make the working capital 97 -- 100 of 137 -- adjustments under the indirect method, any increase in a current operating asset account is subtracted from net income and a net decrease is added to net income. When calculating operating cash flow under the indirect method, gain on sale of assets are subtracted from net income. Accordingly, cash flow from operating activities = Net income - gain on sale of equipment + decrease in accounts receivable = 143 - 20 + 38 = 161."
+      },
+      {
+        "label": "C",
+        "text": "greater than for a recourse mortgage.",
+        "isCorrect": false,
+        "explanation": "Incorrect because gain on sale of equipment was added rather than deducted from net income. Consequently, cash flow from operating activities = Net income + gain on sale of equipment + decrease in accounts receivable = 143 + 20+ 38= 201,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q33",
+    "questionText": "For bonds with embedded options, the most appropriate measure of price sensitivity to interest rate changes is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "effective duration.",
+        "isCorrect": false,
+        "explanation": "Incorrect because companies that use specific identification, weighted average cost, or FIFO methods are more likely to incur inventory write-downs than companies that use the LIFO method."
+      },
+      {
+        "label": "B",
+        "text": "modified duration.",
+        "isCorrect": true,
+        "explanation": "Correct because companies that use specific identification, weighted average cost, or FIFO methods are more likely to incur inventory write-downs than companies that use the LIFO method. Under the LIFO method, the oldest costs are reflected in the inventory carrying amount on the balance sheet. Given increasing inventory costs, the inventory carrying amounts under the LIFO method are already conservatively presented at the oldest and lowest costs. Thus, it is far less likely that inventory write-downs will occur under LIFOQ—and ifa write-down does occur, it is likely to be of a lesser magnitude."
+      },
+      {
+        "label": "C",
+        "text": "Macaulay duration.",
+        "isCorrect": false,
+        "explanation": "incorrect because companies that use specific identification, weighted average cost, or FIFO methods are more likely to incur inventory write-downs than companies that use the IFO method,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q34",
+    "questionText": "For a bond with an embedded option, effective duration is the most appropriate measure of interest rate risk because the bond's:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "future cash flows are uncertain.",
+        "isCorrect": true,
+        "explanation": "Correct because effective duration is essential to the measurement of the interest rate risk of a complex bond, such as a bond that contains an embedded call option. The problem is that future cash flows are uncertain because they are contingent on future interest rates. The issuer's decision to call the bond depends on the ability to refinance the debt at a lower cost of funds. Effective duration is the appropriate duration measure,"
+      },
+      {
+        "label": "B",
+        "text": "internal rate of return is well-defined.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a callable bond does not have a well-defined internal rate of return (yield-to-maturity). Therefore, yield duration statistics, such as modified and Macaulay durations, do not apply; effective duration is the appropriate duration measure. : Incorrect because effective duration measures the bond's sensitivity to changes in the benchmark yield curve and not changes in credit spread, which are measured by other means (pricing models). This curve duration measure [effective duration] indicates the bond's sensitivity to the benchmark yield curve—in particular, the government par curve— assuming no change in the credit spread. A pricing model can be used to determine a credit duration’ statistic—that is, the sensitivity of the bond price to a change in the credit spread. 30 -- 33 of 137 --"
+      },
+      {
+        "label": "C",
+        "text": "pricing is sensitive to changes in credit spreads.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q38",
+    "questionText": "An analyst gathers the following information about three option-free bonds: Bond 1Bond 2Bond 3 Coupon rate 5% 3% 3% Maturity (years) 15 10 15 All else being equal, if the market discount rate decreases by 50 basis points, the bond most likely to experience the greatest percentage price change is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Bond 1.",
+        "isCorrect": true,
+        "explanation": "Correct because Cash paid to suppliers = Cost of goods sold + Increase in inventory~ Increase in accounts payable = 6,000 + 3,000 — 2,500 = 6,500."
+      },
+      {
+        "label": "B",
+        "text": "Bond 2.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it excluded the Increase in accounts payable and calculated Purchases from suppliers instead of Cash paid to suppliers. The calculation thus becomes Cash paid to suppliers = Purchases from suppliers = Cost of goods sold + Increase in inventory = 6,000 + 3,000 = 9,000."
+      },
+      {
+        "label": "C",
+        "text": "Bond 3.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it added, rather than su btracted the Increase in accounts payable. The calculation thus becomes Cash paid to suppliers = Cost of goods sold + Increase in inventory + Increase in accounts payable = 6,000 + 3,000 + 2,500 = 11,500."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q40",
+    "questionText": "Effective duration is the most appropriate measure of interest rate risk for a bond with an embedded option because the bond does not have a well-defined:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "effective convexity.",
+        "isCorrect": false,
+        "explanation": "Incorrect because bonds with embedded options have well-defined effective convexity. Negative convexity, which could be called “concavity,” is an important feature of callable bonds. Putable bonds, on the other hand, always have positive convexity,"
+      },
+      {
+        "label": "B",
+        "text": "internal rate of return.",
+        "isCorrect": true,
+        "explanation": "Correct because in brief, a callable bond does not have a well-defined internal rate of return (yield-to-maturity). Therefore, yield duration statistics, such as modified and Macaulay durations, do not apply; effective duration is the appropriate duration measure."
+      },
+      {
+        "label": "C",
+        "text": "curve duration statistic.",
+        "isCorrect": false,
+        "explanation": "Incorrect because effective duration is a curve duration statistic in that it measures interest rate risk in terms of a parallel shift in the benchmark yield curve (ACurve}. The interest rate risk of bonds with embedded options is most appropriately measured using effective duration, a curve Statistic, which means that the sensitivity of a bond with anembedded-option toa change in the level of the benchmark yield curve is in fact well- defined. 32 -- 35 of 137 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q41",
+    "questionText": "When interest rates increase, mortgage-backed securities most likely exhibit increased:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "extension risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because financial statements that are in compliance will earn an unqualified opinion."
+      },
+      {
+        "label": "B",
+        "text": "contraction risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because material departures from accounting standards will earn an adverse opinion."
+      },
+      {
+        "label": "C",
+        "text": "reinvestment risk.",
+        "isCorrect": true,
+        "explanation": "Correct because financial statements showing “scope limitation or exception to accounting standards” will earn a qualified opinion."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q42",
+    "questionText": "Tightening corporate bond yield spreads are most likely associated with:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "issuers’ deteriorating creditworthiness.",
+        "isCorrect": true,
+        "explanation": "Correct because common-size statements are an output of the “process data” phase of the financial statement analysis framework."
+      },
+      {
+        "label": "B",
+        "text": "periods of high demand for corporate bonds,",
+        "isCorrect": false,
+        "explanation": "Incorrect because analytical results, not common-size statements, are the output of the “analyze/interpret the processed data” phase."
+      },
+      {
+        "label": "C",
+        "text": "broker-dealers’ reduced ability and willingness to make markets.",
+        "isCorrect": false,
+        "explanation": "Incorrect because analytical reports and recommendations, not common-size statements, are outputs of the “develop and communicate conclusions and recommendations” phase."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q43",
+    "questionText": "In a repurchase agreement:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "only the lender of funds is exposed to credit risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because Interest expense was not added. Accordingly, Ending interest payable = Beginning interest payable - Cash paid for interest = £45,000 - £15,000 = £30,000."
+      },
+      {
+        "label": "B",
+        "text": "credit risk is eliminated by using highly rated sovereign bonds as collateral.",
+        "isCorrect": true,
+        "explanation": "Correct because Ending interest payable = Beginning interest payable + Interest expense — Cash paid for interest. Accordingly, Ending interest payable = Beginning interest payable + Interest expense - Cash paid for interest = £45,000 + £50,000 - £15,000 = £80,000. G Incorrect because Cash paid for interest was not deducted. Accordingly, Ending interest payable = Beginning interest payable + Interest expense = £45,000 + £50,000 = £95,000."
+      },
+      {
+        "label": "C",
+        "text": "the initial margin offers partial protection against changes in the market value of the collateral.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q44",
+    "questionText": "With respect to a bond with an embedded option, for parallel shifts in the benchmark yield curve, effective duration most likely indicates the same interest rate sensitivity as:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "key rate durations.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it subtracts out the entire interest portion as opposed to the net- of-tax interest amount: FCFF - Interest paid = FCFE + Net debt repayment. Therefore, 2,500 ~ 260 = 1,300 + Net debt repayment; or Net debt repayment = 940,"
+      },
+      {
+        "label": "B",
+        "text": "modified duration.C. Macaulay duration. -- 11 of 137 --",
+        "isCorrect": true,
+        "explanation": "Correct because FCFF = Cash flow from operating activities (“CFO”) + Interest paid (1 - Tax rate) - Capital expenditures (“FCInv”). In addition, FCFE = CFO - FCInv - Net debt repayment. Rearranging FCFF: CFO — FCInv = FCFF - Interest paid (1 - Tax rate) Rearranging FCFE: CFO - FCInv = FCFE + Net debt repayment 101 -- 104 of 137 -- Therefore: FCFF - Interest paid (1 - Tax rate) = FCFE + Net debt repayment; or = 2,500 - [260 x (1 - 40%)] = 1,300 + Net debt repayment; or 2,344 = 1,300 + Net debt repayment Therefore, Net debt repayment = 2,344 — 1,300 = 1,044."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q45",
+    "questionText": "Ina securitization, a senior/subordinated structure is most likely a form of:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "time tranching.",
+        "isCorrect": true,
+        "explanation": "Correct because deferred tax assets, which appear on the balance sheet, arise when an excess amount is paid for income taxes (taxable income higher than accounting profit)."
+      },
+      {
+        "label": "B",
+        "text": "credit tranching.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a deferred tax asset arises when the tax base of an asset exceeds its carrying amount. Differences between the tax base and the carrying amount also result in differences between accounting profit and taxable income. Deductible temporary differences result in a deferred tax asset when the tax base of an asset exceeds its carrying amount. G; Incorrect because deferred tax assets arise when the amount paid for taxes (taxes payable) exceeds the tax expense. A company’s taxable income is the basis for its income tax payable (a liability) or recoverable (an asset), which is calculated on the basis of the company's tax rate and appears on its balance sheet. Deferred tax assets, Which appear on the balance sheet, arise when an excess amount is paid for income taxes (taxable income higher than accounting profit) and the company expects to recover the difference during the course of future operations. Actual income taxes payable will thus exceed the financial accounting income tax expense (which is reported on the income statement and is determined based on accounting profit)."
+      },
+      {
+        "label": "C",
+        "text": "prepayment risk management.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q46",
+    "questionText": "Modified duration is the most appropriate measure of interest rate risk for which of the following securities?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Callable bond",
+        "isCorrect": false,
+        "explanation": "Incorrect because the interest expense for a lessee with an operating lease is lower compared to a finance lease (there is no interest expense tinder an operating lease). Under IFRS, there is a single accounting model for both finance-and operating leases for lessees. At lease inception, the lessee records a lease payable liability and a “right-of-use” (ROU) asset on its balance sheet, both equal to the present value of future lease payments. The following shows how the transaction [under IFRS] affects the financial statements: Interest expense on the lease liability and the amortization expense related to the ROU asset are reported separately on the income statement, The following shows how the [operating lease] transaction [under US GAAP] appears on the financial statements: Interest expenseon the lease liability and the amortization expense related to the ROU asset are reported as a single line titled “lease expense” as an operating expense on the income statement. The interest and amortization components are not reported separately, nor are they grouped with other types of interest and amortization expense (e.g,., interest on a bond, amortization of an intangible asset)."
+      },
+      {
+        "label": "B",
+        "text": "US Treasury bond",
+        "isCorrect": true,
+        "explanation": "Correct because for operating leases, the lessee recognizes a single lease expense and no depreciation expense; whereas under a finance lease the lessee recordsdepreciation expense on the right-of-use asset. Under IFRS, there is a single accounting model for both finance and operating leases for lessees. At lease inception, the lessee records a lease payable liability and a “right-of-use” (ROU) asset on its balance sheet, both equal to the present value of future lease payments. The following shows how the transaction [under IFRS] affects the financial statements: Interest expense on the lease liability and the amortization expense related to the ROU asset are reported separately on the income statement. The following shows how the [operating lease] transaction [under US GAAP] appears on the financial statements: Interest expense on the lease liability and 102 -- 105 of 137 -- the amortization expense related to the ROU asset are reported as a single line titled “lease expense” as an operating expense on the income statement. The interest and amortization components are not reported separately, nor are they grouped with other types of interest and amortization expense (e-g., intereston a bond, amortization of an intangible asset). CG. Incorrect because financing cash outflow for a lessee with an operating lease is lower compared to a finance lease. Under IFRS, there is a single accounting model for both finance and operating leases for lessees. At lease inception, the lessee records a lease payable liability and a “right-of-use” (ROU) asset on its balance sheet, both equal to the present value of future lease payments. The following shows how the transaction [under IFRS] affects the financial statements: The principal repayment component of the lease payment is reported as a cash outflow under financing activities on the statement of cash flows. The following shows how the [operating lease] transaction [under US GAAP] appears on the financial statements: The entire lease payment is reported as a cash outflow under operating activities on the statement of cash flows. The interest and principal repayment components are not reported sepa rately."
+      },
+      {
+        "label": "C",
+        "text": "Mortgage-backed bond",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q47",
+    "questionText": "The percentage price change for a bond, given a change in its yield to maturity,is best estimated by:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "effective duration.",
+        "isCorrect": false,
+        "explanation": "Incorrect because for the common-size cash flow statement, there are two alternative approaches. The first approach is to express each line item of cash inflow (outflow) as a percentage of total inflows (outflows) of cash, and the second approach is to express each line item as a percentage of net revenue. Thus an inflow is stated either as a percentage of total inflows or total net revenues, not total assets."
+      },
+      {
+        "label": "B",
+        "text": "modified duration.",
+        "isCorrect": true,
+        "explanation": "Correct because for the common-size cash flow statement, there are two alternative approaches. The first approach is to express each line item of cash inflow (outflow) asa percentage of total inflows (outflows) of cash, and the second approach is to express each line item as a percentage of net revenue. G. Incorrect because for the common-size cash flow statement, there are two alternative approaches. The first approach is to express each line item of cash inflow (outflow) as a percentage of total inflows (outflows) of cash, and the second approach is to express each line item as a percentage of net revenue. Thus an inflow is stated either as a percentage of total inflaws or total net revenues, not net cash flows."
+      },
+      {
+        "label": "C",
+        "text": "Macaulay duration.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q48",
+    "questionText": "An analyst gathers the following information about an annual-pay bond: Coupon rate 6.0% Yield to maturity 4.5% Macaulay duration 10.0 If the yield to maturity decreases by 100 basis points, the expected percentage change inthe bond's price is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "9.43%.",
+        "isCorrect": true,
+        "explanation": "Correct because disclosures are useful when analyzing a company. IFRS requires eight financial statement disclosures concerning inventory, three of which are: the accounting policies adopted in measuring inventories, including the cost formula (inventory valuation method) used; the amount of any reversal of any write-down that is recognised as a reduction in cost of sales in the period; the circumstances or events that led to the reversal ofa write-down of inventories. Inventory-related disclosures under US GAAP are very similar to the disclosures above, except that requirements for the second and third are not relevant because US GAAP do not permit the reversal of prior-year inventory write-downs. US GAAP also require disclosure of significant estimates applicable to inventories and of any material amount of income resulting from the liquidation of LIFO inventory."
+      },
+      {
+        "label": "B",
+        "text": "9.57%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because disclosures are useful when analyzing a company. IFRS requires eight financial statement disclosures concerning inventory, three of which are: the accounting policies adopted in measuring inventories, including the cost formula (inventory valuation method) used; the amount of any reversal of any write-down that is recognised as a reduction in cost of sales in the period; the circumstances or events that led to the reversal of a write-down of inventories. Inventory-related disclosures under US GAAP are very similar to the disclosures above, except that requirements for the second and third are not relevant because US GAAP do not 103 -- 106 of 137 -- permit the reversal of prior-year inventory write-downs. US GAAP also require disclosureof significant estimates applicable to inventories and of any material amount of income resulting from the liquidation of LIFO inventory. G. Incorrect because disclosures are useful when analyzing a company. IFRS requires eight financial statement disclosures concerning inventory, three of which are: the accounting policies adopted in measuring inventories, including the cost formula (inventory valuation method) used; the amount of any reversal of any write-down that is recognised as a reduction in cost of sales in the period; the circumstances or events that led to the reversal of a write-down of inventories.Inventory-related disclosures under US GAAP are very similar to the disclosures above, except that requirements for the second and third are not relevant because US GAAP do not permit the reversal of prior-year inventorywrite-downs. US GAAP also require disclosure of significant estimates applicable to inventories and of any material amount of income resulting from the liquidation of LIFO inventory."
+      },
+      {
+        "label": "C",
+        "text": "10.00%.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q49",
+    "questionText": "Which of the following is most likely a negative covenant?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "The issuer must comply with all laws and regulations.",
+        "isCorrect": true,
+        "explanation": "Incorrect because as a result of the revaluations, the €2,500 (= €27,500 - €25,000) increase in the value of the asset during the first year is recorded in the revaluation surplus account in equity, and the -€5,000 (= €22,500 - €27,500) is applied only to the income statement and does not affect the revaluation surplus account."
+      },
+      {
+        "label": "B",
+        "text": "The issuance of new debt must be junior to existing bondholder debt.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      },
+      {
+        "label": "C",
+        "text": "New debt obligations are treated the same as the borrower's other senior debt instruments.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q50",
+    "questionText": "An analyst gathers the following information about a 4% annual-payment bond witha current yield-to-maturity of 4.0%: Annualized Yield taM i Rond c5o 3.9% 100.45 4.0% 100.00 4.1% 99.56 -- 12 of 137 -- The bond’s annualized Macaulay duration is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "4.28.",
+        "isCorrect": false,
+        "explanation": "Incorrect because US GAAP prohibit the reversal of write-downs and not IFRS."
+      },
+      {
+        "label": "B",
+        "text": "4.45,",
+        "isCorrect": true,
+        "explanation": "Correct because IFRS state that inventories shall be measured (and carried on the balance sheet) at the lower of cost and net realizable value. In each subsequent period, a new assessment of net realizable value is made. Reversal (limited to the amount of the original write-down) is required for a subsequent increase in value of inventory previously written down. The reversal of any write-down of inventories is recognized as a reduction in cost of sales (reduction in the amount of inventories recognized as an expense). On 31 December of Year 1, Inventory is carried on the balance sheet at min(Cost, Net realizable value) = min(€100,000, €97,000) = €97,000, The write down of inventory equals the Cost of inventory less the Net realizable value = €100,000 - €97,000 = €3,000. On December 31 of Year 2, the net realizable value (€105,000) is higher than the previous level, exceeding also the cost of inventory. The reversal of any write- 104 -- 107 of 137 -- down of inventories is recognized as a reduction in cost of sales and is limited to the amount of the original write-down, meaning €3,000."
+      },
+      {
+        "label": "C",
+        "text": "4.63.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it computes the reversal of inventory write-down (which is recognized as a reduction in cost of sales) as the difference between the net realizable value at the next assessment date and its previous level (€105,000 - €97,000 = €8,000) while the reversal of any write-down of inventories is limited to the amount of the original write-down."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q51",
+    "questionText": "An analyst gathers the following information about a company (in $ millions): < Operating income 120 Net income 85 Interest expense 15 Depreciation and amortization 15 Interest coverage using EBIT is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "7X.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it has included the EBIT Margin in the calculation instead of Net Profit Margin. Accordingly, Total asset turnover = ROE / (EBIT Margin x Leverage); or = 10% / (5% x 2) = 1.0."
+      },
+      {
+        "label": "B",
+        "text": "8x. c 9x.",
+        "isCorrect": true,
+        "explanation": "Correct because in accordance to the DuPont analysis for ROE, ROE = Net nrofit margin « Total asset turnover * Leverage. Thus, Total asset turnover = ROE / (Net profit margin x Leverage); or = 10% / (4% * 2) =1.25 = 1.3."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q52",
+    "questionText": "Which of the following duration statistics best measures the sensitivity of a bond’s price toa flattening of the yield curve?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Key rate duration",
+        "isCorrect": true,
+        "explanation": "Correct because if purchase prices of inventory are declining, using the LIFO method of inventory valuation will result in a higher ending inventory and a lower cost of sales compared to other inventory valuation methods. Inventory turnover is defined as cost of sales + average inventory. Since cost of sales will be lower under LIFO as compared to FIFO and average inventory will be higher under LIFO as compared to FIFO ina period of declining unit costs, inventory turnover will be lower under LIFO than FIFO ina period of declining inventory unit costs."
+      },
+      {
+        "label": "B",
+        "text": "Effective duration",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      },
+      {
+        "label": "C",
+        "text": "Macaulay duration",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q53",
+    "questionText": "All else being equal, an investment-grade bond issuer most likely has:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less market liquidity risk than a below-investment-grade issuer.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in each subsequent period, a new assessment of net realisable value is made. Reversal (limited to the amount of the original write-down) is required fora subsequent increase in value ofinventory previously written down. Reversals are not allowed for US GAAP, which would result in this answer. Inventory would be written down from 2,000 to 1,700 in Year 1, and the reversal in Year 2 would be limited to the original write-down of 300, bringing the value back to 2,000 at the end of Year 2."
+      },
+      {
+        "label": "B",
+        "text": "the same market liquidity risk as a below-investment-grade issuer.",
+        "isCorrect": true,
+        "explanation": "Correct because in each subsequent period, a new assessment of net realisable value is made. Reversal (limited to the amount of the original write-down) is required fora subsequent increase in value of inventory previously written down. Inventory would be 105 -- 108 of 137 -- written down from 2,000 to 1,700 in Year 1, and the reversal in Year 2 would be limited tothe original write-down of 300, bringing the value back to 2,000 at the end of Year 2,"
+      },
+      {
+        "label": "C",
+        "text": "greater market liquidity risk than a below-investment-grade issuer.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in each subsequent period, a new assessment of net realisable value is made. Reversal (limited to the amount of the original write-down) is required for a subsequent increase in value of inventory previously written down. The incorrect is obtained by writing the inventory up to the Year 2 net realizable value."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q54",
+    "questionText": "An analyst gathers the following information about an option-free bond: Par value $1,000,000 Current market value $912,575 Duration 2.4 If yields are expected to decrease by 50 basis points, the expected price change for the bond is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "$11,000.",
+        "isCorrect": true,
+        "explanation": "Correct because FIFO assumes that the oldest inventory items are sold first, leaving the most recently purchased inventory on the balance sheet, The carrying amount of inventories under FIFO will more closely reflect current replacement values because inventories are assumed to consist of the most recently purchased items. Companies typically record changes to inventory using either a periodic inventory system ora perpetual inventory system. Under either system, the allocation of goods available for sale to cost of sales and ending inventory is the same if the inventory valuation method used is either specific identification or FIFO."
+      },
+      {
+        "label": "B",
+        "text": "$22,000.",
+        "isCorrect": false,
+        "explanation": "Incorrect because under LIFO, the most recently purchased inventory items are assumed to be sold first, so items included in the cost of goods sold more closely reflect current replacement value, however the balance sheet inventory will reflect prior period (lower, in this case) prices. The cost of sales under LIFO will more closely reflect current replacement value, Although the carrying amount of the ending inventory, however, may differ [compared to the periodic system] because the perpetual system will apply LIFO continuously throughout the year, the effect of increasing prices and quantities will result in a lower reported inventory on the balance sheet than current replacement values,"
+      },
+      {
+        "label": "C",
+        "text": "$24,000.",
+        "isCorrect": false,
+        "explanation": "Incorrect because under LIFO, the most recently purchased inventory items are assumed to be sold first, so items included in the cost of goods sold more closely reflect current replacement value, however the balance sheet inventory will reflect prior period (lower, in this case) prices. The cost of sales under LIFO will more closely reflect current replacement value. Although the carrying amount of the ending inventory, however, may differ [compared to the periodic system] because the perpetual system will apply LIFO continuously throughout the year, the effect of increasing prices and quantities will result in a lower reported inventory on the balance sheet than current replacement values,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q55",
+    "questionText": "of 106 Question The price value of a basis point (PVBP) for a bond witha full price of 103.50 and a modified duration of 6.2 is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0.0642.",
+        "isCorrect": false,
+        "explanation": "Incorrect because an adjustment is permitted in all cases under IFRS. The only situation where the loss cannot be reversed is under US GAAP for an asset held for use. Under US GAAP the impairment loss would not be reversed remaining at €40,000."
+      },
+      {
+        "label": "B",
+        "text": "0.6420.",
+        "isCorrect": true,
+        "explanation": "Correct because in recognizing the impairment loss in Year 1, carrying cost was reduced from €50,000 to €40,000, so an impairment loss of $10,000 was reported. A reversal can only be taken for the previous carrying amount; not the full recoverable amount. Therefore with the reversal, carrying Cost returns to its previous level of €50,000. Note that IFRS permit the reversal of impairment losses only. IFRS do not permit the revaluation to the recoverable amount if the recoverable amount exceeds the previous carrying amount."
+      },
+      {
+        "label": "C",
+        "text": "6.4200, 10 -- 13 of 137 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because IFRS permit the reversal of impairment losses only. IFRS do not permit the revaluation to the recoverable amount if the recoverable amount exceeds the previous carrying amount. Previously, carrying cost was reduced from €50,000 to €40,000, so an impairment loss of €10,000 was reported. A reversal can only be taken for up to the previous carrying amount €50,000. As a result of the reversal €10,000 + €40,000 = £50,000. Therefore, the new carrying cost cannot increase to the full recoverable amountof €60,000. 106 -- 109 of 137 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q56",
+    "questionText": "56 of 106 Question An analyst gathers the following details about a bond portfolio: 1 95 730 120 515 If each bond has a par value of £25 million, the modified duration of this bond portfoliois closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "5.8.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a write-down of inventory to its net realizable value would increase total asset turnover and decrease the current ratio."
+      },
+      {
+        "label": "B",
+        "text": "6.1.",
+        "isCorrect": true,
+        "explanation": "Correct because in the event that the value of inventory declines below the carrying amount on the balance sheet, the inventory carrying amount must be written down to its net realizable value. Frequently, rather than writing inventory down directly, an inventory valuation allowance account is used. The allowance account is netted with the inventory accounts to arrive at the carrying amount that appears on the balance sheet, and the loss (reduction in value) recognized as an expense on the income statement. Additionally, an inventory write-down reduces both profit and the carrying amount of inventory on the balance sheet and thus has a negative effect on profitability, liquidity, and solvency ratios. However, activity ratios (for example, inventory turnover and total asset turnover) will be positively affected by a write-down because the asset base (denominator) is reduced. The Total asset turnover ratio = Revenue / Average total assets. Accordingly, as the asset base (i.e., denominator) is reduced by an inventory write-down (and revenue is not impacted), total asset turnover will increase. The Current ratio = Current assets / Current liabilities. Accordingly, as the inventory (i.e., numerator) is reduced by an inventory write-down (and current liabilities are not impacted), the current ratio will decrease. Note: \"All else being equal” has been added to the stem to avoid potential tax (liability) impacts."
+      },
+      {
+        "label": "C",
+        "text": "6.2.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a write-down of inventory to its net realizable value would increase total asset turnover and decrease the current ratio."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q57",
+    "questionText": "57 of 106 Question With respect to the credit rating agencies’ practice of notching, the size of a notching adjustment:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "is larger for higher-rated credits.",
+        "isCorrect": false,
+        "explanation": "Incorrect because IFRS allow companies to classify interest expense as either an operating activity ora financing activity. This is the treatment of dividends paid under US GAAP. US GAAP classify dividends paid to stockholders as a financing activity."
+      },
+      {
+        "label": "B",
+        "text": "is standardized between rating agencies.",
+        "isCorrect": false,
+        "explanation": "Incorrect because IFRS allow companies to classify interest expense as either an operating activity or a financing activity. This is the treatment of interest paid under US GAAP, US GAAP classify interest expense as an operating activity, even though the principal amount of the debt issued is classified as a financing activity."
+      },
+      {
+        "label": "C",
+        "text": "depends on the rating of the issuer's senior unsecured debt.",
+        "isCorrect": true,
+        "explanation": "Correct because IFRS allow more flexibility in the reporting of such items as interest paid. IFRS allow companies to classify interest expense as either an operating activity or a financing activity."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q59",
+    "questionText": "of 106 Question An analyst observes the following yields to maturity on zero-coupon government bonds: MaturitvYield to M F dyear 15% 2years 2.5% 3years 3.5% The 2y1y implied forward rate is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "45%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it assumes the company reports under US GAAP and uses the LIFO inventory valuation method; and takes the lower limit of market value (i.e., net realizable value less a normal profit margin) instead of current replacement cost. Accordingly, Min(Cost; Net realizable value less a normal profit margin) = Min(3,600; 3,100) = 3,100."
+      },
+      {
+        "label": "B",
+        "text": "5.5%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it assumes the company reports under US GAAP and uses the LIFO inventory valuation method. Under US GAAP, for inventories measured using LIFO and retail inventory methods, market value is defined as current replacement cost [3,200] subject to upper and lower limits. Market value cannot exceed net realizable value [3,300] (selling price less reasonably estimated costs of completion and disposal). The lower limit of market value is net realizable value less a normal profit margin [3,100]. Accordingly, Min(Cost; Market value) = Min(3,600; 3,200) = 3,200."
+      },
+      {
+        "label": "C",
+        "text": "6.6%.",
+        "isCorrect": true,
+        "explanation": "Correct because IFRS state that inventories shall be measured (and carried on the balance sheet) at the lower of cost and net realizable value. Accordingly, Min(Cost; Net realizable value) = Min(3,600; 3,300) = 3,300."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q60",
+    "questionText": "of 106 Question An analyst gathers the following information: Time to Maturity Yield to Maturity Bond1 Threeyears 3.4% Bond2 Eightyears 5.4% Based only on this information, the estimated market discount rate for a 5-year bond with similar credit quality is: ll -- 14 of 137 --",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "4.2%.",
+        "isCorrect": true,
+        "explanation": "Correct because for lessees, there are lease accounting exemptions for certain lease contracts: If its term is 12 months or less (IFRS and US GAAP) or it is for a \"low-value asset,” up to $5,000 in sales price (IFRS only), then the lessee can elect to simply expense the lease payments on a straight-line basis. These exemptions are not available to lessars.,"
+      },
+      {
+        "label": "B",
+        "text": "4.4%,",
+        "isCorrect": false,
+        "explanation": "Incorrect because under IFRS, there is a single accounting model for both finance and operating leases for lessees, At lease inception, the lessee records a lease payable liability and a “right-of-use” (ROU) asset on its balance sheet, both equal to the present value of future lease payments."
+      },
+      {
+        "label": "C",
+        "text": "4.6%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because under IFRS, there is a single accounting model for both finance and operating leases for lessees. At lease inception, the lessee records a lease payable liability and a “right-of-use” (ROU) asset on its balance sheet, both equal to the present value of future lease payments."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q61",
+    "questionText": "Compared to an otherwise similar option-free bond, investors require a higher yield fora corporate bond with a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "put provision.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is only at the point when all performance obligations have been met except for payment that a receivable appears on the seller’s balance sheet. According to the converged standards of revenue recognition, the five steps in recognizing revenue are; 1. Identify the contract(s) with a customer 2. Identify the separate or distinct performance obligations in the contract 3. Determine the transaction price 4. Allocate the transaction price to the performance obligations in the contract 5. Recognize revenue when (or as) the entity satisfies a performance obligation 108 -- 111 of 137 -- While entering into or signing the contract would be covez=ed by steps 1-4, step 5 is required to recognize revenue the entity will only recognize revenue when it is able to satisfy the performance obligation."
+      },
+      {
+        "label": "B",
+        "text": "call provision.",
+        "isCorrect": true,
+        "explanation": "Correct because it is only at the point when all performance obligations have been met except for payment that a receivable appears on the seller's balance sheet. C: Incorrect because it is only at the point when all performance obligations have been met except for payment that a receivable appears on the seller's balence sheet. If consideration is received in advance of transferring good(s) or servi 2e(s), the seller presents a contract liability. Consequently, the seller recognizes a contract liability, rather than a receivable."
+      },
+      {
+        "label": "C",
+        "text": "conversion provision.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q62",
+    "questionText": "62 of 106 Question The price of a bond issued in the United Kingdom by a US-based company and denominated in British pounds most likely changes when:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "US interest rates change only,",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the fair value of the asset if sold less costs to sell, which is the lower, not higher, of its fair value less costs to sell and its value in use. Under IFRS, the company would compare the carrying value (€20,000) with the higher of its fair value less costs to sell (€19,100 - €1,900 = €17,200), and its value in use “€17,400). Under IFRS, the carrying value is $17,400."
+      },
+      {
+        "label": "B",
+        "text": "British interest rates change only.",
+        "isCorrect": true,
+        "explanation": "Correct because it is the value of the asset in use. Under IFRS, the company would compare the carrying value (€20,000) with the higher of its fair value less cost to sell (€19,100 - €1,900 = £17,200), and its value in use (€17,400). Under IFRS, the carrying value is €17,400."
+      },
+      {
+        "label": "C",
+        "text": "both US and British interest rates change.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the carrying amount after impairment assessment under US GAAP; the carrying amount (€20,000) is compared with the undiscounted expected future cashflows (€22,000). The carrying amount is less than the undiscounted expected future cash flows, so the carrying amount is considered recoverable. The equipment would continue to be carried at €20,000."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q63",
+    "questionText": "63 of 106 Question A floating-rate note makes semiannual interest payments and has a coupon rate equal to the six-month market reference rate plus 45 basis points. The interest Payments are made in June and December. if the six-month market reference rate was 1.95% in June and 2.25%in December of the same year, the coupon rate paid in December of that year was closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "2.40%.",
+        "isCorrect": true,
+        "explanation": "Correct because however, activity ratios (for example, inventory turnover and total asset turnover) will be positively affected by a write-down because the asset base (denominator) is reduced."
+      },
+      {
+        "label": "B",
+        "text": "2.55%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because an inventory write-down reduces both profit and the carrying amount of inventory on the balance sheet and thus has a negative effect on profitability, liquidity, and solvency ratios. & Incorrect because an inventory write-down reduces both profit and the carrying amount of inventory on the balance sheet and thus has a negative effect on profitability, liquidity, and solvency ratios."
+      },
+      {
+        "label": "C",
+        "text": "2.70%,",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q64",
+    "questionText": "An analyst observes the following price-yield relationship for an option-free bond: Price per 100 of Par Value Yield to Maturity 100.95 7.45% 101.80 6.75% 103.40 6.05% If the bond trades at 101.80 per 100 of par value, its approximate modified durationis closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "1.72,",
+        "isCorrect": true,
+        "explanation": "Correct because if a deferred tax asset or liability resuited in the past, but the criteria of economic benefits is not met on the current balance: sheet date, then, under IFRS, an existing deferred tax asset or liability related to the item wll be reversed."
+      },
+      {
+        "label": "B",
+        "text": "2.25,",
+        "isCorrect": false,
+        "explanation": "Incorrect because ifa deferred tax asset or liability resilted in the past, but the criteria of economic benefits is not met on the current balance sheet date, then, under IFRS, an existing deferred tax asset or liability related to the item will be reversed. Under US GAAP, a valuation allowance is established. 109 -- 112 of 137 --"
+      },
+      {
+        "label": "C",
+        "text": "3.44,",
+        "isCorrect": false,
+        "explanation": "Incorrect because it answers for a deferred tax liability (reported under US GAAP) that is not expected to reverse. The analyst should classify the deferred tax liability as debt if the liability is expected to reverse with subsequent tax payment. If the liability is not expected to reverse, there is no expectation of a cash outflow and the liability should be treated as equity."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q65",
+    "questionText": "An analyst gathers the following information about a bond which is currently trading at 95.35 per 100 par: 3.50% 99.50 4.00% 95.35 4.50% 92.25 The effective duration of the bond is closest to: 12 -- 15 of 137 --",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "6.5.",
+        "isCorrect": true,
+        "explanation": "Correct because if revenue reported using accrual accounting is higher than the cash actually collected, the result will typically be an increase in accounts receivable. Also, Beginning accounts receivable Plus: Revenues Minus: Cash collected from customers Equals: Ending accounts receivable restated as: Cash collected from customers = Beginning accounts receivable + Revenue — Ending accounts receivable; or = Revenue — Increase in accounts receivable = 5,000 - 1,200 = 3,800."
+      },
+      {
+        "label": "B",
+        "text": "7.6.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it equals Revenue (5,000) or the Revenue - Change in cash balance [instead of Change in accounts receivable] = 5,000 — (2,000 - 2,000) = 5,000-0= 5,000."
+      },
+      {
+        "label": "C",
+        "text": "8.7.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it assumes Cash collected from customers = Revenue + Increase in accounts receivable = 5,000 + 1,200 = 6,200."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q66",
+    "questionText": "66 of 106 Question An analyst gathers the following information about a bond: Par value 100 Coupon rate 5.50% Coupon frequency Annual Time to maturity 5 years Holding period 3 years If the market discount rate is 4.75% for the holding period, the future value of reinvested coupons at the end of the holding period is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "15.05.",
+        "isCorrect": true,
+        "explanation": "Correct because IFRS require eight financial statement disclosures concerning inventory, including (i) the carrying amount of inventories carried at fair value less costs to sell; (ii) the amount of any reversal of any write-down that is recognised as a reduction in cost of sales in the period; and (iii) the circumstances or events that led to the reversal of a write-down of inventories. Inventory-related disclosures under US GAAP are very similar to the disclosures above, except that requirements (ii) and (iii) are not relevant because US GAAP do not permit the reversal of prior-year inventory write-downs."
+      },
+      {
+        "label": "B",
+        "text": "17.30.",
+        "isCorrect": false,
+        "explanation": "Incorrect because inventory-related disclosures under US GAAP are very similar to the disclosures under IFRS, except that requirement \"the circumstances or events that led to the reversal of a write-down of inventories” is not relevant because US GAAP do not permit the reversal of prior-year inventory write-downs."
+      },
+      {
+        "label": "C",
+        "text": "18.12.",
+        "isCorrect": false,
+        "explanation": "Incorrect because inventory-related disclosures under US GAAP are very similar to the disclosures under IFRS, except that requirements \"the amount of any reversal of any write-down that is recognized as a reduction in cost of sales in the period\" is not relevant because US GAAP do not permit the reversal of prior-year inventory write-dawns."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q67",
+    "questionText": "67 of 106 Question Bonds are quoted using the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "full price and settled using the flat price.",
+        "isCorrect": true,
+        "explanation": "Correct because in an environment of declining inventory unit costs and constant or increasing inventory quantities, FIFO (in comparison with weighted average cost or LIFO) will allocate a higher amount of the total cost of goods available for sale to cost of sales on the income statement and a lower amount to ending inventory on the balance sheet. Accordingly, because cost of sales will be higher under FIFO, a company's gross profit, or operating profit, and income taxes will be lower."
+      },
+      {
+        "label": "B",
+        "text": "flat price and settled using the full price.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in an environment of declining inventory unit costs and constant or increasing inventory quantities, FIFO (in comparison with weighted average cost or 110 -- 113 of 137 -- LIFO) will allocate a higher amount of the total cost of goods available for sale to cost of sales on the income statement and a lower amount to ending inventory on the balance sheet. Accordingly, because cost of sales will be higher under FIFO, a company's gross profit, or operating profit, and income taxes will be lower. In comparison, in a period of declining inventory unit costs, LIFO will result in higher inventory and lower cost of sales.Because cost declined over the period, LIFO had the highest ending inventory, the lowest cost of sales and the highest gross profit [compared to Specific identification, Weighted average cost and FIFO]."
+      },
+      {
+        "label": "C",
+        "text": "\"dirty\" price and settled using the invoice price.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in an environment of declining inventory unit costs and constant or increasing inventory quantities, FIFO (in comparison with weighted average cost or LIFO) will allocate a higher amount of the total cost of goods available for sale to cost of sales on the income statement and a lower amount to ending inventory on the balance sheet. Accordingly, because cost of sales will be higher under FIFO, a company's gross profit, or operating profit, and income taxes will be lower."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q68",
+    "questionText": "68 of 106 Question Which of the following does not depend on the market discount rate? A bond's:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "flat price",
+        "isCorrect": true,
+        "explanation": "Correct because in contrast to changes in accounting policies (such as whether to expense the cost of employee stock options), companies sometimes make changes in accounting estimates (such as the useful life of a depreciable asset). Changes in accounting estimates are handled prospectively, with the change affecting the financial statements for the period of change and future periods. No adjustments are made to prior statements, and the adjustment is not shown on the face of the income statement."
+      },
+      {
+        "label": "B",
+        "text": "full price",
+        "isCorrect": false,
+        "explanation": "Incorrect because in contrast to changes in accounting policies (such as whether to expense the cost of employee stock options), companies sometimes make changes in accounting estimates (such as the useful life of a depreciable asset). Changes in accounting estimates are handled prospectively, with the change affecting the financial statements for the period of change and future periods. No adjustments are made to prior statements, and the adjustment is not shown on the face of the income statement."
+      },
+      {
+        "label": "C",
+        "text": "accrued interest",
+        "isCorrect": false,
+        "explanation": "Incorrect because in contrast to changes in accounting policies (such as whether to expense the cost of employee stock options), companies sometimes make changes in accounting estimates (such as the useful life of a depreciable asset). Changes in accounting estimates are handled prospectively, with the change affecting the financial statements for the period of change and future periods. No adjustments are made to prior statements, and the adjustment is not shown on the face of the income statement."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q70",
+    "questionText": "70 of 106 Question The number of common shares a convertible bond can be converted into is the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "conversion ratio.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the cash received from the sale of equipment is calculated as Historical cost of equipment sold (€5,000,000) - Depreciation expense (€4,000,000) - Loss on sale (€250,000) = €750,000,"
+      },
+      {
+        "label": "B",
+        "text": "conversion price.",
+        "isCorrect": true,
+        "explanation": "Correct because selling price (cash inflow) minus back value equals gain or loss on sale; therefore, gain or loss on sale plus book value equals selling price (cash inflow). Accumulated depreciation on the equipment sold = Beginning balance accumulated depreciation + Depreciation expense — Ending balance accumulated depreciation; or = €7,000,000 + €4,000,000 - €8,000,000 = €3,000,000. Book value of the equipment sold = Historical cost of equipment sold ~ Accumulated depreciation on equipment sold; or = €5,000,000 ~ €3,000,000 = €2,000,000.Cash received from sale of equipment = Book value of the equipment sold — Loss on sale = €2,000,000 - €250,000 = €1,750,000."
+      },
+      {
+        "label": "C",
+        "text": "conversion value. 13 -- 16 of 137 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because the cash received from the sale of equipment is calculated as Historical cost of equipment sold (€5,000,000) - Loss on sale (€250,000) = €4,750,000."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q71",
+    "questionText": "71 of 106 Question A credit card receivable asset-backed security most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "faces high prepayment risk.",
+        "isCorrect": true,
+        "explanation": "Correct because ROA = Net income / Average total assets; or = 110 / 1,000 = 11%,"
+      },
+      {
+        "label": "B",
+        "text": "uses fully-amortizing loans as collateral.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it assumes ROA = Earnings before taxes / Total average assets; or = 130 / 1,000 = 13%,"
+      },
+      {
+        "label": "C",
+        "text": "reinvests principal repayments during the lockout period.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it assumes ROA = EBIT / Average total assets; or = 150 / 1,000 = 15%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q72",
+    "questionText": "72 of 106 Question An analyst gathers the following information about a bond currently trading at par: Price per 100 of Par Value +25 bps 98 -25 bps 103 The effective duration of this bond is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "225)",
+        "isCorrect": false,
+        "explanation": "Incorrect because if the number of shares of common stock increases as a result ofa stock dividend or stock split, the EPS calculation reflects the change retroactively to the beginning of the period. The denominator is the same for both the basic and diluted EPS calculations. 112 -- 115 of 137 --"
+      },
+      {
+        "label": "B",
+        "text": "5.0.",
+        "isCorrect": true,
+        "explanation": "Correct because the assumed exercise of the stock options would not change net income for the year (or preferred dividends). For calculating EPS, therefore, no change is made to the numerator. However, the denominator would be increased by the incremental number of shares issued as a result of the stock option being exercised."
+      },
+      {
+        "label": "C",
+        "text": "10.0.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the numerator is increased by after tax interest on the convertible dest and the denominator is increased by the additional shares that were issued on conversion. Therefore, both the numerator and the denominator will change."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q73",
+    "questionText": "73 of 106 Question An analyst gathers the following spot and forward rates: 2-year spot rate 1.0% 4-year spot rate 2.5% 4-year forward rate, two years fromtoday 3.0% The 2-year forward rate, four years from today is closest to: A 2%.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "3%.",
+        "isCorrect": true,
+        "explanation": "Correct because the basic EPS calculation highlights that the convertible bond is dilutive; that is, Basic EPS = (Net income — Preferred dividends) / (Weighted average number of shares outstanding), Where net income is $1,200,000. There are no preferred dividends. Weighted average number of shares outstanding is: 1,000,000 x (3 months + 12 months) = 250,000 1,100,000 x (9 months + 12 months) = 825,000 Weighted average number of shares outstanding equals 250,000 + 825,000 = 1,075,000 shares. Basic EPS = $1,200,000 / 1,075,000 = $1.12. Diluted EPS is calculated using the following formula: (Net income + After-tax interest on convertible debt — Preferred dividends) / (Weighted average number of shares outstanding + Additional common shares that would have been issued at conversion) After-tax interest on convertible debt equals $2,000,000 x 8% x (1 - 30%) = $112,000. Therefore, computed diluted EPS = ($1,200,000 + $112,000) / (1,075,000 + 200,000) = $1,312,000 / 1,275,000 = $1.029 which rounds to $1.03. Cc Incorrect because the pre-tax cost of debt has been added back to net income. That is, $2,000,0000 x 8% = $160,000, therefore applying net income of $1,200,000 plus $160,000 = $1,360,000. Assuming all else equal: $1,360,000 / 1,275,000 = $1.067 which rounds to $1.07. Ifa candidate mistakenly uses net income alone in the numerator, with any of the denominators in the three Response Rationales, the will also be closestto this distractor."
+      },
+      {
+        "label": "C",
+        "text": "4%,",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q74",
+    "questionText": "74 of 106 Question A bond issuer has a credit rating of BBB. Based only on this information, the rating ofa senior unsecured bond from this issuer is most likely to be: A. lower than BBB.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "BBB.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it also includes the tax burden in the ROE calculation. The calculation becomes ROE = net profit margin x total asset turnover ~ financial leverage tax burden = 3.0% = 1.8 * 1.5 « 0.85 = 6.885% ~ 6.9%. 113 -- 116 of 137 --"
+      },
+      {
+        "label": "C",
+        "text": "higher than BBB.",
+        "isCorrect": true,
+        "explanation": "Correct because ROE = net profit margin x total asset turnover ~ financial leverage = 3.0% x 1.8*1.5=8.1%,."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q75",
+    "questionText": "of 106 Question An analyst gathers the following information about a zero-coupon bond: Time to maturity 5 years Annual convexity 28.835 Annual yield to maturity 2% If the yield decreases by 1%, the bond's percentage change in price is closest to:A. 4.76%.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "5.05%.",
+        "isCorrect": true,
+        "explanation": "Correct because the carrying amount after the impairment charge is equal to the recoverable amount. Under IAS 36, an impairment loss is measured as the excess of carrying amount over the recoverable amount of the asset. The recoverable amount of an asset is defined as 'the higher of its fair value less costs to sel] (9,000 - 200 = 8,800) and its value in use (7,000). Value in use is based on the present value of expected future cash flows. Max[(FV-C), PVCF]) = Max[(8,800; 7,000)] = 8,800. ts Incorrect because it omits to subtract the cost of selling from the fair value. Accordingly, Recoverable amount = Max(FV; PVCF); or = Max(9,000; 7,000) = 9,000."
+      },
+      {
+        "label": "C",
+        "text": "5.14%. 14 -- 17 of 137 --",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q76",
+    "questionText": "The Macaulay duration of a zero-coupon bond is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less than the time to maturity.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is a profitability ratio and ROE measures the return earned by a company on its equity capital, including minority equity, preferred equity, and common equity. ROE = Net income / Average total equity"
+      },
+      {
+        "label": "B",
+        "text": "equal to the time to maturity.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is an activity ratio (or asset utilization ratio or operating efficiency ratio), which measures how well a company manages various activities. Fixed asset turnover = Revenue / Average net fixed assets. The fixed assets turnover ratio measures how efficiently the company generates revenues from its investments in fixed assets."
+      },
+      {
+        "label": "C",
+        "text": "greater than the time to maturity.",
+        "isCorrect": true,
+        "explanation": "Correct because solvency ratios are primarily of two types. Debt ratios, the first type, focus on the balance sheet and measure the amount of debt capital relative to equity capital. Coverage ratios, the second type, focus on the income statement and measure the ability of a company to cover its debt payments. These ratios are useful in assessing a company’s solvency and, therefore, in evaluating the quality of a company’s bonds and other debt obligations, Fixed charge coverage ratio = (EBIT + Lease payments) / (Interest payments + lease payments). A higher fixed charge coverage ratio implies stronger solvency, offering greater assurance that the company can service its debt (i.e., bank debt, bonds, notes, and leases) from normal earnings."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q77",
+    "questionText": "US municipal bonds are best described as:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "agency bonds.",
+        "isCorrect": true,
+        "explanation": "Correct because the accounting for lessors is substantially identical under IFRS and US GAAP. Under both accounting standards, lessors classify leases as finance or operating leases, which determines the financial reporting. At finance lease inception, the lessor 114 -- 117 of 137 -- recognizes a lease receivable asset equal to the present value of future lease payments and de-recognizes the leased asset, simultaneously recognizing any difference as a gain or loss."
+      },
+      {
+        "label": "B",
+        "text": "non-sovereign bonds. eC quasi-government bonds.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the accounting for lessors is substantially identical under IFRS and US GAAP. Under both accounting standards, lessors classify leases as finance or operating leases, which determines the financial reporting. The accounting treatment for an operating lease is different in that, because the contract is essentially a rental agreement, the lessor keeps the leased asset on its books and recognizes lease revenue ona straight-line basis."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q78",
+    "questionText": "A bond portfolio consists of the following option-free annual-pay coupon bonds: _Bond1 Bond2 Par value $300,000 $450,000 Market value $200,000 $400,000 Yield to maturity 4% 3% Macaulay duration 7.5 5.4 The modified duration of this portfolio is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "5.9.",
+        "isCorrect": true,
+        "explanation": "Correct because the amount of the impairment loss will reduce the carrying amount of the asset on the balance sheet and will reduce net income on the income statement. Impairment charges reduce income but have no effect on revenue. Therefore, the impairment loss reduces the net profit margin where Net profit margin = Net income/ Revenue."
+      },
+      {
+        "label": "B",
+        "text": "6.0.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the Debt-to-equity ratio = Total debt/Total shareholders’ equity. The amount of the impairment loss will reduce the carrying amount of the asset on the balance sheet and will reduce net income on the income statement. Impairment charges have no effect on debt but reduce equity. Therefore, the impairment loss increases the debt-to-equity ratio."
+      },
+      {
+        "label": "C",
+        "text": "6.1.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the Working capital turnover = Revenue/ Average working capital is unaffected by the impairment charge, ignoring income taxes. The amount of the impairment loss will reduce the carrying amount of the asset on the balance sheet and will reduce net income on the income statement The impairment loss is a non-cash item and will not affect cash from operations."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q79",
+    "questionText": "An analyst gathers the following information about forward rates: i i r e Oyly 1% lyly 2% 2yly 4% Using only this information, the price per 100 of par value of a 3-year, 1% annual coupon bond is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "84.05.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it excludes Current portion of long-term interest-bearing debt in Total debts and calculates Debt-to-capital ratio = Total debt/ (Total debt + Total shareholders’ equity) = (700 + 800)/(700 + 800 + 7500) = 1,500/9,000 = 0.167 = 17%."
+      },
+      {
+        "label": "B",
+        "text": "91.74.",
+        "isCorrect": true,
+        "explanation": "Correct because the Debt-to-capital ratio = Total debt/(Total debt + Total shareholders’ equity) = (700 +500 + 800)/(700 + 500 + 800 + 7,500) = 2,000/9,500 = 0.211 = 21%."
+      },
+      {
+        "label": "C",
+        "text": "96.23.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it calculates the Debt-to-equity ratio = Total debt/Total shareholders’ equity = (700 + 500 + 800)/7,500 = 2000/7,500 = 0.267 = 27%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q80",
+    "questionText": "With respect to interest rate risk, an investor who sells a fixed-rate bond after the first coupon is received and before its maturity is exposed to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "market price risk, only.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the entity will recognize revenue when it is able to satisfy the performance obligation by transferring control to the customer. Factor to consider when assessing whether the customer has obtained control of an asset at a point in time: Customer (not the entity/seller) has legal title. 115 -- 118 of 137 --"
+      },
+      {
+        "label": "B",
+        "text": "coupon reinvestment risk, only. C both market price risk and coupon reinvestment risk. 15 -- 18 of 137 --",
+        "isCorrect": true,
+        "explanation": "Correct because the entity (seller) will recognize revenue when it is able to satisfy the performance obligation by transferring control to the customer. Factor to consider when assessing whether the customer has obtained control of an asset at a point in time: Entity has a present right to payment."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q81",
+    "questionText": "For an option-free fixed-rate corporate bond, the duration and convexity statistics are most likely relevant for a change in:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "the credit spread only.",
+        "isCorrect": true,
+        "explanation": "Correct because the carrying amount is zero due to the full amount having been expensed for financial accounting, while the tax base of the asset was only reduced by one- fifth of the total cost in the first year. In addition, taxable profit will be available against which the deductible temporary differences can be utilized. As the asset carrying amount is less than the tax base, it will result in a deferred tax asset."
+      },
+      {
+        "label": "B",
+        "text": "the benchmark yield only.",
+        "isCorrect": false,
+        "explanation": "Incorrect because ia deferred tax liability results when the asset carrying amount is greater than the tax base."
+      },
+      {
+        "label": "C",
+        "text": "both the credit spread and the benchmark yield.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the asset carrying amount is less than the tax base, therefore it will result in a deferred tax asset."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q82",
+    "questionText": "An analyst gathers the following information about a callable bond that pays interest annually: Current price 105 per 100 of par value Time-to-maturity 4 years Coupon rate 4% Call price at year 2 103 per 100 of par value Call price atyear3 101 per 100 of par value This bond's yield to worst is the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "yield to maturity.",
+        "isCorrect": true,
+        "explanation": "Correct because the Cash conversion cycle = Days of inventory on hand + Days of sales outstanding —- Number of days of payables. Number of days of payables = Days in the period / Payables turnover. If payables turnover were to decrease, it would increase the Number of days of payables, decreasing the CCC."
+      },
+      {
+        "label": "B",
+        "text": "yield to first call. G yield to second call.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the Cash conversion cycle = Days of inventory on hand + Days of sales outstanding — Number of days of payables. Days of inventory on hand = Days in the period / Inventory turnover. A decrease in inventory turnover would therefore increase the Days of inventory on hand, thereby increasing the cash conversion cycle,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q83",
+    "questionText": "An analyst gathers the following information about three option-free bonds, each trading ata premium: Bond1 4% 4% 10 years Bond2 4% 5% 11 years Bond3 5% 5% 9 years All else being equal, the bond with the lowest Macaulay duration is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Bond 1.",
+        "isCorrect": true,
+        "explanation": "Correct because the cash paid for interest is included in operating cash flows under US GAAP and may be included in Operating or financing cash flows under IFRS. and US GAAP classify interest expense as an operating activity, even though the principal amount of the debt issued is classified as a financing activity. IFRS allow companies to classify interest expense as either an operating activity or a financing activity."
+      },
+      {
+        "label": "B",
+        "text": "Bond 2.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the cash paid for interest is included in operating cash flows under US GAAP. 116 -- 119 of 137 --"
+      },
+      {
+        "label": "C",
+        "text": "Bond 3.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the cash paid for interest is included in operating cash flows under US GAAP and may be included in operating or financing cash flows under IFRS."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q85",
+    "questionText": "85 of 106 Question Effective duration is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "a useful interest rate risk measure only for bonds with embedded options.",
+        "isCorrect": false,
+        "explanation": "Incorrect because although Company + has the lowest leverage ratio among the three (tied with Company 3), it has a lower interest coverage ratio than Company 3, indicating that it is not the most solvent."
+      },
+      {
+        "label": "B",
+        "text": "an accurate estimate of interest rate risk only when the assumed benchmark rate change is small.",
+        "isCorrect": false,
+        "explanation": "Incorrect because Company 2 has higher leverage ratios than Company 1 and Company 3 and a lower interest coverage ratio than Company 3, indicating that it is not the most solvent."
+      },
+      {
+        "label": "C",
+        "text": "the same as the modified duration of an option-free bond only when the yield curve is perfectly flat.",
+        "isCorrect": true,
+        "explanation": "Correct because the ability to meet long-term debt obligations is defined as solvency, which can be measured using leverage and coverage ratios. Generally, the higher the leverage ratio, the higher the financial risk and thus the weaker the solvency. A higher interest coverage ratio indicates stronger solvency. Using the information piven, leverage and coverage ratios are: Company 1Company 2Company 3 Debt-to-assets ratio 0.20 0.25 0.20 Debt-to-equity ratio 0.25 0.33 0.25 Debt-to-capital 0.20 0.25 0.20 Financial leverage ratio 1.25 1.33 1.25 Interest coverage ratio 2.00 2.50 3.00 Company 3 and Company 1 have the lowest leverage ratios (debt-to-assets, debt-to-equity, debt-to-capital, and financial leverage), but Company 3 has a higher interest coverage ratio than Company 1. Company 3 has the least debt (proportionally) along with the highest coverage ability of the three companies."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q86",
+    "questionText": "86 of 106 Question An investor gathers the following information about a bond portfolio comprised of two option-free bonds: Bond Par ValueMarket ValueDuration 1 $100,000 $120,000 S 2 $200,000 $180,000 4 > The duration of the portfolio is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "4.33.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it weights the bonds by par value. DP= [(100,000 + 300,000) x 5] + [(200,000 + 300,000) x 4] = (0.333 x 5) + (0.667 x 4) = 1.665 + 2.668 = 4,333 = 4.33"
+      },
+      {
+        "label": "B",
+        "text": "4.40.",
+        "isCorrect": true,
+        "explanation": "Correct because the portfolio's duration is the weighted average (by market value) of the duration of the bonds in the portfolio. Duration of portfolio = [(120,000 + 300,000) x 5] + [(180,000 + 300,000) x 4] = (0.4 x 5) + (0.6 x 4) = 2.00 + 2.40 = 4.40"
+      },
+      {
+        "label": "C",
+        "text": "4.55.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it weights the bonds by their duration. DP= [(5 +9) « 5] + (4+ 9) *4)] = 2.777 +1.777 = 4,554=4,55"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q88",
+    "questionText": "Which of the following mortgage features most likely benefits the lender?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Non-recourse loan",
+        "isCorrect": true,
+        "explanation": "Correct because the disclosure requirements under US GAAP are less exhaustive. A company must disclose the depreciation expense for the period, the balances of major classes of depreciable assets, accumulated depreciation by major classes or in total, and a general description of the depreciation method(s) used in computing depreciation expense with respect to the major classes of depreciable assets,"
+      },
+      {
+        "label": "B",
+        "text": "Prepayment option",
+        "isCorrect": false,
+        "explanation": "Incorrect because the revaluation model is not allowed under US GAAP. The alternative model of reporting long-lived assets is the revaluation model, which is permitted under IFRS but not under US GAAP."
+      },
+      {
+        "label": "C",
+        "text": "Prepayment penalty",
+        "isCorrect": false,
+        "explanation": "Incorrect because under IFRS, for each class of property, plant, and equipment, a company must disclose the measurement bases, the depreciation method, the useful lives (or, equivalently, the depreciation rate) used, the gross carrying amount and the accumulated depreciation at the beginning and end of the period, and a reconciliation of the carrying amount at the beginning and end of the period. The disclosure requirements under US GAAP are less exhaustive. A company must disclose the depreciation expense for the period, the balances of major classes of depreciable assets, accumulated depreciation by major classes or in total, anda general description of the depreciation method(s) used in 118 -- 121 of 137 -- computing depreciation expense with respect to the major classes of depreciable assets. Thus, a reconciliation of carrying amount at the beginning and end of the period is required under IFRS but not required under US GAAP."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q89",
+    "questionText": "89 of 106 Question With respect to the notching process adopted by credit rating agencies, a corporate’s subordinated debt is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "notched up from the corporate's junior subordinated debt.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the fixed asset turnover ratio would be lower for a company whose assets are newer (and, therefore, less depreciated and so reflected in the financial statements at a higher carrying value) than the ratio for a company with older assets (that are thus more depreciated and so reflected at a lower carrying value)."
+      },
+      {
+        "label": "B",
+        "text": "subject to a smaller notching adjustment the higher the corporate's issuer rating.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the fixed asset turnover ratio would be lower for a company: whose assets are newer (and, therefore, less depreciated and so reflected in the financial statements at a higher carrying value) than the ratio for a company with older assets (that are thus more depreciated and so reflected at a lower carrying value)."
+      },
+      {
+        "label": "C",
+        "text": "notched down from the corporate’s issuer rating due to higher probability of default. 17 -- 20 of 137 --",
+        "isCorrect": true,
+        "explanation": "Correct because the fixed asset turnover ratio would be lower for a company whose assets are newer (and, therefore, less depreciated and so reflected in the financial statements at a higher carrying value) than the ratio for a company with older assets (that are thus more depreciated and so reflected at a lower carrying value)."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q90",
+    "questionText": "Money market yields are:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "annualized and compounded.",
+        "isCorrect": true,
+        "explanation": "Correct because the interest coverage ratio measures the number of times a company’s EBIT could cover its interest payments. A higher interest coverage ratio indicates stronger solvency, offering greater assurance that the company can service itsdebt from operating earnings. Accordingly, Interest coverage ratio = EBIT/Interest payment. Year 1 Interest coverage ratio = 40/8 =5 and Year 2 Interest coverage ratio =35/5 = 7. Therefore, interest coverage ratio has increased which indicates stronger solvency."
+      },
+      {
+        "label": "B",
+        "text": "stated for a common periodicity.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the two primary types of solvency ratios are leverage ratios and caverage ratios. The financial leverage ratio (also called the ‘leverage ratio’ or ‘equity multiplier’) measures the amount of total assets supported by one money unit of equity. The higher the financial leverage ratio, the more leveraged the company in the sense of using debt and other liabilities to finance assets. Accordingly, Financial leverage ratio = Average total assets/Average shareholders’ equity, Year 1 Financial leverage ratio = 450/120 = 3.75 and Year 2 Financial leverage ratio = 500/100 = 5. Therefore, financial leverage ratio has increased which result in higher leverage and weaker solvency. G: Incorrect because the Financial leverage ratio = Average total assets /Average shareholders’ equity. Accordingly, Year 1 Financial leverage ratio = 450/120 = 3.75 and Year 2 Financial leverage ratio = 500/100 = 5. Therefore, financial leverage ratio has increased which results in higher leverage and weaker solvency. The interest coverage ratio measures the number of times a company’s EBIT could cover its interest payments. A higher interest coverage ratio indicates stronger solvency, offering greater assurance that the company can service its debt from operating earnings. Accordingly, Interest coverage ratio = EBIT/Interest payment. Year 1 Interest coverage ratio = 40/8=5 and Year 2 Interest coverage ratio = 35/5 = 7. Therefore, interest coverage ratio has increased which indicates stronger solvency. 119 -- 122 of 137 --"
+      },
+      {
+        "label": "C",
+        "text": "stated on a simple interest basis.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q92",
+    "questionText": "A three-year, semiannual-pay bond with a $100 par value and a 5% coupon rate is purchased for $108. One year later, if the yield to maturity has decreased by 100 basis points, the change in the value of this bond is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "$0.57.",
+        "isCorrect": true,
+        "explanation": "Correct because the value ofa bond is calculated as: PV = [PMT = (1+r):] + [PMT +(1+r))] +...+ [(PMT + FV) +(1+7r)9) where: pV = present value, or the price of the bond PMT = coupon payment per period FV = future value paid at maturity, or the par value of the bond r = market discount rate, or required rate of return per period N= number of evenly spaced periods to maturity Using calculator inputs, N = (3 x 2)=6, PMT = (5%+ 2) x 100 = $2.5, FV = $100, PV = $108, Salve for I, is equal to 4.114% semi-annually, or 2.228% on an annual basis. If the yield to maturity decreases by 100 bps, the price of the bond after one year is computed as: N = 4, PMT = $2.5, FV = £100, 1= [(2.228% - 1%) + 2|= 0.614%, Solve PV, is equal to $107.43. Therefore, the change in value of the bond = $108.00 — $107.43 = $0.57."
+      },
+      {
+        "label": "B",
+        "text": "$1.52,",
+        "isCorrect": false,
+        "explanation": "Incorrect because fails to annualize the interest rate before computing the change in value. Using calculator inputs, the yield of the bond: N = 6, PMT = $2.5, FV = $100, Solve I is equal to 1.114%. ifthe yield declines by 100 bps, the price of the bond after one year is computed as: N = 4, PMT = $2.5, FV = 100, 1 = (1.114% - 1%) = 0.114%, Solve for PV =$109.52. Therefore, the change in value = $108 — 109.52 = -$1.52, or a change in value of $1.52."
+      },
+      {
+        "label": "C",
+        "text": "$3.08.",
+        "isCorrect": false,
+        "explanation": "Incorrect because incorrectly uses the same time to maturity when calculating the new value rather than adjusting the term for the passage of one year in value. Using calculator inputs, the yield of the bond: N = 6, PMT = $2.5, FV = 100, 1= (2.228% - 1%) /2= 0.614%, Solve for PV is equal to $111.08. Therefore, the change in value = $108 - 111.08 = -$3.08, or achange in value of - $3.08. 51 -- 54 of 137 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q93",
+    "questionText": "The yield spread of a specific bond over the standard swap rate in that currency of the same tenor best describes the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "I-spread.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it calculates the carrying amount of the equipment = historical cost + accumulated depreciation = 50 +5 =55. Consequently, the gain on the sale = selling price — carrying amount = 58 — 55 = 3."
+      },
+      {
+        "label": "B",
+        "text": "Z-spread.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it calculates the gain on the sale = selling price — historical cost = 58-50=8."
+      },
+      {
+        "label": "C",
+        "text": "option- adjusted spread.",
+        "isCorrect": true,
+        "explanation": "Correct because the gain or loss on the sale of long-lived assets is computed as the sales proceeds minus the carrying amount of the asset at the time of sale. An asset’s carrying amount is typically the net book value (i.e. the historical cost minus accumulated depreciation), The carryi ng amount of the equipment = historical cost — accumulated depreciation = 50-5 = 45, and the gain on the sale = selling price - carrying amount = 58-45 =13."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q94",
+    "questionText": "94 of 106 Question For a fixed-rate bond, when interest rates decrease, the future value of reinvested coupon payments most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "decreases and the market price of the bond increases.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the carrying amount of the inventory, being Min(Cost; Net realizable value) = Min(750; 1,100 -50 - 50) = 750 (which is also equal to the cost of the inventory). IFRS state that inventories shall be measured (and carried on the balance sheet) at the lower of cost and net realizable value. While the net realizable value is the estimated selling price in the ordinary course of business less the estimated costs necessary to make the sale and estimated costs to get the inventory in condition for sale."
+      },
+      {
+        "label": "B",
+        "text": "increases and the market price of the bond decreases.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it calculates Net realizable value = Cost of inventory + Estimated costs necessary to make the sale + Estimated costs to get the inventory in condition for sale; or = 750 +50 +50 =850."
+      },
+      {
+        "label": "C",
+        "text": "increases and the market price of the bond increases,",
+        "isCorrect": true,
+        "explanation": "Correct because the net realizable value is the estimated selling price in the ordinary course of business less the estimated costs necessary to make the sale and estimated costs to get the in ventory in condition for sale. Accordingly, the net realizable value = 1,100 -50-50= 1,000, 120 -- 123 of 137 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q95",
+    "questionText": "Whichof the following debt categories has the highest ranking in terms of priority ofpayment?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Second lien debt",
+        "isCorrect": true,
+        "explanation": "Correct because the quick ratio isa liquidity ratio which measures a company’s ability to meet its short-term obligations."
+      },
+      {
+        "label": "B",
+        "text": "Subordinated debt",
+        "isCorrect": false,
+        "explanation": "Incorrect because the operating profit margin isa profitability ratio which measures a company’s ability to generate profits from its resources (assets)."
+      },
+      {
+        "label": "C",
+        "text": "Senior unsecured debt 18 -- 21 of 137 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because days of payables outstanding is an activity ratio which measures how efficiently a company performs day-to-day tasks, such as the collection of receivables and management of inventory."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q96",
+    "questionText": "96 of 106 Question The yield spread over an interpolated sovereign bond is best described as a(n):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "I-spread.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the Cash ratio. The Cash ratio = (Cash and equivalents + Short-term marketable securities) / Current liabilities. The calculation is (800 + 500) / 10,000 = 1,300 / 10,000 = 0.13 or 13%."
+      },
+      {
+        "label": "B",
+        "text": "G-spread.",
+        "isCorrect": true,
+        "explanation": "Correct because the Quick ratio = (Cash and equivalents + Short-term marketable securities + Receivables) / Current liabilities. The calculation is (800 + 500 + 2,000) / 10,000 = 3,300 / 10,000 = 0.33, or 33%."
+      },
+      {
+        "label": "C",
+        "text": "Z-spread.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the Current ratio. The Current ratio = Current assets / Current liabilities, the calculation is (800 + 500 + 700+ 2,000) / 10,000 = 0.4, or 40%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q97",
+    "questionText": "97 of 106 Question In a securitization, time tranching most likely refers to differences in:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "default risk.",
+        "isCorrect": true,
+        "explanation": "Correct because the total debt ratio = total debt / total assets = 100 / 400 = 0.25."
+      },
+      {
+        "label": "B",
+        "text": "expected maturities.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it calculates total debt ratio = total debt / total equity, which is the debt-to-equity ratio = 100 / 200 = 0.50. This ratio may also be incorrectly calculated by dividing total liabilities by total assets (200/400 = .50) cS Incorrect because it calculates total debt ratio = total assets / total equity, which is the financial leverage ratio = 400 / 200 = 2.00."
+      },
+      {
+        "label": "C",
+        "text": "underlying collateral.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q98",
+    "questionText": "98 of 106 Question For a floating-rate note, the specified yield spread over the reference rate best defines the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "coupon.",
+        "isCorrect": true,
+        "explanation": "Correct because the major sources of cash for a company can vary with its stage of growth. For a mature company, it is expected and desirable that operating activities are the primary source of cash flows. Over the long term, a company must generate cash from its operating activities. If operating cash flow were consistently negative, a company would need to borrow money or issue stock (financing activities) to fund the shortfall. Eventually, these providers of capital need to be repaid from operations or they will no longer be willing to provide capital."
+      },
+      {
+        "label": "B",
+        "text": "quoted margin. eG required margin.",
+        "isCorrect": false,
+        "explanation": "Incorrect because for a mature company, itis expected and desirable that operating activities are the primary source of cash flows. Cash generated from operating activities can be used in either investing or financing activities. If the company has good 121 -- 124 of 137 -- opportunities to grow the business or other investment opportunities, it is desirable to use the cash in investing activities."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q100",
+    "questionText": "100 of 106 Question All else being equal, when the market interest rate falls below a bond's coupon rate, potential price appreciation is most limited for a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "putable bond.",
+        "isCorrect": true,
+        "explanation": "Incorrect because under IFRS, there isa single accounting model for both finance and operating leases for lessees. At lease inception, the lessee records a lease payable liability and a “right-of-use” (ROU) asset on its balance sheet, both equal to the present value of future lease payments. For lessees, there are lease accounting exemptions for certain lease contracts: If its term is 12 months or less (IFRS and US GAAP) or it is fora “low-value asset,” up to $5,000 in sales price (IFRS only), then the lessee can elect to simply expense the lease payments ona straight-line basis.A. Incorrect because under IFRS, there is a single accounting model for both finance and operating leases for lessees, At lease inception, the lessee records a lease payable liability and a “right-of-use” (ROU) asset on its balance sheet, both equal to the present value of future lease payments. 122 -- 125 of 137 --"
+      },
+      {
+        "label": "B",
+        "text": "callable bond.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      },
+      {
+        "label": "C",
+        "text": "option-free bond.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q101",
+    "questionText": "101 of 106 Question Callable bonds exhibit:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "positive convexity only.",
+        "isCorrect": true,
+        "explanation": "Correct because to determine the cash paid for other operating expenses, itis necessary to adjust the other operating expenses amount on the income statement by the net changes in prepaid expenses and accrued expense liabilities for the year. Accordingly, Cash paid for other operating expenses ~ Other operating expenses - Decrease in prepaid expenses — Increase in other accrued liabilities = 4,500 - 200 - 300 = 4,000."
+      },
+      {
+        "label": "B",
+        "text": "negative convexity only.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it added Decrease in prepaid expenses instead of subtracting it. 4,500 + 200 - 300 = 4,400."
+      },
+      {
+        "label": "C",
+        "text": "either positive or negative convexity.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it added Increase in accrued liabilities instead of subtracting it. 4,500 - 200 + 300 = 4,600."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q102",
+    "questionText": "102 of 106 Question An investors sells a fixed-rate bond originally purchased at a discount. The resulting capital gain or loss should be measured by comparing the bond's selling price with its:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "par value.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it calculates the carrying amount of the equipment = purchase price of the equipment — accumulated depreciation = 1,000 - 250 = 750."
+      },
+      {
+        "label": "B",
+        "text": "carrying value.",
+        "isCorrect": true,
+        "explanation": "Correct because the gain or loss on the sale of long-lived assets is computed as the sales proceeds minus the carrying amount of the asset at the time of sale. An asset's carrying amount is typically the net book value (i.e., the historical cost minus accumulated depreciation). Cash ow from the sale of the equipment = sale proceeds = carrying amount of the equipment + gain on sale of the equipment = (1,000 - 250) +400 = 1,150."
+      },
+      {
+        "label": "C",
+        "text": "purchase price.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it calculates the cashflow from the sale of equipment = purchase price of the equipment + gain on sale of the equipment = 1,000 + 400 = 1,400."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q103",
+    "questionText": "103 of 106 Question An investor gathers the following information about an investment in a bond with a 10- year tenor: 19 -- 22 of 137 -- Purchase price 95.27 Sale price 102.06 Sum of reinvested coupon payments 24.28 If the holding period was seven years, the horizon yield is closest to:A. 2.29%,",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "2.86%.",
+        "isCorrect": true,
+        "explanation": "Correct because there are situations when a company receives cash in advance and actually delivers the product or service later, perhaps over a period of time. In this case, the company would record a liability for unearned revenue when the cash is initially received, and revenue would be recognized as being earned over time as products and services are delivered. G Incorrect because the cash flow will be recognized in the current year even though the revenue will not be recognized until the following year. The receipt of cash in the current year will increase cash flow from operating activities in the current year rather than the following year. 123 -- 126 of 137 --"
+      },
+      {
+        "label": "C",
+        "text": "4.11%.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q104",
+    "questionText": "104 of 106 Question A commercial paper has the following characteristics: Redemption value $5,000,000 Interest earned $140,500 Days to maturity 160 For a 365-day year, the discount rate is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "6.2%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the quick ratio is unaffected by the upward asset revaluation. Quick ratio = (cash + short-term marketable investments + receivables) / current liabilities. As an initial upward asset revaluation only affects the PP&E on the asset side and the surplus account in equity, neither the numerator nor the denominator is affected. The quick ratio remains unchanged."
+      },
+      {
+        "label": "B",
+        "text": "6.4%,",
+        "isCorrect": false,
+        "explanation": "Incorrect because the upward asset revaluation decreases the total asset turnover ratio and therefore has a negative effect on this activity ratio. Total asset turnover = revenue / average total assets. As an initial upward asset revaluation only affects the PP&E on the asset side and the surplus account in equity, the numerator is unaffected and only the denominator increased. This leads toa decreased total asset turnover."
+      },
+      {
+        "label": "C",
+        "text": "6.6%.",
+        "isCorrect": true,
+        "explanation": "Correct because the upward asset revaluation decreases the debt-to-asset ratio and therefore improves the debt-to-asset ratio / solvency ratio of the company. Debt-to-assets ratio = total debt / total assets. Under the revaluation model, whether an asset revaluation affects earnings depends on whether the revaluation initially increases or decreases an asset class’ carrying amount. Ifa revaluation initially increases the carrying amount of the asset class, the increase in the carrying amount of the asset class bypasses the income statement and goes directly to equity under the heading of revaluation surplus. As this revaluation initially increases the carrying amount of the asset class, the effect is an increase of total assets and total equity. Total debt remains unchanged. Unchanged numerator (total debt) over an increased denominator (total asset) decreases the ratio."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q105",
+    "questionText": "105 of 106 Question Two par bonds have the same duration but different convexity. All else being equal, if yieldsto maturity increase by 10 basis points, it is most likely that:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "the more convex bond underperforms the less convex bond.",
+        "isCorrect": true,
+        "explanation": "Correct because US GAAP classify dividends paid to stockholders as a financing activity, whereas IFRS allow companies to classify dividends paid as either an operating activity or a financing activity.B. incorrect because US GAAP classify dividends paid to stockholders as a financing activity, whereas IFRS allow companies to classify dividends paid as either an operating activity or a financing activity, ¢; Incorrect because US GAAP classify dividends paid to stockholders as a financing activity, whereas IFRS allow companies to classify dividends paid as either an operating activity or a financing activity."
+      },
+      {
+        "label": "B",
+        "text": "both bond prices decrease by the same amount. G, the more convex bond outperforms the less convex bond.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  },
+  {
+    "id": "premium-income-ocr-cfa-l1-2025-fsa-fixed-income-q106",
+    "questionText": "106 of 106 Question A bond has the following characteristics: Time to maturity 3 years Coupon rate 12% Payment period Semiannual For a yield to maturity of 4%, the price of the bond per 100 of par value is closest to:A. 122.20.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "122.41.",
+        "isCorrect": true,
+        "explanation": "2,120."
+      },
+      {
+        "label": "C",
+        "text": "122.53. 20 -- 23 of 137 -- Fixed",
+        "isCorrect": false,
+        "explanation": "2,130. 87 -- 90 of 137 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Income",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_FSA & Fixed Income.pdf"
+  }
+]

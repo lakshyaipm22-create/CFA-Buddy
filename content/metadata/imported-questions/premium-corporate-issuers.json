@@ -1,0 +1,1226 @@
+[
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q1",
+    "questionText": "Ifa corporation is financed with both debt and equity, which of the following must the corporation pay?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Interest only",
+        "isCorrect": true,
+        "explanation": "Correct because debt must be repaid on a pre-specified date in the future with interest."
+      },
+      {
+        "label": "B",
+        "text": "Dividends only C: Both interest and dividends",
+        "isCorrect": false,
+        "explanation": "Incorrect because equity investors (shareholders) have a right to receive any distributions of profits, known as dividends. However, while shareholder have the right to receive dividends, the corporation is not required to pay dividends."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q4",
+    "questionText": "The purchase of which of the following shares most likely requires investors to be accredited?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Public company shares only",
+        "isCorrect": false,
+        "explanation": "Incorrect because private company investors may be limited to qualified or so- called accredited investors or sophisticated investors, or those deemed to be able and willing by regulatory authorities to assume the greater risk ofa non-public offering."
+      },
+      {
+        "label": "B",
+        "text": "Private company shares only & Both public company shares and private company shares",
+        "isCorrect": true,
+        "explanation": "Correct because private company investors may be limited to qualified or so-called accredited investors or sophisticated investors, or those deemed to be able and willing by regulatory authorities to assume the greater risk ofa non-public offering. G Incorrect because private company investors may be limited to qualified or so- called accredited investors or sophisticated investors, or those deemed to be able and willing by regulatory authorities to assume the greater risk of a non-public offering. 48 -- 51 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q6",
+    "questionText": "Private companies most likely have:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less share price transparency compared to public companies.",
+        "isCorrect": true,
+        "explanation": "Correct because in contrast to public companies the shares of a private company are not listed (do not trade on an exchange), so no visible company valuation or share price transparency exists."
+      },
+      {
+        "label": "B",
+        "text": "similar share price transparency as public companies.",
+        "isCorrect": false,
+        "explanation": "Incorrect because private companies typically have less share price transparency than public companies. ;"
+      },
+      {
+        "label": "C",
+        "text": "greater share price transparency compared to public companies.",
+        "isCorrect": false,
+        "explanation": "Incorrect because private companies typically have less share price transparency than public companies."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q7",
+    "questionText": "Question . The business model ofa knowledge aggregation company that allows its users to contribute directly to online content is best referred to as a: 36 -- 39 of 166 --",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "B.",
+        "isCorrect": true,
+        "explanation": "Correct because short-term debt is included in a company’s financial balance sheet."
+      },
+      {
+        "label": "C",
+        "text": "platform business model. marketplace business model. crowdsourcing business model. 37 -- 40 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q9",
+    "questionText": "Which of the following is a recommended procedure for complying with the Standard relating to preservation of confidentiality? Procedure Disclose to authorized fellow employees only information that will improve 1 service to the client Procedure Encourage the adoption of standard confidentiality procedures utilized by 2 leading firms in the industry",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "tiered pricing.",
+        "isCorrect": true,
+        "explanation": "Correct because tiered pricing is charging different prices to different buyers, often based on volume purchased but also based on product features (e.g., base versus premium trims of vehicles)."
+      },
+      {
+        "label": "B",
+        "text": "dynamic pricing.",
+        "isCorrect": false,
+        "explanation": "Incorrect because dynamic pricing is charging different prices at different times and for different types of customers depending on such variables as available supply levels and demand. CG: Incorrect because value based pricing is setting prices based on the value received by the customer, which often involves estimating opportunity cost."
+      },
+      {
+        "label": "C",
+        "text": "value-based pricing.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q10",
+    "questionText": "Which of the following is a pull on a company's liquidity?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Obsolete inventory",
+        "isCorrect": false,
+        "explanation": "Incorrect because major drags on receipts involve pressures from credit management and deterioration in other assets and include obsolete inventory. If inventory stands unused for long periods, it might be an indication that it is no longer usable. So, obsolete inventory is a drag (not a pull) on a company’s liquidity."
+      },
+      {
+        "label": "B",
+        "text": "Reduced credit limits",
+        "isCorrect": true,
+        "explanation": "Correct because a pull on liquidity is when disbursements (outflows) are paid too quickly by the company or trade credit availability is limited, requiring companies to expend funds before they receive funds from sales that could cover the liability. Also, major pulls on payments include reduced credit limits, If a company has a history of making late payments, suppliers might cut the amount of credit they will allow to be outstanding at any time. So, reduced credit limits are a pull on a company’s liquidity. & Incorrect because major drags on receipts involve pressures from credit management and deterioration in other assets and include uncollected receivables. The longer these are outstanding, the greater the risk that they will not be collected at all. They are indicated by the large number of days of receivables and high levels of bad debt expenses. So, uncollected receivables are a drag (not a pull) on a company’s liquidity."
+      },
+      {
+        "label": "C",
+        "text": "Uncollected receivables",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q12",
+    "questionText": "The sequence of processes involved in the creation of a product, both within and external to a firm, is best referred to as a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "value chain.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a firm’s value chain is the systems and processes within a firm that create value for its customers. Note that a firm’s value chain is different from a supply chain, which refers to the sequence ofprocesses involved in the creation of a product, both within and external to a firm."
+      },
+      {
+        "label": "B",
+        "text": "supply chain.",
+        "isCorrect": true,
+        "explanation": "Correct because a supply chain refers to the sequence of processes involved in the creation of a product, both within and external to a firm. A supply chain includes all the steps involved in praducing and delivering a physical product to the end customer, regardless of whether those steps are performed by a single firm."
+      },
+      {
+        "label": "C",
+        "text": "business model.",
+        "isCorrect": false,
+        "explanation": "Incorrect because there is no precise definition, but a business model essentially describes how a business is organized to deliver value to its customers. A business model makes it clear what the business does, how it operates, and how it generates revenue and profits, as well as how it differs in these respects from its competitors. A business model should have a value proposition and a value chain. So, business model is a broader concept, which includes value chain but also other business organization elements,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q13",
+    "questionText": "A company manufacturing and selling a product using someone else's brand name in return for a royalty most likely operates:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "under a franchise model.",
+        "isCorrect": false,
+        "explanation": "Incorrect because under a franchise model distributers or retailers have a tightly defined and often exclusive relationship with the parent company."
+      },
+      {
+        "label": "B",
+        "text": "as a contract manufacturer,",
+        "isCorrect": false,
+        "explanation": "Incorrect because private label or contract manufacturers produce goods to be marketed by others."
+      },
+      {
+        "label": "C",
+        "text": "undera licensing arrangement. 38 -- 41 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because a company will produce a product using someone else’s brand name in return for a royalty under a licensing arrangement."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q14",
+    "questionText": "When analyzing a company, analysts should;",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "ignore the company's business model.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a clearly described business model helps the analyst understand a business: how it operates, its strategy, target customers, key partners, prospects, risks, and financial profile."
+      },
+      {
+        "label": "B",
+        "text": "develop their own understanding of the company’s business model.",
+        "isCorrect": true,
+        "explanation": "Correct because a clearly described business model helps the analyst understand a business: how it operates, its strategy, target customers, key partners, prospects, risks, and financial profile. Rather than rely on management's description of its business model, analysts should develop their own understanding. C: Incorrect because rather than rely on management's description of its business model, analysts should develop their own understanding. 51 -- 54 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "rely on management's description of the company's business model",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q15",
+    "questionText": "Which of the following is best categorized as a drag on liquidity?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Insufficient credit lines",
+        "isCorrect": false,
+        "explanation": "Incorrect because a pull on liquidity is when disbursements are paid too quickly or trade credit availability is limited, requiring companies to expend funds before they receive funds from sales that could cover the liability. Major pulls on payments include: Reduced credit limits. If a company has a history of making late payments, suppliers may cut the amount of credit they will allow to be outstanding at any time, which can squeeze the company’s liquidity."
+      },
+      {
+        "label": "B",
+        "text": "Uncollected receivables & Early payments to vendors",
+        "isCorrect": true,
+        "explanation": "Correct because a drag on liquidity is when receipts lag, creating pressure from the decreased available funds. Major drags on receipts involve pressures from credit management and deterioration in other assets and include: Uncollected receivables, The longer these are outstanding, the greater the risk that they will not be collected at all. ;"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q17",
+    "questionText": "According to the Modigliani-Miller propositions, ifa company's debt-to-equity ratio increases, which of the following costs is most likely to exhibit the largest increase?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "WACC",
+        "isCorrect": false,
+        "explanation": "Incorrect because according to the Modigliani-Miller propositions, an increase in the debt to equity ratio either has no effect on the WACC (Proposition I) or (all else being equal) decreases the WACC (Proposition II). According to MM Proposition I, the value of the company remains unchanged or constant as the capital structure changes. Therefore, the weighted average cost of capital must also remain constant as the capital structure changes. According to MM Proposition II, the cost of equity rises as the company increases the amount of debt in its capital structure, but itrises at a slower rate than in the no-tax case. As debt increases, the WACC decreases and the company’s value increases."
+      },
+      {
+        "label": "B",
+        "text": "Cost of debt",
+        "isCorrect": false,
+        "explanation": "Incorrect because an assumption of the Modigliani-Miller Proposition I without taxes is that investors can borrow and lend at the risk-free rate. This means a change in the cost of debt will have no effect on the cost of debt in this case. Further, according to Modigliani-Miller Proposition II with taxes, fora leveraged company the cost of equity will increase by more than the cost of debt if the debt-to-equity ratio increases...r. = ret+ (ra—ra)(1 — ()D/E...where r, = Cost of equity for a leveraged company, rz = Cost of capital for a company financed only with equity, rs = Cost of debt fora leveraged company, t = Company tax rate and D/E= Debt-to-equity ratio. Since r,> ra, the cost of equity (r.) will increase by more than the cost of debt (r.) if the debt-to-equity ratio (D/E) increases, even if r, also increases which is not directly contemplated by the text."
+      },
+      {
+        "label": "C",
+        "text": "Cost of equity",
+        "isCorrect": true,
+        "explanation": "Correct because as the debt-to-equity ratio increases and the company uses more debt, its risk goes up and the cost of equity must increase. MM Proposition II holds that the increase in the cost of equity must exactly offset the greater use of lower cost debt. 52 -- 55 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q19",
+    "questionText": "With respect to a publicly listed company, a conflict of interest due to information asymmetry is most likely to occur between shareholders and:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "creditors.",
+        "isCorrect": false,
+        "explanation": "Incorrect because information asymmetry, applies between managers and shareholders. Conflicts of interest between shareholders and creditors arise typically due to a divergence in risk tolerance regarding the company's investments that exists between shareholders and creditors."
+      },
+      {
+        "label": "B",
+        "text": "managers.",
+        "isCorrect": true,
+        "explanation": "Correct because compared with shareholders, managers typically have greater access to information about the business and are more knowledgeable about its operations. Such ‘information asymmetry’ (that is, unequal access to information) makes it easier for managers to make strategic decisions that are not necessarily in the best interest of shareholders and weakens the ability of shareholders to exercise control."
+      },
+      {
+        "label": "C",
+        "text": "customers.",
+        "isCorrect": false,
+        "explanation": "Incorrect because information asymmetry applies between managers and shareholders. Typical conflicts of interest between shareholders and customers arise when, for example, a company decides to charge a high price for its products or reduces product safety features to reduce costs."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q21",
+    "questionText": "From the perspective of a corporate issuer, which of the following is a benefit of issuing debt rather than equity as a source of capital? Debt is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "cheaper.",
+        "isCorrect": true,
+        "explanation": "Correct because debt represents a cheaper financing source for companies anda lower risk for investors. Because the returns to lenders are capped and because the cost of debt is lower than the cost of equity, corporations with predictable cash flaws may prefer to borrow money rather than sell an ownership stake to raise the capital they need to finance their investments. This is because issuing more equity dilutes upside return for existing equity owners given that residual value must be shared across more owners."
+      },
+      {
+        "label": "B",
+        "text": "less risky.",
+        "isCorrect": false,
+        "explanation": "Incorrect because from the issuer's perspective, bonds are riskier than stocks for the same reason bonds are safer than stocks for investors. Bonds increase risk to the corporation by increasing leverage. If the company is struggling and cannot meet its promised obligations to bondholders, bondholders have the legal standing to force certain actions upon the corporation, such as bankruptcy and liquidation. GC: Incorrect because equityholders represent a more permanent source of capital and have voting rights to elect the board of directors, which oversees the management of the company. Debt has a stated, finite term with generally no voting rights, while equity has no finite term and includes voting rights,"
+      },
+      {
+        "label": "C",
+        "text": "more permanent.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q22",
+    "questionText": "An improvement in corporate governance structure most likely results in:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "lower cost of debt borrowing.",
+        "isCorrect": true,
+        "explanation": "Correct because default risks are also mitigated by properly functioning audit systems, transparent and better reporting of earnings, and controlling information asymmetries between the company and its capital providers. Lower default risks are associated with better credit ratings for the company and fower costs of debt borrowing, given that creditors typically require a lower return when their funds are better secured and their rights protected. Thus, an effective corporate governance structure will result in lower cost of debt borrowing for the company."
+      },
+      {
+        "label": "B",
+        "text": "less control by management. G reduced operational efficiency.",
+        "isCorrect": false,
+        "explanation": "Incorrect because strong governance practices institute more efficient procedures for scrutiny and control at all corporate levels, starting at the level of shareholders and moving up to management and the board of directors. These mechanisms allow for the mitigation of risk factors as well as fraudulent activities or for their identification and control at early stages, thus preventing them from hindering corporate performance and reputation."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q23",
+    "questionText": "An analyst gathers the following information about a company's capital investment: Initial cash outlay ; $90 million Annual before-tax cash flows (year-end) for Year 1 through Year 6 $50 million Marginal tax rate 15% Required rate of return 12% The net present value of the investment is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "$85 million.",
+        "isCorrect": true,
+        "explanation": "Correct because for a capital investment with one investment outlay, made initially, the net present value (NPV) is the present value of the future after-tax cash flows minus the investment outlay NPV = ..2.2CF, /(1 +r): -— Outlay We calculate the present value of the future after-tax cash flows using the calcuJator with the following parameters: Yearly after-tax payment/cash-flow: PMT = 50 = (1 - 0.15) = 42.5 54 -- 57 of 166 -- Number of payments: N =6 Int. rate = 12%, To calculate the NPV, from the present value we subtract the initial $90 million outflow. Accordingly, NPV = $174.7 million - $90.0 million = $84.7 = $85 million."
+      },
+      {
+        "label": "B",
+        "text": "$116 million. c $175 million.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it uses the before-tax cash flow of $50 million in the calculation (instead of the after-tax cash flow of $42.5 million), Calculating the present value of the cash flows with parameters PMT = 50, N = 6 and Int. Rate = 12% gives a present value of $205.57 million, and subtracting the initial $90 million outflow, the NPV is incorrectly calculated as NPV = $205.57 million - $90 million = $115.6 million ~ $116 million."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q24",
+    "questionText": "Which ofthe following is most likely a feature of sole proprietorships?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Existence of a legal identity",
+        "isCorrect": false,
+        "explanation": "Incorrect because key features of sole proprietorships include the following: No legal identity; considered extension of owner,"
+      },
+      {
+        "label": "B",
+        "text": "Operational simplicity and flexibility",
+        "isCorrect": true,
+        "explanation": "Correct because key features of sole proprietorships include the following: Operational simplicity and flexibility. G: Incorrect because key features of sole proprietorships include the following: Profits from business taxed as personal income."
+      },
+      {
+        "label": "C",
+        "text": "Taxation of business profits as corporate income",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q25",
+    "questionText": "The source of capital that most likely benefits from a tax shield is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "debt.",
+        "isCorrect": true,
+        "explanation": "Correct because if interest can be deducted in full, the tax deductibility of debt reduces the effective marginal cost of debt to reflect the income shielded from taxation and the marginal cost of debt is r.(1 - ¢). The cost of debt capital is the only cost of capital that can benefit from a tax shield."
+      },
+      {
+        "label": "B",
+        "text": "equity. Cc; preferred equity.",
+        "isCorrect": false,
+        "explanation": "Incorrect because only debt benefits from a tax shield. The cost of equity calculation used in the WACC is simply the weight of equity times the cost of equity with no adjustments made for taxation. Taking the sources of capital to be common stock, preferred stock, and debt and allowing for the fact...that in some jurisdictions interest expense may be tax deductible, the expression for WACC is WACC = Wore (1 — t) + Wor,+ Were.W. = the proportion of equity that the company uses when it raises funds and r= the marginal cost of equity. G, Incorrect because unlike interest on debt, the dividend on preferred stock is not tax- deductible by the company; therefore, there is no adjustment to the cost of taxes. Therefore, raising capital by issuing preferred equity does not give rise to a tax shield to the company."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q28",
+    "questionText": "Consider the following information about a company: Market value of debt outstanding £15,000 Market value of company £40,000 Cost of debt 4.0% Unlevered WACC 9.0% Tax rate 25% Based on the Modigliani-Miller propositions, the company's cost of equity is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "10.4%,",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the result generated if the company value is used rather than the equity value. Cost of equity # 0.09 + (0.09 - 0.04)*(1 — 0.25)x(£15,000/£40,000) = 0.1041 = 10.4%,"
+      },
+      {
+        "label": "B",
+        "text": "11.3%. 66 12.0%,",
+        "isCorrect": true,
+        "explanation": "Correct because Modigliani and Miller also show that the cost of equity for the same company with debt is: r. = re + (te— rd)(1 — t)(D/E), where: r.= cost of equity r, = cost of capital for a company financed only with equity ry = cost of debt D = market value of debt E = market value of equity. Cost of equity = 0.09 + (0.09 - 0.04)x(1—- 0.25)x(£15,000/(£40,000 - 15,000)) = 0.1125 = 11.3%. G. Incorrect because this result reflects the cost of equity in the absence of corporate taxes, Cost of equity ¥ 0.09 + (0.09 - 0,04)x(£15,000/(£40,000 ~ £15,000)) = 0.1200 = 12.0%, . 56 -- 59 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q30",
+    "questionText": "According to the Modigliani—Miller Proposition I without taxes, whena firm increases the proportion of debt in its capital structure, the firm value:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "decreases.",
+        "isCorrect": false,
+        "explanation": "Incorrect because, according to the MM Proposition | without taxes, the firm value is not affected by the company's capital structure. It is determined solely by the firm's expected future cash flows."
+      },
+      {
+        "label": "B",
+        "text": "remains unchanged.",
+        "isCorrect": true,
+        "explanation": "Correct because Modigliani and Miller proved that changing the capital structure does not affect firm value. The value of a firm is thus determined not by the securities it issues but, rather, by its expected future cash flows. ¢. Incorrect because, according to the MM Proposition | without taxes, the firm value is not affected by the company's capital structure. It is determined solely by the firm's expected future cash flows."
+      },
+      {
+        "label": "C",
+        "text": "increases.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q31",
+    "questionText": "With respect to liquidity management, which of the following activities most likely provides access to a primary source of liquidity?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Liquidating obsolete assets",
+        "isCorrect": false,
+        "explanation": "Incorrect because the main difference between the primary and secondary sources ofliquidity is that using a primary source is not likely to affect the normal operations ofthe company. However, liquidating assets, which depends on the degree to which short-term and/or long-term assets can be liquidated and converted into cash without substantial loss in value may affect a company's normal operation as productivity is reduced. Therefore, liquidating assets cannot be a primary source of liquidity."
+      },
+      {
+        "label": "B",
+        "text": "Creating an effective cash management system",
+        "isCorrect": true,
+        "explanation": "Correct because primary sources ofliquidity are liquidity sources that are the most readily accessible resources available to the company. One of the examples is cash flow management, which is the company's effectiveness in its cash management system and practices, and the degree of decentralization of the collections or payments processes. The more decentralized the system of collections, for example, the more likely the company will be to have cash tied up in the system and not available for use. Therefore, an effective cash management system is a primary source of liquidity as it is likely to be the most readily accessible resources available to the company."
+      },
+      {
+        "label": "C",
+        "text": "Negotiating new debt contracts that delay principal repayment",
+        "isCorrect": false,
+        "explanation": "Incorrect because negotiating debt contracts, relieving pressures from high interest payments or principal repayments may signal a company's deteriorating financial health 5? -- 60 of 166 -- and provide liquidity ata high price. This may well affect the normal operations of the company. Therefore, negotiating debt contracts cannot be a primary source of liquidity."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q32",
+    "questionText": "Which of the following company stakeholders is most likely exposed to the greatest information asymmetry when compared to the company's management?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "A bank lender",
+        "isCorrect": false,
+        "explanation": "Incorrect because banks and private lenders generally hold a company’s debt to maturity. They typically have direct access to company management and non-public information about the company; in principle, this reduces information asymmetries that exist between the company and these groups."
+      },
+      {
+        "label": "B",
+        "text": "A public debtholder G A memberof the board 41 -- 44 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because public debtholders do not have access to non-public information. Public debtholders (or bondholders) rely on public information and credit rating agency determinations to make their investment decisions. Unlike shareholders, debtholders do not hold voting power, and they typically have limited influence over a company’s day-to-day operations. G Incorrect because a memberof the board of directors has significant influence and access to non-public information. A company’s board of directors is elected by shareholders to protect shareholders’ interests and provide strategic direction, taking into consideration the company’s risk appetite, which it defines for the company. The board is also responsible for hiring the CEO and monitoring the performance ofthe company and Management"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q35",
+    "questionText": "In a limited partnership, business operations are the responsibility of:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "the general partner only.",
+        "isCorrect": true,
+        "explanation": "Correct because key features of limited partnerships include: « GP operates the business, having unlimited liability, « LPs have limited liability but lack control over business operations."
+      },
+      {
+        "label": "B",
+        "text": "the limited partners only.",
+        "isCorrect": false,
+        "explanation": "Incorrect because key features of limited partnerships include: » GP operates the business, having unlimited liability, » LPs have limited liability but lack control over business operations."
+      },
+      {
+        "label": "C",
+        "text": "both the general partner and the limited partners.",
+        "isCorrect": false,
+        "explanation": "Incorrect because key features of limited partnerships include: « GP operates the business, having unlimited liability, « LPs have limited liability but lack control over business operations."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q38",
+    "questionText": "Proxy voting is best described as permitting:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "different voting rights for multiple share classes.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it describes dual classes of common equity, not proxy voting. Proxy voting is a process that enables shareholders who are unable to attend a meeting to authorize another individual (for example, another shareholder or director) to vote on their behalf."
+      },
+      {
+        "label": "B",
+        "text": "shareholders to cast all of their votes for one board nominee.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it describes cumulative voting, not proxy voting. Cumulative voting (as opposed to straight voting) enables each shareholder to accumulate and vote all his or her shares for a single candidate in an election involving more than one director."
+      },
+      {
+        "label": "C",
+        "text": "shareholders to vote their shares when absent from meetings.",
+        "isCorrect": true,
+        "explanation": "Correct because proxy voting is a process that enables shareholders who are unable to attend a meeting to authorize another individual (for example, another shareholder or director) to vote on their behalf."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q39",
+    "questionText": "Owners have limited liability in a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "corporation.",
+        "isCorrect": true,
+        "explanation": "Correct because owners in a corporation have limited liability."
+      },
+      {
+        "label": "B",
+        "text": "sole proprietorship.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in a sole proprietorship the owner has unlimited liability and retains all risk associated with the business, meaning she can be held financially responsible for all debt the business owes. Ci, Incorrect because a general partnership has two or more owners called partners and all profits, losses, and risks of the business are collectively assumed and shared by the partners. If one partner is unable to pay their share of the business’s debts, the remaining partners are fully liable. Partners in a general partnership have unlimited liability."
+      },
+      {
+        "label": "C",
+        "text": "general partnership. 42 -- 45 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q40",
+    "questionText": "Which of the following statements about sources of liquidity is most accurate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Filing for bankruptcy is considered a secondary source of liquidity.",
+        "isCorrect": true,
+        "explanation": "Correct because secondary sources include: filing for bankruptcy protection and reorganization. Further, reorganization through bankruptcy, may also be considered a liquidity tool because a company under bankruptcy protection that generates operating cash will be liquid and generally able to continue business operations until a restructuring has been devised and approved."
+      },
+      {
+        "label": "B",
+        "text": "Secondary sources of liquidity have a lower cost than primary sources of liquidity.",
+        "isCorrect": false,
+        "explanation": "Incorrect because primary sources represent funds that are readily accessible at relatively low cost. On the other hand, use of secondary sources may signal a company’s deteriorating financial health and provide liquidity at a high price - the cost of giving up a company asset to produce emergency cash."
+      },
+      {
+        "label": "C",
+        "text": "Using a primary source of liquidity impacts the financial and operating positions ofa company.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the main difference between the primary and secondary sources ofliquidity is that usinga primary source is not likely to affect the normal operations of the company, whereas using a secondary source may result in a change in the company’s financial and operating positions."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q41",
+    "questionText": "Question , Subsequent to making a capital investment, a company reacts to poor financial results from the project by abandoning it. This action alone best exemplifies the exercise of a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "sizing option.",
+        "isCorrect": true,
+        "explanation": "Correct because sizing options encompass abandonment or expansion ofcapacity. If after investing the company can abandon the investmentif the financial results are disappointing, it has an abandonment option. At some future date, if the cash flow from 60 -- 63 of 166 -- abandoning an investment exceeds the present value of the cash flows from continuing the investment, the company should exercise the abandonment option. Conversely, if the company can make additional investments when future financial results are strong, the company has a growth option or an expansion option."
+      },
+      {
+        "label": "B",
+        "text": "timing option. (G. flexibility option.",
+        "isCorrect": false,
+        "explanation": "Incorrect because timing options involve the sequencing of projects. Instead of investing now, the company can delay investing, Delaying an investment and basing the decision on hopefully improved information that you might have in, say, a year could help improve the NPV of the projects selected. Project sequencing options allow the company to defer the decision to invest in a future investment until the outcome of some or all of a current investment is known, Investments are sequenced over time, so that investing in a project creates the option to make future investments,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q42",
+    "questionText": "A measure of how effectively capital is converted into after-tax operating profits is the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "hurdle rate.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the hurdle rate is the rate that a project's IRR must exceed for the project to be accepted by the company."
+      },
+      {
+        "label": "B",
+        "text": "cost of capital.",
+        "isCorrect": false,
+        "explanation": "Incorrect because cost of capital (COC), is the required return used in the NPV calculation, and the company’s associated cost of funds."
+      },
+      {
+        "label": "C",
+        "text": "return on invested capital.",
+        "isCorrect": true,
+        "explanation": "Correct because ROIC reflects how effectively a company’s management is able to convert capital into after-tax operating profits."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q45",
+    "questionText": "Double taxation of profits is most likely a concern for owners in:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "corporations.",
+        "isCorrect": true,
+        "explanation": "Correct because tax disadvantage for owners in countries with double taxation is a key feature of corporations. In most countries, corporations are taxed directly on their profits. In many countries, shareholders pay an additional tax on distributions (dividends) that are passed on to them. Economists refer to this as the double taxation of corporate profits."
+      },
+      {
+        "label": "B",
+        "text": "limited partnerships. general partnerships",
+        "isCorrect": false,
+        "explanation": "Incorrect because profits of limited partnerships are taxed only at the personal level. A key feature of limited partnerships is that all partners share in return, with profits taxed as personal income. G, Incorrect because profits of general partnerships are taxed only at the personal level. A key feature of general partnerships is that all partners share all return, with profits taxed as personal income."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q46",
+    "questionText": "Which of the following is an example of a secondary source of liquidity for a company?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Short-term funds",
+        "isCorrect": false,
+        "explanation": "Incorrect because primary sources of liquidity represent the most readily accessible resources available to the company. These can be cash held or near-cash securities and include the following: Short-term funds, which can include items such as trade credit, bank lines of credit, and short-term investment portfolios ofthe firm."
+      },
+      {
+        "label": "B",
+        "text": "Liquidating assets & Effective cash management 43 -- 46 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because the main difference between primary and secondary sources of liquidity is that using a primary source is not likely to affect the normal operations of the company, whereas using a secondary source might result ina change in the company’s financial and operating positions. Secondary sources used by companies include: liquidating assets, which depends on the degree to which short-term and/or long-term assets can be liquidated and converted into cash without substantial loss in value. C: Incorrect because primary sources of liquidity represent the most readily accessible resources available to the company. These can be cash held or near-cash securities and include the following: Cash management, which is the company’s effectiveness in its cash management system and practices and the degree of decentralization of the collections or payments processes. 62 -- 65 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q47",
+    "questionText": "Which of the following committees of a board of directors oversees the development ofthe company's conflict of interest policy?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Risk committee",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the governance committee, not the risk committee, that has the responsibility to oversee the development of governance policies, including a conflict of interest policy. In summary, key oversight functions ofthe risk committee include * determining company risk profile, * ensuring appropriate enterprise risk management, and « aligning corporate activities with risk appetite."
+      },
+      {
+        "label": "B",
+        "text": "Governance committee G Remuneration committee",
+        "isCorrect": true,
+        "explanation": "Correct because the main role of the board’s governance committee is to ensure that the company adopts good corporate governance structures and practices. For this purpose, it oversees the development of the governance policies at the company such as * the corporate governance code « the charter of the board and its committees * the code of ethics and « the conflict of interest policy, among others."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q48",
+    "questionText": "A company with a required rate of return of 12% is considering a capital project with the following cash flows (in millions): Initial Outlay Year 1Year 2 Cash flow -£150 £8 £175 The expected IRR for this project is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less than 12%.",
+        "isCorrect": true,
+        "explanation": "Correct because the IRR is the discount rate that makes the present value ofthe future after-tax cash flows equal that investment outlay or }.. CF, + (1+ IRR): = Outlay, where IRR is the internal rate of return. Solved using the following calculator inputs: CF. = —150, CF, = 8, CF, = 175, Calculate IRR= 10.7119, rounded to 10.71% which is less than 12%,"
+      },
+      {
+        "label": "B",
+        "text": "equal to 12%. GC. greater than 12%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it refers to the company’s required rate of return, not the expected IRR."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q49",
+    "questionText": "All else being equal, if interest on debt is tax deductible, an increase in the company's marginal tax rate will:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "decrease the company's WACC.",
+        "isCorrect": true,
+        "explanation": "Correct because the marginal cost of debt financing is the cost of debt after considering the allowable deduction for interest on debt. If interest can be deducted in full, 63 -- 66 of 166 -- the tax deductibility of debt reduces the effective marginal cost of debt to reflect the income shielded from taxation (often referred to as the tax shield) and the marginal cost of debt is ra(1 - ¢]. If the marginal tax rate increases, this increases the tax shield and lowers the marginal cost of debt and also the WACC."
+      },
+      {
+        "label": "B",
+        "text": "not affect the company's WACC. G increase the company's WACC.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the WACC does not remain the same. If interest can be deducted in full, the tax deductibility of debt reduces the effective marginal cost of debt to reflect the income shielded from taxation (often referred to as the tax shield) and the marginal cost of debt is r.(1 — ¢). If the marginal tax rate increases, this increases the tax shield and lowers the marginal cost of debt and also the WACC. G. Incorrect because it does not increase the WACC. If interest can be deducted in full, the tax deductibility of debt reduces the effective marginal cost of debt to reflect the income shielded from taxation (often referred to as the tax shield) and the marginal cost of debt is r.(1 - £). If the marginal tax rate increases, this increases the tax shield and lowers the marginal cost of debt and also the WACC."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q50",
+    "questionText": "A company increases its debt from 20% to 60% of its capital structure. Based on the Modigliani and Miller proposition (without taxes) regarding capital structure, the WACC of the company:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "decreases.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the Modigliani and Miller proposition implies that higher leverage raises the cost of equity but does not change firm value or WACC."
+      },
+      {
+        "label": "B",
+        "text": "remains the same. Ci increases.",
+        "isCorrect": true,
+        "explanation": "Correct because the Modigliani and Miller proposition implies that higher leverage raises the cost of equity but does not change firm value or WACC."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q51",
+    "questionText": "The NPV ofa new project is expected to be -$0.20 million. An incremental investment of $0.40 million would give management the flexibility to switch to a lower cost input in the future. If this option has an estimated value of $0.80 million, the value of the project including the option is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "$0.20 million.",
+        "isCorrect": true,
+        "explanation": "Correct because the NPV, including the real option, should be: Project NPV = NPV (based on DCF alone) — Cost of options + Value of options. Project NPV = -$0.2 million — $0.4 million + $0.8 million = $0.2 million."
+      },
+      {
+        "label": "B",
+        "text": "$0.40 million. G $1.00 million.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the original NPV of the investment was not considered. Project NPV # - Cost of options + Value of options. Project NPV # — $0.4 million + $0.8 million = $0.4 million."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q53",
+    "questionText": "Which of the following is most accurate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Risk appetites are similar among private lenders",
+        "isCorrect": false,
+        "explanation": "Incorrect because private debtholders have wide variation in risk appetites. With banks and private lenders, the general perspective of debtholders applies: less financial leverage implies less risk and is therefore preferred. Among private lenders, however, there is wide variation in their risk appetite, approach, behavior, and relationships with companies to whom they have provided capital."
+      },
+      {
+        "label": "B",
+        "text": "Staggered boards provide continuous implementation of strategy and oversight",
+        "isCorrect": true,
+        "explanation": "Correct because the positive aspect ofa staggered board is that it provides continuous implementation of strategy and oversight without constantly being reassessed by new board members, which otherwise risks bringing short-termism into company strategy."
+      },
+      {
+        "label": "C",
+        "text": "A company's CEO is responsible for implementing the company’s strategy under the oversight of the company's shareholders",
+        "isCorrect": false,
+        "explanation": "Incorrect because a company's CEQ is hired by the board and responsible for implementing the company’s strategy under the oversight of the board of directors. Managers, led by the chief executive officer of the company, are responsible for determining and implementing the corporation's strategy under the oversight of the board of directors. In addition, a company’s board of directors is elected by shareholders to protect shareholders’ interests and provide strategic direction, taking into consideration the company’s risk appetite, which it defines for the company. The board is also responsible for hiring the CEO and monitoring the performance of the company and management,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q54",
+    "questionText": "The potential for conflict between debtholders and shareholders is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "lower for long-term debt than for short-term debt.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the potential debt/equity conflict is greater in the case of long- term rather than short-term debt because the passage of time exposes debtholders to possible changes in business conditions, strategy, and management behavior. So, the conflict between debtholders and shareholders is greater (not lower) in the case of long- term versus short-term debt,"
+      },
+      {
+        "label": "B",
+        "text": "the same for long-term debt and short-term debt.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the potential debt/equity conflictis greater in the case of long-term rather than short-term debt because the passage of time exposes debtholders to possible changes in business conditions, strategy, and management behavior. So, the conflict between debtholders and shareholders is greater (not the same) in the case of long-term versus short-term debt. 65 -- 68 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "higher for long-term debt than far short-term debt.",
+        "isCorrect": true,
+        "explanation": "Correct because the potential debt/equity conflict is greater in the case of long- term rather than short-term debt because the passage of time exposes debtholders to possible changes in business conditions, strategy, and management behavior."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q56",
+    "questionText": "In a corporation, which of the following stakeholder groups is the principal in a principal- agent relationship?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Shareholders",
+        "isCorrect": true,
+        "explanation": "Correct because the relationship between shareholders and managers/directors is a classic example of a principal—agent relationship, whereby shareholders (the principal in this case) elect directors (an agent) who are expected to protect their interests by appointing senior managers (another agent) to run the company."
+      },
+      {
+        "label": "B",
+        "text": "Board of directors",
+        "isCorrect": false,
+        "explanation": "Incorrect because the relationship between shareholders and managers/directors is a classic example of a principal—agent relationship, whereby shareholders (the principal in this case) elect directors (an agent) who are expected to protect their interests by appointing senior managers (another agent) to run the company. So, the board ofdirectors is an agent (not a principal) in a corporation. G Incorrect because the relationship between shareholders and managers/directors is a classic example of a principal-agent relationship, whereby shareholders (the principal in this case) elect directors (an agent) who are expected to protect their interests by appointing senior managers (another agent) to run the company. So, the senior management is an agent (not a principal) in a corporation. 66 -- 69 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "Senior management",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q57",
+    "questionText": "Joshua Hu, a research analyst, is initiating coverage on several companies in the ocean freight shipping industry. OldShips is a mature company with high fixed costs and a high capital expenditure to sales ratio because it owns and operates its own fleet ofships. CleanYards is a technologically advanced, sustainable shipyard with a focus on specialized repairs and ship construction. Hu has compiled the following data for the two companies: OldShips CleanYards Degree of Financial Leverage (DFL) 2.0 2.0 Degree of Operating Leverage (DOL) 1.0 2.0 Asset turnover ratio 0.84 0.42* DSO 27 98 DOH 12 46 DPO 55 40 NewShips, a third company, is a web-based shipping technology platform that connects ship operators such as OldShips with customers in a wide variety of industries who need ocean freight shipping. NewShips’ customers place orders online and pay for freight to be placed on a container to any destination in the world. NewShips’ partners, like OldShips, provide vessels on both long- and short-term charters. In 2X19, NewShips’ platform brokered orders for 900,000 twenty-foot equivalent unit (TEU) containers in aggregate, with an average gross freight rate of USD3,848 per TEU. On 45 -- 48 of 166 -- average, NewShips’ commission, which it receives as a broker from the customer, was 6% of the freight rate. Question An analyst gathers the following information about a company: capital S Market Value (Millions) Before-tax C Capital Bonds €60 6% Preferred stock €20 B% Common stock €120 15% If the company's marginal tax rate is 40%, its weighted average cost of capital is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "9.7%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the average, not the weighted average, of the costs of capital (as caclulated in the response rationale for the answer key). WACC = (6% + 8% + 15%) /3 = 9.67%."
+      },
+      {
+        "label": "B",
+        "text": "10.9%, G 11.6%.",
+        "isCorrect": true,
+        "explanation": "Correct because the WACC = wars x (1 — t) + Warp + Were Where: wa = the market value weight for debt = 60 / (60 + 20 + 120) = 0.30 ra= the before-tax cost of debt = 6% t= the company's marginal tax rate = 40% = 0.4 w, = the market value weight for preferred stock= 20 / (60 + 20 + 120) =0.10 r, = the marginal cost of preferred stock = 8% w, = the market value weight for equity = 120 / (60 + 20 + 120) = 0.60 r. = the marginal cost of equity = 15% WACC = (0.30 x 6% x (1 — 0.4)) + (0.10 x 8%) + (0.60 x 15%) = 10.88%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q58",
+    "questionText": "Covenants are most likely to exist between a company and its:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "creditors.",
+        "isCorrect": true,
+        "explanation": "Correct because to limit bondholders’ risk during the term ofa bond (or loan), the bond indenture typically contains covenants, which are the terms and conditions of lending agreements, enabling creditors to specify the actions an issuer is obligated to perform or prohibited from performing."
+      },
+      {
+        "label": "B",
+        "text": "management, Cc board of directors.",
+        "isCorrect": false,
+        "explanation": "Incorrect because covenants, which are the terms and conditions of lending agreements, enabling creditors to specify the actions an issuer is obligated to perform or prohibited from performing. Covenants apply to an issuer's relationship with creditors, not with management."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q59",
+    "questionText": "Ifa company's debt-to-equity ratio is 0.5, the weight of equity applied in estimating the company's WACC is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0.33.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the weight ofdebt, not equity. 0.5/ (1.5) = 0.333 = 0.33."
+      },
+      {
+        "label": "B",
+        "text": "0.50.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the D/E ratio not the weight of equity."
+      },
+      {
+        "label": "C",
+        "text": "0.67.",
+        "isCorrect": true,
+        "explanation": "Correct because the weight of debt is determined by the formula: wa- D/E / (1 + D/E) where D is the value of debt and E is the value of equity. Weight of equity (w.) is represented by 1 minus the weight of debt. Calculation: 1 - 0.5/ (1.5) = 1- 0.333 = 0.667 = 0.67. 67 -- 70 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q61",
+    "questionText": "Tiered pricing is best described as:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "charging different prices at different times.",
+        "isCorrect": false,
+        "explanation": "Incorrect because dynamic pricing charges different prices at different times."
+      },
+      {
+        "label": "B",
+        "text": "charging different prices to different buyers. G combining a low price on a piece of equipment with high-margin pricing on repeat- purchase consumables.",
+        "isCorrect": true,
+        "explanation": "Correct because tiered pricing charges different prices to different buyers, most commonly based on volume purchased. G Incorrect because razors-and-blades pricing combines a low price on a piece of equipment and high-margin pricing on repeat-purchase consumables."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q62",
+    "questionText": "A company is deciding whether to invest in one of two mutually exclusive projects with positive NPVs. If Project 1 has a higher NPV but a lower IRR than Project 2, the company should:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "prefer Project 1.",
+        "isCorrect": true,
+        "explanation": "Correct because when the choice is between two mutually exclusive projects and the NPV and IRR rank the two projects differently, the NPV criterion is strongly preferred, .. AS a practical matter, once a corporation has the data to calculate the NPV, it is fairly trivial to then calculate the IRR and other capital allocation criteria. However, the most appropriate and theoretically sound criterion is the NPV."
+      },
+      {
+        "label": "B",
+        "text": "prefer Project 2. ¢ be indifferent between Project 1 and Project 2. 46 -- 49 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because when the choice is between two mutually exclusive projects and the NPV and IRR rank the two projects differently, the NPV [not IRR] criterion is strongly preferred. G. Incorrect because when the choice is between two mutually exclusive projects and the NPV and IRR rank the two projects differently, the NPV criterion [not either one] is strongly preferred."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q65",
+    "questionText": "An electric vehicle manufacturer invests in a new technology to meet new safety standards This project is best classified as a(n):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "expansion project.",
+        "isCorrect": false,
+        "explanation": "Incorrect because expansion projects are those that increase business size, usually by investing in the development of new products or services and/or acquiring other companies. The investment in new technology to meet improved safcty standards is not an expansion project."
+      },
+      {
+        "label": "B",
+        "text": "compliance project.",
+        "isCorrect": true,
+        "explanation": "Correct because regulatory and compliance projects are required by third parties, such as government regulatory bodies, to meet safety and regulatory compliance standards. The investment in new technology to meet improved safety standards is therefore a compliance project. G Incorrect because going concern projects are those investments needed to continue the company’s current operations and maintain the existing size of the business. The investment in new technology to meet improved safety standards is not a going concern project. 69 -- 72 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "going concern project.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q66",
+    "questionText": "The flow of finished goods from manufacturer to wholesaler, retailer, and finally to the end customer best describes a(n):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "direct sales strategy.",
+        "isCorrect": false,
+        "explanation": "Incorrect because manufacturers [sometimes] employ a direct sales strategy, Selling directly to the end customer. Direct sales to the end customer bypass (‘disintermediate') the distributor or retailer. Typically, this involves the company's own sales force, which in some cases represents a significant business investment and carrying cost for the firm."
+      },
+      {
+        "label": "B",
+        "text": "omnichannel strategy.",
+        "isCorrect": false,
+        "explanation": "Incorrect because, with an omnichannel strategy, both digital and physical channels are used to complete a sale. For example, a customer might order an item online and pick it up in a store (‘click and collect’) or select an item in a store and have it delivered. Thus, an omnichannel strategy does nat say anything about the flow of goods from manufacturer to wholesaler, retailer, and then end customer."
+      },
+      {
+        "label": "C",
+        "text": "traditional channel strategy.",
+        "isCorrect": true,
+        "explanation": "Correct because, for ‘product’ businesses, the traditional channel strategy is typically reflected in the flow of finished goods (e.g., from manufacturer to wholesaler, retailer, and end customer), each with its own physical facilities and with the product sold and purchased at each stage."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-corporate-issuers-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q67",
+    "questionText": "A company is evaluating the following mutually exclusive capital projects: Project1 Project2 NPV $180,000 $100,000 IRR 10% 15% If the hurdle rate is 8%, the company should invest in:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Project 1 only.",
+        "isCorrect": true,
+        "explanation": "Correct because Project 1 has a higher NPV. For mutually exclusive investments that are ranked differently by the NPV and IRR, the NPV criterion is more economically sound."
+      },
+      {
+        "label": "B",
+        "text": "Project 2 only.",
+        "isCorrect": false,
+        "explanation": "Incorrect because Project Z has a lower NPV despite a higher IRR. For mutually exclusive investments that are ranked differently by the NPV and IRR, the NPV criterion is more economically sound."
+      },
+      {
+        "label": "C",
+        "text": "both Project 1 and Project 2. 47 -- 50 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because Project 1 and Project 2 are mutually exclusive projects. In the case of mutually exclusive investment projects, a company could, on occasion, face the following situation: Project A might have a larger NPV than Project B, but Project B has a higher IRR than Project A. Since the company can invest in only one project, which should it be— Project A or Project B? The correct choice is Project A, the one with the higher NPV. 70 -- 73 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Corporate Issuers",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  }
+]

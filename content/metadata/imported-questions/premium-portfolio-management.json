@@ -1,0 +1,2816 @@
+[
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q1",
+    "questionText": "Which of the following statements about pension plans is most accurate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Defined benefit plans typically have a low risk tolerance.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a point estimate is used to calculate a confidence interval: Point estimate + Reliability factor x Standard error = confidence interval."
+      },
+      {
+        "label": "B",
+        "text": "Defined contribution plans typically have a low risk tolerance.",
+        "isCorrect": true,
+        "explanation": "Correct because a confidence interval for a parameter is calculated as: Point estimate + Reliability factor x Standard error, where standard error is the standard error of the sample statistic providing the point estimate. Thus, sampling error is not part of the calculation. Sampling error is the difference between the observed value of a statistic and the quantity it is intended to estimate. It is because of sampling error that confidence intervals are used. @ Incorrect because a reliability factor is used to calculate a confidence interval; Point estimate + Reliability factor x Standard error = confidence interval."
+      },
+      {
+        "label": "C",
+        "text": "The sponsor of a defined benefit plan specifies the obligation owed to participants.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q2",
+    "questionText": "The process of risk management is best described as the set of decisions that maximizes a company’s value while:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "minimizing the risk taken.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it uses the forecasted value of the independent variable to construct the prediction interval rather than the predicted value of the dependent variable. In other words, it assumes that the interval is given by Xf tertiea tor a/2S7 3.5% + 2.032 x 1.4% = (0.7%, 6.3%)."
+      },
+      {
+        "label": "B",
+        "text": "bearing a tolerable level of risk.",
+        "isCorrect": true,
+        "explanation": "are the estimated intercept and slope coefficients, respectively. Hence, Yf= 1.2% + 1.0 x 3.5% = 4.7%. Next, the prediction interval is ¥f+ toirra2S;\" Where s, denotes the standard error of the forecast. Hence, the prediction interval is given by: 4.7% + 1.4% x 2.032 = (1.9%, 7.5%)."
+      },
+      {
+        "label": "C",
+        "text": "predicting the potential risk correctly.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it neglects the critical t-values when constructing the prediction interval. In other words, it assumes that the interval is given by Yf+ sf 4.7% + 14% = (3.3%, 6.1%)."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q3",
+    "questionText": "Which of the following is least consistent with effective risk governance?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Taking an enterprise-wide view",
+        "isCorrect": false,
+        "explanation": "Incorrect because it incorrectly subtracts the dividend instead of adding it, and thus calculates HPR = ($107 - $100 - $7) /$100 = $0/$100 = 0%. The same result is obtained if the holding period return is calculated as R = ($100 - $107 + $7) /$107 = $0/$107 = 0%."
+      },
+      {
+        "label": "B",
+        "text": "Defining the enterprise's risk tolerance",
+        "isCorrect": false,
+        "explanation": "Incorrect because it omits the dividend and calculates R = ($107 - $100)/$100 = $7/$100 = 7%, It is also the ratio of the dividend received over the initia] investment; $7/$100 = 7%."
+      },
+      {
+        "label": "C",
+        "text": "Following a bottom-up process to direct risk management activities",
+        "isCorrect": true,
+        "explanation": "Correct because a holding period return is the return earned from holding an asset for a single specified period of time. This return can be generalized and shown asa mathematical expression in which P is the price and I is the income: R = (P: — Po + Ds)/Po Thus, R = ($107 - $100 + $7)/$100 = $14/$100 = 14%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q4",
+    "questionText": "With regard to an investment policy statement, which of the following statements aboutreturn objectives is most accurate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Areturn objective cannot be a required rate of return.",
+        "isCorrect": false,
+        "explanation": "Incorrect because we primarily use nonparametric procedures in four situations: 78 -- 82 of 124 -- (1) when the data we use do not meet distributional assumptions, (2) when there are outliers, (3) when the data are given in ranks or use an ordinal scale, or (4) when the hypotheses we are addressing do not concern a parameter. This is one of the situations 79 -- 83 of 124 -- (situation 2) in which a nonparametric test would be appropriate."
+      },
+      {
+        "label": "B",
+        "text": "Return objectives must be set independent of risk objectives.",
+        "isCorrect": false,
+        "explanation": "Incorrect because we primarily use nonparametric procedures in four situations: (1) when the data we use do not meet distributional assumptions, (2) when there are outliers, (3) when the data are given in ranks or use an ordinal scale, or (4) when the hypotheses we are addressing do not concern a parameter. This is one of the situations(situation 3) in which a nonparametric test would be appropriate."
+      },
+      {
+        "label": "C",
+        "text": "When setting a relative return objective, a good benchmark should be investable.",
+        "isCorrect": true,
+        "explanation": "Correct because a nonparametric test would be less appropriate compared to other answers as in this case a parametric test can be used. We may want to test a hypothesis concerning the mean of a population but believe that neither t- nor z-distributed tests are appropriate because the sample is small and may come from a markedly non-normally distributed population. In that case, we may use a nonparametric test. In our case, the data sample is large, thus a parametric test can be used instead."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q5",
+    "questionText": "The correlation between the risk-free asset and the optimal risky portfolio is expected to be:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "negative.",
+        "isCorrect": true,
+        "explanation": "Correct because for a Test of Mean Differences (Normally Distributed Populations, Unknown Population Variances), when we have data consisting of paired observations from samples generated by normally distributed populations with unknown variances, a t- test is based on t = (d — 1d.) /ss, with n - 1 degrees of freedom, where n is the number of paired observations, d is the sample mean difference, and s, is the standard error of d."
+      },
+      {
+        "label": "B",
+        "text": "zero.",
+        "isCorrect": false,
+        "explanation": "Incorrect because for a Test of Mean Differences (Normally Distributed Populations, Unknown Population Variances), when we have data consisting of paired observations from samples generated by normally distributed populations with unknown variances, a t- test is based on t = (d — td.) /s., with n — 1 degrees of freedom, where n is the number of paired observations, d is the sample mean difference, and s. is the standard error of d. An F- test can be appropriate for Tests Concerning Differences between the Variances of Two Populations."
+      },
+      {
+        "label": "C",
+        "text": "positive.",
+        "isCorrect": false,
+        "explanation": "Incorrect because for a Test of Mean Differences (Normally Distributed Populations, Unknown Population Variances), when we have data consisting of paired observations from samples generated by normally distributed populations with unknown variances, a t- test is based on t= (d - do) /s., with n ~ 1 degrees of freedom, where n is the number of paired observations, d is the sample mean difference, and s, is the standard error of d. In tests concerning the variance of a single normally distributed population (not the mean difference between two populations), we make use of a chi-square test statistic."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q6",
+    "questionText": "An investor who can lend and borrow at the risk-free rate builds a portfolio using the risk- free asset and the market portfolio. The risk-free rate is 3% and the expected market return is 15%. If the expected portfolio return is 18%, the investor's portfolio is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "a lending portfolio.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the compound rate of return per month times 12; [(1 + 0.13100)on6 ~ 1] x 12 = 0.0077236 x 12 = 0.09268 = 9.3%. This is also the geometric mean return per month times 12."
+      },
+      {
+        "label": "B",
+        "text": "a leveraged portfolio.",
+        "isCorrect": true,
+        "explanation": "Correct because a general equation to annualize returns is given, where c is the number of periods in a year. For a quarter, c = 4 and for a month, ¢ = 12: annua: = (1 + Ppertoa)é — 1. That is, for 16 months, c = 12/16 = 0.75 and the annualized return is (1 + 0.13100)o7s - 1 = 1.09672 - 1 = 0.09672 = 9.7%."
+      },
+      {
+        "label": "C",
+        "text": "the optimal risky portfolio. -- 5 of 124 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the arithmetic mean return per month times 12; (0.13100/16) x 12 = 0.0081875 x 12 = 0.09825 = 9.8%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q7",
+    "questionText": "An analyst gathers the following information about a company: Payables turnover 8 Inventory turnover 2 Receivablesturnover 10 If all purchases and sales were made on credit, the cash conversion cycle (based on a 360- day year) is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less than the utility generated for a risk-averse investor.",
+        "isCorrect": true,
+        "explanation": "Correct because a growth rate (g) is calculated as g = (FVx/PV)”N - 1, where FV is the future value, PV is the present value and N is the number of periods. Here, g = (1.5/1) - 1 = 0.10668 = 10.7%. 80 -- 84 of 124 --"
+      },
+      {
+        "label": "B",
+        "text": "equal to the utility generated for a risk-averse investor.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is calculated as In(1 + 0.5/4) - 1 =1n(1.125) - 1 = 0.11778 11.8%."
+      },
+      {
+        "label": "C",
+        "text": "greater than the utility generated for a risk-averse investor.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is calculated as: 50%/4 = 12.5%. 81 -- 85 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q8",
+    "questionText": "8 of 100 Question A risk-neutral investor most likely seeks to maximize:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "both risk and return.",
+        "isCorrect": true,
+        "explanation": "Correct because a holding period return is the return earned from holding an asset for a single specified period of time...... This return can be generalized and shown as a mathematical expression in which P is the price and J is the income: R = [(P: — Ps) + L]/Po. The subscript indicates the time of the price or income, (t = 0), is the beginning of the period and (t = 1) is the end ofthe period. Hence, P,= R x Po + Po - 1, =-10.2% x $450 + $450 - $2 = $402.1 = $402."
+      },
+      {
+        "label": "B",
+        "text": "return irrespective of risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because if the stock was sold for $404, the holding period return would be ($404 - $450 + $2)/$450 = -9.8%. The incorrect price of $404 ignores the impact of the dividend; holding period return (HPR) = (Pi - Po) /Po; P: = HPR x Po + Po = ~10.2% x $450 + $450 = $404.1 = $404."
+      },
+      {
+        "label": "C",
+        "text": "return for a given level of risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because if the stock was sold for $406, the holding period return would be ($406 - $450 + $2)/$450 = ~9.3%. The incorrect price of $406 incorrectly subtracts the dividend; holding period return (HPR) = [(P; - Po) — Lh] /Po; P:= HPR x Po+ Po + 1; = -10.2% x $450 + $450 + $2 = $406.1 = $406.D."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q9",
+    "questionText": "The market has a return of 8% and a standard deviation of returns of 12%. The risk-free rate is 2%. Ifa portfolio has a Sharpe ratio of 0.8, the portfolio'’s Mz alpha is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "3.6%.",
+        "isCorrect": true,
+        "explanation": "Correct because M?provides a measure of portfolio return that is adjusted for the total risk of the portfolio and is computed as M2 = [E(R,) — R](o./0,) + R;= SR x Om + Ry, where SR = Sharpe ratio, o.= market standard deviation of returns, and R,= risk-free rate. Thus, M2 = 0.8 x 0.12 + 0.02 = 0,116. The difference between the risk-adjusted performance of the portfolio and the performance of the market is frequently referred to as M? alpha. Thus, Mz alpha = 0.116 - 0.08 = 0.036 = 3.6%."
+      },
+      {
+        "label": "B",
+        "text": "5.6%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it computes Mz = 0.02 + 0.8 x 0.12 = 0.116, M2 alpha is wrongly calculated as 0.116 - (0.08 - 0.02) = 0.056 = 5.6%."
+      },
+      {
+        "label": "C",
+        "text": "11.6%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it computes M? instead of Mzalpha, which is an intermediate step in the correct calculation; Mz = 0.02 + 0.8 x 0.12 = 0.116 = 11.6%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q10",
+    "questionText": "Which of the following is most likely a consequence of overconfidence bias? Investors:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "holding poorly diversified portfolios.",
+        "isCorrect": true,
+        "explanation": "Correct because algorithmic trading requires access to low-latency networks, and with the wide-spread adoption of algorithmic trading, the need for low-latency networks has grown. Low-latency systems—systems that operate on networks that communicate high volumes of data with minimal delay (latency)—are essential for automated trading applications that make decisions based on real-time prices and market events. In contrast, high-latency systems do not require access to real-time data and calculations. High- frequency trading is a form of algorithmic trading that makes use of vast quantities of granular financial data (tick data, for example) to automatically place trades when certain conditions are met. Trades are executed on ultra-high-speed, low-latency networks in fractions ofa second."
+      },
+      {
+        "label": "B",
+        "text": "continuing to hold classes of assets with which they are familiar.",
+        "isCorrect": false,
+        "explanation": "Incorrect because global financial markets have undergone substantial change as markets have fragmented into multiple trading destinations consisting of electronic exchanges, alternative trading systems, and so-called dark pools, and average trade sizes have fallen."
+      },
+      {
+        "label": "C",
+        "text": "holding investments in a loss position longer than justified, in the hope that they will return to breakeven.",
+        "isCorrect": false,
+        "explanation": "Incorrect because, although algorithmic trading is increasingly used to execute large institutional orders, it is slicing orders into smaller pieces and executing across different exchanges and trading venues. Global financial markets have undergone substantial change as markets have fragmented into multiple trading destinations consisting of electronic exchanges, alternative trading systems, and so-called dark pools, and average trade sizes have fallen."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q11",
+    "questionText": "Failing to act in pursuit of long-term goals in favor of short-term satisfaction best describes which of the following emotional biases?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Self-control bias",
+        "isCorrect": false,
+        "explanation": "Incorrect because underfitting also results in this problem. Underfitted models will typically fail to fully discover patterns that underlie the data\" and thus may not be able to accurately predict outcomes. ML involves splitting the dataset into three distinct subsets: a training dataset, a validation dataset, and a test dataset. Once an algorithm has been 82 -- 86 of 124 -- trained, validated, and tested, the ML model can be used to predict outcomes based on other datasets. ML models also require sufficiently large amounts of data and may not 83 -- 87 of 124 -- perform well where there may not be enough available data to train and validate themodel."
+      },
+      {
+        "label": "B",
+        "text": "Endowment bias",
+        "isCorrect": false,
+        "explanation": "Incorrect because overfitting also results in this problem. An ML model that has been overfitted is not able to accurately predict outcomes using a different dataset and may be too complex."
+      },
+      {
+        "label": "C",
+        "text": "Loss-aversion bias",
+        "isCorrect": true,
+        "explanation": "Correct because an ML model that has been overfitted is not able to accurately predict outcomes using a different dataset and may be too complex. Also, underfitted models will typically fail to fully discover patterns that underlie the data and thus may not be able to accurately predict outcomes."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q12",
+    "questionText": "When creating a long-only portfolio, which of the following correlation coefficients between assets would be most effective at reducing portfolio risk?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "-0.5.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it recognizes the investment as a delayed annuity, but it wrongly assumes that the first annuity payment for an ordinary annuity starts at t = 4 instead of t= 3. Thus, it computes the present value of an ordinary annuity at t = 3 as PV:=A[1 - 1/(1 +r)*] /r=$1,000 x [1 - 1/(1 + 0.06)s]/ 0.06 = $4,212.36. Using the present value formula for a lump sum to bring the single cash flow from t = 3 tot = 0, PVo = FVs(1 + r)-N = $4,212.36 (1 + 0.06)-3:= $3,536.78 ~ $3,537. Calculator solution: (1) END mode; N = 5; 1 = 6%; PMT = —1,000; FV = 0; solve for PV = 4,212.36. (1) END mode; N = 3;1= 6%; PMT = 0; FV = 4,212.36; solve for PV = 3,536.78 ~ 3,537."
+      },
+      {
+        "label": "B",
+        "text": "0.",
+        "isCorrect": true,
+        "explanation": "Correct because by drawing a time line, the investment is recognized as a delayed annuity with the first payment starting at t = 3. The first step is to compute the present value of an ordinary annuity at t = 2 because the first annuity payment is then one period away, as PV.=A[1-1/(1 +r)*] /r=$1,000 x [1 - 1/(1 + 0.06)s/0.06 = $4,212.36. Using the present value formula for a lump sum to bring the single cash flow from t= 2 to t= 0, PVo= FVs(1 + r)-» = $4,212.36 (1 + 0.06)-2= $3,748.99 ~ $3,749. Calculator solution: (1) END mode; N = 5;1 = 6%; PMT = —1,000; FV = 0; solve for PV = 4,212.36. (2) END mode; N = 2;1 = 6%; PMT = 0; FV = 4,212.36; solve for PV = 3,748.99 ~ 3,749. A second method to compute the present value of the investment is to recognize it as an annuity due with first payment at ¢ = 3, and then discount back three periods using the present value formula for a lump sum. PV3= {A[1 - 1/(1 + r)*] /v}C1 +r) = $1,000 x {[1 - 1/(1 + 0.06):]/0.06} x (1 + 0.06) = $4,465.11. Using the present value formula for a lump sum to bring the single cash flow from t = 3 to t= 0, PVo = FVs(1 + r)-¥ = $4,465.11 (1 + 0.06)-3= $3,748.99 ~ $3,749. Calculator solution: (1) BGN mode; N = 5; I = 6%; PMT = -1,000; FV = 0; solve for PV = 4,465.11. (2) END mode; N = 3; 1 = 6%; PMT = 0; FV = 4,465.11; solve for PV = 3,748.99 ~ 3,749. Another method to compute the Correct answer is to calculate the present value of a series of equal cash flows, with the first cash flow in the third year. Using a calculator with CFo=0, CFi=0, CF.=0, CF:=1000, CF.=1000, CF;=1000, CF.=1000, CF,=1000; I=6%; solve for NPV= 3,748.99 ~ 3,749, 84 -- 88 of 124 --"
+      },
+      {
+        "label": "C",
+        "text": "0.5. -- 6 of 124 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the present value of the investment as t = 2 instead of t= 0, and it is an intermediate step in the correct calculation. It computes present value of an 85 -- 89 of 124 -- ordinary annuity at t = 3 as PV:= A[1 -1/(1 + r)*] / r=$1,000 x [1 - 1/(1 + 0.06)s/ 0.06 = $4,212.36. Calculator solution: END mode; N = 5; I = 6%; PMT = -1,000; FV = 0; solve for PV = 4,212.36 ~ 4,212,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q13",
+    "questionText": "Which of the following can best be explained by overconfidence when predicting companies’ earnings growth rates?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Base-rate neglect",
+        "isCorrect": false,
+        "explanation": "Incorrect because robo-advisers typically have low fees and low account minimums, implementing their recommendations with low-cost, diversified index mutual funds or exchange-traded funds (ETFs). Fully automated digital wealth managers are one type of service in the robo-advice sector. The fully automated model does not rely on assistance from a human financial adviser. These services seek to offer a low-cost solution to investing and recommend an investment portfolio, which is often composed of ETFs."
+      },
+      {
+        "label": "B",
+        "text": "The value anomaly",
+        "isCorrect": false,
+        "explanation": "Incorrect because the service package offered by fully automated digital wealth managers may include direct deposits, periodic rebalancing, and dividend reinvestment options."
+      },
+      {
+        "label": "C",
+        "text": "The disposition effect",
+        "isCorrect": true,
+        "explanation": "Correct because as the complexity and size of an investor’s portfolio grows, robo- advisers may not be able to sufficiently address the particular preferences and needs of the investor. In the case of extremely affluent investors who may own a greater number of asset types—including alternative investments (e.g., venture capital, private equity, hedge funds, and real estate)—in addition to global stocks and bonds and have greater demands for customization, the need for a team of human advisers, each with particular areas of investment or wealth-management expertise, is likely to endure."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q14",
+    "questionText": "Which of the following is most likely developed by combining a client's investment objectives and constraints with long-term capital market expectations?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Risk budget",
+        "isCorrect": false,
+        "explanation": "Incorrect because p < 0 is the null and not the alternative hypothesis in this test. We state the null and alternative hypotheses such that they account for all possible values of the parameter. Since the alternative hypothesis is formulated using the “suspected” condition p > 0, the null hypothesis should be formulated using the condition p < 0."
+      },
+      {
+        "label": "B",
+        "text": "Strategic asset allocation",
+        "isCorrect": false,
+        "explanation": "Incorrect because the “suspected” condition in this test is 1. > 0, not p = 0. The best formulation of the alternative hypothesis uses the ‘suspected’ or ‘hoped for' condition."
+      },
+      {
+        "label": "C",
+        "text": "Investment policy statement",
+        "isCorrect": true,
+        "explanation": "Correct because despite the different ways to formulate hypotheses, we always conduct a test of the null hypothesis at the point of equality, @ = 6.. We may have a ‘suspected’ or ‘hoped for’ condition for which we want to find supportive evidence. In thatcase, we can formulate the alternative hypothesis as the statement that this condition is true; the null hypothesis that we test is the statement that this condition is not true. Here,the “suspected” condition is that the population's mean is greater than zero (p > 0)."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q15",
+    "questionText": "The diversification ratio ofa portfolio is best described as the ratio of the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "standard deviation of the equally weighted portfolio’s returns to the average standard deviation of the individual securities’ returns.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the result if the candidate uses r+c-2=5+4-2=7, instead of the correct (r - 1)(c - 1). The incorrect formula is similar to the degrees of freedom for a test of the difference in means, which is m, + m2 — 2."
+      },
+      {
+        "label": "B",
+        "text": "standard deviation of the market-capitalization-weighted portfolio’s returns to the standard deviation of the equally weighted portfolio’s returns.",
+        "isCorrect": true,
+        "explanation": "Correct because for a contingency table we can perform a test of independence using a nonparametric test statistic that is chi-square distributed this test statistic has (7 - 1)(c - 1) degrees of freedom, where ris the number of rows and c is the number of columns. Here, r=5 and c = 4, so degrees of freedom = (5 - 1)(4-1) = 4x3 =12."
+      },
+      {
+        "label": "C",
+        "text": "average standard deviation of the individual securities’ returns to the standard deviation of the market-capitalization-weighted portfolio’s returns.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the result if the candidate omits ' -1' in both factors, i.e. rc = 5 x 4 = 20, instead ofthe correct (7 - 1)(c- 1). 86 -- 90 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q16",
+    "questionText": "In regard to the asset allocation process, a top-down analysis most likely begins with an examination of:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "macroeconomic growth.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the result if the positions of V(1- 7) and v(n - 2) are swapped, ie. the formula used is rv(1 - 7) / V(n - 2) = (0.6)V(1 - 0.36) / V(51 - 2) = (0.6)(0.8)/7 = 0.06857 = 0.07."
+      },
+      {
+        "label": "B",
+        "text": "a company's board of directors. the expected growth of a company's competitors",
+        "isCorrect": true,
+        "explanation": "Correct because for a Parametric Test of a Correlation if the two variables are normally distributed, we can test to determine whether the null hypothesis (Hu: p = 0) should be rejected using the sample correlation, r. The formula for the t-test is rV(n-2) /V(1- 1)\" = (0.6)V(51 - 2) / V(4 - 0.36) = (0.6)(7)/0.8 = 5.25."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q17",
+    "questionText": "Which of the following is most likely a consequence of the illusion of control bias?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "An investor's portfolio turnover is too low.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the mode, not the mean, is the measure with the highest value for a continuous negatively skewed unimodal distribution."
+      },
+      {
+        "label": "B",
+        "text": "The investor's portfolio contains concentrated positions in companies.",
+        "isCorrect": true,
+        "explanation": "Correct because for the continuous negatively skewed unimodal distribution, the mean is less than the median, which is less than the mode. Therefore, the mode has the highest value. (ey Incorrect because the mode, not the median, is the measure with the highest value for a continuous negatively skewed unimodal distribution."
+      },
+      {
+        "label": "C",
+        "text": "An investor uses a simple forecasting model for portfolio construction.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q18",
+    "questionText": "Which of the following is best classified as a non-financial risk?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Credit risk",
+        "isCorrect": false,
+        "explanation": "Incorrect because Portfolio 1 has the highest expected return and the highest difference between expected return and standard deviation, but not the highest safety-first ratio."
+      },
+      {
+        "label": "B",
+        "text": "Liquidity risk",
+        "isCorrect": false,
+        "explanation": "Incorrect because Portfolio 2 has the lowest standard deviation of returns, but not the highest safety-first ratio. Portfolio 2 also has the highest ratio of expected return to standard deviation (i.e., when the return threshold is omitted); Portfolio 1: 23%/15% = 1.53; Portfolio 2: 12%/6% = 2.00; Portfolio 3: 15%/8% ~ 1.88."
+      },
+      {
+        "label": "C",
+        "text": "Accounting risk",
+        "isCorrect": true,
+        "explanation": "Correct because if returns are normally distributed, the safety-first optimal portfolio maximizes the safety-first ratio. SFRatio = [E(R-) - R.] / o», where E(R) is the expected portfolio return, R. is the investor's minimum acceptable return, and o; is the standard deviation of portfolio returns. The minimum acceptable return is 5% (= €5,000 / €100,000) as the investor needs to withdraw €5,000 without invading initial capital; SFr = (23% — 5%) / 15% = 1.20; SFr = (12% ~ 5%) / 6% = 1.17; SFes = (15% - 5%) / 8% = 1.25. Therefore, Portfolio 3 is the safety-first optimal portfolio. “The portfolio for which E(Rr) - Riis largest relative to standard deviation minimizes P(R> < R.)."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q19",
+    "questionText": "Portfolio rebalancing is best described as a process aimed at:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "generating alpha.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the assumption of normality requires that the residuals be normally distributed. This does not mean that the dependent and independent variables must be normally distributed."
+      },
+      {
+        "label": "B",
+        "text": "aligning portfolio weights with the tactical asset allocation decision.",
+        "isCorrect": false,
+        "explanation": "Incorrect because for simple linear regression we assume that the observations (Y and X pairs) are uncorrelated with one another, meaning they are independent. If thereis correlation between observations (that is, autocorrelation), they are not independent and the residuals will be correlated. As the pairs are uncorrelated, a transformation is not needed because independence (uncorrelated pairs of observations) is an assumption ofsimple linear regression. 87 -- 91 of 124 --"
+      },
+      {
+        "label": "C",
+        "text": "restoring the portfolio's original exposures to systematic risk factors. -- 7 of 124 --",
+        "isCorrect": true,
+        "explanation": "Correct because if the relationship between the independent variable and the dependent variable is not linear, we can often transform one or both of these variables to convert this relation to a linear form, which then allows the use of simple linear regression. 88 -- 92 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q20",
+    "questionText": "The risk-return trade-off of a portfolio of only risky assets most likely improves when a risk-free asset is added to the portfolio because:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "the risk-free asset is uncorrelated with the other assets in the portfolio.",
+        "isCorrect": true,
+        "explanation": "Correct because for a continuous positively skewed unimodal distribution, the mode is less than the median, which is less than the mean."
+      },
+      {
+        "label": "B",
+        "text": "the lower return on the risk-free asset provides a diversification effect.",
+        "isCorrect": false,
+        "explanation": "Incorrect because for a continuous positively skewed unimodal distribution, the mode is less than the median, which is less than the mean. For the continuous negatively skewed unimodal distribution, the mean is less than the median, which is less than the mode."
+      },
+      {
+        "label": "C",
+        "text": "the correlations among the risky assets decrease, providing a diversification effect.",
+        "isCorrect": false,
+        "explanation": "Incorrect because for a continuous positively skewed unimodal distribution, the mode is less than the median, which is less than the mean."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q21",
+    "questionText": "Which of the following best describes a potential consequence of the regret-aversion bias for financial market participants?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Engaging in herding behaviour",
+        "isCorrect": false,
+        "explanation": "Incorrect because the term Big Data has been in use since the late 1990s and refers to the vast amount of data being generated by industry, governments, individuals, and electronic devices. The term fintech is much broader."
+      },
+      {
+        "label": "B",
+        "text": "Borrowing excessively to finance present consumption",
+        "isCorrect": false,
+        "explanation": "Incorrect because automated trading, not fintech, refers to executing investment decisions through computer algorithms or automated trading applications. The term fintech is much broader."
+      },
+      {
+        "label": "C",
+        "text": "Misidentifying risk tolerances because of how questions about risk tolerance were framed",
+        "isCorrect": true,
+        "explanation": "Correct because in its broadest sense, the term ‘fintech’ generally refers to technology-driven innovation occurring in the financial services industry. For the purposes of this reading, fintech refers to technological innovation in the design and delivery of financial services and products. Note, however, that in common usage, fintech can also refer to companies (often new, startup companies) involved in developing the new technologies and their applications, as well as the business sector that comprises such companies."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q22",
+    "questionText": "Cognitive errors:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "stem from impulses and intuition.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the F-statistic calculated as MSR / MSE; 25 / 10 = 2.5. Fora simple linear regression, the F-Statistic is MSR divided by MSE, where the mean square regression (MSR) is the same as the sum of squares regression [SSR] and the mean square error (MSE) is calculated as the sum of squares error (SSE) adjusted by its degrees of freedom, SSE / (n - 2); 280 / (30 - 2) = 10."
+      },
+      {
+        "label": "B",
+        "text": "result in the same decision as assumed by traditional finance theory.",
+        "isCorrect": true,
+        "explanation": "Correct because it is the standard error of the estimate calculated as the square root of the mean square error; (10)s= 3.2. The mean square error (MSE) is calculated as SSE / (n - 2); 280 / (30 - 2) = 10.0, where SSE is the sum of squares error."
+      },
+      {
+        "label": "C",
+        "text": "can often be corrected or eliminated through better information, education, and advice.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the mean square error (MSE) calculated as SSE / (n - 2), where SSE is the sum of squares error; 280 / (30 - 2) = 10.0."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q23",
+    "questionText": "Exchange-traded funds (ETFs):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "are priced once a trading day.",
+        "isCorrect": true,
+        "explanation": "Correct because in bootstrap, we repeatedly draw samples from the original sample, and each resample is of the same size as the origina] sample. Note that each item drawn is replaced for the next draw (i.e., the identical element is put back into the group so that it can be drawn more than once). Assuming we are looking to find the standard error of sample mean, we take many resamples and then compute the mean of each resample."
+      },
+      {
+        "label": "B",
+        "text": "usually pay out dividends to shareholders.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in cluster sampling, elements are selected from the population 89 -- 93 of 124 -- not an original sample. The population is divided into clusters, each of which is essentially a mini-representation of the entire populations. Then certain clusters are chosen as a whole using simple random sampling. (cs Incorrect because in convenience sampling, elements are selected from the 90 -- 94 of 124 -- population not from an original sample. An element is selected from the population based on whether or not it is accessible to a researcher or on how easy it is for a researcher to access the element. Because the samples are selected conveniently, they are not necessarilyrepresentative of the entire population, and hence the level of the sampling accuracy couldbe limited."
+      },
+      {
+        "label": "C",
+        "text": "are generally structured as closed-end funds.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q24",
+    "questionText": "Two assets have the following characteristics: Variance of returns for Asset 1 0.05 Variance of returns for Asset 2 0.06 Correlation of returns between Asset 1 and Asset 2 0.75 The variance of returns for an equally weighted portfolio of the two assets is closest to:A, 0.038.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "0.048.",
+        "isCorrect": true,
+        "explanation": "Correct because for a two asset portfolio, the expression for portfolio variance simplifies to the following using correlation: O2p = W12012 + W22022 + 2WiW2fi20102, Where w; is the weight of asset i in the portfolio, oi? is the variance of asset i, and pij is the correlation between the returns of assets ij and j. Here, ozp = (0.5)2(0.05) + (0.5)2(0.06) + 2(0.5)(0.5)(0.75)(0.05)os(0.06)os = 0.0125 + 0.015 + 0.0205396 = 0.04804 = 0.048."
+      },
+      {
+        "label": "C",
+        "text": "0.055.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the weighted average of the asset variances: (0.5)(0.05) + (0.5)(0.06) = 0.025 + 0.03 = 0.055. However, a weighted average calculation is only appropriate for the portfolio standard deviation (not variance) when the correlation among assets is 1."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q25",
+    "questionText": "With respect to return-generating models, statistical factor models:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "only include factors that have economic meaning.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in statistical factor models, the statistical factors, however, may or may not have an economic or fundamental connection to returns. Furthermore, in statistical factor models data mining may generate many spurious factors that are devoid of any economic meaning."
+      },
+      {
+        "label": "B",
+        "text": "identify factors that explain the covariance in observed returns. ¢ only include factors that have a fundamental connection to returns. -- 8 of 124 --",
+        "isCorrect": true,
+        "explanation": "Correct because in a statistical factor model, historical and cross-sectional return data are analyzed to identify factors that explain variance or covariance in observed returns."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q26",
+    "questionText": "Which of the following statements about asset allocation is most accurate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Investors should diversify their wealth between asset classes in order to eliminate systematic risk.",
+        "isCorrect": true,
+        "explanation": "Correct because in regression analysis, we can use an F-distributed test statistic to test whether the slopes in a regression are equal to zero, with the slopes designated as b, against the alternative hypothesis that at least one slope is not equal to zero for simple linear regression, these hypotheses simplify to Ho: bi = 0. H.: bi ¥ 0."
+      },
+      {
+        "label": "B",
+        "text": "Investors with a below-average risk tolerance should have an above-average weight in alternative investments.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in regression analysis, we can use an F-distributed test statistic to test whether the slopes in a regression are equal to zero, with the slopes designated as b, against the alternative hypothesis that at least one slope is not equal to zero for simple linear regression, these hypotheses simplify to Ho: b; = 0. H.: b, #0."
+      },
+      {
+        "label": "C",
+        "text": "Adding asset classes with a low correlation to existing asset classes improves an investor's risk-return trade-off.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in regression analysis, we can use an F-distributed test statistic to test whether the slopes in a regression are equal to zero, with the slopes designated as b, against the alternative hypothesis that at least one slope is not equal to zero for simple linear regression, these hypotheses simplify to Ho: b, = 0. H.: b: ¥ 0."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q27",
+    "questionText": "An analyst gathers the following information about a portfolio and the market: Portfolio return 7.0% Market return 5.0% Risk-free return 1.0% Portfolio beta 1.2 Jensen’s alpha for the portfolio is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0.0%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a tree-map is a graphical tool to display categorical data. It consists of a set of colored rectangles to represent distinct groups, and the area of each rectangle is proportional to the value of the corresponding group. Additional dimensions of categorical data can be displayed by nested rectangles."
+      },
+      {
+        "label": "B",
+        "text": "1.2%.>",
+        "isCorrect": true,
+        "explanation": "Correct because probabilities for different scenarios and different outcomes are best represented using a tree diagram."
+      },
+      {
+        "label": "C",
+        "text": "2.2%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the probability estimates are for two discrete random variables, not one continuous random variable. A probability function specifies the probability that the random variable takes on a specific value. For continuous random variables, the probability function is called the probability density function (pdf), or just the density."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q28",
+    "questionText": "Which of the following behavioral biases is most likely the hardest to correct?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Hindsight bias",
+        "isCorrect": false,
+        "explanation": "Incorrect because hindsight bias is a cognitive error and cognitive errors can often be corrected or eliminated through better information, education, and advice. Emotional biases, on the other hand, are harder to correct because they stem from impulses and intuitions. Thus, it is often possible only to recognize an emotional bias and adapt to it. Hindsight bias refers to believing past events as having been predictable and reasonable to expect. This behavior results from the obvious fact that outcomes that did occur are more readily evident than outcomes that did not."
+      },
+      {
+        "label": "B",
+        "text": "Loss-aversion bias",
+        "isCorrect": true,
+        "explanation": "Correct because loss-aversion bias is an emotional bias, as opposed to a cognitive error, and cognitive errors can often be Correct ed or eliminated through better information, education, and advice. Emotional biases, on the other hand, are harder to Correct because they stem from impulses and intuitions. Thus, it is often possible only to recognize an emotional bias and adapt to it. Loss- aversion bias refers to the tendency to strongly prefer avoiding losses to achieving gains."
+      },
+      {
+        "label": "C",
+        "text": "Representativeness bias",
+        "isCorrect": false,
+        "explanation": "Incorrect because representativeness bias is a cognitive error and cognitive errors can often be corrected or eliminated through better information, education, and advice. Emotional biases, on the other hand, are harder to correct because they stem from impulses and intuitions. Thus, it is often possible only to recognize an emotional bias and adapt to it. Representativeness bias refers to the tendency to classify new information based on past experiences and classifications. 26 -- 30 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q29",
+    "questionText": "Momentum, defined as relative past stock returns, is most likely a factor in:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "fundamental factor models.",
+        "isCorrect": false,
+        "explanation": "Incorrect because fundamental factor models analyze and use relationships between security returns and the company’s underlying fundamentals, for example, earnings, earnings growth, cash flow generation, investment in research, advertising, and number of patents."
+      },
+      {
+        "label": "B",
+        "text": "the Carhart four-factor model.",
+        "isCorrect": true,
+        "explanation": "Correct because Mark Carhart (1997) extended the Fama and French model by adding another factor: momentum, defined as relative past stock returns. The best example of a practical model is the four-factor model proposed by Fama and French (1992) and Carhart (1997)."
+      },
+      {
+        "label": "C",
+        "text": "the Fama-French three-factor model.",
+        "isCorrect": false,
+        "explanation": "Incorrect because Fama and French (1992) proposed that three factors seem to explain asset returns better than just systematic risk. Those three factors are relative size, relative book-to-market value, and beta of the asset. Mark Carhart (1997) extended the Fama and French model by adding another factor: momentum, defined as relative past stock returns."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q31",
+    "questionText": "When evaluating the return distribution of an asset class, the probability of extremereturns is best assessed by the distribution’s:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "kurtosis.",
+        "isCorrect": true,
+        "explanation": "Correct because mean-variance analysis generally considers risk symmetrically in the sense that standard deviation captures variability both above and below the mean. An alternative approach evaluates only downside risk. We discuss one such approach, safety- first rules, as it provides an excellent illustration of the application of normal distribution theory to practical investment problems. Safety-first rules focus on shortfall risk, the risk that portfolio value will fall below some minimum acceptable level over some time horizon. Roy's safety-first criterion states that the optimal portfolio minimizes the probability that portfolio return, R,, falls below the threshold level, 2:"
+      },
+      {
+        "label": "B",
+        "text": "variance.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the safety-first ratio uses standard deviation, not semideviation, 93 -- 97 of 124 -- as a risk measure. The safety-first optimal portfolio maximizes the safety-first ratio (SFRatio): SFRatio = [E(R>) - R.]/oP. The quantity FE(R,) - R.is the distance from the mean return to the shortfall level. Dividing this distance by oP gives the distance in units of standard deviation. Although not used in Roy's safety-first criterion, semivariance, 94 -- 98 of 124 -- semideviation, and related dispersion measures [also] focus on downside risk. Semivariance is defined as the average squared deviation below the mean. Semideviation(sometimes called semistandard deviation) is the positive square root of semivariance."
+      },
+      {
+        "label": "C",
+        "text": "skewness. -- 9 of 124 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because Roy's safety-first criterion assumes that portfolio returns are normally distributed. If returns are normally distributed, the safety-first optimal portfolio maximizes the safety-first ratio (SFRatio): SFRatio = [E(R-) - R.]/oP. The normal distribution, however, is less suitable as a model for asset prices than as a model for returns. A normal random variable has no Jower limit. This characteristic has several implications for investment applications. An asset price can drop only to 0, at which point the asset becomes worthless. As a result, practitioners generally do not use the normal distribution to model] the distribution of asset prices."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q32",
+    "questionText": "Robo-advisers most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "face high barriers to entry.",
+        "isCorrect": false,
+        "explanation": "Incorrect because probability sampling gives every member of the population an equal chance of being selected. Hence it can create a sample that is representative of the population. In contrast, non-probability sampling depends on factors other than probability considerations, such as a sampler's judgment or the convenience to access data. Consequently there is a significant risk that non-probability sampling might generate a non-representative sample. In general, all else being equal, probability sampling can yield more accuracy and reliability compared with non-probability sampling."
+      },
+      {
+        "label": "B",
+        "text": "cater to the demand from investors with lower levels of investable assets.",
+        "isCorrect": false,
+        "explanation": "Incorrect because probability sampling gives every member of the population an equal change of being selected. Hence it can create a sample that is representative of the population. In contrast, non-probability sampling depends on factors other than probability considerations, such as a sampler's judgment or the convenience to access data. Consequently there is a significant risk that non-probability sampling might generate a non-representative sample. In general, all else being equal, probability sampling can yield more accuracy and reliability compared with non-probability sampling."
+      },
+      {
+        "label": "C",
+        "text": "prefer actively managed funds to index funds when constructing client portfolios.",
+        "isCorrect": true,
+        "explanation": "Correct because probability sampling gives every member of the population an equal change of being selected. Hence it can create a sample that is representative of the population. In contrast, non-probability sampling depends on factors other than probability considerations, such as a sampler's judgment or the convenience to access data. Consequently there is a significant risk that non-probability sampling might generate a non-representative sample. In general, all else being equal, probability sampling can yield more accuracy and reliability compared with non-probability sampling."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q33",
+    "questionText": "Which of the following is most closely associated with representativeness bias?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Momentum",
+        "isCorrect": false,
+        "explanation": "Incorrect because the t-statistic for a paired comparisons test has n - 1 degrees of freedom, not n - 2 degrees of freedom, where n is the number of pairs of observations. When n = 30, the number of degrees of freedom is 30 - 1 = 29, not 30 - 2 = 28."
+      },
+      {
+        "label": "B",
+        "text": "The halo effect",
+        "isCorrect": true,
+        "explanation": "Correct because the t-statistic for a paired comparisons test has n - 1 degrees of freedom, where n is the number of pairs of observations. When n = 30, the number of degrees of freedom is 30 - 1 = 29."
+      },
+      {
+        "label": "C",
+        "text": "Bubbles and crashes",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the number of degrees of freedom of the t-statistic for a hypothesis test concerning the equality of the population means of two independent samples, which is mn + nz. - 2. When both n, and n, is 30, the number of degrees of freedom of the t-statistic for a hypothesis test concerning the equality of the population means of two independent samples is 30 + 30 - 2 = 58. 95 -- 99 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q34",
+    "questionText": "Which of the following statements about different types of investors is most accurate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "For banks, the liquidity of their investments is a paramount concern.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the difference between the third quartile and the second quartile, Q3 - Q. = 93 - 62 = 31. The interquartile range (IQR) is the difference between the third quartile and the first quartile."
+      },
+      {
+        "label": "B",
+        "text": "For endowments, investment horizons are short due to their short-term spending needs.",
+        "isCorrect": true,
+        "explanation": "Correct because the interquartile range (IQR) is the difference between the third quartile and the first quartile, or IQR = Q; - Q.\" = 93 - 11 = 82. Quartiles divide the distribution into quarters."
+      },
+      {
+        "label": "C",
+        "text": "For insurance companies, the risk tolerance of their general and surplus accounts is typically the same.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the range of the four numbers given, and not the interquartile range. Q. - Q.= 359 - 11 = 348."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q35",
+    "questionText": "Which of the following is most likely undertaken during the risk budgeting process?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Assessing risk appetite",
+        "isCorrect": false,
+        "explanation": "Incorrect because the p-value is the smallest level of significance at which the null hypothesis can be rejected."
+      },
+      {
+        "label": "B",
+        "text": "Setting a limit for value at risk (VaR)",
+        "isCorrect": true,
+        "explanation": "Correct because the power ofa test is the probability of Correct ly rejecting the null—that is, the probability of rejecting the null when it is false."
+      },
+      {
+        "label": "C",
+        "text": "Establishing a reserve to cover potential future losses",
+        "isCorrect": false,
+        "explanation": "Incorrect because the significance level of a test is the probability of rejecting a true null hypothesis (i.e., the probability of incorrectly rejecting a null hypothesis)."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q36",
+    "questionText": "The portfolio approach to investing most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "prevents portfolio losses during market downturns.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the money-weighted rate of return of the investment. The money-weighted return and its calculation are similar to the internal rate of return. The internal rate of return is the discount rate at which the sum of present values of these cash flows will equal zero. Calculator solution: [CFO] = investment in the first share = -100, [CF1] = investmenit in the second share + dividend from first share = -110 + 10 = -100, [CF2] = proceeds of selling two shares = 230, [IRR] [CPT] = 0.09687 = 9.7%."
+      },
+      {
+        "label": "B",
+        "text": "reduces the systematic risk of individual assets in a portfolio.",
+        "isCorrect": true,
+        "explanation": "Correct because the time-weighted rate of return measures the compound rate of growth of $1 initially invested in the portfolio over a stated measurement period.... We find this time-weighted return by taking the geometric mean of the two holding period returns.A holding period return is the return earned from holding an asset for a single specified period of time. This return can be generalized and shown as a mathematical expression in which P is the price and J is theincome: R = [(P:- Po) + I:]/Po. The subscript indicates the time of the price or income, (t = 0), is the beginning of the period and (t = 1) is the end of the period. Thus, the holding period return between time 0 and 1 is HPR,= [(110- 100) + 10]/100= 0.2 = 20%, and the holding period return between time 1 and 2 is HPR.= [(230- 220) + 0]/220= 0.04545= 4.5%, where 220= 110 x 2 is the price (value) of the two sharesheld by the investor at time 1. The time- weighted rate of return is then ((1 + HPR:) x (1 + HPR.)Jos - 1 = [(1 + 0.2) = (1 + 0.04545)]os - 1 = 0.12006 = 12.0%,"
+      },
+      {
+        "label": "C",
+        "text": "helps avoid disastrous investment outcomes during normal market conditions.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it simply calculates the arithmetic average of the two holding period returns; (20% + 4.545%) /2 = 12.273% = 12.3%. 96 -- 100 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q37",
+    "questionText": "A client's time horizon is most appropriately used by an investment adviser to determine the client's:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "risk attitude.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the second decile includes observations that are above the 10« percentile and at or below the 20» percentile. The 19 observation is in the second group of ten observations, but it is not in the second decile because there are only 75 observations in the sample."
+      },
+      {
+        "label": "B",
+        "text": "ability to take risk.",
+        "isCorrect": true,
+        "explanation": "Correct because the 19« observation is located at the 25» percentile; = {1 *\\49=4475)(); y= (722%) = 25.0 ly (+n) (i ; at (zea) of ( 1+ 75 ) , which is in the second quintile. The second quintile includes observations that are above the 20\" percentile and at or below the 40 percentile."
+      },
+      {
+        "label": "C",
+        "text": "willingness to take risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the second quartile includes observations that are above the 25 percentile and at or below the 50» percentile. Because the 19* observation is at the 25 percentile, it is in the first quartile."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q38",
+    "questionText": "Which of the following sections of an investment policy statement most likely provides guidance on obtaining feedback on investment results?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Investment Guidelines",
+        "isCorrect": false,
+        "explanation": "Incorrect because for a given dataset with different observations, the harmonic mean has the smallest value among harmonic, geometric, and arithmetic means. Unless all the observations in a dataset have the same value, the harmonic mean is less than the geometric mean, which, in turn, is less than the arithmetic mean."
+      },
+      {
+        "label": "B",
+        "text": "Evaluation and Review G Statement of Duties and Responsibilities -- 10 of 124 --",
+        "isCorrect": true,
+        "explanation": "Correct because the arithmetic mean ofa given dataset with different observations is higher than the harmonic and geometric means. Unless all the observations in a dataset have the same value, the harmonic mean is less than the geometric mean, which, in turn, is less than the arithmetic mean."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q39",
+    "questionText": "The security market line plots the expected return of a portfolio against a measure of the portfolio’s:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "total risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the security market line (SML) is a graphical representation of the capital asset pricing model with beta, reflecting systematic risk (not total risk), on the x- axis and expected return on the y-axis. The security market line applies to any security, efficient or not. Total risk and systematic risk are equal only for efficient portfolios because those portfolios have no diversifiable risk remaining."
+      },
+      {
+        "label": "B",
+        "text": "systematic risk.",
+        "isCorrect": true,
+        "explanation": "Correct because the security market line (SML) is a graphical representation of the capital asset pricing model with beta, reflecting systematic risk, on the x-axis and expected return on the y-axis."
+      },
+      {
+        "label": "C",
+        "text": "unsystematic risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the security market line (SML) is a graphical representation of the capital asset pricing model with beta, reflecting systematic risk (not unsystematic risk), on the x-axis and expected return on the y-axis."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q40",
+    "questionText": "An analyst estimates the standard deviation of returns for the market portfolio to be 15% and the standard deviation of returns for a stock to be 25%. If the correlation of returns between the stock and the market portfolio is 0.6, the stock has:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less systematic risk than the market portfolio.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the central limit theorem allows us to make quite precise probability statements about the population mean by using the sample mean, whatever the distribution of the population (so long as it has finite variance), because the sample mean follows an approximate normal distribution for large-size samples. Therefore, having a normally distributed population is not a requirement for the central limit theorem to hold."
+      },
+      {
+        "label": "B",
+        "text": "the same systematic risk as the market portfolio.",
+        "isCorrect": true,
+        "explanation": "Correct because the central limit theorem states that the variance of the distribution of the sample mean is o2/n. The positive square root of variance is standard deviation. 97 -- 101 of 124 -- The standard deviation of a sample statistic is known as the standard error of thestatistic. The sample mean, in addition to being an efficient estimator, is also a consistent estimator of the population mean: As sample size n goes to infinity, its standard error, 98 -- 102 of 124 -- a/Vn, goes to 0 and its sampling distribution becomes concentrated right over the value of population mean, p."
+      },
+      {
+        "label": "C",
+        "text": "more systematic risk than the market portfolio.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the central limit theorem states that the sum (and mean) [not the product] of a large number of independent random variables is approximately normally distributed."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q41",
+    "questionText": "Risk-averse investors make investment decisions that maximize:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "both return and risk.",
+        "isCorrect": true,
+        "explanation": "Correct because the variance of a random variable is the expected value (the probability-weighted average) of squared deviations from the random variable’s expected value: 02(X) = E[X - E(X)]. Since each scenario is equally likely (probability = 1/3), E(X) = (2.0 + 2.2 + 2.4)/3 = 2.2, so o2(X) = [(2.0 - 2.2}2 + (2.2 - 2.2)2 + (2.4 — 2.2)2]/3 = [0.04 + 0.04] /3 = 0.08/3 = 0.0267 = 0.03 [in $2]."
+      },
+      {
+        "label": "B",
+        "text": "return irrespective of risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the standard deviation, not the variance. The variance of a random variable is the expected value (the probability-weighted average) of squared deviations from the random variable’s expected value: 02(X) = E[X - E(X)]}-. Since each scenario is equally likely (probability = 1/3), E(X) = (2.0 + 2.2 + 2.4)/3 = 2.2, so o(X) =[(2.0 - 2.2) + (2.2 - 2.2)2 + (2.4 - 2.2):]/3 = [0.04 + 0.04]/3 = 0.08/3 = 0.0267 [in $2]. Standard deviation is the positive square root of variance. Therefore, o(X) = (0.0267)s = 0.1633 = 0.16 [in $]."
+      },
+      {
+        "label": "C",
+        "text": "return for the same amount of risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the difference between each pair of EPS values, not the variance: $2.40 ~ $2.20 = $2.20 — $2.00 = $0.20."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q42",
+    "questionText": "Sovereign wealth funds are best described as investment funds:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "owned by governments.",
+        "isCorrect": true,
+        "explanation": "Correct because the 50« percentile is the median, which is the average of the two middle items; (£0.50 + £2.50)/2 = £1.50. In an odd-numbered sample ofn items, the median occupies the (n + 1)/2 position. In an even-numbered sample, we define the median as the mean of the values of items occupying the n/2 and (n + 2)/2 positions (the two middle items). Calculating the median may also be more complex; to do so, we need to order the observations from smallest to largest, determine whether the sample size is even or odd and, on that basis, apply one of two calculations. Alternatively, the 50th percentile when L, is not a whole number or integer, L, lies between the two closest integer numbers (one above and one below), and we use linear interpolation between those two places to determine P,. That is, L, = (n + 1)(y/100) = (4 + 1)(50/100) = 2.5. Hence, 2 is the closest integer below the calculated location and 3 is the closest integer above the calculated location. Using linear interpolation, Ps = £0.50 + (£2.50 - £0.50) x (2.5 - 2) = £1.50."
+      },
+      {
+        "label": "B",
+        "text": "traded as closed-end country funds. iC restricted from investing in foreign securities.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the location of the median; n/2 = 4/2. Alternatively, it is also the average EPS; (-£0.50 + £0.50 + £2.50 + £5.50) /4 = £2.00."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q43",
+    "questionText": "Which of the following lines is plotted on a graph with the excess return ofa security onthe y-axis and the excess return of the market on the x-axis?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Capita] market line",
+        "isCorrect": false,
+        "explanation": "Incorrect because the capital market line is a special case of the capital allocation line, where the risky portfolio is the market portfolio. The capital market line is shown in Exhibit 3, where the standard deviation (o,), or total risk, is on the x-axis and expected portfolio return, £(R,), is on the y-axis."
+      },
+      {
+        "label": "B",
+        "text": "Security market line",
+        "isCorrect": false,
+        "explanation": "Incorrect because the security market line represents a graph of the capital asset pricing model. The security market line (SML) is a graphical representation of the capital asset pricing model with beta, reflecting systematic risk, on the x-axis and expected return on the y-axis. Using the same concept as the capital market line, the SML intersects the y-axis at the risk-free rate of return, and the slope of this line is the market risk premium, R, — Ry"
+      },
+      {
+        "label": "C",
+        "text": "Security characteristic line",
+        "isCorrect": true,
+        "explanation": "Correct because similar to the SML (security market line), we can draw a security characteristic line (SCL) for a security. The SCL is a plot of the excess return of the security on the excess return of the market. The security characteristic line can also be estimated by regressing the excess security return, R; - R, on the excess market return, R, — Ry"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q44",
+    "questionText": "According to capital market theory, the only type of risk that is priced is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "systematic risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because n (5) is used in the calculation instead of n - 1: (14/5)>s, resulting in 1.67% = 1.7%."
+      },
+      {
+        "label": "B",
+        "text": "diversifiable risk.",
+        "isCorrect": true,
+        "explanation": "Year Return Deviations from the Squared (%) target deviations 1 6 0 0 2 #7 0 0 3 3 -2 4 4 2 -3 9 5 4 -1 1"
+      },
+      {
+        "label": "C",
+        "text": "idiosyncratic risk.",
+        "isCorrect": false,
+        "explanation": "Since the sum of squared deviations is 14, the target downside deviation = [14/(5 - 1))>s, resulting in 1.87% = 1.9%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q45",
+    "questionText": "Which of the following is most accurate regarding an investment policy statement (IPS)?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Policies on sustainable investing require a separate IPS.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the Sharpe ratio is the average return in excess of the risk-free rate divided by the standard deviation of returns. This ratio measures the excess return earned per unit of standard deviation of return. Therefore, the Sharpe ratio does not quantify the amount of risk per unit of mean return."
+      },
+      {
+        "label": "B",
+        "text": "Investment constraints can be determined by the client or by the law.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the standard deviation measures risk, but it does not quantify the amount of risk per unit of mean return. Variance is defined as the average of the squared deviations around the mean. Standard deviation is the positive square root of the variance."
+      },
+      {
+        "label": "C",
+        "text": "Clients can specify different spending goals, but each goal must have the same risk tolerance and return objective. -- 11 of 124 --",
+        "isCorrect": true,
+        "explanation": "Correct because the coefficient of variation, CV, is the ratio of the standard deviation of a set of observations to their mean value. When the observations are returns, for example, the coefficient of variation measures the amount of risk (standard deviation) per unit of mean return. 101 -- 105 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q46",
+    "questionText": "An investor's ability to take risk:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "isa function of risk tolerance.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it confuses the location of the second quartile, which is calculated as L, = (7 + 1) x 50/100 = 4, with the value of the second quartile, which is the return of the 4» fund after placing the funds’ returns in ascending order. 4% also corresponds to the return of the 4» fund (the middle fund) when the array has not been sorted in ascending order, which a candidate might interpret as the 50« percentile (the median)."
+      },
+      {
+        "label": "B",
+        "text": "is typically assessed by a psychometric questionnaire. cs increases with the length of the investment horizon, all else being equal.",
+        "isCorrect": true,
+        "explanation": "Correct because the formula for the position of a percentile in an array with n entries sorted in ascending order is L, = (n + 1) x y/100, where y is the percentage point at which we are dividing the distribution and L, is the location ( L) of the percentile ( P,) in the array sorted in ascending order. With seven entries, the location of the second quartile, or 50\" percentile, is: L, = (7 + 1) x 50/100 = 4. When placing the funds' returns in ascending order (3%; 3%; 4%; 5%; 7%; 8%; 12%), the return of the 4» fund is 5%. Alternatively, candidates might realize that the second quartile or 50« percentile is the median. The median is the value of the middle item of a set of items that has been sortedinto ascending or descending order. In an odd-numbered sample of n items, the medianoccupies the (n+ 1)/2 position. Hence, the median return is 5%. iG! Incorrect because the mean is mistaken as the 50« percentile or second quartile; mean return = (12% + 8% + 7% + 5% +4% + 3% + 3%)/7 = 6%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q47",
+    "questionText": "The capital market line most likely consists of portfolios that:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "are fully diversified.",
+        "isCorrect": false,
+        "explanation": "Incorrect because correlation ranges from -1 and +1 for two random variables, X and Y."
+      },
+      {
+        "label": "B",
+        "text": "have zero systematic risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because correlation may also be an unreliable measure when outliers are present in one or both of the variables. As we have seen, outliers are small numbers of observations at either extreme (small or large) of a sample. The correlation may be quite sensitive to outliers."
+      },
+      {
+        "label": "C",
+        "text": "have nonsystematic risk equal to beta.",
+        "isCorrect": true,
+        "explanation": "Correct because the correlation coefficient expresses the strength of the linear relationship between the two random variables."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q48",
+    "questionText": "The Markowitz efficient frontier is best described as a curve that:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "lies above and to the left of the minimum-variance frontier.",
+        "isCorrect": true,
+        "explanation": "Correct because the correlation between two random variables, R, and R,, is defined as p(R,R,) = Cov(R,R)/[o(R)o(R)], where Cov denotes the covariance and o the standard deviation. Since the standard deviation of each asset occurs in the denominator of the correlation formula, it is clear that, all else being equal, an increase in the variance (hence standard deviation) of either variable will decrease the correlation."
+      },
+      {
+        "label": "B",
+        "text": "connects the minimum-variance portfolios for all possible returns.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the correlation between two random variables, R;and R, is defined as p(R,R,) = Cov(R,R,)/[o(R,)o(R)], where Cov denotes the covariance and o the standard deviation. Hence an increase in variance will decrease the correlation, not keep itthe same. Candidates may select this answer choice since the covariance of correlated variables has remained the same, or if they assume that correlation is independent of variance."
+      },
+      {
+        "label": "C",
+        "text": "contains all portfolios of risky assets that rational, risk-averse investors will choose.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the correlation between two random variables, Rand R, is defined as p(R,R) = Cov(R,R)/[o(R)o(8)], where Cov denotes the covariance and o the standard deviation. Hence an increase in variance will decrease the correlation, not increase it. Candidates may select this answer choice if they think that more variance means more covariance and hence more correlation, or if they swap numerator and 102 -- 106 of 124 -- denominator of the correlation formula; [o(R)o(R,)]/Cov(R,R)."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q49",
+    "questionText": "Which of the following most likely affects a client’s ability to take risk? The client’s:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "utility function",
+        "isCorrect": true,
+        "explanation": "Correct because the correlation coefficient is a measure of the linear association between two variables; it would not be appropriate to use the correlation coefficient to measure the non-linear relationship between variables."
+      },
+      {
+        "label": "B",
+        "text": "degree of risk aversion",
+        "isCorrect": false,
+        "explanation": "Incorrect because the correlation coefficient is a measure of the linear association between two variables. It does not measure non-linear relationships between variables."
+      },
+      {
+        "label": "C",
+        "text": "level of wealth relative to liabilities",
+        "isCorrect": false,
+        "explanation": "Incorrect because the correlation coefficient is a measure of the linear association between two variables. It does not measure non-linear relationships between variables."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q50",
+    "questionText": "The expected return for a security is equal to the market’s risk premium. If the risk-free rate is positive and the CAPM holds, the beta of the security is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less than 1.",
+        "isCorrect": true,
+        "explanation": "Correct because the equation to estimate the standard error of the sample mean effectively computes the sample standard deviation of the different means generated across all resamples. Hence the mean of each resample is required. However, neither the mean, nor the standard deviation, of the original sample are required."
+      },
+      {
+        "label": "B",
+        "text": "equal to 1.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the equation to estimate the standard error of the sample mean effectively computes the sample standard deviation of the different means generated across all resamples. Hence the mean of each resample is required. However, neither the mean, nor the standard deviation, of the original sample are required."
+      },
+      {
+        "label": "C",
+        "text": "greater than 1.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the equation to estimate the standard error of the sample mean effectively computes the sample standard deviation of the different means generated across all resamples. Hence the mean of each resample is required. However, neither the mean, nor the standard deviation, of the original sample are required."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q51",
+    "questionText": "Which of the following characteristics is most likely used to determine an investor's abilityto take risk? The investor's:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "risk attitude.",
+        "isCorrect": true,
+        "explanation": "Correct because the expected value E(X) = Di1-P(X)X = (0.20 x 35) + (0.30 x 50) + (0.50 x 80) = 62. The variance o2(X) = E{[X- E(4)]?} = DisePCX) [X— ECX)]2 = 0.20 x (35 - 62)2 + 0.30 x (50 - 62)2 + 0.50 x (80 - 62)2 = 351. Standard deviation is the positive square root ofvariance: o = 351.7 = 18.73."
+      },
+      {
+        "label": "B",
+        "text": "self-confidence.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it uses the simple average of the outcomes instead of the expected value in the calculation. The simple average Xia, = (35 + 50 + 80)/3 = 55. Hence the variance becomes o2(X) = DieiP(X) [X - Xr]? = 0.20 x (35 — 55)2 + 0.30 x (50 - 55)2 + 0.50 x (80 - 55)2 = 400. Then, the standard deviation is equal to o = 40012 = 20.00."
+      },
+      {
+        "label": "C",
+        "text": "years until retirement.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it ignores that this is a random variable and just calculates the sample standard deviation instead for a sample with 3 observations. The sample mean Xo, = (35 + 50 + 80)/3 = 55. Hence the sample variance is equal to o? = (Zia\"[X — Xoor]?)/(n - 1) = [(35 - 55)2 + (50 - 55)2 + (80 - 55)2]/(3 - 1) = 525. Then, the sample standard deviation is equal to o = 5252 = 22.91. 103 -- 107 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q52",
+    "questionText": "An analyst gathers the following information: Risk-free rate 2% Expected return of the market portfolio 10% Standard deviation of the market portfolio 20% Standard deviation of the security 35% Correlation between the security andthe market 0.8 -- 12 of 124 -- According to the CAPM, the expected return of the security is closest to:A. 5.7%.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "13.2%.",
+        "isCorrect": true,
+        "explanation": "Correct because the expected return of the security can be calculated using the CAPM equation: E(R) = R;+ B[E(Rn) - Rj. The beta of the security can be calculated using the equation 8 = (pi,m x of)/am. Therefore, B = (0.8 x 35%)/20% = 1.4, Beta is the product of the asset’s correlation with the market with a ratio of standard deviations of return (i.e., the ratio of the asset’s standard deviation to the market's). Therefore, using the CAPM equation: E(R) = 2% + 1.4 x (10% — 2%) = 13.2%."
+      },
+      {
+        "label": "C",
+        "text": "16.0%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the risk-free rate is not included in the calculation of the market risk premium. Beta is calculated as B = (0.8 x 35%)/20% = 1.4. Therefore, using the CAPM equation: E(R) = 2% + 1.4 x (10%} = 16.0%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q53",
+    "questionText": "The correlation of returns between two securities with equal standard deviation of returnsis 0.75. If the covariance of returns is 5.5%2, the standard deviation of returns for each security is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "2.7%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it takes the natural logarithm of Term Deposit 1’s stated annual rate instead of its effective annual rate (EAR). Calculation: In(1.04) = 0.039221 = 3.92%."
+      },
+      {
+        "label": "B",
+        "text": "3.7%.",
+        "isCorrect": true,
+        "explanation": "Correct because the investor will be indifferent if the EAR for both term deposits is the same. Therefore, we need to find the stated annual rate with continuous compounding that corresponds to the EAR of the quarterly compounded term deposit. Calculations: EAR of Term Deposit 1 = (1 + 0.04/4)+- 1 = 0.040604. Hence, EAR of Term Deposit 2 = 0.040604 = e— 1, leading to a stated annual rate for Term Deposit 2 of r = In(1.040604) = 0.039801 = 3.98%."
+      },
+      {
+        "label": "C",
+        "text": "7.3%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the EAR of Term Deposit 1, not the stated annual rate of Term Deposit 2. EAR of Term Deposit 1 = (1 + 0.04/4)+- 1 = 0.040604 = 4.06%. This answer is also closest to the calculations e94 — 1 = 0.040811 = 4.08% or es —- 1 = 0.041440 = 4.14%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q54",
+    "questionText": "An analyst gathers the following information about an asset and the market: Risk-free rate 1% Market risk premium 5% Asset's expectedreturn 5% Based on the CAPM, the asset's beta is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0.80.",
+        "isCorrect": true,
+        "explanation": "Correct because the harmonic mean is used to determine the average price paid per 3405. Mat Mo* hr The weighted mean formula could also be used, where the weights would be the proportion of the total number of shares purchased. However, in order to use this method a fixed investment amount would need to be created. share when using cost averaging;"
+      },
+      {
+        "label": "B",
+        "text": "1.00.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the average price per share, not the cost per share; (14+ 12+ 17)/3 = 14.33. Using the arithmetic mean assumes equal weighting, which is not appropriate when the investment amount is fixed and the share price is variable."
+      },
+      {
+        "label": "C",
+        "text": "1.25.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the price per share is incorrectly used as the weight in the weighted mean formula; 1 — +12 ee +1 _—— it __ = 14.63. 14412+17 14412417 14412417"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q55",
+    "questionText": "Long-term historical data on the risk-return trade-off of securities show that investors are most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "risk averse.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in the log-lin model, the dependent variable is in logarithmic form and the independent variable is not."
+      },
+      {
+        "label": "B",
+        "text": "risk neutral.",
+        "isCorrect": true,
+        "explanation": "Correct because the lin-log model is similar to the log-lin model, but only the independent variable is in logarithmic form."
+      },
+      {
+        "label": "C",
+        "text": "risk seeking.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the log-log model is one in which both the dependent variable and the independent variable are linear in their logarithmic forms. In the lin-log model only the independent variable is in logarithmic form."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q56",
+    "questionText": "Information regarding the permissible use of derivatives in a portfolio is most likely foundin which of the following sections of an investment policy statement?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Procedures",
+        "isCorrect": false,
+        "explanation": "Incorrect because the covariance formula is misapplied as Cov(R,,Rs) = UP(RayRay) (Ra = E[R,]) + ZP(Ra,, Ras) (Ray = E[R:]), resulting in 0.2(20 - 14) + 0.4(15 a 14) + 0.4(10 ~ 14) + 0.2(15 - 9) + 0.4(10 - 9) + 0.4(5 - 9) = 1.2 +0.4+ (-1.6)+1.2+0.4+(-1.6) = 0."
+      },
+      {
+        "label": "B",
+        "text": "Investment Guidelines",
+        "isCorrect": false,
+        "explanation": "Incorrect because the covariance formula is misapplied as Cov(R,,Ra) = DP(Ra,Rsi)(Ra, — Rai) resulting in 0.2(20 - 15) + 0.4(15 - 10) + 0.4(10 - 5) = 0.2(5) + 0.4(5) + 0.4(5) = 1+ 2 +2 =5. This answer also represents the difference between the expected returns of Xand Y:14-9=5."
+      },
+      {
+        "label": "C",
+        "text": "Statement of Duties and Responsibilities",
+        "isCorrect": true,
+        "explanation": "Correct because the formula for calculating the covariance between random variables Ra and R;z is Cov(R,,Rs) = ZEP(Rs,Ray) (Ra: - E[R]) (Ra = E[Rs]). The expected return (given) for each company is: E[Rx] = 0.2(20) + 0.4(15) + 0.4(10) =4+6+4=14, E[Ry] = 0.2(15) + 0.4(10) + 0.4(5)=3+4+2=9. Hence, Cov(RxRy)} = 0.2(20 - 14)(15 - 9) + 0.4(15 - 14)(10 — 9) + 0.4(10 - 14)(5 - 9) = 0.2(6)(6) + 0.4(1)(1) + 0.4(-4)(-4) = 7.2+0.4+64=14. 105 -- 109 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q57",
+    "questionText": "In the portfolio management process, the feedback step most likely involves:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "rebalancing the portfolio.",
+        "isCorrect": true,
+        "explanation": "Correct because the mean absolute deviation of 1.5% is less than the sample TE, lx 2 standard deviation of 1.83%. The mean absolute deviation, MAD, is calculatedas: a , a pan AG > (-2-14142) ¥= cs hE . = ———— = 9 where the sample mean, n .As the sample mean is: a , the |—2—o0|4+}—-1— 6] 4|1-0}+}2—-0[ — 2414142 calculation of MAD is: 4 4 =1.5000%, while the sample s= EE (4-29? standard deviation ofnobservations, Xi is Vo oma , here: —Facy= = -} sia 2. = 1 {| 2=0)7*+{-1-0)*+(1~-0)*+(2-0)* __ fata tits = 33333 4-1 VY 3 = 1.8257%."
+      },
+      {
+        "label": "B",
+        "text": "deciding on an asset allocation.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the mean absolute deviation, MAD, is less than standard deviation a3 De [yz of returns in the sample. The mean absolute deviation, MAD, is calculated as: a : _ By where the samplemean, —_, which results in MAD = 1.50% while sample standard se cn deviation 1 = 1.83% therefore MAD is less than standard deviation of sample returns."
+      },
+      {
+        "label": "C",
+        "text": "understanding the client's constraints.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the mean absolute deviation, MAD, is less than standard deviation DE. Ixi—Rl of returns in the sample. The mean absolute deviation, MAD, is calculated as: oC, ¥— x3. Ej where the sample mean n , which results in MAD = 1.50% while sample standard _ E 2 (4-2)? s deviation + = 1.83% therefore MAD is less than standard deviation of sample returns."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q58",
+    "questionText": "Which of the following investment principles best explains the use of strategic asset allocation in portfolio construction?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Returns on similar assets reflect exposures to certain sets of systematic factors.",
+        "isCorrect": true,
+        "explanation": "Correct because the money-weighted return and its calculation are similar to the internal rate of return and the yield to maturity. Just like the internal rate of return, amounts invested are cash outflows from the investor’s perspective and amounts returned or withdrawn by the investor, or the money that remains at the end of an investment cycle, is a cash inflow for the investor. For the stock investment this is: $20 = $3/(1 + r) + ($20 + $1)/(1 +r), yielding r = 10.24% ~ 10%. Calculator solution: CF, = -20; CF: = 3; CF, = 21; IRR CPT = 10.24."
+      },
+      {
+        "label": "B",
+        "text": "Nonsystematic risk accounts for most of the change in portfolio value over the long term. -- 13 of 124 -- C Deviating from policy exposures to systematic risk factors may add value to the portfolio.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is time-weighted, not money-weighted, rate of return. For the stock investment, the holding period returns (HPR) for the two periods are HPR; = ($12 - $20 + $3)/$20 = -0.25 = -25% and HPR; = ($20 - $12 + $1)/$12 = 0.75 = 75%. Hence, TWR = V(0.75 x 1.75) - 1 = 0.1456 = 14.56% = 15%,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q59",
+    "questionText": "In the investment policy statement of a pension fund, a countrywide limit on the proportion of high-risk assets that can be held in long-term pension portfolios is most likely a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "liquidity constraint.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the money-weighted return and its calculation are similar to the internal rate of return and the yield to maturity. Just like the internal rate of return, amounts invested are cash outflows from the investor’s perspective and amounts returnedor withdrawn by the investor, or the money that remains at the end of an investment cycle,is a cash 106 -- 110 of 124 -- inflow for the investor. That is, cash withdrawals and investments are included inthe money- weighted return calculation; however, cash withdrawals and investments are ignored in the calculation of the arithmetic and geometric mean returns."
+      },
+      {
+        "label": "B",
+        "text": "legal and regulatory constraint.",
+        "isCorrect": true,
+        "explanation": "Correct because the money-weighted return is an accurate measure of what the investor actually earned on the money invested."
+      },
+      {
+        "label": "C",
+        "text": "time horizon constraint.",
+        "isCorrect": false,
+        "explanation": "Incorrect because although the money-weighted return is an accurate measure of what the investor actually earned on the money invested, it is limited in its applicability to other situations. For example, it does not allow for return comparison between different individuals or different investment opportunities. Two investors in the same mutual fund may have different money-weighted returns because they invested different amounts in different years."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q60",
+    "questionText": "The global minimum-variance portfolio is a portfolio that lies:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "anywhere along the minimum-variance frontier.",
+        "isCorrect": false,
+        "explanation": "Incorrect because an investment measure that is not sensitive to the additions and withdrawals of funds is the time-weighted rate of return. The time-weighted rate of return measures the compound rate of growth of $1 initially invested in the portfolio over astated measurement period. For the evaluation of portfolios of publicly traded securities, the time- weighted rate of return is the preferred performance measure as it neutralizes theeffect of cash withdrawals or additions to the portfolio, which are generally outside of the control of the portfolio manager."
+      },
+      {
+        "label": "B",
+        "text": "at the left-most point of the minimum-variance frontier.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the simplest way to compute the return is to take a simple arithmetic average of all holding period returns. Moreover, the arithmetic mean return assumes that the amount invested at the beginning of each period is the same. Thus, the arithmetic mean return does not account for cash additions to the portfolio and itis not affected by them."
+      },
+      {
+        "label": "C",
+        "text": "atthe upper right-most point of the minimum-variance frontier.",
+        "isCorrect": true,
+        "explanation": "Correct because, if funds are added to a portfolio, the money-weighted rate of return puts a greater weight on the time period after the funds were added. (Asa corollary, if funds are taken out of a portfolio, the money-weighted rate of return puts a greater weight on the time period before the funds were removed.) So, if a client gives an investment manager more funds to invest at an unfavorable time, the manager’s money- weighted rate of return will tend to be depressed."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q61",
+    "questionText": "Which of the following principles best explains the focus on a strategic asset allocation when constructing a client's IPS?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Adding assets with high correlation improves the risk-return trade-off.",
+        "isCorrect": false,
+        "explanation": "Incorrect because \"uncorrelated” is misinterpreted as having a correlation value of - 1 (i.e., perfect negative correlation is used instead of zero) when calculating the portfolio standard deviation; 5 _ {O57 GF = ©.5PGY + 20.5)0.5)3)G-1) = V0 = 0% pT ."
+      },
+      {
+        "label": "B",
+        "text": "Nonsystematic risk accounts for most ofa portfolio’s change in value over the long term.",
+        "isCorrect": true,
+        "explanation": "Correct because the portfolio standard deviation is 2.1%; ¥O.5YG) + (0.5)°G)’ + 2(0-5)(0.5)G)G)}0) = V4.5 or 2.12%, using the formula je = juror + wioz + 2, Conk, .R,) where the Cov(R,,R:) = PCR Ro(RoRa) , which is equal to zero because the funds are uncorrelated; PCR, BR) = 9."
+      },
+      {
+        "label": "C",
+        "text": "The returns to groups of similar assets predictably reflect exposures to certain systematic factors.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the weighted average of the two securities’ standard deviation and calculates the portfolio standard deviation as: o, = (0.5)(3%)+(0.5)(3%) = 3.0%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q62",
+    "questionText": "Which of the following sections of an investment policy statement (IPS) most likely explains how and when the IPS should be reviewed?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Procedures",
+        "isCorrect": true,
+        "explanation": "Correct because the present value of the future lump sum payment is PV = FVs(1 107 -- 111 of 124 -- +r)-N = $500,000(1 + 0.04)+5 = $277,632.25. The 10 annual payments form an annuity due (since the payments start today} whose present value equals the present value of an ordinary annuity with 9 annual payments plus the first payment, i.e. PV=A+A[1-1/(1 +r)]/r=A(1 + [1 ~- 1/(1 + 0.04)]/0.04) = 8.4353(A). Setting the PV of the cash outflows (the annuity) equal to the PV of the cash inflows (the return in 15 years), we can solve for the annual payment amount;A = $277,632.25/8.4353 = $32,913. Calculator solution: BGN;N = 10; I/Y = 4; PV = 277,632.25; solve for PMT = 32,913."
+      },
+      {
+        "label": "B",
+        "text": "Investment Guidelines",
+        "isCorrect": false,
+        "explanation": "Incorrect because it mistakes the required payments as an ordinary annuity, rather than an annuity due, calculating their present value as: PV = A[1 - 1/(1 + r)*]/r=A([1- 1/(1 + 0.04)+]/0.04) = 8.1109(4). The present value ofthe return at t= 15 is PV = FV,(1 +r)-N = $500,000(1 + 0.04)+5 = $277,632.25. Setting these two values equal and solving for the annual payment thus yields: A = $277,632.25/8.1109 = $34,230. Calculator solution: END; N = 10; 1/Y = 4; PV = 277,632.25; solve for PMT = 34,230."
+      },
+      {
+        "label": "C",
+        "text": "Statement of Duties and Responsibilities",
+        "isCorrect": false,
+        "explanation": "Incorrect because it assumes the $500,000 return is paid at t = 10 instead of t= 15. The present value of this payment is therefore PV = FV»(1 + r)-N = $500,000(1 + 0.04)- 10= $337,782.08. The 10 annual payments form an annuity due (since the payments start today) whose present value equals the present value of an ordinary annuity with 9 annual payments plus the first payment, i.e. PV = A + A[1 - 1/(1 + r)\\J/r = AQ + [1 - 1/(1 + 0.04)}s]/0.04) = 8.4353(A). Setting the PV of the cash outflows (the annuity) equal to the PV of the cash inflows (the return in 15 years}, we can solve for the annual payment amount; A = $337,782/8.4353 = $40,044. Calculator solution: BGN; N = 10; I/Y = 4; FV =500,000; solve for PMT = 40,044,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q63",
+    "questionText": "Which of the following best describes a characteristic of defined contribution pension plans?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "The employee accepts the investment and inflation risk.",
+        "isCorrect": true,
+        "explanation": "Correct because the key to a defined contribution (DC) plan is that the employee accepts the investment and inflation risk and is responsible for ensuring that there are enough assets in the plan to meet their needs upon retirement."
+      },
+      {
+        "label": "B",
+        "text": "The employer is responsible for adequately funding the plan.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this applies for defined benefit (DB) plans, as generally, employers are responsible for the contributions made to a DB plan and bear the risk associated with adequately funding the benefits offered to employees."
+      },
+      {
+        "label": "C",
+        "text": "Defined contribution plans typically have a higher cost to the company than defined benefit plans.",
+        "isCorrect": false,
+        "explanation": "Incorrect because defined contribution (DC) plans typically have lower costs/risk to the company."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q64",
+    "questionText": "The market model is most likely used to predict:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "market returns in a future period.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the prediction interval is equal to the predicted value of the dependent variable plus/minus the critical t-value times the standard error of the forecast. The larger the sample size (n) in the regression estimation, the smaller the standard error of the forecast. Meanwhile, when the sample size is larger, the critical t-value will be smaller. Both will lead to a narrower prediction interval if holding other things constant."
+      },
+      {
+        "label": "B",
+        "text": "economic growth in a future period.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the prediction interval is equal to the predicted value of the dependent variable plus/minus the critical t-value times the standard error of the forecast. When the level of significance increases, the critical t-value will decrease, which will lead to a narrower prediction interval if holding other things constant."
+      },
+      {
+        "label": "C",
+        "text": "company-specific returns in a future period. 10 -- 14 of 124 --",
+        "isCorrect": true,
+        "explanation": "Correct because the prediction interval is equal to the predicted value of the dependent variable plus/minus the critical t-value times the standard error of the forecast. The better the fit of the regression model, the smaller the standard error of the estimate (se) and, therefore, the smaller standard error of the forecast. When the standard error of the estimate increases, the standard error of the forecast will increase, which will lead to a wider prediction interval if holding other things constant. 108 -- 112 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q65",
+    "questionText": "Open-end mutual funds typically:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "are priced intraday.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the annuity is taken as an ordinary annuity rather than an annuity due, leading to a PV 10 years from today of PVi. = $50,000 x [1 - 1/(1.03)+]/0.03 = $50,000 x 3.717098 = $185,855. The PV of the annuity today would equal PV. = $185,855/(1.03)2 = $138,294. Calculator solution: END mode; N = 4; 1/Y = 3%; PMT = 50,000; solve for PV = 185,855.Discounted back 10 years: N = 10; 1/Y = 3%; FV = 185,855; solve for PV = 138,294. This is also the result if the PV of the annuity due is discounted back 11 years instead of 10years: $191,431/(1.03)\" = $138,294. Calculator solution: BEGIN mode; N = 4; 1/Y = 3%; PMT = 50,000; solve for PV = 191,431.Discounted back 11 years: N = 11; 1/Y = 3%; FV = 191,431; solve for PV = 138,294."
+      },
+      {
+        "label": "B",
+        "text": "have a fixed number of shares outstanding.",
+        "isCorrect": true,
+        "explanation": "Correct because the present value (PV) of the annuity due 10 years from today equals PV:0 = $50,000 + $50,000 x [1 - 1/(1.03)2]/0.03 = $50,000 + $50,000 x 2.828611 = $191,431. The PV of the annuity today equals PV. = $191,431/(1.03)» = $142,442. Calculator solution: BEGIN mode; N = 4; 1/Y = 3%; PMT = 50,000; solve for PV = 191,431.Discounted back 10 years: N = 10; 1/Y = 3%; FV = 191,431: solve for PV = 142,442. Alternatively, the annuity can be treated as an ordinary annuity, with a PV 9 years from today of PV, = $50,000 x [1 - 1/(1.03}+]/0.03 = $50,000 x 3.717098 = $185,855. The PV of the annuity today equals PV. = $185,855/(1.03)» = $142,442. Calculator solution: END mode; N = 4; I/Y = 3%; PMT = 50,000; solve for PV = 185,855.Discounted back 9 years: N = 9;1/Y = 3%; FV = 185,855; solve for PV = 142,442."
+      },
+      {
+        "label": "C",
+        "text": "have a larger required minimum investment than ETFs.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the PV of the annuity due is discounted back 9 years instead of 10 years: $191,431/(1.03)> = $146,716. Calculator solution: BEGIN mode; N = 4; 1/Y = 3%; PMT = 50,000; solve for PV = 191,431.Discounted back 9 years: N = 9; 1/Y = 3%; FV = 191,431; solve for PV = 146,716. This is also closest to the PV of the entire required amount: $200,000/(1.03)» = $148,819."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q66",
+    "questionText": "A portfolio consists of two securities with the following characteristics: Expected ReturnStandard Deviation of Returns Security 1 17% 24% Security 2 6% 12% If the portfolio has an expected return of 12.6% and the returns of the two securities are uncorrelated, the portfolio's standard deviation is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "13.4%,",
+        "isCorrect": false,
+        "explanation": "Incorrect because it assumes the ordinary annuity starts in Year 5 instead of Year 4. The present value of an ordinary annuity with 7 payments of $10,000 at a 6% discount rate is calculated as follows: PV =A[1-1/(1+r)\"J/r PVs= $10,000 x [1 - 1/(1 + 0.06)*]/0.06 PV.= $55,823.81 Then the PV of the investment is incorrectly discounted from Year 5 instead of Year 4 such that: PV.= FV;(1 + r)N PV.= $55,823.81 x (1 + 0.06)5 PVo= $41,714.80 = $41,715. Calculator solution: (1) END mode; N = 7; 1 = 6; PMT = -10,000; FV = 0; solve for PV = 55,823.81. (2) END mode; N = 5; 1 = 6; PMT = 0; FV = -55,823.81; solve for PV = 41,714.80."
+      },
+      {
+        "label": "B",
+        "text": "15.2%.",
+        "isCorrect": true,
+        "explanation": "Correct because the present value in Year 4 of an ordinary annuity with 7 payments of $10,000 at a 6% discount rate is calculated as follows: PV =A[1-1/(1+r)*]/r PV.= $10,000 x [1 - 1/(1 + 0.06)?]/0.06 PV.= $55,823.81 109 -- 113 of 124 -- Then, using a time line, the PV of the annuity in today's dollars is PVo= FV.(1 + r}-N PV. = $55,823.81 (1+ 0.06)+ PV.= $44,217.69 = $44,218. Calculator solution: (1) END mode; N = 7; 1 = 6; PMT = -10,000; FV = 0; solve for PV = 55,823.81. END mode; N = 4; 1 = 6; PMT = 0; FV = ->55,823.81; solve for PV = 44,217.69."
+      },
+      {
+        "label": "C",
+        "text": "19.2%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is an intermediate step in the calculation and it represents the value of the annuity in 4 years. The present value in Year 4 of an ordinary annuity with 7 payments of $10,000 at a 6% discount rate is calculated as follows: PV=A[1-1/(1 + r)*]/r PV.= $10,000 x [1 - 1/(1 + 0.06)7]/0.06 PV.= $55,823.81 = $55,824. Calculator solution: (1) END mode; N = 7; I = 6; PMT = -10,000; FV = 0: solve for PV = 55,823.81."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q67",
+    "questionText": "An equally weighted portfolio is composed of two risky assets. If the correlation of asset returns is equal to zero, the portfolio standard deviation is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "equal to zero.",
+        "isCorrect": false,
+        "explanation": "Incorrect because we look at the sum of squared deviations of the observations from the mean to capture [the variation of the dependent variable]. Our goal is to understand what explains the variation of Y. The variation of Yis often referred to as the sum of squares total (SST), or the total sum of squares. Therefore, the difference between anobservation and the mean of the dependent variable is not the observation’s residual."
+      },
+      {
+        "label": "B",
+        "text": "equal to the weighted average of the assets’ standard deviations.",
+        "isCorrect": true,
+        "explanation": "Correct because the residual for the i» observation, e, is how much the observed value of Y, differs from the estimated [value] using the regression line. Further, the residual refers to the fitted linear relation based on the sample."
+      },
+      {
+        "label": "C",
+        "text": "less than the weighted average of the assets’ standard deviations.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the error term refers to the true underlying population relationship, whereas the residual refers to the fitted linear relation based on the sample. Further, the error term, or simply the error, represents the difference between the observed value of Y and that expected from the true underlying population relation between Y and X."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q68",
+    "questionText": "If all investors have homogeneous expectations, the total risk and expected return of portfolios consisting of the risk-free asset and the optimal risky portfolio are plotted onthe:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "capital market line.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the liquidity premium compensates investors for the risk of loss relative to an investment’s fair value if the investment needs to be converted to cash quickly. US T-bills, for example, do not bear a liquidity premium because large amounts can be bought and sold without affecting their market price."
+      },
+      {
+        "label": "B",
+        "text": "security market line.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the maturity premium compensates investors for the increased sensitivity of the market value of debt to a change in market interest rates as maturity is extended. For example, the difference between the interest rate on longer-maturity, liquid Treasury debt and that on short-term Treasury debt reflects a positive maturity premium for the longer-term debt."
+      },
+      {
+        "label": "C",
+        "text": "security characteristic line.",
+        "isCorrect": true,
+        "explanation": "Correct because the real risk-free rate reflects the time preferences of individualsfor current versus future real consumption. 110 -- 114 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q69",
+    "questionText": "The risk-return profile ofa portfolio's strategic asset allocation is most likely determined by the expected returns and risks of the individual asset classes and the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "correlations between those asset classes.",
+        "isCorrect": true,
+        "explanation": "Correct because the target downside deviation = [2(X; - B)2/(n - 1)]»5, where X, are the periodic returns below the target return, B is the target return, and 7 is the total number of periods. Since the sample has a standard deviation of 2.7%, it will have values below and above its mean of 1.0%. Since the target downside deviation ignores the deviations above the mean, it will be less than the standard deviation."
+      },
+      {
+        "label": "B",
+        "text": "use of security selection for each of those asset classes.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the target downside deviation = [Z(X: - B):/(n - 1)]>s,where X, are the periodic returns below the target return, B is the target return, and n is the total number of periods. Since the sample has a standard deviation of 2.7%, it will have values below and above its mean of 1.0%. Since the target downside deviation ignores the deviations above the mean, it will be less than the standard deviation."
+      },
+      {
+        "label": "C",
+        "text": "allowable deviation of portfolio weights from policy weights for those asset classes.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the target downside deviation = [2(X,- B)2/(n - 1)]s, where X, are the periodic returns below the target return, B is the target return, and n is the total number of periods. Since the sample has a standard deviation of 2.7%, it will have values below and above its mean of 1.0%. Since the target downside deviation ignores the deviations above the mean, it will be less than the standard deviation."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q70",
+    "questionText": "A portfolio has an annual return of 15.2% and a standard deviation of returns of 11.7%. If the risk-free rate is 3.1%, the portfolio's Sharpe ratio is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "1.03.",
+        "isCorrect": true,
+        "explanation": "Correct because the trimmed mean is computed by excluding a stated small percentage of the lowest and highest values and then computing an arithmetic mean of the remaining values. For example, a 5% trimmed mean discards the lowest 2.5% and the highest 2.5% of values and computes the mean of the remaining 95% of values."
+      },
+      {
+        "label": "B",
+        "text": "1.30. ie 1.56. 1] -- 15 of 124 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because the harmonic mean is the value obtained by summing the reciprocals of the observations—terms of the form 1/X—then averaging that sum by dividing it by the number of observations n, and, finally, taking the reciprocal of the average. The harmonic mean may be viewed as a special type of weighted mean in which an observation’s weight is inversely proportional to its magnitude. The harmonic mean does not exclude or replace any outliers."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q71",
+    "questionText": "Which of the following is best classified as a financial risk?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Tax risk",
+        "isCorrect": false,
+        "explanation": "Incorrect because the stock price will be distributed in a lognormal manner, notina normal or uniform manner."
+      },
+      {
+        "label": "B",
+        "text": "Credit risk",
+        "isCorrect": false,
+        "explanation": "Incorrect because the stock price will be distributed in a lognormal manner, not ina normal or uniform manner."
+      },
+      {
+        "label": "C",
+        "text": "Accounting risk",
+        "isCorrect": true,
+        "explanation": "Correct because the relationship between normal and lognormal distributions is if a stock's continuously compounded return is normally distributed, then future stock price is necessarily lognormally distributed."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q72",
+    "questionText": "The risk management measure that captures the sensitivity of a derivative’s delta to a change in the value of the underlying best describes:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "rho.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the procedure does not involve the systematic selection of a sample from the population. With systematic sampling, we select every kth member until we have a sample of the desired size. The sample that results from this procedure should be approximately random."
+      },
+      {
+        "label": "B",
+        "text": "vega.",
+        "isCorrect": true,
+        "explanation": "Correct because the sampling procedure does not give every member of the population an equal chance of being selected. It is based on the analyst's convenience. Non- probability sampling depends on factors other than probability considerations, such as a sampler’s judgment or the convenience to access data."
+      },
+      {
+        "label": "C",
+        "text": "gamma.",
+        "isCorrect": false,
+        "explanation": "Incorrect because cluster sampling requires the division or classification of the population into subpopulation groups, called clusters. In this method, the population is divided into clusters, each of which is essentially a mini-representation of the entire populations. Then certain clusters are chosen as a whole using simple random sampling. If all the members in each sampled cluster are sampled, this sample plan is referred to as one-stage cluster sampling. If a subsample is randomly selected from each selected cluster, then the plan is referred as two-stage cluster sampling. Choosing only company names starting with the letter P is not two-stage cluster sampling."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q73",
+    "questionText": "The intercept on the y-axis of the security characteristic line is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "beta.",
+        "isCorrect": false,
+        "explanation": "Incorrect because beta is the slope of the security characteristic line (SCL), not theintercept. 40 -- 44 of 124 --"
+      },
+      {
+        "label": "B",
+        "text": "Jensen's alpha.",
+        "isCorrect": true,
+        "explanation": "Correct because the SCL is a plot of the excess return of the security on the excess return of the market. Jensen's alpha is the intercept and the beta is the slope."
+      },
+      {
+        "label": "C",
+        "text": "the risk-free rate of return.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the risk-free rate of return is the intercept on the y-axis of the security market line, whereas Jensen's alpha is the intercept on the y-axis of the security characteristic line."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q74",
+    "questionText": "With respect to an investment policy statement, which of the following is most closely linked to the client’s distinctive needs?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "The evaluation and review section",
+        "isCorrect": false,
+        "explanation": "Incorrect because the two most noteworthy observations about the lognormal distribution are that it is bounded below by 0 and it is skewed to the right."
+      },
+      {
+        "label": "B",
+        "text": "The objectives and constraints sections",
+        "isCorrect": true,
+        "explanation": "Correct because the two most noteworthy observations about the lognormal distribution are that it is bounded below by 0 and it is skewed to the right (it has a long right tail), i.e. it is asymmetrical."
+      },
+      {
+        "label": "C",
+        "text": "The statement of duties and responsibilities",
+        "isCorrect": false,
+        "explanation": "Incorrect because like the normal distribution, the lognormal distribution is completely described by two parameters. Unlike the other distributions, a lognormal distribution is defined in terms of the parameters of a different distribution. The two parameters ofa lognormal distribution are the mean and standard deviation (or variance) of its associated normal distribution. Remember, we must keep track of two sets of means 112 -- 116 of 124 -- and standard deviations (or variances): the mean and standard deviation (or variance) ofthe associated normal distribution (these are the parameters) and the mean and standarddeviation (or variance) of the lognormal variable itself. The mean of the lognormal distribution is not equal to the mean of the associated normal distribution."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q75",
+    "questionText": "The slope ofthe security market line is most likely the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "security's beta.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a scatter plot (or scattergram) represents the two variables in two dimensions. The variation of Y (the dependent variable) is often referred to as the sum of squares total (SST), or the total sum of squares."
+      },
+      {
+        "label": "B",
+        "text": "market risk premium.",
+        "isCorrect": true,
+        "explanation": "Correct because the variation of Y (the dependent variable) is often referred to as the sum of squares total (SST), or the total sum of squares."
+      },
+      {
+        "label": "C",
+        "text": "market risk premium divided by the market standard deviation.",
+        "isCorrect": false,
+        "explanation": "Incorrect because Y (the dependent variable) is often referred to as the sum of squares total (SST), or the total sum of squares."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q76",
+    "questionText": "Which of the following performance measures is equal to the slope of the capital allocation line?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Mz",
+        "isCorrect": true,
+        "explanation": "Correct because using the equation PV = FVN(1 + r./m)-Nm where m = number of compounding periods per year r, = quoted annual interest rate N=number of years we compute PV = $10,000,000 x (1 + 0.05/2)-12= $4,767,426.85 = $4,767,427. In applying the equation, we use the periodic rate (in this case, the semi-annual rate) and the appropriate number of periods with semi-annual compounding. Alternative solution using a financial calculator in END mode: N = 30; 1/Y = 0.025; PMT = 0; FV = 10,000,000; CPT PV = $4,767,426.852 = $4,767,427"
+      },
+      {
+        "label": "B",
+        "text": "Sharpe ratio",
+        "isCorrect": false,
+        "explanation": "Incorrect because when computing present value, it uses 5% instead of EAR to get $10,000,000 x (1.05)-5 = $4,810,170.98 = $4,810,171."
+      },
+      {
+        "label": "C",
+        "text": "Treynor ratio",
+        "isCorrect": false,
+        "explanation": "Incorrect because in the present value equation, it incorrectly accounts for compounding (multiplies by 2 instead of dividing) and does not use the appropriate number of periods for semi-annual compounding (divides by 2 instead of multiplying by 2); to incorrectly compute PV = 10,000,000 x (1 + 0.05x2)-52= $4,892,770.68 = $4,892,771."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q77",
+    "questionText": "Which of the following sections of an investment policy statement for a pension plan most likely specifies the discretion that portfolio managers have with respect to executing the investment strategy?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Procedures",
+        "isCorrect": true,
+        "explanation": "Correct because one of the four key assumptions we need to make to be able to draw valid conclusions from a simple linear regression mode is that regression residuals are normally distributed."
+      },
+      {
+        "label": "B",
+        "text": "Investment Constraints",
+        "isCorrect": false,
+        "explanation": "Incorrect because one of the four underlying assumptions for simple linear regression is Independence: The observations, pairs of Ys and Xs, are independent of one another. This implies the regression residuals are uncorrelated [and do not have high correlation] across observations. ¢; Incorrect because one of the four underlying assumptions for simple linear 113 -- 117 of 124 -- regression is Homoskedasticity: The variance of the regression residuals is the same [and not different] for all observations. 114 -- 118 of 124 --"
+      },
+      {
+        "label": "C",
+        "text": "Statement of Duties and Responsibilities 12 -- 16 of 124 --",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q78",
+    "questionText": "Which of the following measures is most appropriate to evaluate the performance ofa portfolio that is not fully diversified?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Sharpe ratio",
+        "isCorrect": true,
+        "explanation": "Correct because when the observations are returns, the coefficient of variation measures the amount of risk (standard deviation) per unit of mean return."
+      },
+      {
+        "label": "B",
+        "text": "Treynor ratio c Jensen's alpha",
+        "isCorrect": false,
+        "explanation": "Incorrect because it describes the Sharpe ratio, not the coefficient of variation. The Sharpe ratio measures the reward, in terms of mean excess return, per unit of risk, where mean excess return is defined as the average rate of return in excess of the risk-free rate."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q79",
+    "questionText": "An analyst gathers the following information about three stocks: BetaStandard Deviation of Ret Stock1 0.9 17% Stock2 1.1 18% Stock3 1.2 16% If the standard deviation of market returns is equal to 10%, the stock with the highest nonsystematic risk is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Stock 1.",
+        "isCorrect": true,
+        "explanation": "Correct because when the unknown population variances are equal, a t-test based on independent random samples is given by t = (X1 — X2 ~ fr + fz) / (57/11 + s#/n2)* where s,2 is a pooled estimator of the common variance. Hence, a change in hypothesized difference pi - 2 will change the value of the test statistic."
+      },
+      {
+        "label": "B",
+        "text": "Stock 2.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the number of degrees of freedom is n: + nz — 2 and itis independent of the hypothesized difference pa — po."
+      },
+      {
+        "label": "C",
+        "text": "Stock 3.",
+        "isCorrect": false,
+        "explanation": "Incorrect because 5,7 = ((m — 1)sz + (m - 1)s.2)/(m1 + m —- 2) is a pooled estimator of the common variance. It is independent of the hypothesized difference pi: — pn."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q80",
+    "questionText": "Which of the following metrics is most appropriate to estimate a bond's average extreme loss?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "VaR of loss",
+        "isCorrect": true,
+        "explanation": "Correct because with n as the sample size, the Spearman rank correlation is given by: r.=1- (6 Y.d2)/(n(m2- 1))\" = 1 - 6(12) /(4(42- 1)) = 1 - 6/5 =-1/5 = -0.2, where the sum of squared differences in ranks )id? = (2 - 1)? + (3-2)? + (4-3)2+(1- 4y~=14+1+1+9=12."
+      },
+      {
+        "label": "B",
+        "text": "Standard deviation of loss",
+        "isCorrect": false,
+        "explanation": "Incorrect because this answer is calculated by erroneously omitting the multiple (of the sum of squared deviations) of 6, giving a rank correlation of 1 - 1/5 = 4/5 = 0.8. er Incorrect because instead of using the sum of squared differences in ranks, this answer erroneously uses the sum of unsquared differences in ranks (which, by definition, sums to zero), giving a rank correlation of 1."
+      },
+      {
+        "label": "C",
+        "text": "Expected loss given default",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q81",
+    "questionText": "An analyst gathers the following information about the security market line (SML) anda stock: InterceptoftheSML 2% Slope of the SML 5% Stock's beta 1.3 According to capital market theory, if the analyst believes the stock will have a return of 7%, the stock is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "undervalued.",
+        "isCorrect": false,
+        "explanation": "Incorrect because variation in the supply of wheat is a dependent variable not limited to values of 0 or 1. Suppose we want to examine whether a company’s quarterly earnings announcements influence its monthly stock returns. In this case, we could use an indicator variable, or dummy variable, that takes on only the values 0 or 1 as the independent variable."
+      },
+      {
+        "label": "B",
+        "text": "properly valued.",
+        "isCorrect": true,
+        "explanation": "Correct because variation in the demand for corn is being used to explain the variation in the supply of wheat. Therefore the variation in the supply of wheat is the dependent variable, or explained variable. We refer to the variable whose variation is being explained as the dependent variable, or the explained variable; it is typically denoted"
+      },
+      {
+        "label": "C",
+        "text": "overvalued.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the variation in the demand for corn is being used to explain the variation in the supply of wheat. Therefore the variation in the demand for corn is the independent variable. We refer to the variable whose variation is being used to explain the 115 -- 119 of 124 -- variation of the dependent variable as the independent variable, or the explanatory variable; it is typically denoted by X. 116 -- 120 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q82",
+    "questionText": "Relative to passive market-cap-weighted strategies, smart beta strategies typically have:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "lower management fees and higher portfolio turnover.",
+        "isCorrect": true,
+        "explanation": "Correct because a return distribution with negative skew has frequent small gains and a few extreme losses."
+      },
+      {
+        "label": "B",
+        "text": "higher management fees and lower portfolio turnover. Cc; higher management fees and higher portfolio turnover, 13 -- 17 of 124 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because a return distribution with positive skew has frequent small losses and a few extreme gains. A return distribution with negative skew has frequent small gains and a few extreme losses."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q83",
+    "questionText": "When defining asset classes for a strategic asset allocation, which of the following pairwise correlations between asset class returns is most preferable?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0.0",
+        "isCorrect": false,
+        "explanation": "Incorrect because when we look at the residuals of a model, what we would like to see is that the residuals are random. The residuals should not exhibit a pattern when plotted against the independent variable."
+      },
+      {
+        "label": "B",
+        "text": "0.5",
+        "isCorrect": true,
+        "explanation": "Correct because when we look at the residuals of a model, what we would like to see is that the residuals are random. The residuals should not exhibit a pattern when plotted against the independent variable."
+      },
+      {
+        "label": "C",
+        "text": "1.0",
+        "isCorrect": false,
+        "explanation": "Incorrect because when we look at the residuals of a model, what we would like to see is that the residuals are random. The residuals should not exhibit a pattern when plotted against the independent variable."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q84",
+    "questionText": "According to capital market theory, an efficient market does not reward investors for taking on:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "market risk.",
+        "isCorrect": true,
+        "explanation": "Correct because, in cluster sampling, the population is divided into clusters, each of which is essentially a mini-representation of the entire populations. Then certain clusters are chosen as a whole using simple random sampling. Cluster sampling is commonly used for market surveys, and the most popular version identifies clusters based on geographic parameters."
+      },
+      {
+        "label": "B",
+        "text": "systematic risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because judgmental, not cluster, sampling involves selectively handpicking elements from the population based on a researcher’s knowledge and professional judgment. For example, when auditing financial statements, seasoned auditorscan apply their sound judgment to select accounts or transactions that can provide sufficient audit coverage."
+      },
+      {
+        "label": "C",
+        "text": "idiosyncratic risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because creating a bond portfolio to mirror the performance ofa specified index is an application of stratified sampling. Bond indexing is one area in which stratified sampling, rather than cluster sampling, is frequently applied. Indexing is an investment strategy in which an investor constructs a portfolio to mirror the performance ofa specified index."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q85",
+    "questionText": "Which of the following is most likely a legal and regulatory constraint in an investment policy statement?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "A pension fund's decision to limit investments in real estate",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the underlying binomial distribution that exhibits skewness when p # 0.5, not the sampling distribution of the sample mean. Since the sample size is large, the distribution of the sample mean will be approximately normal according to the central limit theorem, and therefore symmetric."
+      },
+      {
+        "label": "B",
+        "text": "A taxable investor's requirement to avoid investments in securities generating interest income",
+        "isCorrect": true,
+        "explanation": "Correct because, according to the central limit theorem, the sampling distribution of the sample mean will be approximately normal when the sample size n is large. The normal distribution has a skewness of 0 (it is symmetric). Since the binomial distribution has a 117 -- 121 of 124 -- mean of np and finite variance of np(1 - p), where n is the number of trials and p is the probability of success, the central limit theorem holds. 118 -- 122 of 124 --"
+      },
+      {
+        "label": "C",
+        "text": "A public company director's restriction on trading the company's stock shortly before the publication of financial results",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the underlying binomial distribution that exhibits skewness when p # 0.5, not the sampling distribution of the sample mean. Since the sample size is large, the distribution of the sample mean will be approximately normal according to the central limit theorem, and therefore symmetric."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q86",
+    "questionText": "When defining asset classes, the paired correlations of assets within an asset class should be:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "negative.",
+        "isCorrect": true,
+        "explanation": "Correct. A negatively skewed distribution appears as if the left tail has been pulled away from the mean. The average magnitude of negative deviations from the mean is larger than the average magnitude of positive deviations."
+      },
+      {
+        "label": "B",
+        "text": "zero.",
+        "isCorrect": false,
+        "explanation": "Incorrect. Kurtosis refers to relative peakedness of a distribution; leptokurtosis means more peaked than normal."
+      },
+      {
+        "label": "C",
+        "text": "positive.",
+        "isCorrect": false,
+        "explanation": "Incorrect. A negatively skewed distribution appears as if the left tail has been pulled away from the mean."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q88",
+    "questionText": "A bank determines that its value at risk (VaR) is £5 million at 5% for one day. The bank is expecting a minimum loss of £5 million once every:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "5 business days.",
+        "isCorrect": true,
+        "explanation": "Correct because the time-weighted rate of return is the preferred performance measure as it neutralizes the effect of cash withdrawals or additions to the portfolio, which are generally outside of the control of the portfolio manager."
+      },
+      {
+        "label": "B",
+        "text": "13 business days.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the arithmetic return is biased upward. For the evaluation of portfolios of publicly traded securities, the time-weighted rate of return is the preferred performance measure,"
+      },
+      {
+        "label": "C",
+        "text": "20 business days. 14 -- 18 of 124 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because investment managers find time-weighted returns more meaningful. If a client gives an investment manager more funds to invest at an unfavorable time, the manager’s money-weighted rate of return will tend to be depressed. If a client adds funds at a favorable time, the money-weighted return will tend to be elevated. The time-weighted rate of return removes these effects. 119 -- 123 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q89",
+    "questionText": "A good risk management process should:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "predict when a crisis will occur.",
+        "isCorrect": false,
+        "explanation": "Incorrect because, in cluster sampling, the population is divided into clusters, eachof which is essentially a mini-representation of the entire populations. Then certain clusters are chosen as a whole using simple random sampling. The sampling method usedby the analyst is not cluster sampling because, first, each sector is not a mini- representation of all public firms; second, certain sectors are not chosen as a whole."
+      },
+      {
+        "label": "B",
+        "text": "consider the balance between expected returns and losses.",
+        "isCorrect": false,
+        "explanation": "Incorrect because, in simple random sampling, a public firm would be randomly selected without the firms being grouped into sectors first. A simple random sample is a subset of a larger population created in such a way that each element of the population hasan equal probability of being selected to the subset."
+      },
+      {
+        "label": "C",
+        "text": "only consider losses occurring from events that have a high likelihood.",
+        "isCorrect": true,
+        "explanation": "Correct because, in stratified random sampling, the population is divided into subpopulations (strata) based on one or more classification criteria. Simple random samples are then drawn from each stratum in sizes proportional to the relative size of eachstratum in the population."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q90",
+    "questionText": "A portfolio consisting of two securities has the following characteristics: SecurityPortfolio Weight Standard Deviation 1 40% 15% 2 60% 18% If the correlation of returns between the two securities is 0.20, the portfolio’s standard deviation of returns is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "1.8%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because if we mistakenly reject the null hypothesis, we can only be makinga TypeI error."
+      },
+      {
+        "label": "B",
+        "text": "9.1%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because rejecting a false null hypothesis is a correct decision andtherefore not a Type II error."
+      },
+      {
+        "label": "C",
+        "text": "13.4%.",
+        "isCorrect": true,
+        "explanation": "Correct because, when we make a decision in a hypothesis test, we run the risk ofmaking either a Type I or a Type II error. These are mutually exclusive errors: If we mistakenly reject the null hypothesis, we can only be making a Type I error; if we mistakenly fail to reject the null, we can only be making a Type II error. 120 -- 124 of 124 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q91",
+    "questionText": "An investor has a 15-year time horizon but needs to withdraw funds from her portfolio in one year's time to pay for tuition fees. Which of the following investments is most suitableto cover the investor's liquidity requirement due to the tuition fees?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Commercial paper",
+        "isCorrect": true,
+        "explanation": "Correct because, although the investor has a time horizon of 15 years, she has liquidity needs in one year. When the client does have such a requirement, the manager should allocate part of the portfolio to cover the liability. This part of the portfolio will be invested in assets that are liquid—that is, easily converted to cash—and low risk at the point in time the liquidity need is actually present (e.g., a bond maturing at the time when private education expenses will be incurred), so that their value is known with reasonable certainty. Commercial paper is a short-term, negotiable, unsecured promissory note that represents a debt obligation of the issuer. Thus, commercial paper being a short-term investment, it is more suitable compared to private equity and large-capitalization stocks to be included in the portion of the investor's portfolio that has the short-term liquidity need."
+      },
+      {
+        "label": "B",
+        "text": "Private equity securities",
+        "isCorrect": false,
+        "explanation": "Incorrect because, although the investor has a time horizon of 15 years, she has liquidity needs in one year. When the client does have such a requirement, the manager should allocate part of the portfolio to cover the liability. This part of the portfolio will be invested in assets that are liquid—that is, easily converted to cash—and low risk at the point in time the liquidity need is actually present (e.g., a bond maturing at the time when private education expenses will be incurred), so that their value is known with reasonable certainty. Private equity securities are not listed on public exchanges and have no active secondary market. They are issued primarily to institutional investors via non-public offerings, such as private placements. Being illiquid, they are not suitable to be included in the portion of the client's portfolio that has the short-term liquidity need."
+      },
+      {
+        "label": "C",
+        "text": "Large-capitalization stocks",
+        "isCorrect": false,
+        "explanation": "Incorrect because, although the investor has a time horizon of 15 years, she has liquidity needs in one year. When the client does have such a requirement, the manager should allocate part of the portfolio to cover the liability. This part of the portfolio will be invested in assets that are liquid—that is, easily converted to cash—and low risk at the point in time the liquidity need is actually present (e.g.,a bond maturing at the time when private education expenses will be incurred), so that their value is known with reasonable certainty. Thus, large-capitalization stocks, being a more volatile investment than commercial paper, would be less suitable to be included in the portion of the investor's portfolio that has the short-term liquidity need."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q92",
+    "questionText": "With respect to capital market theory, which of the following statements is most accurate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "The optimal risky portfolio is dependent on the risk-free rate.",
+        "isCorrect": true,
+        "explanation": "Correct because, for a given Markowitz efficient frontier, a different risk-free rate will result in a different tangent to the frontier, hence a different optimal risky portfolio. CAL(P) is the optimal capital allocation line and Portfolio P is the optimal risky portfolio. Thus, with the addition of the risk-free asset, we are able to narrow our selection of risky portfolios to a single optimal risky portfolio, P, which is at the tangent of CAL(P) and the efficient frontier of risky assets. 47 -- 51 of 124 --"
+      },
+      {
+        "label": "B",
+        "text": "The optimal risky portfolio is dependent on the investor's risk profile.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the optimal risky portfolio is selected from numerous risky portfolios without considering the investor’s preferences."
+      },
+      {
+        "label": "C",
+        "text": "The investor's optimal portfolio must lie on the Markowitz efficient frontier.",
+        "isCorrect": false,
+        "explanation": "Incorrect because all investors regardless of taste, risk preferences, and initial wealth will hold a combination of two portfolios or funds: a risk-free asset and an optimal portfolio of risky assets. The investor's optimal portfolio thus lies on the capital allocation line (CAL), not on the Markowitz efficient frontier. If it is optimal for an investor to allocate no wealth to the risk-free asset, the investor's optimal portfolio will lie on the Markowitz efficient frontier. However, this is not 'always' the case."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q94",
+    "questionText": "A security with a beta of 1.5 has an expected return of 11% according to the CAPM. Ifthe risk-free rate is 2%, the market risk premium is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "4.0%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it uses an incorrect CAPM equation to calculate the expected return of a security as E(R) = Rf+ Bi x E(R,), such that E(R.,.) = [E(R) — Rfl/Bi = (0.11 - 0.02)/1.5 = 0.06 = 6%. Since the market risk premium is Rm- R, it follows that the market risk premium is calculated as 6% - 2% = 4%,"
+      },
+      {
+        "label": "B",
+        "text": "6.0%.",
+        "isCorrect": true,
+        "explanation": "Correct because, according to the CAPM, the expected return of a security is E(R) = Rf+ BiLE(R.) — Rj, such that [E(R.) - Rf]= [E(R) - Rf|/Bi = (0.11 - 0.02)/1.5 = 0.06 = 6%. The market risk premium is E(Rn) - Rf= 6%."
+      },
+      {
+        "label": "C",
+        "text": "7.3%. 15 -- 19 of 124 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because it uses an incorrect CAPM equation to calculate the expected return ofa security as E(R) = Bi x [E(R.) — RJ, such that [E(R..) - R/] = E(R)/Bi = 0.11/1.5 = 0.0733 = 7.3%. The market risk premium is incorrectly calculated as 7.3%. This is also closest to the market return of 8% calculated according to the CAPM equation; 0.11 = 0.02 + 1.5 [E(R..) - 0.02]; E(R.) = 0.08 = 8%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q95",
+    "questionText": "An analyst gathers the following information about a portfolio and the market: Portfolio's Sharpe ratio 0.8 Volatility of portfolio returns 19% Volatility of market returns 10% Correlation between portfolio returns and market returns 0.7 The portfolio’s Treynor ratio is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0.060.",
+        "isCorrect": false,
+        "explanation": "Incorrect because 0.060 = SR x (0;/By') = 0.8 x (0.19/2.527), where 6,’ = incorrectly calculated portfolio beta = Pyn(0,2/On?) = 0.7 x (0.192/0.12) = 2.527."
+      },
+      {
+        "label": "B",
+        "text": "0.114.",
+        "isCorrect": true,
+        "explanation": "= portfolio beta = pym(0,/an) = 0.7 x (0.19/0.1) = 1.33 (per Bi = pin(oi/On)); R, = portfolio's return; R, = risk-free rate of interest; TR = Treynor ratio; SR = Sharpe ratio, where SR = (R, — Ry)/o»."
+      },
+      {
+        "label": "C",
+        "text": "0.413.",
+        "isCorrect": false,
+        "explanation": "Incorrect because 0.413 = SR x (0,/B,*) = 0.8 x (0.19/0.368), where B,* = incorrectly calculated portfolio beta = Pon(On/ Gp) = 0.7 x (0.1/0.19) = 0.368."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q96",
+    "questionText": "For an equally weighted portfolio, an increase in the correlations between asset returns most likely decreases the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "portfolio's expected return.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the equally weighted portfolio's return is the same as the return on the randomly selected security. Thus, a portfolio's expected return is not influenced by the correlations between assets. The portfolio return varies with weights but is unaffected by the correlation coefficient."
+      },
+      {
+        "label": "B",
+        "text": "portfolio's standard deviation of returns.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the standard deviation of an equally weighted portfolio is not simply the average of the standard deviations of the individual shares. Such a portfolio offers a lower standard deviation of return than the average of its individual components due to the correlations or interactions between the individual securities. Thus, a portfolio’s standard deviation of returns is influenced by the correlations between assets. For example, the standard deviation of a two-asset portfolio simplifies to the following: op= V(wrox2 + W202 + 2WiW2P:20102). It follows that an increase in the correlation among assets will result in an increase in the portfolio’s standard deviation, nota decrease."
+      },
+      {
+        "label": "C",
+        "text": "level of risk reduction provided by the portfolio.",
+        "isCorrect": true,
+        "explanation": "Correct because, as the correlations between asset returns increase, the diversification benefit provided by portfolios decreases. A major reason that portfolios can effectively reduce risk is that combining securities whose returns do not move together provides diversification. However, an important issue is that the co-movement or correlation pattern of the securities’ returns in the portfolio can change in a manner unfavorable to the investor. When we examine the returns of a set of global equity indexes over the last 15 years, we observe a reduction in the diversification benefit due to a change in the pattern of co-movements of returns. The degree to which these global equity indexes move together has increased over time. The lesson is that although portfolio diversification generally does reduce risk, it does not necessarily provide the same level of risk reduction during times of severe market turmoil as it does when the economy and markets are operating ‘normally’."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q97",
+    "questionText": "An adviser gathers the following information about a client's retirement income needs: e The current balance of the client's retirement fund is $150,000. « The client plans to retire in 15 years’ time. « $500,000 in today’s money is needed to fund retirement. e No further retirement fund contributions will be made. Inflation is expected to average 2% per year over the next 15 years. Based only on the above information and ignoring taxes, the minimum annual rate of return required to meetthe client's retirement income objective is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "6.2%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it adjusts for inflation in the wrong direction, i.e. it assumes that, in order to reach $500,000 in 15 years' time, we must equate $500,000 to $150,000 x 1.02: x (1 +r), which yields: r = [$500,000/($150,000 x 1.0225) }1s - 1 = 0.062 = 6.2%. 49 -- 53 of 124 -- Alternatively, after calculating the nominal return via $150,000(1 + r)s = $500,000, it then adjusts for inflation by subtracting, rather than adding, the expected inflation rate from the nominal rate; [$500,000/$150,000]15 — 1 - 0.02 = 8.4% - 2.0% = 6.4%, which is closest to this response."
+      },
+      {
+        "label": "B",
+        "text": "8.4%,",
+        "isCorrect": false,
+        "explanation": "Incorrect because it does not take into account the effect of inflation on the individual's retirement income needs. In other words, it assumes that the portfolio needs to grow to at least $500,000 in 15 years’ time, rather than to this amount adjusted upward for inflation. Hence, the minimum required rate of return, r, satisfies $150,000(1 + r)s = $500,000, giving r = [$500,000/$150,000]15 - 1 = 0.084 = 8.4%. Calculator solution: N = 15; PV = -150,000; FV = 500,000; compute I/Y = 8.4%."
+      },
+      {
+        "label": "C",
+        "text": "10.5%.",
+        "isCorrect": true,
+        "explanation": "Correct because, at 2% annual inflation, $500,000 in today's money equates to $500,00(1.02)s = $672,934 in 15 years' time. Since no further contributions to the retirement fund will be made, the current savings of $150,000 must grow to at least $672,934 in 15 years’ time to meet the individual's retirement income objective. Hence, the minimum required rate of return, r, satisfies $150,000(1 + r):5 = $672,934, giving r = [$672,934/$150,000]+s - 1 = 0.105 = 10.5%. Calculator solution: (1) N = 15; 1/Y = 2%; PV= -500,000; compute FV = 672,934, (2) N = 15; PV = -150,000; FV = 672,934; compute I/Y = 10.5%. Alternatively, a candidate could compute the nominal required rate of return via $150,000(1 + r)1s = $500,000, giving r = [$500,000/$150,000]™s - 1 = 0.084 = 8.4%, and then adjust for inflation as follows: (1 + 0.084) x (1 + 0.02) -1=0.105 = 10.5%. If a candidate adjusted for inflation by adding the expected inflation rate, they would also arrive at (approximately) the Correct answer; 8.4% + 2.0% = 10.4%,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q99",
+    "questionText": "In risk management, which of the following should be taken into account whendetermining an enterprise’s risk tolerance?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Management compensation",
+        "isCorrect": false,
+        "explanation": "Incorrect because, in the context of risk management, certain factors should not determine risk tolerance, but in many cases they do. Personal motivations, beliefs, and agendas of board members (the agency problem); company size; whether the market environment seems stable; short-term pressures; and management compensation often affect risk tolerance in ways that might not be in line with the owners’ best interests."
+      },
+      {
+        "label": "B",
+        "text": "The enterprise’s value at risk (VaR)",
+        "isCorrect": false,
+        "explanation": "Incorrect because, in the context of risk management, risk budgeting picks up where risk tolerance leaves off. Whereas risk tolerance focuses on the appetite for 50 -- 54 of 124 -- risk and what is and is not acceptable, risk budgeting has a more specific focus on how that risk is taken. Risk budgeting quantifies and allocates the tolerable risk byspecific metrics; it extends and guides implementation of the risk tolerance decision."
+      },
+      {
+        "label": "C",
+        "text": "The government and regulatory landscape 16 -- 20 of 124 --",
+        "isCorrect": true,
+        "explanation": "Correct because, in the context of risk management, factors such as a company’s goals, its expertise in certain areas, and its strategies will help a board determine whichrisks the company may pursue and with how much intensity. The government and regulatory landscape is important too, both in their ex ante demands on how companiesapproach risk and in the likely ex post reaction in the event of disasters."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  },
+  {
+    "id": "premium-portfolio-management-ocr-cfa-l1-2025-portfolio-mngt-quants-q100",
+    "questionText": "Two investors have indifference curves that are tangent to the same capital allocation line (CAL). If Investor 1 is more risk averse than Investor 2, Investor 1's optimal portfolio is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "to the left of Investor 2's optimal portfolio on the CAL.",
+        "isCorrect": true,
+        "explanation": "Rejecting a true null hypothesis"
+      },
+      {
+        "label": "B",
+        "text": "atthe same point on the CAL as Investor 2's optimal portfolio.",
+        "isCorrect": false,
+        "explanation": "Rejectinga false null hypothesis cs Failure to reject a false null hypothesis 1 77 -- 81 of 124 -- Quantitative Methods- Practice Pac!"
+      },
+      {
+        "label": "C",
+        "text": "to the right of Investor 2's optimal portfolio on the CAL. 17 -- 21 of 124 --",
+        "isCorrect": false,
+        "explanation": "Money-weighted rate of return Question 89 of 90 Question Grouping all publicly traded US firms by sector and then randomly selecting subsamples offirms from each sector according to the sector's proportion in the total population is an example of:"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Portfolio Management",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Portfolio Mngt & Quants.pdf"
+  }
+]

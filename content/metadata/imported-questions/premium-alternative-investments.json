@@ -1,0 +1,1016 @@
+[
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q2",
+    "questionText": "Compared to centralized cryptocurrency exchanges, decentralized exchanges are:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less likely to be regulated and less susceptible to attacks from hackers.",
+        "isCorrect": true,
+        "explanation": "Correct because decentralized exchanges lack a centralized control mechanism and operate on a distributed platform without central coordination or control. This comes with the benefit that should one of the computers on the network be attacked, the exchange remains operational since there are numerous other computers that continue to operate on the network. That is why attacking decentralized exchanges is substantially more difficult, rendering such attacks almost certain to fail. However, for a centralized exchange, trading is hosted on private servers, exposing the centralized exchanges and their clients to security vulnerabilities. Should the exchange's servers become compromised, the entire system may become paralyzed, halting trade, and leaking vital user information. Hence, decentralized exchanges are less susceptible to attacks from hackers. Moreover, decentralized exchanges are difficult to regulate because no single individual, organization, or group controls the system. This means that those trading on decentralized exchanges are generally free to transact without any regulatory scrutiny. However, some [centralized] exchanges are regulated, and depending on jurisdiction, these exchanges may be regulated as financial exchanges or other types of financial intermediaries. Hence, decentralized exchanges are less likely to be regulated."
+      },
+      {
+        "label": "B",
+        "text": "less likely to be regulated and more susceptible to attacks from hackers. G. more likely to be regulated and less susceptible to attacks from hackers.",
+        "isCorrect": false,
+        "explanation": "Incorrect because decentralized exchanges lack a centralized control mechanism and operate on a distributed platform without central coordination or control. This comes with the benefit that should one of the computers on the network be attacked, the exchange remains operational since there are numerous other computers that continue to operate on the network. That is why attacking decentralized exchanges is substantially more difficult, rendering such attacks almost certain to fail. However, for a centralized exchange, trading is hosted on private servers, exposing the centralized exchanges and their clients to security vulnerabilities. Should the exchange's servers become compromised, the entire system may become paralyzed, halting trade, and leaking vital user information. Hence, decentralized exchanges are less (not more] susceptible to attacks from hackers. Incorrect because decentralized exchanges are difficult to regulate because no single individual, organization, or group controls the system. This means that those trading on decentralized exchanges are generally free to transact without any regulatory scrutiny. However, some [centralized] exchanges are regulated, and depending on jurisdiction, these exchanges may be regulated as financial exchanges or other types of financial intermediaries. Hence, decentralized exchanges are less (not more) likely to be regulated. 13 -- 16 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q3",
+    "questionText": "Which of the following forms of digital asset investment most likely involves the use of a cryptocurrency wallet?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Direct investment",
+        "isCorrect": true,
+        "explanation": "Correct because digital asset investment can take the form of direct investment on the blockchain or indirect investments. Direct ownership of bitcoin and other cryptocurrencies involves the use of a cryptocurrency wallet, which stores the (public and private) digital codes required to access the asset on a computer website or mobile device application."
+      },
+      {
+        "label": "B",
+        "text": "Indirect investment via ETFs",
+        "isCorrect": false,
+        "explanation": "Incorrect because an increasing number of exchange-traded products, such as ETFs, seek to replicate digital asset investment returns. These ETFs typically do not directly invest in cryptocurrencies and gain exposure to the value of cryptocurrencies using cash and cryptocurrency derivatives. Since no direct investment is made, a cryptocurrency wallet is not required. G. Incorrect because cryptocurrency coin trusts allow investors to trade shares in trusts holding large pools of a cryptocurrency and that trade over the counter (OTC) and behave like closed-end funds. For an investor in a coin trust, there is no need to create a digital wallet and use encryption keys to invest in cryptocurrencies."
+      },
+      {
+        "label": "C",
+        "text": "Indirect investment via coin trusts",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q5",
+    "questionText": "The process of representing ownership rights to physical assets on a distributed ledger is referred to as:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "tokenization.",
+        "isCorrect": true,
+        "explanation": "Correct because tokenization is the process of representing ownership rights to physical assets on a blockchain or distributed ledger."
+      },
+      {
+        "label": "B",
+        "text": "initial coin offering. G: consensus mechanism.",
+        "isCorrect": false,
+        "explanation": "Incorrect because an initial coin offering (ICO) is an unregulated process whereby companies sell their crypto tokens to investors in exchange for fiat money or for another agreed upon cryptocurrency. G Incorrect because a consensus mechanism is used to validate new transactions in the blockchain; it is not the process of representing ownership rights to physical assets, New transactions are inserted into the chain only after validation via a consensus mechanism in which authorized members agree on the transaction and the preceding order, or history, in which previous transactions have occurred. The consensus mechanism used to verify a transaction includes a cryptographic problem that must be solved by some computers on the network (known as miners) each time a transaction takes place. 14 -- 17 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q6",
+    "questionText": "The correlation of cryptocurrencies with traditional assets has been:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "decreasing.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the correlation of cryptocurrencies with traditional assets is on the rise."
+      },
+      {
+        "label": "B",
+        "text": "steady.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the correlation of cryptocurrencies with traditional assets is on the rise."
+      },
+      {
+        "label": "C",
+        "text": "increasing,",
+        "isCorrect": true,
+        "explanation": "Correct because the correlation of cryptocurrencies with traditional assets is on the rise."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q7",
+    "questionText": "-- 4 of 166 -- Question Which of the following is most likely a major driver of bitcoin returns?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Increased market adoption",
+        "isCorrect": true,
+        "explanation": "Correct because in practice, prices (or returns) of cryptocurrencies are driven more by market adoption, network effects, technological advancement, regulatory development, and general market risk appetite."
+      },
+      {
+        "label": "B",
+        "text": "The prospect of underlying cashflow generation Gi Consistently high correlation with traditional asset classes -- 5 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because bitcoin and other cryptocurrency values are based solely on asset appreciation, with no underlying cash flows. G Incorrect because since its launch in 2009, bitcoin’s performance has been characterized by high return, high volatility, and low correlations with traditional asset classes. The fact that the correlation of cryptocurrencies with traditional assets is on the rise does not imply that the correlation of bitcoin and other cryptocurrencies has reached a high level yet, nor would a high level necessarily be a desirable feature."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q10",
+    "questionText": "A measure that restricts new investors in a hedge fund from redeeming their capital fora set amount oftime in order to implement the fund's investment strategy is known as a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "gate.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in addition, funds sometimes impose a gate, which limits or restricts redemptions for a period of time. A gate is imposed by the hedge fund manager independent of any lockup period that may apply. A gate therefore applies to all investors for a finite period of time while a lockup periad applies to new investers only."
+      },
+      {
+        "label": "B",
+        "text": "notice period.",
+        "isCorrect": false,
+        "explanation": "Incorrect because notice periods provide an opportunity for the hedge fund manager to liquidate a position in an orderly fashion without magnifying the losses. A notice period applies to all investors wanting to withdraw some or all of their capital from a hedge fund with the goal of providing the manager with advance warning of the withdrawal."
+      },
+      {
+        "label": "C",
+        "text": "lockup period,",
+        "isCorrect": true,
+        "explanation": "Correct because lockup periods—time periods when investors cannot withdraw their capital—provide the hedge fund manager the required time to implement and potentially realize a strategy’s expected results, Lockup periods apply to new investors ina hedge fund with the goal of allowing the hedge fund manager time to implement the fund's investment strategy."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q12",
+    "questionText": "A leveraged loan is best defined as a loan:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "that is itself levered.",
+        "isCorrect": true,
+        "explanation": "Correct because a leveraged loan is a loan that is itself levered. Private debt firms that invest in leveraged loans first borrow money to finance the debt and then extend it to another borrower. By using leverage, a private debt firm can enhance the return on its loan portfolio."
+      },
+      {
+        "label": "B",
+        "text": "to mature companies in financial difficulty. e. that comes with warrants or conversion rights.",
+        "isCorrect": false,
+        "explanation": "Incorrect because involvement in distressed debt typically entails buying the debt of mature companies in financial difficulty. These companies may be in bankruptcy, have defaulted on debt, or seem likely to default on debt. Some investors identify companies with a temporary cash-flow problem but a good business plan to help the company survive and ultimately flourish. These investors buy the company’s debt, expecting both the company and its debt to increase in value. Turnaround investors buy debt aiming to be more active in distressed company management and direction, seeking to restructure and revive them. Gi Incorrect because mezzanine debt often comes with additional features, such as warrants or conversion rights. These provide equity participation to lenders/investors, conveying the option to convert their debt into equity or purchasing the equity ofthe underlying borrower under certain circumstances. 16 -- 19 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q13",
+    "questionText": "From the perspective ofa private equity firm, an advantage of exiting a portfolio company through a special purpose acquisition company (SPAC) most likely include:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "floating valuation,",
+        "isCorrect": false,
+        "explanation": "potential higher costs of capital from sponsor dilution, warrants, and other fees,"
+      },
+      {
+        "label": "B",
+        "text": "flexibility of the transaction structure, fc. lower dea] risk due to restrictions on redemptions.",
+        "isCorrect": true,
+        "explanation": "spread between the announced and true equity value because of the dilution,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q17",
+    "questionText": "Crude oil is categorized as:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "a soft commodity.",
+        "isCorrect": false,
+        "explanation": "Incorrect because oil is categorized as a hard, not a soft, commodity. Commodities are considered either ‘hard’ (those mined, such as copper, or extracted, such as oil) or ‘soft' (those grown over a period oftime, such as livestock, grains, and cash crops, such as coffee)."
+      },
+      {
+        "label": "B",
+        "text": "a hard commodity.",
+        "isCorrect": true,
+        "explanation": "Correct because commodities are considered either ‘hard’ (those mined, such as copper, or extracted, such as oil) or ‘soft’ (those grown over a period of time, such as livestock, grains, and cash crops, such as coffee). 18 -- 21 of 166 -- GC. Incorrect because oil is categorized as a hard, nota soft, commodity. Commodities are considered either ‘hard’ (those mined, such as copper, or extracted, such as oil) or ‘soft’ (those grown over a period of time, such as livestock, grains, and cash crops, such as coffee)."
+      },
+      {
+        "label": "C",
+        "text": "neither a soft commodity nor a hard commodity.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q20",
+    "questionText": "Which of the following is best classified as a commodity?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Livestock",
+        "isCorrect": true,
+        "explanation": "Correct because commodity investments may involve investing in actual physical commodities or in producers of commodities, Commodities are considered either ‘hard’ (those mined, such as copper, or extracted, such as oil) or 'soft' (those grown over a period of time, such as livestock, grains, and cash crops, such as coffee)."
+      },
+      {
+        "label": "B",
+        "text": "Timberland",
+        "isCorrect": false,
+        "explanation": "Incorrect because timberland is a separate component of natural resources, nota commodity. Natural resources include commodities (hard and soft), agricultural land (farmland), and timberland."
+      },
+      {
+        "label": "C",
+        "text": "Agricultural land -- 7 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because agricultural land is a separate component of natural resources, not a commodity. Natural resources include commodities (hard and soft}, agricultural land (farmland), and timberland."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q21",
+    "questionText": "Investors in greenfield infrastructure projects typically:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "rely on the assets’ financial and operating history.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is for brownfield, not greenfield, investors that, typically, some of the assets’ financial and operating history is available."
+      },
+      {
+        "label": "B",
+        "text": "invest alongside strategic investors or developers. cy; have lower development risk than investors in brownfield projects.",
+        "isCorrect": true,
+        "explanation": "Correct because greenfield investors typically invest alongside strategic investors or developers who specialize in developing the underlying assets. 19 -- 22 of 166 -- G Incorrect because investing in infrastructure assets that are to be constructed is generally referred to as greenfield investment. Thus, greenfield investors face higher development and construction risks compared to brownfield investors, and may expect capital appreciation to reflect the construction and commissioning risk."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q22",
+    "questionText": "An analyst gathers the following information about a hedge fund: Beginning-of-year assets under management (AUM) $500 million Annual return before fees 22% Management fee, based on end-of-year AUM before fees 2% Incentive fee 15% Hard hurdle rate 10% The incentive fee (in $ millions) based on returns net of management fees is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "7.2.",
+        "isCorrect": true,
+        "explanation": "Correct because End-of-year AUM = $500 million x 22% = $610 million. Management fee = $610 million x 2% = $12.2 million. The hurdle rate is a minimum rate ofreturn, typically 8%, that the GP must exceed in order to earn the performance fee. GPs typically receive 20% of the total profit of the private equity fund net of any hard hurdle rate, in which case the GP earns fees on annual returns in excess of the hurdle rate, or net of the soft hurdle rate, in which case the fee is calculated on the entire annual gross return as long as the set hurdle is exceeded. Hard hurdle = $500 million x 10% = $50 million. Incentive fee (based on returns net of management fees) = ($610 million — $500 million ~ $50 million —- $12.2 million) x 15% = $47.8 million x 15% = $7.17 million = $7.2 million."
+      },
+      {
+        "label": "B",
+        "text": "13.0. CG. 14.7.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it calculates the hurdle rate on the annual return before fees (instead of the Beginning-of-year AUM). End-of-year AUM = $500 million x 22% = $610 million. Management fee = $610 million x 2% = $12.2 million. Hard hurdle = ($610 million - $500 million) x 10% = $110 million x 10% = $11.0 million. Incentive fee (calculated net of management fees) = ($610 million - $500 million — $11.0 million — $12.2 million) x 15% = $86.8 million x 15% = $13.02 million = $13.0 million. G. Incorrect because it assumes a soft hurdle rate (instead of a hard hurdle rate) of 10%. End-of-year AUM = $500 million x 22% = $610 million. Management fee = $610 million x 2% = $12.2 million. Gross annual return > soft hurdle rate, hence the hurdle rate is not deducted from the calculation of the incentive fee. Incentive fee (calculated net of management fees) = ($610 million — $500 million - $12.2 million) x 15% = $97.8 million x 15% = $14.67 million = $14.7 million."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q23",
+    "questionText": "A hedge fund strategy that seeks to influence a company's policies through the purchase of equity is best described as a(n):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "activist strategy.",
+        "isCorrect": true,
+        "explanation": "Incorrect because infrastructure investments are frequently categorized on the basis of the underlying assets. The broadest categorization organizes investments into economic and social infrastructure assets. Economic infrastructure assets support economic activity and include three broad types of assets: transportation assets, information and communication technology (ICT) assets, and utility and energy assets. .. Transportation assets include roads, bridges, tunnels, airports, seaports, and heavy and light/urban railway systems."
+      },
+      {
+        "label": "B",
+        "text": "market-neutral strategy. GC, merger arbitrage strategy.",
+        "isCorrect": false,
+        "explanation": "Correct because infrastructure investments are frequently categorized on the basis of the underlying assets. The broadest categorization organizes investments into economic and social infrastructure assets. Social infrastructure assets are directed toward human activities and include such assets as educational, health care, social housing, and Correct ional facilities, with the focus on providing, operating, and maintaining the asset infrastructure."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q26",
+    "questionText": "Which of the following statements is most accurate? Alternative investments:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "tend to be more efficiently priced than traditional investments.",
+        "isCorrect": false,
+        "explanation": "Incorrect because alternative assets, by their very nature, tend to be less efficiently priced than traditional marketable securities, providing an opportunity to exploit market inefficiencies through active management."
+      },
+      {
+        "label": "B",
+        "text": "fall outside of the definition of long-only positions in stocks, bonds, and cash.",
+        "isCorrect": true,
+        "explanation": "Correct because investing in alternative assets can require handling illiquidity, transacting on private markets, operating sophisticated investment strategies, or risk~ return profiles that are very different from those of traditional long-only investments."
+      },
+      {
+        "label": "C",
+        "text": "have relatively high correlation of returns with those of traditional investments. -- 8 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because alternative investments often have relatively low correlation of returns with those of traditional investments."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q27",
+    "questionText": "An analyst gathers the following information about a hedge fund: e $200 million in assets under management at the beginning ofyear « a2% management fee based on year-end assets under management e a20% incentive fee calculated net of the management fee If the fund's gross return is 25% during the year, the total fees earned by the fund manager are:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "$11 million.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the amount if the sum of the incentive and management fees based on the dollar returns for the year ($250 million fess $200 million). That is, the sum of the management fee of $1 million ($50 million times 0.02) and the incentive fee of $10 million ($50 million times 0.20), which is $11 million."
+      },
+      {
+        "label": "B",
+        "text": "$14 million.",
+        "isCorrect": true,
+        "explanation": "Correct because it calculates the incentive fee net of the management fee. That is, the total fee is the sum of the management fee of $5 million ($250 million AUM times 0,02} and the incentive fee af $9 million ($250 million less $200 million less the $5 million incentive times 0.20), which is $14 million. CG, Incorrect because it is the amount if the incentive and management fees are calculated independently (rather than if the incentive fee is calcuJated net of the management fee). That is, the sum of the management fee of $5 million ($250 million AUM times 0.02) and the incentive fee of $10 million ($250 million less $200 million for at profit of $50 million times 0.20), which is $15 million."
+      },
+      {
+        "label": "C",
+        "text": "$15 million.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q28",
+    "questionText": "Management fees are most likely based on assets under management for:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "hedge funds only.",
+        "isCorrect": true,
+        "explanation": "Correct because funds are generally structured with a management fee typically ranging from 1% to 2% of assets under management (e.g. for hedge funds) or committed capital (e.g. private equity funds), which is how much money in total that LP's have committed to the fund's future investments."
+      },
+      {
+        "label": "B",
+        "text": "private equity funds only,",
+        "isCorrect": false,
+        "explanation": "Incorrect because funds are generally structured with a management fee typically ranging from 1% to 2% of assets under management (e.g. for hedge funds) or committed capital (e.g. private equity funds), which is how much money in total that LP’s have committed to the fund's future investments, G. Incorrect because funds are generally structured with a management fee typically ranging from 1% to 2% of assets under management (e.g. for hedge funds) or committed capital (e.g. private equity funds}, which is how much money in total that LP's have committed to the fund's future investments, 22 -- 25 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "both hedge funds and private equity funds.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q29",
+    "questionText": "A leveraged private investment vehicle that employs both long and short positions is most likely a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "hedge fund.",
+        "isCorrect": true,
+        "explanation": "Correct because hedge funds are private investment vehicles that manage portfolios of securities and/or derivative positions using a variety of strategies. Although hedge funds may be invested entirely in traditional assets, these vehicles are considered alternative because of their private nature. Hedge funds typically have more leeway to pursue investments and strategies offering the potential for higher returns, whether absolute or compared with a specific market benchmark, but these strategies may increase the risk of investment loss. They may involve long and short positions and may be highly leveraged."
+      },
+      {
+        "label": "B",
+        "text": "private equity fund.",
+        "isCorrect": false,
+        "explanation": "Incorrect because private equity funds generally invest in companies, whether startups or established firms, that are not listed on a public exchange, or they invest in public companies with the intent to take them private."
+      },
+      {
+        "label": "C",
+        "text": "venture capital fund.",
+        "isCorrect": false,
+        "explanation": "Incorrect because venture capital typically involves investing in or providing financing to startup or early-stage companies with high growth potential, represent a small portion of the private equity market."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q33",
+    "questionText": "Which of the following hedge fund mechanisms is most likely used to impose a temporary restriction on redemptions if needed?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Gate",
+        "isCorrect": true,
+        "explanation": "Correct because in addition to lockup periods, funds sometimes impose a gate, which limits or restricts redemptions for a period of time."
+      },
+      {
+        "label": "B",
+        "text": "Notice period",
+        "isCorrect": false,
+        "explanation": "Incorrect because notice periods provide an opportunity for the hedge fund manager to liquidate a position in an orderly fashion without magnifying the losses. G: Incorrect because lockup periods—time periods when investors cannot withdraw their capital—provide the hedge fund manager the required time to implement and potentially realize a strategy’s expected results. If the hedge fund receives a drawdown request shortly after a new investment, the lockup period forces the investors who made the request to stay in the fund for a period of time rather than be allowed to immediately withdraw, Thus, a lockup period imposes restrictions on redemptions from the start ofa new investment in the fund, and not later on, e.g. some time after the new investment."
+      },
+      {
+        "label": "C",
+        "text": "Lockup period",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q35",
+    "questionText": "Which of the following methods of investing in alternative investments requires the /east amount of investment expertise?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Co-investing",
+        "isCorrect": false,
+        "explanation": "Incorrect because one of the advantages of fund investing is that it provides access to alternative investments without possessing a high degree of investment expertise. On the other hand, co-investing requires more active involvement compared with fund investing, which can be challenging if resources and due diligence experience are limited. Co-investing requires more active involvement from the investor, who must evaluate both investment opportunities and the fund manager, which demands more resources, concentration, and expertise."
+      },
+      {
+        "label": "B",
+        "text": "Fund investing Gs Direct investing",
+        "isCorrect": true,
+        "explanation": "Correct because one of the advantages of fund investing is that it provides access to alternative investments without possessing a high degree of investment expertise. C; Incorrect because one of the advantages of fund investing is that it provides access to alternative investments without possessing a high degree of investment expertise, whereas direct investing requires more investment expertise and a higher level offinancial sophistication compared with fund investing and co-investing."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q36",
+    "questionText": "The benefits of adding investments in infrastructure assets to a portfolio most likely include:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "inflation protection only.",
+        "isCorrect": false,
+        "explanation": "Incorrect because investing in infrastructure may add an income stream, increase portfolio diversification by adding an asset class with typically low correlation with existing investments, and offer some protection against inflation. Low exposure to short- term GDP growth issues may also be a factor."
+      },
+      {
+        "label": "B",
+        "text": "low correlation with existing portfolio assets only.",
+        "isCorrect": false,
+        "explanation": "Incorrect because investing in infrastructure may add an income stream, increase portfolio diversification by adding an asset class with typically low correlation with existing investments, and offer some protection against inflation. Low exposure to short- term GDP growth issues may also be a factor."
+      },
+      {
+        "label": "C",
+        "text": "both inflation protection and low correlation with existing portfolio assets.",
+        "isCorrect": true,
+        "explanation": "Correct because investing in infrastructure may add an income stream, increase portfolio diversification by adding an asset class with typically low correlation with existing investments, and offer some protection against inflation. Low exposure to short- term GDP growth issues may also be a factor."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q37",
+    "questionText": "In co-investing, the investor invests in alternative assets indirectly through a fund but also has the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "right to invest directly in the same assets alongside the fund.",
+        "isCorrect": true,
+        "explanation": "Correct because in co-investing, the investor invests in assets indirectly through the fund but also possesses rights (known as co-investment rights) to invest directly in the same assets. Through co-investing, an investor is able to make an investment alongside a fund when the fund identifies deals; the investor is not limited to participating in the deal solely by investing in the fund."
+      },
+      {
+        "label": "B",
+        "text": "obligation to invest directly in the same assets alongside the fund.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in co-investing, the investor invests in assets indirectly through the fund but also possesses rights (known as co-investment rights) to invest directly in the same assets. However, there is no obligation to invest. G Incorrect because in co-investing, the investor invests in assets indirectly through the fund but also possesses rights (known as co-investment rights) to invest directly in the same assets, not in the general partner's fund management company. 25 -- 28 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "right to invest in the general partner's fund management company.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q40",
+    "questionText": "Which of the following statements about private equity performance evaluation is most accurate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Private equity fund management fees are based on capital called.",
+        "isCorrect": false,
+        "explanation": "Incorrect because private equity includes a substantive initial capital commitment promise, followed by high initial fee drag (calculated on total committed capital, not the capital actually called), followed by the identification of longer-term growth or turnaround opportunities, and an eventual positive expected return when the staggered returns of the fund are realized."
+      },
+      {
+        "label": "B",
+        "text": "Cash flows are frequently described in terms of the J-curve effect. G, Managers have no discretion on the timing of the distribution of proceeds.",
+        "isCorrect": true,
+        "explanation": "Correct because private equity investments generally involve an initial capital commitment, but actual capital flows often lag that commitment because capital 'calls’ are staggered over substantive periods of time, Private equity returns are frequently described in terms of the J-curve effect. G Incorrect because in an independent, fixed-life private equity fund, the decisions to raise money, take money in the form of capital calls, and distribute proceeds are all at the discretion of the private equity manager, Timing of cash flows is an important part of the investment decision process. The private equity manager should thus be rewarded or penalized for the results of those timing decisions, and the calculation of an IRR is key for doing so. 26 -- 29 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q41",
+    "questionText": "Which of the following is most likely a primary exit strategy for a company held by a private equity fund's portfolio?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "IPO",
+        "isCorrect": true,
+        "explanation": "Correct because key private equity investment strategies include leveraged buyouts (e.g., MBOs and MBIs) and venture capital. Primary exit strategies include trade sale, IPO, and recapitalization."
+      },
+      {
+        "label": "B",
+        "text": "Management buy-in GC, Management buyout",
+        "isCorrect": false,
+        "explanation": "Incorrect because key private equity investment strategies include leveraged buyouts (e.g., MBOs and MBIs) and venture capital. Primary exit strategies include trade sale, IPO, and recapitalization."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q42",
+    "questionText": "A hedge fund that seeks to profit from a view on overall market direction as influenced by economic trends best describes a:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "macro hedge fund,",
+        "isCorrect": true,
+        "explanation": "Correct because macro hedge funds use long and short positions to profit from a view on the overall direction of the market as it is influenced by major economic trends and events."
+      },
+      {
+        "label": "B",
+        "text": "multi-strategy hedge fund. Cc market-neutral hedge fund.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a multi-strategy hedge fund is an example of a relative value strategy, which seeks to profit from a pricing discrepancy, an unusual short-term relationship, between related securities. The expectation is that the pricing discrepancy will be resolved over time. Strategies of a multi-strategy hedge fund trade relative value within and across asset classes or instruments. Rather than focusing on one type of trade (e.g., convertible arbitrage), a single basis for trade (e.g., volatility), or a particular asset class (e.g., fixed income), this strategy instead looks for investment opportunities wherever they might exist, often with different pods of managers executing their own unique market approaches."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q43",
+    "questionText": "Which of the following is best categorized as core real estate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "A high-quality office building in a rural area",
+        "isCorrect": false,
+        "explanation": "Incorrect because core real estate is characterized by well-leased, high-quality institutional real estate in the best markets."
+      },
+      {
+        "label": "B",
+        "text": "A low-quality office building in a major urban center",
+        "isCorrect": false,
+        "explanation": "Incorrect because core real estate is characterized by well-leased, high-quality institutional real estate in the best markets."
+      },
+      {
+        "label": "C",
+        "text": "A high-quality office building in a major urban center",
+        "isCorrect": true,
+        "explanation": "Correct because open-end funds generally offer exposure to core real estate, characterized by well-leased, high-quality institutional real estate in the best markets. Investors expect core real estate to deliver stable returns, primarily from income. 27 -- 30 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q44",
+    "questionText": "Compared with fund investing in alternative investments, the co-investing method most likely has:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "lower management fees.",
+        "isCorrect": true,
+        "explanation": "Correct because one of the advantages of co-investing is that it has reduced management fees. In co-investing, investors co-invest an additional amount into that same investment often without paying management fees on the capital they used for the direct investment (a co-investment, in this case)."
+      },
+      {
+        "label": "B",
+        "text": "the same level of management fees. G: higher management fees.",
+        "isCorrect": false,
+        "explanation": "Incorrect because one of the advantages of co-investing is that it has reduced management fees compared with the fund investing method. G Incorrect because one of the advantages of co-investing is that it has reduced management fees compared with the fund investing method."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q46",
+    "questionText": "Which of the following statements about real estate assets is most accurate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Real estate assets are heterogeneous",
+        "isCorrect": true,
+        "explanation": "Correct because real estate property has some unique features, including heterogeneity (no two properties are identical) and fixed location."
+      },
+      {
+        "label": "B",
+        "text": "Commercial property represents the majority of real estate assets by value €. Private real estate has historically had high correlations with other asset classes -- 11 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because real estate includes two major sectors: residential and commercial. Residential [not commercial] real estate is the largest sector, totaling 75% of the global market. CG Incorrect because the key reasons for investing in real estate include the following potential benefits: ... Historically low [not high] correlations with other asset classes. 28 -- 31 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q47",
+    "questionText": "Which of the following hedge funds most likely have a beta close to zero?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Short-biased funds",
+        "isCorrect": false,
+        "explanation": "Incorrect because the performance fee is not calculated net of the management fee: Management fee = $100 million x 120% x 1% = $1.200 million. Performance fee = [($100 million x 20%) — ($100 million x 3%)] x 15% = $2.550 million. Total fee = $1.200 million + $2.550 million = $3.750 million. Investor return = ($20 - $3.750) / $100 = 16.250% = 16.3%."
+      },
+      {
+        "label": "B",
+        "text": "Market-neutral funds",
+        "isCorrect": true,
+        "explanation": "Correct because the hurdle rate is a minimum rate of return, typically 8%, that the GP must exceed in order to earn the performance fee. GPs typically receive 20% of the total profit of the private equity fund net of any hard hurdle rate, in which case the GP earns fees on annual returns in excess of the hurdle rate, or net of the soft hurdle rate, in which case the fee is calculated on the entire annual gross return as long as the set hurdle is exceeded. Management fee = $100 million x 120% « 1% = $1.200 million. Performance fee = [($100 million x 20%) - ($100 million x 3%) - $1.200 million)| x 15% = $2.370 million. Total fee = $1.200 million + $2.370 million = $3.570 million. Investor return = ($20 — $3.570) / $100 = 16.430% = 16.4%. CG. Incorrect because the hurdle rate is deducted from the performance fee rate rather than the rate of return: Management fee = $100 million x 120% x 1% = $1.200 million. Performance fee = [($100 million x 20%) — $1.200 million)] x (15% - 3%) = $2.256 million. Total fee = $1.200 million + $2.256 million = $3.456 million. Investor return = ($20 — $3.456) / $100 = 16.544% = 16.5%. 29 -- 32 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "Fundamental long/short growth funds",
+        "isCorrect": false,
+        "explanation": "Incorrect because, although these funds do hedge long positions with short positions, market neutrality is not necessarily a goal. The hedge fund takes long positions in these companies while shorting companies with business models being disintermediated or under downward pressure—where continued revenue growth is deemed unlikely. Portfolios tend to end up long biased. Answer 48 of64"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q49",
+    "questionText": "An analyst collects the following information about a hedge fund: Assets under management $1.5 billion, beginning of year Annual return 20% Management fee 2%, based on year-end valuation Incentive fee 20%, calculated net of management fees If the incentive fee is calculated on returns in excess of a 6% hurdle rate, total annual fees earned by the fund manager are closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "$34,800,000.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it fails to add the management fee to the incentive fee. The incentive fee is calculated as [$1,800,000,000 - $1,500,000,000 — ($1,500,000,000 = 6%) — $36,000,000] x 20% = $34,800,000."
+      },
+      {
+        "label": "B",
+        "text": "$70,800,000. Cc $78,000,000.",
+        "isCorrect": true,
+        "explanation": "Correct because the hurdle rate is a minimum rate of return, typically 8%, that the GP must exceed in order to earn the performance fee. GPs typically receive 20%of the total profit of the private equity fund net of any hard hurdle rate, in which case the GP earns fees on annual returns in excess of the hurdle rate, or net of the soft hurdle rate, in which case the fee is calculated on the entire annual gross return as long as the set hurdle is exceeded. The management fee is calculated as $1,500,000,000 = (1 + 20%) x 2% = $36,000,000 and the incentive fee is calculated as [$1,800,000,000 - $1,500,000,000 - ($1,500,000,000 x 6%) — $36,000,000] x 20% = $34,800,000, Therefore, the total fees earned by the manager are $36,000,000 + $34,800,000 = $70,800,000."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q52",
+    "questionText": "An analyst gathers the following information about a hedge fund: Beginning-of-year assets under management (AUM) €200 million >Management fee, based on end-of-year AUM before fees 1.5% Incentive fee 20% Hard hurdle rate 5% Annual return before fees 15% If the incentive fee is based on returns net of management fees, total fees for the year are closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "€6.8 million.",
+        "isCorrect": true,
+        "explanation": "Correct because the partnership agreement usually specifies that the performance fee is earned only after the fund achieves a return known as a hurdle rate. The hurdle rate is a minimum rate of return, typically 8%, that the GP must exceed in order to earn the performance fee. GPs typically receive 20% of the total profit of the private equity fund net of any hard hurdle rate, in which case the GP earns fees on annual returns in excess of the hurdle rate, or net of the soft hurdle rate, in which case the fee is calculated on the entire annual gross return as long as the set hurdle is exceeded. AUM at year-end = €200 million x 115% = €230 million. Management fee = €230 million x 1.5% = €3.45 million. The incentive fee is calculated net of management fees and there is also a hard hurdle rate, Accordingly, Incentive fee = (€230 million - €200 million - €3.45 million —- €10 million) x 20% = €16.55 million x 20% = €3.31 million; where hard hurdle = €200 million x 5% = €10 million. Thus, total fees = €3.45 million + €3.31 million = €6.76 million ~ €6.8 million."
+      },
+      {
+        "label": "B",
+        "text": "€7.5 million. G: €8.8 million.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it calculates incentive fees gross of management fees, That is: AUM at year-end = €200 million x 115% = €230 million. Management fee = €230 million x 1.5% = €3.45 million. Incentive fee = (€230 million -€200 million —-€10 million) x 20% = €20 million x 20% = €4.00 million; where hard hurdle = €200 million x 5% = €10 million. Thus, total fees = €3.45 million + €4.00 million = €7.45 million = €7.5 million. G. Incorrect because it excludes the hard hurdle rate in the calculation of incentive fees. That is: AUM at year-end = €200 million x 115% = €230 million. Management fee = €230 million x 1.5% = €3.45 million. Incentive fee = (€230 million — €200 million — €3.45 million) x 20% = €26.55 million x 20% = €5.31 million. Thus, total fees = €3.45 million + €5.31 million = €8.76 million = €8.8 million."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q53",
+    "questionText": "In the private debt market, venture debt:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "entails buying the debt of mature companies in financial difficulty.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this refers to distressed debt. Involvement in distressed debt typically entails buying the debt of mature companies in financial difficulty."
+      },
+      {
+        "label": "B",
+        "text": "provides capital to early-stage companies that may be generating little cash flow.",
+        "isCorrect": true,
+        "explanation": "Correct because this is the definition of venture debt. Venture debt is private debt funding that provides venture capital backing to start-up or early-stage companies that may be generating little or negative cash flow. 31 -- 34 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "entails buying the debt of mature companies in financial difficulty and provides capital to early-stage companies that may be generating little cash flow.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the first part of the answer is not correct; as indicated in the correct response, venture debt provides funding to start-up or early-stage companies not mature companies."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q55",
+    "questionText": "Which of the following real estate investing strategies is most likely to focus on modest redevelopment or upgrades, the leasing of vacant space, and the repositioning of underlying properties to earn a higher return?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Core-plus",
+        "isCorrect": false,
+        "explanation": "Incorrect because core-plus strategies will also accept slightly higher risks derived from non-core markets and sectors or properties with slightly more leasing risk. Non-core properties include large sectors with different risk profiles, such as hotels and nursing homes, Assets in secondary and tertiary markets and such niches as student housing, self- storage, and data centers are also considered non-core."
+      },
+      {
+        "label": "B",
+        "text": "Value-add G. Opportunistic",
+        "isCorrect": true,
+        "explanation": "Correct because value-add investments may require modest redevelopment or upgrades, the leasing of vacant space, or repositioning the underlying properties to earn a higher return than core properties."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q56",
+    "questionText": "All else being equal, when a commodity futures market is in contango, the forward curve is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "downward sloping.",
+        "isCorrect": false,
+        "explanation": "Incorrect because when the futures market is trading in backwardation, the futures prices are lower than the spot price, [and] the commodity forward curve is downward sloping. A market in contango assumes futures prices are higher than the spot price."
+      },
+      {
+        "label": "B",
+        "text": "flat.",
+        "isCorrect": false,
+        "explanation": "Incorrect because when futures prices are higher than the spot price, the commodity forward curve is upward sloping, and the prices are referred to as beingin contango. A flat forward curve can't be associated with a market in contango becausea flat curve implies that all future prices are equal to the spot price while a market in contango assumes futures prices are higher than the spot price."
+      },
+      {
+        "label": "C",
+        "text": "upward sloping.",
+        "isCorrect": true,
+        "explanation": "Correct because when futures prices are higher than the spot price, the commodity forward curve is upward sloping, and the prices are referred to as being in contango. 32 -- 35 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q57",
+    "questionText": "With respect to infrastructure investments, a take-or-pay arrangement is most likely used to mitigate:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "demand risk. 10 -- 13 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because take-or-pay arrangements, where payments are based upon the availability rather than the use of an asset, are used to mitigate demand/volume risk."
+      },
+      {
+        "label": "B",
+        "text": "operational risk. . construction risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because take-or-pay arrangements, where payments are based upon the availability rather than the use of an asset, are used to mitigate demand/volume risk, not operational risk. ¢. Incorrect because take-or-pay arrangements, where payments are based upon the availability rather than the use of an asset, are used to mitigate demand/volume risk, not construction risk,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q58",
+    "questionText": "Which of the following is most appropriately categorized as a traditional investment?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Gold",
+        "isCorrect": false,
+        "explanation": "Incorrect because alternative investments include such assets as real estate and commodities (including gold), which are arguably two of the oldest types of investments."
+      },
+      {
+        "label": "B",
+        "text": "Cash",
+        "isCorrect": true,
+        "explanation": "Correct because alternative investments’ is a label for a disparate group of investments that are distinguished from long-only, publicly traded investments in stocks, bonds, and cash (often referred to as traditional investments)."
+      },
+      {
+        "label": "C",
+        "text": "Real estate",
+        "isCorrect": false,
+        "explanation": "Incorrect because alternative investments include such assets as real estate and commodities, which are arguably two of the oldest types of investments."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q59",
+    "questionText": "Which of the following is most likely a characteristic of private real estate markets?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Transaction costs are high",
+        "isCorrect": true,
+        "explanation": "Correct because, for private real estate markets, transaction costs are high."
+      },
+      {
+        "label": "B",
+        "text": "Private market indexes are investable G It is easy for small investors to establish a diversified portfolio of wholly owned properties",
+        "isCorrect": false,
+        "explanation": "Incorrect because private market indexes are not investable, and property typically requires professional operational management."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q62",
+    "questionText": "Which of the following is the most conservative approach to valuing a hedge fund's underlying positions?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Using bid prices for long positions and ask prices for short positions",
+        "isCorrect": true,
+        "explanation": "Correct because, when market prices or quotes are used for valuation, funds may differ in which price or quote they use (bid price, ask price, average quote, or median quote). A more conservative and accurate approach is to use bid prices for long positions and ask prices for short positions because these are more realistic prices at which the positions could be closed. However, some managers use a simplifying approach whereby they take the average of the bid and the ask; this approach is not as accurate and could be misleading."
+      },
+      {
+        "label": "B",
+        "text": "Using bid prices for short positions and ask prices for long positions Gi; Using the average of the bid and ask prices for both long and short positions",
+        "isCorrect": false,
+        "explanation": "Incorrect because, when market prices or quotes are used for valuation, funds may differ in which price or quote they use (bid price, ask price, average quote, or median quote}. A more conservative and accurate approach is to use bid prices for long positions and ask prices for short positions because these are more realistic prices at which the positions could be closed. However, some managers use a simplifying approach whereby they take the average of the bid and the ask; this approach is not as accurate and could be misleading. ie Incorrect because, when market prices or quotes are used for valuation, funds may differ in which price or quote they use (bid price, ask price, average quote, or median quote). A more conservative and accurate approach is to use bid prices for long positions and ask prices for short positions because these are more realistic prices at which the positions could be closed. However, some managers use a simplifying approach whereby they take the average ofthe bid and the ask; this approach is not as accurate and could be misleading. 34 -- 37 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-alternative-investments-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q64",
+    "questionText": "An analyst gathers the following information about a hedge fund: = Beginning-of-year assets under management (AUM) $50 million Annual return before fees 20% Management fee (based on end-of-year AUM before fees) 2% Incentive fee (based on return net of management fees) 20% An investor's net return is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "13.60%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it fails to adjust the incentive fee for the management fee: $60 million x 2% = $1.2 million management fee. ($60 - $50) million x 20% = $2.0 million incentive fee. Total fees = $3.2 million. Investor return = ($60 — $50 - $3.2)/$50 million = 13.60%."
+      },
+      {
+        "label": "B",
+        "text": "14.08%, G; 14.40%. 12 -- 15 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because: $60 million x 2% = $1.2 million management fee. ($60 - $50 - $1.2) million x 20% = $1.76 million incentive fee. Total fees = $2.96 million. Investor return = ($60 — $50 - $2.96)/$50 million = 14.08%. G. Incorrect because it calculates the management fee based on beginning-of-year AUM as opposed to end-of-year AUM: $50 million x 2% = $1.0 million management fee. ($60 —-$50 - $1) million x 20% = $1.8 million incentive fee. Total fees = $2.8 million. Investor return = ($60 - $50 - $2,8)/$50 million = 14.40%. 35 -- 38 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Alternative Investments",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  }
+]

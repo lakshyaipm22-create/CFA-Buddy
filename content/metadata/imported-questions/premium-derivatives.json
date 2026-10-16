@@ -1,0 +1,1292 @@
+[
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q3",
+    "questionText": "The value of a European put is directly related to the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "risk-free rate.",
+        "isCorrect": false,
+        "explanation": "Correct because —c; = —Max(0,S;— X) (payoff to the call seller), where —c; is the call value at expiration for the call seller, S,is the price of the underlying at expiration, and_X is the strike price. Therefore, the Correct calculation yields: -$5 = —-Max(0,$30 - $25)."
+      },
+      {
+        "label": "B",
+        "text": "exercise price.",
+        "isCorrect": true,
+        "explanation": "Incorrect because the call value at expiration for a call seller (—cr) is not- Max(0,5Sr — X) + co, where S; is the price of the underlying at expiration, X is the strike price, and c is the option premium. Therefore, the incorrect calculation yields: $0 = -Max(0, $30 - $25) + $5, which is the profit for the call option seller. Instead, the correct formula is —cr= —Max(0,S;- X) (payoff [value] to the call seller), which yields: -$5 =—Max(0,$30 - $25)."
+      },
+      {
+        "label": "C",
+        "text": "value of the underlying.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the call value at expiration for a call seller (—cr) is not Max(0,S;—- X) + c, where S;is the price of the underlying at expiration, X is the strike price, and c. is the option premium. Therefore, the incorrect calculation yields: $10 = Max(0, $30 - $25) + $5. Instead, the correct formula is —-cr= —Max(0,S;— X) (payoff [value] to the call seller), which yields: -$5 =—Max(0,$30 - $25)."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q5",
+    "questionText": "An analyst gathers the following information: Call price $10 Stock price $40 71 -- 74 of 166 -- Exercise price $60 72 -- 75 of 166 -- Interest rate 3% Time toexpiry 1-year According to put-call parity, the price of the put is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "$28.25.",
+        "isCorrect": true,
+        "explanation": "Correct because So + po= ¢o + X / (1+r}. This relationship is known as put-call parity, Here S.is the spot price, pois the put premium, X is the strike price and ris the interest rate. So+po=co+ X / (1+r} 40 + po=10+60 / 1.03 Po= 10+ 60 / 1.03 - 40 = 28,.25242718 = 28,25"
+      },
+      {
+        "label": "B",
+        "text": "$30.00. G $108.25.",
+        "isCorrect": false,
+        "explanation": "Incorrect because S) + po =) + X / (1+r)', This relationship is known as put-call parity, In this response, X was not divided by (1+r)*. Here So is the spot price, pois the put premium, X is the strike price and r is the interest rate. So+ Po = Co + xX/ (1+r)r 40 + po = 10+ 60 po= 10+ 60-40 =30.00 C Incorrect because So + po = C) + X / (1+r)*, This relationship is known as put-call parity. In this response, S» was incorrectly added instead of subtracted from ca + X / (1+r)* to arrive at P.. Here S, is the spot price, pois the put premium, X is the strike price and ris the interest rate. So+po=Co+X / (1+r)r 40 + po = 10+ 60 / 1.03 Po=10+60/1.03 +40 = 108.252427 = 108.25."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q6",
+    "questionText": "Two-year and three-year government benchmark zero-coupon bonds are priced at 96 and93 (per 100 face valne), respectively. The implied one-year forward rate in two years’ timeis closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "3.00%,",
+        "isCorrect": false,
+        "explanation": "Incorrect because it calculates the equivalent zero rate as: B86 -- 89 of 166 -- 22 = (100 - DF,) / 2; or = (100 - 96) / 2 = 2.0000% zs = (100 - DF;)/ 3; or = (100 - 93) / 3 = 2.3333% Accordingly, (1.020000): x (1 + IFR2:): = (1.023333) (1 + IFR.1) = (1.023333)s/ (1.020000): (1 + IFR.:) = (1.071646 / 1.04040) 1+ IFR2: = 1.030033 IFR2; = 1.030033 - 1 = 3.0033% = 3.00%."
+      },
+      {
+        "label": "B",
+        "text": "3.23%. & 3.36%.",
+        "isCorrect": true,
+        "explanation": "Correct because a discount factor may also be interpreted as the price of a zero- coupon cash flow or bond. The price equivalent ofa zero rate is the present value of a currency unit on a future date, known as a discount factor. The discount factor for period i (DF,) is: DF,= 1 / (1+2i). Accordingly, the equivalent zero rate is: DF, = 0.96 =1/ (1 + z,)2; and z, = 2.0621% DF, = 0.93 =1/ (1+ 2:)3;andz:= 2.4485% The implied forward rate between period A and period B is denoted as IFRas-. It is a forward rate on a bond that starts in period A and ends in period B a general formula for the relationship between the two spot rates (Z,, Za) and the implied forward rate (IFRas-a): (1 + za)* x (1 + IFRasa)** = (1 + 2s). (1.020621): = (1 + IFR23-2)37 = (1.024485); (1 + IFR23) = (1.024485):/ (1.020621)? (1 + IFRa:) = (1.075269 / 1.041667) 1+ IFR2, = 1.032258 IFR23 = 1.032258 - 1 = 3.2258% = 3.23%. G. Incorrect because the implied forward rate is calculated as follows: DF: = 0.96 = 1 / (1 + z:)%; and 22 = 2.0621% DF; = 0.93 =1 / (1 +23); and 2s = 2,4485% Accordingly, IFR.s = (1.024485):— (1.020621): IFR2i = (1.075269 - 1.041667) IFR.: = 0.033602 = 3.3602% = 3.36%"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q7",
+    "questionText": "According to put-call parity, the payoff of a European put option is equivalent to a payoff ofa portfolio consisting of:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "a long asset, a short call and a long risk-free bond.",
+        "isCorrect": false,
+        "explanation": "Incorrect because according to put-call parity, po = co— So + X/(1 +r)\", long put = long call, short asset, long bond. Therefore, the payoff of aEuropean put option is not equal toa payoff of a portfolio consisting of a long asset, a short call and a long risk-free bond."
+      },
+      {
+        "label": "B",
+        "text": "a short asset, a long call and a long risk-free bond.",
+        "isCorrect": true,
+        "explanation": "Correct because according to put-call parity, p. = Co. — So + X/(1 +r), long put = long call, short asset, long bond. Therefore, the payoff ofa European put option is equal toa payoff ofa portfolio consisting ofa short asset, a long call and a long risk-free bond."
+      },
+      {
+        "label": "C",
+        "text": "a short asset, a short call and a short risk-free bond.",
+        "isCorrect": false,
+        "explanation": "Incorrect because according to put-call parity, p. = co— So+ X/(1 +r), long put = long call, short asset, long bond. Therefore, the payoff of a European put option is not equal toa payoff ofa portfolio consisting ofa short asset, a short call and a short risk-free bond."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q8",
+    "questionText": "An investor takes a long position in a risk-free bond and in a forward contract on a non- dividend-paying stock. The forward contract is priced at £50, The annual risk-free rate is 10%. A nine-month put option on the stock with an exercise price of £47 trades at £4. The price ofa nine-month call option on the stock with an exercise price of £47 is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "£6.79.",
+        "isCorrect": true,
+        "explanation": "Correct because a long put and a short call are equivalent to a long risk-free bond and short forward position: po —co =[X—F,(T)](1+1r)= as calculated below: Po ~ co= [X-Fo(T)](1+r}> (4) 87 -- 90 of 166 -- Rearranging for co: Co= po — [X-F,(T)](1+r) = Po= put= £4 X = exercise price = £47 F(T) = forward = £50 r=risk-free rate = 10% Po— [X-Fo(T)](1+r) -*= co Thus, co = £4 - [£47 - £50](1.10)-s = £6.79"
+      },
+      {
+        "label": "B",
+        "text": "£7.22. & £7.30.",
+        "isCorrect": false,
+        "explanation": "Incorrect as calculated the exponent of -ris mistakenly used without a negative sign. Po ~ Co = [X-F.(T)](1+r)+\" Po~ [X-Fo(T)](1+1r) += co Po= put= £4 X= exercise price = £47 F.(T) = forward = £50 r=risk-free rate = 10% £4 - [£47 - £50](1,10)+o\"s = £7.22 The correct answer should be: po - co = [X-Fo(T)] (141)*(4) Po — [X-Fo(T}}(A+r) += ce Co = £4 — [£47 — £50](1.10)-07s = £6.79 G Incorrect as calculated the exponent of -tis missed entirely. Po — Co = [X-F.(T)](1+1r) Po ~ [X-Fo(T)](1+r) = co Po = put = £4 X = exercise price = £47 F.(T) = forward = £50 r=risk-free rate = 10% £4 - [£47 - £50](1.10) = £7.30 The correct answer should be: Po ~ Co = [X-Fo(T)] (1+r)-*(4) Po - [X-F.(T)] (1+r) “T= Co co = £4 - [E47 - £50] (1.10) = £6.79"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q9",
+    "questionText": "Whichof the following is most accurate?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "A forward contract is traded on an organized exchange.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is a characteristic of a futures contract and not a forward contract. A futures contract is a standardized derivative contract created and traded ona futures exchange in which two parties agree that one party, the buyer, will purchase an underlying asset from the other party, the seller, at a later date and at a price agreed on by the two parties when the contract is initiated and in which there is a daily settling of gains and losses and a credit guarantee by the futures exchange through its clearinghouse."
+      },
+      {
+        "label": "B",
+        "text": "Forward contracts are more transparent than futures contracts.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is actually the opposite and futures contracts are more transparent than forward contracts. Futures markets are far more transparent than forward markets. BB -- 91 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "The buyer of a forward contract agrees to buy the underlying asset at a fixed price on a future date.",
+        "isCorrect": true,
+        "explanation": "Correct because a forward contract is an over-the-counter derivative contract in which two parties agree that one party, the buyer, will purchase an underlying asset from the other party, the seller, at a later date at a fixed price they agree on when the contract is signed."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q10",
+    "questionText": "A commodities producer selling its inventory forward in anticipation of lower prices in the future is an example ofa:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "fair value hedge.",
+        "isCorrect": true,
+        "explanation": "Correct because a fair value hedge designation applies when a derivative is deemed to offset the fluctuation in fair value of an asset or liability. A commodities producer might sel] its inventory forward in anticipation of lower future prices."
+      },
+      {
+        "label": "B",
+        "text": "cash flow hedge. CG. net investment hedge 73 -- 76 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because derivatives designated as absorbing the variable cash flow ofa floating-rate asset or liability such as foreign exchange, interest rates, or commodities are referred to as cash flow hedges. A swap to a fixed rate for a floating-rate debt liability is another example of a cash flow hedge. G. Incorrect because net investment hedges occur when either a foreign currency bond or a derivative such as an FX swap or forward is used to offset the exchange rate risk of the equity ofa foreign operation."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q11",
+    "questionText": "Whichof the following is equal to the greater of zero or the present value of the exerciseprice minus the spot price?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "The lower bound ofa put option",
+        "isCorrect": true,
+        "explanation": "Correct because a put option buyer will exercise only if the spot price, 5, is below X at maturity. The exercise price, X, therefore represents the upper bound on the put value. The lower bound is the present value of the exercise price minus the spot price or zero, whichever is greater."
+      },
+      {
+        "label": "B",
+        "text": "The lower bound of a call option G; The upper bound ofa put option",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the description of the lower bound of a put option. A call option buyer will exercise only if the spot price, S;, exceeds the exercise price (X) at maturity, The lower bound ofa call price is therefore the underlying’s price minus the present value of its exercise price or zero, whichever is greater."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q12",
+    "questionText": "Which of the following most likely has an embedded derivative in its structure?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "A put option",
+        "isCorrect": false,
+        "explanation": "Incorrect because a stand-alone derivative, is a distinct derivative contract, such as a derivative on a stock or bond. A put option is therefore a stand-alone derivative not an embedded derivative."
+      },
+      {
+        "label": "B",
+        "text": "A callable bond G A futures contract",
+        "isCorrect": true,
+        "explanation": "Correct because an embedded derivative is a derivative within an underlying, such as a callable, puttable, or convertible bond."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q13",
+    "questionText": "Which of the following derivatives most likely requires a payment to be made at the initiation of the contract? A(n):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "swap",
+        "isCorrect": false,
+        "explanation": "Incorrect because as with futures and forwards, no money changes hands at the start; thus, the value ofa swap when initiated must be zero. 89 -- 92 of 166 --"
+      },
+      {
+        "label": "B",
+        "text": "option",
+        "isCorrect": true,
+        "explanation": "Correct because an option is a derivative contract in which one party, the buyer, pays a sum of money to the other party, the seller or writer, and receives the right to either buy or sell an underlying asset at a fixed price either on a specific expiration date or at any time prior to the expiration date. G; Incorrect because as with futures and forwards, no money changes hands at the start; thus, the value ofaswap when initiated must be zero."
+      },
+      {
+        "label": "C",
+        "text": "forward",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q14",
+    "questionText": "Basis risk is best described as a(n):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "investor's inability to meet a margin call due to a lack of funds.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a related risk that can arise for both hedgers and risk takers is liquidity risk, or a divergence in the cash flow timing of a derivative versus that of an underlying transaction. The daily settlement of gains and losses in the futures market can give rise to liquidity risk. If an investor or issuer using a futures contract to hedge an underlying transaction is unable to meet a margin call due to a lack of funds, the counterparty’s position is closed out and the investor or issuer must cover any losses onthe derivative trade."
+      },
+      {
+        "label": "B",
+        "text": "potential divergence between the expected value of a derivative and its underlying.",
+        "isCorrect": true,
+        "explanation": "Correct because basis risk is the potential divergence between the expected value of a derivative instrument versus an underlying or hedged transaction. & Incorrect because a related risk that can arise for both hedgers and risk takers is liquidity risk, or a divergence in the cash flow timing of a derivative versus that of an underlying transaction."
+      },
+      {
+        "label": "C",
+        "text": "divergence in the cash flow timing of a derivative versus that of an underlying transaction.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q16",
+    "questionText": "An investor buys a call option for $4 that has an exercise price of $27. At expiration, if the stock price is $22, the call option payoff is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "negative.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it is the call buyer's profit, not the payoff. That is, Il = Max(0,S;- X) — co, where cyis the premium, Sris the stock price at expiration, and X is the strike (or exercise) price. In this case, Il = Max(0,$22 — $27) - $4 = -$4, and thus negative,"
+      },
+      {
+        "label": "B",
+        "text": "zero. CG positive. 74 -- 77 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because c; = Max(0,S; — X), where cr is the value of the call option, or the payoff to the call buyer, X is the strike (or exercise) price, and S; is the stock price at expiration. In this case, cr = Max(0,$22 - $27) = 0. 90 -- 93 of 166 -- G Incorrect because it is the payoff to the put option buyer. That is, pr = Max(0,X — S;), where X is the strike (or exercise) price, and Sr is the stock price at expiration. In this case, pr = Max(0,$27 - $22) = $5."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q17",
+    "questionText": "Which of the following derivatives have a non-linear payoff?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Contingent claims only",
+        "isCorrect": true,
+        "explanation": "Correct because asymmetric payoff profile is a common feature of contingent claims, which are sometimes referred to as non-linear derivatives."
+      },
+      {
+        "label": "B",
+        "text": "Forward commitments only G Both contingent claims and forward commitments",
+        "isCorrect": false,
+        "explanation": "Incorrect because since the derivative price is a linear function of the underlying, firm [forward] commitments are also referred to as linear derivatives."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q18",
+    "questionText": "The potential divergence between the expected value of a derivative instrument versus an underlying or hedged transaction best describes:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "basis risk.",
+        "isCorrect": true,
+        "explanation": "Correct because basis risk is the potential divergence between the expected value of a derivative instrument versus an underlying or hedged transaction."
+      },
+      {
+        "label": "B",
+        "text": "liquidity risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because liquidity risk is the potential divergence between the cash flow timing of a derivative instrument versus an underlying or hedged transaction."
+      },
+      {
+        "label": "C",
+        "text": "systemic risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because systemic risk relates to excessive risk taking and use of leverage in derivative markets."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q21",
+    "questionText": "Which of the following asset classes is most likely to have a convenience yield?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Commodities",
+        "isCorrect": true,
+        "explanation": "Correct because convenience yield is a non-cash benefit associated with physical assets. In contrast to securities or cash stored electronically, commodities usually involve known costs associated with the storage, insurance, transportation, and potential spoilage (in the case of soft commodities) of these physical assets. A non-cash benefit of holding a physical commodity versus a derivative is known as a convenience yield."
+      },
+      {
+        "label": "B",
+        "text": "Interest rates G, Foreign exchange",
+        "isCorrect": false,
+        "explanation": "Incorrect because a convenience yield is a non-cash benefit associated with physical assets. In contrast to securities or cash stored electronically, commodities usually involve known costs associated with the storage, insurance, transportation, and potential spoilage (in the case of soft commodities) of these physical assets. A non-cash benefit of holding a physical commodity versus a derivative is known as a convenience yield."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q22",
+    "questionText": "Counterparty default risk is most likely lowest for which of the following types of derivatives?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Swaps",
+        "isCorrect": false,
+        "explanation": "Incorrect because swap credit terms are privately negotiated between counterparties in an over-the-counter agreement and may range from uncollateralized exposure, where each counterparty bears the full default risk of the other. Therefore, swaps do not have the lowest counterparty default risk."
+      },
+      {
+        "label": "B",
+        "text": "Futures G. Forwards 75 -- 78 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because exchange-traded derivatives (ETD) are standardized contracts traded on an organized exchange which requires collateral on deposit to protect against counterparty default and a futures contract is an exchange-traded derivative (ETD) with standardized terms set by the exchange. Therefore, futures has lowest counterparty default risk. G Incorrect because a forward contract is an over-the-counter (OTC) derivative and OTC instruments have less transparency, usually involve more counterparty risk. Therefore, forwards do not have the lowest counterparty risk."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q24",
+    "questionText": "Derivatives are typically priced by forming a hedge involving the underlying asset and a derivative such that the combination must pay the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "risk-free rate.",
+        "isCorrect": true,
+        "explanation": "Correct because Derivatives are typically priced by forming a hedge involving the underlying asset and a derivative such that the combination must pay the risk-free rate and do so for only one derivative price."
+      },
+      {
+        "label": "B",
+        "text": "dividend yield. G convenience yield.",
+        "isCorrect": false,
+        "explanation": "Incorrect because Derivatives are typically priced by forming a hedge involving the underlying asset and a derivative such that the combination must pay the risk-free rate and do so for only one derivative price. Therefore, it is the risk-free rate and not the dividend yield a hedge involving the underlying asset and a derivative must pay. G Incorrect because Derivatives are typically priced by forming a hedge involving the underlying asset and a derivative such that the combination must pay the risk-free rate and do so for only one derivative price. Also, some commodities generate a benefit that is somewhat opaque and difficult to measure. This benefit is called the convenience yield. It represents a nonmonetary advantage of holding the asset. Therefore, it is the risk-free rate and not the convenience yield a hedge involving the underlying asset and a derivative must pay."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q26",
+    "questionText": "Before expiration, if the price of the underlying is above the exercise price, the European put option has a positive:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "time value.",
+        "isCorrect": true,
+        "explanation": "Correct because if the underlying is equal to or worth more than the exercise price at expiration (S;= X), the put will simply expire with no value. So, the put is worth the greater of either zero or the exercise price minus the price of the underlying at expiration. Also, the time value of an option is the difference between the market price of the option and its intrinsic value. As the price of the underlying is above the exercise price the put has a zero exercise value and only a positive time value."
+      },
+      {
+        "label": "B",
+        "text": "intrinsic value. Gi exercise value.",
+        "isCorrect": false,
+        "explanation": "Incorrect because if the underlying is equal to or worth more than the exercise price at expiration (S;2 X), the put will simply expire with no value. So, the put is worth the greater of either zero or the exercise price minus the price of the underlying at expiration. Also, the time value of an option is the difference between the market price of the option and its intrinsic value. As the price of the underlying is above the exercise price the put has a zero intrinsic (or exercise) value and only a positive time value."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q27",
+    "questionText": "According to put-call-forward parity, the payoff on a fiduciary call is equivalent to the payoff on a portfolio consisting of:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "a long call and a short risk-free bond.",
+        "isCorrect": false,
+        "explanation": "Incorrect because recall our put-call parity discussion and assume that Investor A creates his protective put in a slightly different manner. Instead of buying the asset, he buys a forward contract and a risk-free bond in which the face value is the forward price. This strategy is a synthetic protective put. Because we showed that the fiduciary call is equivalent to the protective put, a fiduciary call has to be equivalent to a protective put with a forward contract. Therefore, the payoff on a fiduciary call is not equal to the payoff on a portfolio consisting ofa long call and a short risk-free bond."
+      },
+      {
+        "label": "B",
+        "text": "a long put, a long forward contract and a long risk-free bond.",
+        "isCorrect": true,
+        "explanation": "Correct because recall our put-call parity discussion and assume that Investor A creates his protective put in a slightly different manner. Instead of buying the asset, he buys a forward contract and a risk-free bond in which the face value is the forward price. This strategy is a synthetic protective put. Because we showed that the fiduciary call is equivalent to the protective put, a fiduciary call has to be equivalent to a protective put with a forward contract. Therefore, the payoff on a fiduciary call = the payoff on a synthetic protective put, fiduciary call = long call + long risk-free bond = long risk-free bond + long forward contract + long put. é. Incorrect because recall our put-call parity discussion and assume that Investor A creates his protective put in a slightly different manner. Instead of buying the asset, he buys a forward contract and a risk-free bond in which the face value is the forward price. This strategy is a synthetic protective put. Because we showed that the fiduciary call is equivalent to the protective put, a fiduciary call has to be equivalent to a protective put with a forward contract. Therefore, the payoff on a fiduciary call is not equal to the payoff on a portfolio consisting ofa short call, a long forward contract and a long risk-free bond."
+      },
+      {
+        "label": "C",
+        "text": "a short call, a long forward contract and a long risk-free bond.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q28",
+    "questionText": "Compared to over-the-counter derivatives, exchange-traded derivatives:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "are less standardized.",
+        "isCorrect": false,
+        "explanation": "Incorrect because OTC and ETD markets differ in several ways, including that ETD contracts are more standardized."
+      },
+      {
+        "label": "B",
+        "text": "provide less transparency.",
+        "isCorrect": false,
+        "explanation": "Incorrect because OTC and ETD markets differ in several ways, including that OTC instruments have less transparency, whereas ETD markets have transparency."
+      },
+      {
+        "label": "C",
+        "text": "have lower transaction costs. 76 -- 79 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because OTC and ETD markets differ in several ways, including that ETD contracts have lower trading and transaction costs."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q29",
+    "questionText": "A series of forward rate agreements and an interest rate swap contract covering the same periods and using the same market reference rate will most likely have the same:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "fixed rates.",
+        "isCorrect": false,
+        "explanation": "Incorrect because different FRA fixed rates usually exist for different times to maturity. In contrast, a standard interest rate swap has a constant fixed rate over its life, which includes multiple periods."
+      },
+      {
+        "label": "B",
+        "text": "cash flows upfront",
+        "isCorrect": true,
+        "explanation": "Correct because similarities between interest rate forwards and swaps include the symmetric payoff profile and the fact that no cash flow is exchanged upfront. t. Incorrect because different FRA fixed rates usually exist for different times to maturity. In contrast, a standard interest rate swap has a constant fixed rate over its life, which includes multiple periods and the FRA has a single settlement, which occurs at the beginning of an interest period, while a standard swap has periodic settlements, which occur at the end of each respective period. 94 -- 97 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "settlement cash flows.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q30",
+    "questionText": "The value of a forward contract at initiation is most likely equal to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "zero.",
+        "isCorrect": true,
+        "explanation": "Correct because neither the long nor the short pays anything to the other at the initiation date of a forward contract, the value of a forward contract when initiated is zero."
+      },
+      {
+        "label": "B",
+        "text": "the spot price minus the forward price. & the forward price minus the spot price.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the value of a forward contract at expiration is the spot price of the underlying minus the forward price agreed to in the contract. Because neither the long nor the short pays anything to the other at the initiation date ofa forward contract, the value of a forward contract when initiated is zero, Therefore, the value of a forward contract at initiation is not equal to the spot price minus the forward price. G Incorrect because the value of a forward contract at expiration is the spot price of the underlying minus the forward price agreed to in the contract. Because neither the long nor the short pays anything to the other at the initiation date of a forward contract, the value of a forward contract when initiated is zero. Therefore, the value of a forward contract at initiation is not equal to the forward price minus the spot price."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q32",
+    "questionText": "In the over-the-counter derivatives market, most transactions occur between end usersand:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "dealers.",
+        "isCorrect": true,
+        "explanation": "Correct because OTC (over-the-counter) derivative markets involve contracts entered between derivatives end users and dealers, or financial intermediaries, such as commercial banks or investment banks."
+      },
+      {
+        "label": "B",
+        "text": "other end users. Cc: a central counterparty.",
+        "isCorrect": false,
+        "explanation": "Incorrect because end users do not generally trade with other end users. OTC derivative markets involve contracts entered between derivatives end users and dealers, or financial intermediaries, such as commercial banks or investment banks. G Incorrect because the central counterparty provides clearing and settlement functions rather than trading derivatives. A central counterparty (CCP) assumes the credit risk between derivative counterparties, one of which is typically a financial intermediary. CCPs provide clearing and settlement for most derivative contracts."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q34",
+    "questionText": "The upper bound of a call price is the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "exercise price.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this distractor is the upper bound of a put value and not a call price. The exercise price, X, therefore represents the upper bound on the put value."
+      },
+      {
+        "label": "B",
+        "text": "price of the underlying. G underlying's price minus the present value of the exercise price. rita -- 80 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because the call buyer will not pay more for the right to purchase an underlying than the price of that underlying, which is the upper bound. G Incorrect because this answer choice represents the lower bound ofa call price and not the upper bound. The /Jower bound of a call price is therefore the underlying’s price minus the present value of its exercise price or zero, whichever is greater."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q35",
+    "questionText": "The following portfolios contain a company’s stock and a derivative on the stock: Portfolio _ Securities 1 Stock and a short futures position Z Stock and a short call option position 3 Stock and a short warrant position The portfolio containinga derivative acting as a firm commitment to hedge the stockis most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Portfolio 1.",
+        "isCorrect": true,
+        "explanation": "Correct because the buyer of a derivative enters a contract whose value changes in a way similar to a long position in the underlying. Thus a short futures position hedges the exposure to the underlying: Use of a derivative to offset or neutralize existing or anticipated exposure to an underlying is referred to as hedging, with the derivative itself commonly described as a hedge of the underlying transaction. In addition, a futures position is a firm commitment: Firm commitments include forward contracts, futures contracts, and swaps involving a periodic exchange of cash flows."
+      },
+      {
+        "label": "B",
+        "text": "Portfolio 2. 8 Portfolio 3.",
+        "isCorrect": false,
+        "explanation": "Incorrect because an option is an example ofa contingent claim rather than a firm commitment. Firm commitments include forward contracts, futures contracts, and swaps involving a periodic exchange of cash flows. Another type of derivative is a contingent claim, in which one of the counterparties determines whether and when the trade will settle. An option is the primary contingent claim."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q37",
+    "questionText": "Astock with a dividend yield of 3% is trading in the spot market at $50. If the annual risk-free rate is 5%, the 6-month forward price of the stock is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "$49,50.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the risk-free rate and the dividend yield were reversed. ¢ F(T) = $5 Oetons- o0sy05 = $49.50249 = $49.50."
+      },
+      {
+        "label": "B",
+        "text": "$50.50,",
+        "isCorrect": true,
+        "explanation": "Correct because the forward price is: f.{7} = Sev-iT where ris the risk-free rate, jis the dividend yield, and T is the time period. Fy(T) = $50 eros -oosos = $50.50251 = $50.50. G, Incorrect because the dividend was excluded from the calculation. # Fo(T) = $50 ewes = $51.26576.= $51.27."
+      },
+      {
+        "label": "C",
+        "text": "$51.27.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q38",
+    "questionText": "If the net cost of carry is zero, the forward price ofacommodity is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "less than the commodity's spot price compounded at the risk-free rate over the life of the contract.",
+        "isCorrect": false,
+        "explanation": "Incorrect because when benefits exceed the costs, then the forward transaction would return less than the spot transaction. The formula adjusts the forward price downward by the expression — (y — @)(1 + r)\" to reflect this net loss over the spot transaction. In other words, acquiring the asset in the forward market would be cheaper because it forgoes benefits that exceed the costs. Therefore, forward price of a commodity will be less than the commodity's spot price compounded at the risk-free rate over the life of the contract when net cost of carry, (y —9), is positive, not when it is zero."
+      },
+      {
+        "label": "B",
+        "text": "equal to the commodity's spot price compounded at the risk-free rate over the life of the contract.",
+        "isCorrect": true,
+        "explanation": "Correct because The forward price of an asset with benefits and/or costs is the spot price compounded at the risk-free rate over the life of the contract minus the future value of those benefits and costs, That is, Fo(T) = Sof1+r)*— (y— @)(1+r)\", where the net cost of carry consists of the benefits, denoted as y (dividends or interest plus convenience yield), minus the costs, denoted as 6. When net cost of carry is zero, the term (y — @) is zero, resulting in (y — @)(1+r) being zero. Then, F:(T) = S.(1+r)\". Hence, the forward price of a commodity is equal to the commodity's spot price compounded at the risk-free rate over the life of the contract when the net cost ofcarry is zero. G; Incorrect because if the costs exceeded the benefits, the forward price would be higher because the forward contract avoids the costs at the expense of the lesser benefits. Then, the term (y— @)(1+r) will be negative, adding to S,(1+r)T in absolute terms (due to preceding negative sign), resulting ina forward price that is higher than the spot price compounded at the risk-free rate. Therefore, the forward price of a commodity will be greater than the commodity's spot price compounded at the risk-free rate over the life of the contract when the net cost of carry, (y — 6), is negative, not when it is zero."
+      },
+      {
+        "label": "C",
+        "text": "greater than the commodity's spot price compounded at the risk-free rate over the life of the contract.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q39",
+    "questionText": "Long futures contracts are more attractive than long forward positions for the sameunderlying and maturity when futures prices and interest rates are:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "negatively correlated.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the different patterns of cash flows for forwards and futures can lead to a difference in the pricing of forwards versus futures and if futures prices are positively correlated with interest rates, long futures contracts are more attractive than long forward positions for the same underlying and maturity. The reason is because rising prices lead to futures profits that are reinvested in periods of rising interest rates, and falling prices lead to losses that occur in periods of falling interest rates the more desirable contract will tend to have the higher price."
+      },
+      {
+        "label": "B",
+        "text": "uncorrelated.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the different patterns of cash flows for forwards and futures can lead to a difference in the pricing of forwards versus futures and if futures prices are positively correlated with interest rates, long futures contracts are more attractive than long forward positions for the same underlying and maturity. The reason is because rising prices lead to futures profits that are reinvested in periods of rising interest rates, and falling prices lead to losses that occur in periods of falling interest rates the more desirable contract will tend to have the higher price."
+      },
+      {
+        "label": "C",
+        "text": "positively correlated. 78 -- 81 of 166 -- Question",
+        "isCorrect": true,
+        "explanation": "Correct because the different patterns of cash flows for forwards and futures can lead to a difference in the pricing of forwards versus futures and if futures prices are positively correlated with interest rates, long futures contracts are more attractive than long forward positions for the same underlying and maturity. The reason is because rising prices lead to futures profits that are reinvested in periods of rising interest rates, and falling prices lead to losses that occur in periods of falling interest rates the more desirable contract will tend to have the higher price."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q40",
+    "questionText": "40 of 65 The differential between forward and futures prices is determined by which of the following?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "B.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the differential between forward and futures prices is determined by both the correlation between futures prices and interest rates, and by interest rate volatility, as described in the response rationale for the correct answer."
+      },
+      {
+        "label": "C",
+        "text": "rates Question Question Interest rate volatility only The correlation between futures prices and interest rates only Both interest rate volatility and the correlation between futures prices and interest 41 of 65 From the fixed-rate receiver's perspective, if the market reference rate increases, the valueof a swap contract:",
+        "isCorrect": true,
+        "explanation": "Correct because the different patterns of cash flows for forwards and futures can lead to a difference in the pricing of forwards versus futures. Forward and futures prices are identical under certain conditions, namely: Ml if interest rates are constant, or lll if futures prices and interest rates are uncorrelated. On the other hand, violations of these assumptions can give rise to differences in pricing between these two contracts. For example, if futures prices are positively correlated with interest rates, long futures contracts are more attractive than long forward positions for the same underlying and maturity. The reason is because rising prices lead to futures profits that are reinvested in periods of rising interest rates, and falling prices lead to losses that occur in periods of falling interest rates. The price differential will also vary with the volatility of interest rates. Therefore, the differential between forward and futures prices is determined by both interest rate volatility and the correlation between futures prices and interest rates."
+      },
+      {
+        "label": "A",
+        "text": "B.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the differential between forward and futures prices is determined by both the correlation between futures prices and interest rates, and by interest rate volatility, as described in the response rationale for the correct answer."
+      },
+      {
+        "label": "C",
+        "text": "Question Question decreases. stays the same. increases. 42 of 65 An analyst gathers the following information: e The current spot price of crude oil is $120 per barrel. « Therisk-free rate is 3% with annual compounding. « A futures contract has 182 days until settlement. « The storage cost is $5 per barrel, payable at the end of the futures contract. Based on 365 days per year, the futures price per barrel of crude oil is closest to:",
+        "isCorrect": true,
+        "explanation": "Correct because the different patterns of cash flows for forwards and futures can lead to a difference in the pricing of forwards versus futures. Forward and futures prices are identical under certain conditions, namely: Ml if interest rates are constant, or lll if futures prices and interest rates are uncorrelated. On the other hand, violations of these assumptions can give rise to differences in pricing between these two contracts. For example, if futures prices are positively correlated with interest rates, long futures contracts are more attractive than long forward positions for the same underlying and maturity. The reason is because rising prices lead to futures profits that are reinvested in periods of rising interest rates, and falling prices lead to losses that occur in periods of falling interest rates. The price differential will also vary with the volatility of interest rates. Therefore, the differential between forward and futures prices is determined by both interest rate volatility and the correlation between futures prices and interest rates."
+      },
+      {
+        "label": "A",
+        "text": "B. Cc Question Question Most der",
+        "isCorrect": false,
+        "explanation": "Incorrect because the differential between forward and futures prices is determined by both the correlation between futures prices and interest rates, and by interest rate volatility, as described in the response rationale for the correct answer."
+      },
+      {
+        "label": "A",
+        "text": "B. G, Question Question $126.78. $126.86, $126.93, 43 of 65 ivatives pricing models are established on the foundation that: arbitrage opportunities exist. only one price for a derivative exists. the underlying asset price is inferred to determine the derivative price. 44 of 65 Which ofthe following is most accurate regarding a call option replication strategy?",
+        "isCorrect": false,
+        "explanation": "Incorrect because the differential between forward and futures prices is determined by both the correlation between futures prices and interest rates, and by interest rate volatility, as described in the response rationale for the correct answer."
+      },
+      {
+        "label": "A",
+        "text": "The strategy requires adjustment over the life of the option contract based on the likelihood of exercise",
+        "isCorrect": false,
+        "explanation": "Incorrect because the differential between forward and futures prices is determined by both the correlation between futures prices and interest rates, and by interest rate volatility, as described in the response rationale for the correct answer."
+      },
+      {
+        "label": "B",
+        "text": "If the call option is exercised, the strategy requires purchasing the underlying from the proceeds ofthe loan",
+        "isCorrect": false,
+        "explanation": "Incorrect because the differential between forward and futures prices is determined by both the correlation between futures prices and interest rates, and by interest rate volatility, as described in the response rationale for the correct answer."
+      },
+      {
+        "label": "C",
+        "text": "At inception, the strategy requires buying long a forward contract on the underlying and borrowing at the risk free rate 79 -- 82 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because the different patterns of cash flows for forwards and futures can lead to a difference in the pricing of forwards versus futures. Forward and futures prices are identical under certain conditions, namely: Ml if interest rates are constant, or lll if futures prices and interest rates are uncorrelated. On the other hand, violations of these assumptions can give rise to differences in pricing between these two contracts. For example, if futures prices are positively correlated with interest rates, long futures contracts are more attractive than long forward positions for the same underlying and maturity. The reason is because rising prices lead to futures profits that are reinvested in periods of rising interest rates, and falling prices lead to losses that occur in periods of falling interest rates. The price differential will also vary with the volatility of interest rates. Therefore, the differential between forward and futures prices is determined by both interest rate volatility and the correlation between futures prices and interest rates."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q45",
+    "questionText": "An analyst collects the following information: Current stock price €26 Gross return from an up move 1.10 Gross return from adown move 0.75 Call and put exercise price €22 Based on a one-period binomial pricing model, which of the following has the largest payoff?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Put option following an up move",
+        "isCorrect": false,
+        "explanation": "Incorrect because the payoff of a put option following an up move is pe = Max (0, X - S:») where X is the exercise price and S,»is the price after an up move. In this case, $= €26(1.10) = €28.60. So, pw = Max(0, €22 - €28.60) = €0, which is less than the payoff ofa put option following a down move, as described in the response rationale for the correct answer."
+      },
+      {
+        "label": "B",
+        "text": "Put option following a down move",
+        "isCorrect": true,
+        "explanation": "Correct because the payoff of a put option following a down move is px = Max (0, X — S*) where X is the exercise price and S,sis the price after a down move. In this case, $,«= 100 -- 103 of 166 -- €26(0.75) = €19.50. So, pit = Max (0, €22 - €19.50) = €2.50, which is greater than the payoffs of other two responses."
+      },
+      {
+        "label": "C",
+        "text": "Call option following a down move",
+        "isCorrect": false,
+        "explanation": "Incorrect because the payoff of a call option following an a down move is c.4 = Max (0, Si - X) where X is the exercise price and S,¢ is the price after a down move. In this case, S.4 = €26(0,.75) = €19.50. So, cv = Max (0,€19.50 - €22) = €0, which is less than the payoff of a put option following a down move, as described in the response rationale for the correct answer."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q46",
+    "questionText": "A $10 million interest rate swap with annual payments has a fixed swap rate of 1.95%. The implied forward rates are: Yearimplied Forward Rate (%) 1 0.50 2 1.15 3 1.35 The periodic settlement value in Year 3 for the fixed-rate payer is expected to be closest to:A. -$95,000.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "-$60,000.",
+        "isCorrect": true,
+        "explanation": "Correct because the periodic settlement value = (MRR - sw) * Notional amount x Period. The market reference rate (MMR) for Year 3 is 1.35%, thus: = (0.0135 - 0.0195) x $10,000,000 x 1 =~$60,000. ¢; Incorrect because this is the periodic settlement value for the floating-rate payer, not the fixed-rate payer: # (sN- MRR) x Notional amount x Period = (0.0195 - 0.0135) = $10,000,000 x 1 = $60,000."
+      },
+      {
+        "label": "C",
+        "text": "$60,000.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q47",
+    "questionText": "Which of the following best describes put-call-forward parity?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "The present value of the exercise price plus the call price equals the put price plus the underlying price.",
+        "isCorrect": true,
+        "explanation": "Correct because the put price plus the underlying price equals the cail price plus the present value of the exercise price. Rearranged, this is as follows: The present value of the exercise price plus the call price equals the put price plus the underlying price."
+      },
+      {
+        "label": "B",
+        "text": "The underlying price plus the call price equals the present value of the exercise price plus the put price, G The call price minus the put price equals the present value of the exercise price minus the underlying price.",
+        "isCorrect": false,
+        "explanation": "Incorrect because, as described in the response rationale for the correct answer, the put-call-forward parity is described as follows: The put price plus the underlying price equals the call price plus the present value of the exercise price. The verbal description of the equation in this answer choice is incorrect as it incorrectly rearranges terms of the put-—call—forward parity. CG. Incorrect because, as described in the response rationale for the correct answer, the put-call-forward parity is described as follows: The put price plus the underlying price equals the call price plus the present value of the exercise price. The verbal description of the equation in this answer choice is incorrect as it incorrectly rearranges terms of the put-call-forward parity."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q48",
+    "questionText": "Consider a put option selling for $2 in which the exercise price is $45. What is the profit fora put buyer if the price of the underlying at expiration is $417",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "~$2",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the put seller's profit. The put's value at expiration = —p,=— Max(0,X — Sy), where p; is the value of the put at expiration, X is the exercise price, and Sris the price of the underlying at expiration. In this case, —-Max(0,45 — 41) = -$4. The put seller's profit = I] =—p;+ ps (where p. is the price of the put at time 0), or -4 + 2 = -$2."
+      },
+      {
+        "label": "B",
+        "text": "$2 G $4",
+        "isCorrect": true,
+        "explanation": "Correct because the put's value at expiration = pr= Max(0,X — S,), where pris the value of the put at expiration, X is the exercise price, and S;is the price of the underlying at 101 -- 104 of 166 -- expiration. In this case, Max(0,45 - 41) = $4. The put buyer’s profit = Il = p;- po (where pis the price of the put at time 0), or 4-2 = $2. G Incorrect because this is the put's value at expiration. The put’s value at expiration = pr= Max(S;— 0,X), where p;is the value of the put at expiration, X is the exercise price, and Sr is the price of the underlying at expiration. In this case, Max(0,45 — 41) = $4."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q50",
+    "questionText": "An analyst gathers the following information about an underlying: Current price of underlying asset $16.0 End ofperiod upward price $22.0 End of period downward price $12.0 Risk-free rate 4.0% Using a one-period binomial model, the risk-neutral probability ofa price increaseis closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0.38.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the expected return of an upward price move, i.e. Sw / So— 1 = $22/$16 - 1 = 1.375 -1= 0.375 = 0.38. Instead, the risk neutral probability is equal to 0.46, as described in the response rationale for the correct answer,"
+      },
+      {
+        "label": "B",
+        "text": "0.46.",
+        "isCorrect": true,
+        "explanation": "Correct because the risk-neutral probability (7) is the computed probability used in binomial option pricing by which the discounted weighted sum of expected values of the underlying, Sw = R»S, and Si = RéS,, equal the current option price. Specifically, this probability is computed using the risk-free rate and assumed up gross return and down gross return of the underlying as in Equation 7, mw=1+r—Rt/ Ru- Re More specifically, 7, is the risk-neutral probability of an increase in the underlying price to Sy = RvS», and (1 — 1) is that ofa decrease, S, = ReS,. Thus, An increase from $16 to $22 or a decrease from $16 to $12 corresponds to: Rv = $22/$16 = 1.375 and R¢ = $12/$16 = 0.75. Using the risk-neutral probability (m) ofa price increase: m=1+r—R:/R— Ri= (1+ 0.04- 0.75) / (1.375 - 0.75) = 0.29/0.625 = 0.464 = 0.46."
+      },
+      {
+        "label": "C",
+        "text": "0.54,",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the risk-neutral probability ofa price decrease (1-1) =1- 0.46 = 0.54. Instead, the risk neutral probability is equal to 0.46, as described in the response rationale for the correct answer."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q51",
+    "questionText": "An investor expects an underlying to go up or down by 25% over the next year. If the risk- free rate is 5%, the risk-neutral probability of a decrease in the underlying price is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0.25.",
+        "isCorrect": false,
+        "explanation": "Incorrect because 0.25 is simply the expected reduction in percent (down move) of the underlying after one year. Instead, the risk-neutral probability (7) is the computed probability used in binomial option pricing with m = (1 +r - R«) / (R»- R¢), where tis the risk-neutral probability of an increase in the underlying price, ris the risk-free rate and R« and R« represent the underlying asset volatility, ie, expected up and down moves of the underlying after the period. Here, r = 0.05, Rvis (1 + 0.25) = 1.25 and Riis (1 — 0.25) = 102 -- 105 of 166 -- 0.75. Substituting in yields (1 + 0.05 - 0:75) / (1.25 — 0.75) = 0.60, Since the risk-neutral probability ofa decrease in the underlying price is 1 - 1 we get 1 — 0.60 = 0.40."
+      },
+      {
+        "label": "B",
+        "text": "0.40. CG 0.60.",
+        "isCorrect": true,
+        "explanation": "Correct because the risk-neutral probability (7) is the computed probability used in binomial option pricing with m= (1 + r—- Re) / (R«-R¢), where tr is the risk-neutral probability of an increase in the underlying price, r is the risk-free rate and R« and R« represent the underlying asset volatility, i.e, expected up and down moves of the underlying after the period, Here, r= 0,05, Reis (1 + 0.25)=1.25 and Rs is (1 - 0.25) = 0.75. Substituting in yields (1 + 0.05 - 0.75) / (1.25 - 0.75) = 0.60. Since the risk-neutral probability ofa decrease in the underlying price is 1— 1m we get 1 - 0.60 = 0.40."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q52",
+    "questionText": "Which of the following factors affects the option price when using a binomial model? The:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "risk-free rate,",
+        "isCorrect": true,
+        "explanation": "Correct because the value of the call option today, cs, is computed as the expected value of the option at expiration, c.» and c, ¢, discounted at the risk-free rate, r. Also, this no- arbitrage derivative value established separately from investor views on risk is referred to as risk-neutral pricing."
+      },
+      {
+        "label": "B",
+        "text": "level of investors' risk aversion. G expected return of the underlying.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the value of the call option today, co, is computed as the expected value of the option at expiration, c: «and c., discounted at the risk-free rate, r. Also, this no- arbitrage derivative value established separately from investor views on risk is referred to as risk-neutral pricing, oF Incorrect because the value of the call option today, co, is computed as the expected value of the option at expiration, c, «and c.4, discounted at the risk-free rate, r. Also, only the expected volatility—that is, gross returns R« and Ri—and not the expected return are required to price an option"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q53",
+    "questionText": "An end user seeking to hedge a specific underlying exposure having non-standard size and settlement dates would most likely trade on a(n):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "futures market.",
+        "isCorrect": false,
+        "explanation": "Incorrect because futures contracts are forward contracts with standardized sizes, dates, and underlyings that trade on futures exchanges. Therefore, they are inappropriate for the non-standard size and settlement dates required by the end user."
+      },
+      {
+        "label": "B",
+        "text": "over-the-counter derivative market. an exchange-traded derivative market.",
+        "isCorrect": true,
+        "explanation": "Correct because the terms of OTC (over-the-counter) contracts can be customized to match a desired risk exposure profile. This flexibility is important to end users seeking to hedge a specific existing or anticipated underlying exposure based upon non-standard terms. c Incorrect because ETD (exchange-traded derivative) contracts are more formal and standardized, which facilitates a more liquid and transparent market. Terms and conditions—such as the size of each contract, type, quality, and location of underlying for commodities and maturity date—are set by the exchange. 103 -- 106 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q54",
+    "questionText": "All else being equal, if the up gross return increases in a one-period binomial model, the risk-neutral probability of an upward price movement of the asset will:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "decrease.",
+        "isCorrect": true,
+        "explanation": "Correct because the risk-neutral probability (1) is the computed probability used in binomial option pricing by which the discounted weighted sum of expected values of the underlying, S.x= ReSs and S$, = R¢So, equal the current option price. Specifically, this probability is computed using the risk-free rate and assumed up gross return and down gross return of the underlying as in w= (1+r-R,}/(R.-Ra). So, if the up gross return increases in a one-period binomial model, the denominator will increase. Therefore, the risk-neutral probability of an upward price movement of the asset, (1), decreases."
+      },
+      {
+        "label": "B",
+        "text": "remain the same. G. increase. B1 -- 84 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because the risk-neutral probability (1) is the computed probability used in binomial option pricing by which the discounted weighted sum of expected values of the underlying, Sm = R«Ss and S,¢ = RéS,, equal the current option price. Specifically, this probability is computed using the risk-free rate and assumed up gross return and down gross return ofthe underlying as in = (1+r-R.)/(R.-R,). So, if the up gross return increases in a one-period binomial model, the denominator will increase. Therefore, the risk-neutral probability of an upward price movement of the asset, (1), decreases. (3; Incorrect because the risk-neutral probability (11) is the computed probability used in binomial option pricing by which the discounted weighted sum of expected values of the underlying, S.«= R»S. and S,« = RéSe, equal the current option price. Specifically, this probability is computed using the risk-free rate and assumed up gross return and down pross return of the underlying as in m= (1+r-R.)/(R.-Ra). So, if the up gross return increases in a one-period binomial model, the denominator will increase. Therefore, the risk-neutral probability of an upward price movement of the asset, (1), decreases."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q55",
+    "questionText": "A forward agreement has the following terms: Spot price atinception $275 Forward price $285 Number of shares 2,000 At expiration, if the spot price is $282, the value to the seller is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "-$6,000.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is the value at expiration for the buyer: = Sr- F(T) = $282 - $285 = -$3. Hence total value is -$3 x 2,000 shares = -$6,000,"
+      },
+      {
+        "label": "B",
+        "text": "$6,000,",
+        "isCorrect": true,
+        "explanation": "Correct because the value at expiration for the seller: = F(T) - Sr= $285 — $282 = $3. Hence the total value is $3 x Z,000 shares = $6,000. G. Incorrect because the spot price at inception is used instead ofat settlement: # Fo(T) — So = $282 - $275 = $7. Hence the total] value is $7 « 2,000 shares = $14,000. 104 -- 107 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "$14,000.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q56",
+    "questionText": "A trader sells a call option on a stock index with a strike price of 2,400 for $25. The value ofa one-point move in the index is $1. At expiration, the stock index is trading at 2,450. The trader's profit is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "~$50.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this represents the value, not the profit, to the call seller, which is ~Max(0,$2,450 - $2,400) = -$50, as described in the response rationale for the correct answer."
+      },
+      {
+        "label": "B",
+        "text": "—$25. G $25.",
+        "isCorrect": true,
+        "explanation": "Correct because the writer of a call is the seller of the call: An option is a derivative contractin which one party, the buyer, pays a sum of money to the other party, the seller or writer, and receives the right to either buy or sell an underlying asset at a fixed price either ona specific expiration date or at any time prior to the expiration date. The profit to the seller of the call is -Max(0,S;— X) + co, where X is the exercise price, S;is the value of the underlying at expiration and c is the call premium received by the seller. Since one point is equal to one dollar the profit to the call seller is: -Max(0,$2,450 — $2,400) + $25 =-$50 + $25 =-$25, &. Incorrect because $25 represents the profit to the buyer, not to the seller of the call option. The profit to a call buyer is defined as Max(0,5;— X) - &, where X is the exercise price, S; is the value of the underlying at expiration and cois the call premium paid by the buyer. Therefore, Max(0,$2,450 — $2,400) - $25 = $50 — $25 = $25."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q58",
+    "questionText": "An investor sells a European put option with the following characteristics: Put price 30 Exercise price 1,320 If the price of the underlying at expiration is 1,340, the profit for the seller is:A. 10.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "20.",
+        "isCorrect": false,
+        "explanation": "Incorrect because it represents the payoff to the call buyer c; = Max(0,S - XJ, where S, is the price of the underlying at expiration and X is the exercise price. Therefore, cr = 106 -- 109 of 166 -- Max(0,(1,340 — 1,320)) = 20. By contrast, to the put seller, the profit is 1] = -Max(0,X - Sr) + po, where pv is the put price, Therefore, ll = -Max(0,(1,320 - 1,340)) + 30 = 30."
+      },
+      {
+        "label": "C",
+        "text": "30. B2 -- 85 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because to the put seller, the profit is [1 = -Max(0,X — S:) + po, where X is the exercise price, S; is the price of the underlying at expiration, and po is the put price. Therefore, fl = —-Max(0,(1,320 — 1,340)) + 30 = 30,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q59",
+    "questionText": "An analyst gathers the following information about three portfolios each consisting of two derivatives on the same underlying: k 1 Position Option Positi Portfolio 1 Long Long Call Portfolio 2 Long Long Put Portfolio 3 Short Long Call All else being equal, which portfolio will benefit from an increase in price ofthe underlying?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Portfolio 1",
+        "isCorrect": true,
+        "explanation": "Correct because both a long forward position and a long call option position will gain from an increase in the underlying price."
+      },
+      {
+        "label": "B",
+        "text": "Portfolio 2",
+        "isCorrect": false,
+        "explanation": "Incorrect because a contingent claim that benefits from a rise in the underlying price is the sold put option [not a bought put aption]. G Incorrect because both a long forward position and a long [not short] call option position will gain from an increase in the underlying price."
+      },
+      {
+        "label": "C",
+        "text": "Portfolio 3",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q60",
+    "questionText": "All else being equal, the cost of carry on a dividend-paying stock is:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "lower than the cost of carry on a stock with no dividends.",
+        "isCorrect": true,
+        "explanation": "Correct because the benefit of the dividend reduces the costs associated with carrying the stock. The cost of carry is the net of the costs and benefits related to owning an underlying asset for a specific period. The cost of carry is the opportunity cost plus other costs of ownership less benefits of ownership, and stock dividends or bond coupons are examples ofcash flow benefits."
+      },
+      {
+        "label": "B",
+        "text": "the same as the cost of carry on a stock with no dividends.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the benefit of the dividend reduces the costs associated with carrying the stock. The cost of carry is the net of the costs and benefits related to owning an underlying asset for a specific period. The cost of carry is the opportunity cost plus other costs of ownership less benefits of ownership, and stock dividends or bond coupons are examples of cash flow benefits. G Incorrect because the benefit of the dividend reduces the costs associated with carrying the stock. The cost of carry is the net of the costs and benefits related to owning an underlying asset for a specific period. The cost of carry is the opportunity cost plus other costs of ownership less benefits of ownership, and stock dividends or bond coupons are examples of cash lew benefits."
+      },
+      {
+        "label": "C",
+        "text": "higher than the cost ofcarry on a stock with no dividends.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q62",
+    "questionText": "Which of the following interest rate derivatives most likely has the largest convexity bias?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Forward rate agreement on a 1-month market reference rate",
+        "isCorrect": false,
+        "explanation": "Incorrect because the discounting feature of the FRA, which is not present in the futures contract, leads to a convexity bias that is greater for longer discounting periods, Since the length ofthe discounting period depends on the maturity of the underlying market reference rate, 1-month market reference rate results in a shorter discounting period than the 3-month rate. Therefore, it will suffer from a smaller convexity bias."
+      },
+      {
+        "label": "B",
+        "text": "Forward rate agreement on a 3-month market reference rate Gc Interest rate futures contract on a 3-month market reference rate",
+        "isCorrect": true,
+        "explanation": "Correct because the discounting feature of the FRA, which is not present in the futures contract, leads to a convexity bias that is greater for longer discounting periods. Since the length of the discounting period depends on the maturity of the underlying market reference rate, 3-month market reference rate results in a longer discounting period than the 1-month rate."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q63",
+    "questionText": "The upper bound of a call value is the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "underlying's price.",
+        "isCorrect": true,
+        "explanation": "Correct because the upper no-arbitrage bound ofa call price is the underlying's spot price."
+      },
+      {
+        "label": "B",
+        "text": "underlying's price plus the present value of its exercise price or zero, whichever is greater,",
+        "isCorrect": false,
+        "explanation": "Incorrect because the lower (not upper) bound ofa call price is the underlying's price minus (not plus) the present value ofits exercise price or zero, whichever is greater. Instead, the upper no-arbitrage bound of a call price is the underlying's spot price."
+      },
+      {
+        "label": "C",
+        "text": "underlying’s price minus the present value of its exercise price or zero, whichever is greater. 83 -- 86 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because the lower (not upper) bound of a call price is the underlying’s price minus the present value of its exercise price or zero, whichever is greater. Instead, the upper no-arbitrage bound of a call price is the underlying's spot price."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q64",
+    "questionText": "Which party in an option contract has the right to sell the underlying stock at the exercise price?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "The buyer of a call option",
+        "isCorrect": false,
+        "explanation": "Incorrect, because an option is a derivative contract in which one party, the buyer, pays a sum of money to the other party, the seller or writer, and receives the right to either buy or sell an underlying asset at a fixed price either on a specific expiration date or at any time prior to the expiration date. The right to buy is one type of option, referred to as a call or call option. The buyer of a call option has the right to buy the underlying stock."
+      },
+      {
+        "label": "B",
+        "text": "The buyer of a put option",
+        "isCorrect": true,
+        "explanation": "Correct, because an option is a derivative contract in which one party, the buyer, pays a sum of money to the other party, the seller or writer, and receives the right to either buy or sell an underlying asset at a fixed price either on a specific expiration date or at any time prior to the expiration date. The right to sell is a (another) type of option, referred to as a put or put option. Gc. Incorrect, because an option is a derivative contract in which one party, the buyer, pays a sum of money to the other party, the seller or writer, and receives the right to either buy or sell an underlying asset at a fixed price either on a specific expiration date or at any 108 -- 111 of 166 -- time prior to the expiration date. The right to sell is a (another) type of option, referred toas a put or put option. The seller of a put option has the obligation to buy the underlying ifthe buyer exercises the option"
+      },
+      {
+        "label": "C",
+        "text": "The seller of a put option",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-derivatives-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q65",
+    "questionText": "All else being equal, if the risk-free rate increases immediately after the inception ofa forward contract, the value of the contract to the forward buyer will:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "decrease.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the higher risk-free rate increases the opportunity cost of a cash position and lowers the present value of the forward price. The present value of the forward price has decreased, increasing the value to the buyer. If S: is the spot price of the underlying asset at time ¢, [the equation] shows the forward contract MTM value at time ¢, V.(T), from the long forward position's perspective: V.i(T) = S.— Fi(T)(1 + r)-7-9."
+      },
+      {
+        "label": "B",
+        "text": "stay the same.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the higher risk-free rate increases the opportunity cost of a cash position and lowers the present value of the forward price. The present value of the forward price has decreased, increasing the value to the buyer. If 5S. is the spot price of the underlying asset at time t, [the equation] shows the forward contract MTM value at time V.(T), from the long forward position's perspective: V.(T) = S:— Fo(T)(1 + r)-e-9."
+      },
+      {
+        "label": "C",
+        "text": "increase. 84 -- 87 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because the higher risk-free rate increases the opportunity cost of a cash position and lowers the present value of the forward price. The present value of the forward price has decreased, increasing the value to the buyer. If S. is the spot price of the underlying asset at time t, [the equation] shows the forward contract MTM value at time ¢, V.(T), from the long forward position’s perspective: V.{T}] = S.— Fo(T}(1 + ry-e-s. 109 -- 112 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Derivatives",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  }
+]

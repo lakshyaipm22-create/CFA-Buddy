@@ -2,7 +2,6 @@
 
 import { z } from 'zod';
 import type { ActionResult } from '@/shared/types/action-result';
-import { createServerSupabaseClient } from '@/shared/lib/supabase/server';
 import { isDatabaseAvailable } from '@/shared/lib/data-layer';
 
 // ─── Schemas ─────────────────────────────────────────────────────────────────
@@ -33,53 +32,11 @@ interface BulkApproveResult {
   errors: string[];
 }
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
-/**
- * Verify that the current user has admin role.
- * Checks app_metadata.role for 'admin' value.
- * Returns the userId if admin, or an error ActionResult if not.
- */
-async function requireAdmin(): Promise<
-  | { authorized: true; userId: string }
-  | { authorized: false; error: ActionResult<never> }
-> {
-  const supabase = await createServerSupabaseClient();
-  if (!supabase) {
-    // No Supabase configured - allow in local development mode
-    if (!isDatabaseAvailable()) {
-      return { authorized: true, userId: 'local-dev' };
-    }
-    return {
-      authorized: false,
-      error: { success: false, error: 'Authentication required.' },
-    };
-  }
-
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return {
-      authorized: false,
-      error: { success: false, error: 'Authentication required.' },
-    };
-  }
-
-  const role = user.app_metadata?.role;
-  if (role !== 'admin') {
-    return {
-      authorized: false,
-      error: { success: false, error: 'Admin access required.' },
-    };
-  }
-
-  return { authorized: true, userId: user.id };
-}
-
 // ─── Actions ─────────────────────────────────────────────────────────────────
 
 /**
  * Approve a single question, setting its verification status to 'approved'.
- * Requires admin access via Supabase auth (app_metadata.role === 'admin').
+ * No authentication required — CFA Buddy is a public application.
  */
 export async function approveQuestion(
   input: z.infer<typeof approveQuestionSchema>
@@ -93,13 +50,7 @@ export async function approveQuestion(
     };
   }
 
-  const adminCheck = await requireAdmin();
-  if (!adminCheck.authorized) {
-    return adminCheck.error;
-  }
-
   if (!isDatabaseAvailable()) {
-    // Without DB, return success for local development
     return {
       success: true,
       data: {
@@ -113,9 +64,7 @@ export async function approveQuestion(
   try {
     await prisma.question.update({
       where: { id: validated.data.questionId },
-      data: {
-        verificationStatus: 'approved',
-      },
+      data: { verificationStatus: 'approved' },
     });
     return {
       success: true,
@@ -132,7 +81,7 @@ export async function approveQuestion(
 
 /**
  * Reject a single question, setting its verification status to 'rejected'.
- * Requires admin access via Supabase auth (app_metadata.role === 'admin').
+ * No authentication required — CFA Buddy is a public application.
  */
 export async function rejectQuestion(
   input: z.infer<typeof rejectQuestionSchema>
@@ -144,11 +93,6 @@ export async function rejectQuestion(
       error: 'Invalid input.',
       fieldErrors: validated.error.flatten().fieldErrors,
     };
-  }
-
-  const adminCheck = await requireAdmin();
-  if (!adminCheck.authorized) {
-    return adminCheck.error;
   }
 
   if (!isDatabaseAvailable()) {
@@ -165,9 +109,7 @@ export async function rejectQuestion(
   try {
     await prisma.question.update({
       where: { id: validated.data.questionId },
-      data: {
-        verificationStatus: 'rejected',
-      },
+      data: { verificationStatus: 'rejected' },
     });
     return {
       success: true,
@@ -184,7 +126,7 @@ export async function rejectQuestion(
 
 /**
  * Bulk approve multiple questions at once.
- * Requires admin access via Supabase auth (app_metadata.role === 'admin').
+ * No authentication required — CFA Buddy is a public application.
  */
 export async function bulkApprove(
   input: z.infer<typeof bulkApproveSchema>
@@ -196,11 +138,6 @@ export async function bulkApprove(
       error: 'Invalid input.',
       fieldErrors: validated.error.flatten().fieldErrors,
     };
-  }
-
-  const adminCheck = await requireAdmin();
-  if (!adminCheck.authorized) {
-    return adminCheck.error;
   }
 
   if (!isDatabaseAvailable()) {
@@ -223,9 +160,7 @@ export async function bulkApprove(
     try {
       await prisma.question.update({
         where: { id: questionId },
-        data: {
-          verificationStatus: 'approved',
-        },
+        data: { verificationStatus: 'approved' },
       });
       approved++;
     } catch (err) {

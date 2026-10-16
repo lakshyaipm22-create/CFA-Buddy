@@ -1,22 +1,10 @@
-import { createServerSupabaseClient } from '@/shared/lib/supabase/server';
 import { DashboardContent } from '@/features/dashboard/components/dashboard-content';
 
-export default async function DashboardPage() {
-  let displayName = 'CFA Student';
-  let level = 'I';
-
-  const supabase = await createServerSupabaseClient();
-  if (supabase) {
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        displayName = user.user_metadata?.display_name || 'CFA Student';
-        level = user.user_metadata?.level || 'I';
-      }
-    } catch {
-      // Auth failed — use defaults
-    }
-  }
-
-  return <DashboardContent displayName={displayName} level={level} />;
+/**
+ * Dashboard is publicly accessible — no auth required.
+ * Display name and level come from the client-side LocalProfile (localStorage).
+ * DashboardContent reads LocalProfile itself on the client.
+ */
+export default function DashboardPage() {
+  return <DashboardContent displayName="CFA Student" level="I" />;
 }

@@ -1,0 +1,1430 @@
+[
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q1",
+    "questionText": "Fiscal policy refers to the government's decisions about:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "taxation only.",
+        "isCorrect": false,
+        "explanation": "Incorrect because fiscal policy refers to the government's decisions about taxation and spending."
+      },
+      {
+        "label": "B",
+        "text": "taxation and spending only.",
+        "isCorrect": true,
+        "explanation": "Correct because fiscal policy refers to the government's decisions about taxation and spending. G, Incorrect because monetary policy refers to central bank activities that are directed toward influencing the quantity of money and credit in an economy. By contrast, fiscal policy refers to the government's decisions about taxation and spending,"
+      },
+      {
+        "label": "C",
+        "text": "taxation, spending, and the quantity of money in the economy.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q3",
+    "questionText": "Whichof the following economic policies is most likely directed toward influencing the quantity of credit in an economy?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Fiscal policy only",
+        "isCorrect": false,
+        "explanation": "Incorrect because fiscal policy refers to the government's decisions about taxation and spending and it is not directly related to the quantity of credit in an economy."
+      },
+      {
+        "label": "B",
+        "text": "Monetary policy only",
+        "isCorrect": true,
+        "explanation": "Correct because monetary policy refers to central bank activities that are directed toward influencing the quantity of money and credit in an economy. 6. Incorrect because fiscal policy refers to the government's decisions about taxation and spending and it is not directly related to the quantity of credit in an economy."
+      },
+      {
+        "label": "C",
+        "text": "Both fiscal policy and monetary policy",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q4",
+    "questionText": "An analyst gathers the following information: USD/AUD spot rate 0.8027 AUD 1-yearinterestrate 3.30% USD 1i-yearinterestrate 2.42% USD/AUD is the amount of USD per 1 AUD. The USD/AUD 1-year forward rate is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0.7959,",
+        "isCorrect": true,
+        "explanation": "Correct because Fy = Sy ((1+i)/(1+i.)). Substituting the values, Fy, = 0.8027 x ((1+0.0242}/(1+0.033}} = 0.7959,"
+      },
+      {
+        "label": "B",
+        "text": "0.8096, 0.8292,",
+        "isCorrect": false,
+        "explanation": "Incorrect because it uses the incorrect formula Fy, = Sys ((1+i.)/(1+i)). Substituting the values, Fy = 0.8027 x ((1+0.033)/(1+0.0242)) = 0.8096. & Incorrect because it uses the incorrect formula Fy = Sw (1+i). Substituting the 128 -- 131 of 166 -- values, Fa = 0.8027 x (1+0.033) = 0.8292. 129 -- 132 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q5",
+    "questionText": "With respect to fiscal policy, transfer payments are best described as:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "welfare payments.",
+        "isCorrect": true,
+        "explanation": "Correct because transfer payments are welfare payments made through the social security system, and, depending on the country, comprise payments for state pensions, housing benefits, tax credits and income support for poorer families, child benefits, unemployment benefits and job search allowances."
+      },
+      {
+        "label": "B",
+        "text": "infrastructure spending. oR spending on recurring goods and services.",
+        "isCorrect": false,
+        "explanation": "Incorrect because capital expenditure includes infrastructure spending on roads, hospitals, prisons, and schools, not transfer payments. CG. Incorrect because current government spending involves spending on goods and services that are provided on a regular, recurring basis—including health, education, and defence, not transfer payments."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q6",
+    "questionText": "110 -- 113 of 166 -- Question Which of the following economic conditions for a country best supports a well-functioning currency board exchange rate system?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Flexible domestic prices and wages",
+        "isCorrect": true,
+        "explanation": "Correct because a currency board system works best if domestic prices and wages are very flexible."
+      },
+      {
+        "label": "B",
+        "text": "Rapid growth in supply of the global reserve asset ili -- 114 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because a currency board system works best when the global supply of the reserve asset grows at a slow, steady rate consistent with long-run real growth with stable prices."
+      },
+      {
+        "label": "C",
+        "text": "Large non-traded sectors of the domestic economy",
+        "isCorrect": false,
+        "explanation": "Incorrect because a currency board system works best if non-traded sectors of the domestic economy are relatively small."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q7",
+    "questionText": "Whichof the following indexes is most likely considered a leading economic indicator?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Consumer price index",
+        "isCorrect": false,
+        "explanation": "Incorrect because the consumer price index is considered a lagging indicator: Inflation generally adjusts to the cycle late, especially the more stable services area."
+      },
+      {
+        "label": "B",
+        "text": "Broad stock market index",
+        "isCorrect": true,
+        "explanation": "Correct because as a leading economic indicator, a positive change in the S&P 500 Index is supposed to lead (come before) an increase in aggregate economic activity. An increase in the S&P 500 would be positive for future economic growth, all else equal. Additionally, the Euro Stoxx Equity Index is considered a leading indicator in the Eurozone, a Incorrect because this index measures industrial output, thus capturing the behavior of the most volatile part of the economy. This index is considered one ofthe 4 coincidental indicators in the United States as tracked by the Conference Board."
+      },
+      {
+        "label": "C",
+        "text": "Industrial production index",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q10",
+    "questionText": "Anation that cooperates with a neighboring country is most likely characterized as:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "autarkic.",
+        "isCorrect": false,
+        "explanation": "Incorrect because autarky describes countries seeking political self-sufficiency with little or no external trade or finance. Autarkic countries tend not to be cooperative with other countries."
+      },
+      {
+        "label": "B",
+        "text": "bilateral. C hegemonic: Question ii of 76 The inflation target of an effective central bank is most likely:",
+        "isCorrect": true,
+        "explanation": "Correct because bilateralism is the conduct of political, economic, financial, or cultural cooperation between two countries. Countries engaging in bilateralism may have relations with many different countries, but they are one-at-a-time agreements without multiple partners. G: Incorrect because hegemonic countries tend to be regional or even global leaders, and they use their political or economic influence of others to control resources economic and political dominance may provide important influence on global affairs. Thus, hegemonic countries tend to lead or dominate more than cooperate."
+      },
+      {
+        "label": "A",
+        "text": "equal to zero to avoid the risk of deflation.",
+        "isCorrect": false,
+        "explanation": "Incorrect because autarky describes countries seeking political self-sufficiency with little or no external trade or finance. Autarkic countries tend not to be cooperative with other countries."
+      },
+      {
+        "label": "B",
+        "text": "sufficiently below zero to maintain high credibility.",
+        "isCorrect": true,
+        "explanation": "Correct because bilateralism is the conduct of political, economic, financial, or cultural cooperation between two countries. Countries engaging in bilateralism may have relations with many different countries, but they are one-at-a-time agreements without multiple partners. G: Incorrect because hegemonic countries tend to be regional or even global leaders, and they use their political or economic influence of others to control resources economic and political dominance may provide important influence on global affairs. Thus, hegemonic countries tend to lead or dominate more than cooperate."
+      },
+      {
+        "label": "C",
+        "text": "low enough to ensure a significant degree of price stability.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q13",
+    "questionText": "Cyber threats most likely fall into the category of:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "event risk.",
+        "isCorrect": false,
+        "explanation": "Incorrect because event risk evolves around set dates, such as elections, new legislation, or other date-driven milestones, such as holidays or political anniversaries, known in advance, whilst thematic risks are known risks that evolve and expand over a period of time and cyber threats are an example of thematic risk."
+      },
+      {
+        "label": "B",
+        "text": "thematic risk. 112 -- 115 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because cyber threats are another example of thematic risk."
+      },
+      {
+        "label": "C",
+        "text": "exogenous risk. 113 -- 116 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because exogenous risk is a sudden or unanticipated risk that impacts either a country’s cooperative stance, the ability of non-state actors to globalize, or both. Examples include sudden uprisings, invasions, or the aftermath of natural disasters, whilst thematic risks are known risks that evolve and expand over a period of time and cyber threats are [an example of thematic risk."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q14",
+    "questionText": "Fiat money: A is not currently used in any major economy.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "can be exchanged for a precious metal at the country’s central bank.",
+        "isCorrect": false,
+        "explanation": "Incorrect because money that is not convertible into any other commodity is known as fiat money."
+      },
+      {
+        "label": "C",
+        "text": "derives its value via government decree and because people accept it for payment.",
+        "isCorrect": true,
+        "explanation": "Correct because fiat money derives its value via government decree and because people accept it for payment of goods and services and for debt repayment."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q16",
+    "questionText": "A decrease in taxes and an increase in interest rates most likely reflect:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "easy fiscal policy and tight monetary policy.",
+        "isCorrect": true,
+        "explanation": "Correct because decreasing taxes reflects easy fiscal policy. If taxes are cut the expansionary fiscal policy will lead to a rise in aggregate output. Increasing interest rates reflects tight monetary policy. If this is accompanied by a reduction in money supply to offset the fiscal expansion, then interest rates will rise."
+      },
+      {
+        "label": "B",
+        "text": "tight fiscal policy and easy monetary policy. Gi tight fiscal policy and tight monetary policy.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a decrease in taxes is expansionary fiscal policy, not tight fiscal policy. 133 -- 136 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q18",
+    "questionText": "1 With respect to the foreign exchange market, an arbitrage relationship involving countries relative interest rates serves as the basis for:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "rea] exchange rates.",
+        "isCorrect": false,
+        "explanation": "Incorrect because real exchange rates are indexes often constructed by economists and other market analysts to assess changes in the relative purchasing power of one currency compared with another, and are therefore not based on an arbitrage relationship."
+      },
+      {
+        "label": "B",
+        "text": "forward exchange rates. Gi nominal exchange rates,",
+        "isCorrect": true,
+        "explanation": "Correct because forward exchange rates are based on an arbitrage relationship that equates the investment return on two alternative but equivalent investments, which involves the relationship between the risk-free interest rates of the two countries concerned. The arbitrage relationship is Fy = Sw{1 + i) /(1 + i), where Fy is the forward rate, Sis the spot rate, and i; (i.) is the foreign (domestic) risk-free interest rate."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q19",
+    "questionText": "Which of the following would most likely lead to an increase in globalization? A decrease in:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "soft power.",
+        "isCorrect": false,
+        "explanation": "Incorrect because soft power has a positive effect on globalization. Soft power is a means ofinfluencing another country's decisions without force or coercion. Soft power can be built over time through such actions as cultural programs, advertisement, travel grants, and university exchange. And globalization also has cultural and communicative features. Although it can be difficult to measure these features, such as the spread of information or culture, it has increased interactions between citizens of countries all over the world. Internet usage allows for the near-instantaneous spread of cultural information and context,"
+      },
+      {
+        "label": "B",
+        "text": "nationalism. a standardization. 114 -- 117 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because globalization is marked by economic and financial cooperation, including the active trade of goods and services, capital flows, currency exchange, and cultural and information exchange. Actors participating in globalization are likely to reach beyond their national borders for access to new markets, talent, or learning. By contrast, anti-globalization or nationalism is the promotion of a country’s own economic interests to the exclusion or detriment ofthe interests of other nations."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q20",
+    "questionText": "Which of the following organizations was founded with the goal of assisting in the reconstruction of the international payment system?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "The World Trade Organization",
+        "isCorrect": false,
+        "explanation": "Incorrect because WTO provides the legal and institutional foundation ofthe multinational trading system. It is the only international organization that regulates cross- border trade relationships among nations on a global scale."
+      },
+      {
+        "label": "B",
+        "text": "The International Monetary Fund G The International Bank for Reconstruction and Development",
+        "isCorrect": true,
+        "explanation": "Correct because IMF was founded with the goal to stabilize exchange rates and assist the reconstruction of the world’s international payment system. C: Incorrect because the World Bank was created to facilitate post-war reconstruction and development. Also, World Bank’s two closely affiliated entities—the International Bank for Reconstruction and Development (IBRD) and the International Development Association (IDA)—provide low or no-interest loans and grants to countries that have unfavourable or no access to international credit markets."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q22",
+    "questionText": "Assuming wages and prices are rigid, which of the following policy combinations most likely leads to the private sector increasing its share of GDP?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Easy fiscal policy and tight monetary policy",
+        "isCorrect": false,
+        "explanation": "Incorrect because if taxes are cut or government spending rises, the expansionary fiscal policy will lead to a rise in aggregate output. If this is accompanied by a reduction in money supply to offset the fiscal expansion, then interest rates will rise and have a negative effect on private sector demand. We have higher output and higher interest rates, and government spending will be a larger proportion of overall national income."
+      },
+      {
+        "label": "B",
+        "text": "Tight monetary policy and tight fiscal policy",
+        "isCorrect": false,
+        "explanation": "Incorrect because, in the case of tight monetary policy and tight fiscal policy, interest rates rise (at least if the monetary impact on interest rates is larger) and reduce private demand. At the same time, higher taxes and falling government spending lead to a drop in aggregate demand from both public and private sectors."
+      },
+      {
+        "label": "C",
+        "text": "Tight fiscal policy and easy monetary policy",
+        "isCorrect": true,
+        "explanation": "Correct because if a fiscal contraction is accompanied by expansionary monetary policy and low interest rates, then the private sector will be stimulated and will rise as a share of GDP, while the public sector will shrink."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q23",
+    "questionText": "Which of the following changes most likely reflects a discretionary fiscal policy action?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "A decrease in corporate tax revenues due to lower corporate profitability",
+        "isCorrect": false,
+        "explanation": "Incorrect because the deficit can change for reasons unrelated to actual fiscal policy changes. Automatic stabilizers will lead to changes in the budget deficit unrelated to fiscal policy changes; a recession will cause tax revenues to fall and the budget deficit to rise. 138 -- 141 of 166 --"
+      },
+      {
+        "label": "B",
+        "text": "An increase in government expenditures due to new infrastructure projects",
+        "isCorrect": true,
+        "explanation": "Correct because in addition to these automatic adjustments, governments also use discretionary fiscal adjustments to influence aggregate demand. These will involve tax changes and/or spending cuts or increase usually with the aim of stabilizing the economy. An increase in government expenditures due to new infrastructure projects is a discretionary fiscal policy action because new public spending on social goods and infrastructure, such as hospitals and schools, boosting personal incomes with the objective of raising aggregate demand."
+      },
+      {
+        "label": "C",
+        "text": "An increase in payments of unemployment benefits due to increasing unemployment",
+        "isCorrect": false,
+        "explanation": "Incorrect because automatic stabilizers—such as income tax, VAT, and social benefits—are important because as output and employment fall and reduce tax revenues, so net tax revenues also fall as unemployment benefits rise. This acts as a fiscal stimulus and serves to reduce the size of the multiplier, dampening the output response of whatever caused the fall in output in the first place. By their very nature, automatic stabilizers do not require policy changes; no policymaker has to decide that an economic shock has occurred and how to respond,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q24",
+    "questionText": "Each oligopoly firm faces an individual demand curve under: A colluding market conditions only.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "non-colluding market conditions only.",
+        "isCorrect": true,
+        "explanation": "Correct because in an oligopoly market where collusion is present, the aggregate market demand curve is divided up by the individual production participants. Under non- colluding market conditions, each firm faces an individual demand curve. G Incorrect because in an oligopoly market where collusion is present, the aggregate market demand curve is divided up by the individual production participants. Under non- colluding market conditions, each firm faces an individual demand curve."
+      },
+      {
+        "label": "C",
+        "text": "both colluding and non-colluding market conditions.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q25",
+    "questionText": "A decline in tax revenues due to a recession is best described as an example of a(n):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "automatic stabilizer,",
+        "isCorrect": true,
+        "explanation": "Correct because falling tax revenues due to a recession is an example of automatic stabilizer, not a discretionary fiscal policy. Automatic stabilizers will lead to changes in the budget deficit unrelated to fiscal policy changes; a recession will cause tax revenues to fall and the budget deficit to rise."
+      },
+      {
+        "label": "B",
+        "text": "expansionary fiscal policy. G contractionary fiscal policy.",
+        "isCorrect": false,
+        "explanation": "Incorrect because falling tax revenues due to a recession are an example of an automatic stabilizer. Automatic stabilizers will lead to changes in the budget deficit unrelated to fiscal policy changes; a recession will cause tax revenues to fall and the budget deficit to rise. An expansionary fiscal policy is discretionary in order to help manage the economy through its influence on aggregate national output, that is, real GDP. Ina recession, governments can raise spending (expansionary fiscal policy) in an attempt to raise employment and output. G Incorrect because falling tax revenues due to a recession are an example of an automatic stabilizer. Automatic stabilizers wil] lead to changes in the budget deficit unrelated to fiscal policy changes; a recession will cause tax revenues to fall and the budget deficit to rise. A contractionary fiscal policy is discretionary in order to help manage the economy through its influence on aggregate national output, that is, real GDP. When an economy has full employment and wages and prices are rising too fast—then government spending may be reduced and taxes raised (contractionary fiscal policy)."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q26",
+    "questionText": "According to the Cournot assumption, in an oligopoly market each firm determines its profit-maximizing production level by assuming that other firms will: LS -- 118 of 166 --",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "decrease output.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in the Cournot assumption, each firm determines its profit- maximizing production level by assuming that the other firms’ output will not change. This assumption simplifies pricing strategy because there is no need to guess what the other 140 -- 143 of 166 -- firm will do to retaliate."
+      },
+      {
+        "label": "B",
+        "text": "not change output.",
+        "isCorrect": true,
+        "explanation": "Correct because in the Cournot assumption, each firm determines its profit- maximizing production level by assuming that the other firms' output will not change. This assumption simplifies pricing strategy because there is no need to guess what the other firm will do to retaliate."
+      },
+      {
+        "label": "C",
+        "text": "increase output. 116 -- 119 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because in the Cournot assumption, each firm determines its profit- maximizing production level by assuming that the other firms’ output will not change. This assumption simplifies pricing strategy because there is no need to guess what the other firm will do to retaliate."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q27",
+    "questionText": "The main objective of most central banks is to maintain:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "price stability.",
+        "isCorrect": true,
+        "explanation": "Correct because for a central bank there is one overarching objective that most seem to acknowledge explicitly, and that is the objective of maintaining price stability,"
+      },
+      {
+        "label": "B",
+        "text": "gold reserves. G an employment target.",
+        "isCorrect": false,
+        "explanation": "Incorrect because most central banks will also be responsible for managing their country’s foreign currency reserves and also its gold reserves. There is one overarching objective that most seem to acknowledge explicitly, and that is the objective of maintaining price stability."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q28",
+    "questionText": "An analyst gathers the following information about a company: Average variable cost perunit $12.50 Selling price per unit $37.50 Total fixed costs $900,000 The minimum production level needed to continue operations over the long run is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "24,000 units.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in the long run, if a firm cannot earn at least a zero economic profit, it will not operate because it is not covering the opportunity cost of all of its factors of production, labor, and capital. In the long run, if total revenues equal or exceed total costs the firm should stay in the market. Ata selling price of $37.50 each unit will cover $12.50 of variable cost, and contribute $25 towards fixed costs. $900,000 of fixed costs divided by this $25 equals 36,000 units. At 36,000 units, all variable and fixed costs are covered by total revenues. If the full selling price of $37.50 is divided into the $900,000 total fixed costs, the result is 24,000 units which is below the minimum production required to continue operations in the long run."
+      },
+      {
+        "label": "B",
+        "text": "36,000 units. G 72,000 units.",
+        "isCorrect": true,
+        "explanation": "Correct because in the long run, if a firm cannot earn at least a zero economic profit, it will not operate because it is not covering the opportunity cost of all of its factors of production, labor, and capital. In the long run, if total revenues equal or exceed total costs the firm should stay in the market. At a selling price of $37.50 each unit will cover $12.50 of variable cost, and contribute $25 (contribution margin) towards fixed costs. $900,000 of fixed costs divided by this $25 equals 36,000 units. At 36,000 units, all variable and fixed costs are covered by total revenues. C Incorrect because in the long run, if a firm cannot earn at least a zero economic profit, it will not operate because it is not covering the opportunity cost of all of its factors of production, labor, and capital. In the long run, if total revenues equal or exceed total costs the firm should stay in the market. At a selling price of $37.50, each unit will cover $12.50 of variable cost, and contribute $25 (contribution margin) towards fixed costs. $900,000 of fixed costs divided by this $25 equals 36,000 units. At 36,000 units, all variable and fixed costs are covered by total revenues. This is the minimum production level neededfor the company to continue production. If the average variable cost of $12.50 is divided into $900,000 the result is 72,000 units. 141 -- 144 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q29",
+    "questionText": "The implementation ofan export subsidy for a normal good produced in a small countrywill most likely increase the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "domestic consumption of the good.",
+        "isCorrect": false,
+        "explanation": "Incorrect because in the case of an export subsidy, the exporter has the incentive to shift sales from the domestic to the export market. This scenario raises the price in the domestic market by the amount ofthe subsidy in the small country case (price before subsidy plus subsidy). As the domestic price in the small country is higher, the consumption of the good will decline (rather than increase)."
+      },
+      {
+        "label": "B",
+        "text": "price of the good in the domestic market.",
+        "isCorrect": true,
+        "explanation": "Correct because in the case of an export subsidy, the exporter has the incentive to shift sales from the domestic to the export market because it receives the international price plus the per-unit subsidy for each unit of the good exported. This scenario raises the price in the domestic market by the amount ofthe subsidy in the small country case (price before subsidy plus subsidy). G. Incorrect because an export subsidy is a payment by the government to a firm for each unit of a good that is exported. Its goal is to stimulate exports. But it interferes with the functioning of the free market and may distort trade away from comparative advantage. Hence, it reduces welfare. .... The net welfare effect is negative in both the large and small country cases. Thus, export subsidies decrease rather than increase national welfare."
+      },
+      {
+        "label": "C",
+        "text": "national welfare of the country providing the subsidy.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q32",
+    "questionText": "The interest rate spread between 10-year treasury yields and overnight borrowingrates most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "is a lagging economic indicator.",
+        "isCorrect": false,
+        "explanation": "Incorrect because leading economic indicators have turning points those usually precede those of the overall economy. Lagging economic indicators have turning points that take place later those of the overall economy. Interest rate spread between 10-year treasury yields and overnight borrowing rates is a leading economic indicator."
+      },
+      {
+        "label": "B",
+        "text": "decreases when the market expects an economic downturn. G. increases as the market expects future short-term interest rates to decrease. 117 -- 120 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because long-term yields express market expectations about the direction of short-term interest rates, and rates ultimately follow the economic cycle up and down, a wider spread, by anticipating short rate increases, also anticipates an economic upswing. Conversely, a narrower spread, by anticipating short rate decreases, also anticipates an economic downturn. &. Incorrect because long-term yields express market expectations about the direction of short-term interest rates, and rates ultimately follow the economic cycle up and down, a wider spread, by anticipating short rate increases, also anticipates an economic upswing. Conversely, a narrower spread, by anticipating short rate decreases, also anticipates an economic downturn."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q33",
+    "questionText": "Which of the following monetary policy actions is most likely considered expansionary? The central bank:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "acts as the lender in a repurchase agreement.",
+        "isCorrect": true,
+        "explanation": "Correct because if the central bank wishes to increase the supply of money, it might buy bonds (usually government bonds) from the banks, with an agreement to sell them back at some time in the future. This transaction is known as a repurchase agreement. The lender in a repurchase agreement is the party that initially buys the bonds and agrees to sell them back at a later point in time. By purchasing bonds from banks, the central bank is increasing the money supply, or increasing liquidity, which is expansionary."
+      },
+      {
+        "label": "B",
+        "text": "sells government bonds to commercial banks. G, raises reserve requirements of commercial banks.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the central bank can sell government bonds to commercial banks. By doing this, the reserves of commercial banks decline, reducing their capacity to make loans (i.e., create credit) to households and corporations and thus causing broad money growth to decline through the money multiplier mechanism. This reduction in liquidity is contractionary, not expansionary."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q34",
+    "questionText": "Dollarization is best described as an exchange rate regime whereby a country:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "uses the currency of another nation as its medium of exchange.",
+        "isCorrect": true,
+        "explanation": "Correct because in case of dollarization the country uses the currency of another nation as its medium of exchange and unit of account."
+      },
+      {
+        "label": "B",
+        "text": "participates in a monetary union whose members share the same legal tender.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the IMF identifies two types of arrangements in which a country does not have its own legal tender. In the first, known as dollarization, the country uses the currency of another nation as its medium of exchange and unit of account. In the second, the country participates in a monetary union whose members share the same legal tender. Therefore dollarization is not best described as an exchange rate regime whereby the county participates in a monetary union whose members share the same legal tender. G Incorrect because in case of dollarization the country uses the currency of another nation as its medium of exchange and unit of account. In contrast, a currency board is a monetary regime based on an explicit legislative commitment to exchange domestic 143 -- 146 of 166 -- currency for a specified foreign currency at a fixed exchange rate, combined with restrictions on the issuing authority to ensure fulfillment of its legal obligation. 144 -- 147 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "makes a commitment to exchange domestic currency for a specified foreign currency at a fixed exchange rate.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q35",
+    "questionText": "Which of the following fiscal policy actions is most likely contractionary?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Increasing taxes and decreasing spending",
+        "isCorrect": true,
+        "explanation": "Correct because increasing taxes and decreasing spending are indicative ofa contractionary fiscal policy. When an economy has full employment and wages and prices are rising too fast—then government spending may be reduced and taxes raised (contractionary fiscal policy)."
+      },
+      {
+        "label": "B",
+        "text": "Decreasing taxes and increasing spending Cc Decreasing taxes and decreasing spending",
+        "isCorrect": false,
+        "explanation": "Incorrect because decreasing taxes and increasing spending are indicative of a budget deficit, which is expansionary. An expansionary policy could take one or more of the following forms cuts in sales (indirect) taxes to lower prices which raises real incomes with the objective of raising consumer demand cuts in corporation (company) taxes to boost business profits, which may raise capital spending, and cuts in tax rates on personal savings to raise disposable income for those with savings, with the objective of raising consumer demand. Expansionary fiscal] policy also includes new public spending on social goods and infrastructure, such as hospitals and schools, boosting personal incomes with the objective of raising aggregate demand. An increase in a budget surplus would be associated with contractionary fiscal policy, while a rise in a deficit is an expansionary fiscal policy. G. Incorrect because a decrease in taxes is expansionary, while a decrease in spending is contractionary. Without knowing the relative magnitudes, we cannot say whether the policyis expansionary or contractionary. An expansionary policy could take one or more of the following forms cuts in sales (indirect) taxes to lower prices which raises real incomes with the objective of raising consumer demand cuts in corporation (company) taxes to boost business profits, which may raise capital spending, and cuts in tax rates on personal savings to raise disposable income for those with savings, with the objective of raising consumer demand. However, an increase (not decrease) in spending is expansionary. Expansionary fiscal policy also includes new public spending on social goods and infrastructure, such as hospitals and schools, boosting personal incomes with the objective of raising aggregate demand. An increase in a budget surplus would be associated with contractionary fiscal policy, while a rise in a deficit is an expansionary fiscal policy."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q36",
+    "questionText": "A fiscal policy tool that can immediately influence spending is most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "indirect taxes,",
+        "isCorrect": true,
+        "explanation": "Correct because indirect taxes can be adjusted almost immediately after they are announced and can influence spending behaviour instantly and generate revenue for the government at little or no cost to the government."
+      },
+      {
+        "label": "B",
+        "text": "exchange rate targeting, G capital expenditure plans.",
+        "isCorrect": false,
+        "explanation": "Incorrect because exchange rate targeting is a monetary policy tool, not a fiscal policy tool. Many developing economies choose to operate monetary policy by targeting their currency's exchange rate."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q37",
+    "questionText": "Which ofthe following is most likely a lagging economic indicator?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Inventory-sales ratio",
+        "isCorrect": true,
+        "explanation": "Correct because inventories accumulate as sales initially decline and then, once a business adjusts its ordering, become depleted as sales pick up, so this ratio tends to lag the cycle,"
+      },
+      {
+        "label": "B",
+        "text": "S&P 500¢ Stock Index c: Manufacturers’ new orders for consumer goods and materials",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is a leading economic indicator. Stock prices anticipate economic turning points, both up and down, so their movements offer a useful early signal on economic cycles."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q38",
+    "questionText": "As an economy moves from the gold standard to a system of fiat currency, the role of thecentral bank most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "becomes less crucial.",
+        "isCorrect": false,
+        "explanation": "Incorrect because once an economy has moved to a system of fiat money, the role of the supplier of that money (the central bank) becomes even more crucial because they could, for example, expand the supply of this money indefinitely should they wish to do so. Central banks therefore play a crucial role in modern economies as the suppliers and guardians of the value of their fiat currencies and as institutions charged with the role of maintaining confidence in their currencies."
+      },
+      {
+        "label": "B",
+        "text": "remains unchanged.",
+        "isCorrect": false,
+        "explanation": "Incorrect because once an economy has moved to a system of fiat money, the role of the supplier of that money (the central bank) becomes even more crucial because they could, for example, expand the supply of this maney indefinitely should they wish to da sa. Central banks therefore play a crucial role in modern economies as the suppliers and guardians of the value oftheir fiat currencies and as institutions charged with the role of maintaining confidence in their currencies."
+      },
+      {
+        "label": "C",
+        "text": "becomes more crucial.",
+        "isCorrect": true,
+        "explanation": "Correct because once an economy has moved to a system of fiat money, the role of the supplier of that money (the central bank) becomes even more crucial because they could, for example, expand the supply of this money indefinitely should they wish to do so, Central banks therefore play a crucial role in modern economies as the suppliers and guardians of the value of their fiat currencies and as institutions charged with the role of maintaining confidence in their currencies."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q40",
+    "questionText": "An analyst gathers the following foreign exchange rate information: CAD/USDJPY/USD Beginningof period 1.3216 105.42 End of period 1.2944 104,74 CAD/USD is the amaunt of CAD peri USD. JPY/USD is the amount ofJPY per 1 USD. The percentage change in the JPY/CAD cross-rate for the period is closest to:A. -2.7%.",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "1.4%.",
+        "isCorrect": true,
+        "explanation": "Correct because sometimes it is necessary to invert one of the quotes in order to get the intermediary currency to cancel out in the equation to get the cross-rate. For example, to get a Canada-yen (JPY/CAD) quote, one is typically using the dollar-Canada (CAD/USD) rate and dollar-yen (JPY/USD) rate, which are the market conventions. Hence, to get a Canada-yen (JPY/CAD) quote, we must first invert the dollar-Canada (CAD/USD) quote before multiplying by the dollar—-yen (JPY/USD] quote. 147 -- 150 of 166 -- The beginning of period JPY/CAD exchange rate is therefore = 1/1.3216 x 105.42 = 0.75666 x 105.42 = 79.77 148 -- 151 of 166 -- The end of period JPY/CAD exchange rate is therefore = 1/1.2944 x 104.74 = 0.77256 x 104.74 = 80.92 The percentage change in the JPY/CAD exchange rate over the period is therefore = 80.92/79.77 - 1 = 1.44% = 1.4%. G. Incorrect because the beginning and end ofperiod JPY/USD exchange rates have been reversed chronologically as follows: Beginning of period JPY/CAD rate = 1/1.3216 x 104.74 = 0.75666 * 104.74 = 79.25 End of period JPY/CAD exchange rate = 1/1.2944 x 105.42 = 0.77256 x 105.42 = 81.44 Therefore the percentage change in JPY/CAD was calculated incorrectly as 81.44/79.25 - 1 = 2.76% = 2.8%."
+      },
+      {
+        "label": "C",
+        "text": "2.8%.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q41",
+    "questionText": "An analyst gathers the following information about spot rates: USD/GBP 1.2604 USD/EUR 1.1786 USD/GBEP is the amount of USD per 1 GBP. USD/EUR is the amount of USD per 1 EUR. The spot EUR/GBP cross rate is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0,9351.",
+        "isCorrect": false,
+        "explanation": "Incorrect because sometimes it is necessary to invert one of the quotes in order to get the intermediary currency to cancel out in the equation to get the cross-rate. The formula for the EUR/GBP cross rate is USD/GBP x (USD/EUR)+ = USD/GBP x EUR/USD. This answer inverts the wrong exchange rate and reverses the formula to 1.1786 / 1,2604 = 0.9351. This answer would be the GBP/EUR cross rate, not the EUR/GBPcross rate."
+      },
+      {
+        "label": "B",
+        "text": "1.0694. Gg 1.4855.",
+        "isCorrect": true,
+        "explanation": "Correct because sometimes it is necessary to invert one of the quotes in order to get the intermediary currency to cancel out in the equation to get the cross-rate. For example, to get a Canada—yen (JPY/CAD) quote, one is typically using the dollar-Canada (CAD/USD) rate and dollar-yen (JPY/USD) rate, which are the market conventions. This Canada-yen calculation requires that the dollar-Canada rate (CAD/USD) be inverted to a USD/CAD quote for the calculations to work. The formula for the EUR/GBP cross rate is USD/GBP x (USD/EUR)+ = USD/GBP x EUR/USD = 1.2604 / 1.1786 = 1.0694."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q43",
+    "questionText": "In contrast to real exchange rates, nominal foreign exchange rates:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "tend to deviate from purchasing power parity.",
+        "isCorrect": true,
+        "explanation": "Correct because nominal exchange rates exhibit persistent deviations from PPP."
+      },
+      {
+        "label": "B",
+        "text": "represent the relative price levels in the domestic and foreign countries. C; are indexes useful for understanding international trade and capital flows.",
+        "isCorrect": false,
+        "explanation": "Incorrect because relative price levels are represented by the real exchange rate. The real exchange rate is an index that adjusts the nominal exchange rate for each country’s price level. Creating these indexes requires adjusting the nominal exchange rate by using the price levels in each country of the currency pair (hence the name “real exchange rates”) in order to compare the relative purchasing power between countries. Anequivalent way of viewing the real exchange rate is that it represents the relative price levels in the domestic and foreign countries. CG Incorrect because nominal exchange rates are not indexes. The real exchange rate represents indexes created by analysts to understand the international competitiveness of an economy and the real purchasing power of a currency. In this context, real exchange rates can be useful for understanding trends in international trade and capital lows and hence can be seen as one ofthe influences on nominal spot exchange rates."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q44",
+    "questionText": "An argument against free trade is that:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "it has the potential to lead to greater income inequality.",
+        "isCorrect": true,
+        "explanation": "Correct because opponents of free trade point to the potential for greater income inequality and the loss of jobs in developed countries as a result of import competition."
+      },
+      {
+        "label": "B",
+        "text": "itincreases average production costs in goods and services.",
+        "isCorrect": false,
+        "explanation": "Incorrect because firms benefit from greater economies of scale. Hence, scale economies allow firms to benefit from the larger market size and experience lower average cost of production as a result of trade. G Incorrect because trade can lead to increased exchange of ideas, freer flow of technical expertise, and greater awareness of changing consumer tastes and preferences in global markets. [t can also contribute to the development ofhigher quality and more effective institutions and policies that encourage domestic innovation. For example, Coe and Helpman (1995) show that foreign research and development (R&D) has beneficial effects on domestic productivity. These effects become stronger the more open an economy is to foreign trade,"
+      },
+      {
+        "label": "C",
+        "text": "it discourages foreign research and development in an economy. 120 -- 123 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q45",
+    "questionText": "Ananalyst gathers the following information: Foreign inflation rate 2% Domestic inflation rate 3% Nominal appreciation of domestic currency against foreign currency 6% The real appreciation of the domestic currency against the foreign currency is closest to:A, 4%,",
+    "answerChoices": [
+      {
+        "label": "B",
+        "text": "5%.",
+        "isCorrect": true,
+        "explanation": "Correct because the change in the real exchange rate is (1 + ASd/,/Sd/) x (1 + AP/PA) / (1 + AP,/P.) - 1 = (1 + 6%) x (1 + 2%)/(1 + 3%) -1=1.06 x 1.02/1.03 - 1 = 0.0497 = 0,05 = 5%, where ASd/,/Sd/;is the change of the nominal exchange rate, AP,/Pfis the foreign inflation rate, and AP,/ Pais the domestic inflation rate. Using the appropriate approximate formula, 6.0% + 2.0% - 3.0% = 5% leads to the same answer choice. G. Incorrect because it interchanges domestic and foreign inflation rates in the formula, and calculates the change of real exchange rate as (1 + 6%) « (1+ 3%)/(1 + 2%) - 1= 1.06 « 1.03/1.02 - 1 = 0.0704 = 0.07 = 7%. 150 -- 153 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "7%.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q46",
+    "questionText": "Price levels increase by 2% in the US and by 6% in the Eurozone. If the nominal spot exchange rate of the USD/EUR (amount of US dollars per 1 euro) decreases by 4%, theabsolute change in the real exchange rate is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "0%.",
+        "isCorrect": true,
+        "explanation": "Correct because the change in the real exchange rate is 2 1+6% ~ —-18 , (Pasay (oo “% Thus, the change in the real exchange rate is approximately zero percent. The rough calculation is: -4% + 6% — 2% = 0%."
+      },
+      {
+        "label": "B",
+        "text": "4%, G. B%.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the price increase in the U.S. is assumed to be additive; -4% + 6% + 2% = 4%."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q47",
+    "questionText": "Which of the following market structures has high barriers to entry?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "An oligopoly",
+        "isCorrect": true,
+        "explanation": "Correct because the characteristics of oligopoly markets include: entry into the market is difficult, with fairly high costs and significant barriers to competition."
+      },
+      {
+        "label": "B",
+        "text": "Perfect competition",
+        "isCorrect": false,
+        "explanation": "Incorrect because perfect competition has very low barriers to entry. G Incorrect because monopolistic competition has low barriers to entry."
+      },
+      {
+        "label": "C",
+        "text": "Monopolistic competition",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q48",
+    "questionText": "With respect to trading blocs, a common market most Jikely incorporates all aspects of a{n):",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "customs union.",
+        "isCorrect": true,
+        "explanation": "Correct because the common market is the next level of economic integration that incorporates all aspects of the customs union and extends it by allowing free movement of factors of production among members."
+      },
+      {
+        "label": "B",
+        "text": "monetary union, G economic union.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the common market is the customs union plus the free movement of factors of production among members. An economic union plus a common currency is a monetary union. That is, ifthe members of the economic union decide to adopt a common currency, then it is also a monetary union. CG, Incorrect because the common market is the customs union plus the free movement of factors of production among members. Common economic institutions and coordination of economic policies among members are traits of an economic union. That is, an economic union requires an even greater degree of integration. It incorporates all aspects ofa common market and in addition requires common economic institutions and coordination of economic policies among members."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q50",
+    "questionText": "Which of the following indicators suggest(s) a monopoly market?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "A concentration ratio of 100% only",
+        "isCorrect": true,
+        "explanation": "Correct because the concentration ratio is the sum of the market shares of the largest N firms. This number is always between zero (perfect competition) and 100 percent (monopoly)."
+      },
+      {
+        "label": "B",
+        "text": "A Herfindahl-Hirschman index of zero only & Both a concentration ratio of 100% and a Herfindahl-Hirschman index ofzero 121 -- 124 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because 0.C. Herfindah] and A.O. Hirschman suggested an index where the market shares of the top N companies are first squared and then added. If one firm controls the whole market (a monopoly), the Herfindahl-Hirschman index (HHI) equals 1,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q51",
+    "questionText": "When a country that is a price taker imposes a tariff on an imported good:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "national] welfare increases.",
+        "isCorrect": false,
+        "explanation": "Incorrect because a small country is one that is a price taker in the world market for a product and cannot influence the world market price. The welfare effect can be summarized as follows: Consumers suffer a loss of consumer surplus, local producers gain producer surplus and the net welfare effect results in a deadweight loss to the country’s welfare."
+      },
+      {
+        "label": "B",
+        "text": "consumers gain consumer surplus.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the economic impact ofa tariff on imports in a small country is one that is a price taker in the world market for a product and cannot influence the world market price. The welfare effect can be summarized as follows: Consumers suffer a loss of consumer surplus, local producers gain producer surplus and the net welfare effect results in a deadweight loss to the country’s welfare."
+      },
+      {
+        "label": "C",
+        "text": "local producers gain producer surplus.",
+        "isCorrect": true,
+        "explanation": "Correct because the economic impact of a tariff on imports in small country is one that is a price taker in the world market for a product and cannot influence the world market price. The welfare effect can be summarized as follows: Consumers suffer a loss of consumer surplus, local producers gain producer surplus and the net welfare effect results in a deadweight loss to the country's welfare."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q52",
+    "questionText": "An ideal international currency regime would most likely have:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "currencies that are fully convertible.",
+        "isCorrect": true,
+        "explanation": "Correct because the ideal currency regime would have three properties. One of those properties is, all currencies would be fully convertible (i-e., currencies could be freely exchanged for any purpose and in any amount). This condition ensures unrestricted flow of capital."
+      },
+      {
+        "label": "B",
+        "text": "floating exchange rates between currencies.",
+        "isCorrect": false,
+        "explanation": "Incorrect because the ideal currency regime would have three properties. One of those properties states the exchange rate between any two currencies would be credibly fixed, not floating. G. Incorrect because the ideal currency regime would have three properties. One of those properties states each country would be able to undertake fully independent (not common) monetary policy in pursuit of domestic objectives, such as growth and inflation targets. 152 -- 155 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "acommon monetary policy across different countries.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q55",
+    "questionText": "Under which of the following market structures are pricing strategies most likely influencedby the expected reaction of other firms?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Oligopoly",
+        "isCorrect": true,
+        "explanation": "Correct because the oligopoly market structure is based on a relatively small numberof firms supplying the market. The small number of firms in the market means that each firm must consider what retaliatory strategies the other firms will pursue when prices and production levels change. Consider the pricing behavior of commercial airline companies. Pricing strategies and route scheduling are based on the expected reaction of the other carriers in similar markets."
+      },
+      {
+        "label": "B",
+        "text": "Perfect competition Cc Monopolistic competition",
+        "isCorrect": false,
+        "explanation": "Incorrect because there are many sellers in this type of market structure and firms operatingin a market structure or perfect competition are price takers. G. Incorrect because there are many sellers and in the case of monopolistic competition, the success of product differentiation determines the degree with which the firm can influence prices,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q58",
+    "questionText": "Which of the following is most likely an objective of fiscal policy?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Maintaining price stability",
+        "isCorrect": false,
+        "explanation": "Incorrect because ensuring price stability is an objective of monetary policy not fiscal policy. There is one overarching objective [of the central bank] that mast seem to acknowledge explicitly, and that is the objective of maintaining price stability."
+      },
+      {
+        "label": "B",
+        "text": "Affecting aggregate demand G, Achieving an exchange rate target",
+        "isCorrect": true,
+        "explanation": "Correct because the tools associated with fiscal policy involve the use of government spending and changing tax revenue to affect a number of aspects of the economy: including the overall level of aggregate demand in an economy and hence the level of economic activity. & Incorrect because targeting exchange rates is a part of monetary not fiscal policy. Many developing economies choose to operate monetary policy by targeting theircurrency’s exchange rate, rather than an explicit level of domestic inflation,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q59",
+    "questionText": "Which of the following is most likely to limit the effectiveness of monetary policy?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "A liquidity trap",
+        "isCorrect": true,
+        "explanation": "Correct because there may be occasions where the demand for money becomes infinitely elastic so that further injections of money into the economy will not serve to further lower interest rates or affect real activity. This is known as a liquidity trap. In this extreme circumstance, monetary policy can become completely ineffective."
+      },
+      {
+        "label": "B",
+        "text": "The crowding out effect & Atime lag to implement government spending",
+        "isCorrect": false,
+        "explanation": "Incorrect because crowding out is the reduction in private sector investment due to increased government borrowing and describes a difficulty in implementing fiscal, not monetary, policy. G Incorrect because this is the action lag and describes a difficulty in implementing fiscal policy. An example of the action lag is the government's decision to raise spending on capital projects to increase employment and incomes, but they may take many months to implement. 154 -- 157 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q60",
+    "questionText": "Which of the following is a limitation of monetary policy?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "The presence of automatic stabilizers in the economy",
+        "isCorrect": false,
+        "explanation": "Incorrect because this is not a limitation of monetary policy. Automatic stabilizers are features which reduce output fluctuations in the economy and impact fiscal policy."
+      },
+      {
+        "label": "B",
+        "text": "The ineffectiveness of interest rate adjustments in deflationary environments G. The uneven distribution of income and wealth among different segments of the population",
+        "isCorrect": true,
+        "explanation": "Correct because this is a limitation of monetary policy. The limitations of monetary policy include problems in the transmission mechanism and the relative ineffectiveness of interest rate adjustment as a policy tool in deflationary environments."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q61",
+    "questionText": "The main objective of the World Bank Group is ta:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "support exchange rate stability and an open system of international payments.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this refers to a key objective for the International Monetary Fund. That is, the IMF supports exchange rate stability and an open system of international payments."
+      },
+      {
+        "label": "B",
+        "text": "provide the legal and institutional foundation of the multinational trading system.",
+        "isCorrect": false,
+        "explanation": "Incorrect because this refers to a key objective for the World Trade Organization. That is, the WTO provides the legal and institutional foundation of the multinational trading system."
+      },
+      {
+        "label": "C",
+        "text": "help developing countries fight poverty and enhance environmentally sound economic growth.",
+        "isCorrect": true,
+        "explanation": "Correct because the World Bank's main objective is to help developing countries fight poverty and enhance environmentally sound economic growth."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q63",
+    "questionText": "If the spot rate for AUD/USD (amount of AUD per 1 USD) is 1.4780 and the 1-month forward points are -16.0, the 1-month forward rate for AUD/USD is closest to:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "1.3180,",
+        "isCorrect": false,
+        "explanation": "Incorrect because to convert any of these quoted forward points into a forward rate, one would divide the number of points by 10,000 (to scale down to the fourth decimal place, the last decimal place in the spot quote) and then add the result to the spot exchange rate quote. The forward points were incorrectly divided by 100 and the forward rate was calculated as follows: -16/100 + 1.4780 =-0.16 + 1.4780 = 1.3180."
+      },
+      {
+        "label": "B",
+        "text": "1.4764. G. 1.4796. 124 -- 127 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because to convert any of these quoted forward points into a forward rate, one would divide the number of points by 10,000 (to scale down to the fourth decimal place, the last decimal place in the spot quote) and then add the result to the spot exchange rate quote. The forward points are negative and therefore the forward rate = -16/10,000 + 1.4780 = -0.0016 + 1.4780 = 1.4764. 155 -- 158 of 166 -- Incorrect because to convert any of these quoted forward points into a forward rate, one would divide the number of points by 10,000 (to scale down to the fourth decimal place, the last decimal place in the spot quote) and then add the result to the spot exchange rate quote. In this case the forward points have been treated as a positive number as follows: 16/10,000 + 1.4780 = 0.0016 + 1.4780 = 1.4796. 156 -- 159 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q64",
+    "questionText": "When a central bank sells government bonds to commercial banks, broad money growth:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "decreases.",
+        "isCorrect": true,
+        "explanation": "Correct because when a central bank sells government bonds to a commercial bank the reserves of commercial banks decline, reducing their capacity to make loans (i.e., create credit) to households and corporations and thus causing broad money growth to decline through the money multiplier mechanism."
+      },
+      {
+        "label": "B",
+        "text": "remains the same.",
+        "isCorrect": false,
+        "explanation": "Incorrect because when a central bank sells government bonds to a commercial bank the reserves of commercial banks decline, reducing their capacity to make loans (i.e., create credit) to households and corporations and thus causing broad money growth to decline through the money multiplier mechanism. Gc Incorrect because when a central bank sells government bonds to a commercial bank the reserves of commercial banks decline, reducing their capacity to make loans (i.e., create credit) to households and corporations and thus causing broad money growth to decline through the money multiplier mechanism."
+      },
+      {
+        "label": "C",
+        "text": "increases.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q66",
+    "questionText": "Which of the following behavioral archetypes best describes a country that is high on the globalization spectrum but low on the cooperation spectrum?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Autarky",
+        "isCorrect": false,
+        "explanation": "Incorrect because there are four archetypes of country behavior: autarky, hegemony, multilateralism, and bilateralism, where autarky is situated law on the cooperation spectrum and low (not high) on the globalization spectrum. Autarky describes countries seeking political self-sufficiency with little or no external trade or finance. State-owned enterprises control strategic domestic industries."
+      },
+      {
+        "label": "B",
+        "text": "Hegemony",
+        "isCorrect": true,
+        "explanation": "Correct because using the two axes we have discussed—political cooperation versus non-cooperation and globalization versus nationalism—investment analysts can assess geopolitical actors and the likelihood ofthreat to investment outcomes. Specifically, there are four archetypes of country behavior: autarky, hegemony, multilateralism, and bilateralism, where hegemony is situated low on the cooperation spectrum and highon the globalization spectrum. Hegemonic countries tend to be regional or even global leaders, and they use their political or economic influence of others to control resources. State- owned enterprises tend to control key export markets. Examples of hegemonic countries include the United States and Russia. G Incorrect because there are four archetypes of country behavior: autarky, hegemony, multilateralism, and bilateralism, where bilateralism is situated high on the cooperation (not globalization) spectrum and low on the globalization(not 157 -- 160 of 166 -- cooperation) spectrum. Bilateralism is the conduct of political, economic, financial, orcultural cooperation between two countries. Countries engaging in bilateralism may have relations with many different countries, but they are one-at-a-time agreements without multiple partners. 158 -- 161 of 166 --"
+      },
+      {
+        "label": "C",
+        "text": "Bilateralism",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q68",
+    "questionText": "An analyst gathers the following information (in $ millions) about a firm operating ina perfectly competitive market: Totalvariablecosts 700 Total fixed costs 400 If the firm's total revenue is $1,000 million, the firm should:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "stay in the market in both the short run and long run.",
+        "isCorrect": false,
+        "explanation": "Incorrect because TR > TVC but < TC. As such the firm will stay in the market in the short run and exit the market in the long run."
+      },
+      {
+        "label": "B",
+        "text": "stay in the market in the short run-and exit the market in the long run. C shut down production in the short run and exit the market in the long run. 125 -- 128 of 166 --",
+        "isCorrect": true,
+        "explanation": "Correct because when TR total revenue is enough to cover TVC (total variable costs) but not all of TFC total fixed costs, the firm can continue to produce in the short run but will be unable to maintain financial solvency in the long run. TR is $1,000 which is greater than TVC of $700, but not enough to cover the firm's TFC of $400. Therefore the firm will exit the market in the long run. ¢ Incorrect because TR > TVC but < TC. Therefore, the firm will stay in the market in the short run because TR is enough to cover TVC but not all of TFC, the firm can continue to produce in the short run,"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q69",
+    "questionText": "To be effective in targeting inflation a central bank is least likely to need:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "government oversight.",
+        "isCorrect": true,
+        "explanation": "Correct because an inflation-targeting framework normally has the following set of features — An independent and credible central bank."
+      },
+      {
+        "label": "B",
+        "text": "transparencyof decisions. E. credibility with market participants.",
+        "isCorrect": false,
+        "explanation": "Incorrect because by explaining their views on the economy and by being transparent in decision making, the independent, inflation-targeting central banks seek to gain reputation and credibility, making it easier to influence inflation expectations and hence ultimately easier to meet the inflation target. G. Incorrect because credibility — the independence of the central bank and public confidence in it are key in the design of an inflation-targeting regime. 159 -- 162 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q71",
+    "questionText": "The conversion of nominal exchange rates into real exchange rates requires the:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "GDP ofboth countries.",
+        "isCorrect": false,
+        "explanation": "Incorrect because real exchange rates adjust for the price level in both countries not GDP. Real exchange rates, which are indexes often constructed by economists and other market analysts to assess changes in the relative purchasing power of one currency compared with another. Creating these indexes requires adjusting the nominal exchange rate by using the price levels in each country of the currency pair."
+      },
+      {
+        "label": "B",
+        "text": "price levels in both countries.",
+        "isCorrect": true,
+        "explanation": "Correct because real exchange rates, which are indexes often constructed by economists and other market analysts to assess changes in the relative purchasing power of one currency compared with another. Creating these indexes requires adjusting the nominal exchange rate by using the price levels in each country of the currency pair. €. Incorrect because real exchange rates adjust for the price level in both countries not interest rates. Real exchange rates, which are indexes often constructed by economists and other market analysts to assess changes in the relative purchasing power of one currency compared with another. Creating these indexes requires adjusting the nominal exchange rate by using the price levels in each country of the currency pair."
+      },
+      {
+        "label": "C",
+        "text": "interest rates in both countries.",
+        "isCorrect": false,
+        "explanation": "Incorrect."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q72",
+    "questionText": "Which of the following is most likely a benefit of globalization?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Increased profits",
+        "isCorrect": true,
+        "explanation": "Correct because the opportunity to generate higher profits may motivate companies to globalize. The first way to generate profit is to increase sales. Companies may choose to engage in globalization in order to access new customers for their goods and services. Another way to increase profits is to reduce costs. Globalization allows companies to access lower tax-operating environments, reduce labor costs, or seek other supply chain efficiency gains."
+      },
+      {
+        "label": "B",
+        "text": "More equal income distribution oe Stronger environmental, social, and governance standards",
+        "isCorrect": false,
+        "explanation": "Incorrect because globalization can contribute to income and wealth inequality, as well as differences in opportunity, within and between countries, Gi Incorrect because companies operating in lower-cost countries often operate in the local standards of those countries. If standards on environmental protection, social benefits, or corporate governance are lower in one country compared to another and companies ultimately reduce their standards of production in that context, then globalization can create a drain on human, administrative, and environmental resources. 160 -- 163 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q74",
+    "questionText": "Which of the following changes are investors most likely to make in response to a black swan risk?",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "Tactical",
+        "isCorrect": true,
+        "explanation": "Correct because the velocity of geopolitical risk is the pace at which it impacts an investor portfolio. For the sake of simplicity, we explore short-term or ‘high velocity’ impacts, medium-term, and long-term or ‘low velocity’ impacts [...]. In the short term, we may see volatility in the markets affecting entire industries or even the entire market. Exogenous or ‘black swan’ events tend to fit into this category, causing market volatility and investor flight to quality. A black swan risk is an event that is rare and difficult to predict but has an important impact. Investors with the appropriate time horizon and risk tolerance may make tactical] changes to their investment choices asa result of these events. Long-term changes are unlikely to be necessary."
+      },
+      {
+        "label": "B",
+        "text": "Sector specific G& Asset allocation 126 -- 129 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because this relates to a medium-term impact of geopolitical risk instead: Risks with a medium-term impact may begin to impair companies’ processes, costs, and investment opportunities, resulting in lower valuations. These risks tend to be distributed towards specific sectors, meaning they will impact some companies much more than others. Gs Incorrect because this relates to a low velocity impact of geopolitical risk instead: The velocity of geopolitical risk is the pace at which it impacts an investor portfolio. For the sake of simplicity, we explore short-term or ‘high velocity’ impacts, medium-term, and long-term or ‘low velocity’ impacts. And long-term risks may have important environmental, social, governance, and other impacts. This can impact an investor's asset allocation—including choice of asset classes and investment styles—for a long-term horizon; however, the immediate impact on portfolios is likely to be more limited."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q75",
+    "questionText": "During the recovery phase of the business cycle, inflation most likely:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "remains moderate.",
+        "isCorrect": true,
+        "explanation": "Correct because, in the “recovery” phase, inflation remains moderate."
+      },
+      {
+        "label": "B",
+        "text": "further accelerates. C: decelerates but with a lag.",
+        "isCorrect": false,
+        "explanation": "Incorrect because, in the “recovery” phase, inflation remains maderate and in the “slowdown” phase inflation further accelerates. i! Incorrect because, in the “recovery” phase, inflation remains moderate and in the “contraction” phase inflation decelerates but with a lag. 161 -- 164 of 166 --"
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  },
+  {
+    "id": "premium-economics-ocr-cfa-l1-2025-alt-investments-corp-issurs-derivatives-q76",
+    "questionText": "The Herfindahl-Hirschman index is calculated based on:",
+    "answerChoices": [
+      {
+        "label": "A",
+        "text": "market shares of the companies.",
+        "isCorrect": true,
+        "explanation": "Correct because in calculating the Herfindahl-Hirschman index the market shares of the top N companies are first squared and then added. If one firm controls the whole market (a monopoly), the Herfindahl-Hirschman index (HHI) equals 1. If there are M firmsin the industry with equal market shares, then the HHI equals (1/™)."
+      },
+      {
+        "label": "B",
+        "text": "elasticity of demand in the market. G probability of new entry into the market. 127 -- 130 of 166 --",
+        "isCorrect": false,
+        "explanation": "Incorrect because just like the concentration ratio, the HHI does not take thepossibility of entry into account, nor does it consider the elasticity of demand."
+      }
+    ],
+    "difficulty": "Medium",
+    "subject": "Economics",
+    "reading": null,
+    "topic": null,
+    "provider": "premium-practice",
+    "questionSourceFile": "OCR_CFA L1 2025_Alt Investments, Corp Issurs & Derivatives.pdf"
+  }
+]
